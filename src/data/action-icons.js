@@ -1,0 +1,17 @@
+var actionIcons = {
+    'goBack': '❮',
+    'goForward': '❯',
+    'newTab': '＋',
+    'closeCurrentTab': '✕',
+    'reloadTab': '🗘',
+    'copyUrl': '🗎',
+    'openInFgTab': '🡕',
+    'openInBgTab': '🡖',
+    'downloadUrl': '⇩',
+    'downloadUrlAs': '⇩',
+    'addToBookmarks': '☆',
+    'searchImageOnGoogle': '𝖦',
+    'copyLinkText': '🗎',
+    'scrollToTop': '↑',
+    'scrollToBottom': '🠓',
+};

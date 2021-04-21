@@ -1,0 +1,70 @@
+{
+    "newTab": {
+        "message": "New tab",
+        "description": "Label for circle menu button"
+    },
+    "reloadTab": {
+        "message": "Reload",
+        "description": "Label for circle menu button"
+    },
+    "goBack": {
+        "message": "Go back",
+        "description": "Label for circle menu button"
+    },
+    "goForward": {
+        "message": "Go forward",
+        "description": "Label for circle menu button"
+    },
+    "closeCurrentTab": {
+        "message": "Close tab",
+        "description": "Label for circle menu button"
+    },
+    "openInFgTab": {
+        "message": "Open in new tab",
+        "description": "Label for circle menu button"
+    },
+    "copyUrl": {
+        "message": "Copy link",
+        "description": "Label for circle menu button"
+    },
+    "openInBgTab": {
+        "message": "Background tab",
+        "description": "Label for circle menu button"
+    },
+    "link": {
+        "message": "Link",
+        "description": "Label for circle menu button"
+    },
+    "image": {
+        "message": "Image",
+        "description": "Label for circle menu button"
+    },
+    "addToBookmarks": {
+        "message": "Add to bookmarks",
+        "description": "Label for circle menu button"
+    },
+    "downloadUrl": {
+        "message": "Download",
+        "description": "Label for circle menu button"
+    },
+    "downloadUrlAs": {
+        "message": "Download",
+        "description": "Label for circle menu button"
+    },
+    "searchImageOnGoogle": {
+        "message": "Search image",
+        "description": "Label for circle menu button"
+    },
+    "copyLinkText": {
+        "message": "Copy text",
+        "description": "Label for circle menu button"
+    },
+    "scrollToTop": {
+        "message": "Scroll to top",
+        "description": "Label for circle menu button"
+    },
+    "scrollToBottom": {
+        "message": "Scroll to bottom",
+        "description": "Label for circle menu button"
+    }
+}

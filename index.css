@@ -1,0 +1,38 @@
+#c{
+    /* width:224px;
+    height:224px; */
+  transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
+  visibility: hidden;
+  opacity: 0.0;
+  position: absolute;
+  z-index: 9999999;
+  transform: scale(0.0);
+  background-color: transparent;
+  color: transparent;
+}
+
+.cmg-rocker-icon{
+  all: revert;
+  cursor: pointer;
+  border: none !important;
+  box-shadow: none !important;
+  z-index: 10000 !important;
+  padding:  0px !important;
+  vertical-align: top !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  margin: 0px !important;
+  text-transform: none !important;
+  outline: none !important;
+  text-align: center !important;
+  /* font-size: 12.5px !important; */
+  line-height: 1.0 !important;
+  left: 0px; right: 0px;
+  border-radius: 50%;  position:absolute !Important; z-index:99999;align-items: center; text-align: center; vertical-align: middle;
+}
+
+.cmg-link-tooltip {
+  all: revert;
+  
+  /* left: 0px; right: 0px;
+  border-radius: 50%;  position:absolute !Important; z-index:99999;align-items: center; text-align: center; vertical-align: middle; */
+}

@@ -1,0 +1,62 @@
+{
+    "newTab": {
+        "message": "Новая вкладка",
+        "description": "Ярлык для кнопки кругового меню"
+    },
+    "reloadTab": {
+        "message": "Обновить",
+        "description": "Ярлык для кнопки кругового меню"
+    },
+    "goBack": {
+        "message": "Назад",
+        "description": "Ярлык для кнопки кругового меню"
+    },
+    "goForward": {
+        "message": "Вперед",
+        "description": "Label for circle menu button"
+    },
+    "closeCurrentTab": {
+        "message": "Закрыть вкладку",
+        "description": "Ярлык для кнопки кругового меню"
+    },
+    "openInFgTab": {
+        "message": "Открыть в новой вкладке",
+        "description": "Ярлык для кнопки кругового меню"
+    },
+    "copyUrl": {
+        "message": "Копировать ссылку",
+        "description": "Ярлык для кнопки кругового меню"
+    },
+    "openInBgTab": {
+        "message": "Открыть в \nфоновой вкладке",
+        "description": "Ярлык для кнопки кругового меню"
+    },
+    "link": {
+        "message": "Ссылка",
+        "description": "Ярлык для кнопки кругового меню"
+    },
+    "image": {
+        "message": "Изображение",
+        "description": "Ярлык для кнопки кругового меню"
+    },
+    "addToBookmarks": {
+        "message": "Добавить в закладки",
+        "description": "Label for circle menu button"
+    },
+    "downloadUrl": {
+        "message": "Загрузить",
+        "description": "Label for circle menu button"
+    },
+    "downloadUrlAs": {
+        "message": "Загрузить",
+        "description": "Label for circle menu button"
+    },
+    "searchImageOnGoogle": {
+        "message": "Поиск по картинке",
+        "description": "Label for circle menu button"
+    },
+    "copyLinkText": {
+        "message": "Копировать текст",
+        "description": "Label for circle menu button"
+    }
+}

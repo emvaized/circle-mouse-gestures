@@ -1,0 +1,48 @@
+{
+  "manifest_version": 2,
+  "name": "Circle Mouse Gestures",
+  "version": "1.0",
+  "description": "Circle mouse gestures",
+  "default_locale": "en",
+  "icons": {
+    "48": "icons/cmg-logo-48.png",
+    "96": "icons/cmg-logo-96.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "circle_mouse_gestures@emvaized.com"
+    }
+  },
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "src/data/variables.js",
+        "src/data/action-icons.js",
+        "functions.js",
+        "src/ui/circle.js",
+        "src/ui/link-tooltip.js",
+        "src/ui/rocker-icon.js",
+        "index.js"
+      ],
+      "css": [
+        "index.css"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "permissions": [
+    "tabs",
+    "downloads",
+    "bookmarks",
+    "browserSettings"
+  ]
+}
