@@ -19,6 +19,8 @@ var firstCircleInnerRadius = innerCircleRadius;
 var gapBetweenCircles = 8;
 var secondCircleRadius = circleRadius * 1.5;
 var secondCircleInnerRadius = circleRadius + gapBetweenCircles;
+var labelOpacity = 0.75;
+var iconOpacity = 1.0;
 
 var addLinkTooltip = false;
 

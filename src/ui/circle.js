@@ -11,8 +11,9 @@ function showCircle(e) {
             /// Right button click
             circle = document.createElement('canvas');
             circle.setAttribute('class', 'cmg-circle-canvas');
-            circle.setAttribute('width', canvasRadius);
-            circle.setAttribute('height', canvasRadius);
+            circle.setAttribute('width', `${canvasRadius}px !imporant`);
+            // circle.setAttribute('height', canvasRadius);
+            circle.setAttribute('height', `${canvasRadius}px !imporant`);
 
             // circle.style.transform = 'scale(0.0) rotate(-180deg)';
             circle.style.transform = 'scale(0.0)';
@@ -101,24 +102,6 @@ function drawCirclesOnCanvas(e) {
         /// Draw 2 levels
         drawCircleContent(e, secondCircleRadius, secondCircleInnerRadius, 1, false);
         drawCircleContent(e, firstCircleRadius, firstCircleInnerRadius, 0, true);
-
-        // setTimeout(function () {
-        //     // request another loop
-        //     requestAnimationFrame(drawCirclesOnCanvas);
-
-
-        //     // animate the control point
-        //     if (scaleForSecondLevel < 1.0)
-        //         scaleForSecondLevel += 0.05;
-
-        //     // request another loop
-        //     ctx.clearRect(0, 0, canvasRadius, canvasRadius);
-        //     drawCircleContent(e, secondCircleRadius * scaleForSecondLevel, secondCircleInnerRadius * scaleForSecondLevel, 1, false);
-        //     drawCircleContent(e, firstCircleRadius, firstCircleInnerRadius, 0, true);
-
-        // }, 1000 / 60);
-
-
 
     } else {
         /// Draw 1 level
@@ -287,7 +270,7 @@ function drawCircleContent(E, circleRadius, innerCircleRadius, level = 0, should
         //         ctx.fillText("______________________________________".substring(0, maxCharacters - 3), dxForText - 6.5, dyForText + 3);
         //     }
         // } else {
-        ctx.fillStyle = "rgba(256,256,256,0.75)";
+        ctx.fillStyle = `rgba(256,256,256, ${labelOpacity})`;
 
         if (circleRadius - innerCircleRadius > iconSize * 2.5)
             verticalShiftForIcon = wrapLabel(ctx, textToDraw, dxForText, dyForText + 15, segmentLength * 0.4, labelSize);
@@ -296,10 +279,39 @@ function drawCircleContent(E, circleRadius, innerCircleRadius, level = 0, should
         if (addLinkTooltip && hoveredLink !== null && linkTooltip == null) {
             showLinkTooltip();
         }
+
         /// Draw unicode icon    
-        ctx.fillStyle = "rgba(256,256,256,1.0)";
+        // ctx.fillStyle = "rgba(256,256,256,1.0)";
+        ctx.fillStyle = `rgba(256,256,256,${iconOpacity})`;
         ctx.font = `${iconSize}px sans-serif`;
-        ctx.fillText(actionIcons[buttonsToShow[i]], dxForText, dyForText - (circleRadius - innerCircleRadius > iconSize * 2.5 ? 4 : -4) - verticalShiftForIcon);
+
+        if (actionIcons[buttonsToShow[i]].length <= 3) {
+            /// Draw unicode icon
+            ctx.fillText(actionIcons[buttonsToShow[i]], dxForText, dyForText - (circleRadius - innerCircleRadius > iconSize * 2.5 ? 4 : -4) - verticalShiftForIcon);
+        } else {
+            try {
+
+                // let scale = iconSize / canvasRadius / (circleRadius - innerCircleRadius > iconSize * 2.5 ? 2 : 1.5);
+                let scale = iconSize / 24;
+
+                console.log('svg scale:');
+                console.log(scale);
+
+                /// Draw SVG icon
+                ctx.save();
+                let p = new Path2D(actionIcons[buttonsToShow[i]]);
+                ctx.translate(dxForText - (iconSize / 2), dyForText - verticalShiftForIcon - (iconSize / (circleRadius - innerCircleRadius > iconSize * 2.5 ? 1.5 : 2)));
+                ctx.scale(scale, scale);
+
+                ctx.fill(p);
+
+                // ctx.scale(1.0, 1.0);
+                ctx.restore();
+            } catch (e) {
+                console.log(e);
+            }
+
+        }
         // }
     }
 
