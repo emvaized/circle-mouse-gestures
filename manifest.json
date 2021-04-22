@@ -8,11 +8,6 @@
     "48": "icons/cmg-logo-48.png",
     "96": "icons/cmg-logo-96.png"
   },
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "circle_mouse_gestures@emvaized.com"
-    }
-  },
   "background": {
     "scripts": [
       "background.js"
@@ -39,10 +34,22 @@
       "run_at": "document_start"
     }
   ],
+  "options_ui": {
+    "page": "options/options.html",
+    "browser_style": true,
+    "chrome_style": true,
+    "open_in_tab": true
+  },
   "permissions": [
     "tabs",
-    "downloads",
+    "storage",
+    "sessions",
     "bookmarks",
-    "browserSettings"
-  ]
+    "downloads"
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "circle_mouse_gestures@emvaized.com"
+    }
+  }
 }

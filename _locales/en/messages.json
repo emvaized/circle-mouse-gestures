@@ -39,6 +39,10 @@
         "message": "Image",
         "description": "Label for circle menu button"
     },
+    "page": {
+        "message": "Page",
+        "description": "Label for circle menu button"
+    },
     "addToBookmarks": {
         "message": "Add to bookmarks",
         "description": "Label for circle menu button"
@@ -65,6 +69,38 @@
     },
     "scrollToBottom": {
         "message": "Scroll to bottom",
+        "description": "Label for circle menu button"
+    },
+    "translatePage": {
+        "message": "Translate page",
+        "description": "Label for circle menu button"
+    },
+    "restoreClosedTab": {
+        "message": "Restore",
+        "description": "Label for circle menu button"
+    },
+    "moveUpLabel": {
+        "message": "Move up",
+        "description": "Label for circle menu button"
+    },
+    "moveDownLabel": {
+        "message": "Move down",
+        "description": "Label for circle menu button"
+    },
+    "deleteLabel": {
+        "message": "Remove",
+        "description": "Label for circle menu button"
+    },
+    "addNewButton": {
+        "message": "Add new",
+        "description": "Label for circle menu button"
+    },
+    "switchToPreviousTab": {
+        "message": "Previous tab",
+        "description": "Label for circle menu button"
+    },
+    "switchToNextTab": {
+        "message": "Next tab",
         "description": "Label for circle menu button"
     }
 }

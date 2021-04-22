@@ -1,6 +1,6 @@
 /// Listener to open url in new tab
 chrome.runtime.onMessage.addListener(
-    function (request, sender, sendResponse) {
+    async function (request, sender, sendResponse) {
         /// Regular menu
         // if (request.typeOfAction == 'mgc-regular-menu')
         switch (request.actionToDo) {
@@ -108,6 +108,83 @@ chrome.runtime.onMessage.addListener(
                 chrome.tabs.create({
                     url: 'https://translate.google.com/translate?sl=auto&tl=ru&u=' + request.url, active: true, index: index + 1
                 });
+            } break;
+
+            case 'switchToPreviousTab': {
+
+                const queryInfo = {
+                    active: false,
+                    currentWindow: true
+                }
+
+                // // if (this.getSetting("excludeDiscarded")) queryInfo.discarded = false;
+
+                chrome.tabs.query(queryInfo, function (tabs) {
+                    let nextTab;
+                    // if there is at least one tab to the left of the current
+                    if (tabs.some(cur => cur.index < sender.tab.index)) {
+                        // get closest tab to the left (if not found it will return the closest tab to the right)
+                        nextTab = tabs.reduce((acc, cur) =>
+                            (acc.index >= sender.tab.index && cur.index < acc.index) || (cur.index < sender.tab.index && cur.index > acc.index) ? cur : acc
+                        );
+                    }
+                    // else get most right tab if tab cycling is activated
+                    // else if (this.getSetting("cycling") && tabs.length > 0) {
+                    //     nextTab = tabs.reduce((acc, cur) => acc.index > cur.index ? acc : cur);
+                    // }
+                    // focus next tab if available
+                    if (nextTab) {
+                        chrome.tabs.update(nextTab.id, { active: true });
+                    }
+                });
+
+
+            } break;
+
+            case 'switchToNextTab': {
+                const queryInfo = {
+                    active: false,
+                    currentWindow: true
+                }
+
+                // if (this.getSetting("excludeDiscarded")) queryInfo.discarded = false;
+
+                chrome.tabs.query(queryInfo, function (tabs) {
+                    let nextTab;
+                    // if there is at least one tab to the right of the current
+                    if (tabs.some(cur => cur.index > sender.tab.index)) {
+                        // get closest tab to the right (if not found it will return the closest tab to the left)
+                        nextTab = tabs.reduce((acc, cur) =>
+                            (acc.index <= sender.tab.index && cur.index > acc.index) || (cur.index > sender.tab.index && cur.index < acc.index) ? cur : acc
+                        );
+                    }
+                    // get the most left tab if tab cycling is activated
+                    // else if (this.getSetting("cycling") && tabs.length > 0) {
+                    //     nextTab = tabs.reduce((acc, cur) => acc.index < cur.index ? acc : cur);
+                    // }
+                    // focus next tab if available
+                    if (nextTab) {
+                        chrome.tabs.update(nextTab.id, { active: true });
+                    }
+                });
+            } break;
+
+            case 'restoreClosedTab': {
+                chrome.sessions.getRecentlyClosed({
+                    maxResults: 1
+                }, function (sessionInfos) {
+                    if (!sessionInfos.length) {
+                        console.log("No sessions found")
+                        return;
+                    }
+                    let sessionInfo = sessionInfos[0];
+                    if (sessionInfo.tab) {
+                        chrome.sessions.restore(sessionInfo.tab.sessionId);
+                    } else {
+                        chrome.sessions.restore(sessionInfo.window.sessionId);
+                    }
+                });
+
             } break;
         }
 

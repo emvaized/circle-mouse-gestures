@@ -40,7 +40,8 @@ document.addEventListener("mousedown", function (e) {
                 hoveredLinkTitle = el.textContent.trim();
             } else {
                 typeOfMenu = 'regular-menu';
-                hoveredLink = null;
+                // hoveredLink = null;
+                hoveredLink = showLinkTooltipForPageItself ? window.location.href : null;
                 hoveredLinkTitle = null;
             }
 

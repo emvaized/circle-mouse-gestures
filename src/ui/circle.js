@@ -10,7 +10,7 @@ function showCircle(e) {
 
             /// Right button click
             circle = document.createElement('canvas');
-            circle.setAttribute('id', 'c');
+            circle.setAttribute('class', 'cmg-circle-canvas');
             circle.setAttribute('width', canvasRadius);
             circle.setAttribute('height', canvasRadius);
 
@@ -45,6 +45,8 @@ function hideCircle() {
     try {
         document.onmousemove = null;
         circleIsShown = false;
+        scaleForSecondLevel = 0.0;
+
         if (hoveredLink !== null && linkTooltip !== null)
             hideLinkTooltip();
 
@@ -90,6 +92,7 @@ function hideCircle() {
     } catch (e) { console.log(e); }
 }
 
+var scaleForSecondLevel = 0.0;
 
 function drawCirclesOnCanvas(e) {
     ctx.clearRect(0, 0, canvasRadius, canvasRadius);
@@ -98,6 +101,25 @@ function drawCirclesOnCanvas(e) {
         /// Draw 2 levels
         drawCircleContent(e, secondCircleRadius, secondCircleInnerRadius, 1, false);
         drawCircleContent(e, firstCircleRadius, firstCircleInnerRadius, 0, true);
+
+        // setTimeout(function () {
+        //     // request another loop
+        //     requestAnimationFrame(drawCirclesOnCanvas);
+
+
+        //     // animate the control point
+        //     if (scaleForSecondLevel < 1.0)
+        //         scaleForSecondLevel += 0.05;
+
+        //     // request another loop
+        //     ctx.clearRect(0, 0, canvasRadius, canvasRadius);
+        //     drawCircleContent(e, secondCircleRadius * scaleForSecondLevel, secondCircleInnerRadius * scaleForSecondLevel, 1, false);
+        //     drawCircleContent(e, firstCircleRadius, firstCircleInnerRadius, 0, true);
+
+        // }, 1000 / 60);
+
+
+
     } else {
         /// Draw 1 level
         let firstCircleRadius = circleRadius;
@@ -109,8 +131,6 @@ function drawCirclesOnCanvas(e) {
 
 
 function drawCircleContent(E, circleRadius, innerCircleRadius, level = 0, shouldRespectBoundary = false) {
-    if (debugMode)
-        console.log('Creating circle ' + level.toString() + '...');
     if (E === false) {
         mx = (canvasRadius / 2);
         my = (canvasRadius / 2);
@@ -150,24 +170,26 @@ function drawCircleContent(E, circleRadius, innerCircleRadius, level = 0, should
         /// Rotate the circle a bit when buttons count is not even
         angle = (segmentsCount % 2 == 0.0 ? (-Math.PI / segmentsCount) : (-Math.PI / segmentsCount) / 2) + i * (Math.PI / (segmentsCount / 2));
 
-        if (shouldRespectBoundary && mradius > circleRadius) {
+        if (shouldRespectBoundary && mradius > (addSecondLevel ? secondCircleInnerRadius : circleRadius)) {
             // if (mradius > circleRadius) {
             /// Segment is not hovered
-            ctx.fillStyle = typeOfMenu == 'link-menu' ? linkSegmentColor : typeOfMenu == 'image-menu' ? imageSegmentColor : regularSegmentColor;
-        } else if (((mangle > angle && mangle < (angle + Math.PI / (segmentsCount / 2))) || (mangle > Math.PI * 15 / 8 && i == 0))
-            && mradius >= innerCircleRadius) {
 
-            /// Segment is hovered
-            ctx.fillStyle = typeOfMenu == 'link-menu' ? hoveredLinkSegmentColor : typeOfMenu == 'image-menu' ? hoveredImageSegmentColor : hoveredRegularSegmentColor;
-
-            if (level == 0)
-                selectedButton = i;
-            else
-                selectedButtonSecondLevel = i;
-        } else {
-            /// Segment is not hovered
             ctx.fillStyle = typeOfMenu == 'link-menu' ? linkSegmentColor : typeOfMenu == 'image-menu' ? imageSegmentColor : regularSegmentColor;
-        }
+        } else
+            if (((mangle > angle && mangle < (angle + Math.PI / (segmentsCount / 2))) || (mangle > Math.PI * 15 / 8 && i == 0))
+                && mradius >= innerCircleRadius) {
+
+                /// Segment is hovered
+                ctx.fillStyle = typeOfMenu == 'link-menu' ? hoveredLinkSegmentColor : typeOfMenu == 'image-menu' ? hoveredImageSegmentColor : hoveredRegularSegmentColor;
+
+                if (level == 0)
+                    selectedButton = i;
+                else
+                    selectedButtonSecondLevel = i;
+            } else {
+                /// Segment is not hovered
+                ctx.fillStyle = typeOfMenu == 'link-menu' ? linkSegmentColor : typeOfMenu == 'image-menu' ? imageSegmentColor : regularSegmentColor;
+            }
 
         ctx.beginPath();
         ctx.moveTo(canvasRadius / 2, canvasRadius / 2);
@@ -271,7 +293,7 @@ function drawCircleContent(E, circleRadius, innerCircleRadius, level = 0, should
             verticalShiftForIcon = wrapLabel(ctx, textToDraw, dxForText, dyForText + 15, segmentLength * 0.4, labelSize);
 
 
-        if (hoveredLink !== null && linkTooltip == null) {
+        if (addLinkTooltip && hoveredLink !== null && linkTooltip == null) {
             showLinkTooltip();
         }
         /// Draw unicode icon    

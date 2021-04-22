@@ -6,6 +6,7 @@ var circleRadius = 115;
 var innerCircleRadius = 30;
 var animationDuration = 200;
 var showFullLinkInTooltip = true;
+var showLinkTooltipForPageItself = true;
 var showRockerActionInCenter = false;
 var scaleDownRockerIconWhenNonHovered = false;
 var useMouseWheelGestures = true;
@@ -15,9 +16,11 @@ var addSecondLevel = true;
 var canvasRadius = circleRadius * 4;
 var firstCircleRadius = circleRadius;
 var firstCircleInnerRadius = innerCircleRadius;
-var gapBetweenCircles = 6;
+var gapBetweenCircles = 8;
 var secondCircleRadius = circleRadius * 1.5;
 var secondCircleInnerRadius = circleRadius + gapBetweenCircles;
+
+var addLinkTooltip = false;
 
 /// Regular menu colors
 var regularSegmentColor = "#4c4c4c";
@@ -38,17 +41,20 @@ var mouseWheelDownAction = 'scrollToBottom';
 
 var regularMenuButtons = [
     'goForward',
-    'newTab',
-    'goBack',
     'closeCurrentTab',
+    'goBack',
+    'newTab',
 ];
 
 var regularMenuButtonsLevelTwo = [
+    'switchToNextTab',
     'reloadTab',
     'scrollToBottom',
-    'copyUrl',
+    'restoreClosedTab',
+    'switchToPreviousTab',
+    'translatePage',
     'scrollToTop',
-
+    'copyUrl',
 ];
 
 var linkMenuButtons = [

@@ -39,8 +39,16 @@
         "message": "Изображение",
         "description": "Ярлык для кнопки кругового меню"
     },
+    "page": {
+        "message": "Страница",
+        "description": "Label for circle menu button"
+    },
     "addToBookmarks": {
         "message": "Добавить в закладки",
+        "description": "Label for circle menu button"
+    },
+    "restoreClosedTab": {
+        "message": "Восстановить",
         "description": "Label for circle menu button"
     },
     "downloadUrl": {
@@ -57,6 +65,18 @@
     },
     "copyLinkText": {
         "message": "Копировать текст",
+        "description": "Label for circle menu button"
+    },
+    "translatePage": {
+        "message": "Перевести страницу",
+        "description": "Label for circle menu button"
+    },
+    "switchToPreviousTab": {
+        "message": "Пред. вкладка",
+        "description": "Label for circle menu button"
+    },
+    "switchToNextTab": {
+        "message": "След. вкладка",
         "description": "Label for circle menu button"
     }
 }
