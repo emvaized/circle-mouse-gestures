@@ -102,5 +102,13 @@
     "switchToNextTab": {
         "message": "Next tab",
         "description": "Label for circle menu button"
+    },
+    "scrollPageUp": {
+        "message": "Page up",
+        "description": "Label for circle menu button"
+    },
+    "scrollPageDown": {
+        "message": "Page down",
+        "description": "Label for circle menu button"
     }
 }

@@ -8,6 +8,10 @@ function triggerButtonAction(actionToPerform) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (actionToPerform == 'scrollToBottom') {
         window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    } else if (actionToPerform == 'scrollPageUp') {
+        window.scrollTo({ top: window.scrollY - window.innerHeight * .9, behavior: 'smooth' });
+    } else if (actionToPerform == 'scrollPageDown') {
+        window.scrollTo({ top: window.scrollY + window.innerHeight * .9, behavior: 'smooth' });
     } else
 
         if (actionToPerform !== null && actionToPerform !== undefined) {

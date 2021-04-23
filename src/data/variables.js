@@ -24,6 +24,9 @@ var iconOpacity = 1.0;
 
 var addLinkTooltip = false;
 
+var addCircleOutlines = true;
+var circleOutlinesColor = 'white';
+
 /// Regular menu colors
 var regularSegmentColor = "#4c4c4c";
 var hoveredRegularSegmentColor = "#8b8b8b";
@@ -43,19 +46,21 @@ var mouseWheelDownAction = 'scrollToBottom';
 
 var regularMenuButtons = [
     'goForward',
-    'closeCurrentTab',
-    'goBack',
     'newTab',
+    'goBack',
+    'closeCurrentTab',
 ];
 
 var regularMenuButtonsLevelTwo = [
     'switchToNextTab',
     'reloadTab',
     'scrollToBottom',
+    // 'scrollPageDown',
     'restoreClosedTab',
     'switchToPreviousTab',
     'translatePage',
     'scrollToTop',
+    // 'scrollPageUp',
     'copyUrl',
 ];
 

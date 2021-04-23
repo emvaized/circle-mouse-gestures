@@ -45,6 +45,7 @@
     "storage",
     "sessions",
     "bookmarks",
+    "clipboardWrite",
     "downloads"
   ],
   "browser_specific_settings": {

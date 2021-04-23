@@ -78,5 +78,13 @@
     "switchToNextTab": {
         "message": "След. вкладка",
         "description": "Label for circle menu button"
+    },
+    "scrollPageUp": {
+        "message": "Прокрутить вверх",
+        "description": "Label for circle menu button"
+    },
+    "scrollPageDown": {
+        "message": "Прокрутить вниз",
+        "description": "Label for circle menu button"
     }
 }

@@ -3,7 +3,8 @@ function showCircle(e) {
     e.preventDefault();
     if ("buttons" in evt) {
         if (evt.buttons == 2) {
-            canvasRadius = addSecondLevel && typeOfMenu == 'regular-menu' ? secondCircleRadius * 2 : firstCircleRadius * 2;
+            // canvasRadius = addSecondLevel && typeOfMenu == 'regular-menu' ? secondCircleRadius * 2 : firstCircleRadius * 2;
+            canvasRadius = (addSecondLevel && typeOfMenu == 'regular-menu' ? secondCircleRadius * 2 : firstCircleRadius * 2) + (addCircleOutlines ? 2 : 0);
 
             leftCoord = e.clientX - (canvasRadius / 2);
             topCoord = e.clientY - (canvasRadius / 2) + window.scrollY;
@@ -12,7 +13,6 @@ function showCircle(e) {
             circle = document.createElement('canvas');
             circle.setAttribute('class', 'cmg-circle-canvas');
             circle.setAttribute('width', `${canvasRadius}px !imporant`);
-            // circle.setAttribute('height', canvasRadius);
             circle.setAttribute('height', `${canvasRadius}px !imporant`);
 
             // circle.style.transform = 'scale(0.0) rotate(-180deg)';
@@ -46,7 +46,6 @@ function hideCircle() {
     try {
         document.onmousemove = null;
         circleIsShown = false;
-        scaleForSecondLevel = 0.0;
 
         if (hoveredLink !== null && linkTooltip !== null)
             hideLinkTooltip();
@@ -93,27 +92,29 @@ function hideCircle() {
     } catch (e) { console.log(e); }
 }
 
-var scaleForSecondLevel = 0.0;
 
 function drawCirclesOnCanvas(e) {
     ctx.clearRect(0, 0, canvasRadius, canvasRadius);
 
     if (addSecondLevel && typeOfMenu == 'regular-menu') {
         /// Draw 2 levels
-        drawCircleContent(e, secondCircleRadius, secondCircleInnerRadius, 1, false);
-        drawCircleContent(e, firstCircleRadius, firstCircleInnerRadius, 0, true);
+        let buttonsToShow2 = typeOfMenu == 'link-menu' ? linkMenuButtons : typeOfMenu == 'image-menu' ? imageMenuButtons : regularMenuButtonsLevelTwo;
+        drawCircleContent(e, buttonsToShow2, secondCircleRadius, secondCircleInnerRadius, 1, false);
+        let buttonsToShow1 = typeOfMenu == 'link-menu' ? linkMenuButtons : typeOfMenu == 'image-menu' ? imageMenuButtons : regularMenuButtons;
+        drawCircleContent(e, buttonsToShow1, firstCircleRadius, firstCircleInnerRadius, 0, true);
 
     } else {
         /// Draw 1 level
         let firstCircleRadius = circleRadius;
         let firstCircleInnerRadius = innerCircleRadius;
 
-        drawCircleContent(e, firstCircleRadius, firstCircleInnerRadius, false);
+        let buttonsToShow = typeOfMenu == 'link-menu' ? linkMenuButtons : typeOfMenu == 'image-menu' ? imageMenuButtons : regularMenuButtons;
+        drawCircleContent(e, buttonsToShow, firstCircleRadius, firstCircleInnerRadius, false);
     }
 }
 
 
-function drawCircleContent(E, circleRadius, innerCircleRadius, level = 0, shouldRespectBoundary = false) {
+function drawCircleContent(E, buttonsToShow, circleRadius, innerCircleRadius, level = 0, shouldRespectBoundary = false) {
     if (E === false) {
         mx = (canvasRadius / 2);
         my = (canvasRadius / 2);
@@ -138,7 +139,7 @@ function drawCircleContent(E, circleRadius, innerCircleRadius, level = 0, should
     }
 
     /// Configs
-    var buttonsToShow = typeOfMenu == 'link-menu' ? linkMenuButtons : typeOfMenu == 'image-menu' ? imageMenuButtons : level == 0 ? regularMenuButtons : regularMenuButtonsLevelTwo;
+    // var buttonsToShow = typeOfMenu == 'link-menu' ? linkMenuButtons : typeOfMenu == 'image-menu' ? imageMenuButtons : level == 0 ? regularMenuButtons : regularMenuButtonsLevelTwo;
     segmentsCount = buttonsToShow.length; /// Only numbers dividable by 4
 
     if (level == 0)
@@ -179,6 +180,12 @@ function drawCircleContent(E, circleRadius, innerCircleRadius, level = 0, should
         ctx.arc(canvasRadius / 2, canvasRadius / 2, circleRadius, angle, angle + Math.PI / (segmentsCount / 2) * 0.996, false);
         ctx.lineTo(canvasRadius / 2, canvasRadius / 2);
 
+        if (addCircleOutlines) {
+            ctx.strokeStyle = circleOutlinesColor;
+            ctx.stroke();
+        }
+
+
         if (addShadows) {
             ctx.shadowColor = 'black';
             ctx.shadowBlur = 12;
@@ -209,7 +216,12 @@ function drawCircleContent(E, circleRadius, innerCircleRadius, level = 0, should
     // ctx.arc(circleRadius, circleRadius, innerCircleRadius, 0, 2 * Math.PI, false);
     ctx.arc(canvasRadius / 2, canvasRadius / 2, innerCircleRadius, 0, 2 * Math.PI, false);
     ctx.fill();
+
     ctx.restore();
+    if (addCircleOutlines) {
+        ctx.strokeStyle = circleOutlinesColor;
+        ctx.stroke();
+    }
 
     /// Draw texts
     for (i = 0; i < segmentsCount; i++) {
@@ -248,7 +260,6 @@ function drawCircleContent(E, circleRadius, innerCircleRadius, level = 0, should
         // var textToDraw = buttonsToShow[i]['label'];
         var textToDraw = chrome.i18n.getMessage(buttonsToShow[i]);
 
-
         /// Obfuscate shortened label with '...'
         if (textToDraw.length >= 21) {
             textToDraw = textToDraw.substring(0, 17) + '...';
@@ -280,8 +291,7 @@ function drawCircleContent(E, circleRadius, innerCircleRadius, level = 0, should
             showLinkTooltip();
         }
 
-        /// Draw unicode icon    
-        // ctx.fillStyle = "rgba(256,256,256,1.0)";
+        /// Draw icon    
         ctx.fillStyle = `rgba(256,256,256,${iconOpacity})`;
         ctx.font = `${iconSize}px sans-serif`;
 
@@ -289,30 +299,21 @@ function drawCircleContent(E, circleRadius, innerCircleRadius, level = 0, should
             /// Draw unicode icon
             ctx.fillText(actionIcons[buttonsToShow[i]], dxForText, dyForText - (circleRadius - innerCircleRadius > iconSize * 2.5 ? 4 : -4) - verticalShiftForIcon);
         } else {
+            /// Draw SVG icon
             try {
-
-                // let scale = iconSize / canvasRadius / (circleRadius - innerCircleRadius > iconSize * 2.5 ? 2 : 1.5);
                 let scale = iconSize / 24;
 
-                console.log('svg scale:');
-                console.log(scale);
-
-                /// Draw SVG icon
                 ctx.save();
                 let p = new Path2D(actionIcons[buttonsToShow[i]]);
                 ctx.translate(dxForText - (iconSize / 2), dyForText - verticalShiftForIcon - (iconSize / (circleRadius - innerCircleRadius > iconSize * 2.5 ? 1.5 : 2)));
                 ctx.scale(scale, scale);
-
                 ctx.fill(p);
-
-                // ctx.scale(1.0, 1.0);
                 ctx.restore();
             } catch (e) {
-                console.log(e);
+                if (debugMode)
+                    console.log(e);
             }
-
         }
-        // }
     }
 
     /// Draw rocker gesture icon in center

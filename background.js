@@ -52,23 +52,34 @@ chrome.runtime.onMessage.addListener(
             } break;
 
             case 'copyUrl': {
-                var input = document.createElement('textarea');
-                document.body.appendChild(input);
-                input.value = request.url;
-                input.focus();
-                input.select();
-                document.execCommand('Copy');
-                input.remove();
+                try {
+                    var input = document.createElement('input');
+                    document.body.appendChild(input);
+                    input.value = request.url;
+                    input.focus();
+                    input.select();
+                    document.execCommand('Copy');
+                    // input.remove();
+                    document.body.removeChild(input);
+                } catch (e) {
+                    navigator.clipboard.writeText(request.url);
+                }
             } break;
 
             case 'copyLinkText': {
-                var input = document.createElement('textarea');
-                document.body.appendChild(input);
-                input.value = request.linkText;
-                input.focus();
-                input.select();
-                document.execCommand('Copy');
-                input.remove();
+
+                try {
+                    var input = document.createElement('input');
+                    document.body.appendChild(input);
+                    input.value = request.linkText;
+                    input.focus();
+                    input.select();
+                    document.execCommand('Copy');
+                    // input.remove();
+                    document.body.removeChild(input);
+                } catch (e) {
+                    navigator.clipboard.writeText(request.linkText);
+                }
             } break;
 
             case 'downloadUrl': {
