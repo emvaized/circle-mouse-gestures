@@ -25,7 +25,7 @@ var iconOpacity = 1.0;
 var addLinkTooltip = false;
 
 var addCircleOutlines = true;
-var circleOutlinesColor = 'white';
+var circleOutlinesColor = 'rgba(256,256,256,0.6)';
 
 /// Regular menu colors
 var regularSegmentColor = "#4c4c4c";
