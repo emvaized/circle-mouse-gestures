@@ -110,5 +110,17 @@
     "scrollPageDown": {
         "message": "Page down",
         "description": "Label for circle menu button"
+    },
+    "pageZoomIn": {
+        "message": "Zoom in",
+        "description": "Label for circle menu button"
+    },
+    "pageZoomOut": {
+        "message": "Zoom out",
+        "description": "Label for circle menu button"
+    },
+    "toggleFullscreen": {
+        "message": "Fullscreen mode",
+        "description": "Label for circle menu button"
     }
 }

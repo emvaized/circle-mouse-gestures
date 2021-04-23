@@ -197,6 +197,83 @@ chrome.runtime.onMessage.addListener(
                 });
 
             } break;
+
+            case 'pageZoomIn': {
+                const zoomSetting = 3.0;
+                // try to get single number
+                const zoomStep = Number(zoomSetting);
+                // array of default zoom levels
+                let zoomLevels = [.3, .5, .67, .8, .9, 1, 1.1, 1.2, 1.33, 1.5, 1.7, 2, 2.4, 3];
+                // maximal zoom level
+                let maxZoom = 3, newZoom;
+
+                // if no zoom step value exists and string contains comma, assume a list of zoom levels
+                if (!zoomStep && zoomSetting && zoomSetting.includes(",")) {
+                    // get and override default zoom levels
+                    zoomLevels = zoomSetting.split(",").map(z => parseFloat(z) / 100);
+                    // get and override max zoom boundary but cap it to 300%
+                    maxZoom = Math.min(Math.max(...zoomLevels), maxZoom);
+                }
+
+                chrome.tabs.getZoom(sender.tab.id, function (currentZoom) {
+                    if (zoomStep) {
+                        newZoom = Math.min(maxZoom, currentZoom + zoomStep / 100);
+                    }
+                    else {
+                        newZoom = zoomLevels.reduce((acc, cur) => cur > currentZoom && cur < acc ? cur : acc, maxZoom);
+                    }
+
+                    if (newZoom > currentZoom) {
+                        chrome.tabs.setZoom(sender.tab.id, newZoom);
+                    }
+                });
+
+
+
+            } break;
+
+
+            case 'pageZoomOut': {
+                const zoomSetting = 3.0;
+                // try to get single number
+                const zoomStep = Number(zoomSetting);
+                // array of default zoom levels
+                let zoomLevels = [3, 2.4, 2, 1.7, 1.5, 1.33, 1.2, 1.1, 1, .9, .8, .67, .5, .3];
+                // minimal zoom level
+                let minZoom = .3, newZoom;
+
+                // if no zoom step value exists and string contains comma, assume a list of zoom levels
+                if (!zoomStep && zoomSetting && zoomSetting.includes(",")) {
+                    // get and override default zoom levels
+                    zoomLevels = zoomSetting.split(",").map(z => parseFloat(z) / 100);
+                    // get min zoom boundary but cap it to 30%
+                    minZoom = Math.max(Math.min(...zoomLevels), minZoom);
+                }
+
+                chrome.tabs.getZoom(sender.tab.id, function (currentZoom) {
+                    if (zoomStep) {
+                        newZoom = Math.max(minZoom, currentZoom - zoomStep / 100);
+                    }
+                    else {
+                        newZoom = zoomLevels.reduce((acc, cur) => cur < currentZoom && cur > acc ? cur : acc, minZoom);
+                    }
+
+                    if (newZoom < currentZoom) {
+                        chrome.tabs.setZoom(sender.tab.id, newZoom);
+                    }
+                });
+
+            } break;
+
+            case 'toggleFullscreen': {
+                chrome.windows.get(sender.tab.windowId, function (window) {
+                    chrome.windows.update(sender.tab.windowId, {
+                        state: window.state === 'fullscreen' ? 'maximized' : 'fullscreen'
+                    });
+                });
+
+
+            } break;
         }
 
         /// Open url in new tab next to current one

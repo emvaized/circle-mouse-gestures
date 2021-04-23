@@ -55,13 +55,14 @@ var regularMenuButtonsLevelTwo = [
     'switchToNextTab',
     'reloadTab',
     'scrollToBottom',
-    // 'scrollPageDown',
     'restoreClosedTab',
     'switchToPreviousTab',
     'translatePage',
     'scrollToTop',
-    // 'scrollPageUp',
     'copyUrl',
+    // 'pageZoomIn',
+    // 'pageZoomOut',
+    // 'toggleFullscreen',
 ];
 
 var linkMenuButtons = [
