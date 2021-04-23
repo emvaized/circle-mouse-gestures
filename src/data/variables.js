@@ -23,6 +23,7 @@ var labelOpacity = 0.75;
 var iconOpacity = 1.0;
 
 var addLinkTooltip = false;
+var checkAvailabilityForButtons = true;
 
 var addCircleOutlines = true;
 var circleOutlinesColor = 'rgba(256,256,256,0.6)';

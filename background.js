@@ -271,8 +271,16 @@ chrome.runtime.onMessage.addListener(
                         state: window.state === 'fullscreen' ? 'maximized' : 'fullscreen'
                     });
                 });
+            } break;
 
+            case 'checkNextTabAvailability': {
+                chrome.tabs.query({}, function (tabs) {
+                    return sender.tab.index == tabs.length - 1;
+                });
+            } break;
 
+            case 'checkPrevTabAvailability': {
+                return sender.tab.index == 0;
             } break;
         }
 

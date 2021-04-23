@@ -230,6 +230,18 @@ function drawCircleContent(typeOfMenu, E, buttonsToShow, circleRadius, innerCirc
     for (i = 0; i < segmentsCount; i++) {
         if (actionIcons[buttonsToShow[i]] == undefined) continue;
 
+        var buttonIsAvailable;
+        try {
+            buttonIsAvailable = checkButtonAvailability(buttonsToShow[i]);
+        } catch (e) {
+            if (debugMode)
+                console.log(e);
+            buttonIsAvailable = true;
+        }
+
+        if (debugMode)
+            console.log(buttonsToShow[i] + ' is available: ' + buttonIsAvailable.toString());
+
         ctx.textBaseline = 'middle';
         ctx.textAlign = "center";
         ctx.fillStyle = "white";
@@ -286,7 +298,7 @@ function drawCircleContent(typeOfMenu, E, buttonsToShow, circleRadius, innerCirc
         // } else {
 
         // ctx.fillStyle = `rgba(256,256,256, ${labelOpacity})`;
-        ctx.fillStyle = getTextColorForBackground(segmentColor, labelOpacity);
+        ctx.fillStyle = getTextColorForBackground(segmentColor, labelOpacity / (buttonIsAvailable ? 1 : 2));
 
         if (circleRadius - innerCircleRadius > iconSize * 2.5)
             verticalShiftForIcon = wrapLabel(ctx, textToDraw, dxForText, dyForText + 15, segmentLength * 0.4, labelSize);
@@ -298,7 +310,7 @@ function drawCircleContent(typeOfMenu, E, buttonsToShow, circleRadius, innerCirc
 
         /// Draw icon    
         // ctx.fillStyle = `rgba(256,256,256,${iconOpacity})`;
-        ctx.fillStyle = getTextColorForBackground(segmentColor, iconOpacity) ?? '';
+        ctx.fillStyle = getTextColorForBackground(segmentColor, iconOpacity / (buttonIsAvailable ? 1 : 2)) ?? '';
         ctx.font = `${iconSize}px sans-serif`;
 
         if (actionIcons[buttonsToShow[i]].length <= 3) {
@@ -329,18 +341,35 @@ function drawCircleContent(typeOfMenu, E, buttonsToShow, circleRadius, innerCirc
 
 
 
-function drawTextAlongArc(context, str, centerX, centerY, radius, angle) {
-    context.save();
-    context.translate(centerX, centerY);
-    context.rotate(-1 * angle / 2);
-    context.rotate(-1 * (angle / str.length) / 2);
-    for (var n = 0; n < str.length; n++) {
-        context.rotate(angle / str.length);
-        context.save();
-        context.translate(0, -1 * radius);
-        var char = str[n];
-        context.fillText(char, 0, 0);
-        context.restore();
+
+function checkButtonAvailability(id) {
+    if (checkAvailabilityForButtons == false) return true;
+    switch (id) {
+        case 'scrollToTop': return window.scrollY !== 0.0;
+        case 'scrollToBottom': {
+            return window.screen.height + window.scrollY < document.documentElement.scrollHeight;
+        }
+        case 'scrollPageUp': return window.scrollY !== 0.0;
+        case 'scrollPageDown': {
+            return window.screen.height + window.scrollY < document.documentElement.scrollHeight;
+        }
+        case 'goBack': {
+            return window.history.length !== 1;
+        };
+        case 'goForward': return window.history.length !== 1;
+
+        // case 'switchToNextTab': {
+        //     return await chrome.runtime.sendMessage({ actionToDo: 'checkNextTabAvailability' }, function (result) {
+        //         console.log('result:');
+        //         console.log(result);
+        //         return result;
+        //     });
+        // } break;
+        // case 'switchToPreviousTab': {
+        //     return await chrome.runtime.sendMessage({ actionToDo: 'checkPrevTabAvailability' });
+        // } break;
+
+        default: return true;
+
     }
-    context.restore();
 }
