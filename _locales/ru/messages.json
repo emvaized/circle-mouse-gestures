@@ -98,5 +98,13 @@
     "toggleFullscreen": {
         "message": "Полноэкранный режим",
         "description": "Label for circle menu button"
+    },
+    "scrollToTop": {
+        "message": "В начало страницы",
+        "description": "Label for circle menu button"
+    },
+    "scrollToBottom": {
+        "message": "В конец страницы",
+        "description": "Label for circle menu button"
     }
 }

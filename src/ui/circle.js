@@ -93,15 +93,15 @@ function hideCircle() {
 }
 
 
-function drawCirclesOnCanvas(e) {
+function drawCirclesOnCanvas(e, showIndexes = false) {
     ctx.clearRect(0, 0, canvasRadius, canvasRadius);
 
     if (addSecondLevel && typeOfMenu == 'regular-menu') {
         /// Draw 2 levels
         let buttonsToShow2 = typeOfMenu == 'link-menu' ? linkMenuButtons : typeOfMenu == 'image-menu' ? imageMenuButtons : regularMenuButtonsLevelTwo;
-        drawCircleContent(typeOfMenu, e, buttonsToShow2, secondCircleRadius, secondCircleInnerRadius, 1, false);
+        drawCircleContent(typeOfMenu, e, buttonsToShow2, secondCircleRadius, secondCircleInnerRadius, 1, false, showIndexes);
         let buttonsToShow1 = typeOfMenu == 'link-menu' ? linkMenuButtons : typeOfMenu == 'image-menu' ? imageMenuButtons : regularMenuButtons;
-        drawCircleContent(typeOfMenu, e, buttonsToShow1, firstCircleRadius, firstCircleInnerRadius, 0, true);
+        drawCircleContent(typeOfMenu, e, buttonsToShow1, firstCircleRadius, firstCircleInnerRadius, 0, true, showIndexes);
 
     } else {
         /// Draw 1 level
@@ -109,12 +109,12 @@ function drawCirclesOnCanvas(e) {
         let firstCircleInnerRadius = innerCircleRadius;
 
         let buttonsToShow = typeOfMenu == 'link-menu' ? linkMenuButtons : typeOfMenu == 'image-menu' ? imageMenuButtons : regularMenuButtons;
-        drawCircleContent(typeOfMenu, e, buttonsToShow, firstCircleRadius, firstCircleInnerRadius, false);
+        drawCircleContent(typeOfMenu, e, buttonsToShow, firstCircleRadius, firstCircleInnerRadius, false, showIndexes);
     }
 }
 
 
-function drawCircleContent(typeOfMenu, E, buttonsToShow, circleRadius, innerCircleRadius, level = 0, shouldRespectBoundary = false) {
+function drawCircleContent(typeOfMenu, E, buttonsToShow, circleRadius, innerCircleRadius, level = 0, shouldRespectBoundary = false, showIndexes = false) {
     if (E === false) {
         mx = (canvasRadius / 2);
         my = (canvasRadius / 2);
@@ -180,7 +180,19 @@ function drawCircleContent(typeOfMenu, E, buttonsToShow, circleRadius, innerCirc
 
         ctx.beginPath();
         ctx.moveTo(canvasRadius / 2, canvasRadius / 2);
-        ctx.arc(canvasRadius / 2, canvasRadius / 2, circleRadius, angle, angle + Math.PI / (segmentsCount / 2) * 0.996, false);
+
+        if (useRectangularShape) {
+            let dxForTextStart = canvasRadius / 2 + Math.cos(angle) * circleRadius;
+            let dyForTextStart = canvasRadius / 2 + Math.sin(angle) * circleRadius;
+            let dxForTextEnd = canvasRadius / 2 + Math.cos(angle + Math.PI / (segmentsCount / 2) * 0.996) * circleRadius;
+            let dyForTextEnd = canvasRadius / 2 + Math.sin(angle + Math.PI / (segmentsCount / 2) * 0.996) * circleRadius;
+            ctx.lineTo(dxForTextStart, dyForTextStart);
+            ctx.lineTo(dxForTextEnd, dyForTextEnd);
+        } else {
+            ctx.arc(canvasRadius / 2, canvasRadius / 2, circleRadius, angle, angle + Math.PI / (segmentsCount / 2) * 0.996, false);
+        }
+
+
         ctx.lineTo(canvasRadius / 2, canvasRadius / 2);
 
         if (addCircleOutlines) {
@@ -216,11 +228,30 @@ function drawCircleContent(typeOfMenu, E, buttonsToShow, circleRadius, innerCirc
     ctx.save();
     ctx.beginPath();
     ctx.globalCompositeOperation = 'destination-out';
-    // ctx.arc(circleRadius, circleRadius, innerCircleRadius, 0, 2 * Math.PI, false);
-    ctx.arc(canvasRadius / 2, canvasRadius / 2, innerCircleRadius, 0, 2 * Math.PI, false);
-    ctx.fill();
+
+    if (useRectangularShape) {
+
+        ctx.moveTo(canvasRadius / 2, canvasRadius / 2 - innerCircleRadius);
+
+        for (var i = 0; i < segmentsCount; i++) {
+            ctx.beginPath();
+            ctx.moveTo(canvasRadius / 2, canvasRadius / 2 - innerCircleRadius);
+            let dxForTextEnd = canvasRadius / 2 + Math.cos(angle + Math.PI / (segmentsCount / 2) * 0.996) * innerCircleRadius;
+            let dyForTextEnd = canvasRadius / 2 + Math.sin(angle + Math.PI / (segmentsCount / 2) * 0.996) * innerCircleRadius;
+
+            ctx.lineTo(dxForTextEnd, dyForTextEnd);
+            ctx.lineTo(canvasRadius / 2, canvasRadius / 2);
+            ctx.fill();
+        }
+
+    } else {
+        ctx.arc(canvasRadius / 2, canvasRadius / 2, innerCircleRadius, 0, 2 * Math.PI, false);
+        ctx.fill();
+    }
 
     ctx.restore();
+
+
     if (addCircleOutlines) {
         ctx.strokeStyle = circleOutlinesColor;
         ctx.stroke();
@@ -296,9 +327,8 @@ function drawCircleContent(typeOfMenu, E, buttonsToShow, circleRadius, innerCirc
         //         ctx.fillText("______________________________________".substring(0, maxCharacters - 3), dxForText - 6.5, dyForText + 3);
         //     }
         // } else {
-
-        // ctx.fillStyle = `rgba(256,256,256, ${labelOpacity})`;
-        ctx.fillStyle = getTextColorForBackground(segmentColor, labelOpacity / (buttonIsAvailable ? 1 : 2));
+        segmentColor == '#c69a15' ? segmentColor :
+            ctx.fillStyle = getTextColorForBackground(segmentColor, labelOpacity / (buttonIsAvailable ? 1 : 2));
 
         if (circleRadius - innerCircleRadius > iconSize * 2.5)
             verticalShiftForIcon = wrapLabel(ctx, textToDraw, dxForText, dyForText + 15, segmentLength * 0.4, labelSize);
@@ -309,8 +339,8 @@ function drawCircleContent(typeOfMenu, E, buttonsToShow, circleRadius, innerCirc
         }
 
         /// Draw icon    
-        // ctx.fillStyle = `rgba(256,256,256,${iconOpacity})`;
-        ctx.fillStyle = getTextColorForBackground(segmentColor, iconOpacity / (buttonIsAvailable ? 1 : 2)) ?? '';
+        segmentColor == '#c69a15' ? segmentColor :
+            ctx.fillStyle = getTextColorForBackground(segmentColor, iconOpacity / (buttonIsAvailable ? 1 : 2)) ?? '';
         ctx.font = `${iconSize}px sans-serif`;
 
         if (actionIcons[buttonsToShow[i]].length <= 3) {
@@ -331,6 +361,16 @@ function drawCircleContent(typeOfMenu, E, buttonsToShow, circleRadius, innerCirc
                 if (debugMode)
                     console.log(e);
             }
+        }
+
+        if (showIndexes) {
+            let textRadius = innerCircleRadius + 6;
+            // let indexAngle = angle - (Math.PI / segmentsCount / 4);
+            let dxForText = centerDx + Math.cos(angle) * textRadius;
+            let dyForText = centerDy + Math.sin(angle) * textRadius;
+            ctx.fillStyle = getTextColorForBackground(segmentColor, 0.5) ?? '';
+            ctx.font = `12px sans-serif`;
+            ctx.fillText(i.toString(), dxForText, dyForText);
         }
     }
 
@@ -359,12 +399,15 @@ function checkButtonAvailability(id) {
         case 'goForward': return window.history.length !== 1;
 
         // case 'switchToNextTab': {
-        //     return await chrome.runtime.sendMessage({ actionToDo: 'checkNextTabAvailability' }, function (result) {
-        //         console.log('result:');
-        //         console.log(result);
-        //         return result;
-        //     });
+        //     await chrome.runtime.sendMessage({ actionToDo: 'checkNextTabAvailability' }
+        //         , function (result) {
+        //             console.log('result:');
+        //             console.log(result);
+        //             return result;
+        //         }
+        //     );
         // } break;
+
         // case 'switchToPreviousTab': {
         //     return await chrome.runtime.sendMessage({ actionToDo: 'checkPrevTabAvailability' });
         // } break;

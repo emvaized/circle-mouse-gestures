@@ -10,6 +10,9 @@ document.addEventListener("mousedown", function (e) {
 
     if (e.ctrlKey) return;
 
+    if (debugMode)
+        console.log('Pushed button ' + evt.button.toString());
+
     if ("buttons" in evt) {
         /// Right click
         if (evt.buttons == 2) {
@@ -90,16 +93,27 @@ document.addEventListener("mousedown", function (e) {
 
 document.addEventListener("mouseup", function (e) {
     // e.preventDefault();
-    hideCircle();
+    // hideCircle();
 
     evt = e || window.event;
+
+
 
     if ("buttons" in evt) {
         if (debugMode)
             console.log('Released button ' + evt.button.toString());
         /// Right click
-        if (evt.buttons == 0) {
+        if (evt.button == 0) {
+            // console.log('Selected button is:' + selectedButton.toString());
             leftClickIsHolded = false;
+            hideCircle();
+        } else if (evt.button == 2) {
+            if (selectedButton == null && selectedButtonSecondLevel == null) {
+                /// Leave circle open (like a context menu), or hide it
+                if (hideCircleIfNoActionSelected)
+                    hideCircle();
+
+            } else hideCircle();
         }
     }
 

@@ -13,8 +13,18 @@ function loadButtons() {
             'closeCurrentTab',
         ];
 
+        drawCirclePreview();
         generateButtonsList();
     });
+}
+
+function drawCirclePreview() {
+    let circle = document.getElementById('circle-preview');
+    canvasRadius = (addSecondLevel && typeOfMenu == 'regular-menu' ? secondCircleRadius * 2 : firstCircleRadius * 2) + (addCircleOutlines ? 2 : 0);
+    circle.setAttribute('width', `${canvasRadius}px !imporant`);
+    circle.setAttribute('height', `${canvasRadius}px !imporant`);
+    ctx = circle.getContext('2d');
+    drawCirclesOnCanvas(false, true);
 }
 
 function generateButtonsList() {
@@ -25,48 +35,29 @@ function generateButtonsList() {
         var item = regularMenuButtons[i];
 
         var entry = document.createElement('div');
-        entry.setAttribute('class', 'option');
+        entry.setAttribute('class', 'buttons-item');
 
-        /// Enabled checkbox
-        // var checkbox = document.createElement('input');
-        // checkbox.setAttribute('type', 'checkbox');
-        // checkbox.setAttribute('style', 'pointer: cursor; vertical-align: middle !important;');
-        // checkbox.value = item['enabled'];
-        // if (item['enabled'])
-        //     checkbox.setAttribute('checked', 0);
-        // else checkbox.removeAttribute('checked', 0);
-        // checkbox.setAttribute('id', 'checkbox' + i.toString());
-        // checkbox.addEventListener("input", function (e) {
-        //     regularMenuButtons[parseInt(this.id.replaceAll('checkbox', ''))]['enabled'] = this.checked;
-        //     saveCustomSearchButtons();
-        // });
-        // entry.appendChild(checkbox);
+        /// Counter
+        let numberText = document.createElement('span');
+        numberText.textContent = i.toString();
+        numberText.setAttribute('style', 'color: grey; position: relative; left: -20px; top: 0px;');
+        entry.appendChild(numberText);
 
-        /// Create favicon preview
-        // var imgButton = document.createElement('img');
-        // var icon = item['icon'];
-        // imgButton.setAttribute('src', icon !== null && icon !== undefined && icon !== '' ? icon : 'https://www.google.com/s2/favicons?domain=' + item['url'].split('/')[2])
-        // imgButton.setAttribute('width', '18px');
-        // imgButton.setAttribute('height', '18px');
-        // imgButton.setAttribute('style', 'margin-left: 3px; padding: 1px; vertical-align: middle !important;');
-        // entry.appendChild(imgButton);
+        /// Button action dropdown
+        var select = document.createElement('select');
+        // select.setAttribute('id', 'addNewButton');
+        Object.keys(actionIcons).forEach((function (key) {
+            let option = document.createElement('option');
+            option.innerHTML = chrome.i18n.getMessage(key);
+            option.setAttribute('value', key);
+            if (key == item) option.setAttribute('selected', true);
+            select.appendChild(option);
+        }));
 
-        /// Title field
-        var title = document.createElement('span');
-        // title.setAttribute('type', 'text');
-        // title.setAttribute('placeholder', 'Title');
-        // title.setAttribute('style', 'max-width: 90px; margin: 0px 6px;');
-        title.innerHTML = chrome.i18n.getMessage(item) + '</br>';
-        // title.setAttribute('id', 'title' + i.toString());
-        // title.addEventListener("input", function (e) {
-        //     // alert(this.id.replaceAll('title', ''));
-        //     customSearchButtonsList[parseInt(this.id.replaceAll('title', ''))]['title'] = this.value;
-        //     saveCustomSearchButtons();
-        // });
-        entry.appendChild(title);
+        entry.appendChild(select);
 
+        entry.innerHTML += '<br />';
 
-        /// Custom icon URL field
         /// Move up/down buttons
         var moveButtonsContainer = document.createElement('div');
         moveButtonsContainer.setAttribute('style', 'display: inline');
@@ -95,7 +86,7 @@ function generateButtonsList() {
         moveDownButton.onmouseup = function () {
             var currentIndex = parseInt(this.id.replaceAll('movedown', ''), 10);
             if (currentIndex < regularMenuButtons.length) {
-                var movedItem = regularMenuButtons[currentIndex];
+                let movedItem = regularMenuButtons[currentIndex];
                 regularMenuButtons.splice(currentIndex, 1);
                 regularMenuButtons.splice(currentIndex + 1, 0, movedItem);
                 saveCustomSearchButtons();
@@ -123,6 +114,7 @@ function generateButtonsList() {
         };
         entry.appendChild(deleteButton);
 
+        // entry.innerHTML += '< br />';
         container.appendChild(entry);
     }
 
@@ -142,17 +134,17 @@ function generateButtonsList() {
 
 
     /// Dropdown new button
-    var select = document.createElement('select');
-    select.setAttribute('id', 'addNewButton');
-    select.innerHTML = chrome.i18n.getMessage('addNewButton') + '<br />' + select.innerHTML;
-    document.body.appendChild(select);
+    // var select = document.createElement('select');
+    // select.setAttribute('id', 'addNewButton');
+    // select.innerHTML = chrome.i18n.getMessage('addNewButton') + '<br />' + select.innerHTML;
+    // document.body.appendChild(select);
 
-    Object.keys(actionIcons).forEach((function (key) {
-        let option = document.createElement('option');
-        option.innerHTML = chrome.i18n.getMessage(key);
-        option.setAttribute('value', key);
-        select.appendChild(option);
-    }));
+    // Object.keys(actionIcons).forEach((function (key) {
+    //     let option = document.createElement('option');
+    //     option.innerHTML = chrome.i18n.getMessage(key);
+    //     option.setAttribute('value', key);
+    //     select.appendChild(option);
+    // }));
 
     // select.parentNode.innerHTML = chrome.i18n.getMessage('convertToCurrency') + '<br />' + select.parentNode.innerHTML;
 
@@ -167,3 +159,5 @@ function generateButtonsList() {
 
 
 document.addEventListener("DOMContentLoaded", init);
+
+// document.addEventListener('mousemove', function (e) { drawCirclesOnCanvas(e); });

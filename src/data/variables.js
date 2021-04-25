@@ -11,6 +11,8 @@ var showRockerActionInCenter = false;
 var scaleDownRockerIconWhenNonHovered = false;
 var useMouseWheelGestures = true;
 var addShadows = false;
+var useRectangularShape = false;
+var hideCircleIfNoActionSelected = true;
 
 var addSecondLevel = true;
 var canvasRadius = circleRadius * 4;

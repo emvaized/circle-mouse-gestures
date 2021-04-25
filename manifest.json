@@ -5,7 +5,6 @@
   "description": "Circle mouse gestures",
   "default_locale": "en",
   "icons": {
-    "48": "icons/cmg-logo-48.png",
     "96": "icons/cmg-logo-96.png"
   },
   "background": {
@@ -38,7 +37,7 @@
     "page": "options/options.html",
     "browser_style": true,
     "chrome_style": true,
-    "open_in_tab": true
+    "open_in_tab": false
   },
   "permissions": [
     "tabs",
