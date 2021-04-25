@@ -1,8 +1,8 @@
 function drawRockerIconInCenter() {
-    if (debugMode)
+    if (configs.debugMode)
         console.log('Drawing rocker circle icon...');
 
-    let rockerCircleRadius = innerCircleRadius * 1.5;
+    let rockerCircleRadius = configs.innerCircleRadius * 1.5;
 
     rockerCircle = document.createElement('div');
     rockerCircle.setAttribute('class', 'cmg-rocker-icon');
@@ -15,7 +15,7 @@ function drawRockerIconInCenter() {
     rockerCircle.style.transform = `scale(0.0)`;
     rockerCircle.style.left = `${leftCoord + (canvasRadius / 2) - (rockerCircleRadius / 2)}px`;
     rockerCircle.style.top = `${topCoord + (canvasRadius / 2) - (rockerCircleRadius / 2)}px`;
-    rockerCircle.style.transition = `opacity ${animationDuration}ms ease-in-out, transform ${animationDuration}ms ease-in-out`;
+    rockerCircle.style.transition = `opacity ${configs.animationDuration}ms ease-in-out, transform ${configs.animationDuration}ms ease-in-out`;
 
     /// Draw icon
     let icon = document.createElement('span');
@@ -40,5 +40,5 @@ function hideRockerIcon(selected = false) {
     setTimeout(function () {
         rockerCircle = null;
         rockerCircle.parentNode.removeChild(rockerCircle);
-    }, animationDuration);
+    }, configs.animationDuration);
 }

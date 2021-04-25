@@ -20,7 +20,7 @@ function loadButtons() {
 
 function drawCirclePreview() {
     let circle = document.getElementById('circle-preview');
-    canvasRadius = (addSecondLevel && typeOfMenu == 'regular-menu' ? secondCircleRadius * 2 : firstCircleRadius * 2) + (addCircleOutlines ? 2 : 0);
+    canvasRadius = (configs.addSecondLevel && typeOfMenu == 'regular-menu' ? secondCircleRadius * 2 : firstCircleRadius * 2) + (configs.addCircleOutlines ? 2 : 0);
     circle.setAttribute('width', `${canvasRadius}px !imporant`);
     circle.setAttribute('height', `${canvasRadius}px !imporant`);
     ctx = circle.getContext('2d');

@@ -1,5 +1,5 @@
 function triggerButtonAction(actionToPerform) {
-    if (debugMode) {
+    if (configs.debugMode) {
         console.log('Action to perform: ');
         console.log(actionToPerform);
     }
@@ -18,7 +18,7 @@ function triggerButtonAction(actionToPerform) {
             if (typeOfMenu !== 'regular-menu') {
                 let link = hoveredLink;
 
-                if (debugMode) {
+                if (configs.debugMode) {
                     console.log('link:');
                     console.log(link);
                 }

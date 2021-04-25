@@ -32,6 +32,7 @@
 
 .cmg-link-tooltip {
   all: revert;
+  font-family: Arial, Helvetica, sans-serif !important;
   
   /* left: 0px; right: 0px;
   border-radius: 50%;  position:absolute !Important; z-index:99999;align-items: center; text-align: center; vertical-align: middle; */

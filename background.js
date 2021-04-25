@@ -40,15 +40,10 @@ chrome.runtime.onMessage.addListener(
             } break;
 
             case 'openInFgTab': {
-                // chrome.tabs.query({
-                //     active: true, currentWindow: true
-                // }, tabs => {
                 let index = sender.tab.index;
                 chrome.tabs.create({
                     url: request.url, active: true, index: index + 1
                 });
-                // }
-                // );
             } break;
 
             case 'copyUrl': {

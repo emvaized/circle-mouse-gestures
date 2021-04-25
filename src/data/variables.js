@@ -1,34 +1,36 @@
 /// Configs
-var debugMode = true;
-var circleOpacity = 1.0;
-var linkTooltipOpacity = 1.0;
-var circleRadius = 115;
-var innerCircleRadius = 30;
-var animationDuration = 200;
-var showFullLinkInTooltip = true;
-var showLinkTooltipForPageItself = true;
+var configs = {
+    'debugMode': true,
+    'animationDuration': 200,
+    'hideCircleIfNoActionSelected': false,
+    'useMouseWheelGestures': true,
+    'addSecondLevel': true,
+
+    'circleOpacity': 1.0,
+    'circleRadius': 115,
+    'innerCircleRadius': 30,
+    'gapBetweenCircles': 8,
+    'addCircleOutlines': true,
+    'circleOutlinesColor': 'rgba(256,256,256,0.6)',
+    'labelOpacity': 0.75,
+    'iconOpacity': 1.0,
+
+    'addLinkTooltip': false,
+    'showFullLinkInTooltip': true,
+    'showLinkTextInTooltip': true,
+    'showLinkTooltipForPageItself': true,
+    'linkTooltipOpacity': 1.0,
+};
+
+/// Currently non-configurable variables
+var checkAvailabilityForButtons = true;
 var showRockerActionInCenter = false;
 var scaleDownRockerIconWhenNonHovered = false;
-var useMouseWheelGestures = true;
-var addShadows = false;
 var useRectangularShape = false;
-var hideCircleIfNoActionSelected = true;
+var addShadows = false;
 
-var addSecondLevel = true;
-var canvasRadius = circleRadius * 4;
-var firstCircleRadius = circleRadius;
-var firstCircleInnerRadius = innerCircleRadius;
-var gapBetweenCircles = 8;
-var secondCircleRadius = circleRadius * 1.5;
-var secondCircleInnerRadius = circleRadius + gapBetweenCircles;
-var labelOpacity = 0.75;
-var iconOpacity = 1.0;
 
-var addLinkTooltip = false;
-var checkAvailabilityForButtons = true;
-
-var addCircleOutlines = true;
-var circleOutlinesColor = 'rgba(256,256,256,0.6)';
+/// Colors
 
 /// Regular menu colors
 var regularSegmentColor = "#4c4c4c";
@@ -46,6 +48,42 @@ var imageRockerAction = 'openInFgTab';
 
 var mouseWheelUpAction = 'scrollToTop';
 var mouseWheelDownAction = 'scrollToBottom';
+
+var regularMenuAllButtons = [
+    {
+        'width': 90,
+        'buttons': [
+            'goForward',
+            'newTab',
+            'goBack',
+            'closeCurrentTab',
+        ]
+    },
+    {
+        'width': 56,
+        'buttons': [
+            'switchToNextTab',
+            'reloadTab',
+            'scrollToBottom',
+            'restoreClosedTab',
+            'switchToPreviousTab',
+            'translatePage',
+            'scrollToTop',
+            'copyUrl',
+        ]
+    },
+    // {
+    //     'width': 56,
+    //     'color': 'blue',
+    //     'hoveredColor': 'lightBlue',
+    //     'buttons': [
+    //         'goForward',
+    //         'newTab',
+    //         'goBack',
+    //         'closeCurrentTab',
+    //     ]
+    // },
+];
 
 var regularMenuButtons = [
     'goForward',
@@ -86,10 +124,15 @@ var imageMenuButtons = [
 
 
 /// Service variables
+var canvasRadius = configs.circleRadius * 4;
+var firstCircleRadius = configs.circleRadius;
+var firstCircleInnerRadius = configs.innerCircleRadius;
+var secondCircleRadius = configs.circleRadius * 1.5;
+var secondCircleInnerRadius = configs.circleRadius + configs.gapBetweenCircles;
+
 var ctx;
 var leftCoord = 0.0;
 var topCoord = 0.0;
-var selectedButton;
 var selectedButtonSecondLevel;
 var typeOfMenu = 'regular-menu';
 var hoveredLink;
@@ -100,3 +143,9 @@ var rocketButtonPressed;
 var leftClickIsHolded = false;
 var linkTooltip;
 var rockerCircle;
+
+/// Index of level: index of button
+var selectedButtons = {};
+
+
+

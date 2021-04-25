@@ -1,10 +1,20 @@
+var totalCircleRadius;
+
 function showCircle(e) {
     var evt = e || window.event;
     e.preventDefault();
     if ("buttons" in evt) {
         if (evt.buttons == 2) {
-            // canvasRadius = addSecondLevel && typeOfMenu == 'regular-menu' ? secondCircleRadius * 2 : firstCircleRadius * 2;
-            canvasRadius = (addSecondLevel && typeOfMenu == 'regular-menu' ? secondCircleRadius * 2 : firstCircleRadius * 2) + (addCircleOutlines ? 2 : 0);
+            // canvasRadius = (configs.addSecondLevel && typeOfMenu == 'regular-menu' ? secondCircleRadius * 2 : firstCircleRadius * 2) + (configs.addCircleOutlines ? 2 : 0);
+
+            totalCircleRadius = 0.0;
+            if (typeOfMenu == 'regular-menu')
+                for (var i = 0; i < regularMenuAllButtons.length; i++) {
+                    totalCircleRadius += regularMenuAllButtons[i].width + configs.gapBetweenCircles;
+                }
+            else totalCircleRadius = configs.circleRadius;
+            canvasRadius = totalCircleRadius * 2;
+            // canvasRadius = configs.circleRadius * 2 * regularMenuAllButtons.length;
 
             leftCoord = e.clientX - (canvasRadius / 2);
             topCoord = e.clientY - (canvasRadius / 2) + window.scrollY;
@@ -18,10 +28,10 @@ function showCircle(e) {
             // circle.style.transform = 'scale(0.0) rotate(-180deg)';
             circle.style.transform = 'scale(0.0)';
             circle.style.transition = '';
-            circle.style.transition = `opacity ${animationDuration}ms ease-in-out, transform ${animationDuration}ms ease-in-out`;
+            circle.style.transition = `opacity ${configs.animationDuration}ms ease-in-out, transform ${configs.animationDuration}ms ease-in-out`;
             circle.style.left = `${leftCoord}px`;
             circle.style.top = `${topCoord}px`;
-            circle.style.opacity = circleOpacity;
+            circle.style.opacity = configs.circleOpacity;
 
             circle.style.visibility = 'visible';
             setTimeout(function () {
@@ -35,7 +45,9 @@ function showCircle(e) {
             drawCirclesOnCanvas(false);
 
             document.onmousemove = function (e) {
-                drawCirclesOnCanvas(e);
+                try {
+                    drawCirclesOnCanvas(e);
+                } catch (error) { console.log(error); }
             }
             circleIsShown = true;
         }
@@ -53,28 +65,68 @@ function hideCircle() {
         if (rockerCircle !== null)
             hideRockerIcon(rocketButtonPressed !== null);
 
-        if (circle == null) return;
+        if (circle == null || circle == undefined) return;
         circle.style.opacity = 0.0;
 
-        var shownButtons = typeOfMenu == 'link-menu' ? linkMenuButtons : typeOfMenu == 'image-menu' ? imageMenuButtons : selectedButtonSecondLevel == null ? regularMenuButtons : regularMenuButtonsLevelTwo;
 
-        if (debugMode) {
-            console.log('Selected button is:');
-            console.log(selectedButton);
+        // if (configs.debugMode) {
+        //     console.log('Selected button is:');
+        //     console.log(selectedButton);
 
-            console.log('Selected button on 2nd level is:');
-            console.log(selectedButtonSecondLevel);
+        //     console.log('Selected button on 2nd level is:');
+        //     console.log(selectedButtonSecondLevel);
+        // }
+
+        let anyButtonIsSelected = false;
+        let selectedButton;
+        let selectedLevel;
+
+        let keys = Object.keys(selectedButtons);
+
+        for (var i = 0; i < keys.length; i++) {
+            let key = keys[i];
+            if (selectedButtons[key] !== null && selectedButtons[key] !== undefined) {
+                anyButtonIsSelected = true;
+                selectedButton = selectedButtons[key];
+                selectedLevel = key;
+                break;
+            }
         }
 
-        if (rocketButtonPressed == null && selectedButton == null && selectedButtonSecondLevel == null) {
+
+
+        // for (var i = 0; i < selectedButtons.length; i++) {
+        //     console.log('selectedButtons.length');
+        //     console.log(selectedButtons.length);
+
+        //     if (selectedButtons[i] !== null && selectedButtons[i] !== undefined) {
+        //         anyButtonIsSelected = true;
+        //         selectedButton = selectedButtons[i];
+        //         selectedLevel = i;
+        //         break;
+
+        //     }
+        // }
+
+
+        // if (rocketButtonPressed == null && selectedButton == null && selectedButtonSecondLevel == null) {
+        if (rocketButtonPressed == null && anyButtonIsSelected == false) {
             circle.style.transform = 'scale(0.0)';
         }
         else {
             /// Some action was selected
             circle.style.transform = showRockerActionInCenter ? 'scale(0.0)' : 'scale(1.5)';
             if (rocketButtonPressed == null) {
-                let actionToPerform = shownButtons[selectedButtonSecondLevel ?? selectedButton];
-                if (debugMode) {
+
+                console.log('selectedLevel:');
+                console.log(selectedLevel);
+
+                // let actionToPerform = shownButtons[selectedButtonSecondLevel ?? selectedButton];
+
+                let shownButtons = typeOfMenu == 'link-menu' ? linkMenuButtons : typeOfMenu == 'image-menu' ? imageMenuButtons : regularMenuAllButtons[selectedLevel]['buttons'];
+
+                let actionToPerform = shownButtons[selectedButton];
+                if (configs.debugMode) {
                     console.log('action to perform by CMG:');
                     console.log(actionToPerform);
                 }
@@ -86,8 +138,15 @@ function hideCircle() {
             circle.style.visibility = 'hidden';
             if (circle.parentNode !== null)
                 circle.parentNode.removeChild(circle);
-            selectedButton = null;
-            selectedButtonSecondLevel = null;
+            circle = null;
+            // selectedButton = null;
+            // selectedButtonSecondLevel = null;
+
+            // selectedButtons[level] = null;
+
+            for (i in regularMenuAllButtons) {
+                selectedButtons[i] = null;
+            }
         }, 200);
     } catch (e) { console.log(e); }
 }
@@ -96,21 +155,46 @@ function hideCircle() {
 function drawCirclesOnCanvas(e, showIndexes = false) {
     ctx.clearRect(0, 0, canvasRadius, canvasRadius);
 
-    if (addSecondLevel && typeOfMenu == 'regular-menu') {
-        /// Draw 2 levels
-        let buttonsToShow2 = typeOfMenu == 'link-menu' ? linkMenuButtons : typeOfMenu == 'image-menu' ? imageMenuButtons : regularMenuButtonsLevelTwo;
-        drawCircleContent(typeOfMenu, e, buttonsToShow2, secondCircleRadius, secondCircleInnerRadius, 1, false, showIndexes);
-        let buttonsToShow1 = typeOfMenu == 'link-menu' ? linkMenuButtons : typeOfMenu == 'image-menu' ? imageMenuButtons : regularMenuButtons;
-        drawCircleContent(typeOfMenu, e, buttonsToShow1, firstCircleRadius, firstCircleInnerRadius, 0, true, showIndexes);
+    let totalRadius = totalCircleRadius;
 
+    if (typeOfMenu == 'regular-menu') {
+        for (var i = regularMenuAllButtons.length - 1; i > -1; i--) {
+            drawCircleContent(
+                typeOfMenu, e,
+                // regularMenuAllButtons[i].buttons,
+                typeOfMenu == 'link-menu' ? linkMenuButtons : typeOfMenu == 'image-menu' ? imageMenuButtons : regularMenuAllButtons[i].buttons,
+                totalRadius,
+                i == 0 ? configs.innerCircleRadius : totalRadius - regularMenuAllButtons[i].width + configs.gapBetweenCircles,
+                i,
+                i !== regularMenuAllButtons.length - 1,
+                showIndexes
+            );
+            totalRadius -= regularMenuAllButtons[i].width;
+        }
     } else {
-        /// Draw 1 level
-        let firstCircleRadius = circleRadius;
-        let firstCircleInnerRadius = innerCircleRadius;
+        let firstCircleRadius = configs.circleRadius;
+        let firstCircleInnerRadius = configs.innerCircleRadius;
 
         let buttonsToShow = typeOfMenu == 'link-menu' ? linkMenuButtons : typeOfMenu == 'image-menu' ? imageMenuButtons : regularMenuButtons;
-        drawCircleContent(typeOfMenu, e, buttonsToShow, firstCircleRadius, firstCircleInnerRadius, false, showIndexes);
+        drawCircleContent(typeOfMenu, e, buttonsToShow, firstCircleRadius, firstCircleInnerRadius, 0, false, showIndexes);
     }
+
+
+
+    // if (configs.addSecondLevel && typeOfMenu == 'regular-menu') {
+    //     /// Draw 2 levels
+    //     let buttonsToShow2 = typeOfMenu == 'link-menu' ? linkMenuButtons : typeOfMenu == 'image-menu' ? imageMenuButtons : regularMenuButtonsLevelTwo;
+    //     drawCircleContent(typeOfMenu, e, buttonsToShow2, secondCircleRadius, secondCircleInnerRadius, 1, false, showIndexes);
+    //     let buttonsToShow1 = typeOfMenu == 'link-menu' ? linkMenuButtons : typeOfMenu == 'image-menu' ? imageMenuButtons : regularMenuButtons;
+    //     drawCircleContent(typeOfMenu, e, buttonsToShow1, firstCircleRadius, firstCircleInnerRadius, 0, true, showIndexes);
+    // } else {
+    //     /// Draw 1 level
+    //     let firstCircleRadius = configs.circleRadius;
+    //     let firstCircleInnerRadius = configs.innerCircleRadius;
+
+    //     let buttonsToShow = typeOfMenu == 'link-menu' ? linkMenuButtons : typeOfMenu == 'image-menu' ? imageMenuButtons : regularMenuButtons;
+    //     drawCircleContent(typeOfMenu, e, buttonsToShow, firstCircleRadius, firstCircleInnerRadius, false, showIndexes);
+    // }
 }
 
 
@@ -145,20 +229,24 @@ function drawCircleContent(typeOfMenu, E, buttonsToShow, circleRadius, innerCirc
     // var buttonsToShow = typeOfMenu == 'link-menu' ? linkMenuButtons : typeOfMenu == 'image-menu' ? imageMenuButtons : level == 0 ? regularMenuButtons : regularMenuButtonsLevelTwo;
     segmentsCount = buttonsToShow.length; /// Only numbers dividable by 4
 
-    if (level == 0)
-        selectedButton = null;
-    else
-        selectedButtonSecondLevel = null;
+    // if (level == 0)
+    //     selectedButton = null;
+    // else
+    //     selectedButtonSecondLevel = null;
+
+    selectedButtons[level] = null;
 
     /// Draw segments
     for (i = 0; i < segmentsCount; i++) {
         if (actionIcons[buttonsToShow[i]] == undefined) continue;
 
         /// Rotate the circle a bit when buttons count is not even
-        angle = (segmentsCount % 2 == 0.0 ? (-Math.PI / segmentsCount) : (-Math.PI / segmentsCount) / 2) + i * (Math.PI / (segmentsCount / 2));
+        angle = (segmentsCount % 2 == 0.0 ?
+            (-Math.PI / segmentsCount) :
+            (-Math.PI / segmentsCount) / 2) + i * (Math.PI / (segmentsCount / 2));
 
-        if (shouldRespectBoundary && mradius > (addSecondLevel ? secondCircleInnerRadius : circleRadius)) {
-            // if (mradius > circleRadius) {
+        // if (shouldRespectBoundary && mradius > (configs.addSecondLevel ? secondCircleInnerRadius : circleRadius)) {
+        if (shouldRespectBoundary && mradius > circleRadius + configs.gapBetweenCircles) {
             /// Segment is not hovered
 
             ctx.fillStyle = segmentColor;
@@ -169,10 +257,15 @@ function drawCircleContent(typeOfMenu, E, buttonsToShow, circleRadius, innerCirc
                 /// Segment is hovered
                 ctx.fillStyle = hoveredSegmentColor;
 
-                if (level == 0)
-                    selectedButton = i;
-                else
-                    selectedButtonSecondLevel = i;
+                // if (level == 0)
+                //     selectedButton = i;
+                // else
+                //     selectedButtonSecondLevel = i;
+
+                selectedButtons[level] = i;
+
+                console.log('selectedButtons');
+                console.log(selectedButtons);
             } else {
                 /// Segment is not hovered
                 ctx.fillStyle = segmentColor;
@@ -182,24 +275,40 @@ function drawCircleContent(typeOfMenu, E, buttonsToShow, circleRadius, innerCirc
         ctx.moveTo(canvasRadius / 2, canvasRadius / 2);
 
         if (useRectangularShape) {
-            let dxForTextStart = canvasRadius / 2 + Math.cos(angle) * circleRadius;
-            let dyForTextStart = canvasRadius / 2 + Math.sin(angle) * circleRadius;
-            let dxForTextEnd = canvasRadius / 2 + Math.cos(angle + Math.PI / (segmentsCount / 2) * 0.996) * circleRadius;
-            let dyForTextEnd = canvasRadius / 2 + Math.sin(angle + Math.PI / (segmentsCount / 2) * 0.996) * circleRadius;
-            ctx.lineTo(dxForTextStart, dyForTextStart);
-            ctx.lineTo(dxForTextEnd, dyForTextEnd);
+
+            if (segmentsCount < 5) {
+                let radiusDivider = segmentsCount == 4 ? Math.sqrt(2) : Math.sqrt(4);
+                let dxForTextStart = canvasRadius / 2 + Math.cos(angle) * (circleRadius) / radiusDivider;
+                let dyForTextStart = canvasRadius / 2 + Math.sin(angle) * (circleRadius) / radiusDivider;
+                let dxForTextMiddle = canvasRadius / 2 + Math.cos(angle + (Math.PI / (segmentsCount / 2) * 0.996 / 2)) * circleRadius;
+                let dyForTextMiddle = canvasRadius / 2 + Math.sin(angle + (Math.PI / (segmentsCount / 2) * 0.996 / 2)) * circleRadius;
+                let dxForTextEnd = canvasRadius / 2 + Math.cos(angle + Math.PI / (segmentsCount / 2) * 0.996) * (circleRadius) / radiusDivider;
+                let dyForTextEnd = canvasRadius / 2 + Math.sin(angle + Math.PI / (segmentsCount / 2) * 0.996) * (circleRadius) / radiusDivider;
+
+                ctx.lineTo(dxForTextStart, dyForTextStart);
+                ctx.lineTo(dxForTextMiddle, dyForTextMiddle);
+                ctx.lineTo(dxForTextEnd, dyForTextEnd);
+            } else {
+                let dxForTextStart = canvasRadius / 2 + Math.cos(angle) * circleRadius;
+                let dyForTextStart = canvasRadius / 2 + Math.sin(angle) * circleRadius;
+                let dxForTextEnd = canvasRadius / 2 + Math.cos(angle + Math.PI / (segmentsCount / 2) * 0.996) * circleRadius;
+                let dyForTextEnd = canvasRadius / 2 + Math.sin(angle + Math.PI / (segmentsCount / 2) * 0.996) * circleRadius;
+
+                ctx.lineTo(dxForTextStart, dyForTextStart);
+                ctx.lineTo(dxForTextEnd, dyForTextEnd);
+            }
+
+
         } else {
             ctx.arc(canvasRadius / 2, canvasRadius / 2, circleRadius, angle, angle + Math.PI / (segmentsCount / 2) * 0.996, false);
         }
 
-
         ctx.lineTo(canvasRadius / 2, canvasRadius / 2);
 
-        if (addCircleOutlines) {
-            ctx.strokeStyle = circleOutlinesColor;
+        if (configs.addCircleOutlines) {
+            ctx.strokeStyle = configs.circleOutlinesColor;
             ctx.stroke();
         }
-
 
         if (addShadows) {
             ctx.shadowColor = 'black';
@@ -229,15 +338,20 @@ function drawCircleContent(typeOfMenu, E, buttonsToShow, circleRadius, innerCirc
     ctx.beginPath();
     ctx.globalCompositeOperation = 'destination-out';
 
-    if (useRectangularShape) {
+    if (useRectangularShape && level == 1) {
+        // if (useRectangularShape) {
 
-        ctx.moveTo(canvasRadius / 2, canvasRadius / 2 - innerCircleRadius);
+        ctx.moveTo(canvasRadius / 2, canvasRadius / 2 - (innerCircleRadius / 2));
 
-        for (var i = 0; i < segmentsCount; i++) {
-            ctx.beginPath();
-            ctx.moveTo(canvasRadius / 2, canvasRadius / 2 - innerCircleRadius);
-            let dxForTextEnd = canvasRadius / 2 + Math.cos(angle + Math.PI / (segmentsCount / 2) * 0.996) * innerCircleRadius;
-            let dyForTextEnd = canvasRadius / 2 + Math.sin(angle + Math.PI / (segmentsCount / 2) * 0.996) * innerCircleRadius;
+        for (i = 0; i < segmentsCount; i++) {
+            let segmentAngle = (segmentsCount % 2 == 0.0 ? (-Math.PI / segmentsCount) : (-Math.PI / segmentsCount) / 2) + i * (Math.PI / (segmentsCount / 2));
+
+            let dxForTextStart = canvasRadius / 2 + Math.cos(segmentAngle) * innerCircleRadius;
+            let dyForTextStart = canvasRadius / 2 + Math.sin(segmentAngle) * innerCircleRadius;
+            ctx.moveTo(dxForTextStart, dyForTextStart);
+
+            let dxForTextEnd = canvasRadius / 2 + Math.cos(segmentAngle + Math.PI / (segmentsCount / 2) * 0.996) * innerCircleRadius;
+            let dyForTextEnd = canvasRadius / 2 + Math.sin(segmentAngle + Math.PI / (segmentsCount / 2) * 0.996) * innerCircleRadius;
 
             ctx.lineTo(dxForTextEnd, dyForTextEnd);
             ctx.lineTo(canvasRadius / 2, canvasRadius / 2);
@@ -252,8 +366,8 @@ function drawCircleContent(typeOfMenu, E, buttonsToShow, circleRadius, innerCirc
     ctx.restore();
 
 
-    if (addCircleOutlines) {
-        ctx.strokeStyle = circleOutlinesColor;
+    if (configs.addCircleOutlines) {
+        ctx.strokeStyle = configs.circleOutlinesColor;
         ctx.stroke();
     }
 
@@ -265,13 +379,13 @@ function drawCircleContent(typeOfMenu, E, buttonsToShow, circleRadius, innerCirc
         try {
             buttonIsAvailable = checkButtonAvailability(buttonsToShow[i]);
         } catch (e) {
-            if (debugMode)
+            if (configs.debugMode)
                 console.log(e);
             buttonIsAvailable = true;
         }
 
-        if (debugMode)
-            console.log(buttonsToShow[i] + ' is available: ' + buttonIsAvailable.toString());
+        // if (configs.debugMode)
+        //     console.log(buttonsToShow[i] + ' is available: ' + buttonIsAvailable.toString());
 
         ctx.textBaseline = 'middle';
         ctx.textAlign = "center";
@@ -279,8 +393,8 @@ function drawCircleContent(typeOfMenu, E, buttonsToShow, circleRadius, innerCirc
 
         var centerDx = canvasRadius / 2;
         var centerDy = canvasRadius / 2;
-        let textRadius = (circleRadius + innerCircleRadius) * 0.5;
-
+        // let textRadius = (circleRadius + innerCircleRadius) * 0.5;
+        let textRadius = useRectangularShape ? innerCircleRadius + ((circleRadius - innerCircleRadius / 2) / (segmentsCount < 5 ? 3 : 5)) : (circleRadius + innerCircleRadius) * 0.5;
         let angle = (segmentsCount % 2 == 0.0 ? 0.0 : (Math.PI / segmentsCount) / 2) + i * (Math.PI / (segmentsCount / 2));
         var dxForText = centerDx + Math.cos(angle) * textRadius;
         var dyForText = centerDy + Math.sin(angle) * textRadius;
@@ -302,10 +416,7 @@ function drawCircleContent(typeOfMenu, E, buttonsToShow, circleRadius, innerCirc
 
         /// Draw text label underneath
         ctx.font = `${labelSize}px sans-serif`;
-
-        // var textToDraw = buttonsToShow[i]['label'];
         var textToDraw = chrome.i18n.getMessage(buttonsToShow[i]);
-
         /// Obfuscate shortened label with '...'
         if (textToDraw.length >= 21) {
             textToDraw = textToDraw.substring(0, 17) + '...';
@@ -313,34 +424,16 @@ function drawCircleContent(typeOfMenu, E, buttonsToShow, circleRadius, innerCirc
 
         var verticalShiftForIcon = 0.0;
 
-        // if (actionIcons[i] == undefined) {
-        //     /// Inactive label
-        //     ctx.fillStyle = "rgba(256,256,256,0.5)";
-        //     ctx.fillText(textToDraw, dxForText, dyForText - 15, (textRadius));
-
-        //     if (hoveredLink !== null) {
-        //         ctx.fillStyle = "rgba(256,256,256,0.75)";
-        //         // ctx.fillText(hoveredLink.substring(0, 15) + '...', dxForText, dyForText + 3);
-        //         ctx.fillText(hoveredLink.substring(0, maxCharacters) + '...', dxForText, dyForText + 3);
-
-        //         /// Add underline, and shift it by 1 symbol left
-        //         ctx.fillText("______________________________________".substring(0, maxCharacters - 3), dxForText - 6.5, dyForText + 3);
-        //     }
-        // } else {
         segmentColor == '#c69a15' ? segmentColor :
-            ctx.fillStyle = getTextColorForBackground(segmentColor, labelOpacity / (buttonIsAvailable ? 1 : 2));
+            ctx.fillStyle = getTextColorForBackground(segmentColor, configs.labelOpacity / (buttonIsAvailable ? 1 : 2));
 
-        if (circleRadius - innerCircleRadius > iconSize * 2.5)
+        if (circleRadius - innerCircleRadius > iconSize * 2.5) {
             verticalShiftForIcon = wrapLabel(ctx, textToDraw, dxForText, dyForText + 15, segmentLength * 0.4, labelSize);
-
-
-        if (addLinkTooltip && hoveredLink !== null && linkTooltip == null) {
-            showLinkTooltip();
         }
 
         /// Draw icon    
         segmentColor == '#c69a15' ? segmentColor :
-            ctx.fillStyle = getTextColorForBackground(segmentColor, iconOpacity / (buttonIsAvailable ? 1 : 2)) ?? '';
+            ctx.fillStyle = getTextColorForBackground(segmentColor, configs.iconOpacity / (buttonIsAvailable ? 1 : 2)) ?? '';
         ctx.font = `${iconSize}px sans-serif`;
 
         if (actionIcons[buttonsToShow[i]].length <= 3) {
@@ -349,29 +442,33 @@ function drawCircleContent(typeOfMenu, E, buttonsToShow, circleRadius, innerCirc
         } else {
             /// Draw SVG icon
             try {
-                let scale = iconSize / 24;
-
                 ctx.save();
                 let p = new Path2D(actionIcons[buttonsToShow[i]]);
                 ctx.translate(dxForText - (iconSize / 2), dyForText - verticalShiftForIcon - (iconSize / (circleRadius - innerCircleRadius > iconSize * 2.5 ? 1.5 : 2)));
+                let scale = iconSize / 24;
                 ctx.scale(scale, scale);
                 ctx.fill(p);
                 ctx.restore();
             } catch (e) {
-                if (debugMode)
+                if (configs.debugMode)
                     console.log(e);
             }
         }
 
+        /// Draw indexes
         if (showIndexes) {
             let textRadius = innerCircleRadius + 6;
-            // let indexAngle = angle - (Math.PI / segmentsCount / 4);
             let dxForText = centerDx + Math.cos(angle) * textRadius;
             let dyForText = centerDy + Math.sin(angle) * textRadius;
             ctx.fillStyle = getTextColorForBackground(segmentColor, 0.5) ?? '';
             ctx.font = `12px sans-serif`;
             ctx.fillText(i.toString(), dxForText, dyForText);
         }
+    }
+
+    /// Show link tooltip
+    if (configs.addLinkTooltip && hoveredLink !== null && linkTooltip == null) {
+        showLinkTooltip();
     }
 
     /// Draw rocker gesture icon in center

@@ -10,7 +10,7 @@ document.addEventListener("mousedown", function (e) {
 
     if (e.ctrlKey) return;
 
-    if (debugMode)
+    if (configs.debugMode)
         console.log('Pushed button ' + evt.button.toString());
 
     if ("buttons" in evt) {
@@ -18,11 +18,18 @@ document.addEventListener("mousedown", function (e) {
         if (evt.buttons == 2) {
             if (leftClickIsHolded) return;
 
+            if (circle !== null && circle !== undefined) {
+                hideCircle();
+                console.log('circle:');
+                console.log(circle);
+                return;
+            }
+
             e.preventDefault();
 
             rocketButtonPressed = null;
 
-            if (debugMode)
+            if (configs.debugMode)
                 console.log('Showing mouse gestures circle...');
             var el = document.elementFromPoint(e.clientX, e.clientY);
 
@@ -44,11 +51,11 @@ document.addEventListener("mousedown", function (e) {
             } else {
                 typeOfMenu = 'regular-menu';
                 // hoveredLink = null;
-                hoveredLink = showLinkTooltipForPageItself ? window.location.href : null;
+                hoveredLink = configs.showLinkTooltipForPageItself ? window.location.href : null;
                 hoveredLinkTitle = null;
             }
 
-            if (debugMode)
+            if (configs.debugMode)
                 try {
                     console.log('hovered element:');
                     console.log(el.tagName);
@@ -85,7 +92,7 @@ document.addEventListener("mousedown", function (e) {
                 leftClickIsHolded = true;
             }
         } else {
-            if (debugMode)
+            if (configs.debugMode)
                 console.log('CMG recognized button action ' + evt.buttons.toString());
         }
     }
@@ -100,7 +107,7 @@ document.addEventListener("mouseup", function (e) {
 
 
     if ("buttons" in evt) {
-        if (debugMode)
+        if (configs.debugMode)
             console.log('Released button ' + evt.button.toString());
         /// Right click
         if (evt.button == 0) {
@@ -108,9 +115,21 @@ document.addEventListener("mouseup", function (e) {
             leftClickIsHolded = false;
             hideCircle();
         } else if (evt.button == 2) {
-            if (selectedButton == null && selectedButtonSecondLevel == null) {
+
+            let anyButtonIsSelected = false;
+            let keys = Object.keys(selectedButtons);
+            for (var i = 0; i < keys.length; i++) {
+                let key = keys[i];
+                if (selectedButtons[key] !== null && selectedButtons[key] !== undefined) {
+                    anyButtonIsSelected = true;
+                    break;
+                }
+            }
+
+            // if (selectedButton == null && selectedButtonSecondLevel == null) {
+            if (anyButtonIsSelected == false) {
                 /// Leave circle open (like a context menu), or hide it
-                if (hideCircleIfNoActionSelected)
+                if (configs.hideCircleIfNoActionSelected)
                     hideCircle();
 
             } else hideCircle();
@@ -119,7 +138,7 @@ document.addEventListener("mouseup", function (e) {
 
 });
 
-if (useMouseWheelGestures)
+if (configs.useMouseWheelGestures)
     document.addEventListener('wheel', checkScrollDirection);
 
 function checkScrollDirection(event) {
