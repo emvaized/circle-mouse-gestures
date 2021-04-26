@@ -1,4 +1,3 @@
-var regularMenuButtons;
 
 function init() {
     loadButtons();

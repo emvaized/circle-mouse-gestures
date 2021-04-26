@@ -73,7 +73,9 @@ document.addEventListener("mousedown", function (e) {
                 }
             }
 
-            showCircle(e);
+            try {
+                showCircle(e);
+            } catch (err) { if (configs.debugMode) console.log(err); }
         } else if (evt.buttons == 3) {
             rocketButtonPressed = 3;
 

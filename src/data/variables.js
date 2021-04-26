@@ -1,26 +1,4 @@
-/// Configs
-var configs = {
-    'debugMode': true,
-    'animationDuration': 200,
-    'hideCircleIfNoActionSelected': false,
-    'useMouseWheelGestures': true,
-    'addSecondLevel': true,
 
-    'circleOpacity': 1.0,
-    'circleRadius': 115,
-    'innerCircleRadius': 30,
-    'gapBetweenCircles': 8,
-    'addCircleOutlines': true,
-    'circleOutlinesColor': 'rgba(256,256,256,0.6)',
-    'labelOpacity': 0.75,
-    'iconOpacity': 1.0,
-
-    'addLinkTooltip': false,
-    'showFullLinkInTooltip': true,
-    'showLinkTextInTooltip': true,
-    'showLinkTooltipForPageItself': true,
-    'linkTooltipOpacity': 1.0,
-};
 
 /// Currently non-configurable variables
 var checkAvailabilityForButtons = true;
@@ -49,77 +27,57 @@ var imageRockerAction = 'openInFgTab';
 var mouseWheelUpAction = 'scrollToTop';
 var mouseWheelDownAction = 'scrollToBottom';
 
-var regularMenuAllButtons = [
+
+var regularMenuButtons = [
     {
         'width': 90,
         'buttons': [
-            'goForward',
-            'newTab',
-            'goBack',
-            'closeCurrentTab',
+            { 'id': 'goForward' },
+            { 'id': 'newTab' },
+            { 'id': 'goBack' },
+            { 'id': 'closeCurrentTab' },
         ]
     },
     {
-        'width': 56,
+        'width': 57,
         'buttons': [
-            'switchToNextTab',
-            'reloadTab',
-            'scrollToBottom',
-            'restoreClosedTab',
-            'switchToPreviousTab',
-            'translatePage',
-            'scrollToTop',
-            'copyUrl',
+            { 'id': 'switchToNextTab' },
+            { 'id': 'reloadTab' },
+            { 'id': 'scrollToBottom' },
+            { 'id': 'restoreClosedTab' },
+            { 'id': 'switchToPreviousTab' },
+            { 'id': 'translatePage' },
+            { 'id': 'scrollToTop' },
+            { 'id': 'copyUrl' },
         ]
     },
-    // {
-    //     'width': 56,
-    //     'color': 'blue',
-    //     'hoveredColor': 'lightBlue',
-    //     'buttons': [
-    //         'goForward',
-    //         'newTab',
-    //         'goBack',
-    //         'closeCurrentTab',
-    //     ]
-    // },
+    {
+        'width': 57,
+        'buttons': [
+            { 'id': 'goForward' },
+            { 'id': 'newTab' },
+            { 'id': 'newTab' },
+            { 'id': 'goBack' },
+            { 'id': 'closeCurrentTab' },
+        ]
+    },
 ];
 
-var regularMenuButtons = [
-    'goForward',
-    'newTab',
-    'goBack',
-    'closeCurrentTab',
-];
-
-var regularMenuButtonsLevelTwo = [
-    'switchToNextTab',
-    'reloadTab',
-    'scrollToBottom',
-    'restoreClosedTab',
-    'switchToPreviousTab',
-    'translatePage',
-    'scrollToTop',
-    'copyUrl',
-    // 'pageZoomIn',
-    // 'pageZoomOut',
-    // 'toggleFullscreen',
-];
 
 var linkMenuButtons = [
-    'openInFgTab',
-    'copyLinkText',
-    'openInBgTab',
-    'copyUrl',
+    { 'id': 'openInFgTab' },
+    { 'id': 'copyLinkText' },
+    { 'id': 'openInBgTab' },
+    { 'id': 'copyUrl' },
 ];
 
 
 var imageMenuButtons = [
-    'openInFgTab',
-    'downloadUrlAs',
-    'openInBgTab',
-    'searchImageOnGoogle',
-    'copyUrl',
+    { 'id': 'openInFgTab' },
+    { 'id': 'downloadUrlAs' },
+    { 'id': 'openInBgTab' },
+    { 'id': 'searchImageOnGoogle' },
+    { 'id': 'copyUrl' },
 ];
 
 

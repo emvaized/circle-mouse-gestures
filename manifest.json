@@ -19,8 +19,9 @@
         "<all_urls>"
       ],
       "js": [
+        "src/data/configs.js",
         "src/data/variables.js",
-        "src/data/action-icons.js",
+        "src/data/icons.js",
         "functions.js",
         "src/ui/circle.js",
         "src/ui/link-tooltip.js",
