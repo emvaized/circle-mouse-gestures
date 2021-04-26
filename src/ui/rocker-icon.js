@@ -7,7 +7,7 @@ function drawRockerIconInCenter() {
     rockerCircle = document.createElement('div');
     rockerCircle.setAttribute('class', 'cmg-rocker-icon');
 
-    let bgColor = typeOfMenu == 'link-menu' ? linkSegmentColor : typeOfMenu == 'image-menu' ? imageSegmentColor : regularSegmentColor;
+    let bgColor = typeOfMenu == 'linkMenu' ? configs.linkMenu.color : typeOfMenu == 'imageMenu' ? configs.imageMenu.color : configs.regularMenu.color;
     rockerCircle.style.background = bgColor;
     rockerCircle.style.opacity = 0.0;
     rockerCircle.style.width = `${rockerCircleRadius}px`;
@@ -21,7 +21,7 @@ function drawRockerIconInCenter() {
     let icon = document.createElement('span');
     icon.setAttribute('id', 'cmg-rocker-icon-text');
     icon.setAttribute('style', `color: rgba(256,256,256,0.7); font-size: ${rockerCircleRadius * 0.75}px !important;padding: ${rockerCircleRadius * 0.125}px !important;display: inline-block;transition: transform 50ms ease-out;`);
-    icon.textContent = actionIcons[typeOfMenu == 'image-menu' ? imageRockerAction : typeOfMenu == 'link-menu' ? linkRockerAction : regularRockerAction];
+    icon.textContent = actionIcons[typeOfMenu == 'imageMenu' ? imageRockerAction : typeOfMenu == 'linkMenu' ? linkRockerAction : regularRockerAction];
     rockerCircle.appendChild(icon);
 
     document.body.appendChild(rockerCircle);

@@ -1,11 +1,15 @@
+var localCopyOfConfigs;
 
 function init() {
-    loadButtons();
+    localCopyOfConfigs = configs;
+    // loadButtons();
+    drawCirclePreview();
+    generateButtonsList();
 }
 
 function loadButtons() {
-    chrome.storage.local.get(['regularMenuButtons'], function (value) {
-        regularMenuButtons = value.regularMenuButtons ?? [
+    chrome.storage.local.get(['configs.regularMenu.levels'], function (value) {
+        configs.regularMenu.levels = value.configs.regularMenu.levels ?? [
             'goForward',
             'newTab',
             'goBack',
@@ -19,19 +23,19 @@ function loadButtons() {
 
 function drawCirclePreview() {
     let circle = document.getElementById('circle-preview');
-    canvasRadius = (configs.addSecondLevel && typeOfMenu == 'regular-menu' ? secondCircleRadius * 2 : firstCircleRadius * 2) + (configs.addCircleOutlines ? 2 : 0);
+    canvasRadius = (configs.addSecondLevel && typeOfMenu == 'regularMenu' ? secondCircleRadius * 2 : firstCircleRadius * 2) + (configs.addCircleOutlines ? 2 : 0);
     circle.setAttribute('width', `${canvasRadius}px !imporant`);
     circle.setAttribute('height', `${canvasRadius}px !imporant`);
     ctx = circle.getContext('2d');
-    drawCirclesOnCanvas(false, true);
+    drawCircle(false, true);
 }
 
 function generateButtonsList() {
     var container = document.getElementById('buttons-config-container');
     container.innerHTML = '';
 
-    for (var i = 0; i < regularMenuButtons.length; i++) {
-        var item = regularMenuButtons[i];
+    for (var i = 0; i < configs.regularMenu.levels.length; i++) {
+        var item = configs.regularMenu.levels[i];
 
         var entry = document.createElement('div');
         entry.setAttribute('class', 'buttons-item');
@@ -69,9 +73,9 @@ function generateButtonsList() {
         moveUpButton.onmouseup = function () {
             var currentIndex = parseInt(this.id.replaceAll('moveup', ''), 10);
             if (currentIndex > 0) {
-                var movedItem = regularMenuButtons[currentIndex];
-                regularMenuButtons.splice(currentIndex, 1);
-                regularMenuButtons.splice(currentIndex - 1, 0, movedItem);
+                var movedItem = configs.regularMenu.levels[currentIndex];
+                configs.regularMenu.levels.splice(currentIndex, 1);
+                configs.regularMenu.levels.splice(currentIndex - 1, 0, movedItem);
                 saveCustomSearchButtons();
                 generateButtonsList();
             }
@@ -84,10 +88,10 @@ function generateButtonsList() {
         moveDownButton.setAttribute('title', chrome.i18n.getMessage("moveDownLabel"));
         moveDownButton.onmouseup = function () {
             var currentIndex = parseInt(this.id.replaceAll('movedown', ''), 10);
-            if (currentIndex < regularMenuButtons.length) {
-                let movedItem = regularMenuButtons[currentIndex];
-                regularMenuButtons.splice(currentIndex, 1);
-                regularMenuButtons.splice(currentIndex + 1, 0, movedItem);
+            if (currentIndex < configs.regularMenu.levels.length) {
+                let movedItem = configs.regularMenu.levels[currentIndex];
+                configs.regularMenu.levels.splice(currentIndex, 1);
+                configs.regularMenu.levels.splice(currentIndex + 1, 0, movedItem);
                 saveCustomSearchButtons();
                 generateButtonsList();
             }
@@ -104,8 +108,8 @@ function generateButtonsList() {
         deleteButton.setAttribute('id', 'delete' + i.toString());
         deleteButton.onmouseup = function () {
             var index = parseInt(this.id.replaceAll('delete', ''));
-            if (regularMenuButtons[index] !== null && regularMenuButtons[index] !== undefined) {
-                regularMenuButtons.splice(parseInt(this.id.replaceAll('delete', ''), 10), 1);
+            if (configs.regularMenu.levels[index] !== null && configs.regularMenu.levels[index] !== undefined) {
+                configs.regularMenu.levels.splice(parseInt(this.id.replaceAll('delete', ''), 10), 1);
                 saveCustomSearchButtons();
                 generateButtonsList();
             }
@@ -120,7 +124,7 @@ function generateButtonsList() {
     // var addButton = document.createElement('button');
     // addButton.textContent = chrome.i18n.getMessage("addButton") + ' ＋';
     // addButton.onmouseup = function () {
-    //     regularMenuButtons.push({
+    //     configs.regularMenu.levels.push({
     //         'url': '',
     //         'title': '',
     //         'enabled': true,
@@ -150,7 +154,7 @@ function generateButtonsList() {
     setTimeout(function () {
         document.getElementById('addNewButton').addEventListener("input", function (e) {
             // var selectInput = document.getElementById('addNewButton');
-            regularMenuButtons.push(e.value);
+            configs.regularMenu.levels.push(e.value);
             // chrome.storage.local.set({ 'convertToCurrency': selectInput.value.split(' — ')[0] });
         });
     }, 300);

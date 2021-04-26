@@ -15,7 +15,7 @@ function triggerButtonAction(actionToPerform) {
     } else
 
         if (actionToPerform !== null && actionToPerform !== undefined) {
-            if (typeOfMenu !== 'regular-menu') {
+            if (typeOfMenu !== 'regularMenu') {
                 let link = hoveredLink;
 
                 if (configs.debugMode) {
@@ -56,7 +56,7 @@ function wrapLabel(context, text, x, y, maxWidth, lineHeight) {
 
 
 /// Returns white for dark background, and black for bright
-function getTextColorForBackground(color, desiredOpacity) {
+function getTextColorForBackground(color) {
     var c = hexToRgb(color);
 
     var d = 0;
@@ -71,9 +71,8 @@ function getTextColorForBackground(color, desiredOpacity) {
         isDarkBackground = true;
     }
 
-    return `rgba(${d}, ${d}, ${d}, ${desiredOpacity})`;
-
-    return rgbToHex(d, d, d);
+    return { red: d, green: d, blue: d };
+    // return `rgba(${d}, ${d}, ${d}, ${desiredOpacity})`;
 }
 
 function hexToRgb(hex) {

@@ -23,7 +23,8 @@
         "src/data/variables.js",
         "src/data/icons.js",
         "functions.js",
-        "src/ui/circle.js",
+        "src/ui/circle/circle.js",
+        "src/ui/circle/circle-level-draw.js",
         "src/ui/link-tooltip.js",
         "src/ui/rocker-icon.js",
         "index.js"
