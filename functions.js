@@ -22,7 +22,11 @@ function triggerButtonAction(actionToPerform) {
                     console.log('link:');
                     console.log(link);
                 }
-                chrome.runtime.sendMessage({ actionToDo: actionToPerform, url: link, linkText: hoveredLinkTitle })
+
+                if (typeOfMenu == 'selectionMenu')
+                    chrome.runtime.sendMessage({ actionToDo: actionToPerform, url: textSelection.toString().trim(), selectedText: textSelection.toString() });
+                else
+                    chrome.runtime.sendMessage({ actionToDo: actionToPerform, url: link, linkText: hoveredLinkTitle })
             } else {
                 chrome.runtime.sendMessage({ actionToDo: actionToPerform, url: window.location.href })
             }
@@ -86,4 +90,48 @@ function hexToRgb(hex) {
 
 function rgbToHex(r, g, b) {
     return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
+
+
+
+function isCoordinateWithinTextSelection(dx, dy) {
+    let textSelectionData = getSelectionRectDimensions();
+
+    if (dx > textSelectionData.dx && dx < textSelectionData.dx + textSelectionData.width
+        && dy > textSelectionData.dy && dy < textSelectionData.dy + textSelectionData.height) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+/// Returns data for text selection rect
+function getSelectionRectDimensions() {
+    var sel = document.selection, range;
+    var width = 0, height = 0;
+    var dx = 0, dy = 0;
+    if (sel) {
+        if (sel.type != "Control") {
+            range = sel.createRange();
+            var rect = range.getBoundingClientRect();
+            width = range.boundingWidth;
+            height = range.boundingHeight;
+            dx = rect.left;
+            dy = rect.top;
+        }
+    } else if (window.getSelection) {
+        sel = window.getSelection();
+        if (sel.rangeCount) {
+            range = sel.getRangeAt(0).cloneRange();
+            if (range.getBoundingClientRect) {
+                var rect = range.getBoundingClientRect();
+                width = rect.right - rect.left;
+                height = rect.bottom - rect.top;
+                dx = rect.left;
+                dy = rect.top;
+            }
+        }
+    }
+    return { width: width, height: height, dx: dx, dy: dy };
 }

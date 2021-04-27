@@ -71,10 +71,6 @@
         "message": "Scroll to bottom",
         "description": "Label for circle menu button"
     },
-    "translatePage": {
-        "message": "Translate page",
-        "description": "Label for circle menu button"
-    },
     "restoreClosedTab": {
         "message": "Restore",
         "description": "Label for circle menu button"
@@ -121,6 +117,18 @@
     },
     "toggleFullscreen": {
         "message": "Fullscreen mode",
+        "description": "Label for circle menu button"
+    },
+    "copyText": {
+        "message": "Copy",
+        "description": "Label for circle menu button"
+    },
+    "searchText": {
+        "message": "Search",
+        "description": "Label for circle menu button"
+    },
+    "translate": {
+        "message": "Translate",
         "description": "Label for circle menu button"
     }
 }

@@ -62,7 +62,6 @@ chrome.runtime.onMessage.addListener(
             } break;
 
             case 'copyLinkText': {
-
                 try {
                     var input = document.createElement('input');
                     document.body.appendChild(input);
@@ -75,6 +74,37 @@ chrome.runtime.onMessage.addListener(
                 } catch (e) {
                     navigator.clipboard.writeText(request.linkText);
                 }
+            } break;
+
+            case 'copyText': {
+                try {
+                    var input = document.createElement('input');
+                    document.body.appendChild(input);
+                    input.value = request.selectedText;
+                    input.focus();
+                    input.select();
+                    document.execCommand('Copy');
+                    // input.remove();
+                    document.body.removeChild(input);
+                } catch (e) {
+                    navigator.clipboard.writeText(request.selectedText);
+                }
+            } break;
+
+            case 'searchText': {
+                let index = sender.tab.index;
+                chrome.tabs.create({
+                    url: 'https://www.google.com/search?q=' + request.selectedText, active: true, index: index + 1
+                });
+            } break;
+
+            case 'translate': {
+                let index = sender.tab.index;
+                chrome.tabs.create({
+                    url: (request.url.includes('https://') || request.url.includes('http://') ?
+                        'https://translate.google.com/translate?sl=auto&tl=ru&u=' :
+                        'https://translate.google.com/?sl=auto&tl=ru&text=') + encodeURI(request.url), active: true, index: index + 1
+                });
             } break;
 
             case 'downloadUrl': {
@@ -109,12 +139,12 @@ chrome.runtime.onMessage.addListener(
                 });
             } break;
 
-            case 'translatePage': {
-                let index = sender.tab.index;
-                chrome.tabs.create({
-                    url: 'https://translate.google.com/translate?sl=auto&tl=ru&u=' + request.url, active: true, index: index + 1
-                });
-            } break;
+            // case 'translatePage': {
+            //     let index = sender.tab.index;
+            //     chrome.tabs.create({
+            //         url: 'https://translate.google.com/translate?sl=auto&tl=ru&u=' + request.url, active: true, index: index + 1
+            //     });
+            // } break;
 
             case 'switchToPreviousTab': {
 

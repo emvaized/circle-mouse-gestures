@@ -8,7 +8,8 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
     }
 
     var segmentsCount = buttonsToShow.length;
-    var segmentColor = typeOfMenu == 'linkMenu' ? configs.linkMenu.color : typeOfMenu == 'imageMenu' ? configs.imageMenu.color : configs.regularMenu.color;
+    // var segmentColor = typeOfMenu == 'linkMenu' ? configs.linkMenu.color : typeOfMenu == 'imageMenu' ? configs.imageMenu.color : configs.regularMenu.color;
+    var segmentColor = configs[typeOfMenu].color;
     var outlineColorRgb = getTextColorForBackground(segmentColor, 0.5);
     var outlineColor = `rgba(${outlineColorRgb.red}, ${outlineColorRgb.green}, ${outlineColorRgb.blue}, 0.5)`;
 

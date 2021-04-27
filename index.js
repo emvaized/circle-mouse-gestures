@@ -27,13 +27,12 @@ function setPageListeners() {
 
                 if (circle !== null && circle !== undefined) {
                     hideCircle();
-                    console.log('circle:');
-                    console.log(circle);
                     return;
                 }
 
                 e.preventDefault();
 
+                selectedButtons = {};
                 rocketButtonPressed = null;
 
                 if (configs.debugMode)
@@ -56,10 +55,30 @@ function setPageListeners() {
 
                     hoveredLinkTitle = el.textContent.trim();
                 } else {
-                    typeOfMenu = 'regularMenu';
-                    // hoveredLink = null;
-                    hoveredLink = configs.showLinkTooltipForPageItself ? window.location.href : null;
-                    hoveredLinkTitle = null;
+
+                    if (window.getSelection) {
+                        textSelection = window.getSelection();
+                    } else if (document.selection) {
+                        textSelection = document.selection.createRange();
+                    } else {
+                        textSelection = null;
+                    }
+
+                    console.log('text selection:');
+                    console.log(textSelection.toString());
+
+                    if (textSelection.toString() !== '' && isCoordinateWithinTextSelection(e.clientX, e.clientY)) {
+                        typeOfMenu = 'selectionMenu';
+                        hoveredLink = configs.showLinkTooltipForPageItself ? window.location.href : null;
+                        hoveredLinkTitle = null;
+                    } else {
+                        typeOfMenu = 'regularMenu';
+                        hoveredLink = configs.showLinkTooltipForPageItself ? window.location.href : null;
+                        hoveredLinkTitle = null;
+                    }
+
+
+
                 }
 
                 if (configs.debugMode)

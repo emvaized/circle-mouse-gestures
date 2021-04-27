@@ -106,5 +106,17 @@
     "scrollToBottom": {
         "message": "В конец страницы",
         "description": "Label for circle menu button"
+    },
+    "copyText": {
+        "message": "Копировать",
+        "description": "Label for circle menu button"
+    },
+    "searchText": {
+        "message": "Искать",
+        "description": "Label for circle menu button"
+    },
+    "translate": {
+        "message": "Перевести",
+        "description": "Label for circle menu button"
     }
 }

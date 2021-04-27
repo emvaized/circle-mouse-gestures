@@ -25,6 +25,7 @@ var selectedButtonSecondLevel;
 var typeOfMenu = 'regularMenu';
 var hoveredLink;
 var hoveredLinkTitle;
+var textSelection;
 var circle;
 var circleIsShown = false;
 var rocketButtonPressed;

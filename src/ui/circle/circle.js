@@ -13,11 +13,16 @@ function showCircle(e) {
             //     }
             // else totalCircleRadius = configs.circleRadius;
 
-            for (var i = 0; i < configs[typeOfMenu].levels.length; i++) {
-                totalCircleRadius += configs.gapBetweenCircles + (configs[typeOfMenu].levels[i].width ?? configs.circleRadius);
+            for (var i = 0; i < configs['regularMenu'].levels.length; i++) {
+                totalCircleRadius += configs.gapBetweenCircles + (configs['regularMenu'].levels[i].width ?? configs.circleRadius);
             }
 
             canvasRadius = totalCircleRadius * 2 + 2;
+
+            if (typeOfMenu !== 'regularMenu') {
+                canvasRadius += (configs.interactiveCircleRadius + configs.gapBeforeInteractiveCircle) * 2;
+            }
+
             leftCoord = e.clientX - (canvasRadius / 2) + 1;
             topCoord = e.clientY - (canvasRadius / 2) + window.scrollY + 1;
 
@@ -60,25 +65,56 @@ function setCanvas(e) {
 
 function drawCircle(e, showIndexes = false) {
     ctx.clearRect(0, 0, canvasRadius, canvasRadius);
-
     let totalRadius = totalCircleRadius;
 
-    for (var i = configs[typeOfMenu].levels.length - 1; i > -1; i--) {
+    /// Draw outer circle with interactive buttons
+    if (typeOfMenu !== 'regularMenu') {
+        /// Interactive menu replaces the regular menu
+        if (configs.interactiveMenusBehavior == 'replace') {
+            let firstCircleRadius = configs.circleRadius;
+            let firstCircleInnerRadius = configs.innerCircleRadius;
+
+            let buttonsToShow = configs[typeOfMenu].buttons;
+            drawCircleLevel(typeOfMenu, e, buttonsToShow, firstCircleRadius, firstCircleInnerRadius, configs['regularMenu'].levels.length, false, showIndexes);
+            return;
+        } else {
+            /// Interactive menu is added as outer level for regular circle
+            drawCircleLevel(
+                typeOfMenu, e,
+                /// buttonsToShow
+                configs[typeOfMenu].buttons,
+                /// circleRadius
+                totalRadius + configs.interactiveCircleRadius,
+                /// innerCircleRadius
+                totalRadius + configs.gapBeforeInteractiveCircle,
+                ///level
+                configs['regularMenu'].levels.length,
+                /// shouldRespectBoundary
+                false,
+                showIndexes
+            );
+        }
+    }
+
+
+    for (var i = configs['regularMenu'].levels.length - 1; i > -1; i--) {
         drawCircleLevel(
-            typeOfMenu, e,
+            'regularMenu', e,
             /// buttonsToShow
-            configs[typeOfMenu].levels[i].buttons,
+            configs['regularMenu'].levels[i].buttons,
             /// circleRadius
             totalRadius,
             /// innerCircleRadius
-            i == 0 ? configs.innerCircleRadius : totalRadius - (configs[typeOfMenu].levels[i].width ?? configs.circleRadius) + configs.gapBetweenCircles,
+            i == 0 ? configs.innerCircleRadius :
+                //     totalRadius - (configs['regularMenu'].levels[i].width ?? configs.circleRadius) + configs.gapBetweenCircles,
+                totalRadius - (configs['regularMenu'].levels[i].width ?? configs.circleRadius) + configs.gapBetweenCircles,
             ///level
             i,
             /// shouldRespectBoundary
-            i !== configs[typeOfMenu].levels.length - 1,
+            typeOfMenu !== 'regularMenu' ? true : i !== configs['regularMenu'].levels.length - 1,
             showIndexes
         );
-        totalRadius -= configs[typeOfMenu].levels[i].width ?? configs.circleRadius;
+        totalRadius -= configs['regularMenu'].levels[i].width ?? configs.circleRadius;
     }
 }
 
@@ -118,10 +154,22 @@ function hideCircle() {
         else {
             /// Some action was selected
             circle.style.transform = showRockerActionInCenter ? 'scale(0.0)' : 'scale(1.5)';
-            if (rocketButtonPressed == null) {
-                let shownButtons = configs[typeOfMenu].levels[selectedLevel]['buttons'];
+            if (rocketButtonPressed == null && typeOfMenu !== null) {
+                var actionToPerform;
 
-                let actionToPerform = shownButtons[selectedButton].id;
+                if (selectedLevel == configs['regularMenu'].levels.length) {
+                    let shownButtons = configs[typeOfMenu]['buttons'];
+                    if (shownButtons == undefined) return;
+                    actionToPerform = shownButtons[selectedButton].id;
+                } else {
+                    let shownButtons = configs['regularMenu'].levels[selectedLevel]['buttons'];
+                    if (shownButtons == undefined) return;
+                    actionToPerform = shownButtons[selectedButton].id;
+                }
+
+                // let actionToPerform = selectedButton == shownButtons.length ?
+                //     configs[typeOfMenu]['buttons'][selectedButton]
+                //     : shownButtons[selectedButton].id;
                 if (configs.debugMode) {
                     console.log('action to perform by CMG:');
                     console.log(actionToPerform);

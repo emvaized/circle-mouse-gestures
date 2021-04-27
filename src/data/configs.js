@@ -7,13 +7,18 @@ var configs = {
     'addTextLabels': true,
 
     'circleOpacity': 1.0,
-    'circleRadius': 115,
     'innerCircleRadius': 30,
+    'circleRadius': 115,
+    'interactiveCircleRadius': 57,
     'gapBetweenCircles': 8,
+    'gapBeforeInteractiveCircle': 8,
     'addCircleOutlines': true,
     'labelOpacity': 0.75,
     'iconOpacity': 1.0,
 
+    /// 'Replace' will display interactive menu only (link, image, selected text),
+    /// and 'combine' will add it as outer circle level
+    'interactiveMenusBehavior': 'replace',  /// possible values: 'replace', 'combine'
     'addLinkTooltip': false,
     'showFullLinkInTooltip': true,
     'showLinkTextInTooltip': true,
@@ -26,7 +31,7 @@ var configs = {
         'rockerAction': 'reloadTab',
         'levels': [
             {
-                'width': 90,
+                'width': 100,
                 'buttons': [
                     { 'id': 'goForward' },
                     { 'id': 'newTab' },
@@ -42,7 +47,8 @@ var configs = {
                     { 'id': 'scrollToBottom' },
                     { 'id': 'restoreClosedTab' },
                     { 'id': 'switchToPreviousTab' },
-                    { 'id': 'translatePage' },
+                    // { 'id': 'translatePage' },
+                    { 'id': 'translate' },
                     { 'id': 'scrollToTop' },
                     { 'id': 'copyUrl' },
                 ]
@@ -63,35 +69,37 @@ var configs = {
     'linkMenu': {
         'color': "#3777CD",
         'rockerAction': 'openInFgTab',
-        'levels': [
-            {
-                'buttons': [
-                    { 'id': 'openInFgTab' },
-                    { 'id': 'copyLinkText' },
-                    { 'id': 'openInBgTab' },
-                    { 'id': 'copyUrl' },
-                ]
-            }
-        ],
+        'buttons': [
+            { 'id': 'openInFgTab' },
+            { 'id': 'copyLinkText' },
+            { 'id': 'openInBgTab' },
+            { 'id': 'copyUrl' },
+        ]
+    },
 
+    'selectionMenu': {
+        'color': "#000000",
+        'rockerAction': 'copyText',
+        'buttons': [
+            { 'id': 'copyText' },
+            { 'id': 'searchText' },
+            { 'id': 'translate' },
+        ]
     },
 
     'imageMenu': {
-        'color': "#c69a15",
+        // 'color': "#c69a15",
+        'color': "#d80000",
         'rockerAction': 'openInFgTab',
-        'levels': [
-            {
-                'buttons': [
-                    { 'id': 'openInFgTab' },
-                    { 'id': 'downloadUrlAs' },
-                    { 'id': 'openInBgTab' },
-                    { 'id': 'searchImageOnGoogle' },
-                    { 'id': 'copyUrl' },
-                ]
-            }
-        ],
+        'buttons': [
+            { 'id': 'openInFgTab' },
+            { 'id': 'downloadUrlAs' },
+            { 'id': 'openInBgTab' },
+            { 'id': 'searchImageOnGoogle' },
+            { 'id': 'copyUrl' },
+        ]
 
-    }
+    },
 };
 
 
