@@ -9,29 +9,23 @@ chrome.runtime.onMessage.addListener(
                 chrome.tabs.create({ index: sender.tab.index + 1 });
                 // });
             } break;
+
             case 'closeCurrentTab': {
-                // chrome.tabs.getSelected(function (tab) {
                 chrome.tabs.remove(sender.tab.id, function () { });
-                // });
             } break;
+
             case 'reloadTab': {
-                // chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                 chrome.tabs.reload(sender.tab.id);
-                // });
-
             } break;
+
             case 'goBack': {
-                // chrome.tabs.getSelected(null, function (tab) {
                 chrome.tabs.goBack(sender.tab.id);
-                // });
-            } break;
-            case 'goForward': {
-                // chrome.tabs.getCurrent(function (tab) {
-                chrome.tabs.goForward(sender.tab.id);
-                // });
             } break;
 
-            /// URL menu
+            case 'goForward': {
+                chrome.tabs.goForward(sender.tab.id);
+            } break;
+
             case 'openInBgTab': {
                 let index = sender.tab.index;
                 chrome.tabs.create({
@@ -309,59 +303,43 @@ chrome.runtime.onMessage.addListener(
             //     return sender.tab.index == 0;
             // } break;
         }
-
-        /// Open url in new tab next to current one
-        // if (request.type == 'selecton-open-new-tab')
-        //     chrome.tabs.query({
-        //         active: true, currentWindow: true
-        //     }, tabs => {
-        //         let index = tabs[0].index;
-        //         chrome.tabs.create({
-        //             url: request.url, active: request.focused, index: index + 1
-        //         });
-        //     }
-        //     );
     }
 );
 
+// chrome.runtime.onInstalled.addListener((details) => {
+//     // enable context menu on mouseup
+//     try {
+//         chrome.browserSettings.contextMenuShowEvent.set({ value: "mouseup" });
+//     }
+//     catch (error) {
+//         // console.warn("Gesturefy was not able to change the context menu behaviour to mouseup.", error);
+//     }
 
+//     // run this code after the config is loaded
+//     // Config.loaded.then(() => {
 
+//     //     switch (details.reason) {
+//     //         case "install":
+//     //             // show installation onboarding page
+//     //             browser.tabs.create({
+//     //                 url: browser.runtime.getURL("/views/installation/index.html"),
+//     //                 active: true
+//     //             });
+//     //             break;
 
-
-chrome.runtime.onInstalled.addListener((details) => {
-    // enable context menu on mouseup
-    try {
-        chrome.browserSettings.contextMenuShowEvent.set({ value: "mouseup" });
-    }
-    catch (error) {
-        // console.warn("Gesturefy was not able to change the context menu behaviour to mouseup.", error);
-    }
-
-    // run this code after the config is loaded
-    // Config.loaded.then(() => {
-
-    //     switch (details.reason) {
-    //         case "install":
-    //             // show installation onboarding page
-    //             browser.tabs.create({
-    //                 url: browser.runtime.getURL("/views/installation/index.html"),
-    //                 active: true
-    //             });
-    //             break;
-
-    //         case "update":
-    //             // show update notification
-    //             if (Config.get("Settings.General.updateNotification")) {
-    //                 // get manifest for new version number
-    //                 const manifest = browser.runtime.getManifest();
-    //                 // show update notification and open changelog on click
-    //                 displayNotification(
-    //                     browser.i18n.getMessage('addonUpdateNotificationTitle', manifest.name),
-    //                     browser.i18n.getMessage('addonUpdateNotificationMessage', manifest.version),
-    //                     "https://github.com/Robbendebiene/Gesturefy/releases"
-    //                 );
-    //             }
-    //             break;
-    //     }
-    // });
-});
+//     //         case "update":
+//     //             // show update notification
+//     //             if (Config.get("Settings.General.updateNotification")) {
+//     //                 // get manifest for new version number
+//     //                 const manifest = browser.runtime.getManifest();
+//     //                 // show update notification and open changelog on click
+//     //                 displayNotification(
+//     //                     browser.i18n.getMessage('addonUpdateNotificationTitle', manifest.name),
+//     //                     browser.i18n.getMessage('addonUpdateNotificationMessage', manifest.version),
+//     //                     "https://github.com/Robbendebiene/Gesturefy/releases"
+//     //                 );
+//     //             }
+//     //             break;
+//     //     }
+//     // });
+// });

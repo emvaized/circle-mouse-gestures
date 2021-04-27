@@ -69,7 +69,7 @@ function setPageListeners() {
 
                     if (textSelection.toString() !== '' && isCoordinateWithinTextSelection(e.clientX, e.clientY)) {
                         typeOfMenu = 'selectionMenu';
-                        hoveredLink = configs.showLinkTooltipForPageItself ? window.location.href : null;
+                        hoveredLink = window.location.href;
                         hoveredLinkTitle = null;
                     } else {
                         typeOfMenu = 'regularMenu';

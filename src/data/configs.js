@@ -5,6 +5,7 @@ var configs = {
     'hideCircleIfNoActionSelected': true,
     'useMouseWheelGestures': true,
     'addTextLabels': true,
+    'dimBackground': true,
 
     'circleOpacity': 1.0,
     'innerCircleRadius': 30,
@@ -19,10 +20,10 @@ var configs = {
     /// 'Replace' will display interactive menu only (link, image, selected text),
     /// and 'combine' will add it as outer circle level
     'interactiveMenusBehavior': 'replace',  /// possible values: 'replace', 'combine'
-    'addLinkTooltip': false,
+    'addLinkTooltip': true,
     'showFullLinkInTooltip': true,
-    'showLinkTextInTooltip': true,
-    'showLinkTooltipForPageItself': true,
+    'showLinkTextInTooltip': false,
+    'showLinkTooltipForPageItself': false,
     'linkTooltipOpacity': 1.0,
 
     /// Menus
@@ -118,8 +119,25 @@ function loadUserConfigs(callback) {
             if (configs.debugMode)
                 console.log('CMG user configs loaded from memory');
 
+
+            /// Dark mode handling
+            // try {
+            //     let websiteBackgroundColor = document.body.style.backgroundColor;
+
+            //     if (websiteBackgroundColor !== null && websiteBackgroundColor !== undefined) {
+            //         const prefersDark = isColorDark(websiteBackgroundColor);
+
+            //         if (prefersDark) {
+            //             configs['regularMenu']['color'] = '#ffffff';
+            //         }
+            //     }
+            // } catch (e) { console.log(e); }
+
+
             callback();
         });
+
+
 }
 
 

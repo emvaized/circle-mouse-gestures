@@ -8,7 +8,6 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
     }
 
     var segmentsCount = buttonsToShow.length;
-    // var segmentColor = typeOfMenu == 'linkMenu' ? configs.linkMenu.color : typeOfMenu == 'imageMenu' ? configs.imageMenu.color : configs.regularMenu.color;
     var segmentColor = configs[typeOfMenu].color;
     var outlineColorRgb = getTextColorForBackground(segmentColor, 0.5);
     var outlineColor = `rgba(${outlineColorRgb.red}, ${outlineColorRgb.green}, ${outlineColorRgb.blue}, 0.5)`;
@@ -39,7 +38,6 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
             (-Math.PI / segmentsCount) :
             (-Math.PI / segmentsCount) / 2) + i * (Math.PI / (segmentsCount / 2));
 
-        // if (shouldRespectBoundary && mradius > (configs.addSecondLevel ? secondCircleInnerRadius : circleRadius)) {
         if (shouldRespectBoundary && mradius > circleRadius + configs.gapBetweenCircles) {
             /// Segment is not hovered
 
@@ -250,7 +248,6 @@ function drawLabels(segmentsCount, circleRadius, innerCircleRadius, buttonsToSho
         }
 
         /// Draw icon    
-        // segmentColor == '#c69a15' ? segmentColor :
         ctx.fillStyle = iconColor;
         ctx.font = `${iconSize}px sans-serif`;
 

@@ -118,5 +118,9 @@
     "translate": {
         "message": "Перевести",
         "description": "Label for circle menu button"
+    },
+    "selectedText": {
+        "message": "Выделенный текст",
+        "description": "Label for circle menu button"
     }
 }

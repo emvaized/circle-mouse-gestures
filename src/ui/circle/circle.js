@@ -7,19 +7,19 @@ function showCircle(e) {
         if (evt.buttons == 2) {
 
             totalCircleRadius = 0.0;
-            // if (typeOfMenu == 'regularMenu')
-            //     for (var i = 0; i < configs.regularMenu.levels.length; i++) {
-            //         totalCircleRadius += configs.regularMenu.levels[i].width + configs.gapBetweenCircles;
-            //     }
-            // else totalCircleRadius = configs.circleRadius;
 
-            for (var i = 0; i < configs['regularMenu'].levels.length; i++) {
-                totalCircleRadius += configs.gapBetweenCircles + (configs['regularMenu'].levels[i].width ?? configs.circleRadius);
+            if (configs.interactiveMenusBehavior == 'combine' || typeOfMenu == 'regularMenu') {
+                for (var i = 0; i < configs['regularMenu'].levels.length; i++) {
+                    totalCircleRadius += configs.gapBetweenCircles + (configs['regularMenu'].levels[i].width ?? configs.circleRadius);
+                }
+                canvasRadius = totalCircleRadius * 2 + 2;
+            }
+            else {
+                totalCircleRadius = configs.gapBetweenCircles + configs.circleRadius;
+                canvasRadius = totalCircleRadius * 2;
             }
 
-            canvasRadius = totalCircleRadius * 2 + 2;
-
-            if (typeOfMenu !== 'regularMenu') {
+            if (typeOfMenu !== 'regularMenu' && configs.interactiveMenusBehavior == 'combine') {
                 canvasRadius += (configs.interactiveCircleRadius + configs.gapBeforeInteractiveCircle) * 2;
             }
 
@@ -28,6 +28,9 @@ function showCircle(e) {
 
             circleIsShown = true;
             setCanvas(e);
+
+            // if (configs.dimBackground)
+            //     setBackgroundDimmer();
         }
     }
 }
@@ -47,7 +50,7 @@ function setCanvas(e) {
     circle.style.opacity = configs.circleOpacity;
     circle.style.visibility = 'visible';
     setTimeout(function () {
-        // circle.style.transform = 'scale(1.0) rotate(0deg)';
+        // circle.style.transform = 'scale(1.0) rotate(0deg)'; /// rotating animation on reveal
         circle.style.transform = 'scale(1.0)';
     }, 1);
 
@@ -60,6 +63,22 @@ function setCanvas(e) {
             drawCircle(e);
         } catch (error) { console.log(error); }
     }
+}
+
+function setBackgroundDimmer() {
+    let dimmer = document.createElement('div');
+    dimmer.setAttribute('width', `${window.screen.width}px !imporant`);
+    dimmer.setAttribute('height', `${window.screen.height}px !imporant`);
+    dimmer.setAttribute('style', `opacity: 0.0; transition opacity ${configs.animationDuration}ms ease-in-out; position:absolute; background: black !important; top: 0px; left: 0px;`);
+    document.body.appendChild(dimmer);
+
+    // let dimmerCtx = dimmer.getContext('2d');
+    // dimmerCtx.fillStyle = 'black';
+    // dimmerCtx.fill();
+    setTimeout(function () {
+        dimmer.style.opacity = 0.5;
+    }, 1);
+
 }
 
 
@@ -116,6 +135,9 @@ function drawCircle(e, showIndexes = false) {
         );
         totalRadius -= configs['regularMenu'].levels[i].width ?? configs.circleRadius;
     }
+
+
+
 }
 
 function hideCircle() {
@@ -153,7 +175,9 @@ function hideCircle() {
         }
         else {
             /// Some action was selected
-            circle.style.transform = showRockerActionInCenter ? 'scale(0.0)' : 'scale(1.5)';
+            circle.style.transform = showRockerActionInCenter && rocketButtonPressed !== null ? 'scale(0.0)' : 'scale(1.5)';
+            // circle.style.transform = 'scale(1.5)';
+
             if (rocketButtonPressed == null && typeOfMenu !== null) {
                 var actionToPerform;
 
@@ -167,9 +191,6 @@ function hideCircle() {
                     actionToPerform = shownButtons[selectedButton].id;
                 }
 
-                // let actionToPerform = selectedButton == shownButtons.length ?
-                //     configs[typeOfMenu]['buttons'][selectedButton]
-                //     : shownButtons[selectedButton].id;
                 if (configs.debugMode) {
                     console.log('action to perform by CMG:');
                     console.log(actionToPerform);

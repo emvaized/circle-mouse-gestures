@@ -130,5 +130,9 @@
     "translate": {
         "message": "Translate",
         "description": "Label for circle menu button"
+    },
+    "selectedText": {
+        "message": "Selected text",
+        "description": "Label for circle menu button"
     }
 }
