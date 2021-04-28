@@ -34,16 +34,20 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
         if (actionIcons[buttonsToShow[i].id] == undefined) continue;
 
         /// Rotate the circle a bit when buttons count is not even
-        angle = (segmentsCount % 2 == 0.0 ?
+        var angle = (segmentsCount % 2 == 0.0 ?
             (-Math.PI / segmentsCount) :
             (-Math.PI / segmentsCount) / 2) + i * (Math.PI / (segmentsCount / 2));
+
+        // var angle = i * (Math.PI / (segmentsCount / 2)) - (Math.PI / (segmentsCount) * 3);
 
         if (shouldRespectBoundary && mradius > circleRadius + configs.gapBetweenCircles) {
             /// Segment is not hovered
 
             ctx.fillStyle = segmentColor;
         } else
-            if (((mangle > angle && mangle < (angle + Math.PI / (segmentsCount / 2))) || (mangle > Math.PI * 15 / 8 && i == 0))
+            if (((mangle > angle && mangle < (angle + Math.PI / (segmentsCount / 2)))
+                // || (mangle > (Math.PI * 15 / 8) && i == 0))
+                || (mangle > (Math.PI * 15 / 8) - (Math.PI / (segmentsCount) / 2) && i == 0))
                 && mradius >= innerCircleRadius) {
 
                 /// Segment is hovered
@@ -97,10 +101,10 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
                 ctx.lineTo(dxForTextStart, dyForTextStart);
                 ctx.lineTo(dxForTextEnd, dyForTextEnd);
             }
-
-
         } else {
-            ctx.arc(canvasRadius / 2, canvasRadius / 2, circleRadius, angle, angle + Math.PI / (segmentsCount / 2) * 0.996, false);
+            // ctx.arc(canvasRadius / 2, canvasRadius / 2, circleRadius, angle, angle + Math.PI / (segmentsCount / 2) * 0.996, false);
+            ctx.arc(canvasRadius / 2, canvasRadius / 2, circleRadius, angle, angle + (Math.PI / (segmentsCount / 2)) * 0.996, false);
+            // ctx.arc(canvasRadius / 2, canvasRadius / 2, circleRadius, angle - (Math.PI / 2), angle - (Math.PI / 2) + Math.PI / (segmentsCount / 2) * 0.996, false);
         }
 
         ctx.lineTo(canvasRadius / 2, canvasRadius / 2);
@@ -174,14 +178,17 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
     if (configs.addTextLabels)
         drawLabels(segmentsCount, circleRadius, innerCircleRadius, buttonsToShow, segmentColor, showIndexes);
 
-    /// Show link tooltip
-    if (configs.addLinkTooltip && hoveredLink !== null && linkTooltip == null) {
-        showLinkTooltip();
-    }
+    try {
+        /// Show link tooltip
+        if (configs.addLinkTooltip && hoveredLink !== null && linkTooltip == null) {
+            showLinkTooltip();
+        }
 
-    /// Draw rocker gesture icon in center
-    if (showRockerActionInCenter && rockerCircle == null)
-        drawRockerIconInCenter();
+        /// Draw rocker gesture icon in center
+        if (showRockerActionInCenter && rockerCircle == null)
+            drawRockerIconInCenter();
+    } catch (e) { }
+
 }
 
 
@@ -214,6 +221,9 @@ function drawLabels(segmentsCount, circleRadius, innerCircleRadius, buttonsToSho
         // let textRadius = (circleRadius + innerCircleRadius) * 0.5;
         let textRadius = useRectangularShape ? innerCircleRadius + ((circleRadius - innerCircleRadius / 2) / (segmentsCount < 5 ? 3 : 5)) : (circleRadius + innerCircleRadius) * 0.5;
         let angle = (segmentsCount % 2 == 0.0 ? 0.0 : (Math.PI / segmentsCount) / 2) + i * (Math.PI / (segmentsCount / 2));
+
+        // angle -= Math.PI / 2;
+
         var dxForText = centerDx + Math.cos(angle) * textRadius;
         var dyForText = centerDy + Math.sin(angle) * textRadius;
 

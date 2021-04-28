@@ -2,6 +2,13 @@
     margin: 15px;
 }
 
-#buttons-config-container {
-    /* max-width: 50%; */
+#circle-preview-title {
+    margin: 15px;
+}
+
+#buttons-config-container{
+ /* display: table; */
+ /* width: 100%; 
+    table-layout: fixed;
+    border-spacing: 10px;  */
 }

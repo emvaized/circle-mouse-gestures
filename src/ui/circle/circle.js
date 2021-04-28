@@ -29,8 +29,8 @@ function showCircle(e) {
             circleIsShown = true;
             setCanvas(e);
 
-            // if (configs.dimBackground)
-            //     setBackgroundDimmer();
+            if (configs.dimBackground)
+                showBackgroundDimmer();
         }
     }
 }
@@ -57,32 +57,38 @@ function setCanvas(e) {
     document.body.appendChild(circle);
     ctx = circle.getContext('2d');
 
-    drawCircle(false);
+    drawCircle(false, typeOfMenu);
     document.onmousemove = function (e) {
         try {
-            drawCircle(e);
+            drawCircle(e, typeOfMenu);
         } catch (error) { console.log(error); }
     }
 }
 
-function setBackgroundDimmer() {
-    let dimmer = document.createElement('div');
-    dimmer.setAttribute('width', `${window.screen.width}px !imporant`);
-    dimmer.setAttribute('height', `${window.screen.height}px !imporant`);
-    dimmer.setAttribute('style', `opacity: 0.0; transition opacity ${configs.animationDuration}ms ease-in-out; position:absolute; background: black !important; top: 0px; left: 0px;`);
-    document.body.appendChild(dimmer);
+function showBackgroundDimmer() {
+    backgroundDimmer = document.createElement('div');
+    backgroundDimmer.setAttribute('style', ` z-index: 9999; width:${document.body.clientWidth}px;height: ${document.body.scrollHeight}px;  opacity: 0.0; transition: opacity ${configs.animationDuration}ms ease-in-out; position:absolute; background: black !important; top: 0px; left: 0px;`);
+    document.body.appendChild(backgroundDimmer);
 
-    // let dimmerCtx = dimmer.getContext('2d');
-    // dimmerCtx.fillStyle = 'black';
-    // dimmerCtx.fill();
     setTimeout(function () {
-        dimmer.style.opacity = 0.5;
+        backgroundDimmer.style.opacity = configs.backgroundDimmerOpacity;
     }, 1);
+}
 
+function hideBackgroundDimmer() {
+    console.log('backgroundDimmer');
+    console.log(backgroundDimmer);
+    if (backgroundDimmer !== null && backgroundDimmer !== undefined) {
+        backgroundDimmer.style.opacity = 0.0;
+        setTimeout(function () {
+            backgroundDimmer.parentNode.removeChild(backgroundDimmer);
+            backgroundDimmer = null;
+        }, configs.animationDuration);
+    }
 }
 
 
-function drawCircle(e, showIndexes = false) {
+function drawCircle(e, typeOfMenu, showIndexes = false) {
     ctx.clearRect(0, 0, canvasRadius, canvasRadius);
     let totalRadius = totalCircleRadius;
 
@@ -151,6 +157,8 @@ function hideCircle() {
         if (rockerCircle !== null)
             hideRockerIcon(rocketButtonPressed !== null);
 
+        if (configs.dimBackground) hideBackgroundDimmer();
+
         if (circle == null || circle == undefined) return;
         circle.style.opacity = 0.0;
 
@@ -195,7 +203,8 @@ function hideCircle() {
                     console.log('action to perform by CMG:');
                     console.log(actionToPerform);
                 }
-                triggerButtonAction(actionToPerform);
+                if (actionToPerform !== 'noAction')
+                    triggerButtonAction(actionToPerform);
             }
         }
 

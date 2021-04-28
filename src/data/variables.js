@@ -33,6 +33,7 @@ var rocketButtonPressed;
 var leftClickIsHolded = false;
 var linkTooltip;
 var rockerCircle;
+var backgroundDimmer;
 
 /// Index of level: index of button
 var selectedButtons = {};

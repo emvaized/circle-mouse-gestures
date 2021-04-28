@@ -122,5 +122,29 @@
     "selectedText": {
         "message": "Выделенный текст",
         "description": "Label for circle menu button"
+    },
+    "addLabel": {
+        "message": "Добавить кнопку",
+        "description": "Label for circle menu button"
+    },
+    "deleteLabel": {
+        "message": "Убрать",
+        "description": "Label for circle menu button"
+    },
+    "circleLevel": {
+        "message": "Уровень",
+        "description": "Label for circle menu button"
+    },
+    "circlePreview": {
+        "message": "Превью",
+        "description": "Label for circle menu button"
+    },
+    "moveDownLabel": {
+        "message": "Опустить",
+        "description": "Label for circle menu button"
+    },
+    "moveUpLabel": {
+        "message": "Поднять",
+        "description": "Label for circle menu button"
     }
 }

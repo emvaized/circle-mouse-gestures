@@ -20,7 +20,6 @@ function showLinkTooltip() {
     label.setAttribute('style', 'color: rgba(256,256,256,0.7); vertical-align: middle;');
     linkTooltip.appendChild(label);
 
-
     let text = document.createElement('span');
 
     /// Set body
@@ -52,7 +51,7 @@ function showLinkTooltip() {
 
     // let dxToShow = leftCoord + configs.circleRadius - (linkTooltip.clientWidth / 2);
     let dxToShow = leftCoord + (canvasRadius / 2) - (linkTooltip.clientWidth / 2);
-    let dyToShow = topCoord - (linkTooltip.clientHeight) - 15;
+    let dyToShow = topCoord - (linkTooltip.clientHeight) - 8;
 
     linkTooltip.style.transform = `translate(${dxToShow}px, ${topCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px)`;
 

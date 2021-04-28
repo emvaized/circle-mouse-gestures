@@ -134,5 +134,17 @@
     "selectedText": {
         "message": "Selected text",
         "description": "Label for circle menu button"
+    },
+    "addLabel": {
+        "message": "Add button",
+        "description": "Label for circle menu button"
+    },
+    "circleLevel": {
+        "message": "Level",
+        "description": "Label for circle menu button"
+    },
+    "circlePreview": {
+        "message": "Preview",
+        "description": "Label for circle menu button"
     }
 }
