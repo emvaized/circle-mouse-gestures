@@ -51,7 +51,7 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
             if (preselectedButtons[level] == i || (((mangle > angle && mangle < (angle + Math.PI / (segmentsCount / 2)))
                 // || (mangle > (Math.PI * 15 / 8) && i == 0))
                 // || (mangle > (Math.PI * (segmentsCount * 2 - 1) / segmentsCount) && i == 0))
-                || (mangle > (Math.PI * (segmentsCount * 2 - 1) / segmentsCount) && i == 0))
+                || (mangle > (Math.PI * (segmentsCount * 2 - (segmentsCount % 2 == 0.0 ? 1 : 0.5)) / segmentsCount) && i == 0))
 
                 && mradius >= innerCircleRadius)) {
                 /// Segment is hovered
