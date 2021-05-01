@@ -94,9 +94,11 @@ function generateAppearanceControls() {
 
     inputIds.forEach(function (inputId) {
         let inputField = document.getElementById(inputId);
-        if (configs[inputId]) {
-            if (inputField.getAttribute('type') == 'checkbox')
-                inputField.setAttribute('checked', true);
+        if (configs[inputId] !== null && configs[inputId] !== undefined) {
+            if (inputField.getAttribute('type') == 'checkbox') {
+                if (configs[inputId] == true)
+                    inputField.setAttribute('checked', true);
+            }
             else
                 inputField.setAttribute('value', configs[inputId]);
         }
@@ -105,11 +107,21 @@ function generateAppearanceControls() {
 
         setTimeout(function () {
             document.getElementById(inputId).addEventListener("input", function (e) {
-                let input = document.getElementById(inputId);
+                try {
+                    let input = document.getElementById(inputId);
 
-                configs[inputId] = input.getAttribute('type') == 'checkbox' ? input.checked : input.value;
-                drawCirclePreview();
-                saveAllSettings();
+                    configs[inputId] = input.getAttribute('type') == 'checkbox' ? input.checked : input.value;
+                    console.log('current configs:');
+                    console.log(configs);
+                    drawCirclePreview();
+                    saveAllSettings();
+                    console.log(`saved value ${input.getAttribute('type') == 'checkbox' ? input.checked : input.value} for ${inputId}`);
+                    console.log('configs after change:');
+                    console.log(configs);
+                } catch (error) {
+                    console.log(error);
+                }
+
             });
         }, 300);
     });

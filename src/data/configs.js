@@ -7,7 +7,6 @@ var configs = {
     'addTextLabels': true,
     'dimBackground': false,
     'backgroundDimmerOpacity': 0.25,
-
     'circleOpacity': 1.0,
     'innerCircleRadius': 30,
     'circleRadius': 115,
@@ -115,7 +114,7 @@ function loadUserConfigs(callback) {
             for (var i = 0; i < keys.length; i++) {
                 let key = keys[i];
 
-                if (userConfigs[key])
+                if (userConfigs[key] !== null && userConfigs[key] !== undefined)
                     configs[key] = userConfigs[key];
             }
 
