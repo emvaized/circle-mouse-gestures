@@ -68,11 +68,15 @@ function drawRockerIconInCenter() {
 
 function hideRockerIcon(selected = false) {
     if (rockerCircle == null) return;
+
+    // if (configs.circleHideAnimation) {
     rockerCircle.style.opacity = 0.0;
     rockerCircle.style.transform = selected ? 'scale(3.0)' : 'scale(0.0)';
+    // }
 
     setTimeout(function () {
         rockerCircle.parentNode.removeChild(rockerCircle);
         rockerCircle = null;
+        // }, configs.circleHideAnimation ? configs.animationDuration : 0);
     }, configs.animationDuration);
 }

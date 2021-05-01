@@ -37,6 +37,7 @@ var backgroundDimmer;
 
 /// Index of level: index of button
 var selectedButtons = {};
+var preselectedButtons = {};
 
 
 

@@ -128,7 +128,7 @@
         "description": "Label for circle menu button"
     },
     "deleteLabel": {
-        "message": "Убрать",
+        "message": "Удалить",
         "description": "Label for circle menu button"
     },
     "circleLevel": {
@@ -145,6 +145,54 @@
     },
     "moveUpLabel": {
         "message": "Поднять",
+        "description": "Label for circle menu button"
+    },
+    "appearanceHeader": {
+        "message": "Внешний вид",
+        "description": "Label for circle menu button"
+    },
+    "rockerAction": {
+        "message": "Жест рокировки",
+        "description": "Label for circle menu button"
+    },
+    "backgroundColor": {
+        "message": "Фон",
+        "description": "Label for circle menu button"
+    },
+    "addTextLabels": {
+        "message": "Использовать текстовые подсказки",
+        "description": "Label for circle menu button"
+    },
+    "buttonsHeader": {
+        "message": "Кнопки",
+        "description": "Label for circle menu button"
+    },
+    "dimBackground": {
+        "message": "Затемнять фон",
+        "description": "Label for circle menu button"
+    },
+    "hideCircleIfNoActionSelected": {
+        "message": "Прятать если действие не выбрано",
+        "description": "Label for circle menu button"
+    },
+    "circleHideAnimation": {
+        "message": "Анимация исчезновения меню",
+        "description": "Label for circle menu button"
+    },
+    "moveClockwise": {
+        "message": "По часовой стрелке",
+        "description": "Label for circle menu button"
+    },
+    "moveCounterClockwise": {
+        "message": "Против часовой стрелки",
+        "description": "Label for circle menu button"
+    },
+    "quickActions": {
+        "message": "Быстрые действия",
+        "description": "Label for circle menu button"
+    },
+    "clickSegmentToHighlight": {
+        "message": "Кликните на сегмент, чтобы подсветить",
         "description": "Label for circle menu button"
     }
 }

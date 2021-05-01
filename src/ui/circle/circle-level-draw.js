@@ -1,4 +1,5 @@
-function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircleRadius, level = 0, shouldRespectBoundary = false, showIndexes = false) {
+function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircleRadius, level = 0, shouldRespectBoundary = false, showIndexes = false, shouldCheckButtonsAvailability = true) {
+
     if (E === false) {
         mx = (canvasRadius / 2);
         my = (canvasRadius / 2);
@@ -38,21 +39,24 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
             (-Math.PI / segmentsCount) :
             (-Math.PI / segmentsCount) / 2) + i * (Math.PI / (segmentsCount / 2));
 
-        // var angle = i * (Math.PI / (segmentsCount / 2)) - (Math.PI / (segmentsCount) * 3);
+        // var angle = (
+        //     (-Math.PI / segmentsCount)) + i * (Math.PI / (segmentsCount / 2));
 
         if (shouldRespectBoundary && mradius > circleRadius + configs.gapBetweenCircles) {
             /// Segment is not hovered
 
             ctx.fillStyle = segmentColor;
-        } else
-            if (((mangle > angle && mangle < (angle + Math.PI / (segmentsCount / 2)))
-                // || (mangle > (Math.PI * 15 / 8) && i == 0))
-                || (mangle > (Math.PI * 15 / 8) - (Math.PI / (segmentsCount) / 2) && i == 0))
-                && mradius >= innerCircleRadius) {
 
+        } else
+            if (preselectedButtons[level] == i || (((mangle > angle && mangle < (angle + Math.PI / (segmentsCount / 2)))
+                // || (mangle > (Math.PI * 15 / 8) && i == 0))
+                // || (mangle > (Math.PI * (segmentsCount * 2 - 1) / segmentsCount) && i == 0))
+                || (mangle > (Math.PI * (segmentsCount * 2 - 1) / segmentsCount) && i == 0))
+
+                && mradius >= innerCircleRadius)) {
                 /// Segment is hovered
+
                 selectedButtons[level] = i;
-                // ctx.fillStyle = hoveredSegmentColor;
 
                 /// Combine main color with hovered color overlay
                 try {
@@ -73,6 +77,7 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
             } else {
                 /// Segment is not hovered
                 ctx.fillStyle = segmentColor;
+
             }
         ctx.globalCompositeOperation = 'source-over';
 
@@ -102,9 +107,7 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
                 ctx.lineTo(dxForTextEnd, dyForTextEnd);
             }
         } else {
-            // ctx.arc(canvasRadius / 2, canvasRadius / 2, circleRadius, angle, angle + Math.PI / (segmentsCount / 2) * 0.996, false);
             ctx.arc(canvasRadius / 2, canvasRadius / 2, circleRadius, angle, angle + (Math.PI / (segmentsCount / 2)) * 0.996, false);
-            // ctx.arc(canvasRadius / 2, canvasRadius / 2, circleRadius, angle - (Math.PI / 2), angle - (Math.PI / 2) + Math.PI / (segmentsCount / 2) * 0.996, false);
         }
 
         ctx.lineTo(canvasRadius / 2, canvasRadius / 2);
@@ -175,8 +178,7 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
     }
 
     /// Draw labels
-    if (configs.addTextLabels)
-        drawLabels(segmentsCount, circleRadius, innerCircleRadius, buttonsToShow, segmentColor, showIndexes);
+    drawLabels(segmentsCount, circleRadius, innerCircleRadius, buttonsToShow, segmentColor, showIndexes, shouldCheckButtonsAvailability);
 
     try {
         /// Show link tooltip
@@ -192,7 +194,7 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
 }
 
 
-function drawLabels(segmentsCount, circleRadius, innerCircleRadius, buttonsToShow, segmentColor, showIndexes = false) {
+function drawLabels(segmentsCount, circleRadius, innerCircleRadius, buttonsToShow, segmentColor, showIndexes = false, shouldCheckButtonsAvailability = true) {
 
     let textColorRgb = getTextColorForBackground(segmentColor);
     let iconColorRgb = getTextColorForBackground(segmentColor);
@@ -200,13 +202,15 @@ function drawLabels(segmentsCount, circleRadius, innerCircleRadius, buttonsToSho
     for (i = 0; i < segmentsCount; i++) {
         if (actionIcons[buttonsToShow[i].id] == undefined) continue;
 
-        var buttonIsAvailable;
-        try {
-            buttonIsAvailable = checkButtonAvailability(buttonsToShow[i].id);
-        } catch (e) {
-            if (configs.debugMode)
-                console.log(e);
-            buttonIsAvailable = true;
+        var buttonIsAvailable = true;
+        if (shouldCheckButtonsAvailability) {
+            try {
+                buttonIsAvailable = checkButtonAvailability(buttonsToShow[i].id);
+            } catch (e) {
+                if (configs.debugMode)
+                    console.log(e);
+                // buttonIsAvailable = true;
+            }
         }
 
         let textColor = `rgba(${textColorRgb.red}, ${textColorRgb.green}, ${textColorRgb.blue}, ${configs.labelOpacity / (buttonIsAvailable ? 1 : 2)})`;
@@ -253,7 +257,7 @@ function drawLabels(segmentsCount, circleRadius, innerCircleRadius, buttonsToSho
         var verticalShiftForIcon = 0.0;
 
         ctx.fillStyle = textColor;
-        if (circleRadius - innerCircleRadius > iconSize * 2.5) {
+        if (configs.addTextLabels && circleRadius - innerCircleRadius > iconSize * 2.5) {
             verticalShiftForIcon = wrapLabel(ctx, textToDraw, dxForText, dyForText + 15, segmentLength * 0.4, labelSize);
         }
 
@@ -287,14 +291,14 @@ function drawLabels(segmentsCount, circleRadius, innerCircleRadius, buttonsToSho
             let dyForText = centerDy + Math.sin(angle) * textRadius;
             ctx.fillStyle = textColor;
             ctx.font = `12px sans-serif`;
-            ctx.fillText(i.toString(), dxForText, dyForText);
+            ctx.fillText((i + 1).toString(), dxForText, dyForText);
         }
     }
 }
 
 
 function checkButtonAvailability(id) {
-    if (checkAvailabilityForButtons == false) return true;
+    // if (checkAvailabilityForButtons == false) return true;
     switch (id) {
         case 'scrollToTop': return window.scrollY !== 0.0;
         case 'scrollToBottom': {

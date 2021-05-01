@@ -6,6 +6,8 @@ function showCircle(e) {
     if ("buttons" in evt) {
         if (evt.buttons == 2) {
 
+            preselectedButtons = {};
+
             totalCircleRadius = 0.0;
 
             if (configs.interactiveMenusBehavior == 'combine' || typeOfMenu == 'regularMenu') {
@@ -41,17 +43,19 @@ function setCanvas(e) {
     circle.setAttribute('width', `${canvasRadius}px !imporant`);
     circle.setAttribute('height', `${canvasRadius}px !imporant`);
 
-    // circle.style.transform = 'scale(0.0) rotate(-180deg)';
+    // circle.style.opacity = 0.0;
+    circle.style.opacity = configs.circleOpacity;
+
     circle.style.transform = 'scale(0.0)';
     circle.style.transition = '';
     circle.style.transition = `opacity ${configs.animationDuration}ms ease-in-out, transform ${configs.animationDuration}ms ease-in-out`;
     circle.style.left = `${leftCoord}px`;
     circle.style.top = `${topCoord}px`;
-    circle.style.opacity = configs.circleOpacity;
     circle.style.visibility = 'visible';
+
     setTimeout(function () {
-        // circle.style.transform = 'scale(1.0) rotate(0deg)'; /// rotating animation on reveal
         circle.style.transform = 'scale(1.0)';
+        // circle.style.opacity = configs.circleOpacity;
     }, 1);
 
     document.body.appendChild(circle);
@@ -65,30 +69,8 @@ function setCanvas(e) {
     }
 }
 
-function showBackgroundDimmer() {
-    backgroundDimmer = document.createElement('div');
-    backgroundDimmer.setAttribute('style', ` z-index: 9999; width:${document.body.clientWidth}px;height: ${document.body.scrollHeight}px;  opacity: 0.0; transition: opacity ${configs.animationDuration}ms ease-in-out; position:absolute; background: black !important; top: 0px; left: 0px;`);
-    document.body.appendChild(backgroundDimmer);
 
-    setTimeout(function () {
-        backgroundDimmer.style.opacity = configs.backgroundDimmerOpacity;
-    }, 1);
-}
-
-function hideBackgroundDimmer() {
-    console.log('backgroundDimmer');
-    console.log(backgroundDimmer);
-    if (backgroundDimmer !== null && backgroundDimmer !== undefined) {
-        backgroundDimmer.style.opacity = 0.0;
-        setTimeout(function () {
-            backgroundDimmer.parentNode.removeChild(backgroundDimmer);
-            backgroundDimmer = null;
-        }, configs.animationDuration);
-    }
-}
-
-
-function drawCircle(e, typeOfMenu, showIndexes = false) {
+function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvailability = true, shouldRespectBoundaries) {
     ctx.clearRect(0, 0, canvasRadius, canvasRadius);
     let totalRadius = totalCircleRadius;
 
@@ -100,7 +82,12 @@ function drawCircle(e, typeOfMenu, showIndexes = false) {
             let firstCircleInnerRadius = configs.innerCircleRadius;
 
             let buttonsToShow = configs[typeOfMenu].buttons;
-            drawCircleLevel(typeOfMenu, e, buttonsToShow, firstCircleRadius, firstCircleInnerRadius, configs['regularMenu'].levels.length, false, showIndexes);
+            drawCircleLevel(typeOfMenu, e,
+                buttonsToShow,
+                firstCircleRadius,
+                firstCircleInnerRadius,
+                configs['regularMenu'].levels.length,
+                false, showIndexes, shouldCheckButtonsAvailability);
             return;
         } else {
             /// Interactive menu is added as outer level for regular circle
@@ -116,7 +103,9 @@ function drawCircle(e, typeOfMenu, showIndexes = false) {
                 configs['regularMenu'].levels.length,
                 /// shouldRespectBoundary
                 false,
-                showIndexes
+                showIndexes,
+                shouldCheckButtonsAvailability
+
             );
         }
     }
@@ -136,8 +125,9 @@ function drawCircle(e, typeOfMenu, showIndexes = false) {
             ///level
             i,
             /// shouldRespectBoundary
-            typeOfMenu !== 'regularMenu' ? true : i !== configs['regularMenu'].levels.length - 1,
-            showIndexes
+            typeOfMenu !== 'regularMenu' ? true : shouldRespectBoundaries || i !== configs['regularMenu'].levels.length - 1,
+            showIndexes,
+            shouldCheckButtonsAvailability
         );
         totalRadius -= configs['regularMenu'].levels[i].width ?? configs.circleRadius;
     }
@@ -160,7 +150,9 @@ function hideCircle() {
         if (configs.dimBackground) hideBackgroundDimmer();
 
         if (circle == null || circle == undefined) return;
-        circle.style.opacity = 0.0;
+
+        if (configs.circleHideAnimation)
+            circle.style.opacity = 0.0;
 
         let anyButtonIsSelected = false;
         let selectedButton;
@@ -179,11 +171,13 @@ function hideCircle() {
         }
 
         if (rocketButtonPressed == null && anyButtonIsSelected == false) {
-            circle.style.transform = 'scale(0.0)';
+            if (configs.circleHideAnimation)
+                circle.style.transform = 'scale(0.0)';
         }
         else {
             /// Some action was selected
-            circle.style.transform = showRockerActionInCenter && rocketButtonPressed !== null ? 'scale(0.0)' : 'scale(1.5)';
+            if (configs.circleHideAnimation)
+                circle.style.transform = showRockerActionInCenter && rocketButtonPressed !== null ? 'scale(0.0)' : 'scale(1.5)';
             // circle.style.transform = 'scale(1.5)';
 
             if (rocketButtonPressed == null && typeOfMenu !== null) {
@@ -217,8 +211,31 @@ function hideCircle() {
             for (i in configs.regularMenu.levels) {
                 selectedButtons[i] = null;
             }
-        }, 200);
+        }, configs.circleHideAnimation ? configs.animationDuration : 0);
     } catch (e) { console.log(e); }
+}
+
+
+function showBackgroundDimmer() {
+    backgroundDimmer = document.createElement('div');
+    backgroundDimmer.setAttribute('style', ` z-index: 9999; width:${document.body.clientWidth}px;height: ${document.body.scrollHeight}px;  opacity: 0.0; transition: opacity ${configs.animationDuration}ms ease-in-out; position:absolute; background: black !important; top: 0px; left: 0px;`);
+    document.body.appendChild(backgroundDimmer);
+
+    setTimeout(function () {
+        backgroundDimmer.style.opacity = configs.backgroundDimmerOpacity;
+    }, 1);
+}
+
+function hideBackgroundDimmer() {
+    console.log('backgroundDimmer');
+    console.log(backgroundDimmer);
+    if (backgroundDimmer !== null && backgroundDimmer !== undefined) {
+        backgroundDimmer.style.opacity = 0.0;
+        setTimeout(function () {
+            backgroundDimmer.parentNode.removeChild(backgroundDimmer);
+            backgroundDimmer = null;
+        }, configs.animationDuration);
+    }
 }
 
 

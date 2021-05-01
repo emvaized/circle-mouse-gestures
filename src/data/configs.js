@@ -26,6 +26,8 @@ var configs = {
     'showLinkTextInTooltip': false,
     'showLinkTooltipForPageItself': false,
     'linkTooltipOpacity': 1.0,
+    'circleHideAnimation': false,
+    'circleAppearAnimation': false,
 
     /// Menus
     'regularMenu': {

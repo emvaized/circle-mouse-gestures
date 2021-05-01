@@ -146,5 +146,53 @@
     "circlePreview": {
         "message": "Preview",
         "description": "Label for circle menu button"
+    },
+    "appearanceHeader": {
+        "message": "Appearance",
+        "description": "Label for circle menu button"
+    },
+    "rockerAction": {
+        "message": "Rocker action",
+        "description": "Label for circle menu button"
+    },
+    "backgroundColor": {
+        "message": "Background",
+        "description": "Label for circle menu button"
+    },
+    "addTextLabels": {
+        "message": "Add text labels",
+        "description": "Label for circle menu button"
+    },
+    "buttonsHeader": {
+        "message": "Buttons",
+        "description": "Label for circle menu button"
+    },
+    "dimBackground": {
+        "message": "Dim background",
+        "description": "Label for circle menu button"
+    },
+    "hideCircleIfNoActionSelected": {
+        "message": "Hide circle if no action selected",
+        "description": "Label for circle menu button"
+    },
+    "circleHideAnimation": {
+        "message": "Circle hide animation",
+        "description": "Label for circle menu button"
+    },
+    "moveClockwise": {
+        "message": "Clockwise",
+        "description": "Label for circle menu button"
+    },
+    "moveCounterClockwise": {
+        "message": "Counterclockwise",
+        "description": "Label for circle menu button"
+    },
+    "quickActions": {
+        "message": "Quick actions",
+        "description": "Label for circle menu button"
+    },
+    "clickSegmentToHighlight": {
+        "message": "Click any segment to highlight",
+        "description": "Label for circle menu button"
     }
 }

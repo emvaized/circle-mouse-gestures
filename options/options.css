@@ -1,14 +1,46 @@
 .buttons-item {
-    margin: 15px;
+    margin: 1px;
 }
 
 #circle-preview-title {
     margin: 15px;
+    display: block;
 }
 
 #buttons-config-container{
- /* display: table; */
- /* width: 100%; 
-    table-layout: fixed;
-    border-spacing: 10px;  */
+padding: 15px;
+margin-left: 30px;
+}
+
+#appearance-config{
+    border: 1px solid lightgrey;
+    float: top;
+    padding: 25px;
+    margin: 15px;
+    padding-top: 15px;
+}
+
+#appearance-config .option{
+    padding: 5px;
+    cursor: pointer;
+}
+
+#appearance-config .option:hover{
+    background-color: lightgrey;
+}
+
+#circle-preview {
+    margin-right: 35px;
+}
+
+.header {
+    font-size: 21px;
+    color: grey;
+}
+
+.sub-header {
+    font-size: 15px;
+    color: grey;
+    opacity: 0.75;
+    /* text-align: center; */
 }
