@@ -1,13 +1,12 @@
 /// Currently non-configurable variables
 var checkAvailabilityForButtons = true;
-var showRockerActionInCenter = true;
+var showRockerActionInCenter = false;
 var rockerCircleOpacity = 0.75;
 var scaleDownRockerIconWhenNonHovered = false;
 var useRectangularShape = false;
 var addShadows = false;
 
 /// Menu colors
-
 var mouseWheelUpAction = 'scrollToTop';
 var mouseWheelDownAction = 'scrollToBottom';
 

@@ -12,7 +12,8 @@ function showCircle(e) {
 
             if (configs.interactiveMenusBehavior == 'combine' || typeOfMenu == 'regularMenu') {
                 for (var i = 0; i < configs['regularMenu'].levels.length; i++) {
-                    totalCircleRadius += configs.gapBetweenCircles + (configs['regularMenu'].levels[i].width ?? configs.circleRadius);
+                    if (configs['regularMenu'].levels[i].enabled !== false)
+                        totalCircleRadius += configs.gapBetweenCircles + (configs['regularMenu'].levels[i].width ?? configs.circleRadius);
                 }
                 canvasRadius = totalCircleRadius * 2 + 2;
             }
@@ -110,30 +111,35 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
         }
     }
 
+    let enabledLevelsCount = 0;
 
-    for (var i = configs['regularMenu'].levels.length - 1; i > -1; i--) {
-        drawCircleLevel(
-            'regularMenu', e,
-            /// buttonsToShow
-            configs['regularMenu'].levels[i].buttons,
-            /// circleRadius
-            totalRadius,
-            /// innerCircleRadius
-            i == 0 ? configs.innerCircleRadius :
-                //     totalRadius - (configs['regularMenu'].levels[i].width ?? configs.circleRadius) + configs.gapBetweenCircles,
-                totalRadius - (configs['regularMenu'].levels[i].width ?? configs.circleRadius) + configs.gapBetweenCircles,
-            ///level
-            i,
-            /// shouldRespectBoundary
-            typeOfMenu !== 'regularMenu' ? true : shouldRespectBoundaries || i !== configs['regularMenu'].levels.length - 1,
-            showIndexes,
-            shouldCheckButtonsAvailability
-        );
-        totalRadius -= configs['regularMenu'].levels[i].width ?? configs.circleRadius;
+    for (var i = 0; i < configs['regularMenu'].levels.length; i++) {
+        if (configs['regularMenu'].levels[i].enabled !== false) enabledLevelsCount += 1;
     }
 
 
-
+    for (var i = configs['regularMenu'].levels.length - 1; i > -1; i--) {
+        if (configs['regularMenu'].levels[i].enabled !== false) {
+            drawCircleLevel(
+                'regularMenu', e,
+                /// buttonsToShow
+                configs['regularMenu'].levels[i].buttons,
+                /// circleRadius
+                totalRadius,
+                /// innerCircleRadius
+                i == 0 ? configs.innerCircleRadius :
+                    totalRadius - (configs['regularMenu'].levels[i].width ?? configs.circleRadius) + configs.gapBetweenCircles,
+                ///level
+                i,
+                /// shouldRespectBoundary
+                // typeOfMenu !== 'regularMenu' ? true : shouldRespectBoundaries || i !== configs['regularMenu'].levels.length - 1,
+                typeOfMenu !== 'regularMenu' ? true : shouldRespectBoundaries || i !== enabledLevelsCount - 1,
+                showIndexes,
+                shouldCheckButtonsAvailability
+            );
+            totalRadius -= configs['regularMenu'].levels[i].width ?? configs.circleRadius;
+        }
+    }
 }
 
 function hideCircle() {

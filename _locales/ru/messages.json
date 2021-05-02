@@ -124,7 +124,7 @@
         "description": "Label for circle menu button"
     },
     "addLabel": {
-        "message": "Добавить кнопку",
+        "message": "Добавить сегмент",
         "description": "Label for circle menu button"
     },
     "deleteLabel": {
@@ -168,7 +168,7 @@
         "description": "Label for circle menu button"
     },
     "dimBackground": {
-        "message": "Затемнять фон",
+        "message": "Затемнять страницу",
         "description": "Label for circle menu button"
     },
     "hideCircleIfNoActionSelected": {
@@ -193,6 +193,22 @@
     },
     "clickSegmentToHighlight": {
         "message": "Кликните на сегмент, чтобы подсветить",
+        "description": "Label for circle menu button"
+    },
+    "levelWidth": {
+        "message": "Ширина",
+        "description": "Label for circle menu button"
+    },
+    "innerWidth": {
+        "message": "Радиус центра",
+        "description": "Label for circle menu button"
+    },
+    "gapBetweenCircles": {
+        "message": "Отступ между уровнями",
+        "description": "Label for circle menu button"
+    },
+    "behaviorTitle": {
+        "message": "Поведение",
         "description": "Label for circle menu button"
     }
 }

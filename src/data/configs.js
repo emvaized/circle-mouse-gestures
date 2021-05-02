@@ -35,6 +35,7 @@ var configs = {
         'levels': [
             {
                 'width': 100,
+                'color': 'red',
                 'buttons': [
                     { 'id': 'goForward' },
                     { 'id': 'newTab' },

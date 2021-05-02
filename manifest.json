@@ -5,7 +5,8 @@
   "description": "Circle mouse gestures",
   "default_locale": "en",
   "icons": {
-    "96": "icons/cmg-logo-96.png"
+    "48": "icons/cmg-logo-new-monotone-48.png",
+    "96": "icons/cmg-logo-new-monotone-96.png"
   },
   "background": {
     "scripts": [

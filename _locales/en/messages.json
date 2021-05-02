@@ -136,7 +136,7 @@
         "description": "Label for circle menu button"
     },
     "addLabel": {
-        "message": "Add button",
+        "message": "Add segment",
         "description": "Label for circle menu button"
     },
     "circleLevel": {
@@ -168,7 +168,7 @@
         "description": "Label for circle menu button"
     },
     "dimBackground": {
-        "message": "Dim background",
+        "message": "Dim open page",
         "description": "Label for circle menu button"
     },
     "hideCircleIfNoActionSelected": {
@@ -193,6 +193,18 @@
     },
     "clickSegmentToHighlight": {
         "message": "Click any segment to highlight",
+        "description": "Label for circle menu button"
+    },
+    "levelWidth": {
+        "message": "Width",
+        "description": "Label for circle menu button"
+    },
+    "gapBetweenCircles": {
+        "message": "Levels padding",
+        "description": "Label for circle menu button"
+    },
+    "behaviorTitle": {
+        "message": "Behavior",
         "description": "Label for circle menu button"
     }
 }
