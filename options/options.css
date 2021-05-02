@@ -1,3 +1,7 @@
+body {
+    margin-left: 21.5%;
+}
+
 .buttons-item {
     margin: 1px;
 }
@@ -7,21 +11,31 @@
     display: block;
 }
 
+#clickSegmentToHighlight{
+    margin-left: 15px;
+    margin-bottom: 15px;
+    display: block;
+}
+
 #buttons-config-container{
-padding: 15px;
-margin-left: 30px;
+    padding-top: 15px;
 }
 
 .configs-container{
-    border: 1px solid lightgrey;
+    /* border: 1px solid lightgrey; */
+    /* text-align: center; */
+
     float: top;
-    padding: 25px;
-    margin: 15px;
-    padding-top: 15px;
+    padding: 0px 25px;
+    margin: 15px 0px;
 }
 
 .option{
     padding: 5px;
+    cursor: pointer;
+}
+
+label{
     cursor: pointer;
 }
 
@@ -30,13 +44,14 @@ margin-left: 30px;
 }
 
 #circle-preview {
-    margin-right: 35px;
+    margin-right: 60px;
 
 }
 
 .header {
     font-size: 21px;
     color: grey;
+    
 }
 
 .sub-header {
