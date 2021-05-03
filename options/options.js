@@ -216,6 +216,7 @@ function generateButtonsControls() {
 function generateLevelConfigs(levelIndex = 0) {
     /// Generate header
     let headerContainer = document.createElement('span');
+    headerContainer.setAttribute('style', 'vertical-align: center;');
 
     /// Enabled checkbox
     let enabledCheckbox = document.createElement('input');
@@ -244,6 +245,7 @@ function generateLevelConfigs(levelIndex = 0) {
 
     /// Level title
     let title = document.createElement('span');
+    title.setAttribute('style', 'font-size: 14px; margin-left: 5px; opacity: 0.7;');
     title.textContent = chrome.i18n.getMessage('circleLevel') + ' ' + (levelIndex + 1).toString();
     headerContainer.appendChild(title);
 
@@ -651,6 +653,7 @@ function generateLevelConfigs(levelIndex = 0) {
     /// Add separator
     container.innerHTML += '<br /><br /><hr />';
 
+
     /// Level settings
 
     /// Level width input
@@ -660,6 +663,121 @@ function generateLevelConfigs(levelIndex = 0) {
         configs.regularMenu.levels[ind].width = newVal;
     }, 50, 200, chrome.i18n.getMessage("levelWidth"));
     container.appendChild(levelWidthSlider);
+
+    container.innerHTML += '<br />';
+
+    /// 'Use custom color' switch
+    var customColorContainer = document.createElement('div');
+    customColorContainer.setAttribute('class', 'option');
+
+    let useCustomColorSwitch = document.createElement('input');
+    let useCustomColorSwitchId = 'useCustomColorSwitch-' + levelIndex.toString();
+    useCustomColorSwitch.setAttribute('type', 'checkbox');
+    useCustomColorSwitch.setAttribute('id', useCustomColorSwitchId);
+
+    let selectedColor = configs.regularMenu.levels[levelIndex].color;
+    let switched = selectedColor == null || selectedColor == undefined;
+    if (switched == false)
+        useCustomColorSwitch.setAttribute('checked', 0);
+
+    let label = document.createElement('label');
+    // label.setAttribute('class', 'option');
+
+    label.appendChild(useCustomColorSwitch);
+
+    setTimeout(function () {
+        let useCustomColorSwitch = document.getElementById(useCustomColorSwitchId);
+
+        useCustomColorSwitch.parentNode.addEventListener('change', function (e) {
+
+            console.log('clicked!')
+
+            let selectedColor = configs.regularMenu.levels[levelIndex].color;
+
+            if (selectedColor !== null && selectedColor !== undefined) {
+                configs.regularMenu.levels[levelIndex].color = null;
+                drawCirclePreview();
+            } else {
+                configs.regularMenu.levels[levelIndex].color = configs.regularMenu.color;
+            }
+
+            saveAllSettings();
+            generateButtonsControls();
+        });
+    }, 1);
+
+    label.innerHTML += ' ' + chrome.i18n.getMessage("useCustomColor");
+    // container.appendChild(label);
+
+    customColorContainer.appendChild(label);
+
+    if (selectedColor !== null && selectedColor !== undefined) {
+        /// Custom icon URL field
+        let customColorInput = document.createElement('input');
+        let customColorInputId = `customColorInput-${levelIndex}`;
+        customColorInput.setAttribute('type', 'color');
+        customColorInput.setAttribute('style', 'float: right; transform: translate(0, -5px)');
+        customColorInput.setAttribute('id', customColorInputId);
+        customColorInput.value = selectedColor;
+
+        setTimeout(function () {
+            let customColorInput = document.getElementById(customColorInputId);
+            customColorInput.addEventListener("input", function (e) {
+                let ind = customColorInputId.split('-')[1];
+                configs.regularMenu.levels[ind].color = customColorInput.value;
+                drawCirclePreview();
+            });
+
+            customColorInput.addEventListener("change", function (e) {
+                console.log('saved custom color for level ' + levelIndex.toString());
+                saveAllSettings();
+            });
+        }, delayToAddListeners);
+
+        customColorContainer.appendChild(customColorInput);
+    }
+
+    container.appendChild(customColorContainer);
+
+
+    /// Custom color chooser
+    // if (selectedColor !== null && selectedColor !== undefined) {
+    //     var customColorInputContainer = document.createElement('div');
+    //     customColorInputContainer.setAttribute('class', 'option');
+    //     customColorInputContainer.setAttribute('style', 'margin-top: 3px;');
+
+    //     let customColorLabel = document.createElement('span');
+    //     customColorLabel.setAttribute('style', 'display: inline;opacity: 0.5;');
+    //     customColorLabel.textContent = chrome.i18n.getMessage("colorLabel") + ' ';
+    //     customColorInputContainer.appendChild(customColorLabel);
+
+    //     /// Custom icon URL field
+    //     var customColorInput = document.createElement('input');
+    //     let customColorInputId = `customColorInput-${levelIndex}`;
+    //     customColorInput.setAttribute('type', 'color');
+    //     customColorInput.setAttribute('id', customColorInputId);
+    //     customColorInput.value = selectedColor;
+
+    //     setTimeout(function () {
+    //         let customColorInput = document.getElementById(customColorInputId);
+    //         customColorInput.addEventListener("input", function (e) {
+    //             let ind = customColorInputId.split('-')[1];
+    //             configs.regularMenu.levels[ind].color = customColorInput.value;
+    //             drawCirclePreview();
+    //         });
+
+    //         customColorInput.addEventListener("change", function (e) {
+    //             console.log('saved custom color for level ' + levelIndex.toString());
+    //             saveAllSettings();
+    //         });
+    //     }, delayToAddListeners);
+
+
+    //     customColorInputContainer.appendChild(customColorInput);
+
+    //     container.innerHTML += '<br />';
+    //     container.appendChild(customColorInputContainer);
+    // }
 }
 
 function generateAddLevelButton() {
@@ -708,13 +826,23 @@ function createActionDropdownButton(id, initialValue, cbOnChange, label) {
     /// Generate dropdown button
     let select = document.createElement('select');
     select.setAttribute('id', id);
-    Object.keys(actionIcons).forEach((function (key) {
-        let option = document.createElement('option');
-        option.innerHTML = chrome.i18n.getMessage(key);
-        option.setAttribute('value', key);
-        if (key == initialValue) option.setAttribute('selected', true);
-        select.appendChild(option);
-    }));
+
+    /// Generate sorted options
+    Object.keys(sortedRegularMenuButtons).forEach(function (key) {
+        let optGroup = document.createElement('optgroup');
+        optGroup.setAttribute('label', key == '—' ? key : chrome.i18n.getMessage(key + 'CategoryLabel'));
+
+        let items = sortedRegularMenuButtons[key];
+        items.forEach(function (item) {
+            let option = document.createElement('option');
+            option.innerHTML = chrome.i18n.getMessage(item);
+            option.setAttribute('value', item);
+            if (item == initialValue) option.setAttribute('selected', true);
+            optGroup.appendChild(option);
+        });
+
+        select.appendChild(optGroup);
+    })
 
     setTimeout(function () {
         let listenedDropdown = document.getElementById(id);
@@ -810,7 +938,8 @@ function positionSettingsInCenter() {
 
     bodyMarginLeft = (100 - occupiedPercent) / 2.5;
 
-    document.body.style.marginLeft = `${bodyMarginLeft}%`;
+    document.getElementById('content').style.marginLeft = `${bodyMarginLeft}%`;
+    // document.body.style.marginLeft = `${bodyMarginLeft}%`;
     // document.body.style.transform = `translate(${bodyMarginLeft}%, 0)`;
 
 }

@@ -72,7 +72,7 @@
         "description": "Label for circle menu button"
     },
     "restoreClosedTab": {
-        "message": "Restore",
+        "message": "Restore closed tab",
         "description": "Label for circle menu button"
     },
     "moveUpLabel": {
@@ -156,7 +156,7 @@
         "description": "Label for circle menu button"
     },
     "backgroundColor": {
-        "message": "Background",
+        "message": "Background color",
         "description": "Label for circle menu button"
     },
     "addTextLabels": {
@@ -225,6 +225,30 @@
     },
     "noAction": {
         "message": "No action",
+        "description": "Label for circle menu button"
+    },
+    "navigationCategoryLabel": {
+        "message": "Navigation",
+        "description": "Label for circle menu button"
+    },
+    "tabCategoryLabel": {
+        "message": "Tab",
+        "description": "Label for circle menu button"
+    },
+    "pageCategoryLabel": {
+        "message": "Page",
+        "description": "Label for circle menu button"
+    },
+    "scrollCategoryLabel": {
+        "message": "Scroll",
+        "description": "Label for circle menu button"
+    },
+    "useCustomColor": {
+        "message": "Custom background color",
+        "description": "Label for circle menu button"
+    },
+    "colorLabel": {
+        "message": "Color",
         "description": "Label for circle menu button"
     }
 }

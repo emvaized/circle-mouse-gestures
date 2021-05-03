@@ -48,7 +48,7 @@
         "description": "Label for circle menu button"
     },
     "restoreClosedTab": {
-        "message": "Восстановить",
+        "message": "Восстановить закрытую вкладку",
         "description": "Label for circle menu button"
     },
     "downloadUrl": {
@@ -156,7 +156,7 @@
         "description": "Label for circle menu button"
     },
     "backgroundColor": {
-        "message": "Фон",
+        "message": "Цвет фона",
         "description": "Label for circle menu button"
     },
     "addTextLabels": {
@@ -229,6 +229,30 @@
     },
     "noAction": {
         "message": "Нет действия",
+        "description": "Label for circle menu button"
+    },
+    "navigationCategoryLabel": {
+        "message": "Навигация",
+        "description": "Label for circle menu button"
+    },
+    "tabCategoryLabel": {
+        "message": "Вкладка",
+        "description": "Label for circle menu button"
+    },
+    "pageCategoryLabel": {
+        "message": "Страница",
+        "description": "Label for circle menu button"
+    },
+    "scrollCategoryLabel": {
+        "message": "Прокрутка",
+        "description": "Label for circle menu button"
+    },
+    "useCustomColor": {
+        "message": "Другой цвет фона",
+        "description": "Label for circle menu button"
+    },
+    "colorLabel": {
+        "message": "Цвет",
         "description": "Label for circle menu button"
     }
 }
