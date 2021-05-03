@@ -259,8 +259,6 @@ function drawLabels(segmentsCount, circleRadius, innerCircleRadius, buttonsToSho
         var verticalShiftForIcon = 0.0;
 
         ctx.fillStyle = textColor;
-        console.log('buttonsToShow[i]');
-        console.log(buttonsToShow[i]);
         if (configs.addTextLabels && circleRadius - innerCircleRadius > iconSize * 2.5 && buttonsToShow[i].id !== 'noAction') {
             verticalShiftForIcon = wrapLabel(ctx, textToDraw, dxForText, dyForText + 15, segmentLength * 0.4, labelSize);
         }

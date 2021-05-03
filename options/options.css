@@ -24,7 +24,6 @@ body {
 .configs-container{
     /* border: 1px solid lightgrey; */
     /* text-align: center; */
-
     float: top;
     padding: 0px 25px;
     margin: 15px 0px;
@@ -47,6 +46,7 @@ label{
 
 #circle-preview {
     margin-right: 60px;
+    cursor: pointer;
 
 }
 
