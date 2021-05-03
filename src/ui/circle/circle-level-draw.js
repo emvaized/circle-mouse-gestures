@@ -9,7 +9,9 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
     }
 
     var segmentsCount = buttonsToShow.length;
-    var segmentColor = configs[typeOfMenu].color;
+    // var segmentColor = configs[typeOfMenu].color;
+
+    var segmentColor = configs.regularMenu.levels[0].color ?? configs[typeOfMenu].color;
     var outlineColorRgb = getTextColorForBackground(segmentColor, 0.5);
     var outlineColor = `rgba(${outlineColorRgb.red}, ${outlineColorRgb.green}, ${outlineColorRgb.blue}, 0.5)`;
 
@@ -257,7 +259,9 @@ function drawLabels(segmentsCount, circleRadius, innerCircleRadius, buttonsToSho
         var verticalShiftForIcon = 0.0;
 
         ctx.fillStyle = textColor;
-        if (configs.addTextLabels && circleRadius - innerCircleRadius > iconSize * 2.5) {
+        console.log('buttonsToShow[i]');
+        console.log(buttonsToShow[i]);
+        if (configs.addTextLabels && circleRadius - innerCircleRadius > iconSize * 2.5 && buttonsToShow[i].id !== 'noAction') {
             verticalShiftForIcon = wrapLabel(ctx, textToDraw, dxForText, dyForText + 15, segmentLength * 0.4, labelSize);
         }
 
@@ -265,24 +269,25 @@ function drawLabels(segmentsCount, circleRadius, innerCircleRadius, buttonsToSho
         ctx.fillStyle = iconColor;
         ctx.font = `${iconSize}px sans-serif`;
 
-        if (actionIcons[buttonsToShow[i].id].length <= 3) {
-            /// Draw unicode icon
-            ctx.fillText(actionIcons[buttonsToShow[i].id], dxForText, dyForText - (circleRadius - innerCircleRadius > iconSize * 2.5 ? 4 : -4) - verticalShiftForIcon);
-        } else {
-            /// Draw SVG icon
-            try {
-                ctx.save();
-                let p = new Path2D(actionIcons[buttonsToShow[i].id]);
-                ctx.translate(dxForText - (iconSize / 2), dyForText - verticalShiftForIcon - (iconSize / (circleRadius - innerCircleRadius > iconSize * 2.5 ? 1.5 : 2)));
-                let scale = iconSize / 24;
-                ctx.scale(scale, scale);
-                ctx.fill(p);
-                ctx.restore();
-            } catch (e) {
-                if (configs.debugMode)
-                    console.log(e);
+        if (buttonsToShow[i].id !== 'noAction')
+            if (actionIcons[buttonsToShow[i].id].length <= 3) {
+                /// Draw unicode icon
+                ctx.fillText(actionIcons[buttonsToShow[i].id], dxForText, dyForText - (circleRadius - innerCircleRadius > iconSize * 2.5 ? 4 : -4) - verticalShiftForIcon);
+            } else {
+                /// Draw SVG icon
+                try {
+                    ctx.save();
+                    let p = new Path2D(actionIcons[buttonsToShow[i].id]);
+                    ctx.translate(dxForText - (iconSize / 2), dyForText - verticalShiftForIcon - (iconSize / (circleRadius - innerCircleRadius > iconSize * 2.5 ? 1.5 : 2)));
+                    let scale = iconSize / 24;
+                    ctx.scale(scale, scale);
+                    ctx.fill(p);
+                    ctx.restore();
+                } catch (e) {
+                    if (configs.debugMode)
+                        console.log(e);
+                }
             }
-        }
 
         /// Draw indexes
         if (showIndexes) {

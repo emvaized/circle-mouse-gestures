@@ -206,5 +206,25 @@
     "behaviorTitle": {
         "message": "Behavior",
         "description": "Label for circle menu button"
+    },
+    "rockerGesture": {
+        "message": "Rocker gesture",
+        "description": "Label for circle menu button"
+    },
+    "mouseWheelUpAction": {
+        "message": "Wheel up",
+        "description": "Label for circle menu button"
+    },
+    "mouseWheelDownAction": {
+        "message": "Wheel up",
+        "description": "Label for circle menu button"
+    },
+    "rockerGestureDescription": {
+        "message": "Triggered when you click left mouse button while holding the right button",
+        "description": "Label for circle menu button"
+    },
+    "noAction": {
+        "message": "No action",
+        "description": "Label for circle menu button"
     }
 }

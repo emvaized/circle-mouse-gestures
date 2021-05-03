@@ -165,16 +165,17 @@ function setPageListeners() {
 
     });
 
-    if (configs.useMouseWheelGestures)
-        document.addEventListener('wheel', checkScrollDirection);
+    // if (configs.useMouseWheelGestures)
+    document.addEventListener('wheel', checkScrollDirection);
 }
 
 function checkScrollDirection(event) {
     if (circleIsShown == false) return;
+
     if (checkScrollDirectionIsUp(event)) {
-        triggerButtonAction(mouseWheelUpAction);
+        triggerButtonAction(configs[typeOfMenu].mouseWheelUpAction);
     } else {
-        triggerButtonAction(mouseWheelDownAction);
+        triggerButtonAction(configs[typeOfMenu].mouseWheelDownAction);
     }
     hideCircle();
 }

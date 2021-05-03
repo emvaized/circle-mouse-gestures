@@ -292,12 +292,12 @@ chrome.runtime.onMessage.addListener(
                 });
             } break;
 
-            // case 'checkNextTabAvailability': {
-            //     return chrome.tabs.query({}, function (tabs) {
-            //         sendResponse(sender.tab.index == tabs.length - 1);
-            //         return sender.tab.index == tabs.length - 1;
-            //     });
-            // } break;
+            case 'checkNextTabAvailability': {
+                return chrome.tabs.query({}, function (tabs) {
+                    sendResponse(sender.tab.index == tabs.length - 1);
+                    // return sender.tab.index == tabs.length - 1;
+                });
+            } break;
 
             // case 'checkPrevTabAvailability': {
             //     return sender.tab.index == 0;

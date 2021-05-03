@@ -32,10 +32,12 @@ var configs = {
     'regularMenu': {
         'color': "#4c4c4c",
         'rockerAction': 'reloadTab',
+        'mouseWheelUpAction': 'scrollToTop',
+        'mouseWheelDownAction': 'scrollToBottom',
         'levels': [
             {
                 'width': 100,
-                'color': 'red',
+                'color': '#000000',
                 'buttons': [
                     { 'id': 'goForward' },
                     { 'id': 'newTab' },

@@ -172,7 +172,7 @@
         "description": "Label for circle menu button"
     },
     "hideCircleIfNoActionSelected": {
-        "message": "Прятать если действие не выбрано",
+        "message": "Прятать, если действие не выбрано",
         "description": "Label for circle menu button"
     },
     "circleHideAnimation": {
@@ -209,6 +209,26 @@
     },
     "behaviorTitle": {
         "message": "Поведение",
+        "description": "Label for circle menu button"
+    },
+    "rockerGesture": {
+        "message": "Жест рокировки",
+        "description": "Label for circle menu button"
+    },
+    "mouseWheelUpAction": {
+        "message": "Колесо вверх",
+        "description": "Label for circle menu button"
+    },
+    "mouseWheelDownAction": {
+        "message": "Колесо вниз",
+        "description": "Label for circle menu button"
+    },
+    "rockerGestureDescription": {
+        "message": "Вызывается, когда вы кликаете левой кнопкой мыши, удерживая правую кнопку",
+        "description": "Label for circle menu button"
+    },
+    "noAction": {
+        "message": "Нет действия",
         "description": "Label for circle menu button"
     }
 }

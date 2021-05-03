@@ -1,5 +1,5 @@
 body {
-    margin-left: 21.5%;
+    /* margin-left: 21.5%; */
 }
 
 .buttons-item {
@@ -41,6 +41,8 @@ label{
 
 .option:hover{
     background-color: lightgrey;
+    transition: background-color 50ms ease-in-out;
+    border-radius: 4px;
 }
 
 #circle-preview {
@@ -63,4 +65,23 @@ label{
 
 hr {
     opacity: 0.5;
+}
+
+#addLevelButton {
+    height: 70px;
+    line-height: 70px;  
+    width: 70px;  
+    font-size: 5em;
+    /* font-weight: bold; */
+    border-radius: 50%;
+    background-color: rgba(0,0,0,0.2);
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    float: left;  
+    margin-top: 30px;
+}
+
+#addLevelButton:hover{
+    background-color: rgba(0,0,0,0.4);
 }

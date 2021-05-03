@@ -1,5 +1,6 @@
 let defaultConfigs;
 var delayToAddListeners = 1;
+var bodyMarginLeft = 0.0;
 
 function init() {
     defaultConfigs = configs;
@@ -12,6 +13,7 @@ function init() {
             generateAppearanceControls();
             generateBehaviorConfigs();
             positionSettingsInCenter();
+            drawCirclePreview('regularMenu');
 
             preselectedButtons = {};
 
@@ -148,11 +150,51 @@ function generateBehaviorConfigs() {
                 } catch (error) {
                     console.log(error);
                 }
-
             });
         }, 300);
     });
+
+    /// Rocker action dropdown
+    let rockerActionContainer = document.createElement('div');
+    rockerActionContainer.setAttribute('class', 'option');
+
+    let rockerIidentifier = `regularRockerActionDropdown`;
+    let dropdown = generateActionDropdownButton(rockerIidentifier, configs.regularMenu.rockerAction, function (newValue) {
+        configs.regularMenu.rockerAction = newValue;
+        saveAllSettings();
+    }, chrome.i18n.getMessage('rockerAction'));
+    rockerActionContainer.appendChild(dropdown);
+
+    document.getElementById('behavior-config').appendChild(rockerActionContainer);
+
+    /// Wheel up action dropdown
+    let wheelUpdropdownContainer = document.createElement('div');
+    wheelUpdropdownContainer.setAttribute('class', 'option');
+
+    let wheelUpIidentifier = `regularWheelUpActionDropdown`;
+    let wheelUpdropdown = generateActionDropdownButton(wheelUpIidentifier, configs.regularMenu.mouseWheelUpAction, function (newValue) {
+        configs.regularMenu.mouseWheelUpAction = newValue;
+        saveAllSettings();
+    }, chrome.i18n.getMessage('mouseWheelUpAction'));
+    wheelUpdropdownContainer.appendChild(wheelUpdropdown);
+
+    document.getElementById('behavior-config').appendChild(wheelUpdropdownContainer);
+
+    /// Wheel down action dropdown
+    let wheelDowndropdownContainer = document.createElement('div');
+    wheelDowndropdownContainer.setAttribute('class', 'option');
+
+    let wheelDownIidentifier = `regularWheelDownActionDropdown`;
+    let wheelDowndropdown = generateActionDropdownButton(wheelDownIidentifier, configs.regularMenu.mouseWheelDownAction, function (newValue) {
+        configs.regularMenu.mouseWheelDownAction = newValue;
+        saveAllSettings();
+    }, chrome.i18n.getMessage('mouseWheelDownAction'));
+    wheelDowndropdownContainer.appendChild(wheelDowndropdown);
+
+    document.getElementById('behavior-config').appendChild(wheelDowndropdownContainer);
 }
+
+
 
 /// Buttons configs
 function generateButtonsControls() {
@@ -167,7 +209,10 @@ function generateButtonsControls() {
     for (var i = 0; i < configs.regularMenu.levels.length; i++) {
         generateLevelConfigs(i);
     }
+
+    generateAddLevelButton();
 }
+
 
 function generateLevelConfigs(levelIndex = 0) {
     var container = document.createElement('div');
@@ -179,7 +224,6 @@ function generateLevelConfigs(levelIndex = 0) {
         container.style.opacity = 0.5;
 
     /// Generate header
-
     let headerContainer = document.createElement('span');
 
     /// Enabled checkbox
@@ -211,14 +255,37 @@ function generateLevelConfigs(levelIndex = 0) {
     let title = document.createElement('span');
     title.textContent = chrome.i18n.getMessage('circleLevel') + ' ' + (levelIndex + 1).toString();
     headerContainer.appendChild(title);
+
+    /// Remove level button
+    let removeLevelButton = document.createElement('a');
+    let removeLevelButtonId = `removeLevelButton-${levelIndex}`;
+    removeLevelButton.setAttribute('style', 'float: right; cursor: pointer;');
+    removeLevelButton.setAttribute('id', removeLevelButtonId);
+    removeLevelButton.innerText = chrome.i18n.getMessage("deleteLabel");
+    headerContainer.appendChild(removeLevelButton);
+
+    setTimeout(function () {
+        let removeLevelButton = document.getElementById(removeLevelButtonId);
+        removeLevelButton.addEventListener('click', function () {
+            let ind = removeLevelButtonId.split('-')[1];
+            configs.regularMenu.levels.splice(ind, 1);
+
+            drawCirclePreview();
+            generateButtonsControls();
+            positionSettingsInCenter();
+            drawCirclePreview();
+
+            saveAllSettings();
+        });
+    }, delayToAddListeners);
+
+    headerContainer.innerHTML += '<br /><br />';
     container.appendChild(headerContainer);
 
-
-
-    /// Generate entries
-
+    /// Append to buttons-cfg container
     document.getElementById('buttons-config-container').appendChild(container);
 
+    /// Generate entries
     for (var i = 0; i < configs.regularMenu.levels[levelIndex].buttons.length; i++) {
         var item = configs.regularMenu.levels[levelIndex].buttons[i];
 
@@ -239,32 +306,44 @@ function generateLevelConfigs(levelIndex = 0) {
         entry.appendChild(numberText);
 
         /// Button action dropdown
-        let identifier = `actionDropdown-${levelIndex}-${i}`;
+        let dropdownIdentifier = `actionDropdown-${levelIndex}-${i}`;
 
-        var select = document.createElement('select');
-        select.setAttribute('id', identifier);
-        Object.keys(actionIcons).forEach((function (key) {
-            let option = document.createElement('option');
-            option.innerHTML = chrome.i18n.getMessage(key);
-            option.setAttribute('value', key);
-            if (key == item.id) option.setAttribute('selected', true);
-            select.appendChild(option);
-        }));
+        let actionDropdown = generateActionDropdownButton(dropdownIdentifier, item.id, function (newValue) {
+            let parts = dropdownIdentifier.split('-');
+            configs.regularMenu.levels[parts[1]].buttons[parts[2]] = { 'id': newValue };
+            drawCirclePreview();
+            generateButtonsControls();
+            saveAllSettings();
+        });
+        entry.appendChild(actionDropdown);
 
-        entry.appendChild(select);
 
-        /// Set dropdown listener
-        setTimeout(function () {
-            document.getElementById(identifier).addEventListener("change", function (e) {
-                let newValue = this.value;
+        // let identifier = `actionDropdown-${levelIndex}-${i}`;
 
-                let parts = identifier.split('-');
-                configs.regularMenu.levels[parts[1]].buttons[parts[2]] = { 'id': newValue };
-                drawCirclePreview();
-                generateButtonsControls();
-                saveAllSettings();
-            });
-        }, delayToAddListeners);
+        // var select = document.createElement('select');
+        // select.setAttribute('id', identifier);
+        // Object.keys(actionIcons).forEach((function (key) {
+        //     let option = document.createElement('option');
+        //     option.innerHTML = chrome.i18n.getMessage(key);
+        //     option.setAttribute('value', key);
+        //     if (key == item.id) option.setAttribute('selected', true);
+        //     select.appendChild(option);
+        // }));
+
+        // entry.appendChild(select);
+
+        // /// Set dropdown listener
+        // setTimeout(function () {
+        //     document.getElementById(identifier).addEventListener("change", function (e) {
+        //         let newValue = this.value;
+
+        //         let parts = identifier.split('-');
+        //         configs.regularMenu.levels[parts[1]].buttons[parts[2]] = { 'id': newValue };
+        //         drawCirclePreview();
+        //         generateButtonsControls();
+        //         saveAllSettings();
+        //     });
+        // }, delayToAddListeners);
 
         entry.innerHTML += '<br />';
 
@@ -433,6 +512,71 @@ function generateLevelConfigs(levelIndex = 0) {
     container.appendChild(levelWidthSlider);
 }
 
+function generateAddLevelButton() {
+    let addLevelButton = document.createElement('div');
+    addLevelButton.setAttribute('id', 'addLevelButton');
+    addLevelButton.setAttribute('title', 'Add circle level');
+    addLevelButton.textContent = '+';
+    document.getElementById('buttons-config-container').appendChild(addLevelButton);
+
+    addLevelButton.addEventListener('click', function () {
+        configs.regularMenu.levels.push({
+            'width': 60,
+            'buttons': [
+                { 'id': 'goForward' },
+                { 'id': 'newTab' },
+                { 'id': 'goBack' },
+                { 'id': 'closeCurrentTab' },
+            ]
+        });
+
+        drawCirclePreview();
+        generateButtonsControls();
+        positionSettingsInCenter();
+        drawCirclePreview();
+        saveAllSettings();
+    });
+}
+
+
+function generateActionDropdownButton(id, initialValue, cbOnChange, label) {
+    let selectContainer = document.createElement('div');
+    selectContainer.setAttribute('style', 'display: inline');
+
+    /// Generate label
+    if (label !== null && label !== undefined && label !== '') {
+        let span = document.createElement('span');
+        span.textContent = label + ':  ';
+        selectContainer.appendChild(span);
+    }
+
+    /// Generate dropdown button
+    let select = document.createElement('select');
+    select.setAttribute('id', id);
+    Object.keys(actionIcons).forEach((function (key) {
+        let option = document.createElement('option');
+        option.innerHTML = chrome.i18n.getMessage(key);
+        option.setAttribute('value', key);
+        if (key == initialValue) option.setAttribute('selected', true);
+        select.appendChild(option);
+    }));
+
+    setTimeout(function () {
+        let listenedDropdown = document.getElementById(id);
+        listenedDropdown.addEventListener("change", function (e) {
+            let newValue = listenedDropdown.value;
+
+            cbOnChange(newValue);
+            // configs.regularMenu.rockerAction = newValue;
+            // saveAllSettings();
+        });
+    }, delayToAddListeners);
+
+    selectContainer.appendChild(select);
+
+    return selectContainer;
+}
+
 function generateRangeSlider(id, value, callbackOnChange, min = 50, max = 200, label) {
     let updatePreviewInRealTime = false;
 
@@ -504,13 +648,10 @@ function positionSettingsInCenter() {
 
     let occupiedPercent = occupiedWidth / window.screen.width * 100;
 
-    console.log('occupied width:');
-    console.log(occupiedWidth);
+    bodyMarginLeft = (100 - occupiedPercent) / 2.5;
 
-    console.log('occupied percent]:');
-    console.log(occupiedPercent);
-
-    document.body.style.marginLeft = `${(100 - occupiedPercent) / 2.5}%`;
+    // document.body.style.marginLeft = `${bodyMarginLeft}%`;
+    document.body.style.transform = `translate(${bodyMarginLeft}%, 0)`;
 
 }
 

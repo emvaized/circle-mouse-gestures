@@ -6,11 +6,6 @@ var scaleDownRockerIconWhenNonHovered = false;
 var useRectangularShape = false;
 var addShadows = false;
 
-/// Menu colors
-var mouseWheelUpAction = 'scrollToTop';
-var mouseWheelDownAction = 'scrollToBottom';
-
-
 /// Service variables
 var canvasRadius = configs.circleRadius * 4;
 var firstCircleRadius = configs.circleRadius;
