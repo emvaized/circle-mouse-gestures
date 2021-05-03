@@ -106,10 +106,10 @@ hr {
 }
 
 #addLevelButton {
-    height: 70px;
-    line-height: 70px;  
-    width: 70px;  
-    font-size: 5em;
+    height: 50px;
+    line-height: 50px;  
+    width: 50px;  
+    font-size: 4em;
     /* font-weight: bold; */
     border-radius: 50%;
     background-color: rgba(0,0,0,0.2);
@@ -122,4 +122,8 @@ hr {
 
 #addLevelButton:hover{
     background-color: rgba(0,0,0,0.4);
+}
+
+#appearance-config {
+    padding-bottom: 5px;
 }

@@ -250,5 +250,9 @@
     "colorLabel": {
         "message": "Color",
         "description": "Label for circle menu button"
+    },
+    "gesturesTitle": {
+        "message": "Gestures",
+        "description": "Label for circle menu button"
     }
 }

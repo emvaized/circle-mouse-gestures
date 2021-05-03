@@ -12,6 +12,7 @@ function init() {
             generateButtonsControls();
             generateAppearanceControls();
             generateBehaviorConfigs();
+            generateGesturesConfigs();
             positionSettingsInCenter();
             drawCirclePreview('regularMenu');
 
@@ -105,11 +106,13 @@ function generateAppearanceControls() {
     let innerWidthSlider = createRangeSlider('innerWidth', configs.innerCircleRadius, function (newVal) {
         configs.innerCircleRadius = newVal;
     }, 0, 100);
+    innerWidthSlider.style.padding = '0px 5px';
     appearanceContainer.appendChild(innerWidthSlider);
 
     let gapBetweenLevelsSlider = createRangeSlider('gapBetweenCircles', configs.gapBetweenCircles, function (newVal) {
         configs.gapBetweenCircles = newVal;
     }, 0, 100);
+    gapBetweenLevelsSlider.style.padding = '0px 5px';
     appearanceContainer.appendChild(gapBetweenLevelsSlider);
 }
 
@@ -153,6 +156,12 @@ function generateBehaviorConfigs() {
             });
         }, 300);
     });
+}
+
+/// Gesture configs
+function generateGesturesConfigs() {
+    /// Translate title
+    document.getElementById('gesturesTitle').innerHTML = chrome.i18n.getMessage('gesturesTitle');
 
     /// Rocker action dropdown
     let rockerActionContainer = document.createElement('div');
@@ -165,7 +174,7 @@ function generateBehaviorConfigs() {
     }, chrome.i18n.getMessage('rockerAction'));
     rockerActionContainer.appendChild(dropdown);
 
-    document.getElementById('behavior-config').appendChild(rockerActionContainer);
+    document.getElementById('gestures-config').appendChild(rockerActionContainer);
 
     /// Wheel up action dropdown
     let wheelUpdropdownContainer = document.createElement('div');
@@ -178,7 +187,7 @@ function generateBehaviorConfigs() {
     }, chrome.i18n.getMessage('mouseWheelUpAction'));
     wheelUpdropdownContainer.appendChild(wheelUpdropdown);
 
-    document.getElementById('behavior-config').appendChild(wheelUpdropdownContainer);
+    document.getElementById('gestures-config').appendChild(wheelUpdropdownContainer);
 
     /// Wheel down action dropdown
     let wheelDowndropdownContainer = document.createElement('div');
@@ -191,9 +200,8 @@ function generateBehaviorConfigs() {
     }, chrome.i18n.getMessage('mouseWheelDownAction'));
     wheelDowndropdownContainer.appendChild(wheelDowndropdown);
 
-    document.getElementById('behavior-config').appendChild(wheelDowndropdownContainer);
+    document.getElementById('gestures-config').appendChild(wheelDowndropdownContainer);
 }
-
 
 
 /// Buttons configs
@@ -867,10 +875,10 @@ function createRangeSlider(id, value, callbackOnChange, min = 50, max = 200, lab
     let sliderContainer = document.createElement('div');
     sliderContainer.setAttribute('style', 'vertical-align: middle; align-items: center; width: 100%; margin-top: 5px;');
 
-    let widthLabel = document.createElement('span');
-    widthLabel.setAttribute('style', 'opacity: 0.5');
-    widthLabel.innerHTML = (label ?? chrome.i18n.getMessage(id) ?? id) + ' ';
-    sliderContainer.appendChild(widthLabel);
+    let rangeLabel = document.createElement('span');
+    // rangeLabel.setAttribute('style', 'opacity: 0.7');
+    rangeLabel.innerHTML = (label ?? chrome.i18n.getMessage(id) ?? id) + ' ';
+    sliderContainer.appendChild(rangeLabel);
 
     let widthInput = document.createElement('input');
     let widthInputId = id;
@@ -912,6 +920,7 @@ function createRangeSlider(id, value, callbackOnChange, min = 50, max = 200, lab
     /// Current value indicator
     let widthIndicator = document.createElement('span');
     widthIndicator.setAttribute('id', id + '-indicator');
+    widthIndicator.setAttribute('style', 'opacity: 0.7');
     widthIndicator.innerHTML = value;
     sliderContainer.appendChild(widthIndicator);
 
