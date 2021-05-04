@@ -39,10 +39,6 @@
         "message": "Image",
         "description": "Label for circle menu button"
     },
-    "page": {
-        "message": "Page",
-        "description": "Label for circle menu button"
-    },
     "addToBookmarks": {
         "message": "Add to bookmarks",
         "description": "Label for circle menu button"
@@ -227,19 +223,19 @@
         "message": "No action",
         "description": "Label for circle menu button"
     },
-    "navigationCategoryLabel": {
+    "navigation": {
         "message": "Navigation",
         "description": "Label for circle menu button"
     },
-    "tabCategoryLabel": {
+    "tab": {
         "message": "Tab",
         "description": "Label for circle menu button"
     },
-    "pageCategoryLabel": {
+    "page": {
         "message": "Page",
         "description": "Label for circle menu button"
     },
-    "scrollCategoryLabel": {
+    "scroll": {
         "message": "Scroll",
         "description": "Label for circle menu button"
     },

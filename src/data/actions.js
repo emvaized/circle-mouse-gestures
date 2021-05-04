@@ -41,3 +41,78 @@ var actionIcons = {
     // 'openInFgTab': '🡕',
     // 'scrollToTop': '↑',
 };
+
+
+/// Map of actions available to be selected from dropdown
+var sortedActionButtons = {
+    'regularMenu': {
+        'navigation': [
+            'goBack',
+            'goForward',
+            'switchToPreviousTab',
+            'switchToNextTab',
+        ],
+        'tab': [
+            'newTab',
+            'closeCurrentTab',
+            'reloadTab',
+            'restoreClosedTab',
+            'toggleFullscreen',
+        ],
+        'page': [
+            'pageZoomIn',
+            'pageZoomOut',
+            'copyUrl',
+            'translate',
+        ],
+        'scroll': [
+            'scrollToTop',
+            'scrollToBottom',
+            'scrollPageUp',
+            'scrollPageDown',
+        ],
+        '—': [
+            'noAction'
+        ]
+    },
+
+
+    'linkMenu':
+    {
+        'linkMenu': [
+            'openInFgTab',
+            'copyLinkText',
+            'openInBgTab',
+            'copyUrl',
+        ],
+        '—': [
+            'noAction'
+        ]
+    },
+
+    'selectionMenu':
+    {
+        'selectionMenu': [
+            'copyText',
+            'searchText',
+            'translate',
+        ],
+        '—': [
+            'noAction'
+        ]
+    },
+
+    'imageMenu':
+    {
+        'imageMenu': [
+            'openInFgTab',
+            'downloadUrlAs',
+            'openInBgTab',
+            'searchImageOnGoogle',
+            'copyUrl',
+        ],
+        '—': [
+            'noAction'
+        ]
+    },
+};

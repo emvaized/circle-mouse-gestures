@@ -22,7 +22,7 @@
       "js": [
         "src/data/configs.js",
         "src/data/variables.js",
-        "src/data/icons.js",
+        "src/data/actions.js",
         "src/functions/functions.js",
         "src/ui/circle/circle.js",
         "src/ui/circle/circle-level-draw.js",

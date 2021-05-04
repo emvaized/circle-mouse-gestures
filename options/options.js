@@ -76,7 +76,7 @@ function setMenuTypeDropdown() {
             drawCirclePreview(selectedMenuType);
             generateButtonsControls();
             generateAppearanceControls();
-            generateBehaviorConfigs();
+            // generateBehaviorConfigs();
             generateGesturesConfigs();
             positionSettingsInCenter();
             drawCirclePreview(selectedMenuType);
@@ -141,7 +141,8 @@ function generateAppearanceControls() {
     /// Set background color selector
     let colorSelect = document.getElementById('backgroundColor');
     colorSelect.setAttribute('value', configs[selectedMenuType].color);
-    colorSelect.parentNode.innerHTML = chrome.i18n.getMessage('backgroundColor') + ' ' + colorSelect.parentNode.innerHTML;
+    if (!colorSelect.parentNode.innerHTML.includes(chrome.i18n.getMessage('backgroundColor')))
+        colorSelect.parentNode.innerHTML = chrome.i18n.getMessage('backgroundColor') + ' ' + colorSelect.parentNode.innerHTML;
 
     setTimeout(function () {
         let colorSelect = document.getElementById('backgroundColor');
@@ -160,17 +161,22 @@ function generateAppearanceControls() {
 
     let appearanceContainer = document.getElementById('appearance-config');
 
-    let innerWidthSlider = createRangeSlider('innerWidth', configs.innerCircleRadius, function (newVal) {
-        configs.innerCircleRadius = newVal;
-    }, 0, 100);
-    innerWidthSlider.style.padding = '0px 5px';
-    appearanceContainer.appendChild(innerWidthSlider);
+    if (document.getElementById('innerWidth') == undefined) {
+        let innerWidthSlider = createRangeSlider('innerWidth', configs.innerCircleRadius, function (newVal) {
+            configs.innerCircleRadius = newVal;
+        }, 0, 100);
+        innerWidthSlider.style.padding = '0px 5px';
+        appearanceContainer.appendChild(innerWidthSlider);
+    }
 
-    let gapBetweenLevelsSlider = createRangeSlider('gapBetweenCircles', configs.gapBetweenCircles, function (newVal) {
-        configs.gapBetweenCircles = newVal;
-    }, 0, 100);
-    gapBetweenLevelsSlider.style.padding = '0px 5px';
-    appearanceContainer.appendChild(gapBetweenLevelsSlider);
+    if (document.getElementById('gapBetweenCircles') == undefined) {
+        let gapBetweenLevelsSlider = createRangeSlider('gapBetweenCircles', configs.gapBetweenCircles, function (newVal) {
+            configs.gapBetweenCircles = newVal;
+        }, 0, 100);
+        gapBetweenLevelsSlider.style.padding = '0px 5px';
+        appearanceContainer.appendChild(gapBetweenLevelsSlider);
+    }
+
 }
 
 /// Behavior configs
@@ -221,6 +227,7 @@ function generateGesturesConfigs() {
     document.getElementById('gesturesTitle').innerHTML = chrome.i18n.getMessage('gesturesTitle');
 
     let gesturesConfigs = document.getElementById('gestures-config');
+    gesturesConfigs.innerHTML = '';
     /// Rocker action dropdown
     let rockerActionContainer = document.createElement('div');
     rockerActionContainer.setAttribute('class', 'option');
@@ -272,7 +279,7 @@ function generateButtonsControls() {
     buttonsHeader.setAttribute('class', 'header');
     document.getElementById('buttons-config-container').appendChild(buttonsHeader);
 
-    for (var i = 0; i < configs['imageMenu'].levels.length; i++) {
+    for (var i = 0; i < configs[selectedMenuType].levels.length; i++) {
         generateLevelConfigs(i);
     }
 
@@ -518,184 +525,7 @@ function generateLevelConfigs(levelIndex = 0) {
         container.appendChild(entry);
     }
 
-    /// Generate entries approach with splitting too long columns in halfs
-
-    // let maxButtonsInColumn = 5;
-    // var splittedButtons = chunk(configs[selectedMenuType].levels[levelIndex].buttons, maxButtonsInColumn);
-
-    // for (var i2 = 0; i2 < splittedButtons.length; i2++) {
-
-    //     let buttonsChunkContainer = document.createElement('div');
-    //     buttonsChunkContainer.setAttribute('style', 'float: left;');
-    //     container.appendChild(buttonsChunkContainer);
-
-    //     /// Generate entries
-    //     for (var i = 0; i < splittedButtons[i2].length; i++) {
-    //         let item = splittedButtons[i2][i];
-
-    //         let entry = document.createElement('div');
-    //         entry.setAttribute('class', 'buttons-item');
-    //         entry.setAttribute('style', 'padding:10px; cursor: pointer;');
-    //         let entryIdentifier = `buttonConfigEntry-${levelIndex}-${i}`;
-    //         entry.setAttribute('id', entryIdentifier);
-
-    //         /// Highlight the button when segment was selected by mouse
-    //         if (selectedButtons[levelIndex] == i || preselectedButtons[levelIndex] == i)
-    //             entry.style.background = 'lightGrey';
-
-    //         /// Counter
-    //         let numberText = document.createElement('span');
-    //         numberText.textContent = (i + 1).toString();
-    //         numberText.setAttribute('style', 'color: grey; position: relative; left: -20px; top: 0px;');
-    //         entry.appendChild(numberText);
-
-    //         /// Button action dropdown
-    //         let dropdownIdentifier = `actionDropdown-${levelIndex}-${i}`;
-
-    //         let actionDropdown = createActionDropdownButton(dropdownIdentifier, item.id, function (newValue) {
-    //             let parts = dropdownIdentifier.split('-');
-    //             configs[selectedMenuType].levels[parts[1]].buttons[parts[2]] = { 'id': newValue };
-    //             drawCirclePreview();
-    //             generateButtonsControls();
-    //             saveAllSettings();
-    //         });
-    //         entry.appendChild(actionDropdown);
-
-    //         entry.innerHTML += '<br />';
-
-    //         /// Move up/down buttons
-    //         var actionButtonsContainer = document.createElement('div');
-    //         actionButtonsContainer.setAttribute('style', 'position: relative; right: -7px; padding-top: 3px ');
-
-    //         let moveUpButtonIdentifier = `moveUpButton-${levelIndex}-${i}`;
-    //         var moveUpButton = document.createElement('button');
-    //         moveUpButton.textContent = 'ᐱ';
-    //         moveUpButton.setAttribute('style', 'max-width: 1px; padding: 1px; align-items: center');
-    //         moveUpButton.setAttribute('id', moveUpButtonIdentifier);
-    //         moveUpButton.setAttribute('title', chrome.i18n.getMessage("moveUpLabel"));
-
-    //         setTimeout(function () {
-    //             document.getElementById(moveUpButtonIdentifier).addEventListener("mouseup", function (e) {
-    //                 let parts = moveUpButtonIdentifier.split('-');
-
-    //                 let movedItem = configs[selectedMenuType].levels[parts[1]].buttons[parts[2]];
-    //                 configs[selectedMenuType].levels[parts[1]].buttons.splice(parts[2], 1);
-    //                 if (parts[2] > 0) {
-    //                     /// Move item at previous index
-    //                     configs[selectedMenuType].levels[parts[1]].buttons.splice(parts[2] - 1, 0, movedItem);
-    //                     preselectedButtons[levelIndex] = parts[2] - 1;
-    //                 } else {
-    //                     /// Item is first in list - move item to end
-
-    //                     let lastIndex = configs[selectedMenuType].levels[parts[1]].buttons.length - 1;
-    //                     let lastItem = configs[selectedMenuType].levels[parts[1]].buttons[lastIndex];
-    //                     configs[selectedMenuType].levels[parts[1]].buttons.splice(lastIndex, 1);
-    //                     configs[selectedMenuType].levels[parts[1]].buttons.splice(0, 0, lastItem);
-
-    //                     configs[selectedMenuType].levels[parts[1]].buttons.splice(configs[selectedMenuType].levels[parts[1]].buttons.length, 0, movedItem);
-    //                     preselectedButtons[levelIndex] = configs[selectedMenuType].levels[parts[1]].buttons.length - 1;
-    //                 }
-
-    //                 drawCirclePreview();
-    //                 generateButtonsControls();
-    //                 saveAllSettings();
-    //             });
-    //         }, delayToAddListeners);
-
-    //         let moveDownButtonIdentifier = `moveDownButton-${levelIndex}-${i}`;
-
-    //         var moveDownButton = document.createElement('button');
-    //         moveDownButton.textContent = 'ᐯ';
-    //         moveDownButton.setAttribute('style', 'max-width: 1px; padding: 1px; align-items: center');
-    //         moveDownButton.setAttribute('id', moveDownButtonIdentifier);
-    //         moveDownButton.setAttribute('title', chrome.i18n.getMessage("moveDownLabel"));
-
-    //         setTimeout(function () {
-    //             document.getElementById(moveDownButtonIdentifier).addEventListener("mouseup", function (e) {
-    //                 try {
-    //                     let parts = moveDownButtonIdentifier.split('-');
-    //                     let movedItem = configs[selectedMenuType].levels[parts[1]].buttons[parts[2]];
-    //                     configs[selectedMenuType].levels[parts[1]].buttons.splice(parts[2], 1);
-
-    //                     if (parts[2] < configs[selectedMenuType].levels[parts[1]].buttons.length) {
-    //                         /// Move item at next index
-    //                         configs[selectedMenuType].levels[parts[1]].buttons.splice(parseInt(parts[2]) + 1, 0, movedItem);
-    //                         preselectedButtons[levelIndex] = parseInt(parts[2]) + 1;
-    //                     } else {
-    //                         /// Item is last in list - move item to start
-
-    //                         let lastIndex = configs[selectedMenuType].levels[parts[1]].buttons.length - 1;
-    //                         let firstItem = configs[selectedMenuType].levels[parts[1]].buttons[0];
-    //                         configs[selectedMenuType].levels[parts[1]].buttons.splice(0, 1);
-    //                         configs[selectedMenuType].levels[parts[1]].buttons.splice(lastIndex, 0, firstItem);
-
-    //                         configs[selectedMenuType].levels[parts[1]].buttons.splice(0, 0, movedItem);
-    //                         preselectedButtons[levelIndex] = 0;
-    //                     }
-
-    //                     drawCirclePreview();
-    //                     generateButtonsControls();
-    //                     saveAllSettings();
-
-    //                 } catch (error) {
-    //                     console.log(error);
-    //                 }
-    //             });
-    //         }, delayToAddListeners);
-
-
-    //         /// Delete button
-    //         let deleteButtonIdentifier = `deleteButton-${levelIndex}-${i}`;
-
-    //         var deleteButton = document.createElement('button');
-    //         deleteButton.textContent = chrome.i18n.getMessage("deleteLabel");
-    //         deleteButton.setAttribute('style', 'display: inline-block; max-width: 100px;');
-    //         deleteButton.setAttribute('id', deleteButtonIdentifier);
-
-    //         setTimeout(function () {
-    //             document.getElementById(deleteButtonIdentifier).addEventListener("mouseup", function (e) {
-    //                 let parts = deleteButtonIdentifier.split('-');
-    //                 configs[selectedMenuType].levels[parts[1]].buttons.splice(parts[2], 1);
-    //                 drawCirclePreview();
-    //                 generateButtonsControls();
-    //                 saveAllSettings();
-    //             });
-    //         }, delayToAddListeners);
-
-    //         actionButtonsContainer.appendChild(moveUpButton);
-    //         actionButtonsContainer.appendChild(moveDownButton);
-    //         actionButtonsContainer.appendChild(deleteButton);
-
-    //         entry.appendChild(actionButtonsContainer);
-
-    //         /// Set on click listener for entry
-    //         setTimeout(function () {
-    //             document.getElementById(entryIdentifier).addEventListener('mousedown', function (e) {
-    //                 var el = document.elementFromPoint(e.clientX, e.clientY);
-    //                 console.log(`clicked on ${el.tagName}`);
-
-    //                 /// Prevent listener from blocking select dropdowns behavior
-    //                 if (el.tagName == 'SELECT') {
-    //                     return;
-    //                 }
-
-    //                 selectedButtons = {};
-    //                 preselectedButtons = {};
-
-    //                 let parts = deleteButtonIdentifier.split('-');
-    //                 preselectedButtons[parts[1]] = parts[2];
-
-    //                 drawCirclePreview();
-    //                 generateButtonsControls();
-    //             });
-    //         }, delayToAddListeners / 2);
-
-    //         buttonsChunkContainer.appendChild(entry);
-    //     }
-    // }
-
     /// Add new button
-
 
     var addButton = document.createElement('button');
     let addButtonId = `addButton-${levelIndex}`;
@@ -804,46 +634,6 @@ function generateLevelConfigs(levelIndex = 0) {
     }
 
     container.appendChild(customColorContainer);
-
-
-    /// Custom color chooser
-    // if (selectedColor !== null && selectedColor !== undefined) {
-    //     var customColorInputContainer = document.createElement('div');
-    //     customColorInputContainer.setAttribute('class', 'option');
-    //     customColorInputContainer.setAttribute('style', 'margin-top: 3px;');
-
-    //     let customColorLabel = document.createElement('span');
-    //     customColorLabel.setAttribute('style', 'display: inline;opacity: 0.5;');
-    //     customColorLabel.textContent = chrome.i18n.getMessage("colorLabel") + ' ';
-    //     customColorInputContainer.appendChild(customColorLabel);
-
-    //     /// Custom icon URL field
-    //     var customColorInput = document.createElement('input');
-    //     let customColorInputId = `customColorInput-${levelIndex}`;
-    //     customColorInput.setAttribute('type', 'color');
-    //     customColorInput.setAttribute('id', customColorInputId);
-    //     customColorInput.value = selectedColor;
-
-    //     setTimeout(function () {
-    //         let customColorInput = document.getElementById(customColorInputId);
-    //         customColorInput.addEventListener("input", function (e) {
-    //             let ind = customColorInputId.split('-')[1];
-    //             configs[selectedMenuType].levels[ind].color = customColorInput.value;
-    //             drawCirclePreview();
-    //         });
-
-    //         customColorInput.addEventListener("change", function (e) {
-    //             console.log('saved custom color for level ' + levelIndex.toString());
-    //             saveAllSettings();
-    //         });
-    //     }, delayToAddListeners);
-
-
-    //     customColorInputContainer.appendChild(customColorInput);
-
-    //     container.innerHTML += '<br />';
-    //     container.appendChild(customColorInputContainer);
-    // }
 }
 
 function generateAddLevelButton() {
@@ -894,11 +684,11 @@ function createActionDropdownButton(id, initialValue, cbOnChange, label) {
     select.setAttribute('id', id);
 
     /// Generate sorted options
-    Object.keys(sortedRegularMenuButtons).forEach(function (key) {
+    Object.keys(sortedActionButtons[selectedMenuType]).forEach(function (key) {
         let optGroup = document.createElement('optgroup');
-        optGroup.setAttribute('label', key == '—' ? key : chrome.i18n.getMessage(key + 'CategoryLabel'));
+        optGroup.setAttribute('label', key == '—' ? key : chrome.i18n.getMessage(key));
 
-        let items = sortedRegularMenuButtons[key];
+        let items = sortedActionButtons[selectedMenuType][key];
         items.forEach(function (item) {
             let option = document.createElement('option');
             option.innerHTML = chrome.i18n.getMessage(item);

@@ -231,19 +231,15 @@
         "message": "Нет действия",
         "description": "Label for circle menu button"
     },
-    "navigationCategoryLabel": {
+    "navigation": {
         "message": "Навигация",
         "description": "Label for circle menu button"
     },
-    "tabCategoryLabel": {
+    "tab": {
         "message": "Вкладка",
         "description": "Label for circle menu button"
     },
-    "pageCategoryLabel": {
-        "message": "Страница",
-        "description": "Label for circle menu button"
-    },
-    "scrollCategoryLabel": {
+    "scroll": {
         "message": "Прокрутка",
         "description": "Label for circle menu button"
     },

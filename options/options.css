@@ -58,7 +58,7 @@
   }
 
   #typeOfMenuDropdownArrow{
-    float: left;  position: relative; right: 35px; opacity: 0.5; top: 17.5px; height: 30px; width: 30px; font-size: 21px; color: black; transform: rotate(90deg);
+    float: left;  position: relative; left: -5px; opacity: 0.5; top: 17.5px; height: 30px; width: 30px; font-size: 21px; color: black; transform: rotate(90deg);
   }
 
   #content {
