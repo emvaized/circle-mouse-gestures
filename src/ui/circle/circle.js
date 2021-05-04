@@ -82,12 +82,13 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
             let firstCircleRadius = configs.circleRadius;
             let firstCircleInnerRadius = configs.innerCircleRadius;
 
-            let buttonsToShow = configs[typeOfMenu].buttons;
+            let buttonsToShow = configs[typeOfMenu].levels[0].buttons;
             drawCircleLevel(typeOfMenu, e,
                 buttonsToShow,
                 firstCircleRadius,
                 firstCircleInnerRadius,
-                configs['regularMenu'].levels.length,
+                // configs['regularMenu'].levels.length,
+                0,
                 false, showIndexes, shouldCheckButtonsAvailability);
             return;
         } else {
@@ -194,7 +195,8 @@ function hideCircle() {
                     if (shownButtons == undefined) return;
                     actionToPerform = shownButtons[selectedButton].id;
                 } else {
-                    let shownButtons = configs['regularMenu'].levels[selectedLevel]['buttons'];
+                    // let shownButtons = configs['regularMenu'].levels[selectedLevel]['buttons'];
+                    let shownButtons = configs[typeOfMenu].levels[selectedLevel]['buttons'];
                     if (shownButtons == undefined) return;
                     actionToPerform = shownButtons[selectedButton].id;
                 }

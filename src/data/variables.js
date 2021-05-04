@@ -33,5 +33,37 @@ var backgroundDimmer;
 var selectedButtons = {};
 var preselectedButtons = {};
 
+/// Map of actions available to be selected from dropdown
+var sortedRegularMenuButtons = {
+    'navigation': [
+        'goBack',
+        'goForward',
+        'switchToPreviousTab',
+        'switchToNextTab',
+    ],
+    'tab': [
+        'newTab',
+        'closeCurrentTab',
+        'reloadTab',
+        'restoreClosedTab',
+        'toggleFullscreen',
+    ],
+    'page': [
+        'pageZoomIn',
+        'pageZoomOut',
+        'copyUrl',
+        'translate',
+    ],
+    'scroll': [
+        'scrollToTop',
+        'scrollToBottom',
+        'scrollPageUp',
+        'scrollPageDown',
+    ],
+    '—': [
+        'noAction'
+    ]
+};
+
 
 

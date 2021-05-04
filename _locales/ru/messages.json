@@ -258,5 +258,21 @@
     "gesturesTitle": {
         "message": "Жесты",
         "description": "Label for circle menu button"
+    },
+    "regularMenu": {
+        "message": "Основное меню",
+        "description": "Label for circle menu button"
+    },
+    "linkMenu": {
+        "message": "Меню ссылок",
+        "description": "Label for circle menu button"
+    },
+    "selectionMenu": {
+        "message": "Меню выделения текста",
+        "description": "Label for circle menu button"
+    },
+    "imageMenu": {
+        "message": "Меню картинок",
+        "description": "Label for circle menu button"
     }
 }

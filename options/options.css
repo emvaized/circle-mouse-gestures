@@ -13,6 +13,13 @@
       font-size: 18px;
       font-weight: 600;
   }
+
+  #navbar-settings-label {
+    float: left;
+    display: block;
+    font-size: 13px;
+    /* font-weight: 600; */
+}
   
   .sticky {
     position: fixed;
@@ -35,6 +42,23 @@
   #navbar a:hover {
       background-color: black;
       color: white;
+  }
+
+  #typeOfMenuDropdown {
+    background: transparent;
+    border: none; 
+    float: left;
+    display: block;
+    padding: 14px;
+    font-size: 15px;
+    cursor: pointer;
+
+    /* margin: 0 auto !important; */
+    margin-left: 30%;
+  }
+
+  #typeOfMenuDropdownArrow{
+    float: left;  position: relative; right: 35px; opacity: 0.5; top: 17.5px; height: 30px; width: 30px; font-size: 21px; color: black; transform: rotate(90deg);
   }
 
   #content {
@@ -71,7 +95,9 @@
 .option{
     padding: 5px;
     cursor: pointer;
+    /* display: inline-block; */
 }
+
 
 label{
     cursor: pointer;
@@ -115,6 +141,7 @@ hr {
     background-color: rgba(0,0,0,0.2);
     color: white;
     text-align: center;
+    vertical-align: middle;
     cursor: pointer;
     float: left;  
     margin-top: 30px;

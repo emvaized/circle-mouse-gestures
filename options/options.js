@@ -2,20 +2,22 @@ let defaultConfigs;
 var delayToAddListeners = 1;
 var bodyMarginLeft = 0.0;
 
+let selectedMenuType = 'regularMenu';
+
 function init() {
     defaultConfigs = configs;
 
     try {
         loadUserConfigs(function (conf) {
+            setMenuTypeDropdown();
             // loadButtons();
-            drawCirclePreview('regularMenu');
+            drawCirclePreview(selectedMenuType);
             generateButtonsControls();
             generateAppearanceControls();
             generateBehaviorConfigs();
             generateGesturesConfigs();
             positionSettingsInCenter();
-            drawCirclePreview('regularMenu');
-
+            drawCirclePreview(selectedMenuType);
             preselectedButtons = {};
 
             document.getElementById('circle-preview').addEventListener('mousedown', function (e) {
@@ -23,7 +25,7 @@ function init() {
                 selectedButtons = {};
                 preselectedButtons = {};
 
-                drawCircle(e, 'regularMenu', true, false, true);
+                drawCircle(e, selectedMenuType, true, false, true);
                 // try {
                 //     generateSegmentRelatedControls();
                 // } catch (e) { console.log(e); }
@@ -33,18 +35,73 @@ function init() {
     } catch (e) { console.log(e); }
 }
 
+function setMenuTypeDropdown() {
+    let options = [
+        'regularMenu',
+        'linkMenu',
+        'imageMenu',
+        'selectionMenu',
+    ];
+
+    let navBar = document.getElementById('navbar');
+
+    let menuTypeDropdownContainer = document.createElement('div');
+
+    let menuTypeDropdown = document.createElement('select');
+    let menuTypeDropdownId = 'typeOfMenuDropdown';
+    menuTypeDropdown.setAttribute('id', menuTypeDropdownId);
+    menuTypeDropdownContainer.appendChild(menuTypeDropdown);
+
+    let arrowIndicator = document.createElement('div');
+    arrowIndicator.innerHTML = '>';
+    arrowIndicator.setAttribute('id', 'typeOfMenuDropdownArrow');
+    menuTypeDropdownContainer.appendChild(arrowIndicator);
+
+    options.forEach(function (val) {
+        let option = document.createElement('option');
+        option.innerHTML = chrome.i18n.getMessage(val) ?? val;
+        option.setAttribute('value', val);
+        if (selectedMenuType == val) option.setAttribute('selected', true);
+
+        menuTypeDropdown.appendChild(option);
+    })
+
+    setTimeout(function () {
+        let listenedDropdown = document.getElementById(menuTypeDropdownId);
+        listenedDropdown.addEventListener("change", function (e) {
+            let newValue = listenedDropdown.value;
+
+            selectedMenuType = newValue;
+
+            drawCirclePreview(selectedMenuType);
+            generateButtonsControls();
+            generateAppearanceControls();
+            generateBehaviorConfigs();
+            generateGesturesConfigs();
+            positionSettingsInCenter();
+            drawCirclePreview(selectedMenuType);
+            preselectedButtons = {};
+
+
+        });
+    }, delayToAddListeners);
+
+    // navBar.appendChild(menuTypeDropdown);
+    navBar.appendChild(menuTypeDropdownContainer);
+}
+
 /// Circle preview
-function drawCirclePreview(typeOfMenu = 'regularMenu') {
+function drawCirclePreview(typeOfMenu = selectedMenuType) {
     try {
         document.getElementById('circle-preview-title').innerHTML = chrome.i18n.getMessage('circlePreview');
         document.getElementById('clickSegmentToHighlight').innerHTML = chrome.i18n.getMessage('clickSegmentToHighlight');
 
         totalCircleRadius = 0.0;
 
-        if (configs.interactiveMenusBehavior == 'combine' || typeOfMenu == 'regularMenu') {
-            for (var i = 0; i < configs['regularMenu'].levels.length; i++) {
-                if (configs['regularMenu'].levels[i].enabled !== false)
-                    totalCircleRadius += configs.gapBetweenCircles + (configs['regularMenu'].levels[i].width ?? configs.circleRadius);
+        if (configs.interactiveMenusBehavior == 'combine' || typeOfMenu == selectedMenuType) {
+            for (var i = 0; i < configs[selectedMenuType].levels.length; i++) {
+                if (configs[selectedMenuType].levels[i].enabled !== false)
+                    totalCircleRadius += configs.gapBetweenCircles + (configs[selectedMenuType].levels[i].width ?? configs.circleRadius);
             }
             canvasRadius = totalCircleRadius * 2 + 2;
         }
@@ -53,12 +110,12 @@ function drawCirclePreview(typeOfMenu = 'regularMenu') {
             canvasRadius = totalCircleRadius * 2;
         }
 
-        if (typeOfMenu !== 'regularMenu' && configs.interactiveMenusBehavior == 'combine') {
+        if (typeOfMenu !== selectedMenuType && configs.interactiveMenusBehavior == 'combine') {
             canvasRadius += (configs.interactiveCircleRadius + configs.gapBeforeInteractiveCircle) * 2;
         }
 
         let circle = document.getElementById('circle-preview');
-        // canvasRadius = (configs.addSecondLevel && typeOfMenu == 'regularMenu' ? secondCircleRadius * 2 : firstCircleRadius * 2) + (configs.addCircleOutlines ? 2 : 0);
+        // canvasRadius = (configs.addSecondLevel && typeOfMenu == selectedMenuType ? secondCircleRadius * 2 : firstCircleRadius * 2) + (configs.addCircleOutlines ? 2 : 0);
         circle.setAttribute('width', `${canvasRadius}px !imporant`);
         circle.setAttribute('height', `${canvasRadius}px !imporant`);
         circle.parentNode.setAttribute('style', `float:left;`);
@@ -67,7 +124,7 @@ function drawCirclePreview(typeOfMenu = 'regularMenu') {
         leftCoord = circle.getBoundingClientRect().left;
         topCoord = circle.getBoundingClientRect().top;
 
-        drawCircle(false, 'regularMenu', true, false, true);
+        drawCircle(false, selectedMenuType, true, false, true);
 
         positionSettingsInCenter();
         // setTimeout(positionSettingsInCenter, 1);
@@ -83,14 +140,14 @@ function generateAppearanceControls() {
 
     /// Set background color selector
     let colorSelect = document.getElementById('backgroundColor');
-    colorSelect.setAttribute('value', configs.regularMenu.color);
+    colorSelect.setAttribute('value', configs[selectedMenuType].color);
     colorSelect.parentNode.innerHTML = chrome.i18n.getMessage('backgroundColor') + ' ' + colorSelect.parentNode.innerHTML;
 
     setTimeout(function () {
         let colorSelect = document.getElementById('backgroundColor');
 
         colorSelect.addEventListener("input", function (e) {
-            configs.regularMenu.color = colorSelect.value;
+            configs[selectedMenuType].color = colorSelect.value;
             drawCirclePreview();
         });
 
@@ -163,46 +220,47 @@ function generateGesturesConfigs() {
     /// Translate title
     document.getElementById('gesturesTitle').innerHTML = chrome.i18n.getMessage('gesturesTitle');
 
+    let gesturesConfigs = document.getElementById('gestures-config');
     /// Rocker action dropdown
     let rockerActionContainer = document.createElement('div');
     rockerActionContainer.setAttribute('class', 'option');
 
     let rockerIidentifier = `regularRockerActionDropdown`;
-    let dropdown = createActionDropdownButton(rockerIidentifier, configs.regularMenu.rockerAction, function (newValue) {
-        configs.regularMenu.rockerAction = newValue;
+    let dropdown = createActionDropdownButton(rockerIidentifier, configs[selectedMenuType].rockerAction, function (newValue) {
+        configs[selectedMenuType].rockerAction = newValue;
         saveAllSettings();
     }, chrome.i18n.getMessage('rockerAction'));
+
     rockerActionContainer.appendChild(dropdown);
 
-    document.getElementById('gestures-config').appendChild(rockerActionContainer);
+    gesturesConfigs.appendChild(rockerActionContainer);
 
     /// Wheel up action dropdown
     let wheelUpdropdownContainer = document.createElement('div');
     wheelUpdropdownContainer.setAttribute('class', 'option');
 
     let wheelUpIidentifier = `regularWheelUpActionDropdown`;
-    let wheelUpdropdown = createActionDropdownButton(wheelUpIidentifier, configs.regularMenu.mouseWheelUpAction, function (newValue) {
-        configs.regularMenu.mouseWheelUpAction = newValue;
+    let wheelUpdropdown = createActionDropdownButton(wheelUpIidentifier, configs[selectedMenuType].mouseWheelUpAction, function (newValue) {
+        configs[selectedMenuType].mouseWheelUpAction = newValue;
         saveAllSettings();
     }, chrome.i18n.getMessage('mouseWheelUpAction'));
     wheelUpdropdownContainer.appendChild(wheelUpdropdown);
 
-    document.getElementById('gestures-config').appendChild(wheelUpdropdownContainer);
+    gesturesConfigs.appendChild(wheelUpdropdownContainer);
 
     /// Wheel down action dropdown
     let wheelDowndropdownContainer = document.createElement('div');
     wheelDowndropdownContainer.setAttribute('class', 'option');
 
     let wheelDownIidentifier = `regularWheelDownActionDropdown`;
-    let wheelDowndropdown = createActionDropdownButton(wheelDownIidentifier, configs.regularMenu.mouseWheelDownAction, function (newValue) {
-        configs.regularMenu.mouseWheelDownAction = newValue;
+    let wheelDowndropdown = createActionDropdownButton(wheelDownIidentifier, configs[selectedMenuType].mouseWheelDownAction, function (newValue) {
+        configs[selectedMenuType].mouseWheelDownAction = newValue;
         saveAllSettings();
     }, chrome.i18n.getMessage('mouseWheelDownAction'));
     wheelDowndropdownContainer.appendChild(wheelDowndropdown);
 
-    document.getElementById('gestures-config').appendChild(wheelDowndropdownContainer);
+    gesturesConfigs.appendChild(wheelDowndropdownContainer);
 }
-
 
 /// Buttons configs
 function generateButtonsControls() {
@@ -214,7 +272,7 @@ function generateButtonsControls() {
     buttonsHeader.setAttribute('class', 'header');
     document.getElementById('buttons-config-container').appendChild(buttonsHeader);
 
-    for (var i = 0; i < configs.regularMenu.levels.length; i++) {
+    for (var i = 0; i < configs['imageMenu'].levels.length; i++) {
         generateLevelConfigs(i);
     }
 
@@ -233,7 +291,7 @@ function generateLevelConfigs(levelIndex = 0) {
     enabledCheckbox.setAttribute('type', 'checkbox');
     enabledCheckbox.setAttribute('style', 'margin-right: 5px;cursor: pointer;');
     enabledCheckbox.setAttribute('id', enabledCheckboxId);
-    if (configs.regularMenu.levels[levelIndex].enabled !== false) {
+    if (configs[selectedMenuType].levels[levelIndex].enabled !== false) {
         enabledCheckbox.setAttribute('checked', 0);
     }
 
@@ -241,7 +299,7 @@ function generateLevelConfigs(levelIndex = 0) {
         document.getElementById(enabledCheckboxId).addEventListener('input', function () {
             let ind = enabledCheckboxId.split('-')[1];
             console.log('hit checkbox on ' + ind.toString());
-            configs.regularMenu.levels[ind].enabled = configs.regularMenu.levels[ind].enabled ? false : true;
+            configs[selectedMenuType].levels[ind].enabled = configs[selectedMenuType].levels[ind].enabled ? false : true;
 
             drawCirclePreview();
             generateButtonsControls();
@@ -269,7 +327,7 @@ function generateLevelConfigs(levelIndex = 0) {
         let removeLevelButton = document.getElementById(removeLevelButtonId);
         removeLevelButton.addEventListener('click', function () {
             let ind = removeLevelButtonId.split('-')[1];
-            configs.regularMenu.levels.splice(ind, 1);
+            configs[selectedMenuType].levels.splice(ind, 1);
 
             drawCirclePreview();
             generateButtonsControls();
@@ -289,15 +347,15 @@ function generateLevelConfigs(levelIndex = 0) {
     container.setAttribute('class', 'level-configs');
     container.innerHTML = '';
 
-    if (configs.regularMenu.levels[levelIndex].enabled == false)
+    if (configs[selectedMenuType].levels[levelIndex].enabled == false)
         container.style.opacity = 0.5;
 
     container.appendChild(headerContainer);
     document.getElementById('buttons-config-container').appendChild(container);
 
     /// Generate entries
-    for (var i = 0; i < configs.regularMenu.levels[levelIndex].buttons.length; i++) {
-        let item = configs.regularMenu.levels[levelIndex].buttons[i];
+    for (var i = 0; i < configs[selectedMenuType].levels[levelIndex].buttons.length; i++) {
+        let item = configs[selectedMenuType].levels[levelIndex].buttons[i];
 
         let entry = document.createElement('div');
         entry.setAttribute('class', 'buttons-item');
@@ -320,7 +378,7 @@ function generateLevelConfigs(levelIndex = 0) {
 
         let actionDropdown = createActionDropdownButton(dropdownIdentifier, item.id, function (newValue) {
             let parts = dropdownIdentifier.split('-');
-            configs.regularMenu.levels[parts[1]].buttons[parts[2]] = { 'id': newValue };
+            configs[selectedMenuType].levels[parts[1]].buttons[parts[2]] = { 'id': newValue };
             drawCirclePreview();
             generateButtonsControls();
             saveAllSettings();
@@ -344,22 +402,22 @@ function generateLevelConfigs(levelIndex = 0) {
             document.getElementById(moveUpButtonIdentifier).addEventListener("mouseup", function (e) {
                 let parts = moveUpButtonIdentifier.split('-');
 
-                let movedItem = configs.regularMenu.levels[parts[1]].buttons[parts[2]];
-                configs.regularMenu.levels[parts[1]].buttons.splice(parts[2], 1);
+                let movedItem = configs[selectedMenuType].levels[parts[1]].buttons[parts[2]];
+                configs[selectedMenuType].levels[parts[1]].buttons.splice(parts[2], 1);
                 if (parts[2] > 0) {
                     /// Move item at previous index
-                    configs.regularMenu.levels[parts[1]].buttons.splice(parts[2] - 1, 0, movedItem);
+                    configs[selectedMenuType].levels[parts[1]].buttons.splice(parts[2] - 1, 0, movedItem);
                     preselectedButtons[levelIndex] = parts[2] - 1;
                 } else {
                     /// Item is first in list - move item to end
 
-                    let lastIndex = configs.regularMenu.levels[parts[1]].buttons.length - 1;
-                    let lastItem = configs.regularMenu.levels[parts[1]].buttons[lastIndex];
-                    configs.regularMenu.levels[parts[1]].buttons.splice(lastIndex, 1);
-                    configs.regularMenu.levels[parts[1]].buttons.splice(0, 0, lastItem);
+                    let lastIndex = configs[selectedMenuType].levels[parts[1]].buttons.length - 1;
+                    let lastItem = configs[selectedMenuType].levels[parts[1]].buttons[lastIndex];
+                    configs[selectedMenuType].levels[parts[1]].buttons.splice(lastIndex, 1);
+                    configs[selectedMenuType].levels[parts[1]].buttons.splice(0, 0, lastItem);
 
-                    configs.regularMenu.levels[parts[1]].buttons.splice(configs.regularMenu.levels[parts[1]].buttons.length, 0, movedItem);
-                    preselectedButtons[levelIndex] = configs.regularMenu.levels[parts[1]].buttons.length - 1;
+                    configs[selectedMenuType].levels[parts[1]].buttons.splice(configs[selectedMenuType].levels[parts[1]].buttons.length, 0, movedItem);
+                    preselectedButtons[levelIndex] = configs[selectedMenuType].levels[parts[1]].buttons.length - 1;
                 }
 
                 drawCirclePreview();
@@ -380,22 +438,22 @@ function generateLevelConfigs(levelIndex = 0) {
             document.getElementById(moveDownButtonIdentifier).addEventListener("mouseup", function (e) {
                 try {
                     let parts = moveDownButtonIdentifier.split('-');
-                    let movedItem = configs.regularMenu.levels[parts[1]].buttons[parts[2]];
-                    configs.regularMenu.levels[parts[1]].buttons.splice(parts[2], 1);
+                    let movedItem = configs[selectedMenuType].levels[parts[1]].buttons[parts[2]];
+                    configs[selectedMenuType].levels[parts[1]].buttons.splice(parts[2], 1);
 
-                    if (parts[2] < configs.regularMenu.levels[parts[1]].buttons.length) {
+                    if (parts[2] < configs[selectedMenuType].levels[parts[1]].buttons.length) {
                         /// Move item at next index
-                        configs.regularMenu.levels[parts[1]].buttons.splice(parseInt(parts[2]) + 1, 0, movedItem);
+                        configs[selectedMenuType].levels[parts[1]].buttons.splice(parseInt(parts[2]) + 1, 0, movedItem);
                         preselectedButtons[levelIndex] = parseInt(parts[2]) + 1;
                     } else {
                         /// Item is last in list - move item to start
 
-                        let lastIndex = configs.regularMenu.levels[parts[1]].buttons.length - 1;
-                        let firstItem = configs.regularMenu.levels[parts[1]].buttons[0];
-                        configs.regularMenu.levels[parts[1]].buttons.splice(0, 1);
-                        configs.regularMenu.levels[parts[1]].buttons.splice(lastIndex, 0, firstItem);
+                        let lastIndex = configs[selectedMenuType].levels[parts[1]].buttons.length - 1;
+                        let firstItem = configs[selectedMenuType].levels[parts[1]].buttons[0];
+                        configs[selectedMenuType].levels[parts[1]].buttons.splice(0, 1);
+                        configs[selectedMenuType].levels[parts[1]].buttons.splice(lastIndex, 0, firstItem);
 
-                        configs.regularMenu.levels[parts[1]].buttons.splice(0, 0, movedItem);
+                        configs[selectedMenuType].levels[parts[1]].buttons.splice(0, 0, movedItem);
                         preselectedButtons[levelIndex] = 0;
                     }
 
@@ -421,7 +479,7 @@ function generateLevelConfigs(levelIndex = 0) {
         setTimeout(function () {
             document.getElementById(deleteButtonIdentifier).addEventListener("mouseup", function (e) {
                 let parts = deleteButtonIdentifier.split('-');
-                configs.regularMenu.levels[parts[1]].buttons.splice(parts[2], 1);
+                configs[selectedMenuType].levels[parts[1]].buttons.splice(parts[2], 1);
                 drawCirclePreview();
                 generateButtonsControls();
                 saveAllSettings();
@@ -463,7 +521,7 @@ function generateLevelConfigs(levelIndex = 0) {
     /// Generate entries approach with splitting too long columns in halfs
 
     // let maxButtonsInColumn = 5;
-    // var splittedButtons = chunk(configs.regularMenu.levels[levelIndex].buttons, maxButtonsInColumn);
+    // var splittedButtons = chunk(configs[selectedMenuType].levels[levelIndex].buttons, maxButtonsInColumn);
 
     // for (var i2 = 0; i2 < splittedButtons.length; i2++) {
 
@@ -496,7 +554,7 @@ function generateLevelConfigs(levelIndex = 0) {
 
     //         let actionDropdown = createActionDropdownButton(dropdownIdentifier, item.id, function (newValue) {
     //             let parts = dropdownIdentifier.split('-');
-    //             configs.regularMenu.levels[parts[1]].buttons[parts[2]] = { 'id': newValue };
+    //             configs[selectedMenuType].levels[parts[1]].buttons[parts[2]] = { 'id': newValue };
     //             drawCirclePreview();
     //             generateButtonsControls();
     //             saveAllSettings();
@@ -520,22 +578,22 @@ function generateLevelConfigs(levelIndex = 0) {
     //             document.getElementById(moveUpButtonIdentifier).addEventListener("mouseup", function (e) {
     //                 let parts = moveUpButtonIdentifier.split('-');
 
-    //                 let movedItem = configs.regularMenu.levels[parts[1]].buttons[parts[2]];
-    //                 configs.regularMenu.levels[parts[1]].buttons.splice(parts[2], 1);
+    //                 let movedItem = configs[selectedMenuType].levels[parts[1]].buttons[parts[2]];
+    //                 configs[selectedMenuType].levels[parts[1]].buttons.splice(parts[2], 1);
     //                 if (parts[2] > 0) {
     //                     /// Move item at previous index
-    //                     configs.regularMenu.levels[parts[1]].buttons.splice(parts[2] - 1, 0, movedItem);
+    //                     configs[selectedMenuType].levels[parts[1]].buttons.splice(parts[2] - 1, 0, movedItem);
     //                     preselectedButtons[levelIndex] = parts[2] - 1;
     //                 } else {
     //                     /// Item is first in list - move item to end
 
-    //                     let lastIndex = configs.regularMenu.levels[parts[1]].buttons.length - 1;
-    //                     let lastItem = configs.regularMenu.levels[parts[1]].buttons[lastIndex];
-    //                     configs.regularMenu.levels[parts[1]].buttons.splice(lastIndex, 1);
-    //                     configs.regularMenu.levels[parts[1]].buttons.splice(0, 0, lastItem);
+    //                     let lastIndex = configs[selectedMenuType].levels[parts[1]].buttons.length - 1;
+    //                     let lastItem = configs[selectedMenuType].levels[parts[1]].buttons[lastIndex];
+    //                     configs[selectedMenuType].levels[parts[1]].buttons.splice(lastIndex, 1);
+    //                     configs[selectedMenuType].levels[parts[1]].buttons.splice(0, 0, lastItem);
 
-    //                     configs.regularMenu.levels[parts[1]].buttons.splice(configs.regularMenu.levels[parts[1]].buttons.length, 0, movedItem);
-    //                     preselectedButtons[levelIndex] = configs.regularMenu.levels[parts[1]].buttons.length - 1;
+    //                     configs[selectedMenuType].levels[parts[1]].buttons.splice(configs[selectedMenuType].levels[parts[1]].buttons.length, 0, movedItem);
+    //                     preselectedButtons[levelIndex] = configs[selectedMenuType].levels[parts[1]].buttons.length - 1;
     //                 }
 
     //                 drawCirclePreview();
@@ -556,22 +614,22 @@ function generateLevelConfigs(levelIndex = 0) {
     //             document.getElementById(moveDownButtonIdentifier).addEventListener("mouseup", function (e) {
     //                 try {
     //                     let parts = moveDownButtonIdentifier.split('-');
-    //                     let movedItem = configs.regularMenu.levels[parts[1]].buttons[parts[2]];
-    //                     configs.regularMenu.levels[parts[1]].buttons.splice(parts[2], 1);
+    //                     let movedItem = configs[selectedMenuType].levels[parts[1]].buttons[parts[2]];
+    //                     configs[selectedMenuType].levels[parts[1]].buttons.splice(parts[2], 1);
 
-    //                     if (parts[2] < configs.regularMenu.levels[parts[1]].buttons.length) {
+    //                     if (parts[2] < configs[selectedMenuType].levels[parts[1]].buttons.length) {
     //                         /// Move item at next index
-    //                         configs.regularMenu.levels[parts[1]].buttons.splice(parseInt(parts[2]) + 1, 0, movedItem);
+    //                         configs[selectedMenuType].levels[parts[1]].buttons.splice(parseInt(parts[2]) + 1, 0, movedItem);
     //                         preselectedButtons[levelIndex] = parseInt(parts[2]) + 1;
     //                     } else {
     //                         /// Item is last in list - move item to start
 
-    //                         let lastIndex = configs.regularMenu.levels[parts[1]].buttons.length - 1;
-    //                         let firstItem = configs.regularMenu.levels[parts[1]].buttons[0];
-    //                         configs.regularMenu.levels[parts[1]].buttons.splice(0, 1);
-    //                         configs.regularMenu.levels[parts[1]].buttons.splice(lastIndex, 0, firstItem);
+    //                         let lastIndex = configs[selectedMenuType].levels[parts[1]].buttons.length - 1;
+    //                         let firstItem = configs[selectedMenuType].levels[parts[1]].buttons[0];
+    //                         configs[selectedMenuType].levels[parts[1]].buttons.splice(0, 1);
+    //                         configs[selectedMenuType].levels[parts[1]].buttons.splice(lastIndex, 0, firstItem);
 
-    //                         configs.regularMenu.levels[parts[1]].buttons.splice(0, 0, movedItem);
+    //                         configs[selectedMenuType].levels[parts[1]].buttons.splice(0, 0, movedItem);
     //                         preselectedButtons[levelIndex] = 0;
     //                     }
 
@@ -597,7 +655,7 @@ function generateLevelConfigs(levelIndex = 0) {
     //         setTimeout(function () {
     //             document.getElementById(deleteButtonIdentifier).addEventListener("mouseup", function (e) {
     //                 let parts = deleteButtonIdentifier.split('-');
-    //                 configs.regularMenu.levels[parts[1]].buttons.splice(parts[2], 1);
+    //                 configs[selectedMenuType].levels[parts[1]].buttons.splice(parts[2], 1);
     //                 drawCirclePreview();
     //                 generateButtonsControls();
     //                 saveAllSettings();
@@ -647,7 +705,7 @@ function generateLevelConfigs(levelIndex = 0) {
     setTimeout(function () {
         let addButton = document.getElementById(addButtonId);
         addButton.onmouseup = function () {
-            configs.regularMenu.levels[addButtonId.split('-')[1]].buttons.push({
+            configs[selectedMenuType].levels[addButtonId.split('-')[1]].buttons.push({
                 'id': 'noAction',
             });
             drawCirclePreview();
@@ -666,9 +724,9 @@ function generateLevelConfigs(levelIndex = 0) {
 
     /// Level width input
     let widthInputId = `widthInput-${levelIndex}`;
-    let levelWidthSlider = createRangeSlider(widthInputId, configs.regularMenu.levels[levelIndex].width ?? configs.circleRadius, function (newVal) {
+    let levelWidthSlider = createRangeSlider(widthInputId, configs[selectedMenuType].levels[levelIndex].width ?? configs.circleRadius, function (newVal) {
         let ind = widthInputId.split('-')[1];
-        configs.regularMenu.levels[ind].width = newVal;
+        configs[selectedMenuType].levels[ind].width = newVal;
     }, 50, 200, chrome.i18n.getMessage("levelWidth"));
     container.appendChild(levelWidthSlider);
 
@@ -683,7 +741,7 @@ function generateLevelConfigs(levelIndex = 0) {
     useCustomColorSwitch.setAttribute('type', 'checkbox');
     useCustomColorSwitch.setAttribute('id', useCustomColorSwitchId);
 
-    let selectedColor = configs.regularMenu.levels[levelIndex].color;
+    let selectedColor = configs[selectedMenuType].levels[levelIndex].color;
     let switched = selectedColor == null || selectedColor == undefined;
     if (switched == false)
         useCustomColorSwitch.setAttribute('checked', 0);
@@ -700,13 +758,13 @@ function generateLevelConfigs(levelIndex = 0) {
 
             console.log('clicked!')
 
-            let selectedColor = configs.regularMenu.levels[levelIndex].color;
+            let selectedColor = configs[selectedMenuType].levels[levelIndex].color;
 
             if (selectedColor !== null && selectedColor !== undefined) {
-                configs.regularMenu.levels[levelIndex].color = null;
+                configs[selectedMenuType].levels[levelIndex].color = null;
                 drawCirclePreview();
             } else {
-                configs.regularMenu.levels[levelIndex].color = configs.regularMenu.color;
+                configs[selectedMenuType].levels[levelIndex].color = configs[selectedMenuType].color;
             }
 
             saveAllSettings();
@@ -732,7 +790,7 @@ function generateLevelConfigs(levelIndex = 0) {
             let customColorInput = document.getElementById(customColorInputId);
             customColorInput.addEventListener("input", function (e) {
                 let ind = customColorInputId.split('-')[1];
-                configs.regularMenu.levels[ind].color = customColorInput.value;
+                configs[selectedMenuType].levels[ind].color = customColorInput.value;
                 drawCirclePreview();
             });
 
@@ -770,7 +828,7 @@ function generateLevelConfigs(levelIndex = 0) {
     //         let customColorInput = document.getElementById(customColorInputId);
     //         customColorInput.addEventListener("input", function (e) {
     //             let ind = customColorInputId.split('-')[1];
-    //             configs.regularMenu.levels[ind].color = customColorInput.value;
+    //             configs[selectedMenuType].levels[ind].color = customColorInput.value;
     //             drawCirclePreview();
     //         });
 
@@ -790,7 +848,7 @@ function generateLevelConfigs(levelIndex = 0) {
 
 function generateAddLevelButton() {
 
-    if (configs.regularMenu.levels.length == 4) return;
+    if (configs[selectedMenuType].levels.length == 4) return;
 
     let addLevelButton = document.createElement('div');
     addLevelButton.setAttribute('id', 'addLevelButton');
@@ -799,7 +857,7 @@ function generateAddLevelButton() {
     document.getElementById('buttons-config-container').appendChild(addLevelButton);
 
     addLevelButton.addEventListener('click', function () {
-        configs.regularMenu.levels.push({
+        configs[selectedMenuType].levels.push({
             'width': 60,
             'buttons': [
                 { 'id': 'goForward' },
@@ -817,7 +875,6 @@ function generateAddLevelButton() {
     });
 }
 
-
 /// Service functions
 
 function createActionDropdownButton(id, initialValue, cbOnChange, label) {
@@ -829,6 +886,7 @@ function createActionDropdownButton(id, initialValue, cbOnChange, label) {
         let span = document.createElement('span');
         span.textContent = label + ':  ';
         selectContainer.appendChild(span);
+        selectContainer.innerHTML += '<br />';
     }
 
     /// Generate dropdown button
@@ -858,7 +916,7 @@ function createActionDropdownButton(id, initialValue, cbOnChange, label) {
             let newValue = listenedDropdown.value;
 
             cbOnChange(newValue);
-            // configs.regularMenu.rockerAction = newValue;
+            // configs[selectedMenuType].rockerAction = newValue;
             // saveAllSettings();
         });
     }, delayToAddListeners);
@@ -896,7 +954,7 @@ function createRangeSlider(id, value, callbackOnChange, min = 50, max = 200, lab
 
         inp.addEventListener('input', function () {
             // let ind = widthInputId.split('-')[1];
-            // configs.regularMenu.levels[ind].width = parseInt(inp.value);
+            // configs[selectedMenuType].levels[ind].width = parseInt(inp.value);
 
             callbackOnChange(parseInt(inp.value));
 

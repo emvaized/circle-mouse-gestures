@@ -254,5 +254,21 @@
     "gesturesTitle": {
         "message": "Gestures",
         "description": "Label for circle menu button"
+    },
+    "regularMenu": {
+        "message": "Regular menu",
+        "description": "Label for circle menu button"
+    },
+    "linkMenu": {
+        "message": "Menu for links",
+        "description": "Label for circle menu button"
+    },
+    "selectionMenu": {
+        "message": "Menu for text selection",
+        "description": "Label for circle menu button"
+    },
+    "imageMenu": {
+        "message": "Menu for images",
+        "description": "Label for circle menu button"
     }
 }

@@ -76,9 +76,6 @@ function setPageListeners() {
                         hoveredLink = configs.showLinkTooltipForPageItself ? window.location.href : null;
                         hoveredLinkTitle = null;
                     }
-
-
-
                 }
 
                 if (configs.debugMode)

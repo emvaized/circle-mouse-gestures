@@ -25,7 +25,7 @@ var configs = {
     'showLinkTextInTooltip': false,
     'showLinkTooltipForPageItself': false,
     'linkTooltipOpacity': 1.0,
-    'circleHideAnimation': false,
+    'circleHideAnimation': true,
     'circleAppearAnimation': false,
 
     /// Menus
@@ -58,37 +58,39 @@ var configs = {
                     { 'id': 'copyUrl' },
                 ]
             },
-            // {
-            //     'width': 57,
-            //     'buttons': [
-            //         { 'id': 'goForward' },
-            //         { 'id': 'newTab' },
-            //         { 'id': 'newTab' },
-            //         { 'id': 'goBack' },
-            //         { 'id': 'closeCurrentTab' },
-            //     ]
-            // },
         ]
     },
 
     'linkMenu': {
         'color': "#3777CD",
         'rockerAction': 'openInFgTab',
-        'buttons': [
-            { 'id': 'openInFgTab' },
-            { 'id': 'copyLinkText' },
-            { 'id': 'openInBgTab' },
-            { 'id': 'copyUrl' },
+        'mouseWheelUpAction': 'noAction',
+        'mouseWheelDownAction': 'noAction',
+        'levels': [
+            {
+                'buttons': [
+                    { 'id': 'openInFgTab' },
+                    { 'id': 'copyLinkText' },
+                    { 'id': 'openInBgTab' },
+                    { 'id': 'copyUrl' },
+                ]
+            }
         ]
     },
 
     'selectionMenu': {
         'color': "#000000",
         'rockerAction': 'copyText',
-        'buttons': [
-            { 'id': 'copyText' },
-            { 'id': 'searchText' },
-            { 'id': 'translate' },
+        'mouseWheelUpAction': 'noAction',
+        'mouseWheelDownAction': 'noAction',
+        'levels': [
+            {
+                'buttons': [
+                    { 'id': 'copyText' },
+                    { 'id': 'searchText' },
+                    { 'id': 'translate' },
+                ]
+            }
         ]
     },
 
@@ -96,12 +98,16 @@ var configs = {
         // 'color': "#c69a15",
         'color': "#d80000",
         'rockerAction': 'openInFgTab',
-        'buttons': [
-            { 'id': 'openInFgTab' },
-            { 'id': 'downloadUrlAs' },
-            { 'id': 'openInBgTab' },
-            { 'id': 'searchImageOnGoogle' },
-            { 'id': 'copyUrl' },
+        'levels': [
+            {
+                'buttons': [
+                    { 'id': 'openInFgTab' },
+                    { 'id': 'downloadUrlAs' },
+                    { 'id': 'openInBgTab' },
+                    { 'id': 'searchImageOnGoogle' },
+                    { 'id': 'copyUrl' },
+                ]
+            }
         ]
 
     },

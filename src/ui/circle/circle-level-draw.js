@@ -324,7 +324,7 @@ function checkButtonAvailability(id) {
         //             return result;
         //         }
         //     );
-        // } break;
+        // } break; 
 
         // case 'switchToPreviousTab': {
         //     return await chrome.runtime.sendMessage({ actionToDo: 'checkPrevTabAvailability' });

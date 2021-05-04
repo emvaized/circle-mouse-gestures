@@ -10,7 +10,7 @@
   },
   "background": {
     "scripts": [
-      "background.js"
+      "src/functions/background.js"
     ],
     "persistent": false
   },
@@ -23,7 +23,7 @@
         "src/data/configs.js",
         "src/data/variables.js",
         "src/data/icons.js",
-        "functions.js",
+        "src/functions/functions.js",
         "src/ui/circle/circle.js",
         "src/ui/circle/circle-level-draw.js",
         "src/ui/link-tooltip.js",
