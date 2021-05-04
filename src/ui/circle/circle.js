@@ -18,7 +18,7 @@ function showCircle(e) {
                 canvasRadius = totalCircleRadius * 2 + 2;
             }
             else {
-                totalCircleRadius = configs.gapBetweenCircles + configs.circleRadius;
+                totalCircleRadius = configs.gapBetweenCircles + (configs[typeOfMenu].levels[0].width ?? configs.circleRadius);
                 canvasRadius = totalCircleRadius * 2;
             }
 
@@ -79,18 +79,19 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
     if (typeOfMenu !== 'regularMenu') {
         /// Interactive menu replaces the regular menu
         if (configs.interactiveMenusBehavior == 'replace') {
-            let firstCircleRadius = configs.circleRadius;
-            let firstCircleInnerRadius = configs.innerCircleRadius;
 
-            let buttonsToShow = configs[typeOfMenu].levels[0].buttons;
-            drawCircleLevel(typeOfMenu, e,
-                buttonsToShow,
-                firstCircleRadius,
-                firstCircleInnerRadius,
-                // configs['regularMenu'].levels.length,
-                0,
-                false, showIndexes, shouldCheckButtonsAvailability);
-            return;
+            // let firstCircleRadius = configs[typeOfMenu].levels[0].width ?? configs.circleRadius;
+            // let firstCircleInnerRadius = configs.innerCircleRadius;
+
+            // let buttonsToShow = configs[typeOfMenu].levels[0].buttons;
+            // drawCircleLevel(typeOfMenu, e,
+            //     buttonsToShow,
+            //     firstCircleRadius,
+            //     firstCircleInnerRadius,
+            //     // configs['regularMenu'].levels.length,
+            //     0,
+            //     false, showIndexes, shouldCheckButtonsAvailability);
+            // return;
         } else {
             /// Interactive menu is added as outer level for regular circle
             drawCircleLevel(
@@ -114,31 +115,31 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
 
     let enabledLevelsCount = 0;
 
-    for (var i = 0; i < configs['regularMenu'].levels.length; i++) {
-        if (configs['regularMenu'].levels[i].enabled !== false) enabledLevelsCount += 1;
+    for (var i = 0; i < configs[typeOfMenu].levels.length; i++) {
+        if (configs[typeOfMenu].levels[i].enabled !== false) enabledLevelsCount += 1;
     }
 
 
-    for (var i = configs['regularMenu'].levels.length - 1; i > -1; i--) {
-        if (configs['regularMenu'].levels[i].enabled !== false) {
+    for (var i = configs[typeOfMenu].levels.length - 1; i > -1; i--) {
+        if (configs[typeOfMenu].levels[i].enabled !== false) {
             drawCircleLevel(
-                'regularMenu', e,
+                typeOfMenu, e,
                 /// buttonsToShow
-                configs['regularMenu'].levels[i].buttons,
+                configs[typeOfMenu].levels[i].buttons,
                 /// circleRadius
                 totalRadius,
                 /// innerCircleRadius
                 i == 0 ? configs.innerCircleRadius :
-                    totalRadius - (configs['regularMenu'].levels[i].width ?? configs.circleRadius) + configs.gapBetweenCircles,
+                    totalRadius - (configs[typeOfMenu].levels[i].width ?? configs.circleRadius) + configs.gapBetweenCircles,
                 ///level
                 i,
                 /// shouldRespectBoundary
                 // typeOfMenu !== 'regularMenu' ? true : shouldRespectBoundaries || i !== configs['regularMenu'].levels.length - 1,
-                typeOfMenu !== 'regularMenu' ? true : shouldRespectBoundaries || i !== enabledLevelsCount - 1,
+                typeOfMenu !== typeOfMenu ? true : shouldRespectBoundaries || i !== enabledLevelsCount - 1,
                 showIndexes,
                 shouldCheckButtonsAvailability
             );
-            totalRadius -= configs['regularMenu'].levels[i].width ?? configs.circleRadius;
+            totalRadius -= configs[typeOfMenu].levels[i].width ?? configs.circleRadius;
         }
     }
 }

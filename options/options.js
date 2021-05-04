@@ -638,7 +638,7 @@ function generateLevelConfigs(levelIndex = 0) {
 
 function generateAddLevelButton() {
 
-    if (configs[selectedMenuType].levels.length == 4) return;
+    if (configs[selectedMenuType].levels.length >= 3) return;
 
     let addLevelButton = document.createElement('div');
     addLevelButton.setAttribute('id', 'addLevelButton');
@@ -649,12 +649,13 @@ function generateAddLevelButton() {
     addLevelButton.addEventListener('click', function () {
         configs[selectedMenuType].levels.push({
             'width': 60,
-            'buttons': [
-                { 'id': 'goForward' },
-                { 'id': 'newTab' },
-                { 'id': 'goBack' },
-                { 'id': 'closeCurrentTab' },
-            ]
+            'buttons': configs[selectedMenuType].levels[configs[selectedMenuType].levels.length - 1].buttons
+            // 'buttons': [
+            //     { 'id': 'goForward' },
+            //     { 'id': 'newTab' },
+            //     { 'id': 'goBack' },
+            //     { 'id': 'closeCurrentTab' },
+            // ]
         });
 
         drawCirclePreview();
