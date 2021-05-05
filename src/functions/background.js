@@ -1,6 +1,6 @@
 /// Listener to open url in new tab
 chrome.runtime.onMessage.addListener(
-    async function (request, sender, sendResponse) {
+    function (request, sender, sendResponse) {
         /// Regular menu
         // if (request.typeOfAction == 'mgc-regular-menu')
         switch (request.actionToDo) {
@@ -177,7 +177,7 @@ chrome.runtime.onMessage.addListener(
                     currentWindow: true
                 }
 
-                // if (this.getSetting("excludeDiscarded")) queryInfo.discarded = false;
+                // if (this.getSetting("excludeDiscarded")) queryInfo.discarded = false;  
 
                 chrome.tabs.query(queryInfo, function (tabs) {
                     let nextTab;
@@ -293,16 +293,21 @@ chrome.runtime.onMessage.addListener(
             } break;
 
             case 'checkNextTabAvailability': {
-                return chrome.tabs.query({}, function (tabs) {
+                chrome.tabs.query({}, function (tabs) {
                     sendResponse(sender.tab.index == tabs.length - 1);
-                    // return sender.tab.index == tabs.length - 1;
                 });
+                return true;
             } break;
 
-            // case 'checkPrevTabAvailability': {
-            //     return sender.tab.index == 0;
-            // } break;
+            case 'checkPrevTabAvailability': {
+                chrome.tabs.query({}, function (tabs) {
+                    sendResponse(sender.tab.index == 0);
+                });
+                return true;
+            } break;
         }
+
+
     }
 );
 

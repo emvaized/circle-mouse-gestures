@@ -238,8 +238,6 @@ function showBackgroundDimmer() {
 }
 
 function hideBackgroundDimmer() {
-    console.log('backgroundDimmer');
-    console.log(backgroundDimmer);
     if (backgroundDimmer !== null && backgroundDimmer !== undefined) {
         backgroundDimmer.style.opacity = 0.0;
         setTimeout(function () {

@@ -64,6 +64,7 @@ var sortedActionButtons = {
             'pageZoomOut',
             'copyUrl',
             'translate',
+            'addToBookmarks',
         ],
         'scroll': [
             'scrollToTop',

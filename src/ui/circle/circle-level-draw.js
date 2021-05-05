@@ -180,7 +180,7 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
     }
 
     /// Draw labels
-    drawLabels(segmentsCount, circleRadius, innerCircleRadius, buttonsToShow, segmentColor, showIndexes, shouldCheckButtonsAvailability);
+    drawLabels(E, segmentsCount, circleRadius, innerCircleRadius, buttonsToShow, segmentColor, showIndexes, shouldCheckButtonsAvailability);
 
     try {
         /// Show link tooltip
@@ -196,18 +196,26 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
 }
 
 
-function drawLabels(segmentsCount, circleRadius, innerCircleRadius, buttonsToShow, segmentColor, showIndexes = false, shouldCheckButtonsAvailability = true) {
-
+function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsToShow, segmentColor, showIndexes = false, shouldCheckButtonsAvailability = true) {
     let textColorRgb = getTextColorForBackground(segmentColor);
     let iconColorRgb = getTextColorForBackground(segmentColor);
 
-    for (i = 0; i < segmentsCount; i++) {
+    for (var i = 0; i < segmentsCount; i++) {
         if (actionIcons[buttonsToShow[i].id] == undefined) continue;
 
         var buttonIsAvailable = true;
         if (shouldCheckButtonsAvailability) {
             try {
-                buttonIsAvailable = checkButtonAvailability(buttonsToShow[i].id);
+                buttonIsAvailable = unavailableButtons[buttonsToShow[i].id] ?? checkButtonAvailability(e, buttonsToShow[i].id);
+                console.log(`button ${buttonsToShow[i].id} is available: ` + buttonIsAvailable);
+
+
+                // checkButtonAvailability(buttonsToShow[i].id).then((res) => {
+                //     buttonIsAvailable = res;
+                //     console.log(`button ${buttonsToShow[i].id} is available: ` + buttonIsAvailable);
+
+                // })
+
             } catch (e) {
                 if (configs.debugMode)
                     console.log(e);
@@ -300,8 +308,7 @@ function drawLabels(segmentsCount, circleRadius, innerCircleRadius, buttonsToSho
 }
 
 
-function checkButtonAvailability(id) {
-    // if (checkAvailabilityForButtons == false) return true;
+function checkButtonAvailability(e, id) {
     switch (id) {
         case 'scrollToTop': return window.scrollY !== 0.0;
         case 'scrollToBottom': {
@@ -316,21 +323,41 @@ function checkButtonAvailability(id) {
         };
         case 'goForward': return window.history.length !== 1;
 
-        // case 'switchToNextTab': {
-        //     await chrome.runtime.sendMessage({ actionToDo: 'checkNextTabAvailability' }
-        //         , function (result) {
-        //             console.log('result:');
-        //             console.log(result);
-        //             return result;
-        //         }
-        //     );
-        // } break; 
+        case 'switchToNextTab': {
+            chrome.runtime.sendMessage({ actionToDo: 'checkNextTabAvailability' }, (response) => {
+                console.log('result:');
+                console.log(response);
+                // return result;
+                // return response;
+                updateButtonAvailability(e, 'switchToNextTab', !response);
+            }
+            );
+            return true;
+        }
+
+        case 'switchToPreviousTab': {
+            chrome.runtime.sendMessage({ actionToDo: 'checkPrevTabAvailability' }, (response) => {
+                console.log('result:');
+                console.log(response);
+                updateButtonAvailability(e, 'switchToPreviousTab', !response);
+            }
+            );
+            return true;
+        }
 
         // case 'switchToPreviousTab': {
         //     return await chrome.runtime.sendMessage({ actionToDo: 'checkPrevTabAvailability' });
         // } break;
 
         default: return true;
-
     }
+}
+
+let unavailableButtons = {};
+
+function updateButtonAvailability(e, id, value) {
+    unavailableButtons[id] = value;
+    try {
+        drawCircle(e, typeOfMenu);
+    } catch (error) { console.log(error); }
 }
