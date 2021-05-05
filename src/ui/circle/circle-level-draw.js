@@ -207,19 +207,11 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
         if (shouldCheckButtonsAvailability) {
             try {
                 buttonIsAvailable = unavailableButtons[buttonsToShow[i].id] ?? checkButtonAvailability(e, buttonsToShow[i].id);
-                console.log(`button ${buttonsToShow[i].id} is available: ` + buttonIsAvailable);
-
-
-                // checkButtonAvailability(buttonsToShow[i].id).then((res) => {
-                //     buttonIsAvailable = res;
-                //     console.log(`button ${buttonsToShow[i].id} is available: ` + buttonIsAvailable);
-
-                // })
+                // console.log(`button ${buttonsToShow[i].id} is available: ` + buttonIsAvailable);
 
             } catch (e) {
                 if (configs.debugMode)
                     console.log(e);
-                // buttonIsAvailable = true;
             }
         }
 
@@ -235,8 +227,6 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
         // let textRadius = (circleRadius + innerCircleRadius) * 0.5;
         let textRadius = useRectangularShape ? innerCircleRadius + ((circleRadius - innerCircleRadius / 2) / (segmentsCount < 5 ? 3 : 5)) : (circleRadius + innerCircleRadius) * 0.5;
         let angle = (segmentsCount % 2 == 0.0 ? 0.0 : (Math.PI / segmentsCount) / 2) + i * (Math.PI / (segmentsCount / 2));
-
-        // angle -= Math.PI / 2;
 
         var dxForText = centerDx + Math.cos(angle) * textRadius;
         var dyForText = centerDy + Math.sin(angle) * textRadius;
@@ -325,10 +315,8 @@ function checkButtonAvailability(e, id) {
 
         case 'switchToNextTab': {
             chrome.runtime.sendMessage({ actionToDo: 'checkNextTabAvailability' }, (response) => {
-                console.log('result:');
-                console.log(response);
-                // return result;
-                // return response;
+                // console.log('result:');
+                // console.log(response);
                 updateButtonAvailability(e, 'switchToNextTab', !response);
             }
             );
@@ -337,21 +325,19 @@ function checkButtonAvailability(e, id) {
 
         case 'switchToPreviousTab': {
             chrome.runtime.sendMessage({ actionToDo: 'checkPrevTabAvailability' }, (response) => {
-                console.log('result:');
-                console.log(response);
+                // console.log('result:');
+                // console.log(response);
                 updateButtonAvailability(e, 'switchToPreviousTab', !response);
             }
             );
             return true;
         }
 
-        // case 'switchToPreviousTab': {
-        //     return await chrome.runtime.sendMessage({ actionToDo: 'checkPrevTabAvailability' });
-        // } break;
-
         default: return true;
     }
 }
+
+/// Used for async change of button's availability
 
 let unavailableButtons = {};
 
