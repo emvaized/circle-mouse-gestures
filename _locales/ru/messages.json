@@ -96,7 +96,7 @@
         "description": "Label for circle menu button"
     },
     "githubPage": {
-        "message": "Страница GitHub",
+        "message": "GitHub",
         "description": "Label for circle menu button"
     },
     "goBack": {
@@ -255,8 +255,12 @@
         "message": "Меню выделения текста",
         "description": "Label for circle menu button"
     },
+    "settings": {
+        "message": "Настройки",
+        "description": "Label for circle menu button"
+    },
     "supportButton": {
-        "message": "Отблагодарить",
+        "message": "Поддержать",
         "description": "Label for circle menu button"
     },
     "switchToNextTab": {

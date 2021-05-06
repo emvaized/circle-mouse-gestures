@@ -47,7 +47,7 @@ document.querySelector("#supportButton").addEventListener("click", function (val
   window.close();
   window.open('https://emvaized.diaka.ua/donate', '_blank');
 });
-document.querySelector("#githubButton").addEventListener("click", function (val) {
+document.querySelector("#githubPage").addEventListener("click", function (val) {
   window.close();
   window.open('https://github.com/emvaized/circle-mouse-gestures', '_blank');
 });

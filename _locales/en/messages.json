@@ -100,7 +100,7 @@
         "description": "Label for circle menu button"
     },
     "githubPage": {
-        "message": "GitHub page",
+        "message": "GitHub",
         "description": "Label for circle menu button"
     },
     "goBack": {
@@ -255,8 +255,12 @@
         "message": "Menu for text selection",
         "description": "Label for circle menu button"
     },
+    "settings": {
+        "message": "Settings",
+        "description": "Label for circle menu button"
+    },
     "supportButton": {
-        "message": "Donate",
+        "message": "Support",
         "description": "Label for circle menu button"
     },
     "switchToNextTab": {

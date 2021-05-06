@@ -29,32 +29,18 @@
     z-index: 10;
   }
 
-  /* Navbar links */
-  #navbar a {
-    float: left;
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 14px;
-    text-decoration: none;
-  }
-
-  #navbar a:hover {
-      background-color: black;
-      color: white;
-  }
-
   #typeOfMenuDropdown {
     background: transparent;
-    border: none; 
+    /* border: none;  */
     float: left;
     display: block;
-    padding: 14px;
+    padding: 6px;
     font-size: 15px;
     cursor: pointer;
 
     /* margin: 0 auto !important; */
-    margin-left: 30%;
+    margin-left: 40px;
+    margin-top: 15px;
   }
 
   #typeOfMenuDropdownArrow{

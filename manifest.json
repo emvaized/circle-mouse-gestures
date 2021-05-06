@@ -28,10 +28,10 @@
         "src/ui/circle/circle-level-draw.js",
         "src/ui/link-tooltip.js",
         "src/ui/rocker-icon.js",
-        "index.js"
+        "src/index.js"
       ],
       "css": [
-        "index.css"
+        "src/index.css"
       ],
       "run_at": "document_start"
     }

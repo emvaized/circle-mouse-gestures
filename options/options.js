@@ -31,6 +31,8 @@ function init() {
                 // } catch (e) { console.log(e); }
                 generateButtonsControls();
             });
+
+            document.getElementById('navbar-settings-label').innerHTML = ' ' + chrome.i18n.getMessage('settings').toLowerCase();
         })
     } catch (e) { console.log(e); }
 }
@@ -52,10 +54,10 @@ function setMenuTypeDropdown() {
     menuTypeDropdown.setAttribute('id', menuTypeDropdownId);
     menuTypeDropdownContainer.appendChild(menuTypeDropdown);
 
-    let arrowIndicator = document.createElement('div');
-    arrowIndicator.innerHTML = '>';
-    arrowIndicator.setAttribute('id', 'typeOfMenuDropdownArrow');
-    menuTypeDropdownContainer.appendChild(arrowIndicator);
+    // let arrowIndicator = document.createElement('div');
+    // arrowIndicator.innerHTML = '>';
+    // arrowIndicator.setAttribute('id', 'typeOfMenuDropdownArrow');
+    // menuTypeDropdownContainer.appendChild(arrowIndicator);
 
     options.forEach(function (val) {
         let option = document.createElement('option');
