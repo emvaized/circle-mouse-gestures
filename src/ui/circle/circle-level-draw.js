@@ -9,9 +9,8 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
     }
 
     var segmentsCount = buttonsToShow.length;
-    // var segmentColor = configs[typeOfMenu].color;
 
-    var segmentColor = configs.regularMenu.levels[level].color ?? configs[typeOfMenu].color;
+    var segmentColor = configs[typeOfMenu].levels[level].color ?? configs[typeOfMenu].color;
     var outlineColorRgb = getTextColorForBackground(segmentColor, 0.5);
     var outlineColor = `rgba(${outlineColorRgb.red}, ${outlineColorRgb.green}, ${outlineColorRgb.blue}, 0.5)`;
 
@@ -73,7 +72,7 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
 
                     ctx.fillStyle = `rgb(${mix[0]},${mix[1]},${mix[2]})`;
                 } catch (error) {
-                    if (configs.debugMode) console.log(error);
+                    if (configs.debugMode) if (configs.debugMode) console.log(error);
                 }
 
             } else {
@@ -207,11 +206,11 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
         if (shouldCheckButtonsAvailability) {
             try {
                 buttonIsAvailable = unavailableButtons[buttonsToShow[i].id] ?? checkButtonAvailability(e, buttonsToShow[i].id);
-                // console.log(`button ${buttonsToShow[i].id} is available: ` + buttonIsAvailable);
+                // if (configs.debugMode) console.log(`button ${buttonsToShow[i].id} is available: ` + buttonIsAvailable);
 
             } catch (e) {
                 if (configs.debugMode)
-                    console.log(e);
+                    if (configs.debugMode) console.log(e);
             }
         }
 
@@ -281,7 +280,7 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
                     ctx.restore();
                 } catch (e) {
                     if (configs.debugMode)
-                        console.log(e);
+                        if (configs.debugMode) console.log(e);
                 }
             }
 
@@ -341,5 +340,5 @@ function updateButtonAvailability(e, id, value) {
     unavailableButtons[id] = value;
     try {
         drawCircle(e, typeOfMenu);
-    } catch (error) { console.log(error); }
+    } catch (error) { if (configs.debugMode) console.log(error); }
 }

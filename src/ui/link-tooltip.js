@@ -1,5 +1,5 @@
 function showLinkTooltip() {
-    console.log('showing link tooltip...');
+    if (configs.debugMode) console.log('showing link tooltip...');
 
     linkTooltip = document.createElement('div');
     linkTooltip.setAttribute('class', 'cmg-link-tooltip');
@@ -27,7 +27,7 @@ function showLinkTooltip() {
         let fileName;
         try {
             fileName = hoveredLink.split('#').shift().split('?').shift().split('/').pop();
-        } catch (e) { console.log(e); }
+        } catch (e) { if (configs.debugMode) console.log(e); }
         text.innerHTML = fileName !== null && fileName !== undefined ? fileName : configs.showFullLinkInTooltip ? hoveredLink : hoveredLink.substring(0, 26);
     } else {
         if (typeOfMenu == 'selectionMenu') {

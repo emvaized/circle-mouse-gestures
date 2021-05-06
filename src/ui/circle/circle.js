@@ -66,7 +66,7 @@ function setCanvas(e) {
     document.onmousemove = function (e) {
         try {
             drawCircle(e, typeOfMenu);
-        } catch (error) { console.log(error); }
+        } catch (error) { if (configs.debugMode) console.log(error); }
     }
 }
 
@@ -205,8 +205,8 @@ function hideCircle() {
                 }
 
                 if (configs.debugMode) {
-                    console.log('action to perform by CMG:');
-                    console.log(actionToPerform);
+                    if (configs.debugMode) console.log('action to perform by CMG:');
+                    if (configs.debugMode) console.log(actionToPerform);
                 }
                 if (actionToPerform !== 'noAction')
                     triggerButtonAction(actionToPerform);
@@ -223,7 +223,7 @@ function hideCircle() {
                 selectedButtons[i] = null;
             }
         }, configs.circleHideAnimation ? configs.animationDuration : 0);
-    } catch (e) { console.log(e); }
+    } catch (e) { if (configs.debugMode) console.log(e); }
 }
 
 

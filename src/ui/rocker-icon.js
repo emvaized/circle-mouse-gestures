@@ -1,6 +1,6 @@
 function drawRockerIconInCenter() {
     if (configs.debugMode)
-        console.log('Drawing rocker circle icon...');
+        if (configs.debugMode) console.log('Drawing rocker circle icon...');
 
     let rockerCircleRadius = configs.innerCircleRadius * 1.5;
 

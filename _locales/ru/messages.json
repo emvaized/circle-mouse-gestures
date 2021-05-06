@@ -67,6 +67,10 @@
         "message": "Копировать ссылку",
         "description": "Ярлык для кнопки кругового меню"
     },
+    "debugMode": {
+        "message": "Режим отладки",
+        "description": "Label for circle menu button"
+    },
     "deleteLabel": {
         "message": "Удалить",
         "description": "Label for circle menu button"
@@ -140,11 +144,11 @@
         "description": "Label for circle menu button"
     },
     "mouseWheelDownAction": {
-        "message": "Колесо вниз",
+        "message": "Колесико вниз",
         "description": "Label for circle menu button"
     },
     "mouseWheelUpAction": {
-        "message": "Колесо вверх",
+        "message": "Колесико вверх",
         "description": "Label for circle menu button"
     },
     "moveClockwise": {

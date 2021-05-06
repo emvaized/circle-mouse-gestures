@@ -1,6 +1,6 @@
 /// Configs
 var configs = {
-    'debugMode': true,
+    'debugMode': false,
     'cmgEnabled': true,
     'animationDuration': 200,
     'hideCircleIfNoActionSelected': true,
@@ -128,7 +128,7 @@ function loadUserConfigs(callback) {
             }
 
             if (configs.debugMode)
-                console.log('CMG user configs loaded from memory');
+                if (configs.debugMode) console.log('CMG user configs loaded from memory');
 
 
             /// Dark mode handling
@@ -142,7 +142,7 @@ function loadUserConfigs(callback) {
             //             configs['regularMenu']['color'] = '#ffffff';
             //         }
             //     }
-            // } catch (e) { console.log(e); }
+            // } catch (e) { if (configs.debugMode) console.log(e); }
 
 
             callback();

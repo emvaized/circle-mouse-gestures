@@ -19,7 +19,7 @@ function setPageListeners() {
         if (e.ctrlKey) return;
 
         if (configs.debugMode)
-            console.log('Pushed button ' + evt.button.toString());
+            if (configs.debugMode) console.log('Pushed button ' + evt.button.toString());
 
         if ("buttons" in evt) {
             /// Right click
@@ -37,7 +37,7 @@ function setPageListeners() {
                 rocketButtonPressed = null;
 
                 if (configs.debugMode)
-                    console.log('Showing mouse gestures circle...');
+                    if (configs.debugMode) console.log('Showing mouse gestures circle...');
                 var el = document.elementFromPoint(e.clientX, e.clientY);
 
                 if (el.tagName == 'IMG') {
@@ -65,8 +65,8 @@ function setPageListeners() {
                         textSelection = null;
                     }
 
-                    console.log('text selection:');
-                    console.log(textSelection.toString());
+                    if (configs.debugMode) console.log('text selection:');
+                    if (configs.debugMode) console.log(textSelection.toString());
 
                     if (textSelection.toString() !== '' && isCoordinateWithinTextSelection(e.clientX, e.clientY)) {
                         typeOfMenu = 'selectionMenu';
@@ -81,12 +81,12 @@ function setPageListeners() {
 
                 if (configs.debugMode)
                     try {
-                        console.log('hovered element:');
-                        console.log(el.tagName);
-                        console.log('parent element:');
-                        console.log(el.parentNode.tagName);
+                        if (configs.debugMode) console.log('hovered element:');
+                        if (configs.debugMode) console.log(el.tagName);
+                        if (configs.debugMode) console.log('parent element:');
+                        if (configs.debugMode) console.log(el.parentNode.tagName);
 
-                    } catch (e) { console.log(e); }
+                    } catch (e) { if (configs.debugMode) console.log(e); }
 
 
                 if (hoveredLink !== null) {
@@ -99,14 +99,14 @@ function setPageListeners() {
 
                 try {
                     showCircle(e);
-                } catch (err) { if (configs.debugMode) console.log(err); }
+                } catch (err) { if (configs.debugMode) if (configs.debugMode) console.log(err); }
             } else if (evt.buttons == 3) {
                 rocketButtonPressed = 3;
 
                 /// Left click
-                console.log('Rocker gesture recognized!');
-                console.log('circleIsShown:');
-                console.log(circleIsShown);
+                if (configs.debugMode) console.log('Rocker gesture recognized!');
+                if (configs.debugMode) console.log('circleIsShown:');
+                if (configs.debugMode) console.log(circleIsShown);
                 if (circleIsShown) {
                     e.preventDefault();
                     hideCircle();
@@ -118,7 +118,7 @@ function setPageListeners() {
                 }
             } else {
                 if (configs.debugMode)
-                    console.log('CMG recognized button action ' + evt.buttons.toString());
+                    if (configs.debugMode) console.log('CMG recognized button action ' + evt.buttons.toString());
             }
         }
     });
@@ -131,10 +131,10 @@ function setPageListeners() {
 
         if ("buttons" in evt) {
             if (configs.debugMode)
-                console.log('Released button ' + evt.button.toString());
+                if (configs.debugMode) console.log('Released button ' + evt.button.toString());
             /// Right click
             if (evt.button == 0) {
-                // console.log('Selected button is:' + selectedButton.toString());
+                // if (configs.debugMode) console.log('Selected button is:' + selectedButton.toString());
                 leftClickIsHolded = false;
                 hideCircle();
             } else if (evt.button == 2) {

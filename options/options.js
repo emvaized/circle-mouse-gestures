@@ -28,13 +28,13 @@ function init() {
                 drawCircle(e, selectedMenuType, true, false, true);
                 // try {
                 //     generateSegmentRelatedControls();
-                // } catch (e) { console.log(e); }
+                // } catch (e) { if (configs.debugMode) console.log(e); }
                 generateButtonsControls();
             });
 
             document.getElementById('navbar-settings-label').innerHTML = ' ' + chrome.i18n.getMessage('settings').toLowerCase();
         })
-    } catch (e) { console.log(e); }
+    } catch (e) { if (configs.debugMode) console.log(e); }
 }
 
 function setMenuTypeDropdown() {
@@ -131,7 +131,7 @@ function drawCirclePreview(typeOfMenu = selectedMenuType) {
         positionSettingsInCenter();
         // setTimeout(positionSettingsInCenter, 1);
     } catch (e) {
-        console.log(e);
+        if (configs.debugMode) console.log(e);
     }
 }
 
@@ -155,7 +155,7 @@ function generateAppearanceControls() {
         });
 
         colorSelect.addEventListener("change", function (e) {
-            console.log('saved bg color');
+            if (configs.debugMode) console.log('saved bg color');
             saveAllSettings();
         });
     }, 300);
@@ -192,6 +192,7 @@ function generateBehaviorConfigs() {
         'dimBackground',
         'hideCircleIfNoActionSelected',
         'circleHideAnimation',
+        'debugMode',
     ];
 
     inputIds.forEach(function (inputId) {
@@ -216,7 +217,7 @@ function generateBehaviorConfigs() {
                     drawCirclePreview();
                     saveAllSettings();
                 } catch (error) {
-                    console.log(error);
+                    if (configs.debugMode) console.log(error);
                 }
             });
         }, 300);
@@ -307,7 +308,7 @@ function generateLevelConfigs(levelIndex = 0) {
     setTimeout(function () {
         document.getElementById(enabledCheckboxId).addEventListener('input', function () {
             let ind = enabledCheckboxId.split('-')[1];
-            console.log('hit checkbox on ' + ind.toString());
+            if (configs.debugMode) console.log('hit checkbox on ' + ind.toString());
             configs[selectedMenuType].levels[ind].enabled = configs[selectedMenuType].levels[ind].enabled ? false : true;
 
             drawCirclePreview();
@@ -471,7 +472,7 @@ function generateLevelConfigs(levelIndex = 0) {
                     saveAllSettings();
 
                 } catch (error) {
-                    console.log(error);
+                    if (configs.debugMode) console.log(error);
                 }
             });
         }, delayToAddListeners);
@@ -505,7 +506,7 @@ function generateLevelConfigs(levelIndex = 0) {
         setTimeout(function () {
             document.getElementById(entryIdentifier).addEventListener('mousedown', function (e) {
                 var el = document.elementFromPoint(e.clientX, e.clientY);
-                console.log(`clicked on ${el.tagName}`);
+                if (configs.debugMode) console.log(`clicked on ${el.tagName}`);
 
                 /// Prevent listener from blocking select dropdowns behavior
                 if (el.tagName == 'SELECT') {
@@ -588,7 +589,7 @@ function generateLevelConfigs(levelIndex = 0) {
 
         useCustomColorSwitch.parentNode.addEventListener('change', function (e) {
 
-            console.log('clicked!')
+            if (configs.debugMode) console.log('clicked!')
 
             let selectedColor = configs[selectedMenuType].levels[levelIndex].color;
 
@@ -627,7 +628,7 @@ function generateLevelConfigs(levelIndex = 0) {
             });
 
             customColorInput.addEventListener("change", function (e) {
-                console.log('saved custom color for level ' + levelIndex.toString());
+                if (configs.debugMode) console.log('saved custom color for level ' + levelIndex.toString());
                 saveAllSettings();
             });
         }, delayToAddListeners);
@@ -760,7 +761,7 @@ function createRangeSlider(id, value, callbackOnChange, min = 50, max = 200, lab
         });
 
         inp.addEventListener('change', function () {
-            console.log(`saved value for ${id}`);
+            if (configs.debugMode) console.log(`saved value for ${id}`);
             drawCirclePreview();
             saveAllSettings();
         });

@@ -204,7 +204,7 @@ chrome.runtime.onMessage.addListener(
                     maxResults: 1
                 }, function (sessionInfos) {
                     if (!sessionInfos.length) {
-                        console.log("No sessions found")
+                        if (configs.debugMode) console.log("No sessions found")
                         return;
                     }
                     let sessionInfo = sessionInfos[0];

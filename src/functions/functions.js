@@ -1,36 +1,41 @@
 function triggerButtonAction(actionToPerform) {
     if (configs.debugMode) {
-        console.log('Action to perform: ');
-        console.log(actionToPerform);
+        if (configs.debugMode) console.log('Action to perform: ');
+        if (configs.debugMode) console.log(actionToPerform);
     }
 
-    if (actionToPerform == 'scrollToTop') {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (actionToPerform == 'scrollToBottom') {
-        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-    } else if (actionToPerform == 'scrollPageUp') {
-        window.scrollTo({ top: window.scrollY - window.innerHeight * .9, behavior: 'smooth' });
-    } else if (actionToPerform == 'scrollPageDown') {
-        window.scrollTo({ top: window.scrollY + window.innerHeight * .9, behavior: 'smooth' });
+    if (actionToPerform == 'findOnPage') {
+        try {
+            window.find('dialog', true, false, false, false, false, true);
+        } catch (e) { console.log(e); }
     } else
+        if (actionToPerform == 'scrollToTop') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else if (actionToPerform == 'scrollToBottom') {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        } else if (actionToPerform == 'scrollPageUp') {
+            window.scrollTo({ top: window.scrollY - window.innerHeight * .9, behavior: 'smooth' });
+        } else if (actionToPerform == 'scrollPageDown') {
+            window.scrollTo({ top: window.scrollY + window.innerHeight * .9, behavior: 'smooth' });
+        } else
 
-        if (actionToPerform !== null && actionToPerform !== undefined) {
-            if (typeOfMenu !== 'regularMenu') {
-                let link = hoveredLink;
+            if (actionToPerform !== null && actionToPerform !== undefined) {
+                if (typeOfMenu !== 'regularMenu') {
+                    let link = hoveredLink;
 
-                if (configs.debugMode) {
-                    console.log('link:');
-                    console.log(link);
+                    if (configs.debugMode) {
+                        if (configs.debugMode) console.log('link:');
+                        if (configs.debugMode) console.log(link);
+                    }
+
+                    if (typeOfMenu == 'selectionMenu')
+                        chrome.runtime.sendMessage({ actionToDo: actionToPerform, url: textSelection.toString().trim(), selectedText: textSelection.toString() });
+                    else
+                        chrome.runtime.sendMessage({ actionToDo: actionToPerform, url: link, linkText: hoveredLinkTitle })
+                } else {
+                    chrome.runtime.sendMessage({ actionToDo: actionToPerform, url: window.location.href })
                 }
-
-                if (typeOfMenu == 'selectionMenu')
-                    chrome.runtime.sendMessage({ actionToDo: actionToPerform, url: textSelection.toString().trim(), selectedText: textSelection.toString() });
-                else
-                    chrome.runtime.sendMessage({ actionToDo: actionToPerform, url: link, linkText: hoveredLinkTitle })
-            } else {
-                chrome.runtime.sendMessage({ actionToDo: actionToPerform, url: window.location.href })
             }
-        }
 }
 
 function wrapLabel(context, text, x, y, maxWidth, lineHeight) {

@@ -71,6 +71,10 @@
         "message": "Copy link",
         "description": "Label for circle menu button"
     },
+    "debugMode": {
+        "message": "Debug mode",
+        "description": "Label for circle menu button"
+    },
     "deleteLabel": {
         "message": "Remove",
         "description": "Label for circle menu button"
