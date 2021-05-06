@@ -315,8 +315,6 @@ function checkButtonAvailability(e, id) {
 
         case 'switchToNextTab': {
             chrome.runtime.sendMessage({ actionToDo: 'checkNextTabAvailability' }, (response) => {
-                // console.log('result:');
-                // console.log(response);
                 updateButtonAvailability(e, 'switchToNextTab', !response);
             }
             );
@@ -325,8 +323,6 @@ function checkButtonAvailability(e, id) {
 
         case 'switchToPreviousTab': {
             chrome.runtime.sendMessage({ actionToDo: 'checkPrevTabAvailability' }, (response) => {
-                // console.log('result:');
-                // console.log(response);
                 updateButtonAvailability(e, 'switchToPreviousTab', !response);
             }
             );

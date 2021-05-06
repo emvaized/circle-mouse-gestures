@@ -1,134 +1,34 @@
 {
-    "newTab": {
-        "message": "Новая вкладка",
-        "description": "Ярлык для кнопки кругового меню"
-    },
-    "reloadTab": {
-        "message": "Обновить",
-        "description": "Ярлык для кнопки кругового меню"
-    },
-    "goBack": {
-        "message": "Назад",
-        "description": "Ярлык для кнопки кругового меню"
-    },
-    "goForward": {
-        "message": "Вперед",
+    "addLabel": {
+        "message": "Добавить сегмент",
         "description": "Label for circle menu button"
     },
-    "closeCurrentTab": {
-        "message": "Закрыть вкладку",
-        "description": "Ярлык для кнопки кругового меню"
-    },
-    "openInFgTab": {
-        "message": "Открыть в новой вкладке",
-        "description": "Ярлык для кнопки кругового меню"
-    },
-    "copyUrl": {
-        "message": "Копировать ссылку",
-        "description": "Ярлык для кнопки кругового меню"
-    },
-    "openInBgTab": {
-        "message": "Открыть в \nфоновой вкладке",
-        "description": "Ярлык для кнопки кругового меню"
-    },
-    "link": {
-        "message": "Ссылка",
-        "description": "Ярлык для кнопки кругового меню"
-    },
-    "image": {
-        "message": "Изображение",
-        "description": "Ярлык для кнопки кругового меню"
-    },
-    "page": {
-        "message": "Страница",
+    "addTextLabels": {
+        "message": "Использовать текстовые подсказки",
         "description": "Label for circle menu button"
     },
     "addToBookmarks": {
         "message": "Добавить в закладки",
         "description": "Label for circle menu button"
     },
-    "restoreClosedTab": {
-        "message": "Восстановить закрытую вкладку",
+    "appearanceHeader": {
+        "message": "Внешний вид",
         "description": "Label for circle menu button"
     },
-    "downloadUrl": {
-        "message": "Загрузить",
+    "backgroundColor": {
+        "message": "Цвет фона",
         "description": "Label for circle menu button"
     },
-    "downloadUrlAs": {
-        "message": "Загрузить",
+    "behaviorTitle": {
+        "message": "Поведение",
         "description": "Label for circle menu button"
     },
-    "searchImageOnGoogle": {
-        "message": "Поиск по картинке",
+    "buttonsHeader": {
+        "message": "Кнопки",
         "description": "Label for circle menu button"
     },
-    "copyLinkText": {
-        "message": "Копировать текст",
-        "description": "Label for circle menu button"
-    },
-    "translatePage": {
-        "message": "Перевести страницу",
-        "description": "Label for circle menu button"
-    },
-    "switchToPreviousTab": {
-        "message": "Пред. вкладка",
-        "description": "Label for circle menu button"
-    },
-    "switchToNextTab": {
-        "message": "След. вкладка",
-        "description": "Label for circle menu button"
-    },
-    "scrollPageUp": {
-        "message": "Прокрутить вверх",
-        "description": "Label for circle menu button"
-    },
-    "scrollPageDown": {
-        "message": "Прокрутить вниз",
-        "description": "Label for circle menu button"
-    },
-    "pageZoomIn": {
-        "message": "Увеличить",
-        "description": "Label for circle menu button"
-    },
-    "pageZoomOut": {
-        "message": "Уменьшить",
-        "description": "Label for circle menu button"
-    },
-    "toggleFullscreen": {
-        "message": "Полноэкранный режим",
-        "description": "Label for circle menu button"
-    },
-    "scrollToTop": {
-        "message": "В начало страницы",
-        "description": "Label for circle menu button"
-    },
-    "scrollToBottom": {
-        "message": "В конец страницы",
-        "description": "Label for circle menu button"
-    },
-    "copyText": {
-        "message": "Копировать",
-        "description": "Label for circle menu button"
-    },
-    "searchText": {
-        "message": "Искать",
-        "description": "Label for circle menu button"
-    },
-    "translate": {
-        "message": "Перевести",
-        "description": "Label for circle menu button"
-    },
-    "selectedText": {
-        "message": "Выделенный текст",
-        "description": "Label for circle menu button"
-    },
-    "addLabel": {
-        "message": "Добавить сегмент",
-        "description": "Label for circle menu button"
-    },
-    "deleteLabel": {
-        "message": "Удалить",
+    "circleHideAnimation": {
+        "message": "Анимация исчезновения меню",
         "description": "Label for circle menu button"
     },
     "circleLevel": {
@@ -139,44 +39,108 @@
         "message": "Превью",
         "description": "Label for circle menu button"
     },
-    "moveDownLabel": {
-        "message": "Опустить",
+    "clickSegmentToHighlight": {
+        "message": "Кликните на сегмент, чтобы подсветить",
         "description": "Label for circle menu button"
     },
-    "moveUpLabel": {
-        "message": "Поднять",
+    "closeCurrentTab": {
+        "message": "Закрыть вкладку",
+        "description": "Ярлык для кнопки кругового меню"
+    },
+    "colorLabel": {
+        "message": "Цвет",
         "description": "Label for circle menu button"
     },
-    "appearanceHeader": {
-        "message": "Внешний вид",
+    "configure": {
+        "message": "Настроить",
         "description": "Label for circle menu button"
     },
-    "rockerAction": {
-        "message": "Жест рокировки",
+    "copyLinkText": {
+        "message": "Копировать текст",
         "description": "Label for circle menu button"
     },
-    "backgroundColor": {
-        "message": "Цвет фона",
+    "copyText": {
+        "message": "Копировать",
         "description": "Label for circle menu button"
     },
-    "addTextLabels": {
-        "message": "Использовать текстовые подсказки",
-        "description": "Label for circle menu button"
+    "copyUrl": {
+        "message": "Копировать ссылку",
+        "description": "Ярлык для кнопки кругового меню"
     },
-    "buttonsHeader": {
-        "message": "Кнопки",
+    "deleteLabel": {
+        "message": "Удалить",
         "description": "Label for circle menu button"
     },
     "dimBackground": {
         "message": "Затемнять страницу",
         "description": "Label for circle menu button"
     },
+    "downloadUrl": {
+        "message": "Загрузить",
+        "description": "Label for circle menu button"
+    },
+    "downloadUrlAs": {
+        "message": "Загрузить",
+        "description": "Label for circle menu button"
+    },
+    "enabled": {
+        "message": "Включено",
+        "description": "Label for circle menu button"
+    },
+    "gapBetweenCircles": {
+        "message": "Отступ между уровнями",
+        "description": "Label for circle menu button"
+    },
+    "gesturesTitle": {
+        "message": "Жесты",
+        "description": "Label for circle menu button"
+    },
+    "githubPage": {
+        "message": "Страница GitHub",
+        "description": "Label for circle menu button"
+    },
+    "goBack": {
+        "message": "Назад",
+        "description": "Ярлык для кнопки кругового меню"
+    },
+    "goForward": {
+        "message": "Вперед",
+        "description": "Label for circle menu button"
+    },
     "hideCircleIfNoActionSelected": {
         "message": "Прятать, если действие не выбрано",
         "description": "Label for circle menu button"
     },
-    "circleHideAnimation": {
-        "message": "Анимация исчезновения меню",
+    "image": {
+        "message": "Изображение",
+        "description": "Ярлык для кнопки кругового меню"
+    },
+    "imageMenu": {
+        "message": "Меню картинок",
+        "description": "Label for circle menu button"
+    },
+    "innerWidth": {
+        "message": "Радиус центра",
+        "description": "Label for circle menu button"
+    },
+    "levelWidth": {
+        "message": "Ширина",
+        "description": "Label for circle menu button"
+    },
+    "link": {
+        "message": "Ссылка",
+        "description": "Ярлык для кнопки кругового меню"
+    },
+    "linkMenu": {
+        "message": "Меню ссылок",
+        "description": "Label for circle menu button"
+    },
+    "mouseWheelDownAction": {
+        "message": "Колесо вниз",
+        "description": "Label for circle menu button"
+    },
+    "mouseWheelUpAction": {
+        "message": "Колесо вверх",
         "description": "Label for circle menu button"
     },
     "moveClockwise": {
@@ -187,88 +151,148 @@
         "message": "Против часовой стрелки",
         "description": "Label for circle menu button"
     },
-    "quickActions": {
-        "message": "Быстрые действия",
+    "moveDownLabel": {
+        "message": "Опустить",
         "description": "Label for circle menu button"
     },
-    "clickSegmentToHighlight": {
-        "message": "Кликните на сегмент, чтобы подсветить",
-        "description": "Label for circle menu button"
-    },
-    "levelWidth": {
-        "message": "Ширина",
-        "description": "Label for circle menu button"
-    },
-    "innerWidth": {
-        "message": "Радиус центра",
-        "description": "Label for circle menu button"
-    },
-    "gapBetweenCircles": {
-        "message": "Отступ между уровнями",
-        "description": "Label for circle menu button"
-    },
-    "behaviorTitle": {
-        "message": "Поведение",
-        "description": "Label for circle menu button"
-    },
-    "rockerGesture": {
-        "message": "Жест рокировки",
-        "description": "Label for circle menu button"
-    },
-    "mouseWheelUpAction": {
-        "message": "Колесо вверх",
-        "description": "Label for circle menu button"
-    },
-    "mouseWheelDownAction": {
-        "message": "Колесо вниз",
-        "description": "Label for circle menu button"
-    },
-    "rockerGestureDescription": {
-        "message": "Вызывается, когда вы кликаете левой кнопкой мыши, удерживая правую кнопку",
-        "description": "Label for circle menu button"
-    },
-    "noAction": {
-        "message": "Нет действия",
+    "moveUpLabel": {
+        "message": "Поднять",
         "description": "Label for circle menu button"
     },
     "navigation": {
         "message": "Навигация",
         "description": "Label for circle menu button"
     },
-    "tab": {
-        "message": "Вкладка",
+    "newTab": {
+        "message": "Новая вкладка",
+        "description": "Ярлык для кнопки кругового меню"
+    },
+    "noAction": {
+        "message": "Нет действия",
         "description": "Label for circle menu button"
     },
-    "scroll": {
-        "message": "Прокрутка",
+    "openInBgTab": {
+        "message": "Открыть в \nфоновой вкладке",
+        "description": "Ярлык для кнопки кругового меню"
+    },
+    "openInFgTab": {
+        "message": "Открыть в новой вкладке",
+        "description": "Ярлык для кнопки кругового меню"
+    },
+    "page": {
+        "message": "Страница",
         "description": "Label for circle menu button"
     },
-    "useCustomColor": {
-        "message": "Другой цвет фона",
+    "pageZoomIn": {
+        "message": "Увеличить",
         "description": "Label for circle menu button"
     },
-    "colorLabel": {
-        "message": "Цвет",
+    "pageZoomOut": {
+        "message": "Уменьшить",
         "description": "Label for circle menu button"
     },
-    "gesturesTitle": {
-        "message": "Жесты",
+    "quickActions": {
+        "message": "Быстрые действия",
         "description": "Label for circle menu button"
     },
     "regularMenu": {
         "message": "Основное меню",
         "description": "Label for circle menu button"
     },
-    "linkMenu": {
-        "message": "Меню ссылок",
+    "reloadTab": {
+        "message": "Обновить",
+        "description": "Ярлык для кнопки кругового меню"
+    },
+    "restoreClosedTab": {
+        "message": "Восстановить закрытую вкладку",
+        "description": "Label for circle menu button"
+    },
+    "rockerAction": {
+        "message": "Жест рокировки",
+        "description": "Label for circle menu button"
+    },
+    "rockerGesture": {
+        "message": "Жест рокировки",
+        "description": "Label for circle menu button"
+    },
+    "rockerGestureDescription": {
+        "message": "Вызывается, когда вы кликаете левой кнопкой мыши, удерживая правую кнопку",
+        "description": "Label for circle menu button"
+    },
+    "scroll": {
+        "message": "Прокрутка",
+        "description": "Label for circle menu button"
+    },
+    "scrollPageDown": {
+        "message": "Прокрутить вниз",
+        "description": "Label for circle menu button"
+    },
+    "scrollPageUp": {
+        "message": "Прокрутить вверх",
+        "description": "Label for circle menu button"
+    },
+    "scrollToBottom": {
+        "message": "В конец страницы",
+        "description": "Label for circle menu button"
+    },
+    "scrollToTop": {
+        "message": "В начало страницы",
+        "description": "Label for circle menu button"
+    },
+    "searchImageOnGoogle": {
+        "message": "Поиск по картинке",
+        "description": "Label for circle menu button"
+    },
+    "searchText": {
+        "message": "Искать",
+        "description": "Label for circle menu button"
+    },
+    "selectedText": {
+        "message": "Выделенный текст",
         "description": "Label for circle menu button"
     },
     "selectionMenu": {
         "message": "Меню выделения текста",
         "description": "Label for circle menu button"
     },
-    "imageMenu": {
-        "message": "Меню картинок",
+    "supportButton": {
+        "message": "Отблагодарить",
+        "description": "Label for circle menu button"
+    },
+    "switchToNextTab": {
+        "message": "След. вкладка",
+        "description": "Label for circle menu button"
+    },
+    "switchToPreviousTab": {
+        "message": "Пред. вкладка",
+        "description": "Label for circle menu button"
+    },
+    "tab": {
+        "message": "Вкладка",
+        "description": "Label for circle menu button"
+    },
+    "toggleFullscreen": {
+        "message": "Полноэкранный режим",
+        "description": "Label for circle menu button"
+    },
+    "translate": {
+        "message": "Перевести",
+        "description": "Label for circle menu button"
+    },
+    "translatePage": {
+        "message": "Перевести страницу",
+        "description": "Label for circle menu button"
+    },
+    "useCustomColor": {
+        "message": "Другой цвет фона",
+        "description": "Label for circle menu button"
+    },
+    "whatsNew": {
+        "message": "Что нового",
+        "description": "Label for circle menu button"
+    },
+    "writeAReview": {
+        "message": "Написать отзыв",
         "description": "Label for circle menu button"
     }
 }

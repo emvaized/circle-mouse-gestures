@@ -1,6 +1,7 @@
 function init() {
     loadUserConfigs(function () {
-        setPageListeners();
+        if (configs.cmgEnabled)
+            setPageListeners();
     })
 }
 

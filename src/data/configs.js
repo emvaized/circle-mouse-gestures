@@ -1,6 +1,7 @@
 /// Configs
 var configs = {
     'debugMode': true,
+    'cmgEnabled': true,
     'animationDuration': 200,
     'hideCircleIfNoActionSelected': true,
     'useMouseWheelGestures': true,
