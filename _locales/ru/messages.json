@@ -87,6 +87,10 @@
         "message": "Включено",
         "description": "Label for circle menu button"
     },
+    "extensionDescription": {
+        "message": "Новый способ взаимодействия с браузером",
+        "description": "Extension description"
+    },
     "gapBetweenCircles": {
         "message": "Отступ между уровнями",
         "description": "Label for circle menu button"

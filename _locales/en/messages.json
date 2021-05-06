@@ -91,6 +91,10 @@
         "message": "Enabled",
         "description": "Label for circle menu button"
     },
+    "extensionDescription": {
+        "message": "New way to interact with your browser",
+        "description": "Extension description"
+    },
     "gapBetweenCircles": {
         "message": "Levels padding",
         "description": "Label for circle menu button"
