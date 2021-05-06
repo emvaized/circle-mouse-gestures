@@ -96,7 +96,7 @@
         "description": "Label for circle menu button"
     },
     "extensionDescription": {
-        "message": "New way to interact with your browser",
+        "message": "Customizable circle menu on right mouse click",
         "description": "Extension description"
     },
     "gapBetweenCircles": {

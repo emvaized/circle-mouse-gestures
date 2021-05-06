@@ -92,7 +92,7 @@
         "description": "Label for circle menu button"
     },
     "extensionDescription": {
-        "message": "Новый способ взаимодействия с браузером",
+        "message": "Настраиваемое круговое меню при правом клике мышью",
         "description": "Extension description"
     },
     "gapBetweenCircles": {
