@@ -71,8 +71,6 @@
 }
 
 .configs-container{
-    /* border: 1px solid lightgrey; */
-    /* text-align: center; */
     float: top;
     padding: 0px 25px;
     margin: 15px 0px;
@@ -81,7 +79,6 @@
 .option{
     padding: 5px;
     cursor: pointer;
-    /* display: inline-block; */
 }
 
 
@@ -96,7 +93,7 @@ label{
 }
 
 #circle-preview {
-    margin-right: 60px;
+    margin-right: 90px;
     /* cursor: pointer; */
 }
 

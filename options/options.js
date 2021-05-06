@@ -799,8 +799,6 @@ function positionSettingsInCenter() {
     bodyMarginLeft = (100 - occupiedPercent) / 2.5;
 
     document.getElementById('content').style.marginLeft = `${bodyMarginLeft}%`;
-    // document.body.style.marginLeft = `${bodyMarginLeft}%`;
-    // document.body.style.transform = `translate(${bodyMarginLeft}%, 0)`;
 
 }
 
