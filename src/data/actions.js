@@ -67,7 +67,6 @@ var sortedActionButtons = {
             'copyUrl',
             'translate',
             'addToBookmarks',
-            'findOnPage',
         ],
         'scroll': [
             'scrollToTop',

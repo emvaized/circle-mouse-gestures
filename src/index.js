@@ -131,7 +131,7 @@ function setPageListeners() {
 
         if ("buttons" in evt) {
             if (configs.debugMode)
-                if (configs.debugMode) console.log('Released button ' + evt.button.toString());
+                console.log('Released button ' + evt.button.toString());
             /// Right click
             if (evt.button == 0) {
                 // if (configs.debugMode) console.log('Selected button is:' + selectedButton.toString());
@@ -149,7 +149,6 @@ function setPageListeners() {
                     }
                 }
 
-                // if (selectedButton == null && selectedButtonSecondLevel == null) {
                 if (anyButtonIsSelected == false) {
                     /// Leave circle open (like a context menu), or hide it
                     if (configs.hideCircleIfNoActionSelected)
