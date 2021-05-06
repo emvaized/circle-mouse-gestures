@@ -129,8 +129,6 @@ function setPageListeners() {
 
         evt = e || window.event;
 
-
-
         if ("buttons" in evt) {
             if (configs.debugMode)
                 console.log('Released button ' + evt.button.toString());

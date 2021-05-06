@@ -288,7 +288,7 @@
         "description": "Label for circle menu button"
     },
     "useCustomColor": {
-        "message": "Custom background color",
+        "message": "Custom color",
         "description": "Label for circle menu button"
     },
     "whatsNew": {
