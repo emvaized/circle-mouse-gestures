@@ -23,7 +23,7 @@ var configs = {
     /// and 'combine' will add it as outer circle level
     'interactiveMenusBehavior': 'replace',  /// possible values: 'replace', 'combine'
     'addLinkTooltip': true,
-    'showFullLinkInTooltip': true,
+    'showFullLinkInTooltip': false,
     'showLinkTextInTooltip': false,
     'showLinkTooltipForPageItself': false,
     'linkTooltipOpacity': 1.0,
@@ -91,6 +91,24 @@ var configs = {
                     { 'id': 'copyText' },
                     { 'id': 'searchText' },
                     { 'id': 'translate' },
+                ]
+            }
+        ]
+    },
+
+    'textFieldMenu': {
+        'width': 100,
+        'color': "#000000",
+        'rockerAction': 'pasteText',
+        'mouseWheelUpAction': 'noAction',
+        'mouseWheelDownAction': 'noAction',
+        'levels': [
+            {
+                'buttons': [
+                    { 'id': 'copyText' },
+                    { 'id': 'selectAllText' },
+                    { 'id': 'cutText' },
+                    { 'id': 'pasteText' },
                 ]
             }
         ]

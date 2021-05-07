@@ -28,6 +28,7 @@ var leftClickIsHolded = false;
 var linkTooltip;
 var rockerCircle;
 var backgroundDimmer;
+var elementUnderCursor;
 
 /// Index of level: index of button
 var selectedButtons = {};
@@ -127,6 +128,24 @@ var defaultConfigs = {
                     { 'id': 'copyText' },
                     { 'id': 'searchText' },
                     { 'id': 'translate' },
+                ]
+            }
+        ]
+    },
+
+    'textFieldMenu': {
+        'width': 100,
+        'color': "#000000",
+        'rockerAction': 'pasteText',
+        'mouseWheelUpAction': 'noAction',
+        'mouseWheelDownAction': 'noAction',
+        'levels': [
+            {
+                'buttons': [
+                    { 'id': 'copyText' },
+                    { 'id': 'selectAllText' },
+                    { 'id': 'cutText' },
+                    { 'id': 'pasteText' },
                 ]
             }
         ]

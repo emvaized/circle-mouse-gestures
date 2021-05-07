@@ -7,6 +7,14 @@
         "message": "Add level",
         "description": ""
     },
+    "addLinkTooltip": {
+        "message": "Show helper tooltip",
+        "description": ""
+    },
+    "addLinkTooltipTooltip": {
+        "message": "Show additional info for links, images etc.",
+        "description": ""
+    },
     "addMoreLevelsToActivateMenu": {
         "message": "This menu is inactive. Add levels to activate it",
         "description": ""
@@ -73,6 +81,10 @@
     },
     "copyText": {
         "message": "Copy",
+        "description": ""
+    },
+    "cutText": {
+        "message": "Cut",
         "description": ""
     },
     "copyUrl": {
@@ -219,6 +231,10 @@
         "message": "Zoom out",
         "description": ""
     },
+    "pasteText": {
+        "message": "Paste",
+        "description": ""
+    },
     "quickActions": {
         "message": "Quick actions",
         "description": ""
@@ -279,6 +295,10 @@
         "message": "Search",
         "description": ""
     },
+    "selectAllText": {
+        "message": "Select all",
+        "description": ""
+    },
     "selectedText": {
         "message": "Selected text",
         "description": ""
@@ -309,6 +329,10 @@
     },
     "tab": {
         "message": "Tab",
+        "description": ""
+    },
+    "textFieldMenu": {
+        "message": "Menu for input field",
         "description": ""
     },
     "toggleFullscreen": {

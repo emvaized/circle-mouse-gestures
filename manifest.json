@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Circle Mouse Gestures",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "__MSG_extensionDescription__",
   "default_locale": "en",
   "icons": {
@@ -53,6 +53,7 @@
     "sessions",
     "bookmarks",
     "clipboardWrite",
+    "clipboardRead",
     "downloads"
   ],
   "browser_specific_settings": {

@@ -312,6 +312,17 @@ function checkButtonAvailability(e, id) {
         };
         case 'goForward': return window.history.length !== 1;
 
+        case 'cutText': {
+            if ((textSelection == null || textSelection == undefined || textSelection == ''))
+                return false;
+            else return true;
+        }
+        case 'copyText': {
+            if ((typeOfMenu == 'textFieldMenu' || typeOfMenu == 'selectionMenu') && (textSelection == null || textSelection == undefined || textSelection == ''))
+                return false;
+            else return true;
+        }
+
         case 'switchToNextTab': {
             chrome.runtime.sendMessage({ actionToDo: 'checkNextTabAvailability' }, (response) => {
                 updateButtonAvailability(e, 'switchToNextTab', !response);

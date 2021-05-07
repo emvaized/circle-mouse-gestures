@@ -17,6 +17,19 @@ function triggerButtonAction(actionToPerform) {
             window.scrollTo({ top: window.scrollY - window.innerHeight * .9, behavior: 'smooth' });
         } else if (actionToPerform == 'scrollPageDown') {
             window.scrollTo({ top: window.scrollY + window.innerHeight * .9, behavior: 'smooth' });
+        } else if (actionToPerform == 'pasteText') {
+            if (elementUnderCursor !== null)
+                elementUnderCursor.focus();
+            document.execCommand('paste');
+        } else if (actionToPerform == 'cutText') {
+            if (elementUnderCursor !== null)
+                elementUnderCursor.focus();
+            document.execCommand('cut');
+        } else if (actionToPerform == 'selectAllText') {
+            if (elementUnderCursor !== null) {
+                elementUnderCursor.focus();
+                elementUnderCursor.select();
+            }
         } else
 
             if (actionToPerform !== null && actionToPerform !== undefined) {
@@ -28,7 +41,7 @@ function triggerButtonAction(actionToPerform) {
                         if (configs.debugMode) console.log(link);
                     }
 
-                    if (typeOfMenu == 'selectionMenu')
+                    if (typeOfMenu == 'selectionMenu' || typeOfMenu == 'textFieldMenu')
                         chrome.runtime.sendMessage({ actionToDo: actionToPerform, url: textSelection.toString().trim(), selectedText: textSelection.toString() });
                     else
                         chrome.runtime.sendMessage({ actionToDo: actionToPerform, url: link, linkText: hoveredLinkTitle })

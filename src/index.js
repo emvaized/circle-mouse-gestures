@@ -43,6 +43,7 @@ function setPageListeners() {
                 if (configs.debugMode)
                     if (configs.debugMode) console.log('Showing mouse gestures circle...');
                 var el = document.elementFromPoint(e.clientX, e.clientY);
+                elementUnderCursor = el;
 
                 if (el.tagName == 'IMG') {
                     /// Image is hovered
@@ -54,12 +55,31 @@ function setPageListeners() {
                 ) {
                     /// Link is hovered
                     typeOfMenu = 'linkMenu';
-                    hoveredLink = el.getAttribute('href') || el.getAttribute('data-url') || el.parentNode.getAttribute('href') || el.parentNode.getAttribute('data-url')
-                        // || el.firstChild.getAttribute('href')
-                        ;
+                    hoveredLink = el.getAttribute('href') || el.getAttribute('data-url') || el.parentNode.getAttribute('href') || el.parentNode.getAttribute('data-url');
 
                     hoveredLinkTitle = el.textContent.trim();
-                } else {
+                } else if (
+                    el.tagName === "INPUT" ||
+                    el.tagName === "TEXTAREA" ||
+                    el.getAttribute('contenteditable') !== null) {
+                    /// Text field is hovered
+
+                    el.focus();
+
+                    typeOfMenu = 'textFieldMenu';
+                    hoveredLink = window.location.href;
+                    hoveredLinkTitle = null;
+
+                    if (window.getSelection) {
+                        textSelection = window.getSelection();
+                    } else if (document.selection) {
+                        textSelection = document.selection.createRange();
+                    } else {
+                        textSelection = null;
+                    }
+                }
+
+                else {
 
                     if (window.getSelection) {
                         textSelection = window.getSelection();
@@ -85,10 +105,9 @@ function setPageListeners() {
 
                 /// Fallback to regular menu if no levels added or available
                 let enabledLevelsCount = 0;
-                configs[typeOfMenu].levels.forEach(function (level) {
-                    if (level.enabled)
-                        enabledLevelsCount += 1;
-                });
+                for (var i = 0; i < configs[typeOfMenu].levels.length; i++) {
+                    if (configs[typeOfMenu].levels[i].enabled !== false) enabledLevelsCount += 1;
+                }
 
                 if (configs[typeOfMenu].levels == null || configs[typeOfMenu].levels.undefined || configs[typeOfMenu].levels.length == 0 || enabledLevelsCount == 0) {
                     typeOfMenu = 'regularMenu';

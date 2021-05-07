@@ -7,6 +7,14 @@
         "message": "Добавить уровень",
         "description": ""
     },
+    "addLinkTooltip": {
+        "message": "Показывать вспомогательную панель",
+        "description": ""
+    },
+    "addLinkTooltipTooltip": {
+        "message": "Показывать дополнительную информацию для ссылок, изображений и т.д.",
+        "description": ""
+    },
     "addMoreLevelsToActivateMenu": {
         "message": "Это меню сейчас неактивно. <br/>Добавьте уровень, чтобы активировать",
         "description": ""
@@ -74,6 +82,10 @@
     "copyUrl": {
         "message": "Копировать ссылку",
         "description": "Ярлык для кнопки кругового меню"
+    },
+    "cutText": {
+        "message": "Вырезать",
+        "description": ""
     },
     "debugMode": {
         "message": "Режим отладки",
@@ -215,6 +227,10 @@
         "message": "Уменьшить",
         "description": "Label for circle menu button"
     },
+    "pasteText": {
+        "message": "Вставить",
+        "description": ""
+    },
     "quickActions": {
         "message": "Быстрые действия",
         "description": "Label for circle menu button"
@@ -275,6 +291,10 @@
         "message": "Искать",
         "description": "Label for circle menu button"
     },
+    "selectAllText": {
+        "message": "Выделить всё",
+        "description": ""
+    },
     "selectedText": {
         "message": "Выделенный текст",
         "description": "Label for circle menu button"
@@ -306,6 +326,10 @@
     "tab": {
         "message": "Вкладка",
         "description": "Label for circle menu button"
+    },
+    "textFieldMenu": {
+        "message": "Меню полей ввода",
+        "description": ""
     },
     "toggleFullscreen": {
         "message": "Полноэкранный режим",

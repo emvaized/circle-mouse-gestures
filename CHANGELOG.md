@@ -1,3 +1,7 @@
+#1.0.3
+- Added separate menu for input fields
+- Fix for link/image/text selection menus not showing up
+
 #1.0.2
 - Added option to show regular context menu if no action was selected
 - Now link/image/text selection menus can be populated with regular menu actions

@@ -40,6 +40,7 @@ function setMenuTypeDropdown() {
         'linkMenu',
         'imageMenu',
         'selectionMenu',
+        'textFieldMenu',
     ];
 
     let navBar = document.getElementById('navbar');
@@ -200,6 +201,7 @@ function generateBehaviorConfigs() {
         'hideCircleIfNoActionSelected',
         'circleHideAnimation',
         'debugMode',
+        'addLinkTooltip',
         'showRegularMenuIfNoAction',
     ];
 
@@ -233,6 +235,7 @@ function generateBehaviorConfigs() {
         /// Set translated tooltips
         document.getElementById('dimBackgroundTooltip').innerText = chrome.i18n.getMessage('dimBackgroundTooltip');
         document.getElementById('windowsOnlyTooltip').innerText = chrome.i18n.getMessage('windowsOnly');
+        document.getElementById('addLinkTooltipTooltip').innerText = chrome.i18n.getMessage('addLinkTooltipTooltip');
     });
 }
 
@@ -371,7 +374,6 @@ function generateLevelConfigs(levelIndex = 0) {
     }, delayToAddListeners);
 
     headerContainer.innerHTML += '<br /><br />';
-
 
     /// Generate level configs container
     var container = document.createElement('div');
@@ -858,10 +860,10 @@ function updateDisabledOptions() {
     /// Grey out settings when no levels added or enabled
 
     let enabledLevelsCount = 0;
-    configs[selectedMenuType].levels.forEach(function (level) {
-        if (level.enabled)
-            enabledLevelsCount += 1;
-    });
+    for (var i = 0; i < configs[selectedMenuType].levels.length; i++) {
+        console.log(configs[selectedMenuType].levels[i]['enabled']);
+        if (configs[selectedMenuType].levels[i].enabled !== false) enabledLevelsCount += 1;
+    }
 
     if (configs[selectedMenuType].levels == null || configs[selectedMenuType].levels.undefined || configs[selectedMenuType].levels.length == 0 || enabledLevelsCount == 0) {
 

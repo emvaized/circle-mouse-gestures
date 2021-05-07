@@ -9,11 +9,9 @@ function showLinkTooltip() {
     let label = document.createElement('span');
     label.innerHTML = typeOfMenu == 'linkMenu' ?
         configs.showLinkTextInTooltip && hoveredLinkTitle !== null && hoveredLinkTitle !== hoveredLink && hoveredLinkTitle !== hoveredLink.replaceAll('http://', '') ? (hoveredLinkTitle.length > 24 ? hoveredLinkTitle.substring(0, 24) + '...' : hoveredLinkTitle)
-            :
-            chrome.i18n.getMessage('link')
+            : chrome.i18n.getMessage('link')
         : typeOfMenu == 'imageMenu' ? chrome.i18n.getMessage('image')
-            : typeOfMenu == 'selectionMenu' ? chrome.i18n.getMessage('selectedText') :
-
+            : typeOfMenu == 'selectionMenu' || (typeOfMenu == 'textFieldMenu' && textSelection !== null) ? chrome.i18n.getMessage('selectedText') :
                 chrome.i18n.getMessage('page');
 
     label.innerHTML += '<br />';
@@ -30,12 +28,12 @@ function showLinkTooltip() {
         } catch (e) { if (configs.debugMode) console.log(e); }
         text.innerHTML = fileName !== null && fileName !== undefined ? fileName : configs.showFullLinkInTooltip ? hoveredLink : hoveredLink.substring(0, 26);
     } else {
-        if (typeOfMenu == 'selectionMenu') {
+        if (typeOfMenu == 'selectionMenu' || typeOfMenu == 'textFieldMenu') {
             let textSelectionString = textSelection.toString();
             text.innerHTML = textSelectionString.length > 36 ? textSelectionString.substring(0, 33) + '...' : textSelectionString;
         }
         else
-            text.innerHTML = configs.showFullLinkInTooltip ? hoveredLink : hoveredLink.substring(0, 26);
+            text.innerHTML = configs.showFullLinkInTooltip ? hoveredLink : hoveredLink.substring(0, 30);
     }
 
     text.setAttribute('style', `word-break:break-all;${typeOfMenu == 'selectionMenu' ? '' : 'text-decoration: underline;'}`);
