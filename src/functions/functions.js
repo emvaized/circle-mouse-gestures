@@ -189,7 +189,7 @@ function getSelectionRectDimensions() {
 function getCurrentClipboard() {
     try {
         var t = document.createElement("input");
-        t.setAttribute('style', 'opacity: 0.0; position: absolute;pointer-events: none; transform: scale(0.00000001, 0.00000001)');
+        t.setAttribute('style', 'opacity: 0.0; position: absolute; display: inline;pointer-events: none; transform: scale(0.00000001, 0.00000001)');
         document.body.appendChild(t);
         t.focus();
         document.execCommand("paste");
