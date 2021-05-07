@@ -55,6 +55,10 @@
         "message": "Превью",
         "description": "Label for circle menu button"
     },
+    "clearInputField": {
+        "message": "Очистить",
+        "description": ""
+    },
     "clickSegmentToHighlight": {
         "message": "Кликните на сегмент, чтобы подсветить",
         "description": "Label for circle menu button"
@@ -340,7 +344,7 @@
         "description": "Label for circle menu button"
     },
     "textFieldMenu": {
-        "message": "Меню полей ввода",
+        "message": "Меню поля ввода",
         "description": ""
     },
     "toggleFullscreen": {

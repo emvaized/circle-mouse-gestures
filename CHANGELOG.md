@@ -1,5 +1,8 @@
 #1.0.4
 - Fix for input field buttons being false-inactive on Firefox 
+- Added 'Clear' action for input field menu
+- Changed default buttons order and colors
+- Fixed bug with screen shifting on focusing input
 
 #1.0.3
 - Added separate menu for input fields

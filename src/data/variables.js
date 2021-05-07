@@ -109,9 +109,9 @@ var defaultConfigs = {
             {
                 'buttons': [
                     { 'id': 'openInFgTab' },
-                    { 'id': 'copyLinkText' },
-                    { 'id': 'openInBgTab' },
                     { 'id': 'copyUrl' },
+                    { 'id': 'openInBgTab' },
+                    { 'id': 'copyLinkText' },
                 ]
             }
         ]
@@ -119,7 +119,7 @@ var defaultConfigs = {
 
     'selectionMenu': {
         'width': 100,
-        'color': "#000000",
+        'color': "#B44141",
         'rockerAction': 'copyText',
         'mouseWheelUpAction': 'noAction',
         'mouseWheelDownAction': 'noAction',
@@ -136,7 +136,7 @@ var defaultConfigs = {
 
     'textFieldMenu': {
         'width': 100,
-        'color': "#000000",
+        'color': "#499447",
         'rockerAction': 'pasteText',
         'mouseWheelUpAction': 'noAction',
         'mouseWheelDownAction': 'noAction',
@@ -144,9 +144,10 @@ var defaultConfigs = {
             {
                 'buttons': [
                     { 'id': 'copyText' },
-                    { 'id': 'selectAllText' },
-                    { 'id': 'cutText' },
                     { 'id': 'pasteText' },
+                    { 'id': 'cutText' },
+                    { 'id': 'selectAllText' },
+                    { 'id': 'clearInputField' },
                 ]
             }
         ]
@@ -154,7 +155,7 @@ var defaultConfigs = {
 
     'imageMenu': {
         // 'color': "#c69a15",
-        'color': "#d80000",
+        'color': "#F48024",
         'rockerAction': 'openInFgTab',
         'levels': [
             {

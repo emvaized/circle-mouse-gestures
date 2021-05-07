@@ -122,7 +122,6 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
         if (configs[typeOfMenu].levels[i].enabled !== false) enabledLevelsCount += 1;
     }
 
-
     // let typeToDisplay = configs.interactiveMenusBehavior == 'combine' ? 'regularMenu' : typeOfMenu;
 
     for (var i = configs[typeOfMenu].levels.length - 1; i > -1; i--) {

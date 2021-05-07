@@ -59,6 +59,10 @@
         "message": "Preview",
         "description": ""
     },
+    "clearInputField": {
+        "message": "Clear",
+        "description": ""
+    },
     "clickSegmentToHighlight": {
         "message": "Click any segment to highlight",
         "description": ""

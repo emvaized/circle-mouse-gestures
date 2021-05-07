@@ -62,6 +62,8 @@ function setPageListeners() {
                     el.tagName === "INPUT" ||
                     el.tagName === "TEXTAREA" ||
                     el.getAttribute('contenteditable') !== null) {
+                    /// Text field is hovered
+
                     if (window.getSelection) {
                         textSelection = window.getSelection();
                     } else if (document.selection) {
@@ -75,21 +77,17 @@ function setPageListeners() {
                         if (textSelection.toString() == '') {
                             var ta = document.querySelector(':focus');
                             textSelection = ta.value.substring(ta.selectionStart, ta.selectionEnd);
-
-                            // if (textSelection == null || textSelection == undefined || textSelection.toString().trim() == '') textSelection = ;
                         }
+
                     } catch (e) { if (configs.debugMode) console.log(e) }
 
-                    /// Text field is hovered
                     currentClipboardContent = getCurrentClipboard();
-
-                    el.focus();
 
                     typeOfMenu = 'textFieldMenu';
                     hoveredLink = window.location.href;
                     hoveredLinkTitle = null;
 
-
+                    el.focus({ preventScroll: false });
                 }
 
                 else {

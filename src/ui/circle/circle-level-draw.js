@@ -314,9 +314,12 @@ function checkButtonAvailability(e, id) {
 
         case 'cutText': {
             try {
-                if (textSelection == null || textSelection == undefined || textSelection.toString() == '')
+                if (textSelection == null || textSelection == undefined || textSelection.toString() == '') {
                     return false;
-                else return true;
+                }
+                else {
+                    return true;
+                }
             } catch (e) { console.log(e); return true; }
 
         }

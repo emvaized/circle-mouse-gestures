@@ -19,15 +19,20 @@ function triggerButtonAction(actionToPerform) {
             window.scrollTo({ top: window.scrollY + window.innerHeight * .9, behavior: 'smooth' });
         } else if (actionToPerform == 'pasteText') {
             if (elementUnderCursor !== null)
-                elementUnderCursor.focus();
+                elementUnderCursor.focus({ preventScroll: true });
             document.execCommand('paste');
         } else if (actionToPerform == 'cutText') {
             if (elementUnderCursor !== null)
-                elementUnderCursor.focus();
+                elementUnderCursor.focus({ preventScroll: true });
             document.execCommand('cut');
+        } else if (actionToPerform == 'clearInputField') {
+            if (elementUnderCursor !== null) {
+                elementUnderCursor.focus({ preventScroll: true });
+                elementUnderCursor.value = '';
+            }
         } else if (actionToPerform == 'selectAllText') {
             if (elementUnderCursor !== null) {
-                elementUnderCursor.focus();
+                elementUnderCursor.focus({ preventScroll: true });
                 elementUnderCursor.select();
             }
         } else
@@ -189,9 +194,10 @@ function getSelectionRectDimensions() {
 function getCurrentClipboard() {
     try {
         var t = document.createElement("input");
-        t.setAttribute('style', 'opacity: 0.0; position: absolute; display: inline;pointer-events: none; transform: scale(0.00000001, 0.00000001)');
+        /// Some styling to remove scroll shifting
+        t.setAttribute('style', `top: ${window.scrollY}px;max-width: 1px; max-height: 1px;position: absolute;opacity: 0.0;pointer-events: none; transform: scale(0.00000001, 0.00000001)`);
         document.body.appendChild(t);
-        t.focus();
+        t.focus({ preventScroll: true });
         document.execCommand("paste");
         let clipboardText = t.value; //this is your clipboard data
         document.body.removeChild(t);
