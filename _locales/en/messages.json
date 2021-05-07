@@ -291,6 +291,10 @@
         "message": "Settings",
         "description": ""
     },
+    "showRegularMenuIfNoAction": {
+        "message": "Show regular menu if no action selected",
+        "description": ""
+    },
     "supportButton": {
         "message": "Support",
         "description": ""
@@ -321,6 +325,10 @@
     },
     "whatsNew": {
         "message": "What's new",
+        "description": ""
+    },
+    "windowsOnly": {
+        "message": "Will work only on Windows",
         "description": ""
     },
     "writeAReview": {

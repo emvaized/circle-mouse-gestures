@@ -128,7 +128,7 @@
         "description": "Label for circle menu button"
     },
     "hideCircleIfNoActionSelected": {
-        "message": "Прятать, если действие не выбрано",
+        "message": "Прятать круг, если действие не выбрано",
         "description": "Label for circle menu button"
     },
     "image": {
@@ -287,6 +287,10 @@
         "message": "Настройки",
         "description": "Label for circle menu button"
     },
+    "showRegularMenuIfNoAction": {
+        "message": "Показывать обычное меню, если ничего не выбрано",
+        "description": ""
+    },
     "supportButton": {
         "message": "Поддержать",
         "description": "Label for circle menu button"
@@ -322,6 +326,10 @@
     "whatsNew": {
         "message": "Что нового",
         "description": "Label for circle menu button"
+    },
+    "windowsOnly": {
+        "message": "Работает только на Windows",
+        "description": ""
     },
     "writeAReview": {
         "message": "Написать отзыв",

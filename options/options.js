@@ -94,7 +94,11 @@ function drawCirclePreview(typeOfMenu = selectedMenuType) {
     try {
         document.getElementById('circle-preview-title').innerHTML = chrome.i18n.getMessage('circlePreview');
 
+        updateDisabledOptions();
+
         if (configs[selectedMenuType].levels == null || configs[selectedMenuType].levels.undefined || configs[selectedMenuType].levels.length == 0) {
+            /// Dim settings when no levels added
+
             document.getElementById('clickSegmentToHighlight').innerHTML = chrome.i18n.getMessage('addMoreLevelsToActivateMenu');
             document.getElementById('appearance-config').style.opacity = 0.3;
             document.getElementById('behavior-config').style.opacity = 0.3;
@@ -210,6 +214,7 @@ function generateBehaviorConfigs() {
         'hideCircleIfNoActionSelected',
         'circleHideAnimation',
         'debugMode',
+        'showRegularMenuIfNoAction',
     ];
 
     inputIds.forEach(function (inputId) {
@@ -241,6 +246,7 @@ function generateBehaviorConfigs() {
 
         /// Set translated tooltips
         document.getElementById('dimBackgroundTooltip').innerText = chrome.i18n.getMessage('dimBackgroundTooltip');
+        document.getElementById('windowsOnlyTooltip').innerText = chrome.i18n.getMessage('windowsOnly');
     });
 }
 
@@ -858,6 +864,11 @@ function positionSettingsInCenter() {
 
     document.getElementById('content').style.marginLeft = `${bodyMarginLeft}%`;
 
+}
+
+function updateDisabledOptions() {
+    /// Grey out unavailable optoins
+    document.querySelector("#showRegularMenuIfNoAction").parentNode.parentNode.className = document.querySelector("#hideCircleIfNoActionSelected").checked ? 'option enabled-option' : 'option disabled-option';
 }
 
 

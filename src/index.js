@@ -5,10 +5,14 @@ function init() {
     })
 }
 
+let anyButtonIsSelected = false;
+
 function setPageListeners() {
     /// Page listeners
     document.addEventListener("contextmenu", function (e) {
         if (e.ctrlKey || leftClickIsHolded) return;
+
+        if (configs.showRegularMenuIfNoAction && configs.hideCircleIfNoActionSelected == true && anyButtonIsSelected == false && circleIsShown == false) return;
 
         e.preventDefault();
     });
@@ -144,7 +148,7 @@ function setPageListeners() {
                 hideCircle();
             } else if (evt.button == 2) {
 
-                let anyButtonIsSelected = false;
+                // let anyButtonIsSelected = false;
                 let keys = Object.keys(selectedButtons);
                 for (var i = 0; i < keys.length; i++) {
                     let key = keys[i];
@@ -156,8 +160,9 @@ function setPageListeners() {
 
                 if (anyButtonIsSelected == false) {
                     /// Leave circle open (like a context menu), or hide it
-                    if (configs.hideCircleIfNoActionSelected)
+                    if (configs.hideCircleIfNoActionSelected) {
                         hideCircle();
+                    }
 
                 } else hideCircle();
             }

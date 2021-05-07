@@ -15,6 +15,7 @@ var configs = {
     'gapBetweenCircles': 8,
     'gapBeforeInteractiveCircle': 8,
     'addCircleOutlines': true,
+    'showRegularMenuIfNoAction': false,
     'labelOpacity': 0.75,
     'iconOpacity': 1.0,
 
