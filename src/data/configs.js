@@ -130,21 +130,6 @@ function loadUserConfigs(callback) {
             if (configs.debugMode)
                 if (configs.debugMode) console.log('CMG user configs loaded from memory');
 
-
-            /// Dark mode handling
-            // try {
-            //     let websiteBackgroundColor = document.body.style.backgroundColor;
-
-            //     if (websiteBackgroundColor !== null && websiteBackgroundColor !== undefined) {
-            //         const prefersDark = isColorDark(websiteBackgroundColor);
-
-            //         if (prefersDark) {
-            //             configs['regularMenu']['color'] = '#ffffff';
-            //         }
-            //     }
-            // } catch (e) { if (configs.debugMode) console.log(e); }
-
-
             callback();
         });
 
@@ -154,14 +139,5 @@ function loadUserConfigs(callback) {
 
 function saveAllSettings(userConfigs) {
     chrome.storage.local.set(userConfigs ?? configs);
-
-    // var dataToSave = {};
-
-    // let keys = Object.keys(configs);
-    // keys.forEach(function (key) {
-    //     var input = document.querySelector(`#${key}`);
-    //     dataToSave[key] = input.type == 'checkbox' ? input.checked : input.value;
-    // });
-    // chrome.storage.local.set(dataToSave);
-
 }
+

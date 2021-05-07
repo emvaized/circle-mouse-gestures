@@ -1,12 +1,9 @@
-let defaultConfigs;
 var delayToAddListeners = 1;
 var bodyMarginLeft = 0.0;
 
 let selectedMenuType = 'regularMenu';
 
 function init() {
-    defaultConfigs = configs;
-
     try {
         loadUserConfigs(function (conf) {
             setMenuTypeDropdown();
@@ -96,7 +93,18 @@ function setMenuTypeDropdown() {
 function drawCirclePreview(typeOfMenu = selectedMenuType) {
     try {
         document.getElementById('circle-preview-title').innerHTML = chrome.i18n.getMessage('circlePreview');
-        document.getElementById('clickSegmentToHighlight').innerHTML = chrome.i18n.getMessage('clickSegmentToHighlight');
+
+        if (configs[selectedMenuType].levels == null || configs[selectedMenuType].levels.undefined || configs[selectedMenuType].levels.length == 0) {
+            document.getElementById('clickSegmentToHighlight').innerHTML = chrome.i18n.getMessage('addMoreLevelsToActivateMenu');
+            document.getElementById('appearance-config').style.opacity = 0.3;
+            document.getElementById('behavior-config').style.opacity = 0.3;
+            document.getElementById('gestures-config').style.opacity = 0.3;
+        } else {
+            document.getElementById('clickSegmentToHighlight').innerHTML = chrome.i18n.getMessage('clickSegmentToHighlight');
+            document.getElementById('appearance-config').style.opacity = 1.0;
+            document.getElementById('behavior-config').style.opacity = 1.0;
+            document.getElementById('gestures-config').style.opacity = 1.0;
+        }
 
         totalCircleRadius = 0.0;
 
@@ -163,20 +171,29 @@ function generateAppearanceControls() {
 
     let appearanceContainer = document.getElementById('appearance-config');
 
-    if (document.getElementById('innerWidth') == undefined) {
-        let innerWidthSlider = createRangeSlider('innerWidth', configs.innerCircleRadius, function (newVal) {
-            configs.innerCircleRadius = newVal;
-        }, 0, 100);
-        innerWidthSlider.style.padding = '0px 5px';
-        appearanceContainer.appendChild(innerWidthSlider);
-    }
-
+    /// Create gap between circles slider
     if (document.getElementById('gapBetweenCircles') == undefined) {
         let gapBetweenLevelsSlider = createRangeSlider('gapBetweenCircles', configs.gapBetweenCircles, function (newVal) {
             configs.gapBetweenCircles = newVal;
         }, 0, 100);
         gapBetweenLevelsSlider.style.padding = '0px 5px';
         appearanceContainer.appendChild(gapBetweenLevelsSlider);
+    }
+
+    /// Create inner width slider
+    if (document.getElementById('innerWidth') == undefined) {
+        let innerWidthSlider = createRangeSlider('innerWidth', configs.innerCircleRadius, function (newVal) {
+            configs.innerCircleRadius = newVal;
+        }, 0, 100);
+        innerWidthSlider.style.padding = '0px 5px';
+
+        /// Attach tooltip
+        innerWidthSlider.firstChild.setAttribute('class', 'tooltip');
+        let tooltipText = document.createElement('span');
+        tooltipText.innerText = chrome.i18n.getMessage('innerWidthTooltip');
+        tooltipText.setAttribute('class', 'tooltiptext');
+        innerWidthSlider.firstChild.appendChild(tooltipText);
+        appearanceContainer.appendChild(innerWidthSlider);
     }
 
 }
@@ -221,13 +238,17 @@ function generateBehaviorConfigs() {
                 }
             });
         }, 300);
+
+        /// Set translated tooltips
+        document.getElementById('dimBackgroundTooltip').innerText = chrome.i18n.getMessage('dimBackgroundTooltip');
     });
 }
 
 /// Gesture configs
 function generateGesturesConfigs() {
     /// Translate title
-    document.getElementById('gesturesTitle').innerHTML = chrome.i18n.getMessage('gesturesTitle');
+    let gesturesTitle = document.getElementById('gesturesTitle');
+    gesturesTitle.innerHTML = chrome.i18n.getMessage('gesturesTitle');
 
     let gesturesConfigs = document.getElementById('gestures-config');
     gesturesConfigs.innerHTML = '';
@@ -242,6 +263,14 @@ function generateGesturesConfigs() {
     }, chrome.i18n.getMessage('rockerAction'));
 
     rockerActionContainer.appendChild(dropdown);
+
+
+    /// Attach tooltip
+    rockerActionContainer.firstChild.firstChild.setAttribute('class', 'tooltip');
+    let tooltipText = document.createElement('span');
+    tooltipText.innerText = chrome.i18n.getMessage('rockerActionTooltip');
+    tooltipText.setAttribute('class', 'tooltiptext');
+    rockerActionContainer.firstChild.firstChild.appendChild(tooltipText);
 
     gesturesConfigs.appendChild(rockerActionContainer);
 
@@ -645,20 +674,24 @@ function generateAddLevelButton() {
 
     let addLevelButton = document.createElement('div');
     addLevelButton.setAttribute('id', 'addLevelButton');
-    addLevelButton.setAttribute('title', 'Add circle level');
+    // addLevelButton.setAttribute('title', 'Add circle level');
     addLevelButton.textContent = '+';
     document.getElementById('buttons-config-container').appendChild(addLevelButton);
 
     addLevelButton.addEventListener('click', function () {
+
+        let buttonsToPush;
+
+        if (configs[selectedMenuType].levels == null || configs[selectedMenuType].levels.undefined || configs[selectedMenuType].levels.length == 0) {
+            console.log(defaultConfigs);
+            buttonsToPush = defaultConfigs[selectedMenuType].levels[0].buttons;
+        } else {
+            buttonsToPush = configs[selectedMenuType].levels[configs[selectedMenuType].levels.length - 1].buttons;
+        }
+
         configs[selectedMenuType].levels.push({
             'width': 60,
-            'buttons': configs[selectedMenuType].levels[configs[selectedMenuType].levels.length - 1].buttons
-            // 'buttons': [
-            //     { 'id': 'goForward' },
-            //     { 'id': 'newTab' },
-            //     { 'id': 'goBack' },
-            //     { 'id': 'closeCurrentTab' },
-            // ]
+            'buttons': buttonsToPush
         });
 
         drawCirclePreview();
@@ -687,6 +720,28 @@ function createActionDropdownButton(id, initialValue, cbOnChange, label) {
     let select = document.createElement('select');
     select.setAttribute('id', id);
 
+    /// Populate entries with regular menu actions
+    if (selectedMenuType !== 'regularMenu') {
+        Object.keys(sortedActionButtons['regularMenu']).forEach(function (key) {
+            if (key == '—') return;
+            let optGroup = document.createElement('optgroup');
+            optGroup.setAttribute('label', key == '—' ? key : chrome.i18n.getMessage(key));
+
+            let items = sortedActionButtons['regularMenu'][key];
+            items.forEach(function (item) {
+                let option = document.createElement('option');
+                option.innerHTML = chrome.i18n.getMessage(item);
+                option.setAttribute('value', item);
+                if (item == initialValue) {
+                    option.setAttribute('selected', true);
+                }
+                optGroup.appendChild(option);
+            });
+
+            select.appendChild(optGroup);
+        });
+    }
+
     /// Generate sorted options
     Object.keys(sortedActionButtons[selectedMenuType]).forEach(function (key) {
         let optGroup = document.createElement('optgroup');
@@ -697,12 +752,14 @@ function createActionDropdownButton(id, initialValue, cbOnChange, label) {
             let option = document.createElement('option');
             option.innerHTML = chrome.i18n.getMessage(item);
             option.setAttribute('value', item);
-            if (item == initialValue) option.setAttribute('selected', true);
+            if (item == initialValue) {
+                option.setAttribute('selected', true);
+            }
             optGroup.appendChild(option);
         });
 
         select.appendChild(optGroup);
-    })
+    });
 
     setTimeout(function () {
         let listenedDropdown = document.getElementById(id);
@@ -802,7 +859,6 @@ function positionSettingsInCenter() {
     document.getElementById('content').style.marginLeft = `${bodyMarginLeft}%`;
 
 }
-
 
 
 function chunk(arr, len) {

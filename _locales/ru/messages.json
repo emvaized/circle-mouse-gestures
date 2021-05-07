@@ -3,6 +3,14 @@
         "message": "Добавить сегмент",
         "description": "Label for circle menu button"
     },
+    "addLevel": {
+        "message": "Добавить уровень",
+        "description": ""
+    },
+    "addMoreLevelsToActivateMenu": {
+        "message": "Это меню сейчас неактивно. <br/>Добавьте уровень, чтобы активировать",
+        "description": ""
+    },
     "addTextLabels": {
         "message": "Использовать текстовые подсказки",
         "description": "Label for circle menu button"
@@ -79,6 +87,10 @@
         "message": "Затемнять страницу",
         "description": "Label for circle menu button"
     },
+    "dimBackgroundTooltip": {
+        "message": "Содержимое страницы будет затемнено, пока меню отображается",
+        "description": ""
+    },
     "downloadUrl": {
         "message": "Загрузить",
         "description": "Label for circle menu button"
@@ -124,15 +136,19 @@
         "description": "Ярлык для кнопки кругового меню"
     },
     "imageMenu": {
-        "message": "Меню картинок",
+        "message": "Меню картинки",
         "description": "Label for circle menu button"
     },
     "innerWidth": {
         "message": "Радиус центра",
         "description": "Label for circle menu button"
     },
+    "innerWidthTooltip": {
+        "message": "Неактивная зона в центре круга",
+        "description": ""
+    },
     "levelWidth": {
-        "message": "Ширина",
+        "message": "Ширина уровня",
         "description": "Label for circle menu button"
     },
     "link": {
@@ -140,7 +156,7 @@
         "description": "Ярлык для кнопки кругового меню"
     },
     "linkMenu": {
-        "message": "Меню ссылок",
+        "message": "Меню ссылки",
         "description": "Label for circle menu button"
     },
     "mouseWheelDownAction": {
@@ -218,6 +234,10 @@
     "rockerAction": {
         "message": "Жест рокировки",
         "description": "Label for circle menu button"
+    },
+    "rockerActionTooltip": {
+        "message": "Вызывается левым кликом на пустом месте при удержании правой кнопки",
+        "description": ""
     },
     "rockerGesture": {
         "message": "Жест рокировки",

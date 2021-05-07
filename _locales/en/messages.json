@@ -1,99 +1,111 @@
 {
     "addLabel": {
         "message": "Add segment",
-        "description": "Label for circle menu button"
+        "description": ""
+    },
+    "addLevel": {
+        "message": "Add level",
+        "description": ""
+    },
+    "addMoreLevelsToActivateMenu": {
+        "message": "This menu is inactive. Add levels to activate it",
+        "description": ""
     },
     "addNewButton": {
         "message": "Add new",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "addTextLabels": {
         "message": "Add text labels",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "addToBookmarks": {
         "message": "Add to bookmarks",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "appearanceHeader": {
         "message": "Appearance",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "backgroundColor": {
         "message": "Background color",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "behaviorTitle": {
         "message": "Behavior",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "buttonsHeader": {
         "message": "Buttons",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "circleHideAnimation": {
         "message": "Circle hide animation",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "circleLevel": {
         "message": "Level",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "circlePreview": {
         "message": "Preview",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "clickSegmentToHighlight": {
         "message": "Click any segment to highlight",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "closeCurrentTab": {
         "message": "Close tab",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "colorLabel": {
         "message": "Color",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "configure": {
         "message": "Configure",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "copyLinkText": {
         "message": "Copy text",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "copyText": {
         "message": "Copy",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "copyUrl": {
         "message": "Copy link",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "debugMode": {
         "message": "Debug mode",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "deleteLabel": {
         "message": "Remove",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "dimBackground": {
         "message": "Dim open page",
-        "description": "Label for circle menu button"
+        "description": ""
+    },
+    "dimBackgroundTooltip": {
+        "message": "Page contents will be dimmed while menu is shown",
+        "description": ""
     },
     "downloadUrl": {
         "message": "Download",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "downloadUrlAs": {
         "message": "Download",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "enabled": {
         "message": "Enabled",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "extensionDescription": {
         "message": "Customizable circle menu on right mouse click",
@@ -101,206 +113,218 @@
     },
     "gapBetweenCircles": {
         "message": "Levels padding",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "gesturesTitle": {
         "message": "Gestures",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "githubPage": {
         "message": "GitHub",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "goBack": {
         "message": "Go back",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "goForward": {
         "message": "Go forward",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "hideCircleIfNoActionSelected": {
         "message": "Hide circle if no action selected",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "image": {
         "message": "Image",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "imageMenu": {
-        "message": "Menu for images",
+        "message": "Menu for image",
+        "description": ""
+    },
+    "innerWidth": {
+        "message": "Center radius",
         "description": "Label for circle menu button"
     },
+    "innerWidthTooltip": {
+        "message": "Inactive zone in the center of circle",
+        "description": ""
+    },
     "levelWidth": {
-        "message": "Width",
-        "description": "Label for circle menu button"
+        "message": "Level width",
+        "description": ""
     },
     "link": {
         "message": "Link",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "linkMenu": {
-        "message": "Menu for links",
-        "description": "Label for circle menu button"
+        "message": "Menu for link",
+        "description": ""
     },
     "mouseWheelDownAction": {
         "message": "Wheel up",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "mouseWheelUpAction": {
         "message": "Wheel up",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "moveClockwise": {
         "message": "Clockwise",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "moveCounterClockwise": {
         "message": "Counterclockwise",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "moveDownLabel": {
         "message": "Move down",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "moveUpLabel": {
         "message": "Move up",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "navigation": {
         "message": "Navigation",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "newTab": {
         "message": "New tab",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "noAction": {
         "message": "No action",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "openInBgTab": {
         "message": "Background tab",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "openInFgTab": {
         "message": "Open in new tab",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "page": {
         "message": "Page",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "pageZoomIn": {
         "message": "Zoom in",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "pageZoomOut": {
         "message": "Zoom out",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "quickActions": {
         "message": "Quick actions",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "regularMenu": {
         "message": "Regular menu",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "reloadTab": {
         "message": "Reload",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "restoreClosedTab": {
         "message": "Restore closed tab",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "rockerAction": {
         "message": "Rocker action",
-        "description": "Label for circle menu button"
+        "description": ""
+    },
+    "rockerActionTooltip": {
+        "message": "Gets called by left click on empty space while holding the right button",
+        "description": ""
     },
     "rockerGesture": {
         "message": "Rocker gesture",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "rockerGestureDescription": {
         "message": "Triggered when you click left mouse button while holding the right button",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "scroll": {
         "message": "Scroll",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "scrollPageDown": {
         "message": "Page down",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "scrollPageUp": {
         "message": "Page up",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "scrollToBottom": {
         "message": "Scroll to bottom",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "scrollToTop": {
         "message": "Scroll to top",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "searchImageOnGoogle": {
         "message": "Search image",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "searchText": {
         "message": "Search",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "selectedText": {
         "message": "Selected text",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "selectionMenu": {
         "message": "Menu for text selection",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "settings": {
         "message": "Settings",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "supportButton": {
         "message": "Support",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "switchToNextTab": {
         "message": "Next tab",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "switchToPreviousTab": {
         "message": "Previous tab",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "tab": {
         "message": "Tab",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "toggleFullscreen": {
         "message": "Fullscreen mode",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "translate": {
         "message": "Translate",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "useCustomColor": {
         "message": "Custom color",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "whatsNew": {
         "message": "What's new",
-        "description": "Label for circle menu button"
+        "description": ""
     },
     "writeAReview": {
         "message": "Write a review",
-        "description": "Label for circle menu button"
+        "description": ""
     }
 }

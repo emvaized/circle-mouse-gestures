@@ -4,7 +4,7 @@ This extension introduces convenient circle menu to improve interaction with you
 Just hold down the right mouse button, hightlight one of the preset actions and release it. 
 
 CMG is supposed to provide a better implementation of mouse gestures, while replacing the regular context menu at the same time. 
-But whenever you need it, feel free to call regular context menu by holding left mouse button and pressing the right one.
+But whenever you need, feel free to call regular context menu by holding left mouse button and pressing the right one.
 
 Extension also provides different menus for links/images, support for rocker and mouse wheel gestures, and provides great customization options.
 Give it a try!

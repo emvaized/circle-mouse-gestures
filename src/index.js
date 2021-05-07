@@ -79,6 +79,11 @@ function setPageListeners() {
                     }
                 }
 
+                /// Fallback to regular menu if no levels available
+                if (configs[typeOfMenu].levels == null || configs[typeOfMenu].levels.undefined || configs[typeOfMenu].levels.length == 0) {
+                    typeOfMenu = 'regularMenu';
+                }
+
                 if (configs.debugMode)
                     try {
                         if (configs.debugMode) console.log('hovered element:');

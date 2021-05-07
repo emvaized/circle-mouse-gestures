@@ -5,22 +5,25 @@ function showCircle(e) {
     e.preventDefault();
     if ("buttons" in evt) {
         if (evt.buttons == 2) {
-
             preselectedButtons = {};
-
             totalCircleRadius = 0.0;
 
-            if (configs.interactiveMenusBehavior == 'combine' || typeOfMenu == 'regularMenu') {
-                for (var i = 0; i < configs['regularMenu'].levels.length; i++) {
-                    if (configs['regularMenu'].levels[i].enabled !== false)
-                        totalCircleRadius += configs.gapBetweenCircles + (configs['regularMenu'].levels[i].width ?? configs.circleRadius);
-                }
-                canvasRadius = totalCircleRadius * 2 + 2;
+            for (var i = 0; i < configs[typeOfMenu].levels.length; i++) {
+                if (configs[typeOfMenu].levels[i].enabled !== false)
+                    totalCircleRadius += configs.gapBetweenCircles + (configs[typeOfMenu].levels[i].width ?? configs.circleRadius);
             }
-            else {
-                totalCircleRadius = configs.gapBetweenCircles + (configs[typeOfMenu].levels[0].width ?? configs.circleRadius);
-                canvasRadius = totalCircleRadius * 2;
-            }
+
+            // if (configs.interactiveMenusBehavior == 'combine' || typeOfMenu == 'regularMenu') {
+            // for (var i = 0; i < configs['regularMenu'].levels.length; i++) {
+            //     if (configs['regularMenu'].levels[i].enabled !== false)
+            //         totalCircleRadius += configs.gapBetweenCircles + (configs['regularMenu'].levels[i].width ?? configs.circleRadius);
+            // }
+            canvasRadius = totalCircleRadius * 2 + 2;
+            // }
+            // else {
+            //     totalCircleRadius = configs.gapBetweenCircles + (configs[typeOfMenu].levels[0].width ?? configs.circleRadius);
+            //     canvasRadius = totalCircleRadius * 2;
+            // }
 
             if (typeOfMenu !== 'regularMenu' && configs.interactiveMenusBehavior == 'combine') {
                 canvasRadius += (configs.interactiveCircleRadius + configs.gapBeforeInteractiveCircle) * 2;
@@ -76,42 +79,42 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
     let totalRadius = totalCircleRadius;
 
     /// Draw outer circle with interactive buttons
-    if (typeOfMenu !== 'regularMenu') {
-        /// Interactive menu replaces the regular menu
-        if (configs.interactiveMenusBehavior == 'replace') {
+    // if (typeOfMenu !== 'regularMenu') {
+    //     /// Interactive menu replaces the regular menu
+    //     if (configs.interactiveMenusBehavior == 'replace') {
 
-            // let firstCircleRadius = configs[typeOfMenu].levels[0].width ?? configs.circleRadius;
-            // let firstCircleInnerRadius = configs.innerCircleRadius;
+    //         // let firstCircleRadius = configs[typeOfMenu].levels[0].width ?? configs.circleRadius;
+    //         // let firstCircleInnerRadius = configs.innerCircleRadius;
 
-            // let buttonsToShow = configs[typeOfMenu].levels[0].buttons;
-            // drawCircleLevel(typeOfMenu, e,
-            //     buttonsToShow,
-            //     firstCircleRadius,
-            //     firstCircleInnerRadius,
-            //     // configs['regularMenu'].levels.length,
-            //     0,
-            //     false, showIndexes, shouldCheckButtonsAvailability);
-            // return;
-        } else {
-            /// Interactive menu is added as outer level for regular circle
-            drawCircleLevel(
-                typeOfMenu, e,
-                /// buttonsToShow
-                configs[typeOfMenu].buttons,
-                /// circleRadius
-                totalRadius + configs.interactiveCircleRadius,
-                /// innerCircleRadius
-                totalRadius + configs.gapBeforeInteractiveCircle,
-                ///level
-                configs['regularMenu'].levels.length,
-                /// shouldRespectBoundary
-                false,
-                showIndexes,
-                shouldCheckButtonsAvailability
+    //         // let buttonsToShow = configs[typeOfMenu].levels[0].buttons;
+    //         // drawCircleLevel(typeOfMenu, e,
+    //         //     buttonsToShow,
+    //         //     firstCircleRadius,
+    //         //     firstCircleInnerRadius,
+    //         //     // configs['regularMenu'].levels.length,
+    //         //     0,
+    //         //     false, showIndexes, shouldCheckButtonsAvailability);
+    //         // return;
+    //     } else {
+    //         /// Interactive menu is added as outer level for regular circle
+    //         drawCircleLevel(
+    //             typeOfMenu, e,
+    //             /// buttonsToShow
+    //             configs[typeOfMenu].buttons,
+    //             /// circleRadius
+    //             totalRadius + configs.interactiveCircleRadius,
+    //             /// innerCircleRadius
+    //             totalRadius + configs.gapBeforeInteractiveCircle,
+    //             ///level
+    //             configs['regularMenu'].levels.length,
+    //             /// shouldRespectBoundary
+    //             false,
+    //             showIndexes,
+    //             shouldCheckButtonsAvailability
 
-            );
-        }
-    }
+    //         );
+    //     }
+    // }
 
     let enabledLevelsCount = 0;
 

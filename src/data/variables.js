@@ -32,3 +32,121 @@ var backgroundDimmer;
 /// Index of level: index of button
 var selectedButtons = {};
 var preselectedButtons = {};
+
+/// Default configs
+var defaultConfigs = {
+    'debugMode': false,
+    'cmgEnabled': true,
+    'animationDuration': 200,
+    'hideCircleIfNoActionSelected': true,
+    'useMouseWheelGestures': true,
+    'addTextLabels': true,
+    'dimBackground': false,
+    'backgroundDimmerOpacity': 0.25,
+    'circleOpacity': 1.0,
+    'innerCircleRadius': 30,
+    'circleRadius': 115,
+    'interactiveCircleRadius': 57,
+    'gapBetweenCircles': 8,
+    'gapBeforeInteractiveCircle': 8,
+    'addCircleOutlines': true,
+    'labelOpacity': 0.75,
+    'iconOpacity': 1.0,
+
+    /// 'Replace' will display interactive menu only (link, image, selected text),
+    /// and 'combine' will add it as outer circle level
+    'interactiveMenusBehavior': 'replace',  /// possible values: 'replace', 'combine'
+    'addLinkTooltip': true,
+    'showFullLinkInTooltip': true,
+    'showLinkTextInTooltip': false,
+    'showLinkTooltipForPageItself': false,
+    'linkTooltipOpacity': 1.0,
+    'circleHideAnimation': true,
+    'circleAppearAnimation': false,
+
+    /// Menus
+    'regularMenu': {
+        'color': "#4c4c4c",
+        'rockerAction': 'reloadTab',
+        'mouseWheelUpAction': 'scrollToTop',
+        'mouseWheelDownAction': 'scrollToBottom',
+        'levels': [
+            {
+                'width': 100,
+                'buttons': [
+                    { 'id': 'goForward' },
+                    { 'id': 'newTab' },
+                    { 'id': 'goBack' },
+                    { 'id': 'closeCurrentTab' },
+                ]
+            },
+            {
+                'width': 57,
+                'buttons': [
+                    { 'id': 'switchToNextTab' },
+                    { 'id': 'reloadTab' },
+                    { 'id': 'scrollToBottom' },
+                    { 'id': 'restoreClosedTab' },
+                    { 'id': 'switchToPreviousTab' },
+                    // { 'id': 'translatePage' },
+                    { 'id': 'translate' },
+                    { 'id': 'scrollToTop' },
+                    { 'id': 'copyUrl' },
+                ]
+            },
+        ]
+    },
+
+    'linkMenu': {
+        'width': 100,
+        'color': "#3777CD",
+        'rockerAction': 'openInFgTab',
+        'mouseWheelUpAction': 'noAction',
+        'mouseWheelDownAction': 'noAction',
+        'levels': [
+            {
+                'buttons': [
+                    { 'id': 'openInFgTab' },
+                    { 'id': 'copyLinkText' },
+                    { 'id': 'openInBgTab' },
+                    { 'id': 'copyUrl' },
+                ]
+            }
+        ]
+    },
+
+    'selectionMenu': {
+        'width': 100,
+        'color': "#000000",
+        'rockerAction': 'copyText',
+        'mouseWheelUpAction': 'noAction',
+        'mouseWheelDownAction': 'noAction',
+        'levels': [
+            {
+                'buttons': [
+                    { 'id': 'copyText' },
+                    { 'id': 'searchText' },
+                    { 'id': 'translate' },
+                ]
+            }
+        ]
+    },
+
+    'imageMenu': {
+        // 'color': "#c69a15",
+        'color': "#d80000",
+        'rockerAction': 'openInFgTab',
+        'levels': [
+            {
+                'buttons': [
+                    { 'id': 'openInFgTab' },
+                    { 'id': 'downloadUrlAs' },
+                    { 'id': 'openInBgTab' },
+                    { 'id': 'searchImageOnGoogle' },
+                    { 'id': 'copyUrl' },
+                ]
+            }
+        ]
+
+    },
+};
