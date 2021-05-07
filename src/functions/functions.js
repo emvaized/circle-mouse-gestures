@@ -185,3 +185,19 @@ function getSelectionRectDimensions() {
     return { width: width, height: height, dx: dx, dy: dy };
 }
 
+
+function getCurrentClipboard() {
+    try {
+        var t = document.createElement("input");
+        t.setAttribute('style', 'opacity: 0.0; position: absolute;pointer-events: none; transform: scale(0.00000001, 0.00000001)');
+        document.body.appendChild(t);
+        t.focus();
+        document.execCommand("paste");
+        let clipboardText = t.value; //this is your clipboard data
+        document.body.removeChild(t);
+        return clipboardText;
+    } catch (e) {
+        if (configs.debugMode) console.log(e);
+        return '';
+    }
+}

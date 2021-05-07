@@ -63,6 +63,10 @@
         "message": "Click any segment to highlight",
         "description": ""
     },
+    "clipboard": {
+        "message": "Clipboard",
+        "description": ""
+    },
     "closeCurrentTab": {
         "message": "Close tab",
         "description": ""
@@ -163,8 +167,8 @@
         "message": "Radius of inactive zone in the center of circle",
         "description": ""
     },
-    "levelWidth": {
-        "message": "Level width",
+    "inputField": {
+        "message": "Input field",
         "description": ""
     },
     "link": {

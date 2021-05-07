@@ -1,5 +1,6 @@
 #1.0.3
 - Added separate menu for input fields
+- Added option in settings to disable helper tooltip
 - Fix for link/image/text selection menus not showing up
 
 #1.0.2

@@ -217,7 +217,11 @@ function hideCircle() {
         }
 
         setTimeout(function () {
-            circle.style.visibility = 'hidden';
+
+            textSelection = null;
+
+            if (circle !== null)
+                circle.style.visibility = 'hidden';
             if (circle.parentNode !== null)
                 circle.parentNode.removeChild(circle);
             circle = null;
@@ -225,6 +229,7 @@ function hideCircle() {
             for (i in configs.regularMenu.levels) {
                 selectedButtons[i] = null;
             }
+
         }, configs.circleHideAnimation ? configs.animationDuration : 0);
     } catch (e) { if (configs.debugMode) console.log(e); }
 }

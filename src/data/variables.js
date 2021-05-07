@@ -29,6 +29,7 @@ var linkTooltip;
 var rockerCircle;
 var backgroundDimmer;
 var elementUnderCursor;
+var currentClipboardContent;
 
 /// Index of level: index of button
 var selectedButtons = {};

@@ -11,16 +11,17 @@ function showLinkTooltip() {
         configs.showLinkTextInTooltip && hoveredLinkTitle !== null && hoveredLinkTitle !== hoveredLink && hoveredLinkTitle !== hoveredLink.replaceAll('http://', '') ? (hoveredLinkTitle.length > 24 ? hoveredLinkTitle.substring(0, 24) + '...' : hoveredLinkTitle)
             : chrome.i18n.getMessage('link')
         : typeOfMenu == 'imageMenu' ? chrome.i18n.getMessage('image')
-            : typeOfMenu == 'selectionMenu' || (typeOfMenu == 'textFieldMenu' && textSelection !== null) ? chrome.i18n.getMessage('selectedText') :
-                chrome.i18n.getMessage('page');
+            : typeOfMenu == 'selectionMenu' || (typeOfMenu == 'textFieldMenu' && textSelection.toString() !== '') ? chrome.i18n.getMessage('selectedText') :
+                typeOfMenu == 'textFieldMenu' ? chrome.i18n.getMessage('inputField') : chrome.i18n.getMessage('page');
 
-    label.innerHTML += '<br />';
+    label.innerHTML += ':<br />';
     label.setAttribute('style', 'color: rgba(256,256,256,0.7); vertical-align: middle;');
     linkTooltip.appendChild(label);
 
-    let text = document.createElement('span');
-
     /// Set body
+    let text = document.createElement('span');
+    let maxSymbolsInBody = 33;
+
     if (typeOfMenu == 'imageMenu') {
         let fileName;
         try {
@@ -28,22 +29,27 @@ function showLinkTooltip() {
         } catch (e) { if (configs.debugMode) console.log(e); }
         text.innerHTML = fileName !== null && fileName !== undefined ? fileName : configs.showFullLinkInTooltip ? hoveredLink : hoveredLink.substring(0, 26);
     } else {
-        if (typeOfMenu == 'selectionMenu' || typeOfMenu == 'textFieldMenu') {
+        if (typeOfMenu == 'selectionMenu' || (typeOfMenu == 'textFieldMenu' && textSelection.toString() !== '')) {
             let textSelectionString = textSelection.toString();
-            text.innerHTML = textSelectionString.length > 36 ? textSelectionString.substring(0, 33) + '...' : textSelectionString;
+            text.innerHTML = textSelectionString.length > maxSymbolsInBody ? textSelectionString.substring(0, maxSymbolsInBody - 3) + '...' : textSelectionString;
+        } else if (typeOfMenu == 'textFieldMenu') {
+            if (currentClipboardContent !== null && currentClipboardContent !== undefined && currentClipboardContent !== '') {
+                text.innerHTML = currentClipboardContent.length > maxSymbolsInBody ? currentClipboardContent.substring(0, maxSymbolsInBody - 3) + '...' : currentClipboardContent;
+                label.innerHTML = chrome.i18n.getMessage('clipboard') + ':<br />';
+            }
         }
         else
-            text.innerHTML = configs.showFullLinkInTooltip ? hoveredLink : hoveredLink.substring(0, 30);
+            text.innerHTML = configs.showFullLinkInTooltip ? hoveredLink : hoveredLink.length > maxSymbolsInBody ? hoveredLink.substring(0, maxSymbolsInBody - 3) + '...' : hoveredLink;
     }
 
     text.setAttribute('style', `word-break:break-all;${typeOfMenu == 'selectionMenu' ? '' : 'text-decoration: underline;'}`);
     linkTooltip.appendChild(text);
 
-    if (configs.showFullLinkInTooltip == false) {
-        let threeDots = document.createElement('span');
-        threeDots.innerHTML = '...';
-        linkTooltip.appendChild(threeDots);
-    }
+    // if (configs.showFullLinkInTooltip == false) {
+    //     let threeDots = document.createElement('span');
+    //     threeDots.innerHTML = '...';
+    //     linkTooltip.appendChild(threeDots);
+    // }
 
     document.body.appendChild(linkTooltip);
 
@@ -68,7 +74,9 @@ function hideLinkTooltip() {
     linkTooltip.style.transform = `translate(${dxShown}px, ${topCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px)`;
     linkTooltip.style.opacity = `0.0`;
     setTimeout(function () {
-        linkTooltip.parentNode.removeChild(linkTooltip);
+        if (linkTooltip !== null)
+            linkTooltip.parentNode.removeChild(linkTooltip);
         linkTooltip = null;
     }, 200);
 }
+

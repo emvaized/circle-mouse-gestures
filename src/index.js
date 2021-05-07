@@ -63,6 +63,7 @@ function setPageListeners() {
                     el.tagName === "TEXTAREA" ||
                     el.getAttribute('contenteditable') !== null) {
                     /// Text field is hovered
+                    currentClipboardContent = getCurrentClipboard();
 
                     el.focus();
 

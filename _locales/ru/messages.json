@@ -59,6 +59,10 @@
         "message": "Кликните на сегмент, чтобы подсветить",
         "description": "Label for circle menu button"
     },
+    "clipboard": {
+        "message": "Буфер обмена",
+        "description": ""
+    },
     "closeCurrentTab": {
         "message": "Закрыть вкладку",
         "description": "Ярлык для кнопки кругового меню"
@@ -70,6 +74,10 @@
     "configure": {
         "message": "Настроить",
         "description": "Label for circle menu button"
+    },
+    "copiedText": {
+        "message": "Скопированный текст",
+        "description": ""
     },
     "copyLinkText": {
         "message": "Копировать текст",
@@ -162,6 +170,10 @@
     "levelWidth": {
         "message": "Ширина уровня",
         "description": "Label for circle menu button"
+    },
+    "inputField": {
+        "message": "Поле ввода",
+        "description": ""
     },
     "link": {
         "message": "Ссылка",

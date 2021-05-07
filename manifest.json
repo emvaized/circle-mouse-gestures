@@ -26,8 +26,8 @@
         "src/functions/functions.js",
         "src/ui/circle/circle.js",
         "src/ui/circle/circle-level-draw.js",
-        "src/ui/link-tooltip.js",
-        "src/ui/rocker-icon.js",
+        "src/ui/components/helper-tooltip.js",
+        "src/ui/components/rocker-icon.js",
         "src/index.js"
       ],
       "css": [
