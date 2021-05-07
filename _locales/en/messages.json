@@ -148,7 +148,7 @@
         "description": "Label for circle menu button"
     },
     "innerWidthTooltip": {
-        "message": "Inactive zone in the center of circle",
+        "message": "Radius of inactive zone in the center of circle",
         "description": ""
     },
     "levelWidth": {

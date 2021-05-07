@@ -96,20 +96,6 @@ function drawCirclePreview(typeOfMenu = selectedMenuType) {
 
         updateDisabledOptions();
 
-        if (configs[selectedMenuType].levels == null || configs[selectedMenuType].levels.undefined || configs[selectedMenuType].levels.length == 0) {
-            /// Dim settings when no levels added
-
-            document.getElementById('clickSegmentToHighlight').innerHTML = chrome.i18n.getMessage('addMoreLevelsToActivateMenu');
-            document.getElementById('appearance-config').style.opacity = 0.3;
-            document.getElementById('behavior-config').style.opacity = 0.3;
-            document.getElementById('gestures-config').style.opacity = 0.3;
-        } else {
-            document.getElementById('clickSegmentToHighlight').innerHTML = chrome.i18n.getMessage('clickSegmentToHighlight');
-            document.getElementById('appearance-config').style.opacity = 1.0;
-            document.getElementById('behavior-config').style.opacity = 1.0;
-            document.getElementById('gestures-config').style.opacity = 1.0;
-        }
-
         totalCircleRadius = 0.0;
 
         if (configs.interactiveMenusBehavior == 'combine' || typeOfMenu == selectedMenuType) {
@@ -313,8 +299,8 @@ function generateButtonsControls() {
 
     let buttonsHeader = document.createElement('span');
     buttonsHeader.innerHTML = chrome.i18n.getMessage('buttonsHeader') + '<br />';
-    // buttonsHeader.setAttribute('style', 'float: bottom');
     buttonsHeader.setAttribute('class', 'header');
+    buttonsHeader.setAttribute('style', 'padding-left: 20px;');
     document.getElementById('buttons-config-container').appendChild(buttonsHeader);
 
     for (var i = 0; i < configs[selectedMenuType].levels.length; i++) {
@@ -334,6 +320,7 @@ function generateLevelConfigs(levelIndex = 0) {
     let enabledCheckboxId = `enabledCheckbox-${levelIndex}`;
 
     enabledCheckbox.setAttribute('type', 'checkbox');
+    enabledCheckbox.setAttribute('title', chrome.i18n.getMessage("enabled"));
     enabledCheckbox.setAttribute('style', 'margin-right: 5px;cursor: pointer;');
     enabledCheckbox.setAttribute('id', enabledCheckboxId);
     if (configs[selectedMenuType].levels[levelIndex].enabled !== false) {
@@ -867,6 +854,28 @@ function positionSettingsInCenter() {
 }
 
 function updateDisabledOptions() {
+
+    /// Grey out settings when no levels added or enabled
+
+    let enabledLevelsCount = 0;
+    configs[selectedMenuType].levels.forEach(function (level) {
+        if (level.enabled)
+            enabledLevelsCount += 1;
+    });
+
+    if (configs[selectedMenuType].levels == null || configs[selectedMenuType].levels.undefined || configs[selectedMenuType].levels.length == 0 || enabledLevelsCount == 0) {
+
+        document.getElementById('clickSegmentToHighlight').innerHTML = chrome.i18n.getMessage('addMoreLevelsToActivateMenu');
+        document.getElementById('appearance-config').style.opacity = 0.3;
+        document.getElementById('behavior-config').style.opacity = 0.3;
+        document.getElementById('gestures-config').style.opacity = 0.3;
+    } else {
+        document.getElementById('clickSegmentToHighlight').innerHTML = chrome.i18n.getMessage('clickSegmentToHighlight');
+        document.getElementById('appearance-config').style.opacity = 1.0;
+        document.getElementById('behavior-config').style.opacity = 1.0;
+        document.getElementById('gestures-config').style.opacity = 1.0;
+    }
+
     /// Grey out unavailable optoins
     document.querySelector("#showRegularMenuIfNoAction").parentNode.parentNode.className = document.querySelector("#hideCircleIfNoActionSelected").checked ? 'option enabled-option' : 'option disabled-option';
 }

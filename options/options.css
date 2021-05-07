@@ -35,7 +35,7 @@
     padding: 6px;
     font-size: 15px;
     cursor: pointer;
-    margin-left: 40px;
+    margin-left: 4%;
     margin-top: 15px;
   }
 
@@ -44,7 +44,7 @@
   }
 
   #content {
-      padding-top: 30px;
+      padding-top: 40px;
   }
 
 .buttons-item {
@@ -75,12 +75,14 @@
 
 #buttons-config-container{
     padding-top: 15px;
+    float: left;
 }
 
 .configs-container{
     float: top;
     padding: 0px 25px;
     margin: 15px 0px;
+    transition: opacity 300ms ease-in-out;
 }
 
 .option{

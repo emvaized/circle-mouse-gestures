@@ -83,8 +83,14 @@ function setPageListeners() {
                     }
                 }
 
-                /// Fallback to regular menu if no levels available
-                if (configs[typeOfMenu].levels == null || configs[typeOfMenu].levels.undefined || configs[typeOfMenu].levels.length == 0) {
+                /// Fallback to regular menu if no levels added or available
+                let enabledLevelsCount = 0;
+                configs[typeOfMenu].levels.forEach(function (level) {
+                    if (level.enabled)
+                        enabledLevelsCount += 1;
+                });
+
+                if (configs[typeOfMenu].levels == null || configs[typeOfMenu].levels.undefined || configs[typeOfMenu].levels.length == 0 || enabledLevelsCount == 0) {
                     typeOfMenu = 'regularMenu';
                 }
 

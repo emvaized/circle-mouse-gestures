@@ -144,7 +144,7 @@
         "description": "Label for circle menu button"
     },
     "innerWidthTooltip": {
-        "message": "Неактивная зона в центре круга",
+        "message": "Радиус неактивной зоны в центре круга",
         "description": ""
     },
     "levelWidth": {

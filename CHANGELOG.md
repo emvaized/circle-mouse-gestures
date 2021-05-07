@@ -2,6 +2,7 @@
 - Added option to show regular context menu if no action was selected
 - Now link/image/text selection menus can be populated with regular menu actions
 - It is now possible to deactive link/image/text selection menu by removing all of it's levels
+- Improved options layout when window is not maximized
 - Added few tooltips in options
 
 #1.0.1
