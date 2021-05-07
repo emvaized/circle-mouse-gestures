@@ -164,13 +164,15 @@ input {
       content: '?';
       background-color: lightgray;
       border-radius: 50%;
+      line-height: 1.25;
+      vertical-align: middle;
       height: 15px;
       width: 15px;
       min-width: 15px;
       display: inline-block;
       text-align: center;
       position: absolute;
-      left: -35px;
+      left: -30px;
       right: 0px;
       top: 0px;
   }

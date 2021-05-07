@@ -24,7 +24,7 @@
         "description": "Label for circle menu button"
     },
     "backgroundColor": {
-        "message": "Цвет фона",
+        "message": "Цвет фона по умолчанию",
         "description": "Label for circle menu button"
     },
     "behaviorTitle": {
@@ -236,7 +236,7 @@
         "description": "Label for circle menu button"
     },
     "rockerActionTooltip": {
-        "message": "Вызывается левым кликом на пустом месте при удержании правой кнопки",
+        "message": "Вызывается левым кликом в центре при удержании правой кнопки",
         "description": ""
     },
     "rockerGesture": {

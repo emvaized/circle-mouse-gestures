@@ -28,7 +28,7 @@
         "description": ""
     },
     "backgroundColor": {
-        "message": "Background color",
+        "message": "Default background color",
         "description": ""
     },
     "behaviorTitle": {
@@ -240,7 +240,7 @@
         "description": ""
     },
     "rockerActionTooltip": {
-        "message": "Gets called by left click on empty space while holding the right button",
+        "message": "Gets called by left click in center while holding the right button",
         "description": ""
     },
     "rockerGesture": {
