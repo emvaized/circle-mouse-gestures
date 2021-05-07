@@ -313,12 +313,15 @@ function checkButtonAvailability(e, id) {
         case 'goForward': return window.history.length !== 1;
 
         case 'cutText': {
-            if ((textSelection == null || textSelection == undefined || textSelection == ''))
-                return false;
-            else return true;
+            try {
+                if (textSelection == null || textSelection == undefined || textSelection.toString() == '')
+                    return false;
+                else return true;
+            } catch (e) { console.log(e); return true; }
+
         }
         case 'copyText': {
-            if ((typeOfMenu == 'textFieldMenu' || typeOfMenu == 'selectionMenu') && (textSelection == null || textSelection == undefined || textSelection == ''))
+            if ((typeOfMenu == 'textFieldMenu' || typeOfMenu == 'selectionMenu') && (textSelection == null || textSelection == undefined || textSelection.toString() == ''))
                 return false;
             else return true;
         }

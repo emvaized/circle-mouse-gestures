@@ -1,3 +1,6 @@
+#1.0.4
+- Fix for input field buttons being false-inactive on Firefox 
+
 #1.0.3
 - Added separate menu for input fields
 - Added option in settings to disable helper tooltip

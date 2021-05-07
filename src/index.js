@@ -62,6 +62,24 @@ function setPageListeners() {
                     el.tagName === "INPUT" ||
                     el.tagName === "TEXTAREA" ||
                     el.getAttribute('contenteditable') !== null) {
+                    if (window.getSelection) {
+                        textSelection = window.getSelection();
+                    } else if (document.selection) {
+                        textSelection = document.selection.createRange();
+                    } else {
+                        textSelection = null;
+                    }
+
+                    /// Special handling for Firefox (https://stackoverflow.com/questions/20419515/window-getselection-of-textarea-not-working-in-firefox)
+                    try {
+                        if (textSelection.toString() == '') {
+                            var ta = document.querySelector(':focus');
+                            textSelection = ta.value.substring(ta.selectionStart, ta.selectionEnd);
+
+                            // if (textSelection == null || textSelection == undefined || textSelection.toString().trim() == '') textSelection = ;
+                        }
+                    } catch (e) { if (configs.debugMode) console.log(e) }
+
                     /// Text field is hovered
                     currentClipboardContent = getCurrentClipboard();
 
@@ -71,13 +89,7 @@ function setPageListeners() {
                     hoveredLink = window.location.href;
                     hoveredLinkTitle = null;
 
-                    if (window.getSelection) {
-                        textSelection = window.getSelection();
-                    } else if (document.selection) {
-                        textSelection = document.selection.createRange();
-                    } else {
-                        textSelection = null;
-                    }
+
                 }
 
                 else {
