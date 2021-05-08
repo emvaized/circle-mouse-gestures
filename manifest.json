@@ -24,6 +24,7 @@
         "src/data/variables.js",
         "src/data/actions.js",
         "src/functions/functions.js",
+        "src/functions/input-changes-stack.js",
         "src/ui/circle/circle.js",
         "src/ui/circle/circle-level-draw.js",
         "src/ui/components/helper-tooltip.js",

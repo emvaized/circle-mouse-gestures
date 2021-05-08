@@ -19,8 +19,11 @@ function triggerButtonAction(actionToPerform) {
             window.scrollTo({ top: window.scrollY + window.innerHeight * .9, behavior: 'smooth' });
         } else if (actionToPerform == 'undoAction') {
             document.execCommand('Undo');
+            // doUndo(elementUnderCursor)
+
         } else if (actionToPerform == 'redoAction') {
             document.execCommand('redo');
+            // doRedo(elementUnderCursor)
         } else if (actionToPerform == 'pasteText') {
             if (elementUnderCursor !== null)
                 elementUnderCursor.focus({ preventScroll: true });

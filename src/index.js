@@ -88,6 +88,8 @@ function setPageListeners() {
                     hoveredLinkTitle = null;
 
                     el.focus({ preventScroll: false });
+
+                    // addInputChangesListener(el);
                 }
 
                 else {

@@ -312,6 +312,9 @@ function checkButtonAvailability(e, id) {
         };
         case 'goForward': return window.history.length !== 1;
 
+        // case 'undoAction': return checkIfCanUndo();
+        // case 'redoAction': return checkIfCanRedo();
+
         case 'cutText': {
             try {
                 if (textSelection == null || textSelection == undefined || textSelection.toString() == '') {
