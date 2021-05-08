@@ -17,6 +17,10 @@ function triggerButtonAction(actionToPerform) {
             window.scrollTo({ top: window.scrollY - window.innerHeight * .9, behavior: 'smooth' });
         } else if (actionToPerform == 'scrollPageDown') {
             window.scrollTo({ top: window.scrollY + window.innerHeight * .9, behavior: 'smooth' });
+        } else if (actionToPerform == 'undoAction') {
+            document.execCommand('Undo');
+        } else if (actionToPerform == 'redoAction') {
+            document.execCommand('redo');
         } else if (actionToPerform == 'pasteText') {
             if (elementUnderCursor !== null)
                 elementUnderCursor.focus({ preventScroll: true });
@@ -34,6 +38,31 @@ function triggerButtonAction(actionToPerform) {
             if (elementUnderCursor !== null) {
                 elementUnderCursor.focus({ preventScroll: true });
                 elementUnderCursor.select();
+            }
+        } else if (actionToPerform == 'moveCaretToEnd') {
+            if (elementUnderCursor !== null) {
+                elementUnderCursor.focus({ preventScroll: true });
+                let val = elementUnderCursor.value; //store the value of the element
+                elementUnderCursor.value = ''; //clear the value of the element
+                elementUnderCursor.value = val; //set that value back.
+            }
+        } else if (actionToPerform == 'moveCaretToStart') {
+            if (elementUnderCursor !== null) {
+
+                if (elementUnderCursor.createTextRange) {
+                    var range = elementUnderCursor.createTextRange();
+                    range.move('character', 0);
+                    range.select();
+                }
+                else {
+                    if (elementUnderCursor.selectionStart) {
+                        elementUnderCursor.focus();
+                        elementUnderCursor.setSelectionRange(0, 0);
+                    }
+                    else
+                        elementUnderCursor.focus();
+                }
+
             }
         } else
 

@@ -1,6 +1,9 @@
 #1.0.4
-- Fix for input field buttons being false-inactive on Firefox 
+- Added circle opacity config
 - Added 'Clear' action for input field menu
+- Added 'Move caret to start' and 'Move caret to end' actions for input fields
+- Added 'Undo' and 'Redo' actions for regular menu
+- Fix for input field buttons being false-inactive on Firefox 
 - Changed default buttons order and colors
 - Fixed bug with screen shifting on focusing input
 

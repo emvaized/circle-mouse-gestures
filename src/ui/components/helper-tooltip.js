@@ -62,7 +62,8 @@ function showLinkTooltip() {
     setTimeout(function () {
         linkTooltip.style.transition = `transform ${configs.animationDuration}ms ease-in-out, opacity ${configs.animationDuration}ms ease-in-out`;
         linkTooltip.style.transform = `translate(${dxToShow}px, ${dyToShow}px)`;
-        linkTooltip.style.opacity = configs.linkTooltipOpacity;
+        // linkTooltip.style.opacity = configs.linkTooltipOpacity;
+        linkTooltip.style.opacity = configs.circleOpacity ?? 1.0;
     }, 1);
 }
 

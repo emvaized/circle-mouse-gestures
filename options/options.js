@@ -39,8 +39,8 @@ function setMenuTypeDropdown() {
         'regularMenu',
         'linkMenu',
         'imageMenu',
-        'selectionMenu',
         'textFieldMenu',
+        'selectionMenu',
     ];
 
     let navBar = document.getElementById('navbar');
@@ -120,6 +120,7 @@ function drawCirclePreview(typeOfMenu = selectedMenuType) {
         circle.setAttribute('width', `${canvasRadius}px !imporant`);
         circle.setAttribute('height', `${canvasRadius}px !imporant`);
         circle.parentNode.setAttribute('style', `float:left;`);
+        circle.style.opacity = configs.circleOpacity;
         ctx = circle.getContext('2d');
 
         leftCoord = circle.getBoundingClientRect().left;
@@ -185,6 +186,17 @@ function generateAppearanceControls() {
         tooltipText.setAttribute('class', 'tooltiptext');
         innerWidthSlider.firstChild.appendChild(tooltipText);
         appearanceContainer.appendChild(innerWidthSlider);
+    }
+
+    /// Create circle opacity slider
+    if (document.getElementById('circleOpacity') == undefined) {
+        let circleOpacitySlider = createRangeSlider('circleOpacity', configs.circleOpacity, function (newVal) {
+            console.log(newVal);
+            configs.circleOpacity = newVal;
+        }, 0.1, 1.0, null, 0.1);
+        circleOpacitySlider.style.padding = '0px 5px';
+
+        appearanceContainer.appendChild(circleOpacitySlider);
     }
 
 }
@@ -677,12 +689,12 @@ function generateAddLevelButton() {
 
         let buttonsToPush;
 
-        if (configs[selectedMenuType].levels == null || configs[selectedMenuType].levels.undefined || configs[selectedMenuType].levels.length == 0) {
-            console.log(defaultConfigs);
-            buttonsToPush = defaultConfigs[selectedMenuType].levels[0].buttons;
-        } else {
-            buttonsToPush = configs[selectedMenuType].levels[configs[selectedMenuType].levels.length - 1].buttons;
-        }
+        // if (configs[selectedMenuType].levels == null || configs[selectedMenuType].levels.undefined || configs[selectedMenuType].levels.length == 0) {
+        //     console.log(defaultConfigs);
+        buttonsToPush = defaultConfigs[selectedMenuType].levels[0].buttons;
+        // } else {
+        //     buttonsToPush = configs[selectedMenuType].levels[configs[selectedMenuType].levels.length - 1].buttons;
+        // }
 
         configs[selectedMenuType].levels.push({
             'width': 60,
@@ -772,7 +784,7 @@ function createActionDropdownButton(id, initialValue, cbOnChange, label) {
     return selectContainer;
 }
 
-function createRangeSlider(id, value, callbackOnChange, min = 50, max = 200, label) {
+function createRangeSlider(id, value, callbackOnChange, min = 50, max = 200, label, step = 1) {
     let updatePreviewInRealTime = false;
 
     /// Level width input
@@ -792,7 +804,7 @@ function createRangeSlider(id, value, callbackOnChange, min = 50, max = 200, lab
     widthInput.setAttribute('style', 'margin-right: 5px;');
     widthInput.setAttribute('min', `${min}`);
     widthInput.setAttribute('max', `${max}`);
-    widthInput.setAttribute('step', '1');
+    widthInput.setAttribute('step', `${step}`);
     widthInput.setAttribute('value', value);
 
     setTimeout(function () {
@@ -802,7 +814,7 @@ function createRangeSlider(id, value, callbackOnChange, min = 50, max = 200, lab
             // let ind = widthInputId.split('-')[1];
             // configs[selectedMenuType].levels[ind].width = parseInt(inp.value);
 
-            callbackOnChange(parseInt(inp.value));
+            callbackOnChange(inp.value.includes('.') ? parseFloat(inp.value) : parseInt(inp.value));
 
             /// Update width indicator
             document.getElementById(widthInputId + '-indicator').innerHTML = inp.value;
@@ -861,7 +873,6 @@ function updateDisabledOptions() {
 
     let enabledLevelsCount = 0;
     for (var i = 0; i < configs[selectedMenuType].levels.length; i++) {
-        console.log(configs[selectedMenuType].levels[i]['enabled']);
         if (configs[selectedMenuType].levels[i].enabled !== false) enabledLevelsCount += 1;
     }
 
