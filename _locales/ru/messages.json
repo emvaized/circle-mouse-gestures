@@ -448,7 +448,7 @@
         "description": ""
     },
     "windowsOnly": {
-        "message": "Работает только на Windows",
+        "message": "Работает только на Windows. На других системах (Linux, MacOS) требует двойного клика",
         "description": ""
     },
     "writeAReview": {

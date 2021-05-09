@@ -440,7 +440,7 @@
         "description": ""
     },
     "windowsOnly": {
-        "message": "Will work only on Windows",
+        "message": "Will work only on Windows. On other systems (Linux, MacOS) will require double click",
         "description": ""
     },
     "writeAReview": {

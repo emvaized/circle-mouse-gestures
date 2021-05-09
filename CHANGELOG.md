@@ -3,6 +3,7 @@
 - Implemented ability to configure behavior when element menu is not active (show regular menu/do nothing)
 - Added 'Copy all text' action for input fields
 - Added 'Copy image' action for image menu (for now works only if image is placed on domain which allows CORS)
+- Removed 'Undo' and 'Redo' actions for now, as they work unreliably
 - Various small fixes and improvements
 
 #1.0.4

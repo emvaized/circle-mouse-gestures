@@ -20,8 +20,8 @@ var sortedActionButtons = {
             'copyUrl',
             'translate',
             'addToBookmarks',
-            'undoAction',
-            'redoAction',
+            // 'undoAction',
+            // 'redoAction',
         ],
         'scroll': [
             'scrollToTop',

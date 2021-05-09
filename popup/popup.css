@@ -1,5 +1,6 @@
  html, body {
   min-width: 125px;
+  max-width: 180px;
   align-items: center;
 }
 
