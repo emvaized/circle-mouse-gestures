@@ -4,9 +4,9 @@ This extension introduces convenient circle menu (so-called pie menu) to improve
 Just hold down the right mouse button, highlight one of the preset actions and release it. 
 
 CMG is supposed to provide a better implementation of mouse gestures, while replacing the regular context menu at the same time. 
-But whenever you need, feel free to call regular context menu by holding left mouse button and pressing the right one.
+But regular context menu is always there whenever you need it.
 
-Features:
+Extension features:
 - different menus for links, images, input fields etc.
 - support for rocker and mouse wheel gestures
 - great customization options
