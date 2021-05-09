@@ -12,3 +12,10 @@ Extension features:
 - great customization options
 
 Give it a try!
+
+
+Download for Firefox:
+https://addons.mozilla.org/ru/firefox/addon/circle-mouse-gestures/
+
+Download for Chrome:
+https://chrome.google.com/webstore/detail/circle-mouse-gestures/kkknhbbfjlibfjagilggkcelmcobgefa
