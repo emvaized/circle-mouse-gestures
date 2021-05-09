@@ -222,7 +222,7 @@ function hideCircle() {
 
             if (circle !== null)
                 circle.style.visibility = 'hidden';
-            if (circle.parentNode !== null)
+            if (circle !== null && circle.parentNode !== null)
                 circle.parentNode.removeChild(circle);
             circle = null;
 

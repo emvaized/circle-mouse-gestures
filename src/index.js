@@ -59,10 +59,13 @@ function setPageListeners() {
                     /// html-5 videoplayer is hovered
                     typeOfMenu = 'playerMenu';
                     let fileLink = el.getAttribute('src');
-                    console.log(el.querySelector('source'));
-                    if (fileLink == null)
-                        fileLink = el.querySelector('source').getAttribute('src');
+                    if (fileLink == null) {
+                        try {
+                            fileLink = el.querySelector('source').getAttribute('src');
+                        } catch (e) { if (configs.debugMode) console.log(e); }
+                    }
                     hoveredLink = fileLink.replaceAll('blob:', '');
+
                     // hoveredLink = window.location.href;
                 }
                 else if (el.tagName == 'A' || el.parentNode.tagName == 'A'

@@ -114,7 +114,7 @@ function hideLinkTooltip() {
     linkTooltip.style.transform = `translate(${dxShown}px, ${topCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px)`;
     linkTooltip.style.opacity = `0.0`;
     setTimeout(function () {
-        if (linkTooltip.parentNode !== null)
+        if (linkTooltip !== null && linkTooltip.parentNode !== null)
             linkTooltip.parentNode.removeChild(linkTooltip);
         linkTooltip = null;
     }, 200);
