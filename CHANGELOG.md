@@ -2,6 +2,7 @@
 - Added special menu for HTML5 players (video/audio)
 - Added 'Copy all text' action for input fields
 - Added 'Copy image' action for image menu (for now works only if image is placed on domain which allows CORS)
+- Various small fixes and improvements
 
 #1.0.4
 - Added circle opacity config
