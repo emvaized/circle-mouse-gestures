@@ -15,7 +15,7 @@ var configs = {
     'gapBetweenCircles': 8,
     'gapBeforeInteractiveCircle': 8,
     'addCircleOutlines': true,
-    'showRegularMenuIfNoAction': false,
+    'showRegularMenuIfNoAction': true,
     'labelOpacity': 0.75,
     'iconOpacity': 1.0,
 
@@ -24,11 +24,11 @@ var configs = {
     'interactiveMenusBehavior': 'replace',  /// possible values: 'replace', 'combine'
     'addLinkTooltip': true,
     'showFullLinkInTooltip': false,
-    'showLinkTextInTooltip': false,
+    'showCategoryIconInTooltip': true,
+    'showLinkTextInTooltip': true,
     'showLinkTooltipForPageItself': false,
     'linkTooltipOpacity': 1.0,
     'circleHideAnimation': true,
-    'circleAppearAnimation': false,
 
     /// Menus
     'regularMenu': {
@@ -116,8 +116,8 @@ var configs = {
     },
 
     'imageMenu': {
-        // 'color': "#d80000",
-        'color': "#F48024",
+        // 'color': "#c69a15",
+        'color': "#F05705",
         'rockerAction': 'openInFgTab',
         'levels': [
             {
@@ -125,8 +125,25 @@ var configs = {
                     { 'id': 'openInFgTab' },
                     { 'id': 'downloadUrlAs' },
                     { 'id': 'openInBgTab' },
-                    { 'id': 'searchImageOnGoogle' },
+                    { 'id': 'copyImage' },
                     { 'id': 'copyUrl' },
+                ]
+            }
+        ]
+
+    },
+
+    'playerMenu': {
+        'color': "#000000",
+        'rockerAction': 'playPauseVideo',
+        'levels': [
+            {
+                'buttons': [
+                    { 'id': 'downloadUrlAs' },
+                    { 'id': 'playPauseVideo' },
+                    { 'id': 'replayVideo' },
+                    { 'id': 'rewindVideo' },
+                    { 'id': 'fastForwardVideo' },
                 ]
             }
         ]

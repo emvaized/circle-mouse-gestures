@@ -205,7 +205,7 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
         var buttonIsAvailable = true;
         if (shouldCheckButtonsAvailability) {
             try {
-                buttonIsAvailable = unavailableButtons[buttonsToShow[i].id] ?? checkButtonAvailability(e, buttonsToShow[i].id);
+                buttonIsAvailable = buttonsAvailability[buttonsToShow[i].id] ?? checkButtonAvailability(e, buttonsToShow[i].id);
                 // if (configs.debugMode) console.log(`button ${buttonsToShow[i].id} is available: ` + buttonIsAvailable);
 
             } catch (e) {
@@ -247,7 +247,13 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
 
         /// Draw text label underneath
         ctx.font = `${labelSize}px sans-serif`;
-        var textToDraw = chrome.i18n.getMessage(buttonsToShow[i].id);
+        var textToDraw;
+        if (buttonsToShow[i].id == 'playPauseVideo') {
+            textToDraw = chrome.i18n.getMessage(elementUnderCursor == null || elementUnderCursor == undefined ? 'playPauseVideo' : elementUnderCursor.paused ? 'playVideo' : 'pauseVideo');
+        } else {
+            textToDraw = chrome.i18n.getMessage(buttonsToShow[i].id);
+        }
+
         if (textToDraw.length >= 21) {
             /// Obfuscate shortened label with '...'
             textToDraw = textToDraw.substring(0, 17) + '...';
@@ -272,7 +278,14 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
                 /// Draw SVG icon
                 try {
                     ctx.save();
-                    let p = new Path2D(actionIcons[buttonsToShow[i].id]);
+                    let p;
+
+                    if (buttonsToShow[i].id == 'playPauseVideo') {
+                        p = new Path2D(actionIcons[elementUnderCursor == null || elementUnderCursor == undefined ? 'playPauseVideo' : elementUnderCursor.paused ? 'playVideo' : 'pauseVideo']);
+                    } else {
+                        p = new Path2D(actionIcons[buttonsToShow[i].id]);
+                    }
+
                     ctx.translate(dxForText - (iconSize / 2), dyForText - verticalShiftForIcon - (iconSize / (circleRadius - innerCircleRadius > iconSize * 2.5 ? 1.5 : 2)));
                     let scale = iconSize / 24;
                     ctx.scale(scale, scale);
@@ -312,8 +325,15 @@ function checkButtonAvailability(e, id) {
         };
         case 'goForward': return window.history.length !== 1;
 
-        // case 'undoAction': return checkIfCanUndo();
-        // case 'redoAction': return checkIfCanRedo();
+
+        case 'downloadUrlAs': {
+            if (typeOfMenu == 'playerMenu') {
+                if (elementUnderCursor == null) return false;
+                let videoControls = elementUnderCursor.getAttribute('controlslist');
+                if (videoControls !== null && videoControls !== undefined && videoControls.includes('nodownload')) return false;
+                else return true;
+            } else return true;
+        }
 
         case 'cutText': {
             try {
@@ -348,17 +368,47 @@ function checkButtonAvailability(e, id) {
             return true;
         }
 
+        case 'copyImage': {
+            fetchHoveredImage(e, hoveredLink);
+            return true;
+
+            // return loadedImages[hoveredLink] !== null && loadedImages[hoveredLink] !== undefined;
+        }
+
         default: return true;
     }
 }
 
 /// Used for async change of button's availability
 
-let unavailableButtons = {};
 
 function updateButtonAvailability(e, id, value) {
-    unavailableButtons[id] = value;
+    buttonsAvailability[id] = value;
     try {
         drawCircle(e, typeOfMenu);
     } catch (error) { if (configs.debugMode) console.log(error); }
+}
+
+
+var loadedImages = {}; /// Objects of type {'src': responseFromFetchSrc}
+
+async function fetchHoveredImage(e, url) {
+    if (loadedImages[url] !== null && loadedImages[url] !== undefined) {
+        updateButtonAvailability(e, 'copyImage', loadedImages[url] !== '');
+        return;
+    }
+
+    let img;
+    try {
+        console.log('did fetch for ' + url);
+        img = await fetch(url).catch(function (e) {
+            loadedImages[url] = '';
+        });
+    } catch (e) {
+        console.log(e);
+        loadedImages[url] = '';
+
+    }
+    loadedImages[url] = img;
+    updateButtonAvailability(e, 'copyImage', img !== null && img !== undefined);
 }

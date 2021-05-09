@@ -32,7 +32,7 @@
         "description": ""
     },
     "backgroundColor": {
-        "message": "Цвет фона по умолчанию",
+        "message": "Цвет фона",
         "description": ""
     },
     "behaviorTitle": {
@@ -87,6 +87,14 @@
         "message": "Скопированный текст",
         "description": ""
     },
+    "copyAllText": {
+        "message": "Копировать всё",
+        "description": ""
+    },
+    "copyImage": {
+        "message": "Копировать изображение",
+        "description": ""
+    },
     "copyLinkText": {
         "message": "Копировать текст",
         "description": ""
@@ -119,6 +127,14 @@
         "message": "Содержимое страницы будет затемнено, пока меню отображается",
         "description": ""
     },
+    "downloadVideo": {
+        "message": "Загрузить видео",
+        "description": ""
+    },
+    "downloadVideoSavefromNet": {
+        "message": "Загрузить с Savefrom.net",
+        "description": ""
+    },
     "downloadUrl": {
         "message": "Загрузить",
         "description": ""
@@ -134,6 +150,10 @@
     "extensionDescription": {
         "message": "Настраиваемое круговое меню при правом клике мышью",
         "description": "Extension description"
+    },
+    "fastForwardVideo": {
+        "message": "Перемотать вперед",
+        "description": ""
     },
     "gapBetweenCircles": {
         "message": "Отступ между уровнями",
@@ -164,7 +184,7 @@
         "description": "Ярлык для кнопки кругового меню"
     },
     "imageMenu": {
-        "message": "Меню картинки",
+        "message": "Меню изображения",
         "description": ""
     },
     "innerWidth": {
@@ -259,6 +279,26 @@
         "message": "Вставить",
         "description": ""
     },
+    "pauseVideo": {
+        "message": "Пауза",
+        "description": ""
+    },
+    "player": {
+        "message": "Проигрыватель",
+        "description": ""
+    },
+    "playPauseVideo": {
+        "message": "Играть/Пауза",
+        "description": ""
+    },
+    "playVideo": {
+        "message": "Играть",
+        "description": ""
+    },
+    "playerMenu": {
+        "message": "Меню проигрывателя",
+        "description": ""
+    },
     "quickActions": {
         "message": "Быстрые действия",
         "description": ""
@@ -275,8 +315,16 @@
         "message": "Обновить",
         "description": "Ярлык для кнопки кругового меню"
     },
+    "replayVideo": {
+        "message": "Сначала",
+        "description": ""
+    },
     "restoreClosedTab": {
         "message": "Восстановить закрытую вкладку",
+        "description": ""
+    },
+    "rewindVideo": {
+        "message": "Перемотать назад",
         "description": ""
     },
     "rockerAction": {

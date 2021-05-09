@@ -8,9 +8,12 @@ function init() {
 let anyButtonIsSelected = false;
 
 function setPageListeners() {
+
     /// Page listeners
     document.addEventListener("contextmenu", function (e) {
         if (e.ctrlKey || leftClickIsHolded) return;
+
+        if (typeOfMenu == '') return;
 
         if (configs.showRegularMenuIfNoAction && configs.hideCircleIfNoActionSelected == true && anyButtonIsSelected == false && circleIsShown == false) return;
 
@@ -29,6 +32,8 @@ function setPageListeners() {
             /// Right click
             if (evt.buttons == 2) {
                 if (leftClickIsHolded) return;
+
+                anyButtonIsSelected = false;
 
                 if (circle !== null && circle !== undefined) {
                     hideCircle();
@@ -49,6 +54,15 @@ function setPageListeners() {
                     /// Image is hovered
                     typeOfMenu = 'imageMenu';
                     hoveredLink = el.getAttribute('src');
+                } else if (el.tagName == 'VIDEO' || el.tagName == 'AUDIO') {
+                    /// html-5 videoplayer is hovered
+                    typeOfMenu = 'playerMenu';
+                    let fileLink = el.getAttribute('src');
+                    console.log(el.querySelector('source'));
+                    if (fileLink == null)
+                        fileLink = el.querySelector('source').getAttribute('src');
+                    hoveredLink = fileLink.replaceAll('blob:', '');
+                    // hoveredLink = window.location.href;
                 }
                 else if (el.tagName == 'A' || el.parentNode.tagName == 'A'
                     // || el.firstChild.tagName == 'A'
@@ -116,14 +130,21 @@ function setPageListeners() {
                     }
                 }
 
-                /// Fallback to regular menu if no levels added or available
+                /// Behavior when no levels added or available
                 let enabledLevelsCount = 0;
                 for (var i = 0; i < configs[typeOfMenu].levels.length; i++) {
                     if (configs[typeOfMenu].levels[i].enabled !== false) enabledLevelsCount += 1;
                 }
 
                 if (configs[typeOfMenu].levels == null || configs[typeOfMenu].levels.undefined || configs[typeOfMenu].levels.length == 0 || enabledLevelsCount == 0) {
+                    /// Fallback to regular menu
                     typeOfMenu = 'regularMenu';
+                    if (configs[typeOfMenu].levels == null || configs[typeOfMenu].levels.undefined || configs[typeOfMenu].levels.length == 0 || enabledLevelsCount == 0) {
+                        typeOfMenu = '';
+                    }
+
+                    /// Do nothing
+                    // typeOfMenu = '';
                 }
 
                 if (configs.debugMode)
@@ -132,13 +153,15 @@ function setPageListeners() {
                         if (configs.debugMode) console.log(el.tagName);
                         if (configs.debugMode) console.log('parent element:');
                         if (configs.debugMode) console.log(el.parentNode.tagName);
+                        if (configs.debugMode) console.log('child element:');
+                        if (configs.debugMode) console.log(el.firstChild);
 
                     } catch (e) { if (configs.debugMode) console.log(e); }
 
 
                 if (hoveredLink !== null) {
                     ///  Attach current domain
-                    if (!hoveredLink.includes('://')) {
+                    if (!hoveredLink.includes('://') && !hoveredLink.includes('data:image/')) {
                         let splittedUrl = window.location.href.split('/');
                         hoveredLink = splittedUrl[0] + '/' + splittedUrl[1] + '/' + splittedUrl[2] + '/' + hoveredLink;
                     }
@@ -208,7 +231,6 @@ function setPageListeners() {
 
     });
 
-    // if (configs.useMouseWheelGestures)
     document.addEventListener('wheel', checkScrollDirection);
 }
 

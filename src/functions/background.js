@@ -251,7 +251,6 @@ chrome.runtime.onMessage.addListener(
 
             } break;
 
-
             case 'pageZoomOut': {
                 const zoomSetting = 3.0;
                 // try to get single number
@@ -306,11 +305,20 @@ chrome.runtime.onMessage.addListener(
                 return true;
             } break;
 
+            // case 'checkCopyImageAvailability': {
+            //     askWritePermission().then(function (result) {
+            //         sendResponse(result);
+            //     })
+            //     return true;
+            // } break;
+
         }
 
 
     }
 );
+
+
 
 // chrome.runtime.onInstalled.addListener((details) => {
 //     // enable context menu on mouseup

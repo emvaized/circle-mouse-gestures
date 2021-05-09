@@ -34,6 +34,7 @@ var currentClipboardContent;
 /// Index of level: index of button
 var selectedButtons = {};
 var preselectedButtons = {};
+var buttonsAvailability = {};
 
 /// Default configs
 var defaultConfigs = {
@@ -62,9 +63,9 @@ var defaultConfigs = {
     'showFullLinkInTooltip': true,
     'showLinkTextInTooltip': false,
     'showLinkTooltipForPageItself': false,
+    'showCategoryIconInTooltip': true,
     'linkTooltipOpacity': 1.0,
     'circleHideAnimation': true,
-    'circleAppearAnimation': false,
 
     /// Menus
     'regularMenu': {
@@ -155,7 +156,7 @@ var defaultConfigs = {
 
     'imageMenu': {
         // 'color': "#c69a15",
-        'color': "#F48024",
+        'color': "#F05705",
         'rockerAction': 'openInFgTab',
         'levels': [
             {
@@ -163,8 +164,26 @@ var defaultConfigs = {
                     { 'id': 'openInFgTab' },
                     { 'id': 'downloadUrlAs' },
                     { 'id': 'openInBgTab' },
-                    { 'id': 'searchImageOnGoogle' },
+                    { 'id': 'copyImage' },
                     { 'id': 'copyUrl' },
+                ]
+            }
+        ]
+
+    },
+
+
+    'playerMenu': {
+        'color': "#000000",
+        'rockerAction': 'playPauseVideo',
+        'levels': [
+            {
+                'buttons': [
+                    { 'id': 'downloadUrlAs' },
+                    { 'id': 'playPauseVideo' },
+                    { 'id': 'replayVideo' },
+                    { 'id': 'rewindVideo' },
+                    { 'id': 'fastForwardVideo' },
                 ]
             }
         ]

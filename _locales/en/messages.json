@@ -36,7 +36,7 @@
         "description": ""
     },
     "backgroundColor": {
-        "message": "Default background color",
+        "message": "Background color",
         "description": ""
     },
     "behaviorTitle": {
@@ -87,6 +87,14 @@
         "message": "Configure",
         "description": ""
     },
+    "copyAllText": {
+        "message": "Copy all",
+        "description": ""
+    },
+    "copyImage": {
+        "message": "Copy image",
+        "description": ""
+    },
     "copyLinkText": {
         "message": "Copy text",
         "description": ""
@@ -119,6 +127,14 @@
         "message": "Page contents will be dimmed while menu is shown",
         "description": ""
     },
+    "downloadVideo": {
+        "message": "Download video",
+        "description": ""
+    },
+    "downloadVideoSavefromNet": {
+        "message": "Download from Savefrom.net",
+        "description": ""
+    },
     "downloadUrl": {
         "message": "Download",
         "description": ""
@@ -134,6 +150,10 @@
     "extensionDescription": {
         "message": "Customizable circle menu on right mouse click",
         "description": "Extension description"
+    },
+    "fastForwardVideo": {
+        "message": "Fast forward",
+        "description": ""
     },
     "gapBetweenCircles": {
         "message": "Levels padding",
@@ -255,6 +275,26 @@
         "message": "Paste",
         "description": ""
     },
+    "pauseVideo": {
+        "message": "Pause",
+        "description": ""
+    },
+    "player": {
+        "message": "Player",
+        "description": ""
+    },
+    "playPauseVideo": {
+        "message": "Play/Pause",
+        "description": ""
+    },
+    "playVideo": {
+        "message": "Play",
+        "description": ""
+    },
+    "playerMenu": {
+        "message": "Player menu",
+        "description": ""
+    },
     "quickActions": {
         "message": "Quick actions",
         "description": ""
@@ -269,6 +309,10 @@
     },
     "reloadTab": {
         "message": "Reload",
+        "description": ""
+    },
+    "replayVideo": {
+        "message": "Replay",
         "description": ""
     },
     "restoreClosedTab": {
@@ -317,6 +361,10 @@
     },
     "searchText": {
         "message": "Search",
+        "description": ""
+    },
+    "rewindVideo": {
+        "message": "Rewind",
         "description": ""
     },
     "selectAllText": {

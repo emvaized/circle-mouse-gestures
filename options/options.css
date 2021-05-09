@@ -35,8 +35,9 @@
     padding: 6px;
     font-size: 15px;
     cursor: pointer;
-    margin-left: 4%;
+    margin-left: 30px;
     margin-top: 15px;
+    /* top: 15px; */
   }
 
   #typeOfMenuDropdownArrow{

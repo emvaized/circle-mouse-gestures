@@ -42,7 +42,41 @@ function triggerButtonAction(actionToPerform) {
                 elementUnderCursor.focus({ preventScroll: true });
                 elementUnderCursor.select();
             }
-        } else if (actionToPerform == 'moveCaretToEnd') {
+        } else if (actionToPerform == 'copyAllText') {
+            if (elementUnderCursor !== null) {
+                elementUnderCursor.focus({ preventScroll: true });
+                elementUnderCursor.select();
+                document.execCommand('copy');
+            }
+        }
+        else if (actionToPerform == 'copyImage') {
+            copyImg(hoveredLink);
+        } else if (actionToPerform == 'downloadVideoSavefromNet') {
+            chrome.runtime.sendMessage({ actionToDo: 'openInFgTab', url: `https://en.savefrom.net/20/#url=${window.location.href}` });
+        } else if (actionToPerform == 'replayVideo') {
+            if (elementUnderCursor !== null) {
+                elementUnderCursor.load();
+                elementUnderCursor.play();
+            }
+        } else if (actionToPerform == 'rewindVideo') {
+            if (elementUnderCursor !== null) {
+                let currentTime = elementUnderCursor.currentTime;;
+                seekPlayerToTime(elementUnderCursor, currentTime - 10)
+            }
+        } else if (actionToPerform == 'fastForwardVideo') {
+            if (elementUnderCursor !== null) {
+                let currentTime = elementUnderCursor.currentTime;;
+                seekPlayerToTime(elementUnderCursor, currentTime + 10)
+            }
+        }
+        else if (actionToPerform == 'playPauseVideo') {
+            if (elementUnderCursor !== null) {
+                if (elementUnderCursor.paused)
+                    elementUnderCursor.play();
+                else elementUnderCursor.pause();
+            }
+        }
+        else if (actionToPerform == 'moveCaretToEnd') {
             if (elementUnderCursor !== null) {
                 elementUnderCursor.focus({ preventScroll: true });
                 let val = elementUnderCursor.value; //store the value of the element
@@ -68,7 +102,6 @@ function triggerButtonAction(actionToPerform) {
 
             }
         } else
-
             if (actionToPerform !== null && actionToPerform !== undefined) {
                 if (typeOfMenu !== 'regularMenu') {
                     let link = hoveredLink;
@@ -238,4 +271,91 @@ function getCurrentClipboard() {
         if (configs.debugMode) console.log(e);
         return '';
     }
+}
+
+
+///  Copy image methods
+/// Source: https://stackoverflow.com/a/59183698/11381400
+
+async function copyImg(src) {
+    try {
+        // const img = await fetch(src);
+        const img = loadedImages[src] ?? await fetch(src);
+        const imgBlob = await img.blob();
+        // if (src.endsWith(".jpg") || src.endsWith(".jpeg")) {
+        //     convertToPng(imgBlob);
+        // } else 
+        if (src.endsWith(".png")) {
+            copyToClipboard(imgBlob);
+        } else {
+            convertToPng(imgBlob);
+            // console.error("Format unsupported");
+        }
+    } catch (e) { if (configs.debugMode) console.log(e); }
+
+}
+
+async function copyToClipboard(pngBlob) {
+    try {
+        await navigator.clipboard.write([
+            new ClipboardItem({
+                [pngBlob.type]: pngBlob
+            })
+        ]);
+        if (configs.debugMode)
+            console.log("Image copied");
+    } catch (error) {
+        if (configs.debugMode)
+            console.error(error);
+    }
+}
+
+function convertToPng(imgBlob) {
+    const imageUrl = window.URL.createObjectURL(imgBlob);
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    // if (elementUnderCursor) {
+    //     const imageEl = elementUnderCursor;
+    //     console.log(imageEl);
+    //     canvas.width = imageEl.width;
+    //     canvas.height = imageEl.height;
+    //     ctx.drawImage(imageEl, 0, 0, imageEl.width, imageEl.height);
+    //     canvas.toBlob(copyToClipboard, "image/png", 1);
+    // } else {
+    const imageEl = createImage({ src: imageUrl });
+    imageEl.onload = (e) => {
+        canvas.width = e.target.width;
+        canvas.height = e.target.height;
+        ctx.drawImage(e.target, 0, 0, e.target.width, e.target.height);
+        canvas.toBlob(copyToClipboard, "image/png", 1);
+    };
+    // }
+
+}
+
+function createImage(options) {
+    options = options || {};
+    const img = (Image) ? new Image() : document.createElement("img");
+    img.crossOrigin = "anonymous";
+    if (options.src) {
+        img.src = options.src;
+    }
+    return img;
+}
+
+
+/// Player methods
+function seekPlayerToTime(video_element, ts) {
+    // try and avoid pauses after seeking
+    video_element.pause();
+    video_element.currentTime = ts; // if this is far enough away from current, it implies a "play" call as well...oddly. I mean seriously that is junk.
+    // however if it close enough, then we need to call play manually
+    // some shenanigans to try and work around this:
+    var timer = setInterval(function () {
+        if (video_element.paused && video_element.readyState == 4 || !video_element.paused) {
+            video_element.play();
+            clearInterval(timer);
+        }
+    }, 50);
 }

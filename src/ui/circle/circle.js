@@ -152,6 +152,7 @@ function hideCircle() {
     try {
         document.onmousemove = null;
         circleIsShown = false;
+        buttonsAvailability = {};
 
         if (hoveredLink !== null && linkTooltip !== null)
             hideLinkTooltip();

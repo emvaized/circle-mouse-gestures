@@ -41,6 +41,7 @@ function setMenuTypeDropdown() {
         'imageMenu',
         'textFieldMenu',
         'selectionMenu',
+        'playerMenu',
     ];
 
     let navBar = document.getElementById('navbar');

@@ -14,6 +14,17 @@ function addInputChangesListener(input) {
     undoStack = [];
     undoPosition = 0;
     listenedInput = input;
+    input.addEventListener("input", function () {
+        console.log('listened input field changed value');
+        var undoItem = {
+            value: input.value,
+            selectionStart: input.selectionStart,
+            selectionEnd: input.selectionEnd
+        };
+        undoStack.length = ++undoPosition;
+        undoStack.push(undoItem);
+    });
+
     input.addEventListener("change", function () {
         console.log('listened input field changed value');
         var undoItem = {

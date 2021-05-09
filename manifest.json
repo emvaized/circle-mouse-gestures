@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Circle Mouse Gestures",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "__MSG_extensionDescription__",
   "default_locale": "en",
   "icons": {
@@ -23,6 +23,7 @@
         "src/data/configs.js",
         "src/data/variables.js",
         "src/data/actions.js",
+        "src/data/icons.js",
         "src/functions/functions.js",
         "src/functions/input-changes-stack.js",
         "src/ui/circle/circle.js",
