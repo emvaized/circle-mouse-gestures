@@ -16,7 +16,7 @@
         "description": ""
     },
     "addMoreLevelsToActivateMenu": {
-        "message": "This menu is inactive. Add levels to activate it",
+        "message": "This menu is inactive. <br/>Add levels to activate it",
         "description": ""
     },
     "addNewButton": {
@@ -192,7 +192,7 @@
         "description": ""
     },
     "inactiveMenuBehavior": {
-        "message": "When element menu is inactive:",
+        "message": "When menu for element is inactive:",
         "description": "Label for circle menu button"
     },
     "innerWidth": {

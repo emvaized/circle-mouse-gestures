@@ -6,5 +6,9 @@ Just hold down the right mouse button, highlight one of the preset actions and r
 CMG is supposed to provide a better implementation of mouse gestures, while replacing the regular context menu at the same time. 
 But whenever you need, feel free to call regular context menu by holding left mouse button and pressing the right one.
 
-Extension also provides different menus for links/images, support for rocker and mouse wheel gestures, and provides great customization options.
+Features:
+- different menus for links, images, input fields etc.
+- support for rocker and mouse wheel gestures
+- great customization options
+
 Give it a try!
