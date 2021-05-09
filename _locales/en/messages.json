@@ -127,6 +127,10 @@
         "message": "Page contents will be dimmed while menu is shown",
         "description": ""
     },
+    "doNothing": {
+        "message": "Do nothing",
+        "description": ""
+    },
     "downloadVideo": {
         "message": "Download video",
         "description": ""
@@ -186,6 +190,10 @@
     "imageMenu": {
         "message": "Menu for image",
         "description": ""
+    },
+    "inactiveMenuBehavior": {
+        "message": "When element menu is inactive:",
+        "description": "Label for circle menu button"
     },
     "innerWidth": {
         "message": "Center radius",
@@ -292,7 +300,7 @@
         "description": ""
     },
     "playerMenu": {
-        "message": "Player menu",
+        "message": "Menu for player",
         "description": ""
     },
     "quickActions": {
@@ -305,6 +313,10 @@
     },
     "redoAction": {
         "message": "Redo",
+        "description": ""
+    },
+    "regularMenuFallback": {
+        "message": "Show regular menu",
         "description": ""
     },
     "reloadTab": {

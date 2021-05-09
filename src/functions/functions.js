@@ -4,121 +4,113 @@ function triggerButtonAction(actionToPerform) {
         if (configs.debugMode) console.log(actionToPerform);
     }
 
-    if (actionToPerform == 'findOnPage') {
-        try {
-            window.find('dialog', true, false, false, false, false, true);
-        } catch (e) { console.log(e); }
-    } else
-        if (actionToPerform == 'scrollToTop') {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else if (actionToPerform == 'scrollToBottom') {
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-        } else if (actionToPerform == 'scrollPageUp') {
-            window.scrollTo({ top: window.scrollY - window.innerHeight * .9, behavior: 'smooth' });
-        } else if (actionToPerform == 'scrollPageDown') {
-            window.scrollTo({ top: window.scrollY + window.innerHeight * .9, behavior: 'smooth' });
-        } else if (actionToPerform == 'undoAction') {
-            document.execCommand('Undo');
-            // doUndo(elementUnderCursor)
-
-        } else if (actionToPerform == 'redoAction') {
-            document.execCommand('redo');
-            // doRedo(elementUnderCursor)
-        } else if (actionToPerform == 'pasteText') {
-            if (elementUnderCursor !== null)
-                elementUnderCursor.focus({ preventScroll: true });
-            document.execCommand('paste');
-        } else if (actionToPerform == 'cutText') {
-            if (elementUnderCursor !== null)
-                elementUnderCursor.focus({ preventScroll: true });
-            document.execCommand('cut');
-        } else if (actionToPerform == 'clearInputField') {
-            if (elementUnderCursor !== null) {
-                elementUnderCursor.focus({ preventScroll: true });
-                elementUnderCursor.value = '';
-            }
-        } else if (actionToPerform == 'selectAllText') {
-            if (elementUnderCursor !== null) {
-                elementUnderCursor.focus({ preventScroll: true });
-                elementUnderCursor.select();
-            }
-        } else if (actionToPerform == 'copyAllText') {
-            if (elementUnderCursor !== null) {
-                elementUnderCursor.focus({ preventScroll: true });
-                elementUnderCursor.select();
-                document.execCommand('copy');
-            }
+    if (actionToPerform == 'scrollToTop') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (actionToPerform == 'scrollToBottom') {
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    } else if (actionToPerform == 'scrollPageUp') {
+        window.scrollTo({ top: window.scrollY - window.innerHeight * .9, behavior: 'smooth' });
+    } else if (actionToPerform == 'scrollPageDown') {
+        window.scrollTo({ top: window.scrollY + window.innerHeight * .9, behavior: 'smooth' });
+    } else if (actionToPerform == 'undoAction') {
+        document.execCommand('Undo');
+        // doUndo(elementUnderCursor)
+    } else if (actionToPerform == 'redoAction') {
+        document.execCommand('redo');
+        // doRedo(elementUnderCursor)
+    } else if (actionToPerform == 'pasteText') {
+        if (elementUnderCursor !== null)
+            elementUnderCursor.focus({ preventScroll: true });
+        document.execCommand('paste');
+    } else if (actionToPerform == 'cutText') {
+        if (elementUnderCursor !== null)
+            elementUnderCursor.focus({ preventScroll: true });
+        document.execCommand('cut');
+    } else if (actionToPerform == 'clearInputField') {
+        if (elementUnderCursor !== null) {
+            elementUnderCursor.focus({ preventScroll: true });
+            elementUnderCursor.value = '';
         }
-        else if (actionToPerform == 'copyImage') {
-            copyImg(hoveredLink);
-        } else if (actionToPerform == 'downloadVideoSavefromNet') {
-            chrome.runtime.sendMessage({ actionToDo: 'openInFgTab', url: `https://en.savefrom.net/20/#url=${window.location.href}` });
-        } else if (actionToPerform == 'replayVideo') {
-            if (elementUnderCursor !== null) {
-                elementUnderCursor.load();
+    } else if (actionToPerform == 'selectAllText') {
+        if (elementUnderCursor !== null) {
+            elementUnderCursor.focus({ preventScroll: true });
+            elementUnderCursor.select();
+        }
+    } else if (actionToPerform == 'copyAllText') {
+        if (elementUnderCursor !== null) {
+            elementUnderCursor.focus({ preventScroll: true });
+            elementUnderCursor.select();
+            document.execCommand('copy');
+        }
+    }
+    else if (actionToPerform == 'copyImage') {
+        copyImg(hoveredLink);
+    } else if (actionToPerform == 'downloadVideoSavefromNet') {
+        chrome.runtime.sendMessage({ actionToDo: 'openInFgTab', url: `https://en.savefrom.net/20/#url=${window.location.href}` });
+    } else if (actionToPerform == 'replayVideo') {
+        if (elementUnderCursor !== null) {
+            elementUnderCursor.load();
+            elementUnderCursor.play();
+        }
+    } else if (actionToPerform == 'rewindVideo') {
+        if (elementUnderCursor !== null) {
+            let currentTime = elementUnderCursor.currentTime;;
+            seekPlayerToTime(elementUnderCursor, currentTime - 10)
+        }
+    } else if (actionToPerform == 'fastForwardVideo') {
+        if (elementUnderCursor !== null) {
+            let currentTime = elementUnderCursor.currentTime;;
+            seekPlayerToTime(elementUnderCursor, currentTime + 10)
+        }
+    }
+    else if (actionToPerform == 'playPauseVideo') {
+        if (elementUnderCursor !== null) {
+            if (elementUnderCursor.paused)
                 elementUnderCursor.play();
+            else elementUnderCursor.pause();
+        }
+    }
+    else if (actionToPerform == 'moveCaretToEnd') {
+        if (elementUnderCursor !== null) {
+            elementUnderCursor.focus({ preventScroll: true });
+            let val = elementUnderCursor.value; //store the value of the element
+            elementUnderCursor.value = ''; //clear the value of the element
+            elementUnderCursor.value = val; //set that value back.
+        }
+    } else if (actionToPerform == 'moveCaretToStart') {
+        if (elementUnderCursor !== null) {
+
+            if (elementUnderCursor.createTextRange) {
+                var range = elementUnderCursor.createTextRange();
+                range.move('character', 0);
+                range.select();
             }
-        } else if (actionToPerform == 'rewindVideo') {
-            if (elementUnderCursor !== null) {
-                let currentTime = elementUnderCursor.currentTime;;
-                seekPlayerToTime(elementUnderCursor, currentTime - 10)
-            }
-        } else if (actionToPerform == 'fastForwardVideo') {
-            if (elementUnderCursor !== null) {
-                let currentTime = elementUnderCursor.currentTime;;
-                seekPlayerToTime(elementUnderCursor, currentTime + 10)
+            else {
+                if (elementUnderCursor.selectionStart) {
+                    elementUnderCursor.focus();
+                    elementUnderCursor.setSelectionRange(0, 0);
+                }
+                else
+                    elementUnderCursor.focus();
             }
         }
-        else if (actionToPerform == 'playPauseVideo') {
-            if (elementUnderCursor !== null) {
-                if (elementUnderCursor.paused)
-                    elementUnderCursor.play();
-                else elementUnderCursor.pause();
+    } else if (actionToPerform !== null && actionToPerform !== undefined) {
+        if (typeOfMenu !== 'regularMenu') {
+            let link = hoveredLink;
+
+            if (configs.debugMode) {
+                if (configs.debugMode) console.log('link:');
+                if (configs.debugMode) console.log(link);
             }
+
+            if (typeOfMenu == 'selectionMenu' || typeOfMenu == 'textFieldMenu')
+                chrome.runtime.sendMessage({ actionToDo: actionToPerform, url: textSelection.toString().trim(), selectedText: textSelection.toString() });
+            else
+                chrome.runtime.sendMessage({ actionToDo: actionToPerform, url: link, linkText: hoveredLinkTitle })
+        } else {
+            chrome.runtime.sendMessage({ actionToDo: actionToPerform, url: window.location.href })
         }
-        else if (actionToPerform == 'moveCaretToEnd') {
-            if (elementUnderCursor !== null) {
-                elementUnderCursor.focus({ preventScroll: true });
-                let val = elementUnderCursor.value; //store the value of the element
-                elementUnderCursor.value = ''; //clear the value of the element
-                elementUnderCursor.value = val; //set that value back.
-            }
-        } else if (actionToPerform == 'moveCaretToStart') {
-            if (elementUnderCursor !== null) {
-
-                if (elementUnderCursor.createTextRange) {
-                    var range = elementUnderCursor.createTextRange();
-                    range.move('character', 0);
-                    range.select();
-                }
-                else {
-                    if (elementUnderCursor.selectionStart) {
-                        elementUnderCursor.focus();
-                        elementUnderCursor.setSelectionRange(0, 0);
-                    }
-                    else
-                        elementUnderCursor.focus();
-                }
-
-            }
-        } else
-            if (actionToPerform !== null && actionToPerform !== undefined) {
-                if (typeOfMenu !== 'regularMenu') {
-                    let link = hoveredLink;
-
-                    if (configs.debugMode) {
-                        if (configs.debugMode) console.log('link:');
-                        if (configs.debugMode) console.log(link);
-                    }
-
-                    if (typeOfMenu == 'selectionMenu' || typeOfMenu == 'textFieldMenu')
-                        chrome.runtime.sendMessage({ actionToDo: actionToPerform, url: textSelection.toString().trim(), selectedText: textSelection.toString() });
-                    else
-                        chrome.runtime.sendMessage({ actionToDo: actionToPerform, url: link, linkText: hoveredLinkTitle })
-                } else {
-                    chrome.runtime.sendMessage({ actionToDo: actionToPerform, url: window.location.href })
-                }
-            }
+    }
 }
 
 function wrapLabel(context, text, x, y, maxWidth, lineHeight) {

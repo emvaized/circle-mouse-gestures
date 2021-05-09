@@ -127,6 +127,10 @@
         "message": "Содержимое страницы будет затемнено, пока меню отображается",
         "description": ""
     },
+    "doNothing": {
+        "message": "Ничего не делать",
+        "description": ""
+    },
     "downloadVideo": {
         "message": "Загрузить видео",
         "description": ""
@@ -186,6 +190,10 @@
     "imageMenu": {
         "message": "Меню изображения",
         "description": ""
+    },
+    "inactiveMenuBehavior": {
+        "message": "Когда меню элемента неактивно:",
+        "description": "Label for circle menu button"
     },
     "innerWidth": {
         "message": "Радиус центра",
@@ -309,6 +317,10 @@
     },
     "regularMenu": {
         "message": "Основное меню",
+        "description": ""
+    },
+    "regularMenuFallback": {
+        "message": "Показать обычное меню",
         "description": ""
     },
     "reloadTab": {

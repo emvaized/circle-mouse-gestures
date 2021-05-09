@@ -34,6 +34,7 @@ function init() {
     } catch (e) { if (configs.debugMode) console.log(e); }
 }
 
+/// Dropdown on top of screen to switch menu type
 function setMenuTypeDropdown() {
     let options = [
         'regularMenu',
@@ -244,12 +245,33 @@ function generateBehaviorConfigs() {
                 }
             });
         }, 300);
-
-        /// Set translated tooltips
-        document.getElementById('dimBackgroundTooltip').innerText = chrome.i18n.getMessage('dimBackgroundTooltip');
-        document.getElementById('windowsOnlyTooltip').innerText = chrome.i18n.getMessage('windowsOnly');
-        document.getElementById('addLinkTooltipTooltip').innerText = chrome.i18n.getMessage('addLinkTooltipTooltip');
     });
+
+    /// Set translated tooltips
+    document.getElementById('dimBackgroundTooltip').innerText = chrome.i18n.getMessage('dimBackgroundTooltip');
+    document.getElementById('windowsOnlyTooltip').innerText = chrome.i18n.getMessage('windowsOnly');
+    document.getElementById('addLinkTooltipTooltip').innerText = chrome.i18n.getMessage('addLinkTooltipTooltip');
+
+    /// Proccess 'inactive menu for item behavior' dropdown
+    let inactiveMenuBehavior = document.getElementById('inactiveMenuBehavior');
+    inactiveMenuBehavior.parentNode.innerHTML = chrome.i18n.getMessage('inactiveMenuBehavior') + '<br/>' + inactiveMenuBehavior.parentNode.innerHTML;
+    setTimeout(function () {
+        let inactiveMenuBehavior = document.getElementById('inactiveMenuBehavior');
+        inactiveMenuBehavior.addEventListener('change', function () {
+            console.log('changed value');
+            console.log(inactiveMenuBehavior.value);
+            configs.inactiveMenuBehavior = inactiveMenuBehavior.value;
+            saveAllSettings();
+        })
+    }, delayToAddListeners);
+
+    /// Set translated options
+    document.getElementById('inactiveMenuBehavior').querySelectorAll('option').forEach(function (option) {
+        option.innerHTML = chrome.i18n.getMessage(option.getAttribute('value'));
+        if (configs.inactiveMenuBehavior == option.getAttribute('value'))
+            option.setAttribute('selected', 0);
+    })
+
 }
 
 /// Gesture configs
@@ -893,19 +915,5 @@ function updateDisabledOptions() {
     /// Grey out unavailable optoins
     document.querySelector("#showRegularMenuIfNoAction").parentNode.parentNode.className = document.querySelector("#hideCircleIfNoActionSelected").checked ? 'option enabled-option' : 'option disabled-option';
 }
-
-
-function chunk(arr, len) {
-    var chunks = [],
-        i = 0,
-        n = arr.length;
-
-    while (i < n) {
-        chunks.push(arr.slice(i, i += len));
-    }
-
-    return chunks;
-}
-
 
 document.addEventListener("DOMContentLoaded", init);

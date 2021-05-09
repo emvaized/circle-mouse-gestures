@@ -21,12 +21,13 @@ function setPageListeners() {
     });
 
     document.addEventListener("mousedown", function (e) {
+
         evt = e || window.event;
 
         if (e.ctrlKey) return;
 
         if (configs.debugMode)
-            if (configs.debugMode) console.log('Pushed button ' + evt.button.toString());
+            console.log('Pushed button ' + evt.button.toString());
 
         if ("buttons" in evt) {
             /// Right click
@@ -138,13 +139,20 @@ function setPageListeners() {
 
                 if (configs[typeOfMenu].levels == null || configs[typeOfMenu].levels.undefined || configs[typeOfMenu].levels.length == 0 || enabledLevelsCount == 0) {
                     /// Fallback to regular menu
-                    typeOfMenu = 'regularMenu';
-                    if (configs[typeOfMenu].levels == null || configs[typeOfMenu].levels.undefined || configs[typeOfMenu].levels.length == 0 || enabledLevelsCount == 0) {
+
+                    if (configs.inactiveMenuBehavior == 'regularMenuFallback') {
+                        typeOfMenu = 'regularMenu';
+                        enabledLevelsCount = 0;
+                        for (var i = 0; i < configs[typeOfMenu].levels.length; i++) {
+                            if (configs[typeOfMenu].levels[i].enabled !== false) enabledLevelsCount += 1;
+                        }
+                        if (configs[typeOfMenu].levels == null || configs[typeOfMenu].levels.undefined || configs[typeOfMenu].levels.length == 0 || enabledLevelsCount == 0) {
+                            typeOfMenu = '';
+                        }
+                    } else {
+                        /// Do nothing
                         typeOfMenu = '';
                     }
-
-                    /// Do nothing
-                    // typeOfMenu = '';
                 }
 
                 if (configs.debugMode)

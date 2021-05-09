@@ -77,12 +77,14 @@
 #buttons-config-container{
     padding-top: 15px;
     float: left;
+    margin-bottom: 15px;
 }
 
 .configs-container{
     float: top;
     padding: 0px 25px;
-    margin: 15px 0px;
+    /* margin: 15px 0px; */
+    margin-top: 15px;
     transition: opacity 300ms ease-in-out;
 }
 

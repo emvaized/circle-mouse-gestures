@@ -1,5 +1,6 @@
 #1.0.5
 - Added special menu for HTML5 players (video/audio)
+- Implemented ability to configure behavior when element menu is not active (show regular menu/do nothing)
 - Added 'Copy all text' action for input fields
 - Added 'Copy image' action for image menu (for now works only if image is placed on domain which allows CORS)
 - Various small fixes and improvements
