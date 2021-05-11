@@ -668,12 +668,11 @@ function generateLevelConfigs(levelIndex = 0) {
 
         useCustomColorSwitch.parentNode.addEventListener('change', function (e) {
 
-            if (configs.debugMode) console.log('clicked!')
-
             let selectedColor = configs[selectedMenuType].levels[levelIndex].color;
 
             if (selectedColor !== null && selectedColor !== undefined) {
                 configs[selectedMenuType].levels[levelIndex].color = null;
+                configs[selectedMenuType].levels[levelIndex].opacity = null;
                 drawCirclePreview();
             } else {
                 configs[selectedMenuType].levels[levelIndex].color = configs[selectedMenuType].color;
@@ -685,12 +684,11 @@ function generateLevelConfigs(levelIndex = 0) {
     }, 1);
 
     label.innerHTML += ' ' + chrome.i18n.getMessage("useCustomColor");
-    // container.appendChild(label);
 
     customColorContainer.appendChild(label);
 
     if (selectedColor !== null && selectedColor !== undefined) {
-        /// Custom icon URL field
+        /// Custom color input
         let customColorInput = document.createElement('input');
         let customColorInputId = `customColorInput-${levelIndex}`;
         customColorInput.setAttribute('type', 'color');
@@ -713,6 +711,19 @@ function generateLevelConfigs(levelIndex = 0) {
         }, delayToAddListeners);
 
         customColorContainer.appendChild(customColorInput);
+
+
+        /// Level opacity
+        customColorContainer.innerHTML += '<br/>';
+        let levelOpacitySliderId = `levelOpacity-${levelIndex}`;
+        let levelOpacitySlider = createRangeSlider(levelOpacitySliderId, configs[selectedMenuType].levels[levelIndex].opacity ?? configs.circleOpacity, function (newVal) {
+            let ind = levelOpacitySliderId.split('-')[1];
+            configs[selectedMenuType].levels[ind].opacity = newVal;
+        }, 0, 1, chrome.i18n.getMessage("opacity"), 0.05);
+
+        levelOpacitySlider.style.paddingTop = '6.5px';
+
+        customColorContainer.appendChild(levelOpacitySlider);
     }
 
     container.appendChild(customColorContainer);
@@ -832,7 +843,7 @@ function createRangeSlider(id, value, callbackOnChange, min = 50, max = 200, lab
 
     /// Level width input
     let sliderContainer = document.createElement('div');
-    sliderContainer.setAttribute('style', 'vertical-align: middle; align-items: center; width: 100%; margin-top: 5px;');
+    sliderContainer.setAttribute('style', 'vertical-align: bottom; width: 100%; margin-top: 5px;');
 
     let rangeLabel = document.createElement('span');
     // rangeLabel.setAttribute('style', 'opacity: 0.7');
@@ -844,7 +855,7 @@ function createRangeSlider(id, value, callbackOnChange, min = 50, max = 200, lab
 
     widthInput.setAttribute('type', 'range');
     widthInput.setAttribute('id', widthInputId);
-    widthInput.setAttribute('style', 'margin-right: 5px;');
+    widthInput.setAttribute('style', 'margin-right: 5px; transform:translate(0, 4px)');
     widthInput.setAttribute('min', `${min}`);
     widthInput.setAttribute('max', `${max}`);
     widthInput.setAttribute('step', `${step}`);

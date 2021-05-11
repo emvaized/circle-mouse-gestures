@@ -3,6 +3,7 @@
 - Improved 'copy image' functionality
 - "Undo" and "Redo" actions are back! (on Firefox will work only with 'contenteditable' fields)
 - Added options 'Add shadow' and 'Highlight element on hover'
+- Added ability to set different opacity for levels
 - Added ability to configure page dimmer opacity
 
 #1.0.5

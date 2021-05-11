@@ -9,6 +9,7 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
     }
 
     var segmentsCount = buttonsToShow.length;
+    var levelOpacity = configs[typeOfMenu].levels[level].opacity;
 
     var segmentColor = configs[typeOfMenu].levels[level].color ?? configs[typeOfMenu].color;
     var outlineColorRgb = getTextColorForBackground(segmentColor, 0.5);
@@ -41,15 +42,16 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
             (-Math.PI / segmentsCount) :
             (-Math.PI / segmentsCount) / 2) + i * (Math.PI / (segmentsCount / 2));
 
+
+        if (levelOpacity)
+            ctx.globalAlpha = levelOpacity;
+
         if (shouldRespectBoundary && mradius > circleRadius + configs.gapBetweenCircles) {
             /// Segment is not hovered
-
             ctx.fillStyle = segmentColor;
 
         } else
             if (preselectedButtons[level] == i || (((mangle > angle && mangle < (angle + Math.PI / (segmentsCount / 2)))
-                // || (mangle > (Math.PI * 15 / 8) && i == 0))
-                // || (mangle > (Math.PI * (segmentsCount * 2 - 1) / segmentsCount) && i == 0))
                 || (mangle > (Math.PI * (segmentsCount * 2 - (segmentsCount % 2 == 0.0 ? 1 : 0.5)) / segmentsCount) && i == 0))
 
                 && mradius >= innerCircleRadius)) {
@@ -124,7 +126,12 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
         // }
 
         ctx.fill();
+
+
     }
+
+    if (levelOpacity)
+        ctx.globalAlpha = 1.0;
 
     /// Cut off circle in center
     ctx.save();
@@ -160,11 +167,6 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
         ctx.strokeStyle = outlineColor;
         ctx.stroke();
     }
-
-
-
-
-
 
     /// Draw labels
     drawLabels(E, segmentsCount, circleRadius, innerCircleRadius, buttonsToShow, segmentColor, showIndexes, shouldCheckButtonsAvailability);

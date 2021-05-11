@@ -188,7 +188,7 @@
         "description": ""
     },
     "highlightElementOnHover": {
-        "message": "Подсветить элемент при наведении",
+        "message": "Подсвечивать элементы страницы при наведении",
         "description": ""
     },
     "highlightElementOnHoverTooltip": {
@@ -456,7 +456,7 @@
         "description": ""
     },
     "useCustomColor": {
-        "message": "Другой цвет фона",
+        "message": "Другой фон",
         "description": ""
     },
     "whatsNew": {

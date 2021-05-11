@@ -162,11 +162,11 @@ input {
     color: rgba(0,0,0,0.2);
     opacity: 0.0;
     margin-top: 5px;
-    font-size: 0.4em;
+    font-size: 0.35em;
     text-align: center;
     transition: opacity 300ms ease-in-out;
     line-height: 1.25;
-    transform: translate(-20%, 0)
+    transform: translate(-15%, 0)
 }
 
 #addLevelButton:hover:after{

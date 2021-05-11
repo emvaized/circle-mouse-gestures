@@ -188,7 +188,7 @@
         "description": ""
     },
     "highlightElementOnHover": {
-        "message": "Highlight element on hover",
+        "message": "Highlight page elements on hover",
         "description": ""
     },
     "highlightElementOnHoverTooltip": {
@@ -448,7 +448,7 @@
         "description": ""
     },
     "useCustomColor": {
-        "message": "Custom color",
+        "message": "Custom background",
         "description": ""
     },
     "whatsNew": {
