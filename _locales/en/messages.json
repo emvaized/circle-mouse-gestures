@@ -219,6 +219,10 @@
         "message": "Input field",
         "description": ""
     },
+    "levelWidth": {
+        "message": "Level width",
+        "description": ""
+    },
     "link": {
         "message": "Link",
         "description": ""

@@ -721,7 +721,7 @@ function generateLevelConfigs(levelIndex = 0) {
             configs[selectedMenuType].levels[ind].opacity = newVal;
         }, 0, 1, chrome.i18n.getMessage("opacity"), 0.05);
 
-        levelOpacitySlider.style.paddingTop = '6.5px';
+        levelOpacitySlider.style.paddingTop = '5px';
 
         customColorContainer.appendChild(levelOpacitySlider);
     }

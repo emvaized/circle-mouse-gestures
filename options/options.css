@@ -166,7 +166,7 @@ input {
     text-align: center;
     transition: opacity 300ms ease-in-out;
     line-height: 1.25;
-    transform: translate(-15%, 0)
+    /* transform: translate(-15%, 0) */
 }
 
 #addLevelButton:hover:after{
