@@ -7,7 +7,7 @@ var configs = {
     'useMouseWheelGestures': true,
     'addTextLabels': true,
     'dimBackground': false,
-    'backgroundDimmerOpacity': 0.25,
+    'backgroundDimmerOpacity': 0.2,
     'circleOpacity': 1.0,
     'innerCircleRadius': 30,
     'circleRadius': 115,
@@ -30,6 +30,9 @@ var configs = {
     'showLinkTooltipForPageItself': false,
     'linkTooltipOpacity': 1.0,
     'circleHideAnimation': true,
+    'addCircleShadow': false,
+    'highlightElementOnHover': false,
+    'circleShadowOpacity': 0.3,
 
     /// Menus
     'regularMenu': {

@@ -25,6 +25,9 @@ function showCircle(e) {
             //     canvasRadius = totalCircleRadius * 2;
             // }
 
+            if (configs.addCircleShadow)
+                canvasRadius *= 1.2;
+
             if (typeOfMenu !== 'regularMenu' && configs.interactiveMenusBehavior == 'combine') {
                 canvasRadius += (configs.interactiveCircleRadius + configs.gapBeforeInteractiveCircle) * 2;
             }
@@ -78,54 +81,15 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
     ctx.clearRect(0, 0, canvasRadius, canvasRadius);
     let totalRadius = totalCircleRadius;
 
-    /// Draw outer circle with interactive buttons
-    // if (typeOfMenu !== 'regularMenu') {
-    //     /// Interactive menu replaces the regular menu
-    //     if (configs.interactiveMenusBehavior == 'replace') {
-
-    //         // let firstCircleRadius = configs[typeOfMenu].levels[0].width ?? configs.circleRadius;
-    //         // let firstCircleInnerRadius = configs.innerCircleRadius;
-
-    //         // let buttonsToShow = configs[typeOfMenu].levels[0].buttons;
-    //         // drawCircleLevel(typeOfMenu, e,
-    //         //     buttonsToShow,
-    //         //     firstCircleRadius,
-    //         //     firstCircleInnerRadius,
-    //         //     // configs['regularMenu'].levels.length,
-    //         //     0,
-    //         //     false, showIndexes, shouldCheckButtonsAvailability);
-    //         // return;
-    //     } else {
-    //         /// Interactive menu is added as outer level for regular circle
-    //         drawCircleLevel(
-    //             typeOfMenu, e,
-    //             /// buttonsToShow
-    //             configs[typeOfMenu].buttons,
-    //             /// circleRadius
-    //             totalRadius + configs.interactiveCircleRadius,
-    //             /// innerCircleRadius
-    //             totalRadius + configs.gapBeforeInteractiveCircle,
-    //             ///level
-    //             configs['regularMenu'].levels.length,
-    //             /// shouldRespectBoundary
-    //             false,
-    //             showIndexes,
-    //             shouldCheckButtonsAvailability
-
-    //         );
-    //     }
-    // }
-
     let enabledLevelsCount = 0;
 
     for (var i = 0; i < configs[typeOfMenu].levels.length; i++) {
         if (configs[typeOfMenu].levels[i].enabled !== false) enabledLevelsCount += 1;
     }
 
-    // let typeToDisplay = configs.interactiveMenusBehavior == 'combine' ? 'regularMenu' : typeOfMenu;
-
     for (var i = configs[typeOfMenu].levels.length - 1; i > -1; i--) {
         if (configs[typeOfMenu].levels[i].enabled !== false) {
+
             drawCircleLevel(
                 typeOfMenu, e,
                 /// buttonsToShow
@@ -143,6 +107,32 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
                 showIndexes,
                 shouldCheckButtonsAvailability
             );
+
+
+            /// Add shadow
+            if (configs.addCircleShadow) {
+                let shadowOffsetDy = 5;
+                ctx.save();
+                ctx.beginPath();
+                ctx.globalCompositeOperation = 'destination-over';
+                ctx.fillStyle = `rgba(0,0,0,${configs.circleShadowOpacity})`
+
+                ctx.arc(canvasRadius / 2, canvasRadius / 2 + shadowOffsetDy, totalRadius + 2, 0, 2 * Math.PI, false);
+                ctx.filter = 'blur(12px)';
+                ctx.fill();
+
+                ctx.restore();
+
+                ctx.save();
+                ctx.beginPath();
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.arc(canvasRadius / 2, canvasRadius / 2, (i == 0 ? configs.innerCircleRadius :
+                    totalRadius - (configs[typeOfMenu].levels[i].width ?? configs.circleRadius) + configs.gapBetweenCircles) * 0.75, 0, 2 * Math.PI, false);
+                ctx.filter = 'blur(6px)';
+                ctx.fill();
+                ctx.restore();
+            }
+
             totalRadius -= configs[typeOfMenu].levels[i].width ?? configs.circleRadius;
         }
     }
@@ -190,7 +180,9 @@ function hideCircle() {
         else {
             /// Some action was selected
             if (configs.circleHideAnimation)
-                circle.style.transform = showRockerActionInCenter && rocketButtonPressed !== null ? 'scale(0.0)' : 'scale(1.5)';
+                circle.style.transition = '';
+
+            circle.style.transform = showRockerActionInCenter && rocketButtonPressed !== null ? 'scale(0.0)' : 'scale(1.5)';
             // circle.style.transform = 'scale(1.5)';
 
             if (rocketButtonPressed == null && typeOfMenu !== null) {

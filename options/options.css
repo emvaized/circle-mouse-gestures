@@ -93,14 +93,23 @@
     cursor: pointer;
 }
 
-label{
-    cursor: pointer;
-}
+.visible-option {
+    opacity: 1.0;
+  }
+  
+  .hidden-option {
+    display: none;
+    pointer-events: none;
+  }
 
 .option:hover{
     background-color: lightgrey;
     transition: background-color 50ms ease-in-out;
     border-radius: 4px;
+}
+
+label{
+    cursor: pointer;
 }
 
 #circle-preview {

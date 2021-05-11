@@ -77,9 +77,13 @@ function setPageListeners() {
 
                     hoveredLinkTitle = el.textContent.trim();
                 } else if (
-                    el.tagName === "INPUT" ||
-                    el.tagName === "TEXTAREA" ||
-                    el.getAttribute('contenteditable') !== null) {
+                    (el.tagName === "INPUT" ||
+                        el.tagName === "TEXTAREA" ||
+                        el.getAttribute('contenteditable') !== null)
+                    && el.getAttribute('type') !== 'checkbox'
+                    && el.getAttribute('type') !== 'range'
+                    && el.getAttribute('type') !== 'color'
+                ) {
                     /// Text field is hovered
 
                     if (window.getSelection) {
@@ -99,7 +103,8 @@ function setPageListeners() {
 
                     } catch (e) { if (configs.debugMode) console.log(e) }
 
-                    currentClipboardContent = getCurrentClipboard();
+                    // currentClipboardContent = getCurrentClipboard();
+                    // getCurrentClipboard();
 
                     typeOfMenu = 'textFieldMenu';
                     hoveredLink = window.location.href;
@@ -243,7 +248,107 @@ function setPageListeners() {
     });
 
     document.addEventListener('wheel', checkScrollDirection);
+
+
+    /// Highlight hovered elements
+
+    // Previous dom, that we want to track, so we can remove the previous styling.
+    var prevHoveredDomElement = null;
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+        // Unique ID for the className.
+        var MOUSE_VISITED_CLASSNAME = 'crx_mouse_visited';
+        var MOUSE_VISITED_CLASSNAME_IMAGE = 'crx_mouse_visited_img';
+        var MOUSE_VISITED_CLASSNAME_INPUT = 'crx_mouse_visited_input';
+        var MOUSE_VISITED_CLASSNAME_PLAYER = 'crx_mouse_visited_player';
+
+        // Mouse listener for any move event on the current document.
+        if (configs.highlightElementOnHover) {
+            document.body.style.setProperty('--cmg-link-color', configs['linkMenu'].color);
+            document.body.style.setProperty('--cmg-img-color', configs['imageMenu'].color);
+            document.body.style.setProperty('--cmg-input-color', configs['textFieldMenu'].color);
+            document.body.style.setProperty('--cmg-player-color', configs['playerMenu'].color);
+
+            document.addEventListener('mousemove', function (e) {
+                var el = document.elementFromPoint(e.clientX, e.clientY);
+
+                if (el == null || el == undefined || el.tagName == 'CANVAS' || circleIsShown == true) return;
+
+                // if (srcElement.nodeName == 'IMG') {
+                if (el.tagName == 'IMG') {
+
+                    if (prevHoveredDomElement != null) {
+                        prevHoveredDomElement.classList.remove(MOUSE_VISITED_CLASSNAME_IMAGE);
+                    }
+
+                    // Add a visited class name to the element. So we can style it.
+                    // srcElement.classList.add(MOUSE_VISITED_CLASSNAME_IMAGE);
+                    el.classList.add(MOUSE_VISITED_CLASSNAME_IMAGE);
+                    // prevDOM = srcElement;
+
+                    prevHoveredDomElement = el;
+
+
+                } else
+                    // } else if (srcElement.nodeName == 'A') {
+                    if (el.tagName == 'A' || el.parentNode.tagName == 'A') {
+                        if (prevHoveredDomElement != null) {
+                            prevHoveredDomElement.classList.remove(MOUSE_VISITED_CLASSNAME);
+                        }
+
+                        // srcElement.classList.add(MOUSE_VISITED_CLASSNAME);
+                        if (!el.classList.contains(MOUSE_VISITED_CLASSNAME_IMAGE))
+                            el.classList.add(MOUSE_VISITED_CLASSNAME);
+
+                        // prevDOM = srcElement;
+                        prevHoveredDomElement = el;
+                    } else if (
+                        (el.tagName === "INPUT" ||
+                            el.tagName === "TEXTAREA" ||
+                            el.getAttribute('contenteditable') !== null)
+                        && el.getAttribute('type') !== 'checkbox'
+                        && el.getAttribute('type') !== 'range'
+                        && el.getAttribute('type') !== 'color'
+                    ) {
+                        if (prevHoveredDomElement != null) {
+                            prevHoveredDomElement.classList.remove(MOUSE_VISITED_CLASSNAME_INPUT);
+                        }
+
+                        // srcElement.classList.add(MOUSE_VISITED_CLASSNAME);
+                        el.classList.add(MOUSE_VISITED_CLASSNAME_INPUT);
+
+                        // prevDOM = srcElement;
+                        prevHoveredDomElement = el;
+                    } else if (
+                        el.tagName === "AUDIO" ||
+                        el.tagName === "VIDEO") {
+                        if (prevHoveredDomElement != null) {
+                            prevHoveredDomElement.classList.remove(MOUSE_VISITED_CLASSNAME_PLAYER);
+                        }
+
+                        // srcElement.classList.add(MOUSE_VISITED_CLASSNAME);
+                        el.classList.add(MOUSE_VISITED_CLASSNAME_PLAYER);
+
+                        // prevDOM = srcElement;
+                        prevHoveredDomElement = el;
+                    }
+                    else {
+                        if (prevHoveredDomElement != null) {
+                            prevHoveredDomElement.classList.remove(MOUSE_VISITED_CLASSNAME);
+                            prevHoveredDomElement.classList.remove(MOUSE_VISITED_CLASSNAME_IMAGE);
+                            prevHoveredDomElement.classList.remove(MOUSE_VISITED_CLASSNAME_INPUT);
+                            prevHoveredDomElement.classList.remove(MOUSE_VISITED_CLASSNAME_PLAYER);
+                        }
+                    }
+            }, false);
+        }
+    })
+
 }
+
+
+
 
 function checkScrollDirection(event) {
     if (circleIsShown == false) return;

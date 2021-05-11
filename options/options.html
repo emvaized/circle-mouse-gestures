@@ -37,6 +37,11 @@
             <div id='appearance-config' class='configs-container'>
                 <div class='option'><label><input type="color" id="backgroundColor"></input></label></div>
                 <div class='option'> <label><input type="checkbox" id="addTextLabels"></input></label></div>
+                <div class='option'>
+                    <label><input type="checkbox" id="addCircleShadow"></input></label>
+                    <label><input style='margin-left: 5%; display: inline !important;' type="number" max='1.0' min='0.0'
+                            step='0.05' id="circleShadowOpacity"></input></label>
+                </div>
             </div>
 
             <br />
@@ -53,6 +58,8 @@
                         <input type="checkbox" id="dimBackground"></input>
                         <span id="dimBackgroundTooltip" class="tooltiptext"></span>
                     </label>
+                    <label><input style='margin-left: 5%; display: inline !important;' type="number" max='1.0' min='0.0'
+                            step='0.05' id="backgroundDimmerOpacity"></input></label>
                 </div>
                 <div class='option'>
                     <label class='tooltip'>
@@ -61,6 +68,11 @@
                     </label>
                 </div>
                 <div class='option'><label><input type="checkbox" id="circleHideAnimation"></input></label>
+                </div>
+                <div class='option'><label class='tooltip'>
+                        <input type="checkbox" id="highlightElementOnHover"></input>
+                        <span id="highlightElementOnHoverTooltip" class="tooltiptext"></span>
+                    </label>
                 </div>
                 <div class='option'><label><input type="checkbox" id="hideCircleIfNoActionSelected"></input></label>
                 </div>

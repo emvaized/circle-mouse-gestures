@@ -1,3 +1,10 @@
+#1.0.6
+- Improved link display in helper tooltip
+- Improved 'copy image' functionality
+- "Undo" and "Redo" actions are back! (on Firefox will work only with 'contenteditable' fields)
+- Added options 'Add shadow' and 'Highlight element on hover'
+- Added ability to configure page dimmer opacity
+
 #1.0.5
 - Added special menu for HTML5 players (video/audio)
 - Implemented ability to configure behavior when element menu is not active (show regular menu/do nothing)

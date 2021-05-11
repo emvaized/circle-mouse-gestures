@@ -13,7 +13,8 @@ function triggerButtonAction(actionToPerform) {
     } else if (actionToPerform == 'scrollPageDown') {
         window.scrollTo({ top: window.scrollY + window.innerHeight * .9, behavior: 'smooth' });
     } else if (actionToPerform == 'undoAction') {
-        document.execCommand('Undo');
+
+        document.execCommand('undo');
         // doUndo(elementUnderCursor)
     } else if (actionToPerform == 'redoAction') {
         document.execCommand('redo');
@@ -45,6 +46,7 @@ function triggerButtonAction(actionToPerform) {
     }
     else if (actionToPerform == 'copyImage') {
         copyImg(hoveredLink);
+
     } else if (actionToPerform == 'downloadVideoSavefromNet') {
         chrome.runtime.sendMessage({ actionToDo: 'openInFgTab', url: `https://en.savefrom.net/20/#url=${window.location.href}` });
     } else if (actionToPerform == 'replayVideo') {
@@ -248,92 +250,17 @@ function getSelectionRectDimensions() {
 }
 
 
-function getCurrentClipboard() {
+async function getCurrentClipboard() {
     try {
-        var t = document.createElement("input");
-        /// Some styling to remove scroll shifting
-        t.setAttribute('style', `top: ${window.scrollY}px;max-width: 1px; max-height: 1px;position: absolute;opacity: 0.0;pointer-events: none; transform: scale(0.00000001, 0.00000001)`);
-        document.body.appendChild(t);
-        t.focus({ preventScroll: true });
-        document.execCommand("paste");
-        let clipboardText = t.value; //this is your clipboard data
-        document.body.removeChild(t);
-        return clipboardText;
+
+        const text = await navigator.clipboard.readText();
+        currentClipboardContent = text;
+        return text;
+
     } catch (e) {
         if (configs.debugMode) console.log(e);
         return '';
     }
-}
-
-
-///  Copy image methods
-/// Source: https://stackoverflow.com/a/59183698/11381400
-
-async function copyImg(src) {
-    try {
-        // const img = await fetch(src);
-        const img = loadedImages[src] ?? await fetch(src);
-        const imgBlob = await img.blob();
-        // if (src.endsWith(".jpg") || src.endsWith(".jpeg")) {
-        //     convertToPng(imgBlob);
-        // } else 
-        if (src.endsWith(".png")) {
-            copyToClipboard(imgBlob);
-        } else {
-            convertToPng(imgBlob);
-            // console.error("Format unsupported");
-        }
-    } catch (e) { if (configs.debugMode) console.log(e); }
-
-}
-
-async function copyToClipboard(pngBlob) {
-    try {
-        await navigator.clipboard.write([
-            new ClipboardItem({
-                [pngBlob.type]: pngBlob
-            })
-        ]);
-        if (configs.debugMode)
-            console.log("Image copied");
-    } catch (error) {
-        if (configs.debugMode)
-            console.error(error);
-    }
-}
-
-function convertToPng(imgBlob) {
-    const imageUrl = window.URL.createObjectURL(imgBlob);
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-
-    // if (elementUnderCursor) {
-    //     const imageEl = elementUnderCursor;
-    //     console.log(imageEl);
-    //     canvas.width = imageEl.width;
-    //     canvas.height = imageEl.height;
-    //     ctx.drawImage(imageEl, 0, 0, imageEl.width, imageEl.height);
-    //     canvas.toBlob(copyToClipboard, "image/png", 1);
-    // } else {
-    const imageEl = createImage({ src: imageUrl });
-    imageEl.onload = (e) => {
-        canvas.width = e.target.width;
-        canvas.height = e.target.height;
-        ctx.drawImage(e.target, 0, 0, e.target.width, e.target.height);
-        canvas.toBlob(copyToClipboard, "image/png", 1);
-    };
-    // }
-
-}
-
-function createImage(options) {
-    options = options || {};
-    const img = (Image) ? new Image() : document.createElement("img");
-    img.crossOrigin = "anonymous";
-    if (options.src) {
-        img.src = options.src;
-    }
-    return img;
 }
 
 
@@ -350,4 +277,138 @@ function seekPlayerToTime(video_element, ts) {
             clearInterval(timer);
         }
     }, 50);
+}
+
+
+///  Copy image methods
+
+async function copyImg(src) {
+    try {
+
+        if (elementUnderCursor !== null) {
+            base64(elementUnderCursor, function (data) {
+                console.log(data);
+                copyPngFromSource(data);
+            })
+        } else
+
+            /// New method - relies on proxy to bypass CORS
+            getDataUri(src, function (base64) {
+                if (base64 !== null && base64 !== undefined && !base64.includes('data:text/xml')) {
+                    copyPngFromSource(base64);
+                } else {
+                    fallbackCopyImg(src);
+                }
+            }, fallbackCopyImg)
+
+    } catch (e) {
+        if (configs.debugMode)
+            console.log(e);
+
+        fallbackCopyImg(src);
+    }
+}
+
+async function fallbackCopyImg(src) {
+    /// Old method - affected by CORS-issue
+    if (configs.debugMode) console.log('Using old method to copy image...');
+
+    const img = await fetch(src);
+    const imgBlob = await img.blob();
+
+    if (src.endsWith(".png")) {
+        copyToClipboard(imgBlob);
+    } else {
+        convertToPng(imgBlob);
+    }
+}
+
+/// Source: https://stackoverflow.com/a/59183698/11381400
+function convertToPng(imgBlob) {
+    const imageUrl = window.URL.createObjectURL(imgBlob);
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    const imageEl = createImage({ src: imageUrl });
+    imageEl.onload = (e) => {
+        canvas.width = e.target.width;
+        canvas.height = e.target.height;
+        ctx.drawImage(e.target, 0, 0, e.target.width, e.target.height);
+        canvas.toBlob(copyToClipboard, "image/png", 1);
+    };
+}
+
+function createImage(options) {
+    options = options || {};
+    const img = (Image) ? new Image() : document.createElement("img");
+    img.crossOrigin = "anonymous";
+    if (options.src) {
+        img.src = options.src;
+    }
+    return img;
+}
+
+/// Method to get base64 image from url source
+/// Source: https://stackoverflow.com/a/44199382/11381400
+var getDataUri = function (targetUrl, callback, errorCallback) {
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            console.log('loaded!');
+            callback(reader.result);
+        };
+        reader.readAsDataURL(xhr.response);
+    };
+    xhr.onerror = function (e) {
+        console.log('ERRRRROR!');
+        return null;
+    };
+    var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    xhr.open('GET', proxyUrl + targetUrl);
+    xhr.responseType = 'blob';
+    xhr.send();
+};
+
+
+function base64(file, callback) {
+    var imageFile = file;
+    var fileReader = new FileReader();
+    fileReader.onload = function (fileLoadedEvent) {
+        var srcData = fileLoadedEvent.target.result;
+        var newImage = document.createElement('img');
+        newImage.src = srcData;
+        callback(srcData);
+    }
+    fileReader.readAsDataURL(imageFile);
+}
+
+
+function copyPngFromSource(src) {
+    const imageUrl = src;
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    const imageEl = createImage({ src: imageUrl });
+    imageEl.onload = (e) => {
+        canvas.width = e.target.width;
+        canvas.height = e.target.height;
+        ctx.drawImage(e.target, 0, 0, e.target.width, e.target.height);
+        canvas.toBlob(copyToClipboard, "image/png", 1);
+    };
+}
+
+async function copyToClipboard(pngBlob) {
+    try {
+        await navigator.clipboard.write([
+            new ClipboardItem({
+                [pngBlob.type]: pngBlob
+            })
+        ]);
+        if (configs.debugMode)
+            console.log("Image copied");
+    } catch (error) {
+        if (configs.debugMode)
+            console.error(error);
+    }
 }

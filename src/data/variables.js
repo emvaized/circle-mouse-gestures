@@ -4,7 +4,6 @@ var showRockerActionInCenter = false;
 var rockerCircleOpacity = 0.75;
 var scaleDownRockerIconWhenNonHovered = false;
 var useRectangularShape = false;
-var addShadows = false;
 
 /// Service variables
 var canvasRadius = configs.circleRadius * 4;
@@ -45,7 +44,7 @@ var defaultConfigs = {
     'useMouseWheelGestures': true,
     'addTextLabels': true,
     'dimBackground': false,
-    'backgroundDimmerOpacity': 0.25,
+    'backgroundDimmerOpacity': 0.2,
     'circleOpacity': 1.0,
     'innerCircleRadius': 30,
     'circleRadius': 115,
@@ -67,6 +66,9 @@ var defaultConfigs = {
     'showCategoryIconInTooltip': true,
     'linkTooltipOpacity': 1.0,
     'circleHideAnimation': true,
+    'addCircleShadow': false,
+    'highlightElementOnHover': false,
+    'circleShadowOpacity': 0.3,
 
     /// Menus
     'regularMenu': {

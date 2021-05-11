@@ -37,3 +37,24 @@
   /* left: 0px; right: 0px;
   border-radius: 50%;  position:absolute !Important; z-index:99999;align-items: center; text-align: center; vertical-align: middle; */
 }
+
+
+
+.crx_mouse_visited {
+  outline: 2px solid var(--cmg-link-color) !important;
+  /* border: 2px solid var(--cmg-link-color) !important; */
+}
+
+.crx_mouse_visited_img {
+  /* outline: 2px solid var(--cmg-img-color) !important; */
+  outline: 2px solid var(--cmg-img-color) !important;
+}
+
+.crx_mouse_visited_input {
+  outline: 2px solid var(--cmg-input-color) !important;
+  /* border: none; */
+}
+
+.crx_mouse_visited_player {
+  outline: 2px solid var(--cmg-player-color) !important;
+}

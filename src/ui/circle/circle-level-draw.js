@@ -31,6 +31,7 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
 
     selectedButtons[level] = null;
 
+
     /// Draw segments
     for (i = 0; i < segmentsCount; i++) {
         if (actionIcons[buttonsToShow[i].id] == undefined) continue;
@@ -39,9 +40,6 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
         var angle = (segmentsCount % 2 == 0.0 ?
             (-Math.PI / segmentsCount) :
             (-Math.PI / segmentsCount) / 2) + i * (Math.PI / (segmentsCount / 2));
-
-        // var angle = (
-        //     (-Math.PI / segmentsCount)) + i * (Math.PI / (segmentsCount / 2));
 
         if (shouldRespectBoundary && mradius > circleRadius + configs.gapBetweenCircles) {
             /// Segment is not hovered
@@ -80,6 +78,7 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
                 ctx.fillStyle = segmentColor;
 
             }
+
         ctx.globalCompositeOperation = 'source-over';
 
         ctx.beginPath();
@@ -118,13 +117,6 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
             ctx.stroke();
         }
 
-        if (addShadows) {
-            ctx.shadowColor = 'black';
-            ctx.shadowBlur = 12;
-            ctx.shadowOffsetX = 0;
-            ctx.shadowOffsetY = 5;
-        }
-
         /// if (addNeonEffect) {
         // ctx.shadowColor = "red";
         // ctx.globalCompositeOperation = "lighter";
@@ -134,20 +126,12 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
         ctx.fill();
     }
 
-    if (addShadows) {
-        ctx.shadowColor = 'transparent';
-        ctx.shadowBlur = 0;
-        ctx.shadowOffsetX = 0;
-        ctx.shadowOffsetY = 0;
-    }
-
     /// Cut off circle in center
     ctx.save();
     ctx.beginPath();
     ctx.globalCompositeOperation = 'destination-out';
 
     if (useRectangularShape && level !== 0) {
-        // if (useRectangularShape) {
         ctx.moveTo(canvasRadius / 2, canvasRadius / 2 - (innerCircleRadius / 2));
 
         for (i = 0; i < segmentsCount; i++) {
@@ -172,11 +156,15 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
 
     ctx.restore();
 
-
     if (configs.addCircleOutlines) {
         ctx.strokeStyle = outlineColor;
         ctx.stroke();
     }
+
+
+
+
+
 
     /// Draw labels
     drawLabels(E, segmentsCount, circleRadius, innerCircleRadius, buttonsToShow, segmentColor, showIndexes, shouldCheckButtonsAvailability);
@@ -191,7 +179,6 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
         if (showRockerActionInCenter && rockerCircle == null)
             drawRockerIconInCenter();
     } catch (e) { }
-
 }
 
 
@@ -369,10 +356,22 @@ function checkButtonAvailability(e, id) {
         }
 
         case 'copyImage': {
-            fetchHoveredImage(e, hoveredLink);
+            // fetchHoveredImage(e, hoveredLink);
             return true;
+        }
 
-            // return loadedImages[hoveredLink] !== null && loadedImages[hoveredLink] !== undefined;
+        case 'undoAction': {
+            let isFirefox = navigator.userAgent.indexOf("Firefox") > -1;
+            if (isFirefox && document.activeElement.getAttribute('contenteditable') == null) return false;
+            else
+                return true;
+        }
+
+        case 'redoAction': {
+            let isFirefox = navigator.userAgent.indexOf("Firefox") > -1;
+            if (isFirefox && document.activeElement.getAttribute('contenteditable') == undefined) return false;
+            else
+                return true;
         }
 
         default: return true;

@@ -1,4 +1,8 @@
 {
+    "addCircleShadow": {
+        "message": "Add shadow",
+        "description": ""
+    },
     "addLabel": {
         "message": "Add segment",
         "description": ""
@@ -183,6 +187,14 @@
         "message": "Hide circle if no action selected",
         "description": ""
     },
+    "highlightElementOnHover": {
+        "message": "Highlight element on hover",
+        "description": ""
+    },
+    "highlightElementOnHoverTooltip": {
+        "message": "Add border to element which has it's special menu in CMG. May not work on some pages",
+        "description": ""
+    },
     "image": {
         "message": "Image",
         "description": ""
@@ -257,6 +269,10 @@
     },
     "noAction": {
         "message": "No action",
+        "description": ""
+    },
+    "opacity": {
+        "message": "Opacity",
         "description": ""
     },
     "openInBgTab": {

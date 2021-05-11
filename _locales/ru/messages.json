@@ -1,4 +1,8 @@
 {
+    "addCircleShadow": {
+        "message": "Добавить тень",
+        "description": ""
+    },
     "addLabel": {
         "message": "Добавить сегмент",
         "description": ""
@@ -183,6 +187,14 @@
         "message": "Прятать круг, если действие не выбрано",
         "description": ""
     },
+    "highlightElementOnHover": {
+        "message": "Подсветить элемент при наведении",
+        "description": ""
+    },
+    "highlightElementOnHoverTooltip": {
+        "message": "Добавить рамку элементу, имеющему специальное меню в CMG. Может работать некорректно на некоторых страницах",
+        "description": ""
+    },
     "image": {
         "message": "Изображение",
         "description": "Ярлык для кнопки кругового меню"
@@ -261,6 +273,10 @@
     },
     "noAction": {
         "message": "Нет действия",
+        "description": ""
+    },
+    "opacity": {
+        "message": "Прозрачность",
         "description": ""
     },
     "openInBgTab": {

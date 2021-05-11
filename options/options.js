@@ -7,7 +7,6 @@ function init() {
     try {
         loadUserConfigs(function (conf) {
             setMenuTypeDropdown();
-            // loadButtons();
             drawCirclePreview(selectedMenuType);
             generateButtonsControls();
             generateAppearanceControls();
@@ -18,18 +17,16 @@ function init() {
             preselectedButtons = {};
 
             document.getElementById('circle-preview').addEventListener('mousedown', function (e) {
-                // document.body.addEventListener('mouseup', function (e) {
                 selectedButtons = {};
                 preselectedButtons = {};
 
                 drawCircle(e, selectedMenuType, true, false, true);
-                // try {
-                //     generateSegmentRelatedControls();
-                // } catch (e) { if (configs.debugMode) console.log(e); }
                 generateButtonsControls();
             });
 
             document.getElementById('navbar-settings-label').innerHTML = ' ' + chrome.i18n.getMessage('settings').toLowerCase();
+            document.getElementById('circleShadowOpacity').parentNode.setAttribute('title', chrome.i18n.getMessage('opacity'));
+            document.getElementById('backgroundDimmerOpacity').parentNode.setAttribute('title', chrome.i18n.getMessage('opacity'));
         })
     } catch (e) { if (configs.debugMode) console.log(e); }
 }
@@ -162,6 +159,23 @@ function generateAppearanceControls() {
         });
     }, 300);
 
+    /// Set shadow config
+    // let shadowInput = document.getElementById('addCircleShadow');
+    // shadowInput.parentNode.innerHTML = chrome.i18n.getMessage('addCircleShadow') + ' ' + shadowInput.parentNode.innerHTML;
+    // if (configs.addCircleShadow == true)
+    //     shadowInput.setAttribute('checked', true);
+
+    // setTimeout(function () {
+    //     let shadowInput = document.getElementById('addCircleShadow');
+    //     shadowInput.addEventListener('input', function () {
+    //         console.log('switched');
+    //         configs['addCircleShadow'] = shadowInput.checked;
+    //         drawCirclePreview();
+    //         saveAllSettings();
+    //     })
+
+    // }, delayToAddListeners);
+
 
     let appearanceContainer = document.getElementById('appearance-config');
 
@@ -217,6 +231,11 @@ function generateBehaviorConfigs() {
         'debugMode',
         'addLinkTooltip',
         'showRegularMenuIfNoAction',
+
+        'addCircleShadow',
+        'circleShadowOpacity',
+        'backgroundDimmerOpacity',
+        'highlightElementOnHover',
     ];
 
     inputIds.forEach(function (inputId) {
@@ -230,7 +249,7 @@ function generateBehaviorConfigs() {
                 inputField.setAttribute('value', configs[inputId]);
         }
 
-        inputField.parentNode.innerHTML = chrome.i18n.getMessage(inputId) + ' ' + inputField.parentNode.innerHTML + '<br />';
+        inputField.parentNode.innerHTML = chrome.i18n.getMessage(inputId) + ' ' + inputField.parentNode.innerHTML;
 
         setTimeout(function () {
             document.getElementById(inputId).addEventListener("input", function (e) {
@@ -251,6 +270,7 @@ function generateBehaviorConfigs() {
     document.getElementById('dimBackgroundTooltip').innerText = chrome.i18n.getMessage('dimBackgroundTooltip');
     document.getElementById('windowsOnlyTooltip').innerText = chrome.i18n.getMessage('windowsOnly');
     document.getElementById('addLinkTooltipTooltip').innerText = chrome.i18n.getMessage('addLinkTooltipTooltip');
+    document.getElementById('highlightElementOnHoverTooltip').innerText = chrome.i18n.getMessage('highlightElementOnHoverTooltip');
 
     /// Proccess 'inactive menu for item behavior' dropdown
     let inactiveMenuBehavior = document.getElementById('inactiveMenuBehavior');
@@ -914,6 +934,8 @@ function updateDisabledOptions() {
 
     /// Grey out unavailable optoins
     document.querySelector("#showRegularMenuIfNoAction").parentNode.parentNode.className = document.querySelector("#hideCircleIfNoActionSelected").checked ? 'option enabled-option' : 'option disabled-option';
+    document.querySelector("#circleShadowOpacity").parentNode.className = document.querySelector("#addCircleShadow").checked ? 'visible-option' : 'hidden-option';
+    document.querySelector("#backgroundDimmerOpacity").parentNode.className = document.querySelector("#dimBackground").checked ? 'visible-option' : 'hidden-option';
 }
 
 document.addEventListener("DOMContentLoaded", init);
