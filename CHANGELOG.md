@@ -6,8 +6,8 @@
 - Improved overall smoothness of extension
 - Implemented 'Select all' and 'Select more' actions
 - Added support for middle button rocker gesture
-- Code refactored
-- Small bug fixes and improvements
+- 'Copy image' action improved (still works bad on Firefox)
+- Code refactored + small bug fixes and improvements
 
 #1.0.6
 - Improved link display in helper tooltip
