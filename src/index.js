@@ -8,14 +8,16 @@ function init() {
 let anyButtonIsSelected = false;
 
 function setPageListeners() {
-
     /// Page listeners
+
     document.addEventListener("contextmenu", function (e) {
         if (e.ctrlKey || leftClickIsHolded) return;
 
         if (typeOfMenu == '') return;
 
-        if (configs.showRegularMenuIfNoAction && configs.hideCircleIfNoActionSelected == true && anyButtonIsSelected == false && circleIsShown == false) return;
+        if (configs.showRegularMenuIfNoAction && configs.hideCircleIfNoActionSelected == true && anyButtonIsSelected == false && circleIsShown == false) {
+            return;
+        }
 
         e.preventDefault();
     });
@@ -25,12 +27,14 @@ function setPageListeners() {
         evt = e || window.event;
 
         if (e.ctrlKey) return;
+        if (fullscreenImageIsOpen == true) return;
 
-        if (configs.debugMode)
-            console.log('Pushed button ' + evt.button.toString());
+        // if (configs.debugMode)
+        //     console.log('Pushed button ' + evt.button.toString());
 
         if ("buttons" in evt) {
             /// Right click
+            // if (evt.button == 2) {
             if (evt.buttons == 2) {
                 if (leftClickIsHolded) return;
 
@@ -98,10 +102,15 @@ function setPageListeners() {
                     try {
                         if (textSelection.toString() == '') {
                             var ta = document.querySelector(':focus');
-                            textSelection = ta.value.substring(ta.selectionStart, ta.selectionEnd);
+                            if (ta !== null && ta.value !== undefined)
+                                textSelection = ta.value.substring(ta.selectionStart, ta.selectionEnd);
                         }
-
                     } catch (e) { if (configs.debugMode) console.log(e) }
+
+                    /// Special handling for content-editable
+                    // if (textSelection == null || textSelection == undefined) {
+                    //     textSelection = el.innerHTML;
+                    // }
 
                     // currentClipboardContent = getCurrentClipboard();
                     // getCurrentClipboard();
@@ -186,46 +195,57 @@ function setPageListeners() {
                 try {
                     showCircle(e);
                 } catch (err) { if (configs.debugMode) if (configs.debugMode) console.log(err); }
+                // } else if (evt.button == 0) {
             } else if (evt.buttons == 3) {
-                rocketButtonPressed = 3;
+                rocketButtonPressed = 0;
 
                 /// Left click
-                if (configs.debugMode) console.log('Rocker gesture recognized!');
-                if (configs.debugMode) console.log('circleIsShown:');
-                if (configs.debugMode) console.log(circleIsShown);
                 if (circleIsShown) {
                     e.preventDefault();
                     hideCircle();
 
-                    let actionToPerform = configs[typeOfMenu]['rockerAction'];
+                    if (configs.debugMode) console.log('Rocker gesture recognized!');
+                    let actionToPerform = configs[typeOfMenu]['rockerLeftClick'];
+                    triggerButtonAction(actionToPerform);
+                } else {
+                    leftClickIsHolded = true;
+                }
+            } else if (evt.buttons == 6) {
+                rocketButtonPressed = 6;
+
+                /// Middle click
+                if (circleIsShown) {
+                    e.preventDefault();
+                    hideCircle();
+
+                    if (configs.debugMode) console.log('Rocker gesture recognized!');
+                    let actionToPerform = configs[typeOfMenu]['rockerMiddleClick'];
                     triggerButtonAction(actionToPerform);
                 } else {
                     leftClickIsHolded = true;
                 }
             } else {
-                if (configs.debugMode)
-                    if (configs.debugMode) console.log('CMG recognized button action ' + evt.buttons.toString());
+                // if (configs.debugMode) console.log('CMG recognized button action ' + evt.buttons.toString());
             }
         }
     });
 
     document.addEventListener("mouseup", function (e) {
-        // e.preventDefault();
-        // hideCircle();
 
         evt = e || window.event;
 
         if ("buttons" in evt) {
-            if (configs.debugMode)
-                console.log('Released button ' + evt.button.toString());
-            /// Right click
+            // if (configs.debugMode)
+            //     console.log('Released button ' + evt.button.toString());
+            /// Left click
             if (evt.button == 0) {
-                // if (configs.debugMode) console.log('Selected button is:' + selectedButton.toString());
                 leftClickIsHolded = false;
+                if (circleIsShown == false) return;
                 hideCircle();
             } else if (evt.button == 2) {
+                /// Right click
 
-                // let anyButtonIsSelected = false;
+                if (circleIsShown == false) return;
                 let keys = Object.keys(selectedButtons);
                 for (var i = 0; i < keys.length; i++) {
                     let key = keys[i];
@@ -236,7 +256,7 @@ function setPageListeners() {
                 }
 
                 if (anyButtonIsSelected == false) {
-                    /// Leave circle open (like a context menu), or hide it
+                    /// Leave circle open (like a context menu) - or hide it
                     if (configs.hideCircleIfNoActionSelected) {
                         hideCircle();
                     }
@@ -249,15 +269,12 @@ function setPageListeners() {
 
     document.addEventListener('wheel', checkScrollDirection);
 
-
-    /// Highlight hovered elements
-
-    // Previous dom, that we want to track, so we can remove the previous styling.
-    var prevHoveredDomElement = null;
+    /// Listener to highlight hovered elements
+    var prevHoveredDomElement = null;   // previous dom that we want to track, so we can remove the previous styling
 
     document.addEventListener('DOMContentLoaded', function () {
 
-        // Unique ID for the className.
+        // Unique ID for the classNames
         var MOUSE_VISITED_CLASSNAME = 'crx_mouse_visited';
         var MOUSE_VISITED_CLASSNAME_IMAGE = 'crx_mouse_visited_img';
         var MOUSE_VISITED_CLASSNAME_INPUT = 'crx_mouse_visited_input';
@@ -271,6 +288,12 @@ function setPageListeners() {
             document.body.style.setProperty('--cmg-player-color', configs['playerMenu'].color);
 
             document.addEventListener('mousemove', function (e) {
+
+                if (fullscreenImageIsOpen && prevHoveredDomElement !== null) {
+                    prevHoveredDomElement.classList.remove(MOUSE_VISITED_CLASSNAME_IMAGE);
+                    return;
+                }
+
                 var el = document.elementFromPoint(e.clientX, e.clientY);
 
                 if (el == null || el == undefined || el.tagName == 'CANVAS' || circleIsShown == true) return;
@@ -291,7 +314,6 @@ function setPageListeners() {
 
 
                 } else
-                    // } else if (srcElement.nodeName == 'A') {
                     if (el.tagName == 'A' || el.parentNode.tagName == 'A') {
                         if (prevHoveredDomElement != null) {
                             prevHoveredDomElement.classList.remove(MOUSE_VISITED_CLASSNAME);
@@ -348,9 +370,13 @@ function setPageListeners() {
 }
 
 
-
-
 function checkScrollDirection(event) {
+    if (circleIsShown == false) return;
+
+    /// Reset stored previous scroll position
+    if (configs.storeCurrentScrollPosition && previousScrollPosition !== {})
+        previousScrollPosition = {};
+
     if (circleIsShown == false) return;
 
     if (checkScrollDirectionIsUp(event)) {

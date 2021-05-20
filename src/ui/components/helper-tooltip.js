@@ -83,7 +83,10 @@ async function showLinkTooltip() {
 
             /// Set tooltip body to display current clipboard content
             let result = await getCurrentClipboard();
+
             currentClipboardContent = result;
+
+            // currentClipboardContent = result;
             if (configs.debugMode) {
                 console.log('current clipboard content:');
                 console.log(currentClipboardContent);
@@ -102,6 +105,32 @@ async function showLinkTooltip() {
                 let dyToShow = topCoord - (linkTooltip.clientHeight) - 8;
                 linkTooltip.style.transform = `translate(${dxToShow}px, ${dyToShow}px)`;
             }
+
+
+            // chrome.runtime.sendMessage({ actionToDo: 'getCurrentClipboardContent' }, function (res) {
+            //     currentClipboardContent = res;
+
+            //     // currentClipboardContent = result;
+            //     if (configs.debugMode) {
+            //         console.log('current clipboard content:');
+            //         console.log(currentClipboardContent);
+            //     }
+
+            //     if (currentClipboardContent !== null && currentClipboardContent !== undefined && currentClipboardContent !== '') {
+            //         // let label = document.getElementById('cmg-helper-tooltip-label');
+            //         // let text = document.getElementById('cmg-helper-tooltip-body');
+            //         if (text !== null)
+            //             text.innerHTML = currentClipboardContent.length > maxSymbolsInBody ? currentClipboardContent.substring(0, maxSymbolsInBody - 3) + '...' : currentClipboardContent;
+            //         if (label !== null)
+            //             label.innerHTML = chrome.i18n.getMessage('clipboard') + '<br />';
+
+
+            //         let dxToShow = leftCoord + (canvasRadius / 2) - (linkTooltip.clientWidth / 2);
+            //         let dyToShow = topCoord - (linkTooltip.clientHeight) - 8;
+            //         linkTooltip.style.transform = `translate(${dxToShow}px, ${dyToShow}px)`;
+            //     }
+            // })
+
         }
         else {
             text.innerHTML = configs.showFullLinkInTooltip ? linkToDisplay : linkToDisplay.length > maxSymbolsInBody ? linkToDisplay.substring(0, maxSymbolsInBody - 3) + '...' : linkToDisplay;
@@ -126,11 +155,11 @@ async function showLinkTooltip() {
     if (configs.addCircleShadow)
         dyToShow += 15;
 
-    linkTooltip.style.transform = `translate(${dxToShow}px, ${topCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px)`;
+    linkTooltip.style.transform = `translate(${dxToShow}px, ${topCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px) scale(0.0)`;
 
     setTimeout(function () {
-        linkTooltip.style.transition = `transform ${configs.animationDuration}ms ease-in-out, opacity ${configs.animationDuration}ms ease-in-out`;
-        linkTooltip.style.transform = `translate(${dxToShow}px, ${dyToShow}px)`;
+        linkTooltip.style.transition = `transform ${configs.animationDuration}ms ease-out, opacity ${configs.animationDuration}ms ease-out`;
+        linkTooltip.style.transform = `translate(${dxToShow}px, ${dyToShow}px) scale(1.0)`;
         // linkTooltip.style.opacity = configs.linkTooltipOpacity;
         linkTooltip.style.opacity = configs.circleOpacity ?? 1.0;
     }, 1);
@@ -141,7 +170,7 @@ function hideLinkTooltip() {
 
     // let dxShown = leftCoord + configs.circleRadius - (linkTooltip.clientWidth / 2);
     let dxShown = leftCoord + (canvasRadius / 2) - (linkTooltip.clientWidth / 2);
-    linkTooltip.style.transform = `translate(${dxShown}px, ${topCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px)`;
+    linkTooltip.style.transform = `translate(${dxShown}px, ${topCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px) scale(0.0)`;
     linkTooltip.style.opacity = `0.0`;
     setTimeout(function () {
         if (linkTooltip !== null && linkTooltip.parentNode !== null)

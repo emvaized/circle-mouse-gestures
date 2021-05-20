@@ -1,3 +1,23 @@
+/// Open options page after install
+chrome.runtime.onInstalled.addListener(function (details) {
+    if (details.reason == 'install') {
+        chrome.runtime.openOptionsPage();
+    }
+    // else if (details.reason == 'update') {
+    //             // show update notification
+    //             if (Config.get("Settings.General.updateNotification")) {
+    //                 // get manifest for new version number
+    //                 const manifest = browser.runtime.getManifest();
+    //                 // show update notification and open changelog on click
+    //                 displayNotification(
+    //                     browser.i18n.getMessage('addonUpdateNotificationTitle', manifest.name),
+    //                     browser.i18n.getMessage('addonUpdateNotificationMessage', manifest.version),
+    //                     "https://github.com/Robbendebiene/Gesturefy/releases"
+    //                 );
+    //             }
+    // }
+});
+
 /// Listener to open url in new tab
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
@@ -5,9 +25,7 @@ chrome.runtime.onMessage.addListener(
         // if (request.typeOfAction == 'mgc-regular-menu')
         switch (request.actionToDo) {
             case 'newTab': {
-                // chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                 chrome.tabs.create({ index: sender.tab.index + 1 });
-                // });
             } break;
 
             case 'closeCurrentTab': {
@@ -38,51 +56,6 @@ chrome.runtime.onMessage.addListener(
                 chrome.tabs.create({
                     url: request.url, active: true, index: index + 1
                 });
-            } break;
-
-            case 'copyUrl': {
-                try {
-                    var input = document.createElement('input');
-                    document.body.appendChild(input);
-                    input.value = request.url;
-                    input.focus();
-                    input.select();
-                    document.execCommand('Copy');
-                    // input.remove();
-                    document.body.removeChild(input);
-                } catch (e) {
-                    navigator.clipboard.writeText(request.url);
-                }
-            } break;
-
-            case 'copyLinkText': {
-                try {
-                    var input = document.createElement('input');
-                    document.body.appendChild(input);
-                    input.value = request.linkText;
-                    input.focus();
-                    input.select();
-                    document.execCommand('Copy');
-                    // input.remove();
-                    document.body.removeChild(input);
-                } catch (e) {
-                    navigator.clipboard.writeText(request.linkText);
-                }
-            } break;
-
-            case 'copyText': {
-                try {
-                    var input = document.createElement('input');
-                    document.body.appendChild(input);
-                    input.value = request.selectedText;
-                    input.focus();
-                    input.select();
-                    document.execCommand('Copy');
-                    // input.remove();
-                    document.body.removeChild(input);
-                } catch (e) {
-                    navigator.clipboard.writeText(request.selectedText);
-                }
             } break;
 
             case 'searchText': {
@@ -133,13 +106,6 @@ chrome.runtime.onMessage.addListener(
                 });
             } break;
 
-            // case 'translatePage': {
-            //     let index = sender.tab.index;
-            //     chrome.tabs.create({
-            //         url: 'https://translate.google.com/translate?sl=auto&tl=ru&u=' + request.url, active: true, index: index + 1
-            //     });
-            // } break;
-
             case 'switchToPreviousTab': {
 
                 const queryInfo = {
@@ -147,7 +113,7 @@ chrome.runtime.onMessage.addListener(
                     currentWindow: true
                 }
 
-                // // if (this.getSetting("excludeDiscarded")) queryInfo.discarded = false;
+                // if (this.getSetting("excludeDiscarded")) queryInfo.discarded = false;
 
                 chrome.tabs.query(queryInfo, function (tabs) {
                     let nextTab;
@@ -176,8 +142,6 @@ chrome.runtime.onMessage.addListener(
                     active: false,
                     currentWindow: true
                 }
-
-                // if (this.getSetting("excludeDiscarded")) queryInfo.discarded = false;  
 
                 chrome.tabs.query(queryInfo, function (tabs) {
                     let nextTab;
@@ -305,55 +269,48 @@ chrome.runtime.onMessage.addListener(
                 return true;
             } break;
 
-            // case 'checkCopyImageAvailability': {
-            //     askWritePermission().then(function (result) {
-            //         sendResponse(result);
-            //     })
-            //     return true;
-            // } break;
+            case 'getCurrentClipboardContent': {
+                try {
+                    navigator.clipboard.readText().then(text => sendResponse(text));
+                } catch (e) {
+                    sendResponse('');
+                }
+                return true;
 
+            } break;
+
+            case 'showBrowserNotification': {
+                displayNotification(request.title, request.message, request.url)
+            } break;
         }
-
-
     }
 );
 
 
 
-// chrome.runtime.onInstalled.addListener((details) => {
-//     // enable context menu on mouseup
-//     try {
-//         chrome.browserSettings.contextMenuShowEvent.set({ value: "mouseup" });
-//     }
-//     catch (error) {
-//         // console.warn("Gesturefy was not able to change the context menu behaviour to mouseup.", error);
-//     }
-
-//     // run this code after the config is loaded
-//     // Config.loaded.then(() => {
-
-//     //     switch (details.reason) {
-//     //         case "install":
-//     //             // show installation onboarding page
-//     //             browser.tabs.create({
-//     //                 url: browser.runtime.getURL("/views/installation/index.html"),
-//     //                 active: true
-//     //             });
-//     //             break;
-
-//     //         case "update":
-//     //             // show update notification
-//     //             if (Config.get("Settings.General.updateNotification")) {
-//     //                 // get manifest for new version number
-//     //                 const manifest = browser.runtime.getManifest();
-//     //                 // show update notification and open changelog on click
-//     //                 displayNotification(
-//     //                     browser.i18n.getMessage('addonUpdateNotificationTitle', manifest.name),
-//     //                     browser.i18n.getMessage('addonUpdateNotificationMessage', manifest.version),
-//     //                     "https://github.com/Robbendebiene/Gesturefy/releases"
-//     //                 );
-//     //             }
-//     //             break;
-//     //     }
-//     // });
-// });
+/**
+ * displays a browser notification
+ * opens an URL on click if specified
+ **/
+function displayNotification(title, message, link) {
+    // create notification
+    const createNotification = chrome.notifications.create({
+        "type": "basic",
+        // "iconUrl": "../../icons/cmg-logo-new-monotone-48.png",
+        "title": title,
+        "message": message
+    });
+    createNotification.then((notificationId) => {
+        // if an URL is specified register an onclick listener
+        // if (link) chrome.notifications.onClicked.addListener(function handleNotificationClick(id) {
+        //     if (id === notificationId) {
+        //         chrome.tabs.create({
+        //             url: link,
+        //             active: true
+        //         });
+        //         // remove event listener
+        //         chrome.notifications.onClicked.removeListener(handleNotificationClick);
+        //     }
+        // });
+    });
+}

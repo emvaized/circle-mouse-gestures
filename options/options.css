@@ -4,7 +4,7 @@
     background-color: white;
     box-shadow: 0 2px 7px rgba(0,0,0,0.25);
     vertical-align: middle;
-  }
+}
 
   #navbar-title {
       float: left;
@@ -28,8 +28,12 @@
     z-index: 10;
   }
 
+  button {
+    cursor: pointer;
+  }
+
   #typeOfMenuDropdown {
-    background: transparent;
+    background: white;
     float: left;
     display: block;
     padding: 6px;

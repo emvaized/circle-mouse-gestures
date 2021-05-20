@@ -51,6 +51,10 @@
         "message": "Анимация исчезновения меню",
         "description": ""
     },
+    "circleHideAnimationTooltip": {
+        "message": "Отключите для более отзывчивой работы",
+        "description": ""
+    },
     "circleLevel": {
         "message": "Уровень",
         "description": ""
@@ -78,6 +82,10 @@
     "closeCurrentTab": {
         "message": "Закрыть вкладку",
         "description": "Ярлык для кнопки кругового меню"
+    },
+    "closeLabel": {
+        "message": "Закрыть",
+        "description": ""
     },
     "colorLabel": {
         "message": "Цвет",
@@ -279,6 +287,10 @@
         "message": "Прозрачность",
         "description": ""
     },
+    "openImageFullscreen": {
+        "message": "Посмотреть изображение",
+        "description": ""
+    },
     "openInBgTab": {
         "message": "Открыть в \nфоновой вкладке",
         "description": "Ярлык для кнопки кругового меню"
@@ -347,12 +359,20 @@
         "message": "Сначала",
         "description": ""
     },
+    "restore": {
+        "message": "Восстановить",
+        "description": ""
+    },
     "restoreClosedTab": {
         "message": "Восстановить закрытую вкладку",
         "description": ""
     },
     "rewindVideo": {
         "message": "Перемотать назад",
+        "description": ""
+    },
+    "rightClickToClose": {
+        "message": "Щелкните правой кнопкой, чтобы закрыть",
         "description": ""
     },
     "rockerAction": {
@@ -371,8 +391,20 @@
         "message": "Вызывается, когда вы кликаете левой кнопкой мыши, удерживая правую кнопку",
         "description": ""
     },
+    "rockerMiddleClick": {
+        "message": "Средний клик",
+        "description": ""
+    },
+    "rotateLabel": {
+        "message": "Повернуть",
+        "description": ""
+    },
     "scroll": {
         "message": "Прокрутка",
+        "description": ""
+    },
+    "scrollBack": {
+        "message": "Прокрутить обратно",
         "description": ""
     },
     "scrollPageDown": {
@@ -385,6 +417,10 @@
     },
     "scrollToBottom": {
         "message": "В конец страницы",
+        "description": ""
+    },
+    "scrollToResize": {
+        "message": "Прокрутка и двойной клик изменяют масштаб",
         "description": ""
     },
     "scrollToTop": {
@@ -403,6 +439,14 @@
         "message": "Выделить всё",
         "description": ""
     },
+    "selectAll": {
+        "message": "Выделить всё",
+        "description": ""
+    },
+    "selectMore": {
+        "message": "Выделить больше",
+        "description": ""
+    },
     "selectedText": {
         "message": "Выделенный текст",
         "description": ""
@@ -416,7 +460,15 @@
         "description": ""
     },
     "showRegularMenuIfNoAction": {
-        "message": "Показывать обычное меню, если ничего не выбрано",
+        "message": "Показывать обычное меню, если действие не выбрано",
+        "description": ""
+    },
+    "storeCurrentScrollPosition": {
+        "message": "Запоминать позицию прокрутки",
+        "description": ""
+    },
+    "storeCurrentScrollPositionTooltip": {
+        "message": "Заменяет действия 'В начало страницы' и 'В конец страницы' на 'Прокрутить обратно', когда возможно",
         "description": ""
     },
     "supportButton": {
@@ -437,6 +489,10 @@
     },
     "textFieldMenu": {
         "message": "Меню поля ввода",
+        "description": ""
+    },
+    "textTooLong": {
+        "message": "Сжать страницу",
         "description": ""
     },
     "toggleFullscreen": {

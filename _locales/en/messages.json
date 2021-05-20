@@ -55,6 +55,10 @@
         "message": "Circle hide animation",
         "description": ""
     },
+    "circleHideAnimationTooltip": {
+        "message": "Disable for snappier behavior",
+        "description": ""
+    },
     "circleLevel": {
         "message": "Level",
         "description": ""
@@ -81,6 +85,10 @@
     },
     "closeCurrentTab": {
         "message": "Close tab",
+        "description": ""
+    },
+    "closeLabel": {
+        "message": "Close",
         "description": ""
     },
     "colorLabel": {
@@ -279,6 +287,10 @@
         "message": "Opacity",
         "description": ""
     },
+    "openImageFullscreen": {
+        "message": "View image",
+        "description": ""
+    },
     "openInBgTab": {
         "message": "Background tab",
         "description": ""
@@ -347,8 +359,16 @@
         "message": "Replay",
         "description": ""
     },
+    "restore": {
+        "message": "Restore",
+        "description": ""
+    },
     "restoreClosedTab": {
         "message": "Restore closed tab",
+        "description": ""
+    },
+    "rightClickToClose": {
+        "message": "Right click to close",
         "description": ""
     },
     "rockerAction": {
@@ -367,8 +387,20 @@
         "message": "Triggered when you click left mouse button while holding the right button",
         "description": ""
     },
+    "rockerMiddleClick": {
+        "message": "Middle click",
+        "description": ""
+    },
+    "rotateLabel": {
+        "message": "Rotate",
+        "description": ""
+    },
     "scroll": {
         "message": "Scroll",
+        "description": ""
+    },
+    "scrollBack": {
+        "message": "Scroll back",
         "description": ""
     },
     "scrollPageDown": {
@@ -381,6 +413,10 @@
     },
     "scrollToBottom": {
         "message": "Scroll to bottom",
+        "description": ""
+    },
+    "scrollToResize": {
+        "message": "Scroll or double click to resize",
         "description": ""
     },
     "scrollToTop": {
@@ -403,6 +439,14 @@
         "message": "Select all",
         "description": ""
     },
+    "selectAll": {
+        "message": "Select all",
+        "description": ""
+    },
+    "selectMore": {
+        "message": "Select more",
+        "description": ""
+    },
     "selectedText": {
         "message": "Selected text",
         "description": ""
@@ -417,6 +461,14 @@
     },
     "showRegularMenuIfNoAction": {
         "message": "Show regular menu if no action selected",
+        "description": ""
+    },
+    "storeCurrentScrollPosition": {
+        "message": "Remember current scroll position",
+        "description": ""
+    },
+    "storeCurrentScrollPositionTooltip": {
+        "message": "Changes 'scroll to top' and 'scroll to bottom actions with 'scroll back' when possible",
         "description": ""
     },
     "supportButton": {
@@ -437,6 +489,10 @@
     },
     "textFieldMenu": {
         "message": "Menu for input field",
+        "description": ""
+    },
+    "textTooLong": {
+        "message": "Shrink page",
         "description": ""
     },
     "toggleFullscreen": {

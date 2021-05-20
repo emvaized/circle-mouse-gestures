@@ -1,3 +1,14 @@
+#1.0.7
+- Improved 'scroll to bottom' action, so that it works on more websites
+- Implemented 'scroll back' feature
+- Better compatibility with contenteditable input fields
+- Improved 'Call regular menu if no action selected' feature
+- Improved overall smoothness of extension
+- Implemented 'Select all' and 'Select more' actions
+- Added support for middle button rocker gesture
+- Code refactored
+- Small bug fixes and improvements
+
 #1.0.6
 - Improved link display in helper tooltip
 - Improved 'copy image' functionality

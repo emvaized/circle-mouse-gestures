@@ -22,6 +22,8 @@ var sortedActionButtons = {
             'addToBookmarks',
             'undoAction',
             'redoAction',
+            'selectAll',
+            // 'textTooLong' /// text-too-long
         ],
         'scroll': [
             'scrollToTop',
@@ -54,6 +56,7 @@ var sortedActionButtons = {
             'copyText',
             'searchText',
             'translate',
+            'selectMore',
         ],
         '—': [
             'noAction'
@@ -86,6 +89,7 @@ var sortedActionButtons = {
             'searchImageOnGoogle',
             'copyUrl',
             'copyImage',
+            // 'openImageFullscreen', /// Image-view
         ],
         '—': [
             'noAction'

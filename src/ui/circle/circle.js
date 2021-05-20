@@ -50,19 +50,19 @@ function setCanvas(e) {
     circle.setAttribute('width', `${canvasRadius}px !imporant`);
     circle.setAttribute('height', `${canvasRadius}px !imporant`);
 
-    // circle.style.opacity = 0.0;
-    circle.style.opacity = configs.circleOpacity;
+    circle.style.opacity = 0.0;
+    // circle.style.opacity = configs.circleOpacity;
 
     circle.style.transform = 'scale(0.0)';
-    circle.style.transition = '';
-    circle.style.transition = `opacity ${configs.animationDuration}ms ease-in-out, transform ${configs.animationDuration}ms ease-in-out`;
+    // circle.style.transition = `opacity ${configs.animationDuration}ms ease-in-out, transform ${configs.animationDuration}ms ease-in-out`;
+    circle.style.transition = `opacity ${configs.animationDuration}ms ease-out, transform ${configs.animationDuration}ms ease-out`;
     circle.style.left = `${leftCoord}px`;
     circle.style.top = `${topCoord}px`;
     circle.style.visibility = 'visible';
 
     setTimeout(function () {
         circle.style.transform = 'scale(1.0)';
-        // circle.style.opacity = configs.circleOpacity;
+        circle.style.opacity = configs.circleOpacity;
     }, 1);
 
     document.body.appendChild(circle);
@@ -157,6 +157,8 @@ function hideCircle() {
         if (configs.circleHideAnimation)
             circle.style.opacity = 0.0;
 
+        circle.style.pointerEvents = 'none';
+
         let anyButtonIsSelected = false;
         let selectedButton;
         let selectedLevel;
@@ -199,6 +201,17 @@ function hideCircle() {
                     actionToPerform = shownButtons[selectedButton].id;
                 }
 
+                if (configs.storeCurrentScrollPosition && (actionToPerform == 'scrollToTop' || actionToPerform == 'scrollToBottom')) {
+                    let previousPosition = previousScrollPosition[actionToPerform];
+                    if (previousPosition !== null && previousPosition !== undefined) {
+                        if (configs.debugMode) {
+                            console.log('found previous scroll position:');
+                            console.log(previousPosition);
+                        }
+                        actionToPerform = actionToPerform == 'scrollToBottom' ? 'scrollBackBottom' : 'scrollBackTop';
+                    }
+                }
+
                 if (configs.debugMode) {
                     if (configs.debugMode) console.log('action to perform by CMG:');
                     if (configs.debugMode) console.log(actionToPerform);
@@ -227,24 +240,24 @@ function hideCircle() {
 }
 
 
-function showBackgroundDimmer() {
-    backgroundDimmer = document.createElement('div');
-    backgroundDimmer.setAttribute('style', ` z-index: 9999; width:${document.body.clientWidth}px;height: ${document.body.scrollHeight}px;  opacity: 0.0; transition: opacity ${configs.animationDuration}ms ease-in-out; position:absolute; background: black !important; top: 0px; left: 0px;`);
-    document.body.appendChild(backgroundDimmer);
+// function showBackgroundDimmer() {
+//     backgroundDimmer = document.createElement('div');
+//     backgroundDimmer.setAttribute('style', ` z-index: 9999; width:${document.body.clientWidth}px;height: ${document.body.scrollHeight}px;  opacity: 0.0; transition: opacity ${configs.animationDuration}ms ease-in-out; position:absolute; background: black !important; top: 0px; left: 0px;`);
+//     document.body.appendChild(backgroundDimmer);
 
-    setTimeout(function () {
-        backgroundDimmer.style.opacity = configs.backgroundDimmerOpacity;
-    }, 1);
-}
+//     setTimeout(function () {
+//         backgroundDimmer.style.opacity = configs.backgroundDimmerOpacity;
+//     }, 1);
+// }
 
-function hideBackgroundDimmer() {
-    if (backgroundDimmer !== null && backgroundDimmer !== undefined) {
-        backgroundDimmer.style.opacity = 0.0;
-        setTimeout(function () {
-            backgroundDimmer.parentNode.removeChild(backgroundDimmer);
-            backgroundDimmer = null;
-        }, configs.animationDuration);
-    }
-}
+// function hideBackgroundDimmer() {
+//     if (backgroundDimmer !== null && backgroundDimmer !== undefined) {
+//         backgroundDimmer.style.opacity = 0.0;
+//         setTimeout(function () {
+//             backgroundDimmer.parentNode.removeChild(backgroundDimmer);
+//             backgroundDimmer = null;
+//         }, configs.animationDuration);
+//     }
+// }
 
 

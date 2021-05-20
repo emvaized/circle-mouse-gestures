@@ -235,6 +235,7 @@ function generateBehaviorConfigs() {
         'addCircleShadow',
         'circleShadowOpacity',
         'backgroundDimmerOpacity',
+        'storeCurrentScrollPosition',
         'highlightElementOnHover',
     ];
 
@@ -271,6 +272,7 @@ function generateBehaviorConfigs() {
     document.getElementById('windowsOnlyTooltip').innerText = chrome.i18n.getMessage('windowsOnly');
     document.getElementById('addLinkTooltipTooltip').innerText = chrome.i18n.getMessage('addLinkTooltipTooltip');
     document.getElementById('highlightElementOnHoverTooltip').innerText = chrome.i18n.getMessage('highlightElementOnHoverTooltip');
+    document.getElementById('storeCurrentScrollPositionTooltip').innerText = chrome.i18n.getMessage('storeCurrentScrollPositionTooltip');
 
     /// Proccess 'inactive menu for item behavior' dropdown
     let inactiveMenuBehavior = document.getElementById('inactiveMenuBehavior');
@@ -302,13 +304,14 @@ function generateGesturesConfigs() {
 
     let gesturesConfigs = document.getElementById('gestures-config');
     gesturesConfigs.innerHTML = '';
+
     /// Rocker action dropdown
     let rockerActionContainer = document.createElement('div');
     rockerActionContainer.setAttribute('class', 'option');
 
     let rockerIidentifier = `regularRockerActionDropdown`;
-    let dropdown = createActionDropdownButton(rockerIidentifier, configs[selectedMenuType].rockerAction, function (newValue) {
-        configs[selectedMenuType].rockerAction = newValue;
+    let dropdown = createActionDropdownButton(rockerIidentifier, configs[selectedMenuType].rockerLeftClick, function (newValue) {
+        configs[selectedMenuType].rockerLeftClick = newValue;
         saveAllSettings();
     }, chrome.i18n.getMessage('rockerAction'));
 
@@ -321,8 +324,8 @@ function generateGesturesConfigs() {
     tooltipText.innerText = chrome.i18n.getMessage('rockerActionTooltip');
     tooltipText.setAttribute('class', 'tooltiptext');
     rockerActionContainer.firstChild.firstChild.appendChild(tooltipText);
-
     gesturesConfigs.appendChild(rockerActionContainer);
+
 
     /// Wheel up action dropdown
     let wheelUpdropdownContainer = document.createElement('div');
@@ -349,6 +352,24 @@ function generateGesturesConfigs() {
     wheelDowndropdownContainer.appendChild(wheelDowndropdown);
 
     gesturesConfigs.appendChild(wheelDowndropdownContainer);
+
+
+    /// Middle click action dropdown
+    let middleClickDropdownContainer = document.createElement('div');
+    middleClickDropdownContainer.setAttribute('class', 'option');
+
+    let middleClickIidentifier = `middleClickActionDropdown`;
+    let middleClickDropdown = createActionDropdownButton(middleClickIidentifier, configs[selectedMenuType].rockerMiddleClick, function (newValue) {
+        configs[selectedMenuType].rockerMiddleClick = newValue;
+        saveAllSettings();
+    }, chrome.i18n.getMessage('rockerMiddleClick'));
+    middleClickDropdownContainer.appendChild(middleClickDropdown);
+
+    gesturesConfigs.appendChild(middleClickDropdownContainer);
+
+    // gesturesConfigs.innerHTML += '<br/>'
+    // gesturesConfigs.innerHTML += '<br/>'
+
 }
 
 /// Buttons configs

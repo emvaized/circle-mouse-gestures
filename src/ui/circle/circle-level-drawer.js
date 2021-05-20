@@ -32,7 +32,6 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
 
     selectedButtons[level] = null;
 
-
     /// Draw segments
     for (i = 0; i < segmentsCount; i++) {
         if (actionIcons[buttonsToShow[i].id] == undefined) continue;
@@ -41,7 +40,6 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
         var angle = (segmentsCount % 2 == 0.0 ?
             (-Math.PI / segmentsCount) :
             (-Math.PI / segmentsCount) / 2) + i * (Math.PI / (segmentsCount / 2));
-
 
         if (levelOpacity)
             ctx.globalAlpha = levelOpacity;
@@ -109,7 +107,8 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
                 ctx.lineTo(dxForTextEnd, dyForTextEnd);
             }
         } else {
-            ctx.arc(canvasRadius / 2, canvasRadius / 2, circleRadius, angle, angle + (Math.PI / (segmentsCount / 2)) * 0.996, false);
+            // ctx.arc(canvasRadius / 2, canvasRadius / 2, circleRadius, angle, angle + (Math.PI / (segmentsCount / 2)) * 0.996, false);
+            ctx.arc(canvasRadius / 2, canvasRadius / 2, circleRadius, angle, angle + (Math.PI / (segmentsCount / 2)), false);
         }
 
         ctx.lineTo(canvasRadius / 2, canvasRadius / 2);
@@ -126,7 +125,6 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
         // }
 
         ctx.fill();
-
 
     }
 
@@ -239,6 +237,15 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
         var textToDraw;
         if (buttonsToShow[i].id == 'playPauseVideo') {
             textToDraw = chrome.i18n.getMessage(elementUnderCursor == null || elementUnderCursor == undefined ? 'playPauseVideo' : elementUnderCursor.paused ? 'playVideo' : 'pauseVideo');
+        } else if (buttonsToShow[i].id == 'textTooLong') {
+            textToDraw = chrome.i18n.getMessage(document.querySelector('.ttl-drag-handle') !== null ? 'restore' : 'textTooLong');
+        } else if (configs.storeCurrentScrollPosition && (buttonsToShow[i].id == 'scrollToTop' || buttonsToShow[i].id == 'scrollToBottom')) {
+            let previousPosition = previousScrollPosition[buttonsToShow[i].id];
+            if (previousPosition !== null && previousPosition !== undefined) {
+                textToDraw = chrome.i18n.getMessage('scrollBack');
+            } else {
+                textToDraw = chrome.i18n.getMessage(buttonsToShow[i].id);
+            }
         } else {
             textToDraw = chrome.i18n.getMessage(buttonsToShow[i].id);
         }
@@ -251,7 +258,10 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
         var verticalShiftForIcon = 0.0;
 
         ctx.fillStyle = textColor;
-        if (configs.addTextLabels && circleRadius - innerCircleRadius > iconSize * 2.5 && buttonsToShow[i].id !== 'noAction') {
+
+        let shouldDrawLabel = configs.addTextLabels && circleRadius - innerCircleRadius > iconSize * 2.5 && buttonsToShow[i].id !== 'noAction';
+
+        if (shouldDrawLabel) {
             verticalShiftForIcon = wrapLabel(ctx, textToDraw, dxForText, dyForText + 15, segmentLength * 0.4, labelSize);
         }
 
@@ -262,7 +272,7 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
         if (buttonsToShow[i].id !== 'noAction')
             if (actionIcons[buttonsToShow[i].id].length <= 3) {
                 /// Draw unicode icon
-                ctx.fillText(actionIcons[buttonsToShow[i].id], dxForText, dyForText - (circleRadius - innerCircleRadius > iconSize * 2.5 ? 4 : -4) - verticalShiftForIcon);
+                ctx.fillText(actionIcons[buttonsToShow[i].id], dxForText, dyForText - (circleRadius - innerCircleRadius > iconSize * 2.5 ? 4 : -4) - (verticalShiftForIcon == 0 ? 6 : verticalShiftForIcon) / 2);
             } else {
                 /// Draw SVG icon
                 try {
@@ -271,11 +281,20 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
 
                     if (buttonsToShow[i].id == 'playPauseVideo') {
                         p = new Path2D(actionIcons[elementUnderCursor == null || elementUnderCursor == undefined ? 'playPauseVideo' : elementUnderCursor.paused ? 'playVideo' : 'pauseVideo']);
+                    } else if (buttonsToShow[i].id == 'textTooLong') {
+                        p = new Path2D(actionIcons[document.querySelector('.ttl-drag-handle') !== null ? 'textTooLongReverse' : 'textTooLong']);
+                    } else if (configs.storeCurrentScrollPosition && (buttonsToShow[i].id == 'scrollToTop' || buttonsToShow[i].id == 'scrollToBottom')) {
+                        let previousPosition = previousScrollPosition[buttonsToShow[i].id];
+                        if (previousPosition !== null && previousPosition !== undefined) {
+                            p = new Path2D(actionIcons[buttonsToShow[i].id == 'scrollToTop' ? 'scrollBackTop' : 'scrollBackBottom']);
+                        } else {
+                            p = new Path2D(actionIcons[buttonsToShow[i].id]);
+                        }
                     } else {
                         p = new Path2D(actionIcons[buttonsToShow[i].id]);
                     }
 
-                    ctx.translate(dxForText - (iconSize / 2), dyForText - verticalShiftForIcon - (iconSize / (circleRadius - innerCircleRadius > iconSize * 2.5 ? 1.5 : 2)));
+                    ctx.translate(dxForText - (iconSize / 2), dyForText - (verticalShiftForIcon == 0 && shouldDrawLabel ? 6 : verticalShiftForIcon) - (iconSize / (circleRadius - innerCircleRadius > iconSize * 2.5 ? 1.5 : 2)));
                     let scale = iconSize / 24;
                     ctx.scale(scale, scale);
                     ctx.fill(p);
@@ -303,7 +322,9 @@ function checkButtonAvailability(e, id) {
     switch (id) {
         case 'scrollToTop': return window.scrollY !== 0.0;
         case 'scrollToBottom': {
-            return window.screen.height + window.scrollY < document.documentElement.scrollHeight;
+            let scrollingElement = (document.scrollingElement || document.body);
+            let bottomOffset = scrollingElement.scrollHeight;
+            return window.screen.height + window.scrollY < bottomOffset;
         }
         case 'scrollPageUp': return window.scrollY !== 0.0;
         case 'scrollPageDown': {
@@ -391,25 +412,26 @@ function updateButtonAvailability(e, id, value) {
 }
 
 
-var loadedImages = {}; /// Objects of type {'src': responseFromFetchSrc}
+function wrapLabel(context, text, x, y, maxWidth, lineHeight) {
+    var words = text.split(' ');
+    var line = '';
+    var verticallyShiftedAmount = 0;
 
-async function fetchHoveredImage(e, url) {
-    if (loadedImages[url] !== null && loadedImages[url] !== undefined) {
-        updateButtonAvailability(e, 'copyImage', loadedImages[url] !== '');
-        return;
+    for (var n = 0; n < words.length; n++) {
+        var testLine = line + words[n] + ' ';
+        var metrics = context.measureText(testLine);
+        var testWidth = metrics.width;
+        if (testWidth > maxWidth && n > 0 && verticallyShiftedAmount < 1) {
+            verticallyShiftedAmount += 1;
+            context.fillText(line, x, y - ((lineHeight / 2)));
+            // context.fillText(line, x, y);
+            line = words[n] + ' ';
+            y += lineHeight / 2;
+        }
+        else {
+            line = testLine;
+        }
     }
-
-    let img;
-    try {
-        console.log('did fetch for ' + url);
-        img = await fetch(url).catch(function (e) {
-            loadedImages[url] = '';
-        });
-    } catch (e) {
-        console.log(e);
-        loadedImages[url] = '';
-
-    }
-    loadedImages[url] = img;
-    updateButtonAvailability(e, 'copyImage', img !== null && img !== undefined);
+    context.fillText(line, x, y);
+    return verticallyShiftedAmount * (lineHeight);
 }

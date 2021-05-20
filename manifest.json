@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Circle Mouse Gestures",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "__MSG_extensionDescription__",
   "default_locale": "en",
   "icons": {
@@ -24,10 +24,15 @@
         "src/data/variables.js",
         "src/data/actions.js",
         "src/data/icons.js",
-        "src/functions/functions.js",
+        "src/functions/action-functions.js",
+        "src/functions/clipboard-functions.js",
+        "src/functions/color-functions.js",
+        "src/functions/text-selection-functions.js",
+        "src/functions/image-functions.js",
         "src/functions/input-changes-stack.js",
         "src/ui/circle/circle.js",
-        "src/ui/circle/circle-level-draw.js",
+        "src/ui/circle/circle-level-drawer.js",
+        "src/ui/circle/bg-dimmer.js",
         "src/ui/components/helper-tooltip.js",
         "src/ui/components/rocker-icon.js",
         "src/index.js"
@@ -56,7 +61,8 @@
     "bookmarks",
     "clipboardWrite",
     "clipboardRead",
-    "downloads"
+    "downloads",
+    "notifications"
   ],
   "browser_specific_settings": {
     "gecko": {

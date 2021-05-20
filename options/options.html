@@ -51,7 +51,7 @@
             </div>
 
             <br />
-            <span style="padding: 65px 15px; top: 50px" id='behaviorTitle' class='header'></span>
+            <span style="top: 20px; padding: 0px 15px;" id='behaviorTitle' class='header'></span>
             <div id='behavior-config' class='configs-container'>
                 <div class='option'>
                     <label class='tooltip'>
@@ -71,17 +71,24 @@
                 </div>
                 <div class='option'><label><input type="checkbox" id="hideCircleIfNoActionSelected"></input></label>
                 </div>
-                <div class='option'><label class='tooltip'>
-                        <input type="checkbox" id="highlightElementOnHover"></input>
-                        <span id="highlightElementOnHoverTooltip" class="tooltiptext"></span>
-                    </label>
-                </div>
                 <div class='option'>
                     <label class='tooltip'>
                         <input type="checkbox" id="showRegularMenuIfNoAction"></input>
                         <span id="windowsOnlyTooltip" class="tooltiptext">Windows-only</span>
                     </label>
                 </div>
+                <div class='option'><label class='tooltip'>
+                        <input type="checkbox" id="storeCurrentScrollPosition"></input>
+                        <span id="storeCurrentScrollPositionTooltip" class="tooltiptext"></span>
+                    </label>
+                </div>
+
+                <div class='option'><label class='tooltip'>
+                        <input type="checkbox" id="highlightElementOnHover"></input>
+                        <span id="highlightElementOnHoverTooltip" class="tooltiptext"></span>
+                    </label>
+                </div>
+
             </div>
             <div style='margin-left: 25px;' class='option'><label><select id="inactiveMenuBehavior">
                         <option value="regularMenuFallback">Show regular menu</option>
@@ -99,11 +106,12 @@
     <script src="options.js"></script>
     <script src="../src/data/actions.js"></script>
     <script src="../src/data/icons.js"></script>
-    <script src="../src/functions/functions.js"></script>
+    <script src="../src/functions/action-functions.js"></script>
+    <script src="../src/functions/color-functions.js"></script>
     <script src="../src/data/configs.js"></script>
     <script src="../src/data/variables.js"></script>
     <script src="../src/ui/circle/circle.js"></script>
-    <script src="../src/ui/circle/circle-level-draw.js"></script>
+    <script src="../src/ui/circle/circle-level-drawer.js"></script>
 
 </body>
 

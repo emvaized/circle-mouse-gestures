@@ -2,6 +2,7 @@
 var configs = {
     'debugMode': false,
     'cmgEnabled': true,
+    'storeCurrentScrollPosition': true,
     'animationDuration': 200,
     'hideCircleIfNoActionSelected': true,
     'useMouseWheelGestures': true,
@@ -37,7 +38,8 @@ var configs = {
     /// Menus
     'regularMenu': {
         'color': "#4c4c4c",
-        'rockerAction': 'reloadTab',
+        'rockerLeftClick': 'reloadTab',
+        'rockerMiddleClick': 'noAction',
         'mouseWheelUpAction': 'scrollToTop',
         'mouseWheelDownAction': 'scrollToBottom',
         'levels': [
@@ -58,7 +60,6 @@ var configs = {
                     { 'id': 'scrollToBottom' },
                     { 'id': 'restoreClosedTab' },
                     { 'id': 'switchToPreviousTab' },
-                    // { 'id': 'translatePage' },
                     { 'id': 'translate' },
                     { 'id': 'scrollToTop' },
                     { 'id': 'copyUrl' },
@@ -69,9 +70,10 @@ var configs = {
 
     'linkMenu': {
         'color': "#3777CD",
-        'rockerAction': 'openInFgTab',
-        'mouseWheelUpAction': 'noAction',
-        'mouseWheelDownAction': 'noAction',
+        'rockerLeftClick': 'openInFgTab',
+        'rockerMiddleClick': 'noAction',
+        'mouseWheelUpAction': 'scrollToTop',
+        'mouseWheelDownAction': 'scrollToBottom',
         'levels': [
             {
                 'buttons': [
@@ -86,15 +88,17 @@ var configs = {
 
     'selectionMenu': {
         'color': "#B44141",
-        'rockerAction': 'copyText',
-        'mouseWheelUpAction': 'noAction',
-        'mouseWheelDownAction': 'noAction',
+        'rockerLeftClick': 'copyText',
+        'rockerMiddleClick': 'noAction',
+        'mouseWheelUpAction': 'scrollToTop',
+        'mouseWheelDownAction': 'scrollToBottom',
         'levels': [
             {
                 'buttons': [
-                    { 'id': 'copyText' },
                     { 'id': 'searchText' },
+                    { 'id': 'copyText' },
                     { 'id': 'translate' },
+                    { 'id': 'selectMore' },
                 ]
             }
         ]
@@ -103,9 +107,10 @@ var configs = {
     'textFieldMenu': {
         'width': 100,
         'color': "#499447",
-        'rockerAction': 'pasteText',
-        'mouseWheelUpAction': 'noAction',
-        'mouseWheelDownAction': 'noAction',
+        'rockerLeftClick': 'pasteText',
+        'rockerMiddleClick': 'noAction',
+        'mouseWheelUpAction': 'scrollToTop',
+        'mouseWheelDownAction': 'scrollToBottom',
         'levels': [
             {
                 'buttons': [
@@ -120,17 +125,20 @@ var configs = {
     },
 
     'imageMenu': {
-        // 'color': "#c69a15",
         'color': "#F05705",
-        'rockerAction': 'openInFgTab',
+        'rockerLeftClick': 'openInFgTab',
+        'rockerMiddleClick': 'noAction',
+        'mouseWheelUpAction': 'scrollToTop',
+        'mouseWheelDownAction': 'scrollToBottom',
         'levels': [
             {
                 'buttons': [
                     { 'id': 'openInFgTab' },
-                    { 'id': 'downloadUrlAs' },
-                    { 'id': 'openInBgTab' },
-                    { 'id': 'copyImage' },
                     { 'id': 'copyUrl' },
+                    { 'id': 'downloadUrlAs' },
+                    { 'id': 'copyImage' },
+                    // { 'id': 'openImageFullscreen' },
+                    { 'id': 'searchImageOnGoogle' },
                 ]
             }
         ]
@@ -139,7 +147,10 @@ var configs = {
 
     'playerMenu': {
         'color': "#000000",
-        'rockerAction': 'playPauseVideo',
+        'rockerLeftClick': 'playPauseVideo',
+        'rockerMiddleClick': 'noAction',
+        'mouseWheelUpAction': 'scrollToTop',
+        'mouseWheelDownAction': 'scrollToBottom',
         'levels': [
             {
                 'buttons': [

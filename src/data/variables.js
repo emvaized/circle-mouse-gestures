@@ -29,11 +29,13 @@ var rockerCircle;
 var backgroundDimmer;
 var elementUnderCursor;
 var currentClipboardContent;
+var fullscreenImageIsOpen = false;
 
 /// Index of level: index of button
 var selectedButtons = {};
 var preselectedButtons = {};
 var buttonsAvailability = {};
+var previousScrollPosition = {};
 
 /// Default configs
 var defaultConfigs = {
@@ -130,9 +132,10 @@ var defaultConfigs = {
         'levels': [
             {
                 'buttons': [
-                    { 'id': 'copyText' },
                     { 'id': 'searchText' },
+                    { 'id': 'copyText' },
                     { 'id': 'translate' },
+                    { 'id': 'selectMore' },
                 ]
             }
         ]
@@ -158,21 +161,20 @@ var defaultConfigs = {
     },
 
     'imageMenu': {
-        // 'color': "#c69a15",
         'color': "#F05705",
         'rockerAction': 'openInFgTab',
         'levels': [
             {
                 'buttons': [
                     { 'id': 'openInFgTab' },
-                    { 'id': 'downloadUrlAs' },
-                    { 'id': 'openInBgTab' },
-                    { 'id': 'copyImage' },
                     { 'id': 'copyUrl' },
+                    { 'id': 'downloadUrlAs' },
+                    { 'id': 'copyImage' },
+                    // { 'id': 'openImageFullscreen' },
+                    { 'id': 'searchImageOnGoogle' },
                 ]
             }
         ]
-
     },
 
 
