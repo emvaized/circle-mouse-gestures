@@ -33,10 +33,30 @@
             <br />
             <br />
 
-            <span style="padding: 65px 15px; top: 50px" id='appearanceTitle' class='header'></span>
+            <span style="padding: 0px 15px; top: 50px" id='gesturesTitle' class='header'></span>
+            <div id='gestures-config' class='configs-container'>
+            </div>
+
+            <br />
+            <!-- <hr /> -->
+            <br />
+
+            <span style="padding: 65px 15px; top: 50px" id='generalSettingsTitle' class='header'></span>
+            <br />
+
+            <br />
+
+            <span style="padding: 0px 15px; top: 50px" id='appearanceTitle' class='sub-header'></span>
+            <br />
+
             <div id='appearance-config' class='configs-container'>
-                <div class='option'><label><input type="color" id="backgroundColor"></input></label></div>
-                <div class='option'> <label><input type="checkbox" id="addTextLabels"></input></label></div>
+                <!-- <div class='option'><label><input type="color" id="backgroundColor"></input></label></div> -->
+                <div class='option'>
+                    <label class='tooltip'>
+                        <input type="checkbox" id="addTextLabels"></input>
+                        <span id="addTextLabelsTooltip" class="tooltiptext"></span>
+                    </label>
+                </div>
                 <div class='option'>
                     <label><input type="checkbox" id="addCircleShadow"></input></label>
                     <label><input style='margin-left: 5%; display: inline !important;' type="number" max='1.0' min='0.0'
@@ -46,12 +66,9 @@
 
             <br />
 
-            <span style="padding: 65px 15px; top: 50px" id='gesturesTitle' class='header'></span>
-            <div id='gestures-config' class='configs-container'>
-            </div>
-
+            <span style="top: 20px; padding: 0px 15px;" id='behaviorTitle' class='sub-header'></span>
             <br />
-            <span style="top: 20px; padding: 0px 15px;" id='behaviorTitle' class='header'></span>
+
             <div id='behavior-config' class='configs-container'>
                 <div class='option'>
                     <label class='tooltip'>
@@ -90,6 +107,7 @@
                 </div>
 
             </div>
+
             <div style='margin-left: 25px;' class='option'><label><select id="inactiveMenuBehavior">
                         <option value="regularMenuFallback">Show regular menu</option>
                         <option value="doNothing">Do nothing</option>
@@ -108,6 +126,8 @@
     <script src="../src/data/icons.js"></script>
     <script src="../src/functions/action-functions.js"></script>
     <script src="../src/functions/color-functions.js"></script>
+    <script src="../src/functions/check-action-state.js"></script>
+    <script src="../src/functions/check-action-availability.js"></script>
     <script src="../src/data/configs.js"></script>
     <script src="../src/data/variables.js"></script>
     <script src="../src/ui/circle/circle.js"></script>

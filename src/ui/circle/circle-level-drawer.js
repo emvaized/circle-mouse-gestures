@@ -1,24 +1,25 @@
-function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircleRadius, level = 0, shouldRespectBoundary = false, showIndexes = false, shouldCheckButtonsAvailability = true) {
+function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRadius, innerCircleRadius, level = 0, shouldRespectBoundary = false, showIndexes = false, shouldCheckButtonsAvailability = true) {
 
-    if (E === false) {
-        mx = (canvasRadius / 2);
-        my = (canvasRadius / 2);
-    } else {
-        mx = E.pageX - leftCoord;
-        my = E.pageY - topCoord;
-    }
+    // if (E === false) {
+    //     mx = (canvasRadius / 2);
+    //     my = (canvasRadius / 2);
+    // } else {
+    //     mx = E.pageX - leftCoord;
+    //     my = E.pageY - topCoord;
+    // }
 
     var segmentsCount = buttonsToShow.length;
     var levelOpacity = configs[typeOfMenu].levels[level].opacity;
 
+    // if (selectedButtons[level] !== null && selectedButtons[level] !== undefined)
+    //     levelOpacity = 1.0;
+
     var segmentColor = configs[typeOfMenu].levels[level].color ?? configs[typeOfMenu].color;
-    var outlineColorRgb = getTextColorForBackground(segmentColor, 0.5);
-    var outlineColor = `rgba(${outlineColorRgb.red}, ${outlineColorRgb.green}, ${outlineColorRgb.blue}, 0.5)`;
 
     var hoveredOverlayOpacity = 0.3;
 
-    let mangle = (-Math.atan2(mx - (canvasRadius / 2), my - (canvasRadius / 2)) + Math.PI * 2.5) % (Math.PI * 2);
-    let mradius = Math.sqrt(Math.pow(mx - (canvasRadius / 2), 2) + Math.pow(my - (canvasRadius / 2), 2));
+    // let mangle = (-Math.atan2(mx - (canvasRadius / 2), my - (canvasRadius / 2)) + Math.PI * 2.5) % (Math.PI * 2);
+    // let mradius = Math.sqrt(Math.pow(mx - (canvasRadius / 2), 2) + Math.pow(my - (canvasRadius / 2), 2));
 
     /// Toggle rocker icon view
     if (showRockerActionInCenter && scaleDownRockerIconWhenNonHovered && rockerCircle !== null && rockerCircle !== undefined) {
@@ -30,7 +31,7 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
         }
     }
 
-    selectedButtons[level] = null;
+    // selectedButtons[level] = null;
 
     /// Draw segments
     for (i = 0; i < segmentsCount; i++) {
@@ -44,40 +45,37 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
         if (levelOpacity)
             ctx.globalAlpha = levelOpacity;
 
-        if (shouldRespectBoundary && mradius > circleRadius + configs.gapBetweenCircles) {
-            /// Segment is not hovered
-            ctx.fillStyle = segmentColor;
+        /// Specific color for segment
+        var colorForButton = segmentColor;
+        if (buttonsToShow[i].color !== null && buttonsToShow[i].color !== undefined)
+            colorForButton = buttonsToShow[i].color;
 
-        } else
-            if (preselectedButtons[level] == i || (((mangle > angle && mangle < (angle + Math.PI / (segmentsCount / 2)))
-                || (mangle > (Math.PI * (segmentsCount * 2 - (segmentsCount % 2 == 0.0 ? 1 : 0.5)) / segmentsCount) && i == 0))
+        /// Color for outline, font and icon
+        var outlineColorRgb = getTextColorForBackground(colorForButton, 0.5);
+        var outlineColor = `rgba(${outlineColorRgb.red}, ${outlineColorRgb.green}, ${outlineColorRgb.blue}, 0.5)`;
 
-                && mradius >= innerCircleRadius)) {
-                /// Segment is hovered
+        // if (selectedButtons[level] == i) {
+        if (selectedButtons[level] == i || preselectedButtons[level] == i) {
+            /// Segment is hovered
 
-                selectedButtons[level] = i;
+            /// Combine main color with hovered color overlay
+            try {
+                let rgbColor = hexToRgb(colorForButton);
+                var base = [rgbColor.red, rgbColor.green, rgbColor.blue, 1.0];
+                var added = [outlineColorRgb.red, outlineColorRgb.green, outlineColorRgb.blue, hoveredOverlayOpacity];
+                var mix = [];
+                mix[3] = 1 - (1 - added[3]) * (1 - base[3]); // alpha
+                mix[0] = Math.round((added[0] * added[3] / mix[3]) + (base[0] * base[3] * (1 - added[3]) / mix[3])); // red
+                mix[1] = Math.round((added[1] * added[3] / mix[3]) + (base[1] * base[3] * (1 - added[3]) / mix[3])); // green
+                mix[2] = Math.round((added[2] * added[3] / mix[3]) + (base[2] * base[3] * (1 - added[3]) / mix[3])); // blue
 
-                /// Combine main color with hovered color overlay
-                try {
-                    let rgbColor = hexToRgb(segmentColor);
-                    var base = [rgbColor.red, rgbColor.green, rgbColor.blue, 1.0];
-                    var added = [outlineColorRgb.red, outlineColorRgb.green, outlineColorRgb.blue, hoveredOverlayOpacity];
-                    var mix = [];
-                    mix[3] = 1 - (1 - added[3]) * (1 - base[3]); // alpha
-                    mix[0] = Math.round((added[0] * added[3] / mix[3]) + (base[0] * base[3] * (1 - added[3]) / mix[3])); // red
-                    mix[1] = Math.round((added[1] * added[3] / mix[3]) + (base[1] * base[3] * (1 - added[3]) / mix[3])); // green
-                    mix[2] = Math.round((added[2] * added[3] / mix[3]) + (base[2] * base[3] * (1 - added[3]) / mix[3])); // blue
-
-                    ctx.fillStyle = `rgb(${mix[0]},${mix[1]},${mix[2]})`;
-                } catch (error) {
-                    if (configs.debugMode) if (configs.debugMode) console.log(error);
-                }
-
-            } else {
-                /// Segment is not hovered
-                ctx.fillStyle = segmentColor;
-
+                ctx.fillStyle = `rgb(${mix[0]},${mix[1]},${mix[2]})`;
+            } catch (error) {
+                if (configs.debugMode) if (configs.debugMode) console.log(error);
             }
+        } else {
+            ctx.fillStyle = colorForButton;
+        }
 
         ctx.globalCompositeOperation = 'source-over';
 
@@ -107,7 +105,6 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
                 ctx.lineTo(dxForTextEnd, dyForTextEnd);
             }
         } else {
-            // ctx.arc(canvasRadius / 2, canvasRadius / 2, circleRadius, angle, angle + (Math.PI / (segmentsCount / 2)) * 0.996, false);
             ctx.arc(canvasRadius / 2, canvasRadius / 2, circleRadius, angle, angle + (Math.PI / (segmentsCount / 2)), false);
         }
 
@@ -125,12 +122,12 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
         // }
 
         ctx.fill();
-
     }
+
+    ctx.closePath();
 
     if (levelOpacity)
         ctx.globalAlpha = 1.0;
-
     /// Cut off circle in center
     ctx.save();
     ctx.beginPath();
@@ -166,6 +163,8 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
         ctx.stroke();
     }
 
+    ctx.closePath();
+
     /// Draw labels
     drawLabels(E, segmentsCount, circleRadius, innerCircleRadius, buttonsToShow, segmentColor, showIndexes, shouldCheckButtonsAvailability);
 
@@ -183,10 +182,15 @@ function drawCircleLevel(typeOfMenu, E, buttonsToShow, circleRadius, innerCircle
 
 
 function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsToShow, segmentColor, showIndexes = false, shouldCheckButtonsAvailability = true) {
-    let textColorRgb = getTextColorForBackground(segmentColor);
-    let iconColorRgb = getTextColorForBackground(segmentColor);
 
     for (var i = 0; i < segmentsCount; i++) {
+        let colorForButton = segmentColor;
+        if (buttonsToShow[i].color !== null && buttonsToShow[i].color !== undefined)
+            colorForButton = buttonsToShow[i].color;
+
+        let textColorRgb = getTextColorForBackground(colorForButton);
+        let iconColorRgb = textColorRgb;
+
         if (actionIcons[buttonsToShow[i].id] == undefined) continue;
 
         var buttonIsAvailable = true;
@@ -220,7 +224,7 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
         /// Calculate icon and text size
         let iconSize = 27;
         let labelSize = 13;
-        let maxCharacters = 13;
+        // let maxCharacters = 13;
 
         let circleLength = 2 * circleRadius * Math.PI;
         let segmentLength = circleLength / segmentsCount;
@@ -230,25 +234,11 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
         labelSize = iconSize / 2.5;
 
         /// Calculate max characters length
-        maxCharacters = Math.floor(segmentLength / labelSize);
+        // maxCharacters = Math.floor(segmentLength / labelSize);
 
         /// Draw text label underneath
         ctx.font = `${labelSize}px sans-serif`;
-        var textToDraw;
-        if (buttonsToShow[i].id == 'playPauseVideo') {
-            textToDraw = chrome.i18n.getMessage(elementUnderCursor == null || elementUnderCursor == undefined ? 'playPauseVideo' : elementUnderCursor.paused ? 'playVideo' : 'pauseVideo');
-        } else if (buttonsToShow[i].id == 'textTooLong') {
-            textToDraw = chrome.i18n.getMessage(document.querySelector('.ttl-drag-handle') !== null ? 'restore' : 'textTooLong');
-        } else if (configs.storeCurrentScrollPosition && (buttonsToShow[i].id == 'scrollToTop' || buttonsToShow[i].id == 'scrollToBottom')) {
-            let previousPosition = previousScrollPosition[buttonsToShow[i].id];
-            if (previousPosition !== null && previousPosition !== undefined) {
-                textToDraw = chrome.i18n.getMessage('scrollBack');
-            } else {
-                textToDraw = chrome.i18n.getMessage(buttonsToShow[i].id);
-            }
-        } else {
-            textToDraw = chrome.i18n.getMessage(buttonsToShow[i].id);
-        }
+        let textToDraw = returnActionLabel(buttonsToShow[i].id);
 
         if (textToDraw.length >= 21) {
             /// Obfuscate shortened label with '...'
@@ -277,22 +267,22 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
                 /// Draw SVG icon
                 try {
                     ctx.save();
-                    let p;
+                    let p = returnActionIconPath(e, buttonsToShow[i].id);
 
-                    if (buttonsToShow[i].id == 'playPauseVideo') {
-                        p = new Path2D(actionIcons[elementUnderCursor == null || elementUnderCursor == undefined ? 'playPauseVideo' : elementUnderCursor.paused ? 'playVideo' : 'pauseVideo']);
-                    } else if (buttonsToShow[i].id == 'textTooLong') {
-                        p = new Path2D(actionIcons[document.querySelector('.ttl-drag-handle') !== null ? 'textTooLongReverse' : 'textTooLong']);
-                    } else if (configs.storeCurrentScrollPosition && (buttonsToShow[i].id == 'scrollToTop' || buttonsToShow[i].id == 'scrollToBottom')) {
-                        let previousPosition = previousScrollPosition[buttonsToShow[i].id];
-                        if (previousPosition !== null && previousPosition !== undefined) {
-                            p = new Path2D(actionIcons[buttonsToShow[i].id == 'scrollToTop' ? 'scrollBackTop' : 'scrollBackBottom']);
-                        } else {
-                            p = new Path2D(actionIcons[buttonsToShow[i].id]);
-                        }
-                    } else {
-                        p = new Path2D(actionIcons[buttonsToShow[i].id]);
-                    }
+                    // if (buttonsToShow[i].id == 'playPauseVideo') {
+                    //     p = new Path2D(actionIcons[elementUnderCursor == null || elementUnderCursor == undefined ? 'playPauseVideo' : elementUnderCursor.paused ? 'playVideo' : 'pauseVideo']);
+                    // } else if (buttonsToShow[i].id == 'textTooLong') {
+                    //     p = new Path2D(actionIcons[document.querySelector('.ttl-drag-handle') !== null ? 'textTooLongReverse' : 'textTooLong']);
+                    // } else if (configs.storeCurrentScrollPosition && (buttonsToShow[i].id == 'scrollToTop' || buttonsToShow[i].id == 'scrollToBottom')) {
+                    //     let previousPosition = previousScrollPosition[buttonsToShow[i].id];
+                    //     if (previousPosition !== null && previousPosition !== undefined) {
+                    //         p = new Path2D(actionIcons[buttonsToShow[i].id == 'scrollToTop' ? 'scrollBackTop' : 'scrollBackBottom']);
+                    //     } else {
+                    //         p = new Path2D(actionIcons[buttonsToShow[i].id]);
+                    //     }
+                    // } else {
+                    //     p = new Path2D(actionIcons[buttonsToShow[i].id]);
+                    // }
 
                     ctx.translate(dxForText - (iconSize / 2), dyForText - (verticalShiftForIcon == 0 && shouldDrawLabel ? 6 : verticalShiftForIcon) - (iconSize / (circleRadius - innerCircleRadius > iconSize * 2.5 ? 1.5 : 2)));
                     let scale = iconSize / 24;
@@ -318,98 +308,7 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
 }
 
 
-function checkButtonAvailability(e, id) {
-    switch (id) {
-        case 'scrollToTop': return window.scrollY !== 0.0;
-        case 'scrollToBottom': {
-            let scrollingElement = (document.scrollingElement || document.body);
-            let bottomOffset = scrollingElement.scrollHeight;
-            return window.screen.height + window.scrollY < bottomOffset;
-        }
-        case 'scrollPageUp': return window.scrollY !== 0.0;
-        case 'scrollPageDown': {
-            return window.screen.height + window.scrollY < document.documentElement.scrollHeight;
-        }
-        case 'goBack': {
-            return window.history.length !== 1;
-        };
-        case 'goForward': return window.history.length !== 1;
 
-
-        case 'downloadUrlAs': {
-            if (typeOfMenu == 'playerMenu') {
-                if (elementUnderCursor == null) return false;
-                let videoControls = elementUnderCursor.getAttribute('controlslist');
-                if (videoControls !== null && videoControls !== undefined && videoControls.includes('nodownload')) return false;
-                else return true;
-            } else return true;
-        }
-
-        case 'cutText': {
-            try {
-                if (textSelection == null || textSelection == undefined || textSelection.toString() == '') {
-                    return false;
-                }
-                else {
-                    return true;
-                }
-            } catch (e) { console.log(e); return true; }
-
-        }
-        case 'copyText': {
-            if ((typeOfMenu == 'textFieldMenu' || typeOfMenu == 'selectionMenu') && (textSelection == null || textSelection == undefined || textSelection.toString() == ''))
-                return false;
-            else return true;
-        }
-
-        case 'switchToNextTab': {
-            chrome.runtime.sendMessage({ actionToDo: 'checkNextTabAvailability' }, (response) => {
-                updateButtonAvailability(e, 'switchToNextTab', !response);
-            }
-            );
-            return true;
-        }
-
-        case 'switchToPreviousTab': {
-            chrome.runtime.sendMessage({ actionToDo: 'checkPrevTabAvailability' }, (response) => {
-                updateButtonAvailability(e, 'switchToPreviousTab', !response);
-            }
-            );
-            return true;
-        }
-
-        case 'copyImage': {
-            // fetchHoveredImage(e, hoveredLink);
-            return true;
-        }
-
-        case 'undoAction': {
-            let isFirefox = navigator.userAgent.indexOf("Firefox") > -1;
-            if (isFirefox && document.activeElement.getAttribute('contenteditable') == null) return false;
-            else
-                return true;
-        }
-
-        case 'redoAction': {
-            let isFirefox = navigator.userAgent.indexOf("Firefox") > -1;
-            if (isFirefox && document.activeElement.getAttribute('contenteditable') == undefined) return false;
-            else
-                return true;
-        }
-
-        default: return true;
-    }
-}
-
-/// Used for async change of button's availability
-
-
-function updateButtonAvailability(e, id, value) {
-    buttonsAvailability[id] = value;
-    try {
-        drawCircle(e, typeOfMenu);
-    } catch (error) { if (configs.debugMode) console.log(error); }
-}
 
 
 function wrapLabel(context, text, x, y, maxWidth, lineHeight) {

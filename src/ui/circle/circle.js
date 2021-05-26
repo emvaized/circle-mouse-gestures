@@ -1,4 +1,5 @@
 var totalCircleRadius;
+let enabledLevelsCount = 0;
 
 function showCircle(e) {
     var evt = e || window.event;
@@ -9,21 +10,15 @@ function showCircle(e) {
             totalCircleRadius = 0.0;
 
             for (var i = 0; i < configs[typeOfMenu].levels.length; i++) {
-                if (configs[typeOfMenu].levels[i].enabled !== false)
+
+                /// Calculate total circle radius with only enabled levels
+                if (configs[typeOfMenu].levels[i].enabled !== false) {
                     totalCircleRadius += configs.gapBetweenCircles + (configs[typeOfMenu].levels[i].width ?? configs.circleRadius);
+                    enabledLevelsCount += 1;
+                }
             }
 
-            // if (configs.interactiveMenusBehavior == 'combine' || typeOfMenu == 'regularMenu') {
-            // for (var i = 0; i < configs['regularMenu'].levels.length; i++) {
-            //     if (configs['regularMenu'].levels[i].enabled !== false)
-            //         totalCircleRadius += configs.gapBetweenCircles + (configs['regularMenu'].levels[i].width ?? configs.circleRadius);
-            // }
             canvasRadius = totalCircleRadius * 2 + 2;
-            // }
-            // else {
-            //     totalCircleRadius = configs.gapBetweenCircles + (configs[typeOfMenu].levels[0].width ?? configs.circleRadius);
-            //     canvasRadius = totalCircleRadius * 2;
-            // }
 
             if (configs.addCircleShadow)
                 canvasRadius *= 1.2;
@@ -36,7 +31,7 @@ function showCircle(e) {
             topCoord = e.clientY - (canvasRadius / 2) + window.scrollY + 1;
 
             circleIsShown = true;
-            setCanvas(e);
+            setCanvas();
 
             if (configs.dimBackground)
                 showBackgroundDimmer();
@@ -44,17 +39,17 @@ function showCircle(e) {
     }
 }
 
-function setCanvas(e) {
+function setCanvas() {
+
+    if (configs.debugMode) console.log('setting up canvas...');
+
     circle = document.createElement('canvas');
     circle.setAttribute('class', 'cmg-circle-canvas');
     circle.setAttribute('width', `${canvasRadius}px !imporant`);
     circle.setAttribute('height', `${canvasRadius}px !imporant`);
 
     circle.style.opacity = 0.0;
-    // circle.style.opacity = configs.circleOpacity;
-
     circle.style.transform = 'scale(0.0)';
-    // circle.style.transition = `opacity ${configs.animationDuration}ms ease-in-out, transform ${configs.animationDuration}ms ease-in-out`;
     circle.style.transition = `opacity ${configs.animationDuration}ms ease-out, transform ${configs.animationDuration}ms ease-out`;
     circle.style.left = `${leftCoord}px`;
     circle.style.top = `${topCoord}px`;
@@ -69,80 +64,151 @@ function setCanvas(e) {
     ctx = circle.getContext('2d');
 
     drawCircle(false, typeOfMenu);
+
     document.onmousemove = function (e) {
         try {
             drawCircle(e, typeOfMenu);
         } catch (error) { if (configs.debugMode) console.log(error); }
     }
+
 }
 
 
 function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvailability = true, shouldRespectBoundaries) {
-    ctx.clearRect(0, 0, canvasRadius, canvasRadius);
-    let totalRadius = totalCircleRadius;
 
-    let enabledLevelsCount = 0;
-
-    for (var i = 0; i < configs[typeOfMenu].levels.length; i++) {
-        if (configs[typeOfMenu].levels[i].enabled !== false) enabledLevelsCount += 1;
+    /// Mouse coordinates calculations
+    let mx, my;
+    if (e === false) {
+        mx = (canvasRadius / 2);
+        my = (canvasRadius / 2);
+    } else {
+        mx = e.pageX - leftCoord;
+        my = e.pageY - topCoord;
     }
 
-    for (var i = configs[typeOfMenu].levels.length - 1; i > -1; i--) {
-        if (configs[typeOfMenu].levels[i].enabled !== false) {
+    let mangle = (-Math.atan2(mx - (canvasRadius / 2), my - (canvasRadius / 2)) + Math.PI * 2.5) % (Math.PI * 2);
+    let mradius = Math.sqrt(Math.pow(mx - (canvasRadius / 2), 2) + Math.pow(my - (canvasRadius / 2), 2));
 
-            drawCircleLevel(
-                typeOfMenu, e,
-                /// buttonsToShow
-                configs[typeOfMenu].levels[i].buttons,
-                /// circleRadius
-                totalRadius,
-                /// innerCircleRadius
-                i == 0 ? configs.innerCircleRadius :
-                    totalRadius - (configs[typeOfMenu].levels[i].width ?? configs.circleRadius) + configs.gapBetweenCircles,
-                ///level
-                i,
-                /// shouldRespectBoundary
-                // typeOfMenu !== 'regularMenu' ? true : shouldRespectBoundaries || i !== configs['regularMenu'].levels.length - 1,
-                typeOfMenu !== typeOfMenu ? true : shouldRespectBoundaries || i !== enabledLevelsCount - 1,
-                showIndexes,
-                shouldCheckButtonsAvailability
-            );
+    /// Determine if it's needed to redraw circle
+    let shouldRedraw = false;
 
+    // let selectedButtonsBeforeCheck = selectedButtons;
+    if (e == false) shouldRedraw = true;
+    else {
 
-            /// Add shadow
-            if (configs.addCircleShadow) {
-                let shadowOffsetDy = 5;
-                ctx.save();
-                ctx.beginPath();
-                ctx.globalCompositeOperation = 'destination-over';
-                ctx.fillStyle = `rgba(0,0,0,${configs.circleShadowOpacity})`
-
-                ctx.arc(canvasRadius / 2, canvasRadius / 2 + shadowOffsetDy, totalRadius + 2, 0, 2 * Math.PI, false);
-                ctx.filter = 'blur(12px)';
-                ctx.fill();
-
-                ctx.restore();
-
-                ctx.save();
-                ctx.beginPath();
-                ctx.globalCompositeOperation = 'destination-out';
-                ctx.arc(canvasRadius / 2, canvasRadius / 2, (i == 0 ? configs.innerCircleRadius :
-                    totalRadius - (configs[typeOfMenu].levels[i].width ?? configs.circleRadius) + configs.gapBetweenCircles) * 0.75, 0, 2 * Math.PI, false);
-                ctx.filter = 'blur(6px)';
-                ctx.fill();
-                ctx.restore();
+        if (mradius < configs.innerCircleRadius) {
+            if (Object.keys(selectedButtons).length !== 0) {
+                selectedButtons = {};
+                shouldRedraw = true;
             }
 
-            totalRadius -= configs[typeOfMenu].levels[i].width ?? configs.circleRadius;
+        } else {
+            let totalRadius1 = totalCircleRadius;
+
+            // for (var level = 0; level < configs[typeOfMenu].levels.length; level++) {
+            for (let level = configs[typeOfMenu].levels.length - 1; level > -1; level--) {
+                let segmentsCount = configs[typeOfMenu].levels[level].buttons.length;
+
+                for (let i = 0; i < segmentsCount; i++) {
+
+                    let angle = (segmentsCount % 2 == 0.0 ?
+                        (-Math.PI / segmentsCount) :
+                        (-Math.PI / segmentsCount) / 2) + i * (Math.PI / (segmentsCount / 2));
+
+                    // if (mradius > totalCircleRadius && level !== configs[typeOfMenu].levels.length - 1) continue;
+                    if (mradius > totalRadius1 && level !== configs[typeOfMenu].levels.length - 1) continue;
+
+                    if (mradius > (level == 0 ? configs.innerCircleRadius : (configs[typeOfMenu].levels[level - 1].width ?? configs.circleRadius)))
+                        if (((mangle > angle && mangle < (angle + Math.PI / (segmentsCount / 2)))
+                            || (mangle > (Math.PI * (segmentsCount * 2 - (segmentsCount % 2 == 0.0 ? 1 : 0.5)) / segmentsCount) && i == 0))
+                        ) {
+
+                            if (selectedButtons[level] !== i) {
+
+                                selectedButtons = {};
+                                selectedButtons[level] = i;
+                                shouldRedraw = true;
+                                break;
+                            }
+                        }
+                }
+                totalRadius1 -= configs[typeOfMenu].levels[level].width ?? configs.circleRadius;
+            }
+        }
+    }
+
+    if (shouldRedraw) {
+        ctx.clearRect(0, 0, canvasRadius, canvasRadius);
+
+        if (configs.debugMode)
+            console.log('CMG circle redrawn');
+
+        let totalRadius = totalCircleRadius;
+
+        for (var i = configs[typeOfMenu].levels.length - 1; i > -1; i--) {
+            if (configs[typeOfMenu].levels[i].enabled !== false) {
+
+                drawCircleLevel(
+                    typeOfMenu, e,
+                    mangle, mradius,
+                    /// buttonsToShow
+                    configs[typeOfMenu].levels[i].buttons,
+                    /// circleRadius
+                    totalRadius,
+                    /// innerCircleRadius
+                    i == 0 ? configs.innerCircleRadius :
+                        totalRadius - (configs[typeOfMenu].levels[i].width ?? configs.circleRadius) + configs.gapBetweenCircles,
+                    ///level
+                    i,
+                    /// shouldRespectBoundary
+                    // typeOfMenu !== 'regularMenu' ? true : shouldRespectBoundaries || i !== configs['regularMenu'].levels.length - 1,
+                    typeOfMenu !== typeOfMenu ? true : shouldRespectBoundaries || i !== enabledLevelsCount - 1,
+                    showIndexes,
+                    shouldCheckButtonsAvailability
+                );
+
+
+                /// Add shadow
+                if (configs.addCircleShadow) {
+                    let shadowOffsetDy = 5;
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.globalCompositeOperation = 'destination-over';
+                    ctx.fillStyle = `rgba(0,0,0,${configs.circleShadowOpacity})`
+
+                    ctx.arc(canvasRadius / 2, canvasRadius / 2 + shadowOffsetDy, totalRadius + 2, 0, 2 * Math.PI, false);
+                    ctx.filter = 'blur(12px)';
+                    ctx.fill();
+
+                    ctx.restore();
+
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.globalCompositeOperation = 'destination-out';
+                    ctx.arc(canvasRadius / 2, canvasRadius / 2, (i == 0 ? configs.innerCircleRadius :
+                        totalRadius - (configs[typeOfMenu].levels[i].width ?? configs.circleRadius) + configs.gapBetweenCircles) * 0.75, 0, 2 * Math.PI, false);
+                    ctx.filter = 'blur(6px)';
+                    ctx.fill();
+                    ctx.restore();
+                }
+
+                totalRadius -= configs[typeOfMenu].levels[i].width ?? configs.circleRadius;
+            }
         }
     }
 }
 
 function hideCircle() {
     try {
-        document.onmousemove = null;
+        if (circle == null || circle == undefined) return;
+
+        if (configs.circleHideAnimation)
+            circle.style.opacity = 0.0;
+
         circleIsShown = false;
         buttonsAvailability = {};
+        buttonsStatuses = {};
+        document.onmousemove = null;
 
         if (hoveredLink !== null && linkTooltip !== null)
             hideLinkTooltip();
@@ -152,40 +218,36 @@ function hideCircle() {
 
         if (configs.dimBackground) hideBackgroundDimmer();
 
-        if (circle == null || circle == undefined) return;
-
-        if (configs.circleHideAnimation)
-            circle.style.opacity = 0.0;
-
         circle.style.pointerEvents = 'none';
 
-        let anyButtonIsSelected = false;
-        let selectedButton;
-        let selectedLevel;
+        let selectedKeys = Object.keys(selectedButtons);
 
-        let keys = Object.keys(selectedButtons);
-
-        for (var i = 0; i < keys.length; i++) {
-            let key = keys[i];
-            if (selectedButtons[key] !== null && selectedButtons[key] !== undefined) {
-                anyButtonIsSelected = true;
-                selectedButton = selectedButtons[key];
-                selectedLevel = key;
-                break;
-            }
-        }
-
-        if (rocketButtonPressed == null && anyButtonIsSelected == false) {
+        // if (rocketButtonPressed == null && anyButtonIsSelected == false) {
+        if (rocketButtonPressed == null && selectedKeys.length == 0) {
             if (configs.circleHideAnimation)
                 circle.style.transform = 'scale(0.0)';
         }
         else {
             /// Some action was selected
-            if (configs.circleHideAnimation)
+            if (configs.circleHideAnimation == false)
                 circle.style.transition = '';
 
+            console.log('circle transition:');
+            console.log(circle.style.transition);
+
             circle.style.transform = showRockerActionInCenter && rocketButtonPressed !== null ? 'scale(0.0)' : 'scale(1.5)';
-            // circle.style.transform = 'scale(1.5)';
+
+            let selectedButton;
+            let selectedLevel;
+
+            for (var i = 0; i < selectedKeys.length; i++) {
+                let key = selectedKeys[i];
+                if (selectedButtons[key] !== null && selectedButtons[key] !== undefined) {
+                    selectedButton = selectedButtons[key];
+                    selectedLevel = key;
+                    break;
+                }
+            }
 
             if (rocketButtonPressed == null && typeOfMenu !== null) {
                 var actionToPerform;

@@ -70,6 +70,22 @@ function triggerButtonAction(actionToPerform) {
             // doRedo(elementUnderCursor)
         } break;
 
+        case 'boldText': {
+            formatSelectedTextForInput(elementUnderCursor, textSelection, 'bold');
+        } break;
+
+        case 'italicText': {
+            formatSelectedTextForInput(elementUnderCursor, textSelection, 'italic');
+        } break;
+
+        case 'underlineText': {
+            formatSelectedTextForInput(elementUnderCursor, textSelection, 'underline');
+        } break;
+
+        case 'strikeText': {
+            formatSelectedTextForInput(elementUnderCursor, textSelection, 'strike');
+        } break;
+
         case 'pasteText': {
             if (elementUnderCursor !== null)
                 elementUnderCursor.focus({ preventScroll: true });
@@ -147,7 +163,13 @@ function triggerButtonAction(actionToPerform) {
                 elementUnderCursor.load();
                 elementUnderCursor.play();
             }
+        } break;
 
+        case 'playerFullScreen': {
+            if (elementUnderCursor !== null) {
+                elementUnderCursor.click();
+                elementUnderCursor.click();
+            }
         } break;
 
         case 'rewindVideo': {
@@ -168,6 +190,7 @@ function triggerButtonAction(actionToPerform) {
 
         case 'playPauseVideo': {
             if (elementUnderCursor !== null) {
+                elementUnderCursor.enableContextMenu = false;
                 if (elementUnderCursor.paused)
                     elementUnderCursor.play();
                 else elementUnderCursor.pause();
@@ -207,6 +230,25 @@ function triggerButtonAction(actionToPerform) {
 
         case 'selectAll': {
             selectAllText(document.body);
+        } break;
+
+
+        case 'normalPlaybackSpeed': {
+            if (elementUnderCursor !== null) {
+                elementUnderCursor.playbackRate = 1;
+            }
+        } break;
+
+        case 'slowerPlaybackSpeed': {
+            if (elementUnderCursor !== null) {
+                elementUnderCursor.playbackRate = 0.5;
+            }
+        } break;
+
+        case 'fasterPlaybackSpeed': {
+            if (elementUnderCursor !== null) {
+                elementUnderCursor.playbackRate = 1.5;
+            }
         } break;
 
         default: {

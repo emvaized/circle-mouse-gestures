@@ -21,7 +21,6 @@ chrome.runtime.onInstalled.addListener(function (details) {
 /// Listener to open url in new tab
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
-        /// Regular menu
         // if (request.typeOfAction == 'mgc-regular-menu')
         switch (request.actionToDo) {
             case 'newTab': {
@@ -30,6 +29,14 @@ chrome.runtime.onMessage.addListener(
 
             case 'closeCurrentTab': {
                 chrome.tabs.remove(sender.tab.id, function () { });
+            } break;
+
+            case 'closeAllTabsExceptCurrent': {
+                chrome.tabs.query({ active: false, currentWindow: true }, function (tabs) {
+                    tabs.forEach(function (tab) {
+                        chrome.tabs.remove(tab.id, function () { });
+                    })
+                });
             } break;
 
             case 'reloadTab': {
@@ -107,14 +114,10 @@ chrome.runtime.onMessage.addListener(
             } break;
 
             case 'switchToPreviousTab': {
-
                 const queryInfo = {
                     active: false,
                     currentWindow: true
                 }
-
-                // if (this.getSetting("excludeDiscarded")) queryInfo.discarded = false;
-
                 chrome.tabs.query(queryInfo, function (tabs) {
                     let nextTab;
                     // if there is at least one tab to the left of the current
@@ -124,17 +127,10 @@ chrome.runtime.onMessage.addListener(
                             (acc.index >= sender.tab.index && cur.index < acc.index) || (cur.index < sender.tab.index && cur.index > acc.index) ? cur : acc
                         );
                     }
-                    // else get most right tab if tab cycling is activated
-                    // else if (this.getSetting("cycling") && tabs.length > 0) {
-                    //     nextTab = tabs.reduce((acc, cur) => acc.index > cur.index ? acc : cur);
-                    // }
-                    // focus next tab if available
                     if (nextTab) {
                         chrome.tabs.update(nextTab.id, { active: true });
                     }
                 });
-
-
             } break;
 
             case 'switchToNextTab': {
@@ -255,20 +251,6 @@ chrome.runtime.onMessage.addListener(
                 });
             } break;
 
-            case 'checkNextTabAvailability': {
-                chrome.tabs.query({}, function (tabs) {
-                    sendResponse(sender.tab.index == tabs.length - 1);
-                });
-                return true;
-            } break;
-
-            case 'checkPrevTabAvailability': {
-                chrome.tabs.query({}, function (tabs) {
-                    sendResponse(sender.tab.index == 0);
-                });
-                return true;
-            } break;
-
             case 'getCurrentClipboardContent': {
                 try {
                     navigator.clipboard.readText().then(text => sendResponse(text));
@@ -281,6 +263,62 @@ chrome.runtime.onMessage.addListener(
 
             case 'showBrowserNotification': {
                 displayNotification(request.title, request.message, request.url)
+            } break;
+
+            case 'duplicateTab': {
+                chrome.tabs.duplicate(sender.tab.id, function () { });
+            } break;
+
+            case 'pinTab': {
+                if (sender.tab.pinned) {
+                    chrome.tabs.create({
+                        "url": sender.tab.url,
+                        "pinned": false
+                    },
+                        function (tab) {
+                            tab.highlighted = true;
+                            tab.active = true;
+
+                            chrome.tabs.remove(sender.tab.id, function () { });
+                        });
+                } else {
+                    chrome.tabs.create({
+                        "url": sender.tab.url,
+                        "pinned": true
+                    },
+                        function (tab) {
+                            tab.highlighted = true;
+                            tab.active = true;
+
+                            chrome.tabs.remove(sender.tab.id, function () { });
+                        });
+                }
+
+            } break;
+
+
+
+
+            case 'checkNextTabAvailability': {
+                chrome.tabs.query({}, function (tabs) {
+                    sendResponse(sender.tab.index == tabs.length - 1);
+                });
+                return true;
+            } break;
+
+            case 'checkPrevTabAvailability': {
+                sendResponse(sender.tab.index == 0);
+            } break;
+
+            case 'checkFullscreenToggleStatus': {
+                chrome.windows.get(sender.tab.windowId, function (window) {
+                    sendResponse(window.state === 'fullscreen');
+                });
+                return true;
+            } break;
+
+            case 'checkPinTabStatus': {
+                sendResponse(sender.tab.pinned);
             } break;
         }
     }
@@ -296,7 +334,7 @@ function displayNotification(title, message, link) {
     // create notification
     const createNotification = chrome.notifications.create({
         "type": "basic",
-        // "iconUrl": "../../icons/cmg-logo-new-monotone-48.png",
+        // "iconUrl": "../../icons/icon-monotone-48.png",
         "title": title,
         "message": message
     });

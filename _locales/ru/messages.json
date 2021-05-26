@@ -27,8 +27,16 @@
         "message": "Использовать текстовые подсказки",
         "description": ""
     },
+    "addTextLabelsTooltip": {
+        "message": "Спрятаны, когда недостаточно места",
+        "description": ""
+    },
     "addToBookmarks": {
         "message": "Добавить в закладки",
+        "description": ""
+    },
+    "animationDuration": {
+        "message": "Продолжительность анимации",
         "description": ""
     },
     "appearanceHeader": {
@@ -41,6 +49,10 @@
     },
     "behaviorTitle": {
         "message": "Поведение",
+        "description": ""
+    },
+    "boldText": {
+        "message": "Жирный",
         "description": ""
     },
     "buttonsHeader": {
@@ -60,7 +72,7 @@
         "description": ""
     },
     "circleOpacity": {
-        "message": "Прозрачность круга",
+        "message": "Прозрачность всего круга",
         "description": ""
     },
     "circlePreview": {
@@ -77,6 +89,10 @@
     },
     "clipboard": {
         "message": "Буфер обмена",
+        "description": ""
+    },
+    "closeAllTabsExceptCurrent": {
+        "message": "Закрыть остальные вкладки",
         "description": ""
     },
     "closeCurrentTab": {
@@ -143,6 +159,14 @@
         "message": "Ничего не делать",
         "description": ""
     },
+    "downloadUrl": {
+        "message": "Загрузить",
+        "description": ""
+    },
+    "downloadUrlAs": {
+        "message": "Загрузить",
+        "description": ""
+    },
     "downloadVideo": {
         "message": "Загрузить видео",
         "description": ""
@@ -151,12 +175,8 @@
         "message": "Загрузить с Savefrom.net",
         "description": ""
     },
-    "downloadUrl": {
-        "message": "Загрузить",
-        "description": ""
-    },
-    "downloadUrlAs": {
-        "message": "Загрузить",
+    "duplicateTab": {
+        "message": "Дублировать вкладку",
         "description": ""
     },
     "enabled": {
@@ -171,8 +191,16 @@
         "message": "Перемотать вперед",
         "description": ""
     },
+    "fasterPlaybackSpeed": {
+        "message": "Быстрая скорость",
+        "description": ""
+    },
     "gapBetweenCircles": {
         "message": "Отступ между уровнями",
+        "description": ""
+    },
+    "generalSettings": {
+        "message": "Общие настройки",
         "description": ""
     },
     "gesturesTitle": {
@@ -223,12 +251,24 @@
         "message": "Радиус неактивной зоны в центре круга",
         "description": ""
     },
+    "inputField": {
+        "message": "Поле ввода",
+        "description": ""
+    },
+    "italicText": {
+        "message": "Курсив",
+        "description": ""
+    },
+    "leftClick": {
+        "message": "Левый клик",
+        "description": ""
+    },
     "levelWidth": {
         "message": "Ширина уровня",
         "description": ""
     },
-    "inputField": {
-        "message": "Поле ввода",
+    "levels": {
+        "message": "Уровни",
         "description": ""
     },
     "link": {
@@ -247,12 +287,12 @@
         "message": "Колесико вверх",
         "description": ""
     },
-    "moveCaretToStart": {
-        "message": "Курсор в начало",
-        "description": ""
-    },
     "moveCaretToEnd": {
         "message": "Курсор в конец",
+        "description": ""
+    },
+    "moveCaretToStart": {
+        "message": "Курсор в начало",
         "description": ""
     },
     "moveClockwise": {
@@ -281,6 +321,10 @@
     },
     "noAction": {
         "message": "Нет действия",
+        "description": ""
+    },
+    "normalPlaybackSpeed": {
+        "message": "Нормальная скорость",
         "description": ""
     },
     "opacity": {
@@ -319,8 +363,8 @@
         "message": "Пауза",
         "description": ""
     },
-    "player": {
-        "message": "Проигрыватель",
+    "pinTab": {
+        "message": "Закрепить вкладку",
         "description": ""
     },
     "playPauseVideo": {
@@ -329,6 +373,10 @@
     },
     "playVideo": {
         "message": "Играть",
+        "description": ""
+    },
+    "player": {
+        "message": "Проигрыватель",
         "description": ""
     },
     "playerMenu": {
@@ -357,6 +405,10 @@
     },
     "replayVideo": {
         "message": "Сначала",
+        "description": ""
+    },
+    "resetColor": {
+        "message": "Сбросить цвет",
         "description": ""
     },
     "restore": {
@@ -435,11 +487,15 @@
         "message": "Искать",
         "description": ""
     },
-    "selectAllText": {
-        "message": "Выделить всё",
+    "segmentColor": {
+        "message": "Цвет сегмента",
         "description": ""
     },
     "selectAll": {
+        "message": "Выделить всё",
+        "description": ""
+    },
+    "selectAllText": {
         "message": "Выделить всё",
         "description": ""
     },
@@ -463,12 +519,24 @@
         "message": "Показывать обычное меню, если действие не выбрано",
         "description": ""
     },
+    "slowerPlaybackSpeed": {
+        "message": "Медленная скорость",
+        "description": ""
+    },
+    "standardBackground": {
+        "message": "Стандартный цвет фона",
+        "description": ""
+    },
     "storeCurrentScrollPosition": {
         "message": "Запоминать позицию прокрутки",
         "description": ""
     },
     "storeCurrentScrollPositionTooltip": {
         "message": "Заменяет действия 'В начало страницы' и 'В конец страницы' на 'Прокрутить обратно', когда возможно",
+        "description": ""
+    },
+    "strikeText": {
+        "message": "Зачеркнутый",
         "description": ""
     },
     "supportButton": {
@@ -507,8 +575,20 @@
         "message": "Перевести страницу",
         "description": ""
     },
+    "underlineText": {
+        "message": "Подчеркивание",
+        "description": ""
+    },
     "undoAction": {
         "message": "Отменить действие",
+        "description": ""
+    },
+    "unpinTab": {
+        "message": "Открепить вкладку",
+        "description": ""
+    },
+    "untoggleFullscreen": {
+        "message": "Выйти из полноэкранного режима",
         "description": ""
     },
     "useCustomColor": {

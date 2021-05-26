@@ -35,7 +35,13 @@ var fullscreenImageIsOpen = false;
 var selectedButtons = {};
 var preselectedButtons = {};
 var buttonsAvailability = {};
+var buttonsStatuses = {};
 var previousScrollPosition = {};
+
+/// Timer used in order to redraw circle when background script requests are finished.
+/// For example, to update tab-related segments availability - or state for fullscreen or pin tab segments
+var timerToRedrawCircleOnAsyncUpdate;
+var timerToRedrawCircleOnAsyncUpdateDelay = 1; /// 1ms is usually enough for background checks to finish and return value
 
 /// Default configs
 var defaultConfigs = {

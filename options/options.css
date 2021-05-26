@@ -126,15 +126,17 @@ label{
 }
 
 .sub-header {
-    font-size: 15px;
+    font-size: 16.5px;
     color: grey;
     opacity: 0.75;
+    /* margin-left: 15px; */
     /* text-align: center; */
 }
 
 hr {
     opacity: 0.5;
 }
+
 
 input {
     cursor: pointer;
@@ -201,7 +203,7 @@ input {
       display: inline-block;
       text-align: center;
       position: absolute;
-      left: -30px;
+      left: -22.5px;
       right: 0px;
       top: 0px;
   }
@@ -245,3 +247,15 @@ input {
     visibility: visible;
     opacity: 1;
   } 
+
+
+  /* Design fixes specially for Firefox */
+  @-moz-document url-prefix() {
+    hr {
+      opacity: 0.15;
+    }
+
+    .tooltip::after{
+      line-height: 0.9;
+    }
+  }

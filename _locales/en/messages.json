@@ -31,8 +31,16 @@
         "message": "Add text labels",
         "description": ""
     },
+    "addTextLabelsTooltip": {
+        "message": "Hidden when there is no space",
+        "description": ""
+    },
     "addToBookmarks": {
         "message": "Add to bookmarks",
+        "description": ""
+    },
+    "animationDuration": {
+        "message": "Animation duration",
         "description": ""
     },
     "appearanceHeader": {
@@ -45,6 +53,10 @@
     },
     "behaviorTitle": {
         "message": "Behavior",
+        "description": ""
+    },
+    "boldText": {
+        "message": "Bold",
         "description": ""
     },
     "buttonsHeader": {
@@ -64,7 +76,7 @@
         "description": ""
     },
     "circleOpacity": {
-        "message": "Circle opacity",
+        "message": "Whole circle opacity",
         "description": ""
     },
     "circlePreview": {
@@ -81,6 +93,10 @@
     },
     "clipboard": {
         "message": "Clipboard",
+        "description": ""
+    },
+    "closeAllTabsExceptCurrent": {
+        "message": "Close other tabs",
         "description": ""
     },
     "closeCurrentTab": {
@@ -115,12 +131,12 @@
         "message": "Copy",
         "description": ""
     },
-    "cutText": {
-        "message": "Cut",
-        "description": ""
-    },
     "copyUrl": {
         "message": "Copy link",
+        "description": ""
+    },
+    "cutText": {
+        "message": "Cut",
         "description": ""
     },
     "debugMode": {
@@ -143,6 +159,14 @@
         "message": "Do nothing",
         "description": ""
     },
+    "downloadUrl": {
+        "message": "Download",
+        "description": ""
+    },
+    "downloadUrlAs": {
+        "message": "Download",
+        "description": ""
+    },
     "downloadVideo": {
         "message": "Download video",
         "description": ""
@@ -151,12 +175,8 @@
         "message": "Download from Savefrom.net",
         "description": ""
     },
-    "downloadUrl": {
-        "message": "Download",
-        "description": ""
-    },
-    "downloadUrlAs": {
-        "message": "Download",
+    "duplicateTab": {
+        "message": "Duplicate tab",
         "description": ""
     },
     "enabled": {
@@ -171,8 +191,16 @@
         "message": "Fast forward",
         "description": ""
     },
+    "fasterPlaybackSpeed": {
+        "message": "Faster speed",
+        "description": ""
+    },
     "gapBetweenCircles": {
         "message": "Levels padding",
+        "description": ""
+    },
+    "generalSettings": {
+        "message": "General settings",
         "description": ""
     },
     "gesturesTitle": {
@@ -227,8 +255,20 @@
         "message": "Input field",
         "description": ""
     },
+    "italicText": {
+        "message": "Italic",
+        "description": ""
+    },
+    "leftClick": {
+        "message": "Left click",
+        "description": ""
+    },
     "levelWidth": {
         "message": "Level width",
+        "description": ""
+    },
+    "levels": {
+        "message": "Levels",
         "description": ""
     },
     "link": {
@@ -247,12 +287,12 @@
         "message": "Wheel up",
         "description": ""
     },
-    "moveCaretToStart": {
-        "message": "Move caret to start",
-        "description": ""
-    },
     "moveCaretToEnd": {
         "message": "Move caret to end",
+        "description": ""
+    },
+    "moveCaretToStart": {
+        "message": "Move caret to start",
         "description": ""
     },
     "moveClockwise": {
@@ -281,6 +321,10 @@
     },
     "noAction": {
         "message": "No action",
+        "description": ""
+    },
+    "normalPlaybackSpeed": {
+        "message": "Normal speed",
         "description": ""
     },
     "opacity": {
@@ -319,8 +363,8 @@
         "message": "Pause",
         "description": ""
     },
-    "player": {
-        "message": "Player",
+    "pinTab": {
+        "message": "Pin tab",
         "description": ""
     },
     "playPauseVideo": {
@@ -331,6 +375,10 @@
         "message": "Play",
         "description": ""
     },
+    "player": {
+        "message": "Player",
+        "description": ""
+    },
     "playerMenu": {
         "message": "Menu for player",
         "description": ""
@@ -339,12 +387,12 @@
         "message": "Quick actions",
         "description": ""
     },
-    "regularMenu": {
-        "message": "Regular menu",
-        "description": ""
-    },
     "redoAction": {
         "message": "Redo",
+        "description": ""
+    },
+    "regularMenu": {
+        "message": "Regular menu",
         "description": ""
     },
     "regularMenuFallback": {
@@ -359,12 +407,20 @@
         "message": "Replay",
         "description": ""
     },
+    "resetColor": {
+        "message": "Reset color",
+        "description": ""
+    },
     "restore": {
         "message": "Restore",
         "description": ""
     },
     "restoreClosedTab": {
         "message": "Restore closed tab",
+        "description": ""
+    },
+    "rewindVideo": {
+        "message": "Rewind",
         "description": ""
     },
     "rightClickToClose": {
@@ -431,15 +487,15 @@
         "message": "Search",
         "description": ""
     },
-    "rewindVideo": {
-        "message": "Rewind",
-        "description": ""
-    },
-    "selectAllText": {
-        "message": "Select all",
+    "segmentColor": {
+        "message": "Segment color",
         "description": ""
     },
     "selectAll": {
+        "message": "Select all",
+        "description": ""
+    },
+    "selectAllText": {
         "message": "Select all",
         "description": ""
     },
@@ -463,12 +519,24 @@
         "message": "Show regular menu if no action selected",
         "description": ""
     },
+    "slowerPlaybackSpeed": {
+        "message": "Slower speed",
+        "description": ""
+    },
+    "standardBackground": {
+        "message": "Standard background color",
+        "description": ""
+    },
     "storeCurrentScrollPosition": {
         "message": "Remember current scroll position",
         "description": ""
     },
     "storeCurrentScrollPositionTooltip": {
         "message": "Changes 'scroll to top' and 'scroll to bottom actions with 'scroll back' when possible",
+        "description": ""
+    },
+    "strikeText": {
+        "message": "Strike",
         "description": ""
     },
     "supportButton": {
@@ -496,15 +564,27 @@
         "description": ""
     },
     "toggleFullscreen": {
-        "message": "Fullscreen mode",
+        "message": "Fullscreen",
         "description": ""
     },
     "translate": {
         "message": "Translate",
         "description": ""
     },
+    "underlineText": {
+        "message": "Underline",
+        "description": ""
+    },
     "undoAction": {
         "message": "Undo",
+        "description": ""
+    },
+    "unpinTab": {
+        "message": "Unpin tab",
+        "description": ""
+    },
+    "untoggleFullscreen": {
+        "message": "Exit fullscreen",
         "description": ""
     },
     "useCustomColor": {

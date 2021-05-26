@@ -1,7 +1,8 @@
 function init() {
     loadUserConfigs(function () {
-        if (configs.cmgEnabled)
+        if (configs.cmgEnabled) {
             setPageListeners();
+        }
     })
 }
 
@@ -272,16 +273,17 @@ function setPageListeners() {
     /// Listener to highlight hovered elements
     var prevHoveredDomElement = null;   // previous dom that we want to track, so we can remove the previous styling
 
-    document.addEventListener('DOMContentLoaded', function () {
+    if (configs.highlightElementOnHover)
+        document.addEventListener('DOMContentLoaded', function () {
 
-        // Unique ID for the classNames
-        var MOUSE_VISITED_CLASSNAME = 'crx_mouse_visited';
-        var MOUSE_VISITED_CLASSNAME_IMAGE = 'crx_mouse_visited_img';
-        var MOUSE_VISITED_CLASSNAME_INPUT = 'crx_mouse_visited_input';
-        var MOUSE_VISITED_CLASSNAME_PLAYER = 'crx_mouse_visited_player';
+            // Mouse listener for any move event on the current document.
 
-        // Mouse listener for any move event on the current document.
-        if (configs.highlightElementOnHover) {
+            // Unique ID for the classNames
+            var MOUSE_VISITED_CLASSNAME = 'crx_mouse_visited';
+            var MOUSE_VISITED_CLASSNAME_IMAGE = 'crx_mouse_visited_img';
+            var MOUSE_VISITED_CLASSNAME_INPUT = 'crx_mouse_visited_input';
+            var MOUSE_VISITED_CLASSNAME_PLAYER = 'crx_mouse_visited_player';
+
             document.body.style.setProperty('--cmg-link-color', configs['linkMenu'].color);
             document.body.style.setProperty('--cmg-img-color', configs['imageMenu'].color);
             document.body.style.setProperty('--cmg-input-color', configs['textFieldMenu'].color);
@@ -364,8 +366,13 @@ function setPageListeners() {
                         }
                     }
             }, false);
-        }
-    })
+
+        })
+
+
+
+
+
 
 }
 

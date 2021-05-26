@@ -3,8 +3,7 @@
 This extension introduces convenient circle menu (so-called pie menu) to improve interaction with your browser. 
 Just hold down the right mouse button, highlight one of the preset actions and release it. 
 
-CMG is supposed to provide a better implementation of mouse gestures, while replacing the regular context menu at the same time. 
-But regular context menu is always there whenever you need it.
+CMG is supposed to provide a better implementation of mouse gestures and drag gestures, while replacing the regular context menu at the same time — but regular context menu is always there whenever you need it. Perfect for fullscreen browsing!
 
 Extension features:
 - different menus for links, images, input fields etc.

@@ -1,3 +1,19 @@
+#1.0.8
+
+- Added new actions:
+  * Shrink page 
+  * View image
+  * Pin tab
+  * Duplicate tab
+  * Close other tabs
+  * Playback speed actions (slower, faster etc)
+
+- Implemented ability to change color for each action/segment
+- Added ability to configure animation duration
+- Redesigned settings page for better consistency
+- Changed icons for 'go back' and 'go forward' actions
+- Great performance optimizations
+
 #1.0.7
 - Improved 'scroll to bottom' action, so that it works on more websites
 - Implemented 'scroll back' feature

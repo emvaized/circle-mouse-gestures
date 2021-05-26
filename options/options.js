@@ -2,6 +2,8 @@ var delayToAddListeners = 1;
 var bodyMarginLeft = 0.0;
 
 let selectedMenuType = 'regularMenu';
+let isFirefox = navigator.userAgent.indexOf("Firefox") > -1;
+
 
 function init() {
     try {
@@ -15,14 +17,6 @@ function init() {
             positionSettingsInCenter();
             drawCirclePreview(selectedMenuType);
             preselectedButtons = {};
-
-            document.getElementById('circle-preview').addEventListener('mousedown', function (e) {
-                selectedButtons = {};
-                preselectedButtons = {};
-
-                drawCircle(e, selectedMenuType, true, false, true);
-                generateButtonsControls();
-            });
 
             document.getElementById('navbar-settings-label').innerHTML = ' ' + chrome.i18n.getMessage('settings').toLowerCase();
             document.getElementById('circleShadowOpacity').parentNode.setAttribute('title', chrome.i18n.getMessage('opacity'));
@@ -94,6 +88,14 @@ function drawCirclePreview(typeOfMenu = selectedMenuType) {
     try {
         document.getElementById('circle-preview-title').innerHTML = chrome.i18n.getMessage('circlePreview');
 
+        document.getElementById('circle-preview').onmousedown = function (e) {
+            selectedButtons = {};
+            preselectedButtons = {};
+
+            drawCircle(e, selectedMenuType, true, false, true);
+            generateButtonsControls();
+        }
+
         updateDisabledOptions();
 
         totalCircleRadius = 0.0;
@@ -138,26 +140,28 @@ function drawCirclePreview(typeOfMenu = selectedMenuType) {
 function generateAppearanceControls() {
     /// Translate title
     document.getElementById('appearanceTitle').innerHTML = chrome.i18n.getMessage('appearanceHeader');
+    document.getElementById('generalSettingsTitle').innerHTML = chrome.i18n.getMessage('generalSettings');
+    document.getElementById('addTextLabelsTooltip').innerHTML = chrome.i18n.getMessage('addTextLabelsTooltip');
 
     /// Set background color selector
-    let colorSelect = document.getElementById('backgroundColor');
-    colorSelect.setAttribute('value', configs[selectedMenuType].color);
-    if (!colorSelect.parentNode.innerHTML.includes(chrome.i18n.getMessage('backgroundColor')))
-        colorSelect.parentNode.innerHTML = chrome.i18n.getMessage('backgroundColor') + ' ' + colorSelect.parentNode.innerHTML;
+    // let colorSelect = document.getElementById('backgroundColor');
+    // colorSelect.setAttribute('value', configs[selectedMenuType].color);
+    // if (!colorSelect.parentNode.innerHTML.includes(chrome.i18n.getMessage('backgroundColor')))
+    //     colorSelect.parentNode.innerHTML = chrome.i18n.getMessage('backgroundColor') + ' ' + colorSelect.parentNode.innerHTML;
 
-    setTimeout(function () {
-        let colorSelect = document.getElementById('backgroundColor');
+    // setTimeout(function () {
+    //     let colorSelect = document.getElementById('backgroundColor');
 
-        colorSelect.addEventListener("input", function (e) {
-            configs[selectedMenuType].color = colorSelect.value;
-            drawCirclePreview();
-        });
+    //     colorSelect.addEventListener("input", function (e) {
+    //         configs[selectedMenuType].color = colorSelect.value;
+    //         drawCirclePreview();
+    //     });
 
-        colorSelect.addEventListener("change", function (e) {
-            if (configs.debugMode) console.log('saved bg color');
-            saveAllSettings();
-        });
-    }, 300);
+    //     colorSelect.addEventListener("change", function (e) {
+    //         if (configs.debugMode) console.log('saved bg color');
+    //         saveAllSettings();
+    //     });
+    // }, 300);
 
     /// Set shadow config
     // let shadowInput = document.getElementById('addCircleShadow');
@@ -179,18 +183,9 @@ function generateAppearanceControls() {
 
     let appearanceContainer = document.getElementById('appearance-config');
 
-    /// Create gap between circles slider
-    if (document.getElementById('gapBetweenCircles') == undefined) {
-        let gapBetweenLevelsSlider = createRangeSlider('gapBetweenCircles', configs.gapBetweenCircles, function (newVal) {
-            configs.gapBetweenCircles = newVal;
-        }, 0, 100);
-        gapBetweenLevelsSlider.style.padding = '0px 5px';
-        appearanceContainer.appendChild(gapBetweenLevelsSlider);
-    }
-
     /// Create inner width slider
     if (document.getElementById('innerWidth') == undefined) {
-        let innerWidthSlider = createRangeSlider('innerWidth', configs.innerCircleRadius, function (newVal) {
+        let innerWidthSlider = createRangeSlider('innerWidth', configs.innerCircleRadius, 'px', function (newVal) {
             configs.innerCircleRadius = newVal;
         }, 0, 100);
         innerWidthSlider.style.padding = '0px 5px';
@@ -204,9 +199,18 @@ function generateAppearanceControls() {
         appearanceContainer.appendChild(innerWidthSlider);
     }
 
+    /// Create gap between circles slider
+    if (document.getElementById('gapBetweenCircles') == undefined) {
+        let gapBetweenLevelsSlider = createRangeSlider('gapBetweenCircles', configs.gapBetweenCircles, 'px', function (newVal) {
+            configs.gapBetweenCircles = newVal;
+        }, 0, 100);
+        gapBetweenLevelsSlider.style.padding = '0px 5px';
+        appearanceContainer.appendChild(gapBetweenLevelsSlider);
+    }
+
     /// Create circle opacity slider
     if (document.getElementById('circleOpacity') == undefined) {
-        let circleOpacitySlider = createRangeSlider('circleOpacity', configs.circleOpacity, function (newVal) {
+        let circleOpacitySlider = createRangeSlider('circleOpacity', configs.circleOpacity, null, function (newVal) {
             console.log(newVal);
             configs.circleOpacity = newVal;
         }, 0.1, 1.0, null, 0.1);
@@ -214,13 +218,23 @@ function generateAppearanceControls() {
 
         appearanceContainer.appendChild(circleOpacitySlider);
     }
-
 }
 
 /// Behavior configs
 function generateBehaviorConfigs() {
     /// Translate title
     document.getElementById('behaviorTitle').innerHTML = chrome.i18n.getMessage('behaviorTitle');
+
+    /// Create animation duration config
+    if (document.getElementById('animationDuration') == undefined) {
+        let animationDurationSlider = createRangeSlider('animationDuration', configs.animationDuration, 'ms', function (newVal) {
+            console.log(newVal);
+            configs.animationDuration = newVal;
+        }, 0, 600, null, 50);
+        animationDurationSlider.style.padding = '0px 5px 5px 5px';
+
+        document.getElementById('behavior-config').appendChild(animationDurationSlider);
+    }
 
     /// Options for boolean cofnigs
     let inputIds = [
@@ -313,17 +327,17 @@ function generateGesturesConfigs() {
     let dropdown = createActionDropdownButton(rockerIidentifier, configs[selectedMenuType].rockerLeftClick, function (newValue) {
         configs[selectedMenuType].rockerLeftClick = newValue;
         saveAllSettings();
-    }, chrome.i18n.getMessage('rockerAction'));
+    }, chrome.i18n.getMessage('leftClick'));
 
     rockerActionContainer.appendChild(dropdown);
 
 
     /// Attach tooltip
-    rockerActionContainer.firstChild.firstChild.setAttribute('class', 'tooltip');
-    let tooltipText = document.createElement('span');
-    tooltipText.innerText = chrome.i18n.getMessage('rockerActionTooltip');
-    tooltipText.setAttribute('class', 'tooltiptext');
-    rockerActionContainer.firstChild.firstChild.appendChild(tooltipText);
+    // rockerActionContainer.firstChild.firstChild.setAttribute('class', 'tooltip');
+    // let tooltipText = document.createElement('span');
+    // tooltipText.innerText = chrome.i18n.getMessage('rockerActionTooltip');
+    // tooltipText.setAttribute('class', 'tooltiptext');
+    // rockerActionContainer.firstChild.firstChild.appendChild(tooltipText);
     gesturesConfigs.appendChild(rockerActionContainer);
 
 
@@ -377,7 +391,8 @@ function generateButtonsControls() {
     document.getElementById('buttons-config-container').innerHTML = '';
 
     let buttonsHeader = document.createElement('span');
-    buttonsHeader.innerHTML = chrome.i18n.getMessage('buttonsHeader') + '<br />';
+    // buttonsHeader.innerHTML = chrome.i18n.getMessage('buttonsHeader') + '<br />';
+    buttonsHeader.innerHTML = chrome.i18n.getMessage('levels') + '<br />';
     buttonsHeader.setAttribute('class', 'header');
     buttonsHeader.setAttribute('style', 'padding-left: 20px;');
     document.getElementById('buttons-config-container').appendChild(buttonsHeader);
@@ -596,9 +611,76 @@ function generateLevelConfigs(levelIndex = 0) {
             });
         }, delayToAddListeners);
 
+
+        /// Reset color button
+        let resetButtonColorButton = document.createElement('div');
+        resetButtonColorButton.textContent = '↻';
+        let resetButtonColorId = `resetButtonColor-${levelIndex}-${i}`;
+        resetButtonColorButton.setAttribute('title', chrome.i18n.getMessage("resetColor"));
+        resetButtonColorButton.setAttribute('style', 'display: inline-block; opacity: 0.5; float: right; transform: translate(-9px, 0px); font-size: 16px; vertical-align: middle; transition: opacity 150ms ease-out;');
+        resetButtonColorButton.setAttribute('id', resetButtonColorId);
+        setTimeout(function () {
+            let resetButtonColor = document.getElementById(resetButtonColorId);
+            resetButtonColor.addEventListener("mouseup", function (e) {
+                let parts = resetButtonColorId.split('-');
+                let level = parts[1];
+                let button = parts[2];
+                configs[selectedMenuType].levels[level].buttons[button].color = null;
+                saveAllSettings();
+                drawCirclePreview();
+                generateButtonsControls();
+            });
+
+            resetButtonColor.addEventListener("mouseover", function (e) {
+                resetButtonColor.style.opacity = 1.0;
+            });
+
+            resetButtonColor.addEventListener("mouseout", function (e) {
+                resetButtonColor.style.opacity = 0.5;
+            });
+        }, delayToAddListeners);
+
+
+        /// Custom color input
+        let customButtonColorInput = document.createElement('input');
+        let customButtonColorInputId = `customButtonColorInput-${levelIndex}-${i}`;
+        customButtonColorInput.setAttribute('type', 'color');
+        customButtonColorInput.setAttribute('style', 'display: inline-block; max-width: 30px;  padding: 0px; vertical-align: middle; float: right; transform: translate(-7px, 0px) ');
+        customButtonColorInput.setAttribute('id', customButtonColorInputId);
+        customButtonColorInput.setAttribute('title', chrome.i18n.getMessage("segmentColor"));
+
+        if (isFirefox)
+            customButtonColorInput.style.minWidth = '50px';
+
+        let selectedColor = configs[selectedMenuType].levels[levelIndex].buttons[i].color;
+        if (selectedColor !== null && selectedColor !== undefined)
+            customButtonColorInput.setAttribute('value', selectedColor);
+        else
+            customButtonColorInput.setAttribute('value', configs[selectedMenuType].levels[levelIndex].color ?? configs[selectedMenuType].color);
+
+        setTimeout(function () {
+            let customButtonColorInput = document.getElementById(customButtonColorInputId);
+            customButtonColorInput.addEventListener("input", function (e) {
+                let parts = customButtonColorInputId.split('-');
+                let level = parts[1];
+                let button = parts[2];
+                configs[selectedMenuType].levels[level].buttons[button].color = customButtonColorInput.value;
+                drawCirclePreview();
+            });
+
+            customButtonColorInput.addEventListener("change", function (e) {
+                if (configs.debugMode) console.log('saved custom color for button: ' + i.toString());
+                saveAllSettings();
+            });
+        }, delayToAddListeners);
+
+
         actionButtonsContainer.appendChild(moveUpButton);
         actionButtonsContainer.appendChild(moveDownButton);
         actionButtonsContainer.appendChild(deleteButton);
+
+        actionButtonsContainer.appendChild(customButtonColorInput);
+        actionButtonsContainer.appendChild(resetButtonColorButton);
 
         entry.appendChild(actionButtonsContainer);
 
@@ -609,7 +691,7 @@ function generateLevelConfigs(levelIndex = 0) {
                 if (configs.debugMode) console.log(`clicked on ${el.tagName}`);
 
                 /// Prevent listener from blocking select dropdowns behavior
-                if (el.tagName == 'SELECT') {
+                if (el.tagName == 'SELECT' || el.tagName == 'INPUT') {
                     return;
                 }
 
@@ -657,95 +739,159 @@ function generateLevelConfigs(levelIndex = 0) {
 
     /// Level width input
     let widthInputId = `widthInput-${levelIndex}`;
-    let levelWidthSlider = createRangeSlider(widthInputId, configs[selectedMenuType].levels[levelIndex].width ?? configs.circleRadius, function (newVal) {
+    let levelWidthSlider = createRangeSlider(widthInputId, configs[selectedMenuType].levels[levelIndex].width ?? configs.circleRadius, 'px', function (newVal) {
         let ind = widthInputId.split('-')[1];
         configs[selectedMenuType].levels[ind].width = newVal;
     }, 50, 200, chrome.i18n.getMessage("levelWidth"));
     container.appendChild(levelWidthSlider);
 
-    container.innerHTML += '<br />';
+    // container.innerHTML += '<br />';
 
     /// 'Use custom color' switch
     var customColorContainer = document.createElement('div');
     customColorContainer.setAttribute('class', 'option');
 
-    let useCustomColorSwitch = document.createElement('input');
-    let useCustomColorSwitchId = 'useCustomColorSwitch-' + levelIndex.toString();
-    useCustomColorSwitch.setAttribute('type', 'checkbox');
-    useCustomColorSwitch.setAttribute('id', useCustomColorSwitchId);
+    // let useCustomColorSwitch = document.createElement('input');
+    // let useCustomColorSwitchId = 'useCustomColorSwitch-' + levelIndex.toString();
+    // useCustomColorSwitch.setAttribute('type', 'checkbox');
+    // useCustomColorSwitch.setAttribute('id', useCustomColorSwitchId);
 
-    let selectedColor = configs[selectedMenuType].levels[levelIndex].color;
-    let switched = selectedColor == null || selectedColor == undefined;
-    if (switched == false)
-        useCustomColorSwitch.setAttribute('checked', 0);
+    // let selectedColor = configs[selectedMenuType].levels[levelIndex].color;
+    // let switched = selectedColor == null || selectedColor == undefined;
+    // if (switched == false)
+    //     useCustomColorSwitch.setAttribute('checked', 0);
 
     let label = document.createElement('label');
-    // label.setAttribute('class', 'option');
 
-    label.appendChild(useCustomColorSwitch);
+    // label.appendChild(useCustomColorSwitch);
+
+    // setTimeout(function () {
+    //     let useCustomColorSwitch = document.getElementById(useCustomColorSwitchId);
+
+    //     useCustomColorSwitch.parentNode.addEventListener('change', function (e) {
+
+    //         let selectedColor = configs[selectedMenuType].levels[levelIndex].color;
+
+    //         if (selectedColor !== null && selectedColor !== undefined) {
+    //             configs[selectedMenuType].levels[levelIndex].color = null;
+    //             configs[selectedMenuType].levels[levelIndex].opacity = null;
+    //             drawCirclePreview();
+    //         } else {
+    //             configs[selectedMenuType].levels[levelIndex].color = configs[selectedMenuType].color;
+    //         }
+
+    //         saveAllSettings();
+    //         generateButtonsControls();
+    //     });
+    // }, 1);
+
+    // label.innerHTML += ' ' + chrome.i18n.getMessage("useCustomColor");
+    label.innerHTML += ' ' + chrome.i18n.getMessage("standardBackground");
+    customColorContainer.appendChild(label);
+
+    /// Reset color button
+    let resetLevelColorButton = document.createElement('div');
+    resetLevelColorButton.textContent = '↻';
+    let resetLevelColorId = `resetLevelColor-${levelIndex}`;
+    resetLevelColorButton.setAttribute('title', chrome.i18n.getMessage("resetColor"));
+    resetLevelColorButton.setAttribute('style', 'display: inline-block; opacity: 0.5; float: right; transform: translate(-9px, -5px); font-size: 16px; vertical-align: middle; transition: opacity 150ms ease-out;');
+    resetLevelColorButton.setAttribute('id', resetLevelColorId);
+    setTimeout(function () {
+        let resetLevelColorButton = document.getElementById(resetLevelColorId);
+        resetLevelColorButton.addEventListener("mouseup", function (e) {
+            let parts = resetLevelColorId.split('-');
+            let level = parts[1];
+            configs[selectedMenuType].levels[level].color = null;
+            saveAllSettings();
+            drawCirclePreview();
+            generateButtonsControls();
+        });
+
+        resetLevelColorButton.addEventListener("mouseover", function (e) {
+            resetButtonColor.style.opacity = 1.0;
+        });
+
+        resetLevelColorButton.addEventListener("mouseout", function (e) {
+            resetLevelColorButton.style.opacity = 0.5;
+        });
+    }, delayToAddListeners);
+
+
+    /// Custom color input
+    let customLevelnColorInput = document.createElement('input');
+    let customLevelColorInputId = `customLevelColorInput-${levelIndex}`;
+    customLevelnColorInput.setAttribute('type', 'color');
+    customLevelnColorInput.setAttribute('style', 'display: inline-block; max-width: 30px !important; padding: 0px; vertical-align: middle; float: right; transform: translate(-7px, -5px) ');
+
+    if (isFirefox)
+        customLevelnColorInput.style.minWidth = '50px';
+
+    customLevelnColorInput.setAttribute('id', customLevelColorInputId);
+    let selectedColor = configs[selectedMenuType].levels[levelIndex].color;
+    if (selectedColor !== null && selectedColor !== undefined)
+        customLevelnColorInput.setAttribute('value', selectedColor);
+    else
+        customLevelnColorInput.setAttribute('value', configs[selectedMenuType].color);
 
     setTimeout(function () {
-        let useCustomColorSwitch = document.getElementById(useCustomColorSwitchId);
+        let customLevelnColorInput = document.getElementById(customLevelColorInputId);
+        customLevelnColorInput.addEventListener("input", function (e) {
+            let parts = customLevelColorInputId.split('-');
+            let level = parts[1];
+            configs[selectedMenuType].levels[level].color = customLevelnColorInput.value;
+            drawCirclePreview();
+        });
 
-        useCustomColorSwitch.parentNode.addEventListener('change', function (e) {
-
-            let selectedColor = configs[selectedMenuType].levels[levelIndex].color;
-
-            if (selectedColor !== null && selectedColor !== undefined) {
-                configs[selectedMenuType].levels[levelIndex].color = null;
-                configs[selectedMenuType].levels[levelIndex].opacity = null;
-                drawCirclePreview();
-            } else {
-                configs[selectedMenuType].levels[levelIndex].color = configs[selectedMenuType].color;
-            }
-
+        customLevelnColorInput.addEventListener("change", function (e) {
+            if (configs.debugMode) console.log('saved custom color for button: ' + i.toString());
             saveAllSettings();
             generateButtonsControls();
         });
-    }, 1);
-
-    label.innerHTML += ' ' + chrome.i18n.getMessage("useCustomColor");
-
-    customColorContainer.appendChild(label);
-
-    if (selectedColor !== null && selectedColor !== undefined) {
-        /// Custom color input
-        let customColorInput = document.createElement('input');
-        let customColorInputId = `customColorInput-${levelIndex}`;
-        customColorInput.setAttribute('type', 'color');
-        customColorInput.setAttribute('style', 'float: right; transform: translate(0, -5px)');
-        customColorInput.setAttribute('id', customColorInputId);
-        customColorInput.value = selectedColor;
-
-        setTimeout(function () {
-            let customColorInput = document.getElementById(customColorInputId);
-            customColorInput.addEventListener("input", function (e) {
-                let ind = customColorInputId.split('-')[1];
-                configs[selectedMenuType].levels[ind].color = customColorInput.value;
-                drawCirclePreview();
-            });
-
-            customColorInput.addEventListener("change", function (e) {
-                if (configs.debugMode) console.log('saved custom color for level ' + levelIndex.toString());
-                saveAllSettings();
-            });
-        }, delayToAddListeners);
-
-        customColorContainer.appendChild(customColorInput);
+    }, delayToAddListeners);
 
 
-        /// Level opacity
-        customColorContainer.innerHTML += '<br/>';
-        let levelOpacitySliderId = `levelOpacity-${levelIndex}`;
-        let levelOpacitySlider = createRangeSlider(levelOpacitySliderId, configs[selectedMenuType].levels[levelIndex].opacity ?? configs.circleOpacity, function (newVal) {
-            let ind = levelOpacitySliderId.split('-')[1];
-            configs[selectedMenuType].levels[ind].opacity = newVal;
-        }, 0, 1, chrome.i18n.getMessage("opacity"), 0.05);
+    // if (selectedColor !== null && selectedColor !== undefined) {
+    //     /// Custom color input
+    //     let customColorInput = document.createElement('input');
+    //     let customColorInputId = `customColorInput-${levelIndex}`;
+    //     customColorInput.setAttribute('type', 'color');
+    //     customColorInput.setAttribute('style', 'float: right; transform: translate(0, -5px)');
+    //     customColorInput.setAttribute('id', customColorInputId);
+    //     customColorInput.setAttribute('value', selectedColor);
 
-        levelOpacitySlider.style.paddingTop = '5px';
+    //     setTimeout(function () {
+    //         let customColorInput = document.getElementById(customColorInputId);
+    //         customColorInput.addEventListener("input", function (e) {
+    //             let ind = customColorInputId.split('-')[1];
+    //             configs[selectedMenuType].levels[ind].color = customColorInput.value;
+    //             drawCirclePreview();
+    //         });
 
-        customColorContainer.appendChild(levelOpacitySlider);
-    }
+    //         customColorInput.addEventListener("change", function (e) {
+    //             if (configs.debugMode) console.log('saved custom color for level ' + levelIndex.toString());
+    //             saveAllSettings();
+    //         });
+    //     }, delayToAddListeners);
+
+    //     customColorContainer.appendChild(customColorInput);
+
+
+    /// Level opacity
+    // customColorContainer.innerHTML += '<br/>';
+    let levelOpacitySliderId = `levelOpacity-${levelIndex}`;
+    let levelOpacitySlider = createRangeSlider(levelOpacitySliderId, configs[selectedMenuType].levels[levelIndex].opacity ?? configs.circleOpacity, null, function (newVal) {
+        let ind = levelOpacitySliderId.split('-')[1];
+        configs[selectedMenuType].levels[ind].opacity = newVal;
+    }, 0, 1, chrome.i18n.getMessage("opacity"), 0.05);
+
+    levelOpacitySlider.style.paddingTop = '5px';
+
+    container.appendChild(levelOpacitySlider);
+    container.innerHTML += '<br/>';
+    // }
+
+    customColorContainer.appendChild(customLevelnColorInput);
+    customColorContainer.appendChild(resetLevelColorButton);
 
     container.appendChild(customColorContainer);
 }
@@ -859,7 +1005,7 @@ function createActionDropdownButton(id, initialValue, cbOnChange, label) {
     return selectContainer;
 }
 
-function createRangeSlider(id, value, callbackOnChange, min = 50, max = 200, label, step = 1) {
+function createRangeSlider(id, value, units, callbackOnChange, min = 50, max = 200, label, step = 1) {
     let updatePreviewInRealTime = false;
 
     /// Level width input
@@ -901,6 +1047,8 @@ function createRangeSlider(id, value, callbackOnChange, min = 50, max = 200, lab
 
         inp.addEventListener('change', function () {
             if (configs.debugMode) console.log(`saved value for ${id}`);
+            document.getElementById(widthInputId + '-indicator').innerHTML += ` ${units ?? ''}`;
+
             drawCirclePreview();
             saveAllSettings();
         });
@@ -912,7 +1060,8 @@ function createRangeSlider(id, value, callbackOnChange, min = 50, max = 200, lab
     let widthIndicator = document.createElement('span');
     widthIndicator.setAttribute('id', id + '-indicator');
     widthIndicator.setAttribute('style', 'opacity: 0.7');
-    widthIndicator.innerHTML = value;
+    // widthIndicator.innerHTML = value;
+    widthIndicator.innerHTML = `${value} ${(units ?? '')}`;
     sliderContainer.appendChild(widthIndicator);
 
     return sliderContainer;
@@ -931,10 +1080,12 @@ function positionSettingsInCenter() {
 
 
     allLevelConfigs.forEach(function (el) {
-        occupiedWidth += el.clientWidth;
+        // occupiedWidth += el.clientWidth;
+        occupiedWidth += el.clientWidth + 30;
     });
 
-    let occupiedPercent = occupiedWidth / window.screen.width * 100;
+    // let occupiedPercent = occupiedWidth / window.screen.width * 100;
+    let occupiedPercent = occupiedWidth / window.innerWidth * 100;
 
     bodyMarginLeft = (100 - occupiedPercent) / 2.5;
 

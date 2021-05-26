@@ -10,9 +10,11 @@ var sortedActionButtons = {
         'tab': [
             'newTab',
             'closeCurrentTab',
+            'closeAllTabsExceptCurrent',
             'reloadTab',
             'restoreClosedTab',
-            'toggleFullscreen',
+            'duplicateTab',
+            'pinTab',
         ],
         'page': [
             'pageZoomIn',
@@ -23,7 +25,8 @@ var sortedActionButtons = {
             'undoAction',
             'redoAction',
             'selectAll',
-            // 'textTooLong' /// text-too-long
+            'toggleFullscreen',
+            'textTooLong' /// text-too-long
         ],
         'scroll': [
             'scrollToTop',
@@ -74,6 +77,11 @@ var sortedActionButtons = {
             'clearInputField',
             'moveCaretToStart',
             'moveCaretToEnd',
+
+            'boldText',
+            'italicText',
+            'underlineText',
+            'strikeText',
         ],
         '—': [
             'noAction'
@@ -89,7 +97,7 @@ var sortedActionButtons = {
             'searchImageOnGoogle',
             'copyUrl',
             'copyImage',
-            // 'openImageFullscreen', /// Image-view
+            'openImageFullscreen', /// Image-view
         ],
         '—': [
             'noAction'
@@ -105,6 +113,11 @@ var sortedActionButtons = {
             'fastForwardVideo',
             'downloadUrlAs',
             'downloadVideoSavefromNet',
+            'playerFullScreen',
+
+            'normalPlaybackSpeed',
+            'slowerPlaybackSpeed',
+            'fasterPlaybackSpeed',
         ],
         '—': [
             'noAction'
