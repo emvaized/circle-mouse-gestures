@@ -58,6 +58,14 @@ function checkButtonAvailability(e, id) {
             return true;
         }
 
+        case 'closeCurrentTab': {
+            chrome.runtime.sendMessage({ actionToDo: 'checkPinTabStatus' }, (response) => {
+                updateButtonAvailability(e, 'closeCurrentTab', !response);
+            }
+            );
+            return true;
+        }
+
         case 'copyImage': {
             // fetchHoveredImage(e, hoveredLink);
             return true;

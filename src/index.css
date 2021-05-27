@@ -8,7 +8,7 @@ html {
   transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
   visibility: hidden;
   opacity: 0.0;
-  position: absolute;
+  position: fixed;
   z-index: 9999999;
   transform: scale(0.0);
   background-color: transparent;

@@ -36,7 +36,8 @@ function openImageFullscreen(elementUnderCursor) {
 
     /// Final dx/dy calculation
     let dxToShow = window.innerWidth / 2 - (originalWidth * scale / 2);
-    let dyToShow = window.innerHeight / 2 + window.scrollY - (originalHeight * scale / 2);
+    // let dyToShow = window.innerHeight / 2 + window.scrollY - (originalHeight * scale / 2);
+    let dyToShow = window.innerHeight / 2 - (originalHeight * scale / 2);
 
     /// Storing values as initial
     let initialScale = scale;
@@ -228,7 +229,8 @@ function openImageFullscreen(elementUnderCursor) {
 
     let copyOfImage = document.createElement('div');
     copyOfImage.setAttribute('id', idForImage);
-    copyOfImage.setAttribute('style', `transform-origin: 0% 0%; cursor: grab;position: absolute; transition: transform ${transitionDuration}ms ease-in-out; left: 0px; top: 0px; transform: translate(${imageRect.left}px, ${imageRect.top + window.scrollY}px); z-index: 100002;`)
+    // copyOfImage.setAttribute('style', `transform-origin: 0% 0%; cursor: grab;position: absolute; transition: transform ${transitionDuration}ms ease-in-out; left: 0px; top: 0px; transform: translate(${imageRect.left}px, ${imageRect.top + window.scrollY}px); z-index: 100002;`)
+    copyOfImage.setAttribute('style', `transform-origin: 0% 0%; cursor: grab;position: fixed; transition: transform ${transitionDuration}ms ease-in-out; left: 0px; top: 0px; transform: translate(${imageRect.left}px, ${imageRect.top}px); z-index: 100002;`)
     copyOfImage.style.maxHeight = `${originalHeight}px`;
     copyOfImage.appendChild(rotationWrapper);
 
@@ -422,7 +424,8 @@ function openImageFullscreen(elementUnderCursor) {
         if (rotationWrapper.style.transition == '')
             rotationWrapper.style.transition = `transform ${transitionDuration}ms ease-in-out`;
 
-        copyOfImage.style.transform = `translate(${imageRect.left}px, ${imageRect.top + window.scrollY}px)`;
+        // copyOfImage.style.transform = `translate(${imageRect.left}px, ${imageRect.top + window.scrollY}px)`;
+        copyOfImage.style.transform = `translate(${imageRect.left}px, ${imageRect.top}px)`;
         rotationWrapper.style.transform = `rotate(0deg)`;
         setTimeout(function () {
             /// Make original image transparent

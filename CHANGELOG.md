@@ -1,3 +1,14 @@
+#1.0.9
+- Various improvements to pinned tabs functionality
+- Changed icon for 'duplicate tab' action
+- Fixed layout issues on some websites
+- Added new actions:
+  * New window
+  * Close window
+  * Open in new window
+  * Move tab right
+  * Move tab left
+
 #1.0.8
 
 - Added new actions:
@@ -28,7 +39,7 @@
 #1.0.6
 - Improved link display in helper tooltip
 - Improved 'copy image' functionality
-- "Undo" and "Redo" actions are back! (on Firefox will work only with 'contenteditable' fields)
+- "Undo" and "Redo" actions are back (on Firefox will work only with 'contenteditable' fields)
 - Added options 'Add shadow' and 'Highlight element on hover'
 - Added ability to set different opacity for levels
 - Added ability to configure page dimmer opacity

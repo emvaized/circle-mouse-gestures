@@ -27,12 +27,23 @@ chrome.runtime.onMessage.addListener(
                 chrome.tabs.create({ index: sender.tab.index + 1 });
             } break;
 
+            case 'newWindow': {
+                chrome.windows.create({});
+            } break;
+
+            case 'closeWindow': {
+                chrome.windows.getCurrent({}, function (window) {
+                    chrome.windows.remove(window.id);
+                });
+            } break;
+
             case 'closeCurrentTab': {
-                chrome.tabs.remove(sender.tab.id, function () { });
+                if (!sender.tab.pinned)
+                    chrome.tabs.remove(sender.tab.id, function () { });
             } break;
 
             case 'closeAllTabsExceptCurrent': {
-                chrome.tabs.query({ active: false, currentWindow: true }, function (tabs) {
+                chrome.tabs.query({ active: false, pinned: false, currentWindow: true }, function (tabs) {
                     tabs.forEach(function (tab) {
                         chrome.tabs.remove(tab.id, function () { });
                     })
@@ -269,11 +280,35 @@ chrome.runtime.onMessage.addListener(
                 chrome.tabs.duplicate(sender.tab.id, function () { });
             } break;
 
+
+            case 'moveToNewWindow': {
+
+                chrome.tabs.remove(sender.tab.id, function () { });
+
+                chrome.windows.create({}, function (window) {
+                    chrome.tabs.move(sender.tab.id, { index: 0, windowId: window.id });
+
+                    chrome.tabs.create({ windowId: window.id, index: 0, active: true, pinned: sender.tab.pinned, url: sender.tab.url })
+
+                });
+
+            } break;
+
+            case 'moveTabRight': {
+                chrome.tabs.move(sender.tab.id, { index: sender.tab.index + 1 });
+            } break;
+
+            case 'moveTabLeft': {
+                chrome.tabs.move(sender.tab.id, { index: sender.tab.index - 1 });
+            } break;
+
+
             case 'pinTab': {
                 if (sender.tab.pinned) {
                     chrome.tabs.create({
                         "url": sender.tab.url,
-                        "pinned": false
+                        "pinned": false,
+                        "index": sender.tab.index + 1
                     },
                         function (tab) {
                             tab.highlighted = true;

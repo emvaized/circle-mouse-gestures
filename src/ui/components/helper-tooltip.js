@@ -5,7 +5,8 @@ async function showLinkTooltip() {
 
     linkTooltip = document.createElement('div');
     linkTooltip.setAttribute('class', 'cmg-link-tooltip');
-    linkTooltip.setAttribute('style', `left: 0px; top: 0px;max-width: ${configs.circleRadius * 2}px;z-index: 99999; font-size: 13.5px;opacity: 0.0; align-items: center;display:inline-block !important; position: absolute !important;background: ${configs[typeOfMenu].color}; border-radius: 9px;color: white; text-align: center; padding: 6px; pointer-events: none;`);
+    // linkTooltip.setAttribute('style', `left: 0px; top: 0px;max-width: ${configs.circleRadius * 2}px;z-index: 99999; font-size: 13.5px;opacity: 0.0; align-items: center;display:inline-block !important; position: absolute !important;background: ${configs[typeOfMenu].color}; border-radius: 9px;color: white; text-align: center; padding: 6px; pointer-events: none;`);
+    linkTooltip.setAttribute('style', `left: 0px; top: 0px;max-width: ${configs.circleRadius * 2}px;z-index: 99999; font-size: 13.5px;opacity: 0.0; align-items: center;display:inline-block !important; position: fixed !important;background: ${configs[typeOfMenu].color}; border-radius: 9px;color: white; text-align: center; padding: 6px; pointer-events: none;`);
 
     if (configs.addCircleShadow)
         linkTooltip.style.boxShadow = `0px 5px 12px 0 rgba(0,0,0,${configs.circleShadowOpacity})`;

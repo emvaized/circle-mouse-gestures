@@ -51,10 +51,10 @@ function triggerButtonAction(actionToPerform) {
             window.scrollTo({ top: window.scrollY - window.innerHeight * .9, behavior: 'smooth' });
         } break;
 
-        case 'closeCurrentTab': {
-            circle.style.transition = `none`;
-            chrome.runtime.sendMessage({ actionToDo: actionToPerform });
-        } break;
+        // case 'closeCurrentTab': {
+        //     circle.style.transition = `none`;
+        //     chrome.runtime.sendMessage({ actionToDo: actionToPerform });
+        // } break;
 
         case 'scrollPageDown': {
             window.scrollTo({ top: window.scrollY + window.innerHeight * .9, behavior: 'smooth' });

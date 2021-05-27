@@ -30,6 +30,9 @@ function showCircle(e) {
             leftCoord = e.clientX - (canvasRadius / 2) + 1;
             topCoord = e.clientY - (canvasRadius / 2) + window.scrollY + 1;
 
+            topCoord = e.pageY - (canvasRadius / 2) - window.scrollY + 1;
+            // topCoord = e.pageY - (canvasRadius / 2) + 1;
+
             circleIsShown = true;
             setCanvas();
 
@@ -51,9 +54,9 @@ function setCanvas() {
     circle.style.opacity = 0.0;
     circle.style.transform = 'scale(0.0)';
     circle.style.transition = `opacity ${configs.animationDuration}ms ease-out, transform ${configs.animationDuration}ms ease-out`;
+    circle.style.visibility = 'visible';
     circle.style.left = `${leftCoord}px`;
     circle.style.top = `${topCoord}px`;
-    circle.style.visibility = 'visible';
 
     setTimeout(function () {
         circle.style.transform = 'scale(1.0)';
@@ -83,7 +86,8 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
         my = (canvasRadius / 2);
     } else {
         mx = e.pageX - leftCoord;
-        my = e.pageY - topCoord;
+        // my = e.pageY - topCoord;
+        my = e.pageY - topCoord - window.scrollY;
     }
 
     let mangle = (-Math.atan2(mx - (canvasRadius / 2), my - (canvasRadius / 2)) + Math.PI * 2.5) % (Math.PI * 2);

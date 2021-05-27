@@ -10,11 +10,16 @@ var sortedActionButtons = {
         'tab': [
             'newTab',
             'closeCurrentTab',
+            'duplicateTab',
+            'pinTab',
             'closeAllTabsExceptCurrent',
             'reloadTab',
             'restoreClosedTab',
-            'duplicateTab',
-            'pinTab',
+            'newWindow',
+            'closeWindow',
+            'moveToNewWindow',
+            'moveTabLeft',
+            'moveTabRight',
         ],
         'page': [
             'pageZoomIn',

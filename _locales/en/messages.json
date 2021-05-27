@@ -319,6 +319,10 @@
         "message": "New tab",
         "description": ""
     },
+    "newWindow": {
+        "message": "New window",
+        "description": ""
+    },
     "noAction": {
         "message": "No action",
         "description": ""
@@ -601,6 +605,22 @@
     },
     "writeAReview": {
         "message": "Write a review",
+        "description": ""
+    },
+    "moveToNewWindow": {
+        "message": "Move to new window",
+        "description": ""
+    },
+    "moveTabRight": {
+        "message": "Move tab right",
+        "description": ""
+    },
+    "moveTabLeft": {
+        "message": "Move tab left",
+        "description": ""
+    },
+    "closeWindow": {
+        "message": "Close window",
         "description": ""
     }
 }

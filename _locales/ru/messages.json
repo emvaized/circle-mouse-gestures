@@ -319,6 +319,10 @@
         "message": "Новая вкладка",
         "description": "Ярлык для кнопки кругового меню"
     },
+    "newWindow": {
+        "message": "Новое окно",
+        "description": ""
+    },
     "noAction": {
         "message": "Нет действия",
         "description": ""
@@ -605,6 +609,22 @@
     },
     "writeAReview": {
         "message": "Написать отзыв",
+        "description": ""
+    },
+    "moveToNewWindow": {
+        "message": "Открыть в новом окне",
+        "description": ""
+    },
+    "moveTabRight": {
+        "message": "Переместить вправо",
+        "description": ""
+    },
+    "moveTabLeft": {
+        "message": "Переместить влево",
+        "description": ""
+    },
+    "closeWindow": {
+        "message": "Закрыть окно",
         "description": ""
     }
 }
