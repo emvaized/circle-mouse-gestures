@@ -1,5 +1,5 @@
 #1.1.0
-- Added 
+- Added new actions:
   * New private window
   * Open in private window
 - Scroll actions can now work with embedded scrolling elements on page
