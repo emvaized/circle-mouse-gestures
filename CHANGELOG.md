@@ -1,5 +1,7 @@
 #1.1.0
-- Added 'New private window' action
+- Added 
+  * New private window
+  * Open in private window
 - Scroll actions can now work with embedded scrolling elements on page
 - Previosly stored scrolled position is not cleared on wheel scroll
 - Performance and animations improvements

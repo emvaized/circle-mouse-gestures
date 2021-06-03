@@ -351,6 +351,10 @@
         "message": "Open in new tab",
         "description": ""
     },
+    "openInPrivateWindow": {
+        "message": "Open in private window",
+        "description": ""
+    },
     "page": {
         "message": "Page",
         "description": ""

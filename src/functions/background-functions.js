@@ -286,16 +286,17 @@ chrome.runtime.onMessage.addListener(
 
 
             case 'moveToNewWindow': {
-
                 chrome.tabs.remove(sender.tab.id, function () { });
 
                 chrome.windows.create({}, function (window) {
                     chrome.tabs.move(sender.tab.id, { index: 0, windowId: window.id });
-
                     chrome.tabs.create({ windowId: window.id, index: 0, active: true, pinned: sender.tab.pinned, url: sender.tab.url })
-
                 });
 
+            } break;
+
+            case 'openInPrivateWindow': {
+                chrome.windows.create({ "url": sender.tab.url, "incognito": true });
             } break;
 
             case 'moveTabRight': {

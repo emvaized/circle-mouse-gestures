@@ -316,7 +316,7 @@
         "description": ""
     },
     "newPrivateWindow": {
-        "message": "новое приватное окно",
+        "message": "Новое приватное окно",
         "description": ""
     },
     "newTab": {
@@ -350,6 +350,10 @@
     "openInFgTab": {
         "message": "Открыть в новой вкладке",
         "description": "Ярлык для кнопки кругового меню"
+    },
+    "openInPrivateWindow": {
+        "message": "Открыть в приватном окне",
+        "description": ""
     },
     "page": {
         "message": "Страница",

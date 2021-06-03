@@ -22,6 +22,7 @@ var sortedActionButtons = {
         'window': [
             'newWindow',
             'newPrivateWindow',
+            'openInPrivateWindow',
             'closeWindow',
         ],
         'page': [
