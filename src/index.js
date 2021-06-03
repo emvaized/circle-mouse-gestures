@@ -195,7 +195,7 @@ function setPageListeners() {
 
                 try {
                     showCircle(e);
-                } catch (err) { if (configs.debugMode) if (configs.debugMode) console.log(err); }
+                } catch (err) { if (configs.debugMode) console.log(err); }
                 // } else if (evt.button == 0) {
             } else if (evt.buttons == 3) {
                 rocketButtonPressed = 0;
@@ -369,19 +369,13 @@ function setPageListeners() {
 
         })
 
-
-
-
-
-
 }
 
 
 function checkScrollDirection(event) {
-    if (circleIsShown == false) return;
 
     /// Reset stored previous scroll position
-    if (configs.storeCurrentScrollPosition && previousScrollPosition !== {})
+    if (configs.storeCurrentScrollPosition && Object.keys(previousScrollPosition).length > 0)
         previousScrollPosition = {};
 
     if (circleIsShown == false) return;

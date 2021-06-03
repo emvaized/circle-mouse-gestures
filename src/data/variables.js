@@ -31,12 +31,15 @@ var elementUnderCursor;
 var currentClipboardContent;
 var fullscreenImageIsOpen = false;
 
-/// Index of level: index of button
-var selectedButtons = {};
+
+var selectedButtons = {}; /// index of level: index of button
 var preselectedButtons = {};
+
 var buttonsAvailability = {};
 var buttonsStatuses = {};
+
 var previousScrollPosition = {};
+var scrollingElementUnderCursor;
 
 /// Timer used in order to redraw circle when background script requests are finished.
 /// For example, to update tab-related segments availability - or state for fullscreen or pin tab segments

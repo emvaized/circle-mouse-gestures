@@ -1,3 +1,9 @@
+#1.1.0
+- Added 'New private window' action
+- Scroll actions can now work with embedded scrolling elements on page
+- Previosly stored scrolled position is not cleared on wheel scroll
+- Performance and animations improvements
+
 #1.0.9
 - Various improvements to pinned tabs functionality
 - Changed icon for 'duplicate tab' action
@@ -10,7 +16,6 @@
   * Move tab left
 
 #1.0.8
-
 - Added new actions:
   * Shrink page 
   * View image

@@ -970,7 +970,7 @@ function createActionDropdownButton(id, initialValue, cbOnChange, label) {
         });
     }
 
-    /// Generate sorted options
+    /// Generate level-specific sorted options
     Object.keys(sortedActionButtons[selectedMenuType]).forEach(function (key) {
         let optGroup = document.createElement('optgroup');
         optGroup.setAttribute('label', key == '—' ? key : chrome.i18n.getMessage(key));

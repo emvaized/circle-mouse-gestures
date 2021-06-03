@@ -31,6 +31,10 @@ chrome.runtime.onMessage.addListener(
                 chrome.windows.create({});
             } break;
 
+            case 'newPrivateWindow': {
+                chrome.windows.create({ incognito: true });
+            } break;
+
             case 'closeWindow': {
                 chrome.windows.getCurrent({}, function (window) {
                     chrome.windows.remove(window.id);

@@ -47,13 +47,14 @@ function setCanvas() {
     if (configs.debugMode) console.log('setting up canvas...');
 
     circle = document.createElement('canvas');
-    circle.setAttribute('class', 'cmg-circle-canvas');
+    circle.className = 'cmg-circle-canvas';
     circle.setAttribute('width', `${canvasRadius}px !imporant`);
     circle.setAttribute('height', `${canvasRadius}px !imporant`);
 
     circle.style.opacity = 0.0;
     circle.style.transform = 'scale(0.0)';
-    circle.style.transition = `opacity ${configs.animationDuration}ms ease-out, transform ${configs.animationDuration}ms ease-out`;
+    // circle.style.transition = `opacity ${configs.animationDuration}ms ease-out, transform ${configs.animationDuration}ms ease-out`;
+    circle.style.transition = `opacity ${configs.animationDuration}ms ease, transform ${configs.animationDuration}ms ease`;
     circle.style.visibility = 'visible';
     circle.style.left = `${leftCoord}px`;
     circle.style.top = `${topCoord}px`;
@@ -73,7 +74,6 @@ function setCanvas() {
             drawCircle(e, typeOfMenu);
         } catch (error) { if (configs.debugMode) console.log(error); }
     }
-
 }
 
 
@@ -86,12 +86,22 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
         my = (canvasRadius / 2);
     } else {
         mx = e.pageX - leftCoord;
-        // my = e.pageY - topCoord;
         my = e.pageY - topCoord - window.scrollY;
     }
 
     let mangle = (-Math.atan2(mx - (canvasRadius / 2), my - (canvasRadius / 2)) + Math.PI * 2.5) % (Math.PI * 2);
     let mradius = Math.sqrt(Math.pow(mx - (canvasRadius / 2), 2) + Math.pow(my - (canvasRadius / 2), 2));
+
+
+    /// Toggle rocker icon view
+    if (showRockerActionInCenter && scaleDownRockerIconWhenNonHovered && rockerCircle !== null && rockerCircle !== undefined) {
+        let rockerIconText = rockerCircle.querySelector('#cmg-rocker-icon-text');
+        if (mradius < innerCircleRadius) {
+            rockerIconText.style.transform = 'scale(1.0)';
+        } else {
+            rockerIconText.style.transform = 'scale(0.75)';
+        }
+    }
 
     /// Determine if it's needed to redraw circle
     let shouldRedraw = false;
@@ -109,9 +119,13 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
         } else {
             let totalRadius1 = totalCircleRadius;
 
-            // for (var level = 0; level < configs[typeOfMenu].levels.length; level++) {
-            for (let level = configs[typeOfMenu].levels.length - 1; level > -1; level--) {
-                let segmentsCount = configs[typeOfMenu].levels[level].buttons.length;
+            let levelsLength = configs[typeOfMenu].levels.length;
+
+            // for (var level = 0; level < levelsLength; level++) {
+            for (let level = levelsLength - 1; level > -1; level--) {
+
+                let levelData = configs[typeOfMenu].levels[level],
+                    segmentsCount = levelData.buttons.length;
 
                 for (let i = 0; i < segmentsCount; i++) {
 
@@ -119,8 +133,7 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
                         (-Math.PI / segmentsCount) :
                         (-Math.PI / segmentsCount) / 2) + i * (Math.PI / (segmentsCount / 2));
 
-                    // if (mradius > totalCircleRadius && level !== configs[typeOfMenu].levels.length - 1) continue;
-                    if (mradius > totalRadius1 && level !== configs[typeOfMenu].levels.length - 1) continue;
+                    if (mradius > totalRadius1 && level !== levelsLength - 1) continue;
 
                     if (mradius > (level == 0 ? configs.innerCircleRadius : (configs[typeOfMenu].levels[level - 1].width ?? configs.circleRadius)))
                         if (((mangle > angle && mangle < (angle + Math.PI / (segmentsCount / 2)))
@@ -128,7 +141,6 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
                         ) {
 
                             if (selectedButtons[level] !== i) {
-
                                 selectedButtons = {};
                                 selectedButtons[level] = i;
                                 shouldRedraw = true;
@@ -136,7 +148,7 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
                             }
                         }
                 }
-                totalRadius1 -= configs[typeOfMenu].levels[level].width ?? configs.circleRadius;
+                totalRadius1 -= levelData.width ?? configs.circleRadius;
             }
         }
     }
@@ -149,19 +161,20 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
 
         let totalRadius = totalCircleRadius;
 
-        for (var i = configs[typeOfMenu].levels.length - 1; i > -1; i--) {
-            if (configs[typeOfMenu].levels[i].enabled !== false) {
+        for (let i = configs[typeOfMenu].levels.length - 1; i > -1; i--) {
+            let levelData = configs[typeOfMenu].levels[i];
+            if (levelData.enabled !== false) {
 
                 drawCircleLevel(
                     typeOfMenu, e,
                     mangle, mradius,
                     /// buttonsToShow
-                    configs[typeOfMenu].levels[i].buttons,
+                    levelData.buttons,
                     /// circleRadius
                     totalRadius,
                     /// innerCircleRadius
                     i == 0 ? configs.innerCircleRadius :
-                        totalRadius - (configs[typeOfMenu].levels[i].width ?? configs.circleRadius) + configs.gapBetweenCircles,
+                        totalRadius - (levelData.width ?? configs.circleRadius) + configs.gapBetweenCircles,
                     ///level
                     i,
                     /// shouldRespectBoundary
@@ -190,13 +203,13 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
                     ctx.beginPath();
                     ctx.globalCompositeOperation = 'destination-out';
                     ctx.arc(canvasRadius / 2, canvasRadius / 2, (i == 0 ? configs.innerCircleRadius :
-                        totalRadius - (configs[typeOfMenu].levels[i].width ?? configs.circleRadius) + configs.gapBetweenCircles) * 0.75, 0, 2 * Math.PI, false);
+                        totalRadius - (levelData.width ?? configs.circleRadius) + configs.gapBetweenCircles) * 0.75, 0, 2 * Math.PI, false);
                     ctx.filter = 'blur(6px)';
                     ctx.fill();
                     ctx.restore();
                 }
 
-                totalRadius -= configs[typeOfMenu].levels[i].width ?? configs.circleRadius;
+                totalRadius -= levelData.width ?? configs.circleRadius;
             }
         }
     }
@@ -208,17 +221,6 @@ function hideCircle() {
 
         if (configs.circleHideAnimation)
             circle.style.opacity = 0.0;
-
-        circleIsShown = false;
-        buttonsAvailability = {};
-        buttonsStatuses = {};
-        document.onmousemove = null;
-
-        if (hoveredLink !== null && linkTooltip !== null)
-            hideLinkTooltip();
-
-        if (rockerCircle !== null)
-            hideRockerIcon(rocketButtonPressed !== null);
 
         if (configs.dimBackground) hideBackgroundDimmer();
 
@@ -236,15 +238,12 @@ function hideCircle() {
             if (configs.circleHideAnimation == false)
                 circle.style.transition = '';
 
-            console.log('circle transition:');
-            console.log(circle.style.transition);
-
             circle.style.transform = showRockerActionInCenter && rocketButtonPressed !== null ? 'scale(0.0)' : 'scale(1.5)';
 
             let selectedButton;
             let selectedLevel;
 
-            for (var i = 0; i < selectedKeys.length; i++) {
+            for (let i = 0, keysLength = selectedKeys.length; i < keysLength; i++) {
                 let key = selectedKeys[i];
                 if (selectedButtons[key] !== null && selectedButtons[key] !== undefined) {
                     selectedButton = selectedButtons[key];
@@ -279,8 +278,8 @@ function hideCircle() {
                 }
 
                 if (configs.debugMode) {
-                    if (configs.debugMode) console.log('action to perform by CMG:');
-                    if (configs.debugMode) console.log(actionToPerform);
+                    console.log('action to perform by CMG:');
+                    console.log(actionToPerform);
                 }
                 if (actionToPerform !== 'noAction')
                     triggerButtonAction(actionToPerform);
@@ -291,39 +290,32 @@ function hideCircle() {
 
             textSelection = null;
 
-            if (circle !== null)
-                circle.style.visibility = 'hidden';
-            if (circle !== null && circle.parentNode !== null)
+            // if (circle !== null)
+            //     circle.style.visibility = 'hidden';
+            if (circle !== null && circle.parentNode !== null) {
                 circle.parentNode.removeChild(circle);
-            circle = null;
+                circle = null;
+            }
 
-            for (i in configs.regularMenu.levels) {
+            for (let i = 0, l = configs.regularMenu.levels.length; i < l; i++) {
                 selectedButtons[i] = null;
             }
 
         }, configs.circleHideAnimation ? configs.animationDuration : 0);
+
+
+        if (hoveredLink !== null && linkTooltip !== null)
+            hideLinkTooltip();
+
+        if (rockerCircle !== null)
+            hideRockerIcon(rocketButtonPressed !== null);
+
+        /// Reset variables
+        circleIsShown = false;
+        buttonsAvailability = {};
+        buttonsStatuses = {};
+        document.onmousemove = null;
+        scrollingElementUnderCursor = null;
+
     } catch (e) { if (configs.debugMode) console.log(e); }
 }
-
-
-// function showBackgroundDimmer() {
-//     backgroundDimmer = document.createElement('div');
-//     backgroundDimmer.setAttribute('style', ` z-index: 9999; width:${document.body.clientWidth}px;height: ${document.body.scrollHeight}px;  opacity: 0.0; transition: opacity ${configs.animationDuration}ms ease-in-out; position:absolute; background: black !important; top: 0px; left: 0px;`);
-//     document.body.appendChild(backgroundDimmer);
-
-//     setTimeout(function () {
-//         backgroundDimmer.style.opacity = configs.backgroundDimmerOpacity;
-//     }, 1);
-// }
-
-// function hideBackgroundDimmer() {
-//     if (backgroundDimmer !== null && backgroundDimmer !== undefined) {
-//         backgroundDimmer.style.opacity = 0.0;
-//         setTimeout(function () {
-//             backgroundDimmer.parentNode.removeChild(backgroundDimmer);
-//             backgroundDimmer = null;
-//         }, configs.animationDuration);
-//     }
-// }
-
-

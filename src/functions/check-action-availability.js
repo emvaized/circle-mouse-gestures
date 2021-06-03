@@ -1,11 +1,7 @@
 function checkButtonAvailability(e, id) {
     switch (id) {
-        case 'scrollToTop': return window.scrollY !== 0.0;
-        case 'scrollToBottom': {
-            let scrollingElement = (document.scrollingElement || document.body);
-            let bottomOffset = scrollingElement.scrollHeight;
-            return window.screen.height + window.scrollY < bottomOffset;
-        }
+        case 'scrollToTop': return canScrollTop(elementUnderCursor);
+        case 'scrollToBottom': return canScrollBottom(elementUnderCursor);
         case 'scrollPageUp': return window.scrollY !== 0.0;
         case 'scrollPageDown': {
             return window.screen.height + window.scrollY < document.documentElement.scrollHeight;

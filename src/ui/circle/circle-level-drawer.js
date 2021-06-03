@@ -1,41 +1,19 @@
 function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRadius, innerCircleRadius, level = 0, shouldRespectBoundary = false, showIndexes = false, shouldCheckButtonsAvailability = true) {
 
-    // if (E === false) {
-    //     mx = (canvasRadius / 2);
-    //     my = (canvasRadius / 2);
-    // } else {
-    //     mx = E.pageX - leftCoord;
-    //     my = E.pageY - topCoord;
-    // }
-
     var segmentsCount = buttonsToShow.length;
     var levelOpacity = configs[typeOfMenu].levels[level].opacity;
-
-    // if (selectedButtons[level] !== null && selectedButtons[level] !== undefined)
-    //     levelOpacity = 1.0;
 
     var segmentColor = configs[typeOfMenu].levels[level].color ?? configs[typeOfMenu].color;
 
     var hoveredOverlayOpacity = 0.3;
 
-    // let mangle = (-Math.atan2(mx - (canvasRadius / 2), my - (canvasRadius / 2)) + Math.PI * 2.5) % (Math.PI * 2);
-    // let mradius = Math.sqrt(Math.pow(mx - (canvasRadius / 2), 2) + Math.pow(my - (canvasRadius / 2), 2));
-
-    /// Toggle rocker icon view
-    if (showRockerActionInCenter && scaleDownRockerIconWhenNonHovered && rockerCircle !== null && rockerCircle !== undefined) {
-        let rockerIconText = rockerCircle.querySelector('#cmg-rocker-icon-text');
-        if (level == 0 && mradius < innerCircleRadius) {
-            rockerIconText.style.transform = 'scale(1.0)';
-        } else {
-            rockerIconText.style.transform = 'scale(0.75)';
-        }
-    }
-
-    // selectedButtons[level] = null;
 
     /// Draw segments
     for (i = 0; i < segmentsCount; i++) {
-        if (actionIcons[buttonsToShow[i].id] == undefined) continue;
+
+        const segment = buttonsToShow[i];
+
+        if (actionIcons[segment.id] == undefined) continue;
 
         /// Rotate the circle a bit when buttons count is not even
         var angle = (segmentsCount % 2 == 0.0 ?
@@ -47,8 +25,8 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
 
         /// Specific color for segment
         var colorForButton = segmentColor;
-        if (buttonsToShow[i].color !== null && buttonsToShow[i].color !== undefined)
-            colorForButton = buttonsToShow[i].color;
+        if (segment.color !== null && segment.color !== undefined)
+            colorForButton = segment.color;
 
         /// Color for outline, font and icon
         var outlineColorRgb = getTextColorForBackground(colorForButton, 0.5);
@@ -122,12 +100,19 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
         // }
 
         ctx.fill();
+
+        // try {
+        //     drawLabel(E, ctx, segmentsCount, circleRadius, innerCircleRadius, segment, segmentColor, showIndexes, shouldCheckButtonsAvailability);
+        // } catch (e) { console.log(e) }
+
     }
 
     ctx.closePath();
 
     if (levelOpacity)
         ctx.globalAlpha = 1.0;
+
+
     /// Cut off circle in center
     ctx.save();
     ctx.beginPath();
@@ -181,23 +166,26 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
 }
 
 
+
+
+
 function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsToShow, segmentColor, showIndexes = false, shouldCheckButtonsAvailability = true) {
 
     for (var i = 0; i < segmentsCount; i++) {
         let colorForButton = segmentColor;
-        if (buttonsToShow[i].color !== null && buttonsToShow[i].color !== undefined)
-            colorForButton = buttonsToShow[i].color;
+        let segment = buttonsToShow[i];
+        if (segment.color !== null && segment.color !== undefined)
+            colorForButton = segment.color;
 
         let textColorRgb = getTextColorForBackground(colorForButton);
         let iconColorRgb = textColorRgb;
 
-        if (actionIcons[buttonsToShow[i].id] == undefined) continue;
+        if (actionIcons[segment.id] == undefined) continue;
 
         var buttonIsAvailable = true;
         if (shouldCheckButtonsAvailability) {
             try {
-                buttonIsAvailable = buttonsAvailability[buttonsToShow[i].id] ?? checkButtonAvailability(e, buttonsToShow[i].id);
-                // if (configs.debugMode) console.log(`button ${buttonsToShow[i].id} is available: ` + buttonIsAvailable);
+                buttonIsAvailable = buttonsAvailability[segment.id] ?? checkButtonAvailability(e, segment.id);
 
             } catch (e) {
                 if (configs.debugMode)
@@ -238,7 +226,7 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
 
         /// Draw text label underneath
         ctx.font = `${labelSize}px sans-serif`;
-        let textToDraw = returnActionLabel(buttonsToShow[i].id);
+        let textToDraw = returnActionLabel(segment.id);
 
         if (textToDraw.length >= 21) {
             /// Obfuscate shortened label with '...'
@@ -249,7 +237,7 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
 
         ctx.fillStyle = textColor;
 
-        let shouldDrawLabel = configs.addTextLabels && circleRadius - innerCircleRadius > iconSize * 2.5 && buttonsToShow[i].id !== 'noAction';
+        let shouldDrawLabel = configs.addTextLabels && circleRadius - innerCircleRadius > iconSize * 2.5 && segment.id !== 'noAction';
 
         if (shouldDrawLabel) {
             verticalShiftForIcon = wrapLabel(ctx, textToDraw, dxForText, dyForText + 15, segmentLength * 0.4, labelSize);
@@ -259,30 +247,15 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
         ctx.fillStyle = iconColor;
         ctx.font = `${iconSize}px sans-serif`;
 
-        if (buttonsToShow[i].id !== 'noAction')
-            if (actionIcons[buttonsToShow[i].id].length <= 3) {
+        if (segment.id !== 'noAction')
+            if (actionIcons[segment.id].length <= 3) {
                 /// Draw unicode icon
-                ctx.fillText(actionIcons[buttonsToShow[i].id], dxForText, dyForText - (circleRadius - innerCircleRadius > iconSize * 2.5 ? 4 : -4) - (verticalShiftForIcon == 0 ? 6 : verticalShiftForIcon) / 2);
+                ctx.fillText(actionIcons[segment.id], dxForText, dyForText - (circleRadius - innerCircleRadius > iconSize * 2.5 ? 4 : -4) - (verticalShiftForIcon == 0 ? 6 : verticalShiftForIcon) / 2);
             } else {
                 /// Draw SVG icon
                 try {
                     ctx.save();
-                    let p = returnActionIconPath(e, buttonsToShow[i].id);
-
-                    // if (buttonsToShow[i].id == 'playPauseVideo') {
-                    //     p = new Path2D(actionIcons[elementUnderCursor == null || elementUnderCursor == undefined ? 'playPauseVideo' : elementUnderCursor.paused ? 'playVideo' : 'pauseVideo']);
-                    // } else if (buttonsToShow[i].id == 'textTooLong') {
-                    //     p = new Path2D(actionIcons[document.querySelector('.ttl-drag-handle') !== null ? 'textTooLongReverse' : 'textTooLong']);
-                    // } else if (configs.storeCurrentScrollPosition && (buttonsToShow[i].id == 'scrollToTop' || buttonsToShow[i].id == 'scrollToBottom')) {
-                    //     let previousPosition = previousScrollPosition[buttonsToShow[i].id];
-                    //     if (previousPosition !== null && previousPosition !== undefined) {
-                    //         p = new Path2D(actionIcons[buttonsToShow[i].id == 'scrollToTop' ? 'scrollBackTop' : 'scrollBackBottom']);
-                    //     } else {
-                    //         p = new Path2D(actionIcons[buttonsToShow[i].id]);
-                    //     }
-                    // } else {
-                    //     p = new Path2D(actionIcons[buttonsToShow[i].id]);
-                    // }
+                    let p = returnActionIconPath(e, segment.id);
 
                     ctx.translate(dxForText - (iconSize / 2), dyForText - (verticalShiftForIcon == 0 && shouldDrawLabel ? 6 : verticalShiftForIcon) - (iconSize / (circleRadius - innerCircleRadius > iconSize * 2.5 ? 1.5 : 2)));
                     let scale = iconSize / 24;
@@ -306,9 +279,6 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
         }
     }
 }
-
-
-
 
 
 function wrapLabel(context, text, x, y, maxWidth, lineHeight) {

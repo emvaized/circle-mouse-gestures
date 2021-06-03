@@ -1,3 +1,5 @@
+
+
 function triggerButtonAction(actionToPerform) {
     if (configs.debugMode) {
         if (configs.debugMode) console.log('Action to perform: ');
@@ -19,42 +21,28 @@ function triggerButtonAction(actionToPerform) {
         } break;
 
         case 'scrollToTop': {
-            let scrollingElement = (document.scrollingElement || document.body);
-            let bottomOffset = scrollingElement.scrollHeight;
-            if (configs.storeCurrentScrollPosition && window.screen.height + window.scrollY < bottomOffset)
-                previousScrollPosition['scrollToBottom'] = window.scrollY;
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            scrollElementToTop(elementUnderCursor);
         } break;
 
         case 'scrollToBottom': {
-            if (configs.storeCurrentScrollPosition && window.scrollY !== 0.0)
-                previousScrollPosition['scrollToTop'] = window.scrollY;
-
-            let scrollingElement = (document.scrollingElement || document.body);
-            let amountToScroll = scrollingElement.scrollHeight;
-            if (configs.debugMode)
-                console.log(`scrolling to ${amountToScroll}...`);
-            window.scrollTo({ top: amountToScroll, behavior: 'smooth' });
+            scrollElementToBottom(elementUnderCursor);
         } break;
 
         case 'scrollBackTop': {
-            window.scrollTo({ top: previousScrollPosition['scrollToTop'], behavior: 'smooth' });
+            // window.scrollTo({ top: previousScrollPosition['scrollToTop'], behavior: 'smooth' });
+            scrollElementToAmount(elementUnderCursor, previousScrollPosition['scrollToTop'])
             previousScrollPosition = {};
         } break;
 
         case 'scrollBackBottom': {
-            window.scrollTo({ top: previousScrollPosition['scrollToBottom'], behavior: 'smooth' });
+            // window.scrollTo({ top: previousScrollPosition['scrollToBottom'], behavior: 'smooth' });
+            scrollElementToAmount(elementUnderCursor, previousScrollPosition['scrollToBottom'])
             previousScrollPosition = {};
         } break;
 
         case 'scrollPageUp': {
             window.scrollTo({ top: window.scrollY - window.innerHeight * .9, behavior: 'smooth' });
         } break;
-
-        // case 'closeCurrentTab': {
-        //     circle.style.transition = `none`;
-        //     chrome.runtime.sendMessage({ actionToDo: actionToPerform });
-        // } break;
 
         case 'scrollPageDown': {
             window.scrollTo({ top: window.scrollY + window.innerHeight * .9, behavior: 'smooth' });
@@ -258,8 +246,8 @@ function triggerButtonAction(actionToPerform) {
                     let link = hoveredLink;
 
                     if (configs.debugMode) {
-                        if (configs.debugMode) console.log('link:');
-                        if (configs.debugMode) console.log(link);
+                        console.log('link:');
+                        console.log(link);
                     }
 
                     if (typeOfMenu == 'selectionMenu' || typeOfMenu == 'textFieldMenu')

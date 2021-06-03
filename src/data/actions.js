@@ -15,11 +15,14 @@ var sortedActionButtons = {
             'closeAllTabsExceptCurrent',
             'reloadTab',
             'restoreClosedTab',
-            'newWindow',
-            'closeWindow',
             'moveToNewWindow',
             'moveTabLeft',
             'moveTabRight',
+        ],
+        'window': [
+            'newWindow',
+            'newPrivateWindow',
+            'closeWindow',
         ],
         'page': [
             'pageZoomIn',

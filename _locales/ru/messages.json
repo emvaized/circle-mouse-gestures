@@ -315,6 +315,10 @@
         "message": "Навигация",
         "description": ""
     },
+    "newPrivateWindow": {
+        "message": "новое приватное окно",
+        "description": ""
+    },
     "newTab": {
         "message": "Новая вкладка",
         "description": "Ярлык для кнопки кругового меню"
@@ -625,6 +629,10 @@
     },
     "closeWindow": {
         "message": "Закрыть окно",
+        "description": ""
+    },
+    "window": {
+        "message": "Окно",
         "description": ""
     }
 }

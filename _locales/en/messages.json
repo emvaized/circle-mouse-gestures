@@ -315,6 +315,10 @@
         "message": "Navigation",
         "description": ""
     },
+    "newPrivateWindow": {
+        "message": "New private tab",
+        "description": ""
+    },
     "newTab": {
         "message": "New tab",
         "description": ""
@@ -621,6 +625,10 @@
     },
     "closeWindow": {
         "message": "Close window",
+        "description": ""
+    },
+    "window": {
+        "message": "Window",
         "description": ""
     }
 }

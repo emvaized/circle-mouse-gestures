@@ -67,7 +67,7 @@ async function showLinkTooltip() {
 
     /// Set body
     let text = document.createElement('span');
-    text.setAttribute('id', 'cmg-helper-tooltip-body');
+    text.id = 'cmg-helper-tooltip-body';
     let maxSymbolsInBody = 33;
 
     if (typeOfMenu == 'imageMenu' || typeOfMenu == 'playerMenu') {
@@ -75,11 +75,11 @@ async function showLinkTooltip() {
         try {
             fileName = hoveredLink.split('#').shift().split('?').shift().split('/').pop();
         } catch (e) { if (configs.debugMode) console.log(e); }
-        text.innerHTML = fileName !== null && fileName !== undefined ? fileName : configs.showFullLinkInTooltip ? hoveredLink : hoveredLink.substring(0, 26);
+        text.innerText = fileName !== null && fileName !== undefined ? fileName : configs.showFullLinkInTooltip ? hoveredLink : hoveredLink.substring(0, 26);
     } else {
         if (typeOfMenu == 'selectionMenu' || (typeOfMenu == 'textFieldMenu' && textSelection.toString() !== '')) {
             let textSelectionString = textSelection.toString();
-            text.innerHTML = textSelectionString.length > maxSymbolsInBody ? textSelectionString.substring(0, maxSymbolsInBody - 3) + '...' : textSelectionString;
+            text.innerText = textSelectionString.length > maxSymbolsInBody ? textSelectionString.substring(0, maxSymbolsInBody - 3) + '...' : textSelectionString;
         } else if (typeOfMenu == 'textFieldMenu') {
 
             /// Set tooltip body to display current clipboard content
@@ -97,9 +97,9 @@ async function showLinkTooltip() {
                 // let label = document.getElementById('cmg-helper-tooltip-label');
                 // let text = document.getElementById('cmg-helper-tooltip-body');
                 if (text !== null)
-                    text.innerHTML = currentClipboardContent.length > maxSymbolsInBody ? currentClipboardContent.substring(0, maxSymbolsInBody - 3) + '...' : currentClipboardContent;
+                    text.innerText = currentClipboardContent.length > maxSymbolsInBody ? currentClipboardContent.substring(0, maxSymbolsInBody - 3) + '...' : currentClipboardContent;
                 if (label !== null)
-                    label.innerHTML = chrome.i18n.getMessage('clipboard') + '<br />';
+                    label.innerText = chrome.i18n.getMessage('clipboard') + '<br />';
 
 
                 let dxToShow = leftCoord + (canvasRadius / 2) - (linkTooltip.clientWidth / 2);
@@ -134,19 +134,13 @@ async function showLinkTooltip() {
 
         }
         else {
-            text.innerHTML = configs.showFullLinkInTooltip ? linkToDisplay : linkToDisplay.length > maxSymbolsInBody ? linkToDisplay.substring(0, maxSymbolsInBody - 3) + '...' : linkToDisplay;
+            text.innerText = configs.showFullLinkInTooltip ? linkToDisplay : linkToDisplay.length > maxSymbolsInBody ? linkToDisplay.substring(0, maxSymbolsInBody - 3) + '...' : linkToDisplay;
 
         }
     }
 
     text.setAttribute('style', `color: rgba(${fgColorRgb.red}, ${fgColorRgb.green}, ${fgColorRgb.blue}, 1.0); word-break:break-all;${typeOfMenu == 'selectionMenu' ? '' : 'text-decoration: underline;'}`);
     linkTooltip.appendChild(text);
-
-    // if (configs.showFullLinkInTooltip == false) {
-    //     let threeDots = document.createElement('span');
-    //     threeDots.innerHTML = '...';
-    //     linkTooltip.appendChild(threeDots);
-    // }
 
     document.body.appendChild(linkTooltip);
 
