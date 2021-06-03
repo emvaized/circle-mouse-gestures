@@ -616,7 +616,7 @@
         "description": ""
     },
     "moveToNewWindow": {
-        "message": "Move to new window",
+        "message": "Open in new window",
         "description": ""
     },
     "moveTabRight": {

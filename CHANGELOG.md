@@ -4,6 +4,7 @@
   * Open in private window
 - Scroll actions can now work with embedded scrolling elements on page
 - Previosly stored scrolled position is not cleared on wheel scroll
+- "Open in new window" and "Open new window" actions now work for links
 - Performance and animations improvements
 
 #1.0.9
