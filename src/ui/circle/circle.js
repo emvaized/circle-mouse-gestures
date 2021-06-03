@@ -127,31 +127,38 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
                 let levelData = configs[typeOfMenu].levels[level],
                     segmentsCount = levelData.buttons.length;
 
-                for (let i = 0; i < segmentsCount; i++) {
+                if (levelData.enabled !== false) {
+                    for (let i = 0; i < segmentsCount; i++) {
 
-                    let angle = (segmentsCount % 2 == 0.0 ?
-                        (-Math.PI / segmentsCount) :
-                        (-Math.PI / segmentsCount) / 2) + i * (Math.PI / (segmentsCount / 2));
+                        let angle = (segmentsCount % 2 == 0.0 ?
+                            (-Math.PI / segmentsCount) :
+                            (-Math.PI / segmentsCount) / 2) + i * (Math.PI / (segmentsCount / 2));
 
-                    if (mradius > totalRadius1 && level !== levelsLength - 1) continue;
+                        // if (mradius > totalRadius1 && level !== levelsLength - 1) continue;
+                        if (mradius > totalRadius1 && level !== enabledLevelsCount - 1) continue;
 
-                    if (mradius > (level == 0 ? configs.innerCircleRadius : (configs[typeOfMenu].levels[level - 1].width ?? configs.circleRadius)))
-                        if (((mangle > angle && mangle < (angle + Math.PI / (segmentsCount / 2)))
-                            || (mangle > (Math.PI * (segmentsCount * 2 - (segmentsCount % 2 == 0.0 ? 1 : 0.5)) / segmentsCount) && i == 0))
-                        ) {
+                        if (mradius > (level == 0 ? configs.innerCircleRadius : (configs[typeOfMenu].levels[level - 1].width ?? configs.circleRadius)))
+                            if (((mangle > angle && mangle < (angle + Math.PI / (segmentsCount / 2)))
+                                || (mangle > (Math.PI * (segmentsCount * 2 - (segmentsCount % 2 == 0.0 ? 1 : 0.5)) / segmentsCount) && i == 0))
+                            ) {
 
-                            if (selectedButtons[level] !== i) {
-                                selectedButtons = {};
-                                selectedButtons[level] = i;
-                                shouldRedraw = true;
-                                break;
+                                if (selectedButtons[level] !== i) {
+                                    selectedButtons = {};
+                                    selectedButtons[level] = i;
+                                    shouldRedraw = true;
+                                    break;
+                                }
                             }
-                        }
+                    }
+
+                    totalRadius1 -= levelData.width ?? configs.circleRadius;
                 }
-                totalRadius1 -= levelData.width ?? configs.circleRadius;
+
             }
         }
     }
+
+    console.log(selectedButtons);
 
     if (shouldRedraw) {
         ctx.clearRect(0, 0, canvasRadius, canvasRadius);

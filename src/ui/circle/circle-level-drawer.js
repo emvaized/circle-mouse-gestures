@@ -29,7 +29,7 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
             colorForButton = segment.color;
 
         /// Color for outline, font and icon
-        var outlineColorRgb = getTextColorForBackground(colorForButton, 0.5);
+        var outlineColorRgb = getTextColorForBackground(colorForButton, 1.0);
         var outlineColor = `rgba(${outlineColorRgb.red}, ${outlineColorRgb.green}, ${outlineColorRgb.blue}, 0.5)`;
 
         // if (selectedButtons[level] == i) {

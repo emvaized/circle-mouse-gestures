@@ -595,7 +595,6 @@ function generateLevelConfigs(levelIndex = 0) {
 
         /// Delete button
         let deleteButtonIdentifier = `deleteButton-${levelIndex}-${i}`;
-
         var deleteButton = document.createElement('button');
         deleteButton.textContent = chrome.i18n.getMessage("deleteLabel");
         deleteButton.setAttribute('style', 'display: inline-block; max-width: 100px;');
@@ -617,7 +616,7 @@ function generateLevelConfigs(levelIndex = 0) {
         resetButtonColorButton.textContent = '↻';
         let resetButtonColorId = `resetButtonColor-${levelIndex}-${i}`;
         resetButtonColorButton.setAttribute('title', chrome.i18n.getMessage("resetColor"));
-        resetButtonColorButton.setAttribute('style', 'display: inline-block; opacity: 0.5; float: right; transform: translate(-9px, 0px); font-size: 16px; vertical-align: middle; transition: opacity 150ms ease-out;');
+        resetButtonColorButton.setAttribute('style', 'display: inline-block; opacity: 0.5; float: right; transform: translate(0px, 0px); font-size: 16px; vertical-align: middle; transition: opacity 150ms ease-out;');
         resetButtonColorButton.setAttribute('id', resetButtonColorId);
         setTimeout(function () {
             let resetButtonColor = document.getElementById(resetButtonColorId);
@@ -645,7 +644,7 @@ function generateLevelConfigs(levelIndex = 0) {
         let customButtonColorInput = document.createElement('input');
         let customButtonColorInputId = `customButtonColorInput-${levelIndex}-${i}`;
         customButtonColorInput.setAttribute('type', 'color');
-        customButtonColorInput.setAttribute('style', 'display: inline-block; max-width: 30px;  padding: 0px; vertical-align: middle; float: right; transform: translate(-7px, 0px) ');
+        customButtonColorInput.setAttribute('style', 'display: inline-block; max-width: 30px;  padding: 0px; vertical-align: middle; float: right; transform: translate(2px, 0px) ');
         customButtonColorInput.setAttribute('id', customButtonColorInputId);
         customButtonColorInput.setAttribute('title', chrome.i18n.getMessage("segmentColor"));
 
@@ -931,7 +930,6 @@ function generateAddLevelButton() {
 }
 
 /// Service functions
-
 function createActionDropdownButton(id, initialValue, cbOnChange, label) {
     let selectContainer = document.createElement('div');
     selectContainer.setAttribute('style', 'display: inline');

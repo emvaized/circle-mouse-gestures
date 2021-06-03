@@ -1,3 +1,6 @@
+#1.1.1
+- Fixed issues with disabled levels
+
 #1.1.0
 - Added new actions:
   * New private window
