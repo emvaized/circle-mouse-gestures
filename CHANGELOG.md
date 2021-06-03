@@ -1,5 +1,6 @@
 #1.1.1
 - Fixed issues with disabled levels
+- Options layout fixes
 
 #1.1.0
 - Added new actions:
