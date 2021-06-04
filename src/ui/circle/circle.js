@@ -1,5 +1,5 @@
 var totalCircleRadius;
-let enabledLevelsCount = 0;
+let enabledLevelsCount;
 
 function showCircle(e) {
     var evt = e || window.event;
@@ -8,12 +8,15 @@ function showCircle(e) {
         if (evt.buttons == 2) {
             preselectedButtons = {};
             totalCircleRadius = 0.0;
+            enabledLevelsCount = 0;
 
-            for (var i = 0; i < configs[typeOfMenu].levels.length; i++) {
+            for (let i = 0, len = configs[typeOfMenu].levels.length; i < len; i++) {
+
+                let level = configs[typeOfMenu].levels[i];
 
                 /// Calculate total circle radius with only enabled levels
-                if (configs[typeOfMenu].levels[i].enabled !== false) {
-                    totalCircleRadius += configs.gapBetweenCircles + (configs[typeOfMenu].levels[i].width ?? configs.circleRadius);
+                if (level.enabled !== false) {
+                    totalCircleRadius += configs.gapBetweenCircles + (level.width ?? configs.circleRadius);
                     enabledLevelsCount += 1;
                 }
             }
@@ -53,7 +56,6 @@ function setCanvas() {
 
     circle.style.opacity = 0.0;
     circle.style.transform = 'scale(0.0)';
-    // circle.style.transition = `opacity ${configs.animationDuration}ms ease-out, transform ${configs.animationDuration}ms ease-out`;
     circle.style.transition = `opacity ${configs.animationDuration}ms ease, transform ${configs.animationDuration}ms ease`;
     circle.style.visibility = 'visible';
     circle.style.left = `${leftCoord}px`;
@@ -62,7 +64,7 @@ function setCanvas() {
     setTimeout(function () {
         circle.style.transform = 'scale(1.0)';
         circle.style.opacity = configs.circleOpacity;
-    }, 1);
+    }, 2);
 
     document.body.appendChild(circle);
     ctx = circle.getContext('2d');
@@ -91,7 +93,6 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
 
     let mangle = (-Math.atan2(mx - (canvasRadius / 2), my - (canvasRadius / 2)) + Math.PI * 2.5) % (Math.PI * 2);
     let mradius = Math.sqrt(Math.pow(mx - (canvasRadius / 2), 2) + Math.pow(my - (canvasRadius / 2), 2));
-
 
     /// Toggle rocker icon view
     if (showRockerActionInCenter && scaleDownRockerIconWhenNonHovered && rockerCircle !== null && rockerCircle !== undefined) {
@@ -300,9 +301,10 @@ function hideCircle() {
                 circle = null;
             }
 
-            for (let i = 0, l = configs.regularMenu.levels.length; i < l; i++) {
-                selectedButtons[i] = null;
-            }
+            // for (let i = 0, l = configs.regularMenu.levels.length; i < l; i++) {
+            //     selectedButtons[i] = null;
+            // }
+            selectedButtons = {};
 
         }, configs.circleHideAnimation ? configs.animationDuration : 0);
 

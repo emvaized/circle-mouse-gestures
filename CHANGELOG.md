@@ -1,6 +1,7 @@
 #1.1.2
-- Fixed options layout with new Firefox update
+- Fixed options layout for new Firefox update
 - Added 'Print' action
+- Background dimmer is now enabled by default
 - Small layout fixes and improvements
 
 #1.1.1

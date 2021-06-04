@@ -7,7 +7,7 @@ var configs = {
     'hideCircleIfNoActionSelected': true,
     'useMouseWheelGestures': true,
     'addTextLabels': true,
-    'dimBackground': false,
+    'dimBackground': true,
     'backgroundDimmerOpacity': 0.2,
     'circleOpacity': 1.0,
     'innerCircleRadius': 30,
