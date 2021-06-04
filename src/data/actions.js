@@ -30,6 +30,7 @@ var sortedActionButtons = {
             'pageZoomOut',
             'copyUrl',
             'translate',
+            'print',
             'addToBookmarks',
             'undoAction',
             'redoAction',

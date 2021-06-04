@@ -99,7 +99,7 @@ async function showLinkTooltip() {
                 if (text !== null)
                     text.innerText = currentClipboardContent.length > maxSymbolsInBody ? currentClipboardContent.substring(0, maxSymbolsInBody - 3) + '...' : currentClipboardContent;
                 if (label !== null)
-                    label.innerText = chrome.i18n.getMessage('clipboard') + '<br />';
+                    label.innerHTML = chrome.i18n.getMessage('clipboard') + '<br />';
 
 
                 let dxToShow = leftCoord + (canvasRadius / 2) - (linkTooltip.clientWidth / 2);

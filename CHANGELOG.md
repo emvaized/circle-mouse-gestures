@@ -1,3 +1,8 @@
+#1.1.2
+- Fixed options layout with new Firefox update
+- Added 'Print' action
+- Small layout fixes and improvements
+
 #1.1.1
 - Fixed issues with disabled levels
 - Options layout fixes

@@ -519,7 +519,7 @@ function generateLevelConfigs(levelIndex = 0) {
         let moveUpButtonIdentifier = `moveUpButton-${levelIndex}-${i}`;
         var moveUpButton = document.createElement('button');
         moveUpButton.textContent = 'ᐱ';
-        moveUpButton.setAttribute('style', 'max-width: 1px; padding: 1px; align-items: center');
+        moveUpButton.setAttribute('style', 'max-width: 40px; min-width: 40px; padding: 1px; align-items: center');
         moveUpButton.setAttribute('id', moveUpButtonIdentifier);
         moveUpButton.setAttribute('title', chrome.i18n.getMessage("moveUpLabel"));
 
@@ -555,7 +555,7 @@ function generateLevelConfigs(levelIndex = 0) {
 
         var moveDownButton = document.createElement('button');
         moveDownButton.textContent = 'ᐯ';
-        moveDownButton.setAttribute('style', 'max-width: 1px; padding: 1px; align-items: center');
+        moveDownButton.setAttribute('style', 'max-width: 40px; min-width: 40px;  padding: 1px; align-items: center');
         moveDownButton.setAttribute('id', moveDownButtonIdentifier);
         moveDownButton.setAttribute('title', chrome.i18n.getMessage("moveDownLabel"));
 

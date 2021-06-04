@@ -57,7 +57,7 @@ function scrollElementToTop(element) {
         scrollingElementUnderCursor = getScrollParent(element);
 
     try {
-        let bottomOffset = scrollingElementUnderCursor.scrollHeight - scrollingElementUnderCursor.clientHeight;
+        // let bottomOffset = scrollingElementUnderCursor.scrollHeight - scrollingElementUnderCursor.clientHeight;
 
         // let currentScrollPosition = scrollingElementUnderCursor.scrollTop ?? window.scrollY;
 
@@ -66,7 +66,7 @@ function scrollElementToTop(element) {
 
 
         scrollElementUnderCursor(scrollingElementUnderCursor, 0, 'scrollToTop')
-    } catch (e) { console.log(e); }
+    } catch (e) { if (configs.debugMode) console.log(e); }
 }
 
 function scrollElementToBottom(element) {
@@ -74,21 +74,17 @@ function scrollElementToBottom(element) {
     if (scrollingElementUnderCursor == null || scrollingElementUnderCursor == undefined)
         scrollingElementUnderCursor = getScrollParent(element);
 
-    // let currentScrollPosition = scrollingElementUnderCursor.scrollTop ?? window.scrollY;
-
-    // if (configs.storeCurrentScrollPosition && currentScrollPosition !== 0.0)
-    //     previousScrollPosition['scrollToTop'] = currentScrollPosition;
-
     let scrollHeight = scrollingElementUnderCursor.scrollHeight;
     let clientHeight = scrollingElementUnderCursor.clientHeight;
-
     let amountToScroll = scrollHeight > clientHeight ? scrollHeight - clientHeight : scrollHeight;
 
     if (configs.debugMode)
         console.log(`scrolling to ${amountToScroll}...`);
-    // window.scrollTo({ top: amountToScroll, behavior: 'smooth' });
 
-    scrollElementUnderCursor(scrollingElementUnderCursor, amountToScroll, 'scrollToBottom');
+    try {
+        scrollElementUnderCursor(scrollingElementUnderCursor, amountToScroll, 'scrollToBottom');
+    } catch (e) { if (configs.debugMode) console.log(e); }
+
 }
 
 function scrollElementToAmount(element, amount) {

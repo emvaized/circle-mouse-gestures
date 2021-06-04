@@ -634,5 +634,9 @@
     "window": {
         "message": "Window",
         "description": ""
+    },
+    "print": {
+        "message": "Print",
+        "description": ""
     }
 }

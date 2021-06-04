@@ -158,8 +158,6 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
         }
     }
 
-    console.log(selectedButtons);
-
     if (shouldRedraw) {
         ctx.clearRect(0, 0, canvasRadius, canvasRadius);
 
@@ -297,8 +295,6 @@ function hideCircle() {
 
             textSelection = null;
 
-            // if (circle !== null)
-            //     circle.style.visibility = 'hidden';
             if (circle !== null && circle.parentNode !== null) {
                 circle.parentNode.removeChild(circle);
                 circle = null;

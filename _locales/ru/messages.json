@@ -638,5 +638,9 @@
     "window": {
         "message": "Окно",
         "description": ""
+    },
+    "print": {
+        "message": "Печать",
+        "description": ""
     }
 }

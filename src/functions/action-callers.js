@@ -220,6 +220,9 @@ function triggerButtonAction(actionToPerform) {
             selectAllText(document.body);
         } break;
 
+        case 'print': {
+            window.print();
+        } break;
 
         case 'normalPlaybackSpeed': {
             if (elementUnderCursor !== null) {
