@@ -34,7 +34,6 @@ function showCircle(e) {
             topCoord = e.clientY - (canvasRadius / 2) + window.scrollY + 1;
 
             topCoord = e.pageY - (canvasRadius / 2) - window.scrollY + 1;
-            // topCoord = e.pageY - (canvasRadius / 2) + 1;
 
             circleIsShown = true;
             setCanvas();

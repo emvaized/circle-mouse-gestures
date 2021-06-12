@@ -155,8 +155,19 @@ function triggerButtonAction(actionToPerform) {
 
         case 'playerFullScreen': {
             if (elementUnderCursor !== null) {
-                elementUnderCursor.click();
-                elementUnderCursor.click();
+                elementUnderCursor.requestFullscreen();
+
+                let elem = elementUnderCursor;
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.mozRequestFullScreen) {
+                    elem.mozRequestFullScreen();
+                } else if (elem.webkitRequestFullscreen) {
+                    elem.webkitRequestFullscreen();
+                } else if (elem.msRequestFullscreen) {
+                    elem.msRequestFullscreen();
+                }
+
             }
         } break;
 

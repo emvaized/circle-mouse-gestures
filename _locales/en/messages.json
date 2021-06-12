@@ -638,5 +638,9 @@
     "print": {
         "message": "Print",
         "description": ""
+    },
+    "playerFullScreen": {
+        "message": "Request fullscreen",
+        "description": ""
     }
 }

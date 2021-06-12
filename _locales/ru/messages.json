@@ -642,5 +642,9 @@
     "print": {
         "message": "Печать",
         "description": ""
+    },
+    "playerFullScreen": {
+        "message": "Во весь экран",
+        "description": ""
     }
 }

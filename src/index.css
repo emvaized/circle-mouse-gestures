@@ -10,6 +10,7 @@ html {
   opacity: 0.0;
   position: fixed;
   z-index: 9999999;
+  /* z-index: 2147483647; */
   transform: scale(0.0);
   background-color: transparent;
   color: transparent;

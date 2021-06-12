@@ -1,3 +1,6 @@
+#1.1.3
+- Fixed player fullscreen action
+
 #1.1.2
 - Fixed options layout for new Firefox update
 - Added 'Print' action
