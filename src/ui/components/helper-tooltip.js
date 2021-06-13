@@ -153,7 +153,7 @@ async function showLinkTooltip() {
     linkTooltip.style.transform = `translate(${dxToShow}px, ${topCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px) scale(0.0)`;
 
     setTimeout(function () {
-        linkTooltip.style.transition = `transform ${configs.animationDuration}ms ease-out, opacity ${configs.animationDuration}ms ease-out`;
+        linkTooltip.style.transition = `transform ${configs.animationDuration}ms ease, opacity ${configs.animationDuration}ms ease`;
         linkTooltip.style.transform = `translate(${dxToShow}px, ${dyToShow}px) scale(1.0)`;
         // linkTooltip.style.opacity = configs.linkTooltipOpacity;
         linkTooltip.style.opacity = configs.circleOpacity ?? 1.0;

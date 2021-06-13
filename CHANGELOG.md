@@ -1,3 +1,6 @@
+#1.1.4
+- Small layout fixes and improvements
+
 #1.1.3
 - Fixed player fullscreen action
 
