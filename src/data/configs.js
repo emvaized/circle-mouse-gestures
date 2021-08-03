@@ -73,7 +73,7 @@ var configs = {
     'linkMenu': {
         'color': "#3777CD",
         'rockerLeftClick': 'openInFgTab',
-        'rockerMiddleClick': 'noAction',
+        'rockerMiddleClick': 'openLinkPreview',
         'mouseWheelUpAction': 'scrollToTop',
         'mouseWheelDownAction': 'scrollToBottom',
         'levels': [
@@ -83,6 +83,7 @@ var configs = {
                     { 'id': 'copyUrl' },
                     { 'id': 'openInBgTab' },
                     { 'id': 'copyLinkText' },
+                    { 'id': 'openLinkPreview' },
                 ]
             }
         ]

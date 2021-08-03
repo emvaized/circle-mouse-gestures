@@ -127,6 +127,7 @@ var defaultConfigs = {
                     { 'id': 'copyUrl' },
                     { 'id': 'openInBgTab' },
                     { 'id': 'copyLinkText' },
+                    { 'id': 'openLinkPreview' },
                 ]
             }
         ]
