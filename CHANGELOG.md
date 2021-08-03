@@ -4,9 +4,6 @@
 - Fixed zoom not working for fullscreen image view
 - Fixed bugs in options page + improved labels
 
-#1.1.5
-- Changed extension name
-
 #1.1.4
 - Small layout fixes and improvements
 
