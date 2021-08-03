@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "Circle Mouse Gestures",
-  "version": "1.1.4",
+  "name": "Circle Mouse Gestures - pie menu",
+  "version": "1.2.0",
   "description": "__MSG_extensionDescription__",
   "default_locale": "en",
   "icons": {
@@ -36,6 +36,7 @@
         "src/functions/text-format-functions.js",
         "src/functions/input-changes-stack.js",
         "src/utils/fullscreen-image.js",
+        "src/utils/link-preview.js",
         "src/utils/text-too-long.js",
         "src/ui/circle/circle.js",
         "src/ui/circle/circle-level-drawer.js",

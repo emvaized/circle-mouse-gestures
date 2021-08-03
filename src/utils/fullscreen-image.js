@@ -36,7 +36,6 @@ function openImageFullscreen(elementUnderCursor) {
 
     /// Final dx/dy calculation
     let dxToShow = window.innerWidth / 2 - (originalWidth * scale / 2);
-    // let dyToShow = window.innerHeight / 2 + window.scrollY - (originalHeight * scale / 2);
     let dyToShow = window.innerHeight / 2 - (originalHeight * scale / 2);
 
     /// Storing values as initial
@@ -230,7 +229,7 @@ function openImageFullscreen(elementUnderCursor) {
     let copyOfImage = document.createElement('div');
     copyOfImage.setAttribute('id', idForImage);
     // copyOfImage.setAttribute('style', `transform-origin: 0% 0%; cursor: grab;position: absolute; transition: transform ${transitionDuration}ms ease-in-out; left: 0px; top: 0px; transform: translate(${imageRect.left}px, ${imageRect.top + window.scrollY}px); z-index: 100002;`)
-    copyOfImage.setAttribute('style', `transform-origin: 0% 0%; cursor: grab;position: fixed; transition: transform ${transitionDuration}ms ease-in-out; left: 0px; top: 0px; transform: translate(${imageRect.left}px, ${imageRect.top}px); z-index: 100002;`)
+    copyOfImage.setAttribute('style', `transform-origin: 0% 0%; cursor: grab; position: fixed; transition: transform ${transitionDuration}ms ease-in-out; left: 0px; top: 0px; transform: translate(${imageRect.left}px, ${imageRect.top}px); z-index: 100002;`)
     copyOfImage.style.maxHeight = `${originalHeight}px`;
     copyOfImage.appendChild(rotationWrapper);
 
@@ -276,7 +275,8 @@ function openImageFullscreen(elementUnderCursor) {
 
                     /// take the scale into account with the offset
                     var xs = (e.clientX - dxToShow) / scale,
-                        ys = (e.clientY + window.scrollY - dyToShow) / scale;
+                        // ys = (e.clientY + window.scrollY - dyToShow) / scale;
+                        ys = (e.clientY - dyToShow) / scale;
 
                     let scaleValueWithinSteps = false;
                     scaleSteps.forEach(function (step) {
@@ -295,7 +295,8 @@ function openImageFullscreen(elementUnderCursor) {
                             scale = initialScale * scaleSteps[stepsCounter];
                             /// reverse the offset amount with the new scale
                             dxToShow = e.clientX - xs * scale;
-                            dyToShow = e.clientY + window.scrollY - ys * scale;
+                            // dyToShow = e.clientY + window.scrollY - ys * scale;
+                            dyToShow = e.clientY - ys * scale;
                         }
                     }
                     else {
@@ -340,6 +341,20 @@ function openImageFullscreen(elementUnderCursor) {
         });
     }
 
+    function keyboardListener(e) {
+        if (e.key === "Escape") { // escape key maps to keycode `27`
+            e.preventDefault();
+            closeFullscreenView();
+        } else if (e.key == 'ArrowUp') {
+            e.preventDefault();
+            scaleWholeImageUp(1.0);
+
+        } else if (e.key == 'ArrowDown') {
+            e.preventDefault();
+            scaleWholeImageUp(-1.0);
+        }
+    }
+
     function imageWheelListener(e) {
         e.preventDefault();
 
@@ -348,7 +363,8 @@ function openImageFullscreen(elementUnderCursor) {
 
         /// take the scale into account with the offset
         var xs = (e.clientX - dxToShow) / scale,
-            ys = (e.clientY + window.scrollY - dyToShow) / scale;
+            // ys = (e.clientY + window.scrollY - dyToShow) / scale;
+            ys = (e.clientY - dyToShow) / scale;
 
         let wheelDelta = e.wheelDelta ?? -e.deltaY;
 
@@ -359,27 +375,13 @@ function openImageFullscreen(elementUnderCursor) {
 
         /// reverse the offset amount with the new scale
         dxToShow = e.clientX - xs * scale;
-        dyToShow = e.clientY + window.scrollY - ys * scale;
+        // dyToShow = e.clientY + window.scrollY - ys * scale;
+        dyToShow = e.clientY - ys * scale;
 
         copyOfImage.style.transition = '';
         copyOfImage.style.transform = `translate(${dxToShow}px, ${dyToShow}px) scale(${scale})`;
 
 
-    }
-
-    function keyboardListener(e) {
-        if (e.key === "Escape") { // escape key maps to keycode `27`
-            e.preventDefault();
-            closeFullscreenView();
-        } else if (e.key == 'ArrowUp') {
-            e.preventDefault();
-
-            scaleWholeImageUp(1.0);
-
-        } else if (e.key == 'ArrowDown') {
-            e.preventDefault();
-            scaleWholeImageUp(-1.0);
-        }
     }
 
     function scaleWholeImageUp(amount) {
@@ -391,12 +393,14 @@ function openImageFullscreen(elementUnderCursor) {
 
         /// take the scale into account with the offset
         var xs = (centerX - dxToShow) / scale,
-            ys = (centerY + window.scrollY - dyToShow) / scale;
+            // ys = (centerY + window.scrollY - dyToShow) / scale;
+            ys = (centerY - dyToShow) / scale;
 
         scale += amount;
         /// reverse the offset amount with the new scale
         dxToShow = centerX - xs * scale;
-        dyToShow = centerY + window.scrollY - ys * scale;
+        // dyToShow = centerY + window.scrollY - ys * scale;
+        dyToShow = centerY - ys * scale;
 
         copyOfImage.style.transition = '';
         copyOfImage.style.transform = `translate(${dxToShow}px, ${dyToShow}px) scale(${scale})`;

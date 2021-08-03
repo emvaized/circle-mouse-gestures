@@ -134,6 +134,12 @@ function triggerButtonAction(actionToPerform) {
             } catch (e) { if (configs.debugMode) console.log(e); }
         } break;
 
+        case 'openLinkPreview': {
+            try {
+                openLinkPreview(elementUnderCursor);
+            } catch (e) { if (configs.debugMode) console.log(e); }
+        } break;
+
         case 'textTooLong': {
             try {
                 trimPage();
@@ -143,7 +149,6 @@ function triggerButtonAction(actionToPerform) {
 
         case 'downloadVideoSavefromNet': {
             chrome.runtime.sendMessage({ actionToDo: 'openInFgTab', url: `https://en.savefrom.net/20/#url=${window.location.href}` });
-
         } break;
 
         case 'replayVideo': {

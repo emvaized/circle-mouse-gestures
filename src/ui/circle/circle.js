@@ -5,7 +5,9 @@ function showCircle(e) {
     var evt = e || window.event;
     e.preventDefault();
     if ("buttons" in evt) {
-        if (evt.buttons == 2) {
+        console.log(evt.button);
+        // if (evt.buttons == 2) {
+        if ((configs.openCircleOn == 'rightClick' && evt.button == 2) || (configs.openCircleOn == 'longLeftClick' && evt.button == 0)) {
             preselectedButtons = {};
             totalCircleRadius = 0.0;
             enabledLevelsCount = 0;

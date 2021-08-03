@@ -204,7 +204,7 @@
         "description": ""
     },
     "gesturesTitle": {
-        "message": "Жесты",
+        "message": "Кнопки",
         "description": ""
     },
     "githubPage": {
@@ -645,6 +645,30 @@
     },
     "playerFullScreen": {
         "message": "Во весь экран",
+        "description": ""
+    },
+    "openLinkPreview": {
+        "message": "Превью ссылки",
+        "description": ""
+    },
+    "inspectPage": {
+        "message": "Инспектировать",
+        "description": ""
+    },
+    "openCircleOn": {
+        "message": "Открывать меню по",
+        "description": ""
+    },
+    "rightClick": {
+        "message": "Правый клик",
+        "description": ""
+    },
+    "longLeftClick": {
+        "message": "Удержание левого клика",
+        "description": ""
+    },
+    "delayForLongLeftClick": {
+        "message": "Продолжительность",
         "description": ""
     }
 }

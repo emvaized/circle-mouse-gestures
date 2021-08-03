@@ -34,14 +34,23 @@
             <br />
 
             <span style="padding: 0px 15px; top: 50px" id='gesturesTitle' class='header'></span>
-            <div id='gestures-config' class='configs-container'>
+
+            <div id='openCircleOnContainer' class='configs-container'>
+                <div class='option'><label><select id="openCircleOn">
+                            <option value="rightClick">Right click</option>
+                            <option value="longLeftClick">Long left click</option>
+                        </select>
+                    </label>
+                </div>
             </div>
+
+            <div id='gestures-config' class='configs-container'></div>
 
             <br />
             <!-- <hr /> -->
             <br />
 
-            <span style="padding: 65px 15px; top: 50px" id='generalSettingsTitle' class='header'></span>
+            <span style="padding: 0px 15px; top: 50px" id='generalSettingsTitle' class='header'></span>
             <br />
 
             <br />
@@ -50,7 +59,6 @@
             <br />
 
             <div id='appearance-config' class='configs-container'>
-                <!-- <div class='option'><label><input type="color" id="backgroundColor"></input></label></div> -->
                 <div class='option'>
                     <label class='tooltip'>
                         <input type="checkbox" id="addTextLabels"></input>
@@ -105,7 +113,6 @@
                         <span id="highlightElementOnHoverTooltip" class="tooltiptext"></span>
                     </label>
                 </div>
-
             </div>
 
             <div style='margin-left: 25px;' class='option'><label><select id="inactiveMenuBehavior">

@@ -204,7 +204,7 @@
         "description": ""
     },
     "gesturesTitle": {
-        "message": "Gestures",
+        "message": "Buttons",
         "description": ""
     },
     "githubPage": {
@@ -641,6 +641,30 @@
     },
     "playerFullScreen": {
         "message": "Request fullscreen",
+        "description": ""
+    },
+    "openLinkPreview": {
+        "message": "Link preview",
+        "description": ""
+    },
+    "inspectPage": {
+        "message": "Inspect page",
+        "description": ""
+    },
+    "openCircleOn": {
+        "message": "Open menu on",
+        "description": ""
+    },
+    "rightClick": {
+        "message": "Right click",
+        "description": ""
+    },
+    "longLeftClick": {
+        "message": "Long left click",
+        "description": ""
+    },
+    "delayForLongLeftClick": {
+        "message": "Delay to register",
         "description": ""
     }
 }

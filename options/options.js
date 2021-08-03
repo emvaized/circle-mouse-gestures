@@ -143,44 +143,6 @@ function generateAppearanceControls() {
     document.getElementById('generalSettingsTitle').innerHTML = chrome.i18n.getMessage('generalSettings');
     document.getElementById('addTextLabelsTooltip').innerHTML = chrome.i18n.getMessage('addTextLabelsTooltip');
 
-    /// Set background color selector
-    // let colorSelect = document.getElementById('backgroundColor');
-    // colorSelect.setAttribute('value', configs[selectedMenuType].color);
-    // if (!colorSelect.parentNode.innerHTML.includes(chrome.i18n.getMessage('backgroundColor')))
-    //     colorSelect.parentNode.innerHTML = chrome.i18n.getMessage('backgroundColor') + ' ' + colorSelect.parentNode.innerHTML;
-
-    // setTimeout(function () {
-    //     let colorSelect = document.getElementById('backgroundColor');
-
-    //     colorSelect.addEventListener("input", function (e) {
-    //         configs[selectedMenuType].color = colorSelect.value;
-    //         drawCirclePreview();
-    //     });
-
-    //     colorSelect.addEventListener("change", function (e) {
-    //         if (configs.debugMode) console.log('saved bg color');
-    //         saveAllSettings();
-    //     });
-    // }, 300);
-
-    /// Set shadow config
-    // let shadowInput = document.getElementById('addCircleShadow');
-    // shadowInput.parentNode.innerHTML = chrome.i18n.getMessage('addCircleShadow') + ' ' + shadowInput.parentNode.innerHTML;
-    // if (configs.addCircleShadow == true)
-    //     shadowInput.setAttribute('checked', true);
-
-    // setTimeout(function () {
-    //     let shadowInput = document.getElementById('addCircleShadow');
-    //     shadowInput.addEventListener('input', function () {
-    //         console.log('switched');
-    //         configs['addCircleShadow'] = shadowInput.checked;
-    //         drawCirclePreview();
-    //         saveAllSettings();
-    //     })
-
-    // }, delayToAddListeners);
-
-
     let appearanceContainer = document.getElementById('appearance-config');
 
     /// Create inner width slider
@@ -224,17 +186,6 @@ function generateAppearanceControls() {
 function generateBehaviorConfigs() {
     /// Translate title
     document.getElementById('behaviorTitle').innerHTML = chrome.i18n.getMessage('behaviorTitle');
-
-    /// Create animation duration config
-    if (document.getElementById('animationDuration') == undefined) {
-        let animationDurationSlider = createRangeSlider('animationDuration', configs.animationDuration, 'ms', function (newVal) {
-            console.log(newVal);
-            configs.animationDuration = newVal;
-        }, 0, 600, null, 50);
-        animationDurationSlider.style.padding = '0px 5px 5px 5px';
-
-        document.getElementById('behavior-config').appendChild(animationDurationSlider);
-    }
 
     /// Options for boolean cofnigs
     let inputIds = [
@@ -301,12 +252,24 @@ function generateBehaviorConfigs() {
         })
     }, delayToAddListeners);
 
-    /// Set translated options
+    /// Set translated and selected options
     document.getElementById('inactiveMenuBehavior').querySelectorAll('option').forEach(function (option) {
         option.innerHTML = chrome.i18n.getMessage(option.getAttribute('value'));
         if (configs.inactiveMenuBehavior == option.getAttribute('value'))
             option.setAttribute('selected', 0);
     })
+
+
+    /// Create animation duration config
+    if (document.getElementById('animationDuration') == undefined) {
+        let animationDurationSlider = createRangeSlider('animationDuration', configs.animationDuration, 'ms', function (newVal) {
+            console.log(newVal);
+            configs.animationDuration = newVal;
+        }, 0, 600, null, 50);
+        animationDurationSlider.style.padding = '0px 5px 5px 5px';
+
+        document.getElementById('behavior-config').appendChild(animationDurationSlider);
+    }
 
 }
 
@@ -383,6 +346,38 @@ function generateGesturesConfigs() {
 
     // gesturesConfigs.innerHTML += '<br/>'
     // gesturesConfigs.innerHTML += '<br/>'
+
+    gesturesConfigs.className = configs.openCircleOn == 'rightClick' ? 'configs-container visible-option' : 'configs-container hidden-option';
+
+    /// Add 'open circle on' dropdown
+    let openMenuOnDropdown = document.getElementById('openCircleOn');
+    openMenuOnDropdown.parentNode.innerHTML = chrome.i18n.getMessage('openCircleOn') + '<br/>' + openMenuOnDropdown.parentNode.innerHTML;
+    setTimeout(function () {
+        let openMenuOnDropdown = document.getElementById('openCircleOn');
+        openMenuOnDropdown.addEventListener('change', function (val) {
+            configs.openCircleOn = openMenuOnDropdown.value;
+            document.querySelector("#delayForLongLeftClick").parentNode.className = openMenuOnDropdown.value == 'longLeftClick' ? 'visible-option' : 'hidden-option';
+            gesturesConfigs.className = openMenuOnDropdown.value == 'rightClick' ? 'configs-container visible-option' : 'configs-container hidden-option';
+            saveAllSettings();
+
+
+        })
+    }, delayToAddListeners);
+
+    /// Set translated and selected options
+    document.getElementById('openCircleOn').querySelectorAll('option').forEach(function (option) {
+        option.innerHTML = chrome.i18n.getMessage(option.getAttribute('value'));
+        if (configs.openCircleOn == option.getAttribute('value'))
+            option.setAttribute('selected', 0);
+    })
+
+    /// Add long left click duration slider
+    let longLeftClickDelay = createRangeSlider('delayForLongLeftClick', configs.delayForLongLeftClick, 'ms', function (newVal) {
+        configs.delayForLongLeftClick = newVal;
+    }, 50, 2000);
+    longLeftClickDelay.style.padding = '0px 5px 12px';
+    longLeftClickDelay.className = configs.openCircleOn == 'longLeftClick' ? 'visible-option' : 'hidden-option';
+    document.getElementById('openCircleOnContainer').appendChild(longLeftClickDelay);
 
 }
 

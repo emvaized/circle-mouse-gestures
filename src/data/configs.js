@@ -20,6 +20,8 @@ var configs = {
     'labelOpacity': 0.75,
     'iconOpacity': 1.0,
     'inactiveMenuBehavior': 'regularMenuFallback', /// possible values: 'regularMenuFallback', 'doNothing'
+    'openCircleOn': 'rightClick', /// possible values: 'rightClick', 'longLeftClick'
+    'delayForLongLeftClick': 500, /// ms
 
     /// 'Replace' will display interactive menu only (link, image, selected text),
     /// and 'combine' will add it as outer circle level

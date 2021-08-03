@@ -1,3 +1,12 @@
+#1.2.0
+- Added option to open circle on long left click instead of right click (esp. useful on macbooks)
+- Added "Link preview" feature, somewhat like in Safari on Mac
+- Fixed zoom not working for fullscreen image view
+- Fixed bugs in options page + improved labels
+
+#1.1.5
+- Changed extension name
+
 #1.1.4
 - Small layout fixes and improvements
 

@@ -368,6 +368,10 @@ chrome.runtime.onMessage.addListener(
             case 'checkPinTabStatus': {
                 sendResponse(sender.tab.pinned);
             } break;
+
+            case 'inspectPage': {
+                chrome.developerPrivate.openDevTools()
+            } break;
         }
     }
 );

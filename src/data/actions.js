@@ -31,12 +31,13 @@ var sortedActionButtons = {
             'copyUrl',
             'translate',
             'print',
+            // 'inspectPage', /// doesn't work
             'addToBookmarks',
             'undoAction',
             'redoAction',
             'selectAll',
             'toggleFullscreen',
-            'textTooLong' /// text-too-long
+            'textTooLong'
         ],
         'scroll': [
             'scrollToTop',
@@ -57,6 +58,7 @@ var sortedActionButtons = {
             'copyLinkText',
             'openInBgTab',
             'copyUrl',
+            'openLinkPreview',
         ],
         '—': [
             'noAction'
