@@ -13,13 +13,15 @@
         <h3 id='navbar-title'>Circle Mouse Gestures</h3>
         <h3 id='navbar-settings-label' style='color: grey'> settings</h3>
 
-        <div style='display: block; float:right; margin-right: 30px; margin-top: 15px;' class='option'><label><input
-                    type="checkbox" id="debugMode"></input></label></div>
+        <div style=' display: block; float:right; margin-right: 30px; margin-top: 15px;' class='option'>
+            <label><input type="checkbox" id="debugMode"></input></label>
+        </div>
 
+        <span id="updateToApplyLabel"
+            style='display: block; float:right; margin-right: 40px; margin-top: 20px;  color: grey;'>
+            Update tabs to apply new settings</span>
     </div>
-
     <br />
-
     <div id='content'>
         <div style='align-items: center;text-align: center; height: 100%;'>
             <div id='circle-preview-title' class='header'></div>
@@ -33,8 +35,7 @@
             <br />
             <br />
 
-            <span style="padding: 0px 15px; top: 50px" id='gesturesTitle' class='header'></span>
-
+            <span id='gesturesTitle' class='header'></span>
             <div id='openCircleOnContainer' class='configs-container'>
                 <div class='option'><label><select id="openCircleOn">
                             <option value="rightClick">Right click</option>
@@ -50,12 +51,11 @@
             <!-- <hr /> -->
             <br />
 
-            <span style="padding: 0px 15px; top: 50px" id='generalSettingsTitle' class='header'></span>
+            <span style="top: 50px" id='generalSettingsTitle' class='header'></span>
+            <br />
             <br />
 
-            <br />
-
-            <span style="padding: 0px 15px; top: 50px" id='appearanceTitle' class='sub-header'></span>
+            <span id='appearanceTitle' class='sub-header'></span>
             <br />
 
             <div id='appearance-config' class='configs-container'>
@@ -74,7 +74,7 @@
 
             <br />
 
-            <span style="top: 20px; padding: 0px 15px;" id='behaviorTitle' class='sub-header'></span>
+            <span id='behaviorTitle' class='sub-header'></span>
             <br />
 
             <div id='behavior-config' class='configs-container'>
@@ -115,7 +115,7 @@
                 </div>
             </div>
 
-            <div style='margin-left: 25px;' class='option'><label><select id="inactiveMenuBehavior">
+            <div class='option'><label><select id="inactiveMenuBehavior">
                         <option value="regularMenuFallback">Show regular menu</option>
                         <option value="doNothing">Do nothing</option>
                     </select>

@@ -21,6 +21,7 @@ function init() {
             document.getElementById('navbar-settings-label').innerHTML = ' ' + chrome.i18n.getMessage('settings').toLowerCase();
             document.getElementById('circleShadowOpacity').parentNode.setAttribute('title', chrome.i18n.getMessage('opacity'));
             document.getElementById('backgroundDimmerOpacity').parentNode.setAttribute('title', chrome.i18n.getMessage('opacity'));
+            document.getElementById('updateToApplyLabel').innerHTML = chrome.i18n.getMessage('updateToApply');
         })
     } catch (e) { if (configs.debugMode) console.log(e); }
 }
@@ -45,10 +46,13 @@ function setMenuTypeDropdown() {
     menuTypeDropdown.setAttribute('id', menuTypeDropdownId);
     menuTypeDropdownContainer.appendChild(menuTypeDropdown);
 
-    // let arrowIndicator = document.createElement('div');
-    // arrowIndicator.innerHTML = '>';
-    // arrowIndicator.setAttribute('id', 'typeOfMenuDropdownArrow');
-    // menuTypeDropdownContainer.appendChild(arrowIndicator);
+    let isFirefox = navigator.userAgent.indexOf("Firefox") > -1;
+    if (isFirefox == false) {
+        let arrowIndicator = document.createElement('div');
+        arrowIndicator.innerHTML = '>';
+        arrowIndicator.setAttribute('id', 'typeOfMenuDropdownArrow');
+        menuTypeDropdownContainer.appendChild(arrowIndicator);
+    }
 
     options.forEach(function (val) {
         let option = document.createElement('option');
@@ -282,10 +286,17 @@ function generateGesturesConfigs() {
     let gesturesConfigs = document.getElementById('gestures-config');
     gesturesConfigs.innerHTML = '';
 
-    /// Rocker action dropdown
     let rockerActionContainer = document.createElement('div');
     rockerActionContainer.setAttribute('class', 'option');
 
+    /// Subheader
+    let gesturesSubheader = document.createElement('div');
+    gesturesSubheader.setAttribute('class', 'sub-header');
+    gesturesSubheader.setAttribute('style', 'margin-bottom: 8px;');
+    gesturesSubheader.innerHTML = chrome.i18n.getMessage('additional');
+    rockerActionContainer.appendChild(gesturesSubheader);
+
+    /// Rocker action dropdown
     let rockerIidentifier = `regularRockerActionDropdown`;
     let dropdown = createActionDropdownButton(rockerIidentifier, configs[selectedMenuType].rockerLeftClick, function (newValue) {
         configs[selectedMenuType].rockerLeftClick = newValue;
@@ -303,6 +314,18 @@ function generateGesturesConfigs() {
     // rockerActionContainer.firstChild.firstChild.appendChild(tooltipText);
     gesturesConfigs.appendChild(rockerActionContainer);
 
+
+    /// Middle click action dropdown
+    let middleClickDropdownContainer = document.createElement('div');
+    middleClickDropdownContainer.setAttribute('class', 'option');
+
+    let middleClickIidentifier = `middleClickActionDropdown`;
+    let middleClickDropdown = createActionDropdownButton(middleClickIidentifier, configs[selectedMenuType].rockerMiddleClick, function (newValue) {
+        configs[selectedMenuType].rockerMiddleClick = newValue;
+        saveAllSettings();
+    }, chrome.i18n.getMessage('rockerMiddleClick'));
+    middleClickDropdownContainer.appendChild(middleClickDropdown);
+    gesturesConfigs.appendChild(middleClickDropdownContainer);
 
     /// Wheel up action dropdown
     let wheelUpdropdownContainer = document.createElement('div');
@@ -331,27 +354,12 @@ function generateGesturesConfigs() {
     gesturesConfigs.appendChild(wheelDowndropdownContainer);
 
 
-    /// Middle click action dropdown
-    let middleClickDropdownContainer = document.createElement('div');
-    middleClickDropdownContainer.setAttribute('class', 'option');
-
-    let middleClickIidentifier = `middleClickActionDropdown`;
-    let middleClickDropdown = createActionDropdownButton(middleClickIidentifier, configs[selectedMenuType].rockerMiddleClick, function (newValue) {
-        configs[selectedMenuType].rockerMiddleClick = newValue;
-        saveAllSettings();
-    }, chrome.i18n.getMessage('rockerMiddleClick'));
-    middleClickDropdownContainer.appendChild(middleClickDropdown);
-
-    gesturesConfigs.appendChild(middleClickDropdownContainer);
-
-    // gesturesConfigs.innerHTML += '<br/>'
-    // gesturesConfigs.innerHTML += '<br/>'
-
     gesturesConfigs.className = configs.openCircleOn == 'rightClick' ? 'configs-container visible-option' : 'configs-container hidden-option';
 
     /// Add 'open circle on' dropdown
     let openMenuOnDropdown = document.getElementById('openCircleOn');
-    openMenuOnDropdown.parentNode.innerHTML = chrome.i18n.getMessage('openCircleOn') + '<br/>' + openMenuOnDropdown.parentNode.innerHTML;
+    if (!openMenuOnDropdown.parentNode.innerHTML.includes('<br'))
+        openMenuOnDropdown.parentNode.innerHTML = chrome.i18n.getMessage('openCircleOn') + '<br/>' + openMenuOnDropdown.parentNode.innerHTML;
     setTimeout(function () {
         let openMenuOnDropdown = document.getElementById('openCircleOn');
         openMenuOnDropdown.addEventListener('change', function (val) {
@@ -359,8 +367,7 @@ function generateGesturesConfigs() {
             document.querySelector("#delayForLongLeftClick").parentNode.className = openMenuOnDropdown.value == 'longLeftClick' ? 'visible-option' : 'hidden-option';
             gesturesConfigs.className = openMenuOnDropdown.value == 'rightClick' ? 'configs-container visible-option' : 'configs-container hidden-option';
             saveAllSettings();
-
-
+            updateDisabledOptions();
         })
     }, delayToAddListeners);
 
@@ -389,7 +396,7 @@ function generateButtonsControls() {
     // buttonsHeader.innerHTML = chrome.i18n.getMessage('buttonsHeader') + '<br />';
     buttonsHeader.innerHTML = chrome.i18n.getMessage('levels') + '<br />';
     buttonsHeader.setAttribute('class', 'header');
-    buttonsHeader.setAttribute('style', 'padding-left: 20px;');
+    buttonsHeader.setAttribute('style', '');
     document.getElementById('buttons-config-container').appendChild(buttonsHeader);
 
     for (var i = 0; i < configs[selectedMenuType].levels.length; i++) {
@@ -1077,8 +1084,8 @@ function positionSettingsInCenter() {
         occupiedWidth += el.clientWidth + 30;
     });
 
-    // let occupiedPercent = occupiedWidth / window.screen.width * 100;
-    let occupiedPercent = occupiedWidth / window.innerWidth * 100;
+    let occupiedPercent = occupiedWidth / window.screen.width * 100;
+    // let occupiedPercent = occupiedWidth / window.innerWidth * 100;
 
     bodyMarginLeft = (100 - occupiedPercent) / 2.5;
 
@@ -1096,7 +1103,6 @@ function updateDisabledOptions() {
     }
 
     if (configs[selectedMenuType].levels == null || configs[selectedMenuType].levels.undefined || configs[selectedMenuType].levels.length == 0 || enabledLevelsCount == 0) {
-
         document.getElementById('clickSegmentToHighlight').innerHTML = chrome.i18n.getMessage('addMoreLevelsToActivateMenu');
         document.getElementById('appearance-config').style.opacity = 0.3;
         document.getElementById('behavior-config').style.opacity = 0.3;
@@ -1109,9 +1115,10 @@ function updateDisabledOptions() {
     }
 
     /// Grey out unavailable optoins
-    document.querySelector("#showRegularMenuIfNoAction").parentNode.parentNode.className = document.querySelector("#hideCircleIfNoActionSelected").checked ? 'option enabled-option' : 'option disabled-option';
+    document.querySelector("#showRegularMenuIfNoAction").parentNode.parentNode.className = document.querySelector("#hideCircleIfNoActionSelected").checked && document.getElementById('openCircleOn').value == 'rightClick' ? 'option enabled-option' : 'option disabled-option';
     document.querySelector("#circleShadowOpacity").parentNode.className = document.querySelector("#addCircleShadow").checked ? 'visible-option' : 'hidden-option';
     document.querySelector("#backgroundDimmerOpacity").parentNode.className = document.querySelector("#dimBackground").checked ? 'visible-option' : 'hidden-option';
+    document.querySelector("#hideCircleIfNoActionSelected").parentNode.className = document.getElementById('openCircleOn').value == 'rightClick' ? 'enabled-option' : 'disabled-option';
 }
 
 document.addEventListener("DOMContentLoaded", init);

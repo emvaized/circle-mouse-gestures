@@ -1,3 +1,7 @@
+#1.2.1
+- Improved 'long left click to open menu' functionality
+- Improved settings layout and translations
+
 #1.2.0
 - Added option to open circle on long left click instead of right click (esp. useful on macbooks)
 - Added "Link preview" feature, somewhat like in Safari on Mac

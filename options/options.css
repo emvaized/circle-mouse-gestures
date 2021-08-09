@@ -6,51 +6,51 @@
     vertical-align: middle;
 }
 
-  #navbar-title {
+#navbar-title {
       float: left;
       display: block;
       margin-left: 30px;
       font-size: 18px;
       font-weight: 600;
-  }
+}
 
-  #navbar-settings-label {
+#navbar-settings-label {
     float: left;
     display: block;
     font-size: 13px;
 }
   
-  .sticky {
+.sticky {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 10;
-  }
+}
 
-  button {
+button {
     cursor: pointer;
-  }
+}
 
-  #typeOfMenuDropdown {
+#typeOfMenuDropdown {
     background: white;
     float: left;
     display: block;
-    padding: 6px;
+    /* padding: 6px; */
     font-size: 15px;
     cursor: pointer;
     margin-left: 30px;
     margin-top: 15px;
-    /* top: 15px; */
-  }
+}
 
-  #typeOfMenuDropdownArrow{
-    float: left;  position: relative; left: -5px; opacity: 0.5; top: 17.5px; height: 30px; width: 30px; font-size: 21px; color: black; transform: rotate(90deg);
-  }
+#typeOfMenuDropdownArrow{
+    float: left;  position: relative; left: -30px; opacity: 0.5; top: 25px; height: 30px; width: 30px; font-size: 21px; color: black; transform: rotate(90deg);
+    pointer-events: none;
+}
 
-  #content {
-      padding-top: 40px;
-  }
+#content {
+      padding-top: 50px;
+}
 
 .buttons-item {
     margin: 1px;
@@ -60,12 +60,12 @@
     opacity: 0.5;
     transition: opacity 150ms ease-in-out;
     pointer-events: none;
-  }
+}
   
-  .enabled-option {
+.enabled-option {
     opacity: 1.0;
     transition: opacity 150ms ease-in-out;
-  }
+}
 
 #circle-preview-title {
     margin: 15px;
@@ -86,8 +86,7 @@
 
 .configs-container{
     float: top;
-    padding: 0px 25px;
-    /* margin: 15px 0px; */
+    padding: 0px 0px;
     margin-top: 15px;
     transition: opacity 300ms ease-in-out;
 }
@@ -123,14 +122,15 @@ label{
 .header {
     font-size: 21px;
     color: grey;
+    /* text-decoration: underline; */
+    font-weight: 550;
+
 }
 
 .sub-header {
-    font-size: 16.5px;
+    font-size: 15px;
     color: grey;
-    opacity: 0.75;
-    /* margin-left: 15px; */
-    /* text-align: center; */
+    /* opacity: 0.75; */
 }
 
 hr {
@@ -184,14 +184,14 @@ input {
 }
 
 
- /* Tooltip container */
- .tooltip {
+/* Tooltip container */
+.tooltip {
     position: relative;
     display: inline-block;
     /* border-bottom: 1px dotted grey; */
-  }
+}
 
-  .tooltip::after{
+.tooltip::after{
       content: '?';
       background-color: lightgray;
       border-radius: 50%;
@@ -206,10 +206,10 @@ input {
       left: -22.5px;
       right: 0px;
       top: 0px;
-  }
+}
   
-  /* Tooltip text */
-  .tooltip .tooltiptext {
+/* Tooltip text */
+.tooltip .tooltiptext {
     visibility: hidden;
     width: 200px;
     background-color: #555;
@@ -228,10 +228,10 @@ input {
     /* Fade in tooltip */
     opacity: 0;
     transition: opacity 0.3s;
-  }
+}
 
-  /* Tooltip arrow */
-  .tooltip .tooltiptext::after  {
+/* Tooltip arrow */
+.tooltip .tooltiptext::after  {
     content: "";
     position: absolute;
     top: 100%;
@@ -240,22 +240,22 @@ input {
     border-width: 5px;
     border-style: solid;
     border-color: #555 transparent transparent transparent;
-  }
+}
   
   /* Show the tooltip text when you mouse over the tooltip container */
-  .tooltip:hover .tooltiptext {
+.tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
-  } 
+} 
 
 
   /* Design fixes specially for Firefox */
-  @-moz-document url-prefix() {
-    hr {
+@-moz-document url-prefix() {
+  hr {
       opacity: 0.15;
-    }
-
-    .tooltip::after{
-      line-height: 0.9;
-    }
   }
+
+  .tooltip::after{
+      line-height: 0.9;
+  }
+}

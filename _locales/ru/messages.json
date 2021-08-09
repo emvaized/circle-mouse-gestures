@@ -35,8 +35,12 @@
         "message": "Добавить в закладки",
         "description": ""
     },
+    "additional": {
+        "message": "Дополнительно",
+        "description": ""
+    },
     "animationDuration": {
-        "message": "Продолжительность анимации",
+        "message": "Продолжительность анимаций",
         "description": ""
     },
     "appearanceHeader": {
@@ -103,6 +107,10 @@
         "message": "Закрыть",
         "description": ""
     },
+    "closeWindow": {
+        "message": "Закрыть окно",
+        "description": ""
+    },
     "colorLabel": {
         "message": "Цвет",
         "description": ""
@@ -141,6 +149,10 @@
     },
     "debugMode": {
         "message": "Режим отладки",
+        "description": ""
+    },
+    "delayForLongLeftClick": {
+        "message": "Прод-сть удержания",
         "description": ""
     },
     "deleteLabel": {
@@ -255,6 +267,10 @@
         "message": "Поле ввода",
         "description": ""
     },
+    "inspectPage": {
+        "message": "Инспектировать",
+        "description": ""
+    },
     "italicText": {
         "message": "Курсив",
         "description": ""
@@ -277,6 +293,10 @@
     },
     "linkMenu": {
         "message": "Меню ссылки",
+        "description": ""
+    },
+    "longLeftClick": {
+        "message": "Удержание левого клика",
         "description": ""
     },
     "mouseWheelDownAction": {
@@ -305,6 +325,18 @@
     },
     "moveDownLabel": {
         "message": "Опустить",
+        "description": ""
+    },
+    "moveTabLeft": {
+        "message": "Переместить влево",
+        "description": ""
+    },
+    "moveTabRight": {
+        "message": "Переместить вправо",
+        "description": ""
+    },
+    "moveToNewWindow": {
+        "message": "Открыть в новом окне",
         "description": ""
     },
     "moveUpLabel": {
@@ -339,6 +371,10 @@
         "message": "Прозрачность",
         "description": ""
     },
+    "openCircleOn": {
+        "message": "Открывать меню по:",
+        "description": ""
+    },
     "openImageFullscreen": {
         "message": "Посмотреть изображение",
         "description": ""
@@ -353,6 +389,10 @@
     },
     "openInPrivateWindow": {
         "message": "Открыть в приватном окне",
+        "description": ""
+    },
+    "openLinkPreview": {
+        "message": "Превью ссылки",
         "description": ""
     },
     "page": {
@@ -391,8 +431,16 @@
         "message": "Проигрыватель",
         "description": ""
     },
+    "playerFullScreen": {
+        "message": "Во весь экран",
+        "description": ""
+    },
     "playerMenu": {
         "message": "Меню проигрывателя",
+        "description": ""
+    },
+    "print": {
+        "message": "Печать",
         "description": ""
     },
     "quickActions": {
@@ -433,6 +481,10 @@
     },
     "rewindVideo": {
         "message": "Перемотать назад",
+        "description": ""
+    },
+    "rightClick": {
+        "message": "Правый клик",
         "description": ""
     },
     "rightClickToClose": {
@@ -603,6 +655,10 @@
         "message": "Выйти из полноэкранного режима",
         "description": ""
     },
+    "updateToApply": {
+        "message": "Обновите вкладки, чтобы применить изменения",
+        "description": ""
+    },
     "useCustomColor": {
         "message": "Другой фон",
         "description": ""
@@ -611,64 +667,16 @@
         "message": "Что нового",
         "description": ""
     },
+    "window": {
+        "message": "Окно",
+        "description": ""
+    },
     "windowsOnly": {
         "message": "Работает только на Windows. На других системах (Linux, MacOS) требует двойного клика",
         "description": ""
     },
     "writeAReview": {
         "message": "Написать отзыв",
-        "description": ""
-    },
-    "moveToNewWindow": {
-        "message": "Открыть в новом окне",
-        "description": ""
-    },
-    "moveTabRight": {
-        "message": "Переместить вправо",
-        "description": ""
-    },
-    "moveTabLeft": {
-        "message": "Переместить влево",
-        "description": ""
-    },
-    "closeWindow": {
-        "message": "Закрыть окно",
-        "description": ""
-    },
-    "window": {
-        "message": "Окно",
-        "description": ""
-    },
-    "print": {
-        "message": "Печать",
-        "description": ""
-    },
-    "playerFullScreen": {
-        "message": "Во весь экран",
-        "description": ""
-    },
-    "openLinkPreview": {
-        "message": "Превью ссылки",
-        "description": ""
-    },
-    "inspectPage": {
-        "message": "Инспектировать",
-        "description": ""
-    },
-    "openCircleOn": {
-        "message": "Открывать меню по",
-        "description": ""
-    },
-    "rightClick": {
-        "message": "Правый клик",
-        "description": ""
-    },
-    "longLeftClick": {
-        "message": "Удержание левого клика",
-        "description": ""
-    },
-    "delayForLongLeftClick": {
-        "message": "Продолжительность",
         "description": ""
     }
 }

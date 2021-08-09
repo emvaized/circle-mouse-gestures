@@ -8,6 +8,7 @@ function init() {
 
 let anyButtonIsSelected = false;
 var timerForLongLeftClick;
+var lastMouseDownEvent;
 
 function setPageListeners() {
     /// Page listeners
@@ -35,54 +36,53 @@ function setPageListeners() {
 
         if (configs.openCircleOn == 'longLeftClick') {
             if (evt.button == 0) {
-                timerForLongLeftClick = setTimeout(function () { processAndShowCircle(e); }, configs.delayForLongLeftClick);
+                lastMouseDownEvent = e;
+                timerForLongLeftClick = setTimeout(function () { processAndShowCircle(lastMouseDownEvent); }, configs.delayForLongLeftClick);
             } else return;
-        } else
-            if ("buttons" in evt) {
+        } else if ("buttons" in evt) {
 
-                /// Right click
-                // if (evt.button == 2) {
-                if (evt.buttons == 2) {
-                    if (leftClickIsHolded) return;
+            /// Right click
+            // if (evt.button == 2) {
+            if (evt.buttons == 2) {
+                if (leftClickIsHolded) return;
 
-                    processAndShowCircle(e);
-                } else if (evt.buttons == 3) {
-                    rocketButtonPressed = 0;
+                processAndShowCircle(e);
+            } else if (evt.buttons == 3) {
+                rocketButtonPressed = 0;
 
-                    /// Left click
-                    if (circleIsShown) {
-                        e.preventDefault();
-                        hideCircle();
+                /// Left click
+                if (circleIsShown) {
+                    e.preventDefault();
+                    hideCircle();
 
-                        if (configs.debugMode) console.log('Rocker gesture recognized!');
-                        let actionToPerform = configs[typeOfMenu]['rockerLeftClick'];
-                        triggerButtonAction(actionToPerform);
-                    } else {
-                        leftClickIsHolded = true;
-                    }
-                } else if (evt.buttons == 6) {
-                    rocketButtonPressed = 6;
-
-                    /// Middle click
-                    if (circleIsShown) {
-                        e.preventDefault();
-                        hideCircle();
-
-                        if (configs.debugMode) console.log('Rocker gesture recognized!');
-                        let actionToPerform = configs[typeOfMenu]['rockerMiddleClick'];
-                        triggerButtonAction(actionToPerform);
-                    } else {
-                        leftClickIsHolded = true;
-                    }
+                    if (configs.debugMode) console.log('Rocker gesture recognized!');
+                    let actionToPerform = configs[typeOfMenu]['rockerLeftClick'];
+                    triggerButtonAction(actionToPerform);
                 } else {
-                    // if (configs.debugMode) console.log('CMG recognized button action ' + evt.buttons.toString());
+                    leftClickIsHolded = true;
                 }
+            } else if (evt.buttons == 6) {
+                rocketButtonPressed = 6;
+
+                /// Middle click
+                if (circleIsShown) {
+                    e.preventDefault();
+                    hideCircle();
+
+                    if (configs.debugMode) console.log('Rocker gesture recognized!');
+                    let actionToPerform = configs[typeOfMenu]['rockerMiddleClick'];
+                    triggerButtonAction(actionToPerform);
+                } else {
+                    leftClickIsHolded = true;
+                }
+            } else {
+                // if (configs.debugMode) console.log('CMG recognized button action ' + evt.buttons.toString());
             }
+        }
     });
 
 
     document.addEventListener("mouseup", function (e) {
-
         evt = e || window.event;
 
         if (configs.openCircleOn == 'longLeftClick') {
@@ -103,6 +103,7 @@ function setPageListeners() {
             if (evt.button == 0) {
                 leftClickIsHolded = false;
                 if (circleIsShown == false) return;
+                if (lastMouseDownEvent !== null) lastMouseDownEvent = null;
                 hideCircle();
             } else if (evt.button == 2) {
                 /// Right click
@@ -129,17 +130,28 @@ function setPageListeners() {
     });
 
 
-    if (configs.openCircleOn == 'longLeftClick')
+    if (configs.openCircleOn == 'longLeftClick') {
         document.addEventListener('mousemove', function (e) {
             if (e.button == 0) {
 
                 if (circleIsShown) {
                     e.preventDefault();
+                } else {
+                    if (lastMouseDownEvent !== null)
+                        lastMouseDownEvent = e;
+                    // clearTimeout(timerForLongLeftClick);
                 }
-                else
-                    clearTimeout(timerForLongLeftClick);
             }
         });
+
+        document.addEventListener('selectionchange', function (e) {
+            if (window.getSelection().toString() !== '')
+                clearTimeout(timerForLongLeftClick);
+        });
+
+
+    }
+
 
     document.addEventListener('wheel', checkScrollDirection);
 
@@ -173,7 +185,6 @@ function setPageListeners() {
 
                 if (el == null || el == undefined || el.tagName == 'CANVAS' || circleIsShown == true) return;
 
-                // if (srcElement.nodeName == 'IMG') {
                 if (el.tagName == 'IMG') {
 
                     if (prevHoveredDomElement != null) {

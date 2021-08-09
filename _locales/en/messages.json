@@ -39,6 +39,10 @@
         "message": "Add to bookmarks",
         "description": ""
     },
+    "additional": {
+        "message": "Additional",
+        "description": ""
+    },
     "animationDuration": {
         "message": "Animation duration",
         "description": ""
@@ -107,6 +111,10 @@
         "message": "Close",
         "description": ""
     },
+    "closeWindow": {
+        "message": "Close window",
+        "description": ""
+    },
     "colorLabel": {
         "message": "Color",
         "description": ""
@@ -143,12 +151,16 @@
         "message": "Debug mode",
         "description": ""
     },
+    "delayForLongLeftClick": {
+        "message": "Hold duration",
+        "description": ""
+    },
     "deleteLabel": {
         "message": "Remove",
         "description": ""
     },
     "dimBackground": {
-        "message": "Dim open page",
+        "message": "Dim page",
         "description": ""
     },
     "dimBackgroundTooltip": {
@@ -255,6 +267,10 @@
         "message": "Input field",
         "description": ""
     },
+    "inspectPage": {
+        "message": "Inspect page",
+        "description": ""
+    },
     "italicText": {
         "message": "Italic",
         "description": ""
@@ -277,6 +293,10 @@
     },
     "linkMenu": {
         "message": "Menu for link",
+        "description": ""
+    },
+    "longLeftClick": {
+        "message": "Long left click",
         "description": ""
     },
     "mouseWheelDownAction": {
@@ -305,6 +325,18 @@
     },
     "moveDownLabel": {
         "message": "Move down",
+        "description": ""
+    },
+    "moveTabLeft": {
+        "message": "Move tab left",
+        "description": ""
+    },
+    "moveTabRight": {
+        "message": "Move tab right",
+        "description": ""
+    },
+    "moveToNewWindow": {
+        "message": "Open in new window",
         "description": ""
     },
     "moveUpLabel": {
@@ -339,6 +371,10 @@
         "message": "Opacity",
         "description": ""
     },
+    "openCircleOn": {
+        "message": "Open menu on",
+        "description": ""
+    },
     "openImageFullscreen": {
         "message": "View image",
         "description": ""
@@ -353,6 +389,10 @@
     },
     "openInPrivateWindow": {
         "message": "Open in private window",
+        "description": ""
+    },
+    "openLinkPreview": {
+        "message": "Link preview",
         "description": ""
     },
     "page": {
@@ -391,8 +431,16 @@
         "message": "Player",
         "description": ""
     },
+    "playerFullScreen": {
+        "message": "Request fullscreen",
+        "description": ""
+    },
     "playerMenu": {
         "message": "Menu for player",
+        "description": ""
+    },
+    "print": {
+        "message": "Print",
         "description": ""
     },
     "quickActions": {
@@ -433,6 +481,10 @@
     },
     "rewindVideo": {
         "message": "Rewind",
+        "description": ""
+    },
+    "rightClick": {
+        "message": "Right click",
         "description": ""
     },
     "rightClickToClose": {
@@ -599,6 +651,10 @@
         "message": "Exit fullscreen",
         "description": ""
     },
+    "updateToApply": {
+        "message": "Update tabs to apply new settings",
+        "description": ""
+    },
     "useCustomColor": {
         "message": "Custom background",
         "description": ""
@@ -607,64 +663,16 @@
         "message": "What's new",
         "description": ""
     },
+    "window": {
+        "message": "Window",
+        "description": ""
+    },
     "windowsOnly": {
         "message": "Will work only on Windows. On other systems (Linux, MacOS) will require double click",
         "description": ""
     },
     "writeAReview": {
         "message": "Write a review",
-        "description": ""
-    },
-    "moveToNewWindow": {
-        "message": "Open in new window",
-        "description": ""
-    },
-    "moveTabRight": {
-        "message": "Move tab right",
-        "description": ""
-    },
-    "moveTabLeft": {
-        "message": "Move tab left",
-        "description": ""
-    },
-    "closeWindow": {
-        "message": "Close window",
-        "description": ""
-    },
-    "window": {
-        "message": "Window",
-        "description": ""
-    },
-    "print": {
-        "message": "Print",
-        "description": ""
-    },
-    "playerFullScreen": {
-        "message": "Request fullscreen",
-        "description": ""
-    },
-    "openLinkPreview": {
-        "message": "Link preview",
-        "description": ""
-    },
-    "inspectPage": {
-        "message": "Inspect page",
-        "description": ""
-    },
-    "openCircleOn": {
-        "message": "Open menu on",
-        "description": ""
-    },
-    "rightClick": {
-        "message": "Right click",
-        "description": ""
-    },
-    "longLeftClick": {
-        "message": "Long left click",
-        "description": ""
-    },
-    "delayForLongLeftClick": {
-        "message": "Delay to register",
         "description": ""
     }
 }
