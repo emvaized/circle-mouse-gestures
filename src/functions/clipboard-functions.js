@@ -15,18 +15,7 @@ async function getCurrentClipboard() {
         let res = await chrome.runtime.sendMessage({ actionToDo: 'getCurrentClipboardContent' });
         return res;
     } else
-
         return clipboardContent;
-
-    // try {
-    //     const text = await navigator.clipboard.readText();
-    //     currentClipboardContent = text;
-    //     return text;
-
-    // } catch (e) {
-    //     if (configs.debugMode) console.log(e);
-    //     return '';
-    // }
 
 }
 

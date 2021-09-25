@@ -3,6 +3,7 @@ var configs = {
     'debugMode': false,
     'cmgEnabled': true,
     'storeCurrentScrollPosition': true,
+    'animateHideRelativeToSelected': false,
     'animationDuration': 200,
     'hideCircleIfNoActionSelected': true,
     'useMouseWheelGestures': true,
@@ -172,10 +173,11 @@ var configs = {
 
 
 function loadUserConfigs(callback) {
-    let keys = Object.keys(configs);
+    const keys = Object.keys(configs);
     chrome.storage.local.get(
         keys, function (userConfigs) {
-            for (var i = 0; i < keys.length; i++) {
+            const l = keys.length;
+            for (var i = 0; i < l; i++) {
                 let key = keys[i];
 
                 if (userConfigs[key] !== null && userConfigs[key] !== undefined)
@@ -187,8 +189,6 @@ function loadUserConfigs(callback) {
 
             callback();
         });
-
-
 }
 
 

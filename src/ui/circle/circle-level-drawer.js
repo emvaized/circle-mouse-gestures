@@ -1,22 +1,18 @@
 function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRadius, innerCircleRadius, level = 0, shouldRespectBoundary = false, showIndexes = false, shouldCheckButtonsAvailability = true) {
 
-    var segmentsCount = buttonsToShow.length;
+    const segmentsCount = buttonsToShow.length;
     var levelOpacity = configs[typeOfMenu].levels[level].opacity;
-
-    var segmentColor = configs[typeOfMenu].levels[level].color ?? configs[typeOfMenu].color;
-
+    const segmentColor = configs[typeOfMenu].levels[level].color ?? configs[typeOfMenu].color;
     var hoveredOverlayOpacity = 0.3;
 
 
     /// Draw segments
     for (i = 0; i < segmentsCount; i++) {
-
         const segment = buttonsToShow[i];
-
         if (actionIcons[segment.id] == undefined) continue;
 
         /// Rotate the circle a bit when buttons count is not even
-        var angle = (segmentsCount % 2 == 0.0 ?
+        const angle = (segmentsCount % 2 == 0.0 ?
             (-Math.PI / segmentsCount) :
             (-Math.PI / segmentsCount) / 2) + i * (Math.PI / (segmentsCount / 2));
 
@@ -50,12 +46,12 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
             } catch (error) {
                 if (configs.debugMode) if (configs.debugMode) console.log(error);
             }
+
         } else {
             ctx.fillStyle = colorForButton;
         }
 
         ctx.globalCompositeOperation = 'source-over';
-
         ctx.beginPath();
         ctx.moveTo(canvasRadius / 2, canvasRadius / 2);
 
@@ -103,14 +99,12 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
         // try {
         //     drawLabel(E, ctx, segmentsCount, circleRadius, innerCircleRadius, segment, segmentColor, showIndexes, shouldCheckButtonsAvailability);
         // } catch (e) { console.log(e) }
-
     }
 
     ctx.closePath();
 
     if (levelOpacity)
         ctx.globalAlpha = 1.0;
-
 
     /// Cut off circle in center
     ctx.save();
@@ -166,22 +160,19 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
 
 
 
-
-
 function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsToShow, segmentColor, showIndexes = false, shouldCheckButtonsAvailability = true) {
-
     for (var i = 0; i < segmentsCount; i++) {
         let colorForButton = segmentColor;
-        let segment = buttonsToShow[i];
+        const segment = buttonsToShow[i];
         if (segment.color !== null && segment.color !== undefined)
             colorForButton = segment.color;
 
-        let textColorRgb = getTextColorForBackground(colorForButton);
+        const textColorRgb = getTextColorForBackground(colorForButton);
         let iconColorRgb = textColorRgb;
 
         if (actionIcons[segment.id] == undefined) continue;
 
-        var buttonIsAvailable = true;
+        let buttonIsAvailable = true;
         if (shouldCheckButtonsAvailability) {
             try {
                 buttonIsAvailable = buttonsAvailability[segment.id] ?? checkButtonAvailability(e, segment.id);
@@ -199,14 +190,14 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
         ctx.textAlign = "center";
         ctx.fillStyle = "white";
 
-        var centerDx = canvasRadius / 2;
-        var centerDy = canvasRadius / 2;
+        let centerDx = canvasRadius / 2;
+        let centerDy = canvasRadius / 2;
         // let textRadius = (circleRadius + innerCircleRadius) * 0.5;
         let textRadius = useRectangularShape ? innerCircleRadius + ((circleRadius - innerCircleRadius / 2) / (segmentsCount < 5 ? 3 : 5)) : (circleRadius + innerCircleRadius) * 0.5;
-        let angle = (segmentsCount % 2 == 0.0 ? 0.0 : (Math.PI / segmentsCount) / 2) + i * (Math.PI / (segmentsCount / 2));
+        const angle = (segmentsCount % 2 == 0.0 ? 0.0 : (Math.PI / segmentsCount) / 2) + i * (Math.PI / (segmentsCount / 2));
 
-        var dxForText = centerDx + Math.cos(angle) * textRadius;
-        var dyForText = centerDy + Math.sin(angle) * textRadius;
+        const dxForText = centerDx + Math.cos(angle) * textRadius;
+        const dyForText = centerDy + Math.sin(angle) * textRadius;
 
         /// Calculate icon and text size
         let iconSize = 27;
@@ -232,15 +223,11 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
             textToDraw = textToDraw.substring(0, 17) + '...';
         }
 
-        var verticalShiftForIcon = 0.0;
-
+        let verticalShiftForIcon = 0.0;
         ctx.fillStyle = textColor;
 
-        let shouldDrawLabel = configs.addTextLabels && circleRadius - innerCircleRadius > iconSize * 2.5 && segment.id !== 'noAction';
-
-        if (shouldDrawLabel) {
-            verticalShiftForIcon = wrapLabel(ctx, textToDraw, dxForText, dyForText + 15, segmentLength * 0.4, labelSize);
-        }
+        const shouldDrawLabel = configs.addTextLabels && circleRadius - innerCircleRadius > iconSize * 2.5 && segment.id !== 'noAction';
+        if (shouldDrawLabel) verticalShiftForIcon = wrapLabel(ctx, textToDraw, dxForText, dyForText + 15, segmentLength * 0.4, labelSize);
 
         /// Draw icon    
         ctx.fillStyle = iconColor;

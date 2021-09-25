@@ -678,5 +678,9 @@
     "writeAReview": {
         "message": "Написать отзыв",
         "description": ""
+    },
+    "animateHideRelativeToSelected": {
+        "message": "Анимировать скрытие относительно выбранного сектора",
+        "description": ""
     }
 }

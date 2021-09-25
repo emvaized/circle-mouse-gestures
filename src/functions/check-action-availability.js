@@ -11,7 +11,6 @@ function checkButtonAvailability(e, id) {
         };
         case 'goForward': return window.history.length !== 1;
 
-
         case 'downloadUrlAs': {
             if (typeOfMenu == 'playerMenu') {
                 if (elementUnderCursor == null) return false;

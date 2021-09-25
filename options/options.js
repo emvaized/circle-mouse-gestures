@@ -206,6 +206,8 @@ function generateBehaviorConfigs() {
         'backgroundDimmerOpacity',
         'storeCurrentScrollPosition',
         'highlightElementOnHover',
+
+        'animateHideRelativeToSelected',
     ];
 
     inputIds.forEach(function (inputId) {
@@ -1119,6 +1121,9 @@ function updateDisabledOptions() {
     document.querySelector("#circleShadowOpacity").parentNode.className = document.querySelector("#addCircleShadow").checked ? 'visible-option' : 'hidden-option';
     document.querySelector("#backgroundDimmerOpacity").parentNode.className = document.querySelector("#dimBackground").checked ? 'visible-option' : 'hidden-option';
     document.querySelector("#hideCircleIfNoActionSelected").parentNode.className = document.getElementById('openCircleOn').value == 'rightClick' ? 'enabled-option' : 'disabled-option';
+
+    document.querySelector("#animateHideRelativeToSelected").parentNode.className = document.querySelector("#circleHideAnimation").checked ? 'visible-option' : 'hidden-option';
+
 }
 
 document.addEventListener("DOMContentLoaded", init);

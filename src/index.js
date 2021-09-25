@@ -2,6 +2,7 @@ function init() {
     loadUserConfigs(function () {
         if (configs.cmgEnabled) {
             setPageListeners();
+            // calculateCircleRadius();
         }
     })
 }
@@ -9,6 +10,34 @@ function init() {
 let anyButtonIsSelected = false;
 var timerForLongLeftClick;
 var lastMouseDownEvent;
+
+// var totalCircleRadius;
+// var enabledLevelsCount;
+
+// function calculateCircleRadius() {
+//     totalCircleRadius = 0.0;
+//     enabledLevelsCount = 0;
+
+//     const len = configs[typeOfMenu].levels.length;
+//     for (let i = 0; i < len; i++) {
+//         let level = configs[typeOfMenu].levels[i];
+
+//         /// Calculate total circle radius with only enabled levels
+//         if (level.enabled !== false) {
+//             totalCircleRadius += configs.gapBetweenCircles + (level.width ?? configs.circleRadius);
+//             enabledLevelsCount += 1;
+//         }
+//     }
+
+//     canvasRadius = totalCircleRadius * 2 + 2;
+
+//     if (configs.addCircleShadow)
+//         canvasRadius *= 1.2;
+
+//     if (typeOfMenu !== 'regularMenu' && configs.interactiveMenusBehavior == 'combine') {
+//         canvasRadius += (configs.interactiveCircleRadius + configs.gapBeforeInteractiveCircle) * 2;
+//     }
+// }
 
 function setPageListeners() {
     /// Page listeners
@@ -124,7 +153,21 @@ function setPageListeners() {
                         hideCircle();
                     }
 
-                } else hideCircle();
+                } else {
+                    if (configs.animateHideRelativeToSelected) {
+                        let xPercent = (e.clientX - leftCoord) / (canvasRadius);
+                        if (xPercent < 0) xPercent = 0.0;
+                        if (xPercent > 1) xPercent = 1.0;
+
+                        let yPercent = (e.clientY - topCoord) / (canvasRadius);
+                        if (yPercent < 0) yPercent = 0.0;
+                        if (yPercent > 1) yPercent = 1.0;
+
+                        circle.style.transformOrigin = `${xPercent * 100}% ${yPercent * 100}%`;
+                    }
+
+                    hideCircle();
+                }
             }
         }
     });
@@ -152,16 +195,19 @@ function setPageListeners() {
 
     }
 
-
     document.addEventListener('wheel', checkScrollDirection);
 
     /// Listener to highlight hovered elements
     var prevHoveredDomElement = null;   // previous dom that we want to track, so we can remove the previous styling
 
-    if (configs.highlightElementOnHover)
-        document.addEventListener('DOMContentLoaded', function () {
 
+    document.addEventListener('DOMContentLoaded', function () {
+        document.body.style.setProperty('--cmg-circle-opacity', configs.circleOpacity);
+        document.body.style.setProperty('--cmg-circle-transition', `opacity ${configs.animationDuration}ms ease-out, transform ${configs.animationDuration}ms ease-out`);
+
+        if (configs.highlightElementOnHover) {
             // Mouse listener for any move event on the current document.
+
 
             // Unique ID for the classNames
             var MOUSE_VISITED_CLASSNAME = 'crx_mouse_visited';
@@ -250,11 +296,10 @@ function setPageListeners() {
                         }
                     }
             }, false);
-
-        })
+        }
+    })
 
 }
-
 
 function checkScrollDirection(event) {
 

@@ -1,3 +1,6 @@
+#1.2.2
+- Performance optimizations
+
 #1.2.1
 - Improved 'long left click to open menu' functionality
 - Improved settings layout and translations

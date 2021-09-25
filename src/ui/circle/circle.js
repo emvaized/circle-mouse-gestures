@@ -2,17 +2,16 @@ var totalCircleRadius;
 let enabledLevelsCount;
 
 function showCircle(e) {
-    var evt = e || window.event;
-    e.preventDefault();
+    const evt = e || window.event;
+    evt.preventDefault();
     if ("buttons" in evt) {
-        // if (evt.buttons == 2) {
         if ((configs.openCircleOn == 'rightClick' && evt.button == 2) || (configs.openCircleOn == 'longLeftClick' && evt.button == 0)) {
             preselectedButtons = {};
+
             totalCircleRadius = 0.0;
             enabledLevelsCount = 0;
 
             for (let i = 0, len = configs[typeOfMenu].levels.length; i < len; i++) {
-
                 let level = configs[typeOfMenu].levels[i];
 
                 /// Calculate total circle radius with only enabled levels
@@ -33,7 +32,6 @@ function showCircle(e) {
 
             leftCoord = e.clientX - (canvasRadius / 2) + 1;
             topCoord = e.clientY - (canvasRadius / 2) + window.scrollY + 1;
-
             topCoord = e.pageY - (canvasRadius / 2) - window.scrollY + 1;
 
             circleIsShown = true;
@@ -54,22 +52,25 @@ function setCanvas() {
     circle.setAttribute('width', `${canvasRadius}px !imporant`);
     circle.setAttribute('height', `${canvasRadius}px !imporant`);
 
-    circle.style.opacity = 0.0;
-    circle.style.transform = 'scale(0.0)';
-    circle.style.transition = `opacity ${configs.animationDuration}ms ease, transform ${configs.animationDuration}ms ease`;
-    circle.style.visibility = 'visible';
+    // circle.style.opacity = 0.0;
+    // circle.style.transform = 'scale(0.0)';
+    // circle.style.transition = `opacity ${configs.animationDuration}ms ease, transform ${configs.animationDuration}ms ease`;
+    // circle.style.visibility = 'visible';
     circle.style.left = `${leftCoord}px`;
     circle.style.top = `${topCoord}px`;
 
     setTimeout(function () {
-        circle.style.transform = 'scale(1.0)';
-        circle.style.opacity = configs.circleOpacity;
-    }, 2);
+        // circle.style.transform = 'scale(1.0)';
+        // circle.style.opacity = configs.circleOpacity;
 
-    document.body.appendChild(circle);
+        circle.classList.add('cmg-circle-visible');
+        // circle.className = 'cmg-circle-canvas cmg-circle-visible';
+    }, 3);
+
+    // document.body.appendChild(circle);
     ctx = circle.getContext('2d');
-
     drawCircle(false, typeOfMenu);
+    document.body.appendChild(circle);
 
     document.onmousemove = function (e) {
         try {
@@ -104,13 +105,14 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
         }
     }
 
+    const levelsLength = configs[typeOfMenu].levels.length;
+
     /// Determine if it's needed to redraw circle
     let shouldRedraw = false;
 
     // let selectedButtonsBeforeCheck = selectedButtons;
     if (e == false) shouldRedraw = true;
     else {
-
         if (mradius < configs.innerCircleRadius) {
             if (Object.keys(selectedButtons).length !== 0) {
                 selectedButtons = {};
@@ -120,9 +122,7 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
         } else {
             let totalRadius1 = totalCircleRadius;
 
-            let levelsLength = configs[typeOfMenu].levels.length;
 
-            // for (var level = 0; level < levelsLength; level++) {
             for (let level = levelsLength - 1; level > -1; level--) {
 
                 let levelData = configs[typeOfMenu].levels[level],
@@ -135,7 +135,6 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
                             (-Math.PI / segmentsCount) :
                             (-Math.PI / segmentsCount) / 2) + i * (Math.PI / (segmentsCount / 2));
 
-                        // if (mradius > totalRadius1 && level !== levelsLength - 1) continue;
                         if (mradius > totalRadius1 && level !== enabledLevelsCount - 1) continue;
 
                         if (mradius > (level == 0 ? configs.innerCircleRadius : (configs[typeOfMenu].levels[level - 1].width ?? configs.circleRadius)))
@@ -167,7 +166,7 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
 
         let totalRadius = totalCircleRadius;
 
-        for (let i = configs[typeOfMenu].levels.length - 1; i > -1; i--) {
+        for (let i = levelsLength - 1; i > -1; i--) {
             let levelData = configs[typeOfMenu].levels[i];
             if (levelData.enabled !== false) {
 
@@ -225,14 +224,13 @@ function hideCircle() {
     try {
         if (circle == null || circle == undefined) return;
 
-        if (configs.circleHideAnimation)
-            circle.style.opacity = 0.0;
+        if (configs.circleHideAnimation) {
+            // circle.style.opacity = 0.0;
+            // circle.style.pointerEvents = 'none';
+            circle.classList.remove('cmg-circle-visible');
+        }
 
-        if (configs.dimBackground) hideBackgroundDimmer();
-
-        circle.style.pointerEvents = 'none';
-
-        let selectedKeys = Object.keys(selectedButtons);
+        const selectedKeys = Object.keys(selectedButtons);
 
         // if (rocketButtonPressed == null && anyButtonIsSelected == false) {
         if (rocketButtonPressed == null && selectedKeys.length == 0) {
@@ -259,15 +257,14 @@ function hideCircle() {
             }
 
             if (rocketButtonPressed == null && typeOfMenu !== null) {
-                var actionToPerform;
+                let actionToPerform;
 
                 if (selectedLevel == configs['regularMenu'].levels.length) {
-                    let shownButtons = configs[typeOfMenu]['buttons'];
+                    const shownButtons = configs[typeOfMenu]['buttons'];
                     if (shownButtons == undefined) return;
                     actionToPerform = shownButtons[selectedButton].id;
                 } else {
-                    // let shownButtons = configs['regularMenu'].levels[selectedLevel]['buttons'];
-                    let shownButtons = configs[typeOfMenu].levels[selectedLevel]['buttons'];
+                    const shownButtons = configs[typeOfMenu].levels[selectedLevel]['buttons'];
                     if (shownButtons == undefined) return;
                     actionToPerform = shownButtons[selectedButton].id;
                 }
@@ -292,20 +289,18 @@ function hideCircle() {
             }
         }
 
-        setTimeout(function () {
+        if (configs.dimBackground) hideBackgroundDimmer();
 
+        setTimeout(function () {
             textSelection = null;
 
             if (circle !== null && circle.parentNode !== null) {
-                circle.parentNode.removeChild(circle);
+                // circle.parentNode.removeChild(circle);
+                circle.remove();
                 circle = null;
             }
 
-            // for (let i = 0, l = configs.regularMenu.levels.length; i < l; i++) {
-            //     selectedButtons[i] = null;
-            // }
             selectedButtons = {};
-
         }, configs.circleHideAnimation ? configs.animationDuration : 0);
 
 

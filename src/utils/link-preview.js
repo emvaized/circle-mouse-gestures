@@ -172,8 +172,8 @@ function openLinkPreview(elementUnderCursor) {
     iframe.setAttribute('style', `background-color: transparent; border-radius: ${borderRadius}px; position: fixed; z-index: 999999 !important; `);
     iframe.style.transformOrigin = '50% 50%';
 
-    iframe.style.transform = `translate(${dxToShow}px, ${window.screen.height}px)`; /// Slide up transition
-    // iframe.style.transform = `scale(0.0) translate(${dxToShow}px, ${dyToShow}px)`; /// Scale up transition
+    // iframe.style.transform = `translate(${dxToShow}px, ${window.screen.height}px)`; /// Slide up transition
+    iframe.style.transform = `scale(0.0) translate(${dxToShow}px, ${dyToShow}px)`; /// Scale up transition
     // iframe.style.transform = `scale(0.0) translate(${linkRect.left}px, ${linkRect.top}px)`; /// From link
     iframe.style.transition = `opacity ${transitionDuration}ms ease-out, transform ${transitionDuration}ms ease-out, background-color ${transitionDuration}ms ease-out`;
     iframe.style.top = '0px';
@@ -220,8 +220,8 @@ function openLinkPreview(elementUnderCursor) {
     function hidePreview() {
         let iframeElement = document.getElementById(idForIframe);
         iframeElement.style.opacity = 0.0;
-        // iframe.style.transform = `scale(0.0) translate(${linkRect.left}px, ${linkRect.top}px)`; /// To link transition (incorrect coordinates)
-        iframe.style.transform = `translate(${dxToShow}px, ${window.screen.height}px)`; /// Slide down transition
+        iframe.style.transform = `scale(0.0) translate(${linkRect.left}px, ${linkRect.top}px)`; /// To link transition (incorrect coordinates)
+        // iframe.style.transform = `translate(${dxToShow}px, ${window.screen.height}px)`; /// Slide down transition
 
         setTimeout(function () {
             document.body.removeChild(iframeElement);

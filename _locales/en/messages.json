@@ -674,5 +674,9 @@
     "writeAReview": {
         "message": "Write a review",
         "description": ""
+    },
+    "animateHideRelativeToSelected": {
+        "message": "Animate relative to selected option",
+        "description": ""
     }
 }
