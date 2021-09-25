@@ -1,5 +1,6 @@
 #1.2.2
 - Performance optimizations
+- Improvements for link preview
 
 #1.2.1
 - Improved 'long left click to open menu' functionality

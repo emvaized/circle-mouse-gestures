@@ -70,3 +70,33 @@ html {
 .crx_mouse_visited_player {
   outline: 2px solid var(--cmg-player-color) !important;
 }
+
+/* Link preview iframe */
+#cmg-link-preview {
+  background-color: transparent; position: fixed; z-index: 999999 !important; top: 0px; left: 0px; transform-origin: 50% 50%;
+  transition: opacity var(--cmg-anim-duration) ease-out, transform var(--cmg-anim-duration) ease-out, background-color var(--cmg-anim-duration) ease-out;
+}
+
+.cmg-link-preview-button {
+  all:revert;
+  color: rgba(256,256,256,0.7);
+  color: white;
+  opacity: 0.7;
+  background-color: transparent;
+  /* transition:  opacity var(--cmg-anim-duration) ease-out; */
+  transition:  opacity 100ms ease-out;
+
+  padding: 15px;
+  border-radius: 50%;text-align: center;cursor: pointer; 
+}
+
+.cmg-link-preview-button:hover {
+  /* color: rgba(256,256,256,1.0) !important; */
+
+  opacity: 1.0;
+  background-color: rgba(256,256,256,0.35) !important;
+}
+
+.cmg-link-preview-buttons-wrapper {
+  all:revert; position: fixed; z-index:100003; transition: opacity var(--cmg-anim-duration) ease-in-out;
+}

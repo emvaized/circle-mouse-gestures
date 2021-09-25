@@ -204,10 +204,11 @@ function setPageListeners() {
     document.addEventListener('DOMContentLoaded', function () {
         document.body.style.setProperty('--cmg-circle-opacity', configs.circleOpacity);
         document.body.style.setProperty('--cmg-circle-transition', `opacity ${configs.animationDuration}ms ease-out, transform ${configs.animationDuration}ms ease-out`);
+        // document.body.style.setProperty('--cmg-anim-duration', `${configs.animationDuration}ms`);
+        document.body.style.setProperty('--cmg-anim-duration', `300ms`);
 
         if (configs.highlightElementOnHover) {
             // Mouse listener for any move event on the current document.
-
 
             // Unique ID for the classNames
             var MOUSE_VISITED_CLASSNAME = 'crx_mouse_visited';
