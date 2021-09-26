@@ -205,7 +205,7 @@ function setPageListeners() {
         document.body.style.setProperty('--cmg-circle-opacity', configs.circleOpacity);
         document.body.style.setProperty('--cmg-circle-transition', `opacity ${configs.animationDuration}ms ease-out, transform ${configs.animationDuration}ms ease-out`);
         // document.body.style.setProperty('--cmg-anim-duration', `${configs.animationDuration}ms`);
-        document.body.style.setProperty('--cmg-anim-duration', `300ms`);
+        document.body.style.setProperty('--cmg-link-prevew-anim-duration', `300ms`);
 
         if (configs.highlightElementOnHover) {
             // Mouse listener for any move event on the current document.

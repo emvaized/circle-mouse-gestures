@@ -5,8 +5,9 @@ async function showLinkTooltip() {
 
     linkTooltip = document.createElement('div');
     linkTooltip.setAttribute('class', 'cmg-link-tooltip');
-    // linkTooltip.setAttribute('style', `left: 0px; top: 0px;max-width: ${configs.circleRadius * 2}px;z-index: 99999; font-size: 13.5px;opacity: 0.0; align-items: center;display:inline-block !important; position: absolute !important;background: ${configs[typeOfMenu].color}; border-radius: 9px;color: white; text-align: center; padding: 6px; pointer-events: none;`);
-    linkTooltip.setAttribute('style', `left: 0px; top: 0px;max-width: ${configs.circleRadius * 2}px;z-index: 99999; font-size: 13.5px;opacity: 0.0; align-items: center;display:inline-block !important; position: fixed !important;background: ${configs[typeOfMenu].color}; border-radius: 9px;color: white; text-align: center; padding: 6px; pointer-events: none;`);
+    // linkTooltip.setAttribute('style', `left: 0px; top: 0px;max-width: ${configs.circleRadius * 2}px;z-index: 99999; font-size: 13.5px;opacity: 0.0; align-items: center;display:inline-block !important; position: fixed !important;background: ${configs[typeOfMenu].color}; border-radius: 9px;color: white; text-align: center; padding: 6px; pointer-events: none;`);
+    linkTooltip.style.maxWidth = `${configs.circleRadius * 2}px`;
+    linkTooltip.style.background = configs[typeOfMenu].color;
 
     if (configs.addCircleShadow)
         linkTooltip.style.boxShadow = `0px 5px 12px 0 rgba(0,0,0,${configs.circleShadowOpacity})`;
@@ -15,9 +16,9 @@ async function showLinkTooltip() {
     if (linkToDisplay[linkToDisplay.length - 1] == '/') linkToDisplay = linkToDisplay.slice(0, -1);
 
     /// Set title
-    let label = document.createElement('span');
+    const label = document.createElement('span');
     label.setAttribute('id', 'cmg-helper-tooltip-label');
-    label.innerHTML = typeOfMenu == 'linkMenu' ?
+    label.innerText = typeOfMenu == 'linkMenu' ?
         configs.showLinkTextInTooltip && hoveredLinkTitle !== null && hoveredLinkTitle !== undefined && hoveredLinkTitle !== ''
             && hoveredLinkTitle !== hoveredLink && hoveredLinkTitle !== linkToDisplay
             ? (hoveredLinkTitle.length > 24 ? hoveredLinkTitle.substring(0, 24) + '...' : hoveredLinkTitle)
@@ -40,20 +41,19 @@ async function showLinkTooltip() {
 
         } else {
             /// Show SVG icon
-            let svgIcon = document.createElement('canvas');
+            const svgIcon = document.createElement('canvas');
             svgIcon.setAttribute('height', '12px');
             svgIcon.setAttribute('width', '12px');
-            svgIcon.setAttribute('style', 'transform: translate(0, 1.5px)');
+            svgIcon.style.transform = 'translate(0, 1.5px)';
             typeIcon.appendChild(svgIcon);
-
-            let svgCanvasContext = svgIcon.getContext('2d');
+            const svgCanvasContext = svgIcon.getContext('2d');
             svgCanvasContext.save();
 
             /// Set color
             svgCanvasContext.fillStyle = `rgba(${fgColorRgb.red}, ${fgColorRgb.green}, ${fgColorRgb.blue}, 0.75)`;
             svgCanvasContext.scale(0.5, 0.5);
 
-            let p = new Path2D(iconData);
+            const p = new Path2D(iconData);
             svgCanvasContext.fill(p);
             svgCanvasContext.restore();
         }
@@ -62,13 +62,13 @@ async function showLinkTooltip() {
     }
 
     label.innerHTML += '<br />';
-    label.setAttribute('style', `color: rgba(${fgColorRgb.red}, ${fgColorRgb.green}, ${fgColorRgb.blue}, 0.75); vertical-align: middle;`);
+    label.style.color = `rgba(${fgColorRgb.red}, ${fgColorRgb.green}, ${fgColorRgb.blue}, 0.75)`;
     linkTooltip.appendChild(label);
 
     /// Set body
-    let text = document.createElement('span');
+    const text = document.createElement('span');
     text.id = 'cmg-helper-tooltip-body';
-    let maxSymbolsInBody = 33;
+    const maxSymbolsInBody = 33;
 
     if (typeOfMenu == 'imageMenu' || typeOfMenu == 'playerMenu') {
         let fileName;
@@ -83,59 +83,27 @@ async function showLinkTooltip() {
         } else if (typeOfMenu == 'textFieldMenu') {
 
             /// Set tooltip body to display current clipboard content
-            let result = await getCurrentClipboard();
-
+            const result = await getCurrentClipboard();
             currentClipboardContent = result;
 
-            // currentClipboardContent = result;
             if (configs.debugMode) {
                 console.log('current clipboard content:');
                 console.log(currentClipboardContent);
             }
 
             if (currentClipboardContent !== null && currentClipboardContent !== undefined && currentClipboardContent !== '') {
-                // let label = document.getElementById('cmg-helper-tooltip-label');
-                // let text = document.getElementById('cmg-helper-tooltip-body');
                 if (text !== null)
                     text.innerText = currentClipboardContent.length > maxSymbolsInBody ? currentClipboardContent.substring(0, maxSymbolsInBody - 3) + '...' : currentClipboardContent;
                 if (label !== null)
                     label.innerHTML = chrome.i18n.getMessage('clipboard') + '<br />';
 
-
-                let dxToShow = leftCoord + (canvasRadius / 2) - (linkTooltip.clientWidth / 2);
-                let dyToShow = topCoord - (linkTooltip.clientHeight) - 8;
+                const dxToShow = leftCoord + (canvasRadius / 2) - (linkTooltip.clientWidth / 2);
+                const dyToShow = topCoord - (linkTooltip.clientHeight) - 8;
                 linkTooltip.style.transform = `translate(${dxToShow}px, ${dyToShow}px)`;
             }
-
-
-            // chrome.runtime.sendMessage({ actionToDo: 'getCurrentClipboardContent' }, function (res) {
-            //     currentClipboardContent = res;
-
-            //     // currentClipboardContent = result;
-            //     if (configs.debugMode) {
-            //         console.log('current clipboard content:');
-            //         console.log(currentClipboardContent);
-            //     }
-
-            //     if (currentClipboardContent !== null && currentClipboardContent !== undefined && currentClipboardContent !== '') {
-            //         // let label = document.getElementById('cmg-helper-tooltip-label');
-            //         // let text = document.getElementById('cmg-helper-tooltip-body');
-            //         if (text !== null)
-            //             text.innerHTML = currentClipboardContent.length > maxSymbolsInBody ? currentClipboardContent.substring(0, maxSymbolsInBody - 3) + '...' : currentClipboardContent;
-            //         if (label !== null)
-            //             label.innerHTML = chrome.i18n.getMessage('clipboard') + '<br />';
-
-
-            //         let dxToShow = leftCoord + (canvasRadius / 2) - (linkTooltip.clientWidth / 2);
-            //         let dyToShow = topCoord - (linkTooltip.clientHeight) - 8;
-            //         linkTooltip.style.transform = `translate(${dxToShow}px, ${dyToShow}px)`;
-            //     }
-            // })
-
         }
         else {
             text.innerText = configs.showFullLinkInTooltip ? linkToDisplay : linkToDisplay.length > maxSymbolsInBody ? linkToDisplay.substring(0, maxSymbolsInBody - 3) + '...' : linkToDisplay;
-
         }
     }
 
@@ -153,9 +121,8 @@ async function showLinkTooltip() {
     linkTooltip.style.transform = `translate(${dxToShow}px, ${topCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px) scale(0.0)`;
 
     setTimeout(function () {
-        linkTooltip.style.transition = `transform ${configs.animationDuration}ms ease, opacity ${configs.animationDuration}ms ease`;
+        linkTooltip.style.transition = `transform ${configs.animationDuration}ms ease, opacity ${configs.animationDuration}ms ease-out`;
         linkTooltip.style.transform = `translate(${dxToShow}px, ${dyToShow}px) scale(1.0)`;
-        // linkTooltip.style.opacity = configs.linkTooltipOpacity;
         linkTooltip.style.opacity = configs.circleOpacity ?? 1.0;
     }, 1);
 }
@@ -163,13 +130,12 @@ async function showLinkTooltip() {
 function hideLinkTooltip() {
     if (linkTooltip == null) return;
 
-    // let dxShown = leftCoord + configs.circleRadius - (linkTooltip.clientWidth / 2);
-    let dxShown = leftCoord + (canvasRadius / 2) - (linkTooltip.clientWidth / 2);
+    const dxShown = leftCoord + (canvasRadius / 2) - (linkTooltip.clientWidth / 2);
     linkTooltip.style.transform = `translate(${dxShown}px, ${topCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px) scale(0.0)`;
-    linkTooltip.style.opacity = `0.0`;
+    linkTooltip.style.opacity = 0.0;
     setTimeout(function () {
         if (linkTooltip !== null && linkTooltip.parentNode !== null)
-            linkTooltip.parentNode.removeChild(linkTooltip);
+            linkTooltip.remove();;
         linkTooltip = null;
     }, 200);
 }

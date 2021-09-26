@@ -96,7 +96,6 @@ function openImageFullscreen(elementUnderCursor) {
 
     /// Hint
     let hintSpan = document.createElement('span');
-
     hintSpan.innerHTML = chrome.i18n.getMessage("scrollToResize") ? chrome.i18n.getMessage("scrollToResize") : 'Scroll to resize';
     hintSpan.innerHTML += '.<br/>';
     hintSpan.innerHTML += chrome.i18n.getMessage("rightClickToClose") ? chrome.i18n.getMessage("rightClickToClose") : 'Right click to close';
@@ -212,7 +211,6 @@ function openImageFullscreen(elementUnderCursor) {
         rotateButton.style.background = 'transparent'
         rotateButton.style.color = 'rgba(256,256,256,0.7)'
     })
-
 
     /// Create image
     let idForImage = 'cmg-fullscreen-image';

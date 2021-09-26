@@ -5,9 +5,10 @@ function openLinkPreview(elementUnderCursor) {
     let headerTopPadding = 30;
     let borderRadius = 2;
     let clickOutsideToExit = true;
-    let reduceDimmerOpacityOnHover = true;
+    let reduceDimmerOpacityOnHover = false;
     let multiplierToReduceBgOpacityOnHover = 0.85;
-    let regulateDimmerOpacityByScroll = true;
+    let regulateDimmerOpacityByScroll = false;
+    let preventScrollOnPage = false;
 
     const linkElement = elementUnderCursor;
     const linkRect = elementUnderCursor.getBoundingClientRect();
@@ -17,17 +18,22 @@ function openLinkPreview(elementUnderCursor) {
     const desiredWidth = window.innerWidth * (screenHeightToTakeInitially / 1.25);
 
     /// dx/dy calculation
-    const dxToShow = window.innerWidth / 2 - (desiredWidth / 2);
-    const dyToShow = window.innerHeight / 2 - (desiredHeight / 2);
+    let dxToShow = window.innerWidth / 2 - (desiredWidth / 2);
+    let dyToShow = window.innerHeight / 2 - (desiredHeight / 2);
 
     /// Background dimmer
-    let backgroundDimmer = document.createElement('div');
-    backgroundDimmer.setAttribute('style', `${clickOutsideToExit ? 'cursor: pointer;' : ''}z-index: 99999; width:${document.documentElement.clientWidth}px;height: ${document.documentElement.scrollHeight}px;  opacity: 0.0; transition: opacity ${transitionDuration}ms ease-in-out; position:fixed; background: black !important; top: 0px; left: 0px;`);
+    const backgroundDimmer = document.createElement('div');
+    backgroundDimmer.setAttribute('class', 'cmg-link-preview-bg-dimmer');
+    // backgroundDimmer.setAttribute('style', `${clickOutsideToExit ? 'cursor: pointer;' : ''}z-index: 99999; width:${document.documentElement.clientWidth}px;height: ${document.documentElement.scrollHeight}px;  opacity: 0.0; transition: opacity ${transitionDuration}ms ease-in-out; position:fixed; background: black !important; top: 0px; left: 0px;`);
+    // backgroundDimmer.setAttribute('style', `width:${document.documentElement.clientWidth}px;height: ${document.documentElement.scrollHeight}px;  `);
+    backgroundDimmer.style.width = '100%';
+    backgroundDimmer.style.height = '100%';
     document.body.appendChild(backgroundDimmer);
 
     /// Add dimmer listeners
     setTimeout(function () {
         backgroundDimmer.style.opacity = bgOpacity;
+
         if (clickOutsideToExit)
             backgroundDimmer.onmousedown = function () {
                 closeFullscreenView();
@@ -65,70 +71,6 @@ function openLinkPreview(elementUnderCursor) {
 
     }, 1);
 
-    /// Buttons in top right corner
-    const buttonSize = 24;
-    const btnInnerPadding = 15;
-    const topControlsContainer = document.createElement('div');
-    topControlsContainer.setAttribute('class', 'cmg-link-preview-buttons-wrapper');
-    // topControlsContainer.style.right = `${headerTopPadding}px`;
-    // topControlsContainer.style.top = `${headerTopPadding - (buttonSize / 2)}px`;
-    topControlsContainer.style.left = `${dxToShow + desiredWidth + headerTopPadding}px`;
-    topControlsContainer.style.top = `${dyToShow}px`;
-
-    /// Add close button
-    const closeButton = document.createElement('div');
-    closeButton.setAttribute('title', chrome.i18n.getMessage("closeLabel") ? chrome.i18n.getMessage("closeLabel") : 'Close');
-    closeButton.setAttribute('class', 'cmg-link-preview-button');
-    closeButton.style.width = `${buttonSize + btnInnerPadding}px`;
-    closeButton.style.height = `${buttonSize + btnInnerPadding}px`;
-    closeButton.style.fontSize = `${buttonSize}px`;
-
-    const iconCLoseTab = createSvgIconFromPath(actionIcons['closeCurrentTab'], buttonSize, `padding: ${btnInnerPadding / 2}px !important;`);
-    closeButton.appendChild(iconCLoseTab);
-    topControlsContainer.appendChild(closeButton);
-
-    closeButton.addEventListener('mousedown', function () {
-        closeFullscreenView();
-    });
-
-    /// Add open in background tab button
-    const openInBgTabButton = document.createElement('div');
-    openInBgTabButton.setAttribute('class', 'cmg-link-preview-button');
-    openInBgTabButton.setAttribute('title', chrome.i18n.getMessage("openInBgTab") ? chrome.i18n.getMessage("openInBgTab") : 'Open in background');
-    // openInBgTabButton.setAttribute('style', `all:revert;cursor: pointer; padding: ${btnInnerPadding}px !important; text-align: center;width: ${buttonSize + btnInnerPadding}px; height: ${buttonSize + btnInnerPadding}px; border-radius: 50%; color: rgba(256,256,256,0.7);font-size: ${buttonSize}px; line-height: 1.2;`);
-    openInBgTabButton.style.width = `${buttonSize + btnInnerPadding}px`;
-    openInBgTabButton.style.height = `${buttonSize + btnInnerPadding}px`;
-
-    /// Add icon
-    const iconBgTab = createSvgIconFromPath(actionIcons['openInBgTab'], buttonSize, `padding: ${btnInnerPadding / 2}px !important;`);
-    openInBgTabButton.appendChild(iconBgTab);
-    topControlsContainer.appendChild(openInBgTabButton);
-
-    openInBgTabButton.addEventListener('mousedown', function () {
-        closeFullscreenView();
-        chrome.runtime.sendMessage({ actionToDo: 'openInBgTab', url: url });
-    })
-
-    /// Add open in new tab button
-    let openInNewTabButton = document.createElement('div');
-    openInNewTabButton.setAttribute('class', 'cmg-link-preview-button');
-    openInNewTabButton.setAttribute('title', chrome.i18n.getMessage("openInFgTab") ? chrome.i18n.getMessage("openInFgTab") : 'Open in new tab');
-    // openInNewTabButton.setAttribute('style', `all:revert;cursor: pointer; padding: ${btnInnerPadding}px !important; text-align: center;width: ${buttonSize + btnInnerPadding}px; height: ${buttonSize + btnInnerPadding}px; border-radius: 50%; color: rgba(256,256,256,0.7);font-size: ${buttonSize}px; line-height: 1.2;`);
-    openInNewTabButton.style.width = `${buttonSize + btnInnerPadding}px`;
-    openInNewTabButton.style.height = `${buttonSize + btnInnerPadding}px`;
-
-    const iconFgTab = createSvgIconFromPath(actionIcons['openInFgTab'], buttonSize, `padding: ${btnInnerPadding / 2}px !important;`);
-    openInNewTabButton.appendChild(iconFgTab);
-    topControlsContainer.appendChild(openInNewTabButton);
-
-    openInNewTabButton.addEventListener('mousedown', function () {
-        closeFullscreenView();
-        chrome.runtime.sendMessage({ actionToDo: 'openInFgTab', url: url });
-    });
-
-    document.body.appendChild(topControlsContainer);
-
-
     /// Create iframe
     let url = linkElement.getAttribute('href') || linkElement.getAttribute('data-url') || linkElement.parentNode.getAttribute('href') || linkElement.parentNode.getAttribute('data-url');
     if (configs.debugMode) {
@@ -137,8 +79,7 @@ function openLinkPreview(elementUnderCursor) {
     }
 
     if (url == null || url == undefined) return;
-
-    if (url[0] == '/') {
+    if (url[0] == '/' || url[0] == '#') {
         url = url.substring(1);
         url = 'https://' + window.location.href.split('/')[2] + '/' + url;
     }
@@ -183,15 +124,136 @@ function openLinkPreview(elementUnderCursor) {
     }, 50);
 
     setTimeout(function () {
-
         fullscreenImageIsOpen = true;
         iframe.style.backgroundColor = 'white';
         iframe.style.opacity = 1.0;
 
-        document.addEventListener('wheel', preventPageScroll, { passive: false });
-        document.addEventListener('scroll', preventPageScroll, { passive: false });
         document.addEventListener('keydown', keyboardListener);
+
+        if (preventScrollOnPage) {
+            document.addEventListener('wheel', preventPageScroll, { passive: false });
+            document.addEventListener('scroll', preventPageScroll, { passive: false });
+        }
+
     }, 1);
+
+
+    /// Create buttons in top right corner
+    const buttonSize = 24;
+    const btnInnerPadding = 15;
+    const topControlsContainer = document.createElement('div');
+    topControlsContainer.setAttribute('class', 'cmg-link-preview-buttons-wrapper');
+    topControlsContainer.style.left = `${dxToShow + desiredWidth + headerTopPadding}px`;
+    // topControlsContainer.style.top = `${dyToShow - (buttonSize + (btnInnerPadding * 2))}px`;
+    topControlsContainer.style.top = `${dyToShow}px`;
+
+    /// Add close button
+    const closeButton = document.createElement('div');
+    closeButton.setAttribute('title', chrome.i18n.getMessage("closeLabel") ? chrome.i18n.getMessage("closeLabel") : 'Close');
+    closeButton.setAttribute('class', 'cmg-link-preview-button');
+    closeButton.style.width = `${buttonSize + btnInnerPadding}px`;
+    closeButton.style.height = `${buttonSize + btnInnerPadding}px`;
+    closeButton.style.fontSize = `${buttonSize}px`;
+
+    const iconCLoseTab = createSvgIconFromPath(actionIcons['closeCurrentTab'], buttonSize, `padding: ${btnInnerPadding / 2}px !important;`);
+    closeButton.appendChild(iconCLoseTab);
+    topControlsContainer.appendChild(closeButton);
+
+    closeButton.addEventListener('mousedown', function () {
+        closeFullscreenView();
+    });
+
+    /// Add open in background tab button
+    const openInBgTabButton = document.createElement('div');
+    openInBgTabButton.setAttribute('class', 'cmg-link-preview-button');
+    openInBgTabButton.setAttribute('title', chrome.i18n.getMessage("openInBgTab") ? chrome.i18n.getMessage("openInBgTab") : 'Open in background');
+    openInBgTabButton.style.width = `${buttonSize + btnInnerPadding}px`;
+    openInBgTabButton.style.height = `${buttonSize + btnInnerPadding}px`;
+
+    const iconBgTab = createSvgIconFromPath(actionIcons['openInBgTab'], buttonSize, `padding: ${btnInnerPadding / 2}px !important;`);
+    openInBgTabButton.appendChild(iconBgTab);
+    topControlsContainer.appendChild(openInBgTabButton);
+
+    openInBgTabButton.addEventListener('mousedown', function () {
+        closeFullscreenView();
+        chrome.runtime.sendMessage({ actionToDo: 'openInBgTab', url: url });
+    });
+
+    /// Add open in new tab button
+    let openInNewTabButton = document.createElement('div');
+    openInNewTabButton.setAttribute('class', 'cmg-link-preview-button');
+    openInNewTabButton.setAttribute('title', chrome.i18n.getMessage("openInFgTab") ? chrome.i18n.getMessage("openInFgTab") : 'Open in new tab');
+    openInNewTabButton.style.width = `${buttonSize + btnInnerPadding}px`;
+    openInNewTabButton.style.height = `${buttonSize + btnInnerPadding}px`;
+
+    const iconFgTab = createSvgIconFromPath(actionIcons['openInFgTab'], buttonSize, `padding: ${btnInnerPadding / 2}px !important;`);
+    openInNewTabButton.appendChild(iconFgTab);
+    topControlsContainer.appendChild(openInNewTabButton);
+
+    openInNewTabButton.addEventListener('mousedown', function () {
+        closeFullscreenView();
+        chrome.runtime.sendMessage({ actionToDo: 'openInFgTab', url: url });
+    });
+
+    /// Move preview button
+    let movePreviewButton = document.createElement('div');
+    movePreviewButton.setAttribute('class', 'cmg-link-preview-button');
+    movePreviewButton.setAttribute('title', 'Move preview');
+    movePreviewButton.style.width = `${buttonSize + btnInnerPadding}px`;
+    movePreviewButton.style.height = `${buttonSize + btnInnerPadding}px`;
+    movePreviewButton.style.cursor = 'grab';
+
+    const iconMovePreview = createSvgIconFromPath(actionIcons['toggleFullscreen'], buttonSize, `padding: ${btnInnerPadding / 2}px !important;`);
+    movePreviewButton.appendChild(iconMovePreview);
+    movePreviewButton.style.transform = 'rotate(45deg)'
+    topControlsContainer.appendChild(movePreviewButton);
+
+    movePreviewButton.addEventListener('mousedown', function () {
+        iframe.classList.add('cmg-no-transition');
+
+        function movePreviewOnDrag(e) {
+            dxToShow = dxToShow + e.movementX;
+            dyToShow = dyToShow + e.movementY;
+
+            iframe.style.transform = `translate(${dxToShow}px, ${dyToShow}px) scale(1.0) `;
+
+            topControlsContainer.style.left = `${dxToShow + desiredWidth + headerTopPadding}px`;
+            topControlsContainer.style.top = `${dyToShow}px`;
+        }
+
+        function removeMovePreviewListeners() {
+            document.removeEventListener('mousemove', movePreviewOnDrag);
+            document.removeEventListener('mouseup', removeMovePreviewListeners);
+            iframe.classList.remove('cmg-no-transition');
+        }
+
+        document.addEventListener('mousemove', movePreviewOnDrag);
+        document.addEventListener('mouseup', removeMovePreviewListeners);
+    });
+
+
+    document.body.appendChild(topControlsContainer);
+
+
+    /// Append title
+    const hintSpan = document.createElement('span');
+    hintSpan.setAttribute('class', 'cmg-link-preview-title')
+    hintSpan.innerText = url;
+    hintSpan.style.left = `${dxToShow + (desiredWidth / 2)}px`; hintSpan.style.top = `${dyToShow - (headerTopPadding)}px`;
+
+    document.body.appendChild(hintSpan);
+    hintSpan.style.transform = `translate(-${hintSpan.clientWidth / 2}px, 0px)`;
+
+    setTimeout(function () {
+        hintSpan.style.opacity = 1.0;
+    }, 1);
+
+
+    iframe.onload = function () {
+        hintSpan.innerText = iframe.contentDocument.title;
+        hintSpan.style.transform = `translate(-${hintSpan.clientWidth / 2}px, 0px)`;
+        url = iframe.contentDocument.location.href;
+    }
 
 
     function keyboardListener(e) {
@@ -208,16 +270,24 @@ function openLinkPreview(elementUnderCursor) {
     function closeFullscreenView() {
         hideBgDimmer();
         hidePreview();
-        document.removeEventListener('wheel', preventPageScroll, { passive: false });
-        document.removeEventListener('scroll', preventPageScroll, { passive: false });
+
         document.removeEventListener('keydown', keyboardListener);
+        if (preventScrollOnPage) {
+            document.removeEventListener('wheel', preventPageScroll, { passive: false });
+            document.removeEventListener('scroll', preventPageScroll, { passive: false });
+        }
+
     }
 
     function hidePreview() {
         iframe.style.opacity = 0.0;
 
-        // iframe.style.transform = `scale(0.0) translate(${linkRect.left}px, ${linkRect.top}px)`; /// To link transition (incorrect coordinates)
-        iframe.style.transform = `translate(${linkRect.left + (linkRect.width / 2) - (desiredWidth / 2)}px, ${linkRect.top + (linkRect.height / 2) - (desiredHeight / 2)}px) scale(0.0)`; /// To link transition 2
+        const updatedlinkRect = elementUnderCursor.getBoundingClientRect();
+        const shouldUseScaleAnimation = updatedlinkRect.top < 0 || updatedlinkRect.top > window.innerHeight;
+
+        iframe.style.transform = shouldUseScaleAnimation ?
+            `translate(${dxToShow}px, ${dyToShow}px) scale(0.0)` :
+            `translate(${updatedlinkRect.left + (updatedlinkRect.width / 2) - (desiredWidth / 2)}px, ${updatedlinkRect.top + (updatedlinkRect.height / 2) - (desiredHeight / 2)}px) scale(0.0)`; /// To link transition 2
         // iframe.style.transform = `translate(${dxToShow}px, ${window.screen.height}px)`; /// Slide down transition
         // iframe.style.transform = `translate(${dxToShow}px, ${dyToShow}px) scale(0.0)`; /// Scale down transition
 
@@ -234,6 +304,8 @@ function openLinkPreview(elementUnderCursor) {
                 backgroundDimmer.style.transition = `opacity ${transitionDuration}ms ease-in-out`;
             backgroundDimmer.style.opacity = 0.0;
             topControlsContainer.style.opacity = 0.0;
+            hintSpan.style.opacity = 0.0;
+
             backgroundDimmer.onmousedown = null;
             backgroundDimmer.onmouseover = null;
             backgroundDimmer.onmouseout = null;
@@ -243,8 +315,9 @@ function openLinkPreview(elementUnderCursor) {
                 // topControlsContainer.parentNode.removeChild(topControlsContainer);
                 backgroundDimmer.remove();
                 topControlsContainer.remove();
-                backgroundDimmer = null;
-                topControlsContainer = null;
+                hintSpan.remove();
+                // backgroundDimmer = null;
+                // topControlsContainer = null;
             }, transitionDuration);
         }
     }
