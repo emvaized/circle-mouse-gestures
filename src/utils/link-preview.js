@@ -144,7 +144,7 @@ function openLinkPreview(elementUnderCursor) {
     hintSpan.innerText = url;
 
     document.body.appendChild(hintSpan);
-    hintSpan.style.transform = `translate(${dxToShow + (desiredWidth / 2) - (hintSpan.clientWidth / 2)}px, ${dyToShow - (headerTopPadding)}px)`;
+    hintSpan.style.transform = `translate(${dxToShow + (desiredWidth / 2) - (hintSpan.clientWidth / 2)}px, ${dyToShow - (headerTopPadding * 1.3)}px)`;
 
     // setTimeout(function () {
     //     hintSpan.style.opacity = 1.0;
@@ -162,7 +162,7 @@ function openLinkPreview(elementUnderCursor) {
             if (hintSpan == null) return;
 
             hintSpan.innerText = iframe.contentDocument.title;
-            hintSpan.style.transform = `translate(${dxToShow + (desiredWidth / 2) - (hintSpan.clientWidth / 2)}px, ${dyToShow - (headerTopPadding)}px)`;
+            hintSpan.style.transform = `translate(${dxToShow + (desiredWidth / 2) - (hintSpan.clientWidth / 2)}px, ${dyToShow - (headerTopPadding * 1.3)}px)`;
             hintSpan.style.opacity = 1.0;
         }, 300);
     }
@@ -267,7 +267,7 @@ function openLinkPreview(elementUnderCursor) {
             dyToShow = dyToShow + e.movementY;
             iframe.style.transform = `translate(${dxToShow}px, ${dyToShow}px) scale(1.0) `;
             topControlsContainer.style.transform = `translate(${dxToShow + desiredWidth + headerTopPadding}px,${dyToShow}px)`;
-            hintSpan.style.transform = `translate(${dxToShow + (desiredWidth / 2) - (hintSpan.clientWidth / 2)}px, ${dyToShow - (headerTopPadding)}px)`;
+            hintSpan.style.transform = `translate(${dxToShow + (desiredWidth / 2) - (hintSpan.clientWidth / 2)}px, ${dyToShow - (headerTopPadding * 1.3)}px)`;
         }
 
         function removeMovePreviewListeners() {

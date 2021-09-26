@@ -10,7 +10,7 @@ function openImageFullscreen(elementUnderCursor) {
     // ].filter(Boolean)); // filter filters out any empty strings
 
     let transitionDuration = 300;
-    let bgOpacity = 0.7;
+    let bgOpacity = 0.5;
     let scale = 1.0;
     let minScale = 0.1;
     let maxScale = 50.0;
@@ -18,20 +18,21 @@ function openImageFullscreen(elementUnderCursor) {
     let headerTopPadding = 30;
     let borderRadius = 2;
     let clickOutsideToExit = true;
-    let reduceDimmerOpacityOnHover = true;
+    let reduceDimmerOpacityOnHover = false;
     let multiplierToReduceBgOpacityOnHover = 0.85;
-    let regulateDimmerOpacityByScroll = true;
+    let regulateDimmerOpacityByScroll = false;
+    let preventScrollOnPage = false;
 
     let rotationSteps = [0, 90, 180, 270, 360];
     let rotationStepsCounter = 0;
 
-    let originalImage = elementUnderCursor;
-    let imageRect = originalImage.getBoundingClientRect();
+    const originalImage = elementUnderCursor;
+    const imageRect = originalImage.getBoundingClientRect();
 
     ///Initial scale calculation
-    let originalHeight = originalImage.clientHeight;
-    let originalWidth = originalImage.clientWidth;
-    let desiredHeight = window.innerHeight * screenHeightToTakeInitially;
+    const originalHeight = originalImage.clientHeight;
+    const originalWidth = originalImage.clientWidth;
+    const desiredHeight = window.innerHeight * screenHeightToTakeInitially;
     scale = desiredHeight / originalHeight;
 
     /// Final dx/dy calculation
@@ -39,9 +40,9 @@ function openImageFullscreen(elementUnderCursor) {
     let dyToShow = window.innerHeight / 2 - (originalHeight * scale / 2);
 
     /// Storing values as initial
-    let initialScale = scale;
-    let initialDx = dxToShow;
-    let initialDy = dyToShow;
+    const initialScale = scale;
+    const initialDx = dxToShow;
+    const initialDy = dyToShow;
 
     /// Make original image transparent
     let originalImageStyle = originalImage.currentStyle || window.getComputedStyle(originalImage);
@@ -119,10 +120,15 @@ function openImageFullscreen(elementUnderCursor) {
     document.body.appendChild(topControlsContainer);
 
     /// Add close button
-    let closeButton = document.createElement('div');
+    const closeButton = document.createElement('div');
     closeButton.setAttribute('title', chrome.i18n.getMessage("closeLabel") ? chrome.i18n.getMessage("closeLabel") : 'Close');
-    closeButton.setAttribute('style', `all:revert;cursor: pointer; padding: ${btnInnerPadding}px; text-align: center;width: ${buttonSize + btnInnerPadding}px; height: ${buttonSize + btnInnerPadding}px; border-radius: 50%; color: rgba(256,256,256,0.7);font-size: ${buttonSize}px;`);
-    let btnLabel = document.createElement('span');
+    // closeButton.setAttribute('style', `all:revert;cursor: pointer; padding: ${btnInnerPadding}px; text-align: center;width: ${buttonSize + btnInnerPadding}px; height: ${buttonSize + btnInnerPadding}px; border-radius: 50%; color: rgba(256,256,256,0.7);font-size: ${buttonSize}px;`);
+    closeButton.setAttribute('class', 'cmg-link-preview-button');
+    closeButton.style.width = `${buttonSize + btnInnerPadding}px`;
+    closeButton.style.height = `${buttonSize + btnInnerPadding}px`;
+    closeButton.style.fontSize = `${buttonSize}px`;
+
+    const btnLabel = document.createElement('span');
     btnLabel.setAttribute('style', 'vertical-align: middle');
     btnLabel.innerText = '✕';
     closeButton.appendChild(btnLabel);
@@ -132,21 +138,16 @@ function openImageFullscreen(elementUnderCursor) {
         closeFullscreenView();
     });
 
-    closeButton.addEventListener('mouseover', function () {
-        closeButton.style.background = 'rgba(256,256,256,0.35)'
-        closeButton.style.color = 'rgba(256,256,256,1.0)'
-    })
-
-    closeButton.addEventListener('mouseout', function () {
-        closeButton.style.background = 'transparent'
-        closeButton.style.color = 'rgba(256,256,256,0.7)'
-    })
-
     /// Add rotate button
-    let rotateButton = document.createElement('div');
+    const rotateButton = document.createElement('div');
     rotateButton.setAttribute('title', chrome.i18n.getMessage("rotateLabel") ? chrome.i18n.getMessage("rotateLabel") : 'Rotate');
-    rotateButton.setAttribute('style', `all:revert;cursor: pointer; padding: ${btnInnerPadding}px !important; text-align: center;width: ${buttonSize + btnInnerPadding}px; height: ${buttonSize + btnInnerPadding}px; border-radius: 50%; color: rgba(256,256,256,0.7);font-size: ${buttonSize}px; line-height: 1.2;`);
-    let rotationLabel = document.createElement('span');
+    // rotateButton.setAttribute('style', `all:revert;cursor: pointer; padding: ${btnInnerPadding}px !important; text-align: center;width: ${buttonSize + btnInnerPadding}px; height: ${buttonSize + btnInnerPadding}px; border-radius: 50%; color: rgba(256,256,256,0.7);font-size: ${buttonSize}px; line-height: 1.2;`);
+    rotateButton.setAttribute('class', 'cmg-link-preview-button');
+    rotateButton.style.width = `${buttonSize + btnInnerPadding}px`;
+    rotateButton.style.height = `${buttonSize + btnInnerPadding}px`;
+    rotateButton.style.fontSize = `${buttonSize}px`;
+
+    const rotationLabel = document.createElement('span');
     rotationLabel.setAttribute('style', 'vertical-align: middle');
     rotationLabel.innerText = '🗘';
     rotateButton.appendChild(rotationLabel);
@@ -202,16 +203,6 @@ function openImageFullscreen(elementUnderCursor) {
         }
     })
 
-    rotateButton.addEventListener('mouseover', function () {
-        rotateButton.style.background = 'rgba(256,256,256,0.35)'
-        rotateButton.style.color = 'rgba(256,256,256,1.0)'
-    })
-
-    rotateButton.addEventListener('mouseout', function () {
-        rotateButton.style.background = 'transparent'
-        rotateButton.style.color = 'rgba(256,256,256,0.7)'
-    })
-
     /// Create image
     let idForImage = 'cmg-fullscreen-image';
     let img = document.createElement('img');
@@ -220,13 +211,12 @@ function openImageFullscreen(elementUnderCursor) {
     img.setAttribute('style', `border-radius: ${borderRadius}px;`);
     img.style.maxHeight = `${originalHeight}px`;
 
-    let rotationWrapper = document.createElement('div');
-    rotationWrapper.setAttribute('style', `transition: transform ${transitionDuration}ms ease-in-out;`);
+    const rotationWrapper = document.createElement('div');
+    rotationWrapper.style.transition = `transform ${transitionDuration}ms ease-in-out`;
     rotationWrapper.appendChild(img);
 
-    let copyOfImage = document.createElement('div');
+    const copyOfImage = document.createElement('div');
     copyOfImage.setAttribute('id', idForImage);
-    // copyOfImage.setAttribute('style', `transform-origin: 0% 0%; cursor: grab;position: absolute; transition: transform ${transitionDuration}ms ease-in-out; left: 0px; top: 0px; transform: translate(${imageRect.left}px, ${imageRect.top + window.scrollY}px); z-index: 100002;`)
     copyOfImage.setAttribute('style', `transform-origin: 0% 0%; cursor: grab; position: fixed; transition: transform ${transitionDuration}ms ease-in-out; left: 0px; top: 0px; transform: translate(${imageRect.left}px, ${imageRect.top}px); z-index: 100002;`)
     copyOfImage.style.maxHeight = `${originalHeight}px`;
     copyOfImage.appendChild(rotationWrapper);
@@ -237,7 +227,7 @@ function openImageFullscreen(elementUnderCursor) {
     setTimeout(function () {
         fullscreenImageIsOpen = true;
 
-        let copyOfImage = document.getElementById(idForImage);
+        // let copyOfImage = document.getElementById(idForImage);
         copyOfImage.style.transform = `translate(${dxToShow}px, ${dyToShow}px) scale(${scale})`;
 
         copyOfImage.addEventListener('mousedown', function (e) {
@@ -258,9 +248,11 @@ function openImageFullscreen(elementUnderCursor) {
         })
 
         copyOfImage.addEventListener('wheel', imageWheelListener, { passive: false });
-        document.addEventListener('wheel', preventPageScroll, { passive: false });
-        document.addEventListener('scroll', preventPageScroll, { passive: false });
         document.addEventListener('keydown', keyboardListener);
+        if (preventScrollOnPage) {
+            document.addEventListener('wheel', preventPageScroll, { passive: false });
+            document.addEventListener('scroll', preventPageScroll, { passive: false });
+        }
 
         /// Double click to scale up listener
         let scaleSteps = [1.0, 2.0, 4.0]
@@ -378,8 +370,6 @@ function openImageFullscreen(elementUnderCursor) {
 
         copyOfImage.style.transition = '';
         copyOfImage.style.transform = `translate(${dxToShow}px, ${dyToShow}px) scale(${scale})`;
-
-
     }
 
     function scaleWholeImageUp(amount) {
@@ -412,28 +402,36 @@ function openImageFullscreen(elementUnderCursor) {
         hideBgDimmer();
         hideFullscreenImg();
         copyOfImage.removeEventListener('wheel', imageWheelListener, { passive: false });
-        document.removeEventListener('wheel', preventPageScroll, { passive: false });
-        document.removeEventListener('scroll', preventPageScroll, { passive: false });
         document.removeEventListener('keydown', keyboardListener);
+        if (preventScrollOnPage) {
+            document.removeEventListener('wheel', preventPageScroll, { passive: false });
+            document.removeEventListener('scroll', preventPageScroll, { passive: false });
+        }
     }
 
     function hideFullscreenImg() {
-        let copyOfImage = document.getElementById(idForImage);
-
         if (copyOfImage.style.transition == '')
             copyOfImage.style.transition = `transform ${transitionDuration}ms ease-in-out, scale ${transitionDuration}ms ease-in-out`;
 
         if (rotationWrapper.style.transition == '')
             rotationWrapper.style.transition = `transform ${transitionDuration}ms ease-in-out`;
 
-        // copyOfImage.style.transform = `translate(${imageRect.left}px, ${imageRect.top + window.scrollY}px)`;
-        copyOfImage.style.transform = `translate(${imageRect.left}px, ${imageRect.top}px)`;
+        const updatedImageRect = originalImage.getBoundingClientRect();
+        const shouldUseScaleAnimation = updatedImageRect.top < 0 || updatedImageRect.top > window.innerHeight;
+
+        if (shouldUseScaleAnimation) {
+            copyOfImage.style.transition = `opacity ${transitionDuration}ms ease-in-out`;
+            copyOfImage.style.opacity = 0.0;
+        } else
+            copyOfImage.style.transform = `translate(${updatedImageRect.left}px, ${updatedImageRect.top}px)`;
+
         rotationWrapper.style.transform = `rotate(0deg)`;
         setTimeout(function () {
             /// Make original image transparent
             originalImage.style.opacity = 1;
             originalImage.style.transition = originalImageTransition;
-            document.body.removeChild(copyOfImage);
+            // document.body.removeChild(copyOfImage);
+            copyOfImage.remove();
             fullscreenImageIsOpen = false;
         }, transitionDuration);
     }
@@ -449,8 +447,10 @@ function openImageFullscreen(elementUnderCursor) {
             imgBackgroundDimmer.onmouseout = null;
 
             setTimeout(function () {
-                imgBackgroundDimmer.parentNode.removeChild(imgBackgroundDimmer);
-                topControlsContainer.parentNode.removeChild(topControlsContainer);
+                // imgBackgroundDimmer.parentNode.removeChild(imgBackgroundDimmer);
+                // topControlsContainer.parentNode.removeChild(topControlsContainer);
+                imgBackgroundDimmer.remove();
+                topControlsContainer.remove();
                 imgBackgroundDimmer = null;
                 topControlsContainer = null;
             }, transitionDuration);
