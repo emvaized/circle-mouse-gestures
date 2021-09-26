@@ -113,7 +113,8 @@ html {
 }
 
 .cmg-link-preview-title {
-  all:revert;z-index: 100000;color: white; text-align: center; transition: opacity var(--cmg-link-prevew-anim-duration) ease-in-out; position: fixed; 
+  all:revert;z-index: 100000;color: white; text-align: center; 
+  transition: opacity var(--cmg-link-prevew-anim-duration) ease-in-out; position: fixed; 
   opacity: 0.0; font-size: 20px; line-height: 1.25;font-family: Arial, sans-serif !important;
   left: 0px; top: 0px;
 }
