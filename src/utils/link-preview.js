@@ -153,6 +153,7 @@ function openLinkPreview(elementUnderCursor) {
     }, 1);
 
     iframe.onload = function () {
+        if (iframe.contentDocument == null) return;
         hintSpan.innerText = iframe.contentDocument.title;
         hintSpan.style.transform = `translate(${dxToShow + (desiredWidth / 2) - (hintSpan.clientWidth / 2)}px, ${dyToShow - (headerTopPadding)}px)`;
         url = iframe.contentDocument.location.href;
