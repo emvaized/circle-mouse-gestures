@@ -99,7 +99,7 @@ html {
 }
 
 .cmg-link-preview-buttons-wrapper {
-  all:revert; position: fixed; z-index:100003; transition: opacity var(--cmg-link-prevew-anim-duration) ease-in-out;
+  all:revert; position: fixed; z-index:100003; transition: opacity var(--cmg-link-prevew-anim-duration) ease-in-out;left: 0px; top:0px;
 }
 
 .cmg-link-preview-bg-dimmer {
@@ -107,8 +107,9 @@ html {
   transition: opacity var(--cmg-link-prevew-anim-duration) ease-in-out;
 }
 
-.cmg-no-transition {
+.cmg-link-preview-dragged {
   transition: unset !important;
+  pointer-events: none !important;
 }
 
 .cmg-link-preview-title {

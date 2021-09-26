@@ -138,14 +138,35 @@ function openLinkPreview(elementUnderCursor) {
     }, 1);
 
 
+    /// Create title
+    const hintSpan = document.createElement('span');
+    hintSpan.setAttribute('class', 'cmg-link-preview-title')
+    hintSpan.innerText = url;
+
+    document.body.appendChild(hintSpan);
+    // hintSpan.style.left = `${dxToShow + (desiredWidth / 2)}px`; hintSpan.style.top = `${dyToShow - (headerTopPadding)}px`;
+    // hintSpan.style.transform = `translate(-${hintSpan.clientWidth / 2}px, 0px)`;
+    hintSpan.style.transform = `translate(${dxToShow + (desiredWidth / 2) - (hintSpan.clientWidth / 2)}px, ${dyToShow - (headerTopPadding)}px)`;
+
+    setTimeout(function () {
+        hintSpan.style.opacity = 1.0;
+    }, 1);
+
+    iframe.onload = function () {
+        hintSpan.innerText = iframe.contentDocument.title;
+        hintSpan.style.transform = `translate(${dxToShow + (desiredWidth / 2) - (hintSpan.clientWidth / 2)}px, ${dyToShow - (headerTopPadding)}px)`;
+        url = iframe.contentDocument.location.href;
+    }
+
+
     /// Create buttons in top right corner
     const buttonSize = 24;
     const btnInnerPadding = 15;
     const topControlsContainer = document.createElement('div');
     topControlsContainer.setAttribute('class', 'cmg-link-preview-buttons-wrapper');
-    topControlsContainer.style.left = `${dxToShow + desiredWidth + headerTopPadding}px`;
-    // topControlsContainer.style.top = `${dyToShow - (buttonSize + (btnInnerPadding * 2))}px`;
-    topControlsContainer.style.top = `${dyToShow}px`;
+    // topControlsContainer.style.left = `${dxToShow + desiredWidth + headerTopPadding}px`;
+    // topControlsContainer.style.top = `${dyToShow}px`;
+    topControlsContainer.style.transform = `translate(${dxToShow + desiredWidth + headerTopPadding}px,${dyToShow}px)`;
 
     /// Add close button
     const closeButton = document.createElement('div');
@@ -180,7 +201,7 @@ function openLinkPreview(elementUnderCursor) {
     });
 
     /// Add open in new tab button
-    let openInNewTabButton = document.createElement('div');
+    const openInNewTabButton = document.createElement('div');
     openInNewTabButton.setAttribute('class', 'cmg-link-preview-button');
     openInNewTabButton.setAttribute('title', chrome.i18n.getMessage("openInFgTab") ? chrome.i18n.getMessage("openInFgTab") : 'Open in new tab');
     openInNewTabButton.style.width = `${buttonSize + btnInnerPadding}px`;
@@ -195,8 +216,28 @@ function openLinkPreview(elementUnderCursor) {
         chrome.runtime.sendMessage({ actionToDo: 'openInFgTab', url: url });
     });
 
+    /// Add copy url button
+    const copyUrlButton = document.createElement('div');
+    copyUrlButton.setAttribute('class', 'cmg-link-preview-button');
+    copyUrlButton.setAttribute('title', chrome.i18n.getMessage("copyUrl") ? chrome.i18n.getMessage("copyUrl") : 'Copy URL');
+    copyUrlButton.style.width = `${buttonSize + btnInnerPadding}px`;
+    copyUrlButton.style.height = `${buttonSize + btnInnerPadding}px`;
+
+    const copyURlIcon = createSvgIconFromPath(actionIcons['copyUrl'], buttonSize, `padding: ${btnInnerPadding / 2}px !important;`);
+    copyUrlButton.appendChild(copyURlIcon);
+    topControlsContainer.appendChild(copyUrlButton);
+
+    copyUrlButton.addEventListener('mousedown', function () {
+        copyToClipboard(url);
+        // chrome.runtime.sendMessage({
+        //     actionToDo: 'showBrowserNotification',
+        //     title: chrome.i18n.getMessage("copied") ?? 'Copied URL',
+        //     message: url,
+        // });
+    });
+
     /// Move preview button
-    let movePreviewButton = document.createElement('div');
+    const movePreviewButton = document.createElement('div');
     movePreviewButton.setAttribute('class', 'cmg-link-preview-button');
     movePreviewButton.setAttribute('title', 'Move preview');
     movePreviewButton.style.width = `${buttonSize + btnInnerPadding}px`;
@@ -209,22 +250,24 @@ function openLinkPreview(elementUnderCursor) {
     topControlsContainer.appendChild(movePreviewButton);
 
     movePreviewButton.addEventListener('mousedown', function () {
-        iframe.classList.add('cmg-no-transition');
+        iframe.classList.add('cmg-link-preview-dragged');
+        document.cursor = 'grabbing';
 
         function movePreviewOnDrag(e) {
             dxToShow = dxToShow + e.movementX;
             dyToShow = dyToShow + e.movementY;
-
             iframe.style.transform = `translate(${dxToShow}px, ${dyToShow}px) scale(1.0) `;
-
-            topControlsContainer.style.left = `${dxToShow + desiredWidth + headerTopPadding}px`;
-            topControlsContainer.style.top = `${dyToShow}px`;
+            // topControlsContainer.style.left = `${dxToShow + desiredWidth + headerTopPadding}px`;
+            // topControlsContainer.style.top = `${dyToShow}px`;
+            topControlsContainer.style.transform = `translate(${dxToShow + desiredWidth + headerTopPadding}px,${dyToShow}px)`;
+            hintSpan.style.transform = `translate(${dxToShow + (desiredWidth / 2) - (hintSpan.clientWidth / 2)}px, ${dyToShow - (headerTopPadding)}px)`;
         }
 
         function removeMovePreviewListeners() {
+            document.cursor = 'auto';
             document.removeEventListener('mousemove', movePreviewOnDrag);
             document.removeEventListener('mouseup', removeMovePreviewListeners);
-            iframe.classList.remove('cmg-no-transition');
+            iframe.classList.remove('cmg-link-preview-dragged');
         }
 
         document.addEventListener('mousemove', movePreviewOnDrag);
@@ -234,26 +277,6 @@ function openLinkPreview(elementUnderCursor) {
 
     document.body.appendChild(topControlsContainer);
 
-
-    /// Append title
-    const hintSpan = document.createElement('span');
-    hintSpan.setAttribute('class', 'cmg-link-preview-title')
-    hintSpan.innerText = url;
-    hintSpan.style.left = `${dxToShow + (desiredWidth / 2)}px`; hintSpan.style.top = `${dyToShow - (headerTopPadding)}px`;
-
-    document.body.appendChild(hintSpan);
-    hintSpan.style.transform = `translate(-${hintSpan.clientWidth / 2}px, 0px)`;
-
-    setTimeout(function () {
-        hintSpan.style.opacity = 1.0;
-    }, 1);
-
-
-    iframe.onload = function () {
-        hintSpan.innerText = iframe.contentDocument.title;
-        hintSpan.style.transform = `translate(-${hintSpan.clientWidth / 2}px, 0px)`;
-        url = iframe.contentDocument.location.href;
-    }
 
 
     function keyboardListener(e) {

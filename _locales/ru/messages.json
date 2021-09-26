@@ -39,6 +39,10 @@
         "message": "Дополнительно",
         "description": ""
     },
+    "animateHideRelativeToSelected": {
+        "message": "Анимировать скрытие относительно выбранного сектора",
+        "description": ""
+    },
     "animationDuration": {
         "message": "Продолжительность анимаций",
         "description": ""
@@ -117,6 +121,10 @@
     },
     "configure": {
         "message": "Настроить",
+        "description": ""
+    },
+    "copied": {
+        "message": "Скопировано в буфер обмена",
         "description": ""
     },
     "copiedText": {
@@ -677,10 +685,6 @@
     },
     "writeAReview": {
         "message": "Написать отзыв",
-        "description": ""
-    },
-    "animateHideRelativeToSelected": {
-        "message": "Анимировать скрытие относительно выбранного сектора",
         "description": ""
     }
 }

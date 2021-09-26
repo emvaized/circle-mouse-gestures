@@ -1,6 +1,7 @@
 #1.2.2
 - Performance optimizations
 - Improvements for link preview
+- 'Copy' commands now display browser notification
 
 #1.2.1
 - Improved 'long left click to open menu' functionality

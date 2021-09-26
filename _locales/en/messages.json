@@ -143,6 +143,10 @@
         "message": "Copy link",
         "description": ""
     },
+    "copied": {
+        "message": "Copied to clipboard",
+        "description": ""
+    },
     "cutText": {
         "message": "Cut",
         "description": ""

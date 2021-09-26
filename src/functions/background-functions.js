@@ -380,27 +380,28 @@ chrome.runtime.onMessage.addListener(
 
 /**
  * displays a browser notification
- * opens an URL on click if specified
+ * opens an URL on click if specified (non-specified)
  **/
 function displayNotification(title, message, link) {
     // create notification
-    const createNotification = chrome.notifications.create({
+    // const createNotification = 
+    chrome.notifications.create({
         "type": "basic",
-        // "iconUrl": "../../icons/icon-monotone-48.png",
+        "iconUrl": "../../icons/icon-monotone-48.png",
         "title": title,
         "message": message
     });
-    createNotification.then((notificationId) => {
-        // if an URL is specified register an onclick listener
-        // if (link) chrome.notifications.onClicked.addListener(function handleNotificationClick(id) {
-        //     if (id === notificationId) {
-        //         chrome.tabs.create({
-        //             url: link,
-        //             active: true
-        //         });
-        //         // remove event listener
-        //         chrome.notifications.onClicked.removeListener(handleNotificationClick);
-        //     }
-        // });
-    });
+    // createNotification.then((notificationId) => {
+    // if an URL is specified register an onclick listener
+    // if (link) chrome.notifications.onClicked.addListener(function handleNotificationClick(id) {
+    //     if (id === notificationId) {
+    //         chrome.tabs.create({
+    //             url: link,
+    //             active: true
+    //         });
+    //         // remove event listener
+    //         chrome.notifications.onClicked.removeListener(handleNotificationClick);
+    //     }
+    // });
+    // });
 }
