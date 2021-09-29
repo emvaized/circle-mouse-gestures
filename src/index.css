@@ -3,7 +3,7 @@ html {
 }
 
 .cmg-circle-canvas{
-  transition: var(--cmg-circle-transition);
+  /* transition: var(--cmg-circle-transition); */
   visibility: visible;
   opacity: 0.0;
   position: fixed;
@@ -12,12 +12,9 @@ html {
   color: transparent;
   transform: scale(0.0);
   pointer-events: none;
-}
+  transition: transform var(--cmg-anim-duration) ease-out, opacity var(--cmg-anim-duration) ease-out;
 
-/* .cmg-circle-hidden{
-  opacity: 0.0;
-  transform: scale(0.0);
-} */
+}
 
 .cmg-circle-visible{
   opacity: var(--cmg-circle-opacity);
@@ -55,6 +52,16 @@ html {
 .cmg-helper-tooltip-label {
   vertical-align: middle;
 }
+
+/* Hint tooltip */
+/* .cmg-circle-hint-tooltip {
+  border-radius: '6px';
+  padding: '4px 8px';
+  opacity: 0.0;
+  z-index: 9999999;
+  position: 'fixed';
+} */
+
 /* */
 
 .crx_mouse_visited {
@@ -75,6 +82,7 @@ html {
 .crx_mouse_visited_player {
   outline: 2px solid var(--cmg-player-color) !important;
 }
+
 
 /* Link preview part */
 #cmg-link-preview {

@@ -36,6 +36,7 @@ var configs = {
     'circleHideAnimation': true,
     'addCircleShadow': false,
     'highlightElementOnHover': false,
+    'showTitleOnHoverWhenHidden': true,
     'circleShadowOpacity': 0.3,
 
     /// Menus

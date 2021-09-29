@@ -59,24 +59,26 @@ function setCanvas() {
     circle.style.left = `${leftCoord}px`;
     circle.style.top = `${topCoord}px`;
 
-    setTimeout(function () {
-        // circle.style.transform = 'scale(1.0)';
-        // circle.style.opacity = configs.circleOpacity;
-
-        circle.classList.add('cmg-circle-visible');
-        // circle.className = 'cmg-circle-canvas cmg-circle-visible';
-    }, 3);
+    // setTimeout(function () {
+    //     circle.classList.add('cmg-circle-visible');
+    // }, 3);
 
     // document.body.appendChild(circle);
     ctx = circle.getContext('2d');
     drawCircle(false, typeOfMenu);
     document.body.appendChild(circle);
 
+    setTimeout(function () {
+        circle.classList.add('cmg-circle-visible');
+    }, 0);
+
     document.onmousemove = function (e) {
         try {
             drawCircle(e, typeOfMenu);
         } catch (error) { if (configs.debugMode) console.log(error); }
     }
+
+
 }
 
 
@@ -161,6 +163,8 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
     if (shouldRedraw) {
         ctx.clearRect(0, 0, canvasRadius, canvasRadius);
 
+        hideHintTooltip();
+
         if (configs.debugMode)
             console.log('CMG circle redrawn');
 
@@ -217,6 +221,7 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
                 totalRadius -= levelData.width ?? configs.circleRadius;
             }
         }
+
     }
 }
 
@@ -316,6 +321,8 @@ function hideCircle() {
         buttonsStatuses = {};
         document.onmousemove = null;
         scrollingElementUnderCursor = null;
+
+        hideHintTooltip();
 
     } catch (e) { if (configs.debugMode) console.log(e); }
 }

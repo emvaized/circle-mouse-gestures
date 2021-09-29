@@ -2,6 +2,7 @@
 - Performance optimizations
 - Improvements for link preview
 - 'Copy' commands now display browser notification
+- Added new option to show hint on hovering action when it's icon-only (default: on)
 
 #1.2.1
 - Improved 'long left click to open menu' functionality

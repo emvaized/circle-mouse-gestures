@@ -587,6 +587,10 @@
         "message": "Show regular menu if no action selected",
         "description": ""
     },
+    "showTitleOnHoverWhenHidden": {
+        "message": "Show action hint on hover (when hidden)",
+        "description": ""
+    },
     "slowerPlaybackSpeed": {
         "message": "Slower speed",
         "description": ""

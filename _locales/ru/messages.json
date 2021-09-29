@@ -591,6 +591,10 @@
         "message": "Показывать обычное меню, если действие не выбрано",
         "description": ""
     },
+    "showTitleOnHoverWhenHidden": {
+        "message": "Показывать подсказку при наведении (когда скрыта)",
+        "description": ""
+    },
     "slowerPlaybackSpeed": {
         "message": "Медленная скорость",
         "description": ""

@@ -42,6 +42,7 @@
         "src/ui/circle/circle-level-drawer.js",
         "src/ui/circle/bg-dimmer.js",
         "src/ui/components/helper-tooltip.js",
+        "src/ui/components/hint-tooltip.js",
         "src/ui/components/rocker-icon.js",
         "src/index.js"
       ],

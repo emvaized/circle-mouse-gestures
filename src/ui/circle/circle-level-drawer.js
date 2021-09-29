@@ -1,14 +1,20 @@
-function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRadius, innerCircleRadius, level = 0, shouldRespectBoundary = false, showIndexes = false, shouldCheckButtonsAvailability = true) {
 
+
+function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRadius, innerCircleRadius, level = 0, shouldRespectBoundary = false, showIndexes = false, shouldCheckButtonsAvailability = true) {
     const segmentsCount = buttonsToShow.length;
     var levelOpacity = configs[typeOfMenu].levels[level].opacity;
     const segmentColor = configs[typeOfMenu].levels[level].color ?? configs[typeOfMenu].color;
     var hoveredOverlayOpacity = 0.3;
 
+    let iconSize = 27;
+    let circleLength = 2 * circleRadius * Math.PI;
+    let segmentLength = circleLength / segmentsCount;
+    iconSize = segmentLength / 4;
+    if (iconSize > 30) iconSize = 30;
 
     /// Draw segments
     for (i = 0; i < segmentsCount; i++) {
-        const segment = buttonsToShow[i];
+        let segment = buttonsToShow[i];
         if (actionIcons[segment.id] == undefined) continue;
 
         /// Rotate the circle a bit when buttons count is not even
@@ -20,13 +26,14 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
             ctx.globalAlpha = levelOpacity;
 
         /// Specific color for segment
-        var colorForButton = segmentColor;
-        if (segment.color !== null && segment.color !== undefined)
-            colorForButton = segment.color;
+        const colorForButton = segment.color !== null && segment.color !== undefined ? segment.color : segmentColor;
+        // if (segment.color !== null && segment.color !== undefined)
+        // colorForButton = segment.color;
 
         /// Color for outline, font and icon
-        var outlineColorRgb = getTextColorForBackground(colorForButton, 1.0);
+        const outlineColorRgb = getTextColorForBackground(colorForButton, 1.0);
         var outlineColor = `rgba(${outlineColorRgb.red}, ${outlineColorRgb.green}, ${outlineColorRgb.blue}, 0.5)`;
+        let shouldDrawLabel = configs.addTextLabels && circleRadius - innerCircleRadius > iconSize * 2.5 && segment.id !== 'noAction';
 
         if (selectedButtons[level] == i || preselectedButtons[level] == i) {
             /// Segment is hovered
@@ -34,20 +41,28 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
             /// Combine main color with hovered color overlay
             try {
                 let rgbColor = hexToRgb(colorForButton);
-                var base = [rgbColor.red, rgbColor.green, rgbColor.blue, 1.0];
-                var added = [outlineColorRgb.red, outlineColorRgb.green, outlineColorRgb.blue, hoveredOverlayOpacity];
-                var mix = [];
+                const base = [rgbColor.red, rgbColor.green, rgbColor.blue, 1.0];
+                const added = [outlineColorRgb.red, outlineColorRgb.green, outlineColorRgb.blue, hoveredOverlayOpacity];
+                let mix = [];
                 mix[3] = 1 - (1 - added[3]) * (1 - base[3]); // alpha
                 mix[0] = Math.round((added[0] * added[3] / mix[3]) + (base[0] * base[3] * (1 - added[3]) / mix[3])); // red
                 mix[1] = Math.round((added[1] * added[3] / mix[3]) + (base[1] * base[3] * (1 - added[3]) / mix[3])); // green
                 mix[2] = Math.round((added[2] * added[3] / mix[3]) + (base[2] * base[3] * (1 - added[3]) / mix[3])); // blue
 
                 ctx.fillStyle = `rgb(${mix[0]},${mix[1]},${mix[2]})`;
+
+                if (!shouldDrawLabel && configs.showTitleOnHoverWhenHidden) {
+                    tooltipTimer = setTimeout(function () {
+                        let isOnTop = E.clientY < topCoord + (canvasRadius / 2);
+                        showHintTooltip(segment.id, colorForButton, `rgb(${outlineColorRgb.red}, ${outlineColorRgb.green}, ${outlineColorRgb.blue}`, isOnTop);
+                    }, delayToShowTooltip)
+                }
             } catch (error) {
                 if (configs.debugMode) if (configs.debugMode) console.log(error);
             }
 
         } else {
+            /// Segment is not hovered
             ctx.fillStyle = colorForButton;
         }
 
@@ -95,10 +110,6 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
         // }
 
         ctx.fill();
-
-        // try {
-        //     drawLabel(E, ctx, segmentsCount, circleRadius, innerCircleRadius, segment, segmentColor, showIndexes, shouldCheckButtonsAvailability);
-        // } catch (e) { console.log(e) }
     }
 
     ctx.closePath();
@@ -144,7 +155,7 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
     ctx.closePath();
 
     /// Draw labels
-    drawLabels(E, segmentsCount, circleRadius, innerCircleRadius, buttonsToShow, segmentColor, showIndexes, shouldCheckButtonsAvailability);
+    drawLabels(E, segmentsCount, circleRadius, innerCircleRadius, buttonsToShow, segmentColor, showIndexes, shouldCheckButtonsAvailability, iconSize);
 
     try {
         /// Show link tooltip
@@ -160,7 +171,7 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
 
 
 
-function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsToShow, segmentColor, showIndexes = false, shouldCheckButtonsAvailability = true) {
+function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsToShow, segmentColor, showIndexes = false, shouldCheckButtonsAvailability = true, iconSize, shouldDrawLabel) {
     for (var i = 0; i < segmentsCount; i++) {
         let colorForButton = segmentColor;
         const segment = buttonsToShow[i];
@@ -199,17 +210,12 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
         const dxForText = centerDx + Math.cos(angle) * textRadius;
         const dyForText = centerDy + Math.sin(angle) * textRadius;
 
-        /// Calculate icon and text size
-        let iconSize = 27;
+        /// Calculate text size
         let labelSize = 13;
-        // let maxCharacters = 13;
+        labelSize = iconSize / 2.5;
 
         let circleLength = 2 * circleRadius * Math.PI;
         let segmentLength = circleLength / segmentsCount;
-        iconSize = segmentLength / 4;
-
-        if (iconSize > 30) iconSize = 30;
-        labelSize = iconSize / 2.5;
 
         /// Calculate max characters length
         // maxCharacters = Math.floor(segmentLength / labelSize);
