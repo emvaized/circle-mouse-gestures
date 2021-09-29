@@ -128,7 +128,7 @@ async function showLinkTooltip() {
 }
 
 function hideLinkTooltip() {
-    if (linkTooltip == null) return;
+    if (linkTooltip == undefined || linkTooltip == null) return;
 
     const dxShown = leftCoord + (canvasRadius / 2) - (linkTooltip.clientWidth / 2);
     linkTooltip.style.transform = `translate(${dxShown}px, ${topCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px) scale(0.0)`;
