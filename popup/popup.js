@@ -21,7 +21,7 @@ function restoreOptions() {
   document.querySelector('#settingsButton').innerHTML += ' ' + chrome.i18n.getMessage("configure");
   document.querySelector('#githubPage').innerHTML += ' ' + chrome.i18n.getMessage("githubPage");
   document.querySelector('#supportButton').innerHTML += ' ' + chrome.i18n.getMessage("supportButton");
-  document.querySelector('#writeAReview').innerHTML += ' ' + chrome.i18n.getMessage("writeAReview");
+  // document.querySelector('#writeAReview').innerHTML += ' ' + chrome.i18n.getMessage("writeAReview");
 
 }
 

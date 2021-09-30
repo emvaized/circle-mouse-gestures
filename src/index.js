@@ -10,6 +10,7 @@ function init() {
 let anyButtonIsSelected = false;
 var timerForLongLeftClick;
 var lastMouseDownEvent;
+var longPressTimerInitEvent;
 
 // var totalCircleRadius;
 // var enabledLevelsCount;
@@ -66,7 +67,18 @@ function setPageListeners() {
         if (configs.openCircleOn == 'longLeftClick') {
             if (evt.button == 0) {
                 lastMouseDownEvent = e;
-                timerForLongLeftClick = setTimeout(function () { processAndShowCircle(lastMouseDownEvent); }, configs.delayForLongLeftClick);
+                longPressTimerInitEvent = { 'dx': e.clientX, 'dy': e.clientY };
+
+                timerForLongLeftClick = setTimeout(function () {
+                    /// Distance of cursor move during timeout, after which menu will not be opened
+                    const thresholdToNotRegister = window.innerHeight / 25;
+
+                    if (
+                        Math.abs(lastMouseDownEvent.clientX - longPressTimerInitEvent.dx) < thresholdToNotRegister &&
+                        Math.abs(lastMouseDownEvent.clientY - longPressTimerInitEvent.dy) < thresholdToNotRegister
+                    )
+                        processAndShowCircle(lastMouseDownEvent);
+                }, configs.delayForLongLeftClick);
             } else return;
         } else if ("buttons" in evt) {
 

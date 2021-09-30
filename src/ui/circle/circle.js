@@ -70,7 +70,7 @@ function setCanvas() {
 
     setTimeout(function () {
         circle.classList.add('cmg-circle-visible');
-    }, 0);
+    }, 1);
 
     document.onmousemove = function (e) {
         try {

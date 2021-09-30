@@ -130,6 +130,7 @@ label{
 .sub-header {
     font-size: 15px;
     color: grey;
+    font-style: italic;
     /* opacity: 0.75; */
 }
 
