@@ -66,7 +66,7 @@ function setCanvas() {
 
     setTimeout(function () {
         circle.classList.add('cmg-circle-visible');
-    }, 1);
+    }, 2);
 
     document.addEventListener('mousemove', mouseMoveListener);
 }

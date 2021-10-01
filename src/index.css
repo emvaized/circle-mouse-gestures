@@ -10,7 +10,7 @@ html {
   z-index: 9999999 !important;
   background-color: transparent;
   color: transparent;
-  pointer-events: auto;
+  pointer-events: none;
   transition: transform var(--cmg-anim-duration) ease-out, opacity var(--cmg-anim-duration) ease-out;
   transform: scale(0.0);
 }
