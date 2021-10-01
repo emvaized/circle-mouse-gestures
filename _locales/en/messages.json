@@ -311,6 +311,10 @@
         "message": "Wheel up",
         "description": ""
     },
+    "move": {
+        "message": "Move",
+        "description": ""
+    },
     "moveCaretToEnd": {
         "message": "Move caret to end",
         "description": ""

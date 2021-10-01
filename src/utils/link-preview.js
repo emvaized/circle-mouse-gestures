@@ -24,8 +24,6 @@ function openLinkPreview(elementUnderCursor) {
     /// Background dimmer
     const backgroundDimmer = document.createElement('div');
     backgroundDimmer.setAttribute('class', 'cmg-link-preview-bg-dimmer');
-    // backgroundDimmer.setAttribute('style', `${clickOutsideToExit ? 'cursor: pointer;' : ''}z-index: 99999; width:${document.documentElement.clientWidth}px;height: ${document.documentElement.scrollHeight}px;  opacity: 0.0; transition: opacity ${transitionDuration}ms ease-in-out; position:fixed; background: black !important; top: 0px; left: 0px;`);
-    // backgroundDimmer.setAttribute('style', `width:${document.documentElement.clientWidth}px;height: ${document.documentElement.scrollHeight}px;  `);
     backgroundDimmer.style.width = '100%';
     backgroundDimmer.style.height = '100%';
     document.body.appendChild(backgroundDimmer);
@@ -91,36 +89,16 @@ function openLinkPreview(elementUnderCursor) {
     iframe.setAttribute('overflow', 'auto');
     iframe.setAttribute('frameBorder', '0');
     iframe.setAttribute('referrerpolicy', 'no-referrer');
-
-    // iframe.setAttribute('style', `background-color: transparent; border-radius: ${borderRadius}px; position: fixed; z-index: 999999 !important; `);
-    // iframe.style.top = '0px';
-    // iframe.style.left = '0px';
-    // iframe.style.transformOrigin = '50% 50%';
-
-    // iframe.style.transform = `translate(${dxToShow}px, ${window.screen.height}px)`; /// Slide up transition
-    // iframe.style.transform = `scale(0.0) translate(${dxToShow}px, ${dyToShow}px)`; /// Scale up transition
-    // iframe.style.transform = `scale(0.0) translate(${linkRect.left}px, ${linkRect.top}px)`; /// From link
-    iframe.style.transform = `translate(${linkRect.left + (linkRect.width / 2) - (desiredWidth / 2)}px, ${linkRect.top + (linkRect.height / 2) - (desiredHeight / 2)}px) scale(0.0)`; /// From link 2
-
-    iframe.style.opacity = 0.0;
-    // iframe.style.transition = `opacity ${transitionDuration}ms ease-out, transform ${transitionDuration}ms ease-out, background-color ${transitionDuration}ms ease-out`;
-
     iframe.setAttribute('height', desiredHeight);
     iframe.setAttribute('width', desiredWidth);
 
+    iframe.style.transform = `translate(${linkRect.left + (linkRect.width / 2) - (desiredWidth / 2)}px, ${linkRect.top + (linkRect.height / 2) - (desiredHeight / 2)}px) scale(0.0)`; /// From link 2
+    iframe.style.opacity = 0.0;
+
+    /// Show view
     document.body.appendChild(iframe);
-
-    /// Show fullscreen image
     setTimeout(function () {
-
-        // fullscreenImageIsOpen = true;
-        // iframe.style.backgroundColor = 'white';
-        // iframe.style.opacity = 1.0;
         iframe.style.transform = `translate(${dxToShow}px, ${dyToShow}px) scale(1.0) `;
-
-        // document.addEventListener('wheel', preventPageScroll, { passive: false });
-        // document.addEventListener('scroll', preventPageScroll, { passive: false });
-        // document.addEventListener('keydown', keyboardListener);
     }, 50);
 
     setTimeout(function () {
@@ -134,7 +112,6 @@ function openLinkPreview(elementUnderCursor) {
             document.addEventListener('wheel', preventPageScroll, { passive: false });
             document.addEventListener('scroll', preventPageScroll, { passive: false });
         }
-
     }, 1);
 
 
@@ -248,7 +225,7 @@ function openLinkPreview(elementUnderCursor) {
     /// Move preview button
     const movePreviewButton = document.createElement('div');
     movePreviewButton.setAttribute('class', 'cmg-link-preview-button');
-    movePreviewButton.setAttribute('title', 'Move preview');
+    movePreviewButton.setAttribute('title', chrome.i18n.getMessage("move"));
     movePreviewButton.style.width = `${buttonSize + btnInnerPadding}px`;
     movePreviewButton.style.height = `${buttonSize + btnInnerPadding}px`;
     movePreviewButton.style.cursor = 'grab';

@@ -10,7 +10,7 @@ html {
   z-index: 9999999 !important;
   background-color: transparent;
   color: transparent;
-  pointer-events: none;
+  pointer-events: auto;
   transition: transform var(--cmg-anim-duration) ease-out, opacity var(--cmg-anim-duration) ease-out;
   transform: scale(0.0);
 }
@@ -110,7 +110,7 @@ html {
 }
 
 .cmg-link-preview-bg-dimmer {
-  cursor: pointer;z-index: 99999; opacity: 0.0;  position:fixed; background: black !important; top: 0px; left: 0px;
+  cursor: pointer;z-index: 99998; opacity: 0.0;  position:fixed; background: black !important; top: 0px; left: 0px;
   transition: opacity var(--cmg-link-prevew-anim-duration) ease-in-out;
 }
 

@@ -59,10 +59,6 @@ function setCanvas() {
     circle.style.left = `${leftCoord}px`;
     circle.style.top = `${topCoord}px`;
 
-    // setTimeout(function () {
-    //     circle.classList.add('cmg-circle-visible');
-    // }, 3);
-
     // document.body.appendChild(circle);
     ctx = circle.getContext('2d');
     drawCircle(false, typeOfMenu);
@@ -72,15 +68,14 @@ function setCanvas() {
         circle.classList.add('cmg-circle-visible');
     }, 1);
 
-    document.onmousemove = function (e) {
-        try {
-            drawCircle(e, typeOfMenu);
-        } catch (error) { if (configs.debugMode) console.log(error); }
-    }
-
-
+    document.addEventListener('mousemove', mouseMoveListener);
 }
 
+function mouseMoveListener(e) {
+    try {
+        drawCircle(e, typeOfMenu);
+    } catch (error) { if (configs.debugMode) console.log(error); }
+}
 
 function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvailability = true, shouldRespectBoundaries) {
 
@@ -308,7 +303,6 @@ function hideCircle() {
             selectedButtons = {};
         }, configs.circleHideAnimation ? configs.animationDuration : 0);
 
-
         if (hoveredLink !== null && linkTooltip !== null)
             hideLinkTooltip();
 
@@ -319,7 +313,7 @@ function hideCircle() {
         circleIsShown = false;
         buttonsAvailability = {};
         buttonsStatuses = {};
-        document.onmousemove = null;
+        document.removeEventListener('mousemove', mouseMoveListener);
         scrollingElementUnderCursor = null;
 
         hideHintTooltip();

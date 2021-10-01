@@ -307,6 +307,10 @@
         "message": "Удержание левого клика",
         "description": ""
     },
+    "move": {
+        "message": "Переместить",
+        "description": ""
+    },
     "mouseWheelDownAction": {
         "message": "Колесико вниз",
         "description": ""
