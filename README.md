@@ -6,9 +6,9 @@ Just hold down the right mouse button, highlight one of the preset actions and r
 CMG is supposed to provide a better implementation of mouse gestures and drag gestures, while replacing the regular context menu at the same time — but regular context menu is always there whenever you need it. Perfect for fullscreen browsing!
 
 Extension features:
-- different menus and actions for links, images, input fields etc.
-- support for rocker and mouse wheel gestures
-- link preview, somewhat like in Safari on mac
+- separate mouse gestures for links, images, input fields etc.
+- support for rocker gestures, vertical and horizontal mouse wheel gestures
+- image and link preview, somewhat like in Safari on mac
 - great customization options
 ... and many more
 
