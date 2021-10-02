@@ -1,3 +1,6 @@
+///
+/// This options page is done quite shitty, ideally should be rewritten
+
 var delayToAddListeners = 1;
 var bodyMarginLeft = 0.0;
 
@@ -68,14 +71,18 @@ function setMenuTypeDropdown() {
         listenedDropdown.addEventListener("change", function (e) {
             let newValue = listenedDropdown.value;
             selectedMenuType = newValue;
+            preselectedButtons = {};
 
             drawCirclePreview(selectedMenuType);
             generateButtonsControls();
             generateAppearanceControls();
             generateGesturesConfigs();
             positionSettingsInCenter();
-            drawCirclePreview(selectedMenuType);
-            preselectedButtons = {};
+
+            setTimeout(function () {
+                drawCirclePreview(selectedMenuType);
+            }, 100)
+
         });
     }, delayToAddListeners);
 
