@@ -3,6 +3,7 @@
 - Added horizontal wheel scroll actions
 - Added new option to show title hint on hovering action, when it's icon-only (default: on)
 - 'Copy' commands now display browser notification on success
+- Added player volume actions
 
 - Performance optimizations
 - Improvements for link preview + new nice open transition

@@ -126,10 +126,11 @@ var sortedActionButtons = {
             'downloadUrlAs',
             'downloadVideoSavefromNet',
             'playerFullScreen',
-
             'normalPlaybackSpeed',
             'slowerPlaybackSpeed',
             'fasterPlaybackSpeed',
+            'increasePlayerVolume',
+            'decreasePlayerVolume',
         ],
         '—': [
             'noAction'

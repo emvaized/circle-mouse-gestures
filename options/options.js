@@ -67,19 +67,15 @@ function setMenuTypeDropdown() {
         let listenedDropdown = document.getElementById(menuTypeDropdownId);
         listenedDropdown.addEventListener("change", function (e) {
             let newValue = listenedDropdown.value;
-
             selectedMenuType = newValue;
 
             drawCirclePreview(selectedMenuType);
             generateButtonsControls();
             generateAppearanceControls();
-            // generateBehaviorConfigs();
             generateGesturesConfigs();
             positionSettingsInCenter();
             drawCirclePreview(selectedMenuType);
             preselectedButtons = {};
-
-
         });
     }, delayToAddListeners);
 
@@ -309,8 +305,6 @@ function generateGesturesConfigs() {
     let rockerActionContainer = document.createElement('div');
     rockerActionContainer.setAttribute('class', 'option');
 
-
-
     /// Rocker action dropdown
     let rockerIidentifier = `regularRockerActionDropdown`;
     let dropdown = createActionDropdownButton(rockerIidentifier, configs[selectedMenuType].rockerLeftClick, function (newValue) {
@@ -534,7 +528,7 @@ function generateLevelConfigs(levelIndex = 0) {
     headerContainer.innerHTML += '<br /><br />';
 
     /// Generate level configs container
-    var container = document.createElement('div');
+    let container = document.createElement('div');
     container.setAttribute('style', 'float:left; padding: 15px; border: 1px solid lightGrey; margin-top: 15px; margin-right: 30px;  max-width: 300px;');
     container.setAttribute('class', 'level-configs');
     container.innerHTML = '';
@@ -543,7 +537,6 @@ function generateLevelConfigs(levelIndex = 0) {
         container.style.opacity = 0.5;
 
     container.appendChild(headerContainer);
-    document.getElementById('buttons-config-container').appendChild(container);
 
     /// Generate entries
     for (var i = 0; i < configs[selectedMenuType].levels[levelIndex].buttons.length; i++) {
@@ -817,41 +810,7 @@ function generateLevelConfigs(levelIndex = 0) {
     var customColorContainer = document.createElement('div');
     customColorContainer.setAttribute('class', 'option');
 
-    // let useCustomColorSwitch = document.createElement('input');
-    // let useCustomColorSwitchId = 'useCustomColorSwitch-' + levelIndex.toString();
-    // useCustomColorSwitch.setAttribute('type', 'checkbox');
-    // useCustomColorSwitch.setAttribute('id', useCustomColorSwitchId);
-
-    // let selectedColor = configs[selectedMenuType].levels[levelIndex].color;
-    // let switched = selectedColor == null || selectedColor == undefined;
-    // if (switched == false)
-    //     useCustomColorSwitch.setAttribute('checked', 0);
-
     let label = document.createElement('label');
-
-    // label.appendChild(useCustomColorSwitch);
-
-    // setTimeout(function () {
-    //     let useCustomColorSwitch = document.getElementById(useCustomColorSwitchId);
-
-    //     useCustomColorSwitch.parentNode.addEventListener('change', function (e) {
-
-    //         let selectedColor = configs[selectedMenuType].levels[levelIndex].color;
-
-    //         if (selectedColor !== null && selectedColor !== undefined) {
-    //             configs[selectedMenuType].levels[levelIndex].color = null;
-    //             configs[selectedMenuType].levels[levelIndex].opacity = null;
-    //             drawCirclePreview();
-    //         } else {
-    //             configs[selectedMenuType].levels[levelIndex].color = configs[selectedMenuType].color;
-    //         }
-
-    //         saveAllSettings();
-    //         generateButtonsControls();
-    //     });
-    // }, 1);
-
-    // label.innerHTML += ' ' + chrome.i18n.getMessage("useCustomColor");
     label.innerHTML += ' ' + chrome.i18n.getMessage("standardBackground");
     customColorContainer.appendChild(label);
 
@@ -915,35 +874,7 @@ function generateLevelConfigs(levelIndex = 0) {
         });
     }, delayToAddListeners);
 
-
-    // if (selectedColor !== null && selectedColor !== undefined) {
-    //     /// Custom color input
-    //     let customColorInput = document.createElement('input');
-    //     let customColorInputId = `customColorInput-${levelIndex}`;
-    //     customColorInput.setAttribute('type', 'color');
-    //     customColorInput.setAttribute('style', 'float: right; transform: translate(0, -5px)');
-    //     customColorInput.setAttribute('id', customColorInputId);
-    //     customColorInput.setAttribute('value', selectedColor);
-
-    //     setTimeout(function () {
-    //         let customColorInput = document.getElementById(customColorInputId);
-    //         customColorInput.addEventListener("input", function (e) {
-    //             let ind = customColorInputId.split('-')[1];
-    //             configs[selectedMenuType].levels[ind].color = customColorInput.value;
-    //             drawCirclePreview();
-    //         });
-
-    //         customColorInput.addEventListener("change", function (e) {
-    //             if (configs.debugMode) console.log('saved custom color for level ' + levelIndex.toString());
-    //             saveAllSettings();
-    //         });
-    //     }, delayToAddListeners);
-
-    //     customColorContainer.appendChild(customColorInput);
-
-
     /// Level opacity
-    // customColorContainer.innerHTML += '<br/>';
     let levelOpacitySliderId = `levelOpacity-${levelIndex}`;
     let levelOpacitySlider = createRangeSlider(levelOpacitySliderId, configs[selectedMenuType].levels[levelIndex].opacity ?? configs.circleOpacity, null, function (newVal) {
         let ind = levelOpacitySliderId.split('-')[1];
@@ -954,12 +885,12 @@ function generateLevelConfigs(levelIndex = 0) {
 
     container.appendChild(levelOpacitySlider);
     container.innerHTML += '<br/>';
-    // }
 
     customColorContainer.appendChild(customLevelnColorInput);
     customColorContainer.appendChild(resetLevelColorButton);
-
     container.appendChild(customColorContainer);
+
+    document.getElementById('buttons-config-container').appendChild(container);
 }
 
 function generateAddLevelButton() {
@@ -1079,7 +1010,10 @@ function createRangeSlider(id, value, units, callbackOnChange, min = 50, max = 2
 
     let rangeLabel = document.createElement('span');
     // rangeLabel.setAttribute('style', 'opacity: 0.7');
-    rangeLabel.innerHTML = (label ?? chrome.i18n.getMessage(id) ?? id) + ' ';
+
+    let labelToAppend = label ?? chrome.i18n.getMessage(id) ?? id;
+    if (!rangeLabel.innerHTML.includes(labelToAppend))
+        rangeLabel.innerHTML = labelToAppend + ' ';
     sliderContainer.appendChild(rangeLabel);
 
     let widthInput = document.createElement('input');

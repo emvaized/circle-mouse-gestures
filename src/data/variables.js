@@ -31,6 +31,7 @@ var backgroundDimmer;
 var elementUnderCursor;
 var currentClipboardContent;
 var fullscreenImageIsOpen = false;
+var playerVolumeStep = 0.1;
 
 
 var selectedButtons = {}; /// index of level: index of button
@@ -51,12 +52,14 @@ var timerToRedrawCircleOnAsyncUpdateDelay = 1; /// 1ms is usually enough for bac
 var defaultConfigs = {
     'debugMode': false,
     'cmgEnabled': true,
+    'storeCurrentScrollPosition': false,
+    'animateHideRelativeToSelected': false,
     'animationDuration': 200,
     'hideCircleIfNoActionSelected': true,
     'useMouseWheelGestures': true,
     'addTextLabels': true,
-    'dimBackground': false,
-    'backgroundDimmerOpacity': 0.2,
+    'dimBackground': true,
+    'backgroundDimmerOpacity': 0.05,
     'circleOpacity': 1.0,
     'innerCircleRadius': 30,
     'circleRadius': 115,
@@ -64,22 +67,28 @@ var defaultConfigs = {
     'gapBetweenCircles': 8,
     'gapBeforeInteractiveCircle': 8,
     'addCircleOutlines': true,
+    'showRegularMenuIfNoAction': true,
     'labelOpacity': 0.75,
     'iconOpacity': 1.0,
     'inactiveMenuBehavior': 'regularMenuFallback', /// possible values: 'regularMenuFallback', 'doNothing'
-
-    /// 'Replace' will display interactive menu only (link, image, selected text),
-    /// and 'combine' will add it as outer circle level
+    'openCircleOn': 'rightClick', /// possible values: 'rightClick', 'longLeftClick'
+    'delayForLongLeftClick': 500, /// ms
     'interactiveMenusBehavior': 'replace',  /// possible values: 'replace', 'combine'
-    'addLinkTooltip': true,
-    'showFullLinkInTooltip': true,
-    'showLinkTextInTooltip': false,
-    'showLinkTooltipForPageItself': false,
+    'addLinkTooltip': false,
+    'showFullLinkInTooltip': false,
     'showCategoryIconInTooltip': true,
+    'showLinkTextInTooltip': true,
+    'showLinkTooltipForPageItself': false,
     'linkTooltipOpacity': 1.0,
     'circleHideAnimation': true,
     'addCircleShadow': false,
     'highlightElementOnHover': false,
+    'showTitleOnHoverWhenHidden': true,
+    'horizontalWheelActionsEnabled': false,
+    'continiousVerticalScrollDetection': true,
+    'continiousHorizontalScrollDetection': false,
+    'applySettingsImmediately': false,
+    'delayToShowTitleOnHoverWhenHidden': 600, // ms
     'circleShadowOpacity': 0.3,
 
     /// Menus

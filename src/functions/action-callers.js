@@ -202,6 +202,26 @@ function triggerButtonAction(actionToPerform) {
 
         } break;
 
+        case 'increasePlayerVolume': {
+            if (elementUnderCursor !== null) {
+                elementUnderCursor.enableContextMenu = false;
+
+                let newVolume = elementUnderCursor.volume + playerVolumeStep;
+                if (newVolume > 1.0) newVolume = 1.0
+                elementUnderCursor.volume = newVolume;
+            }
+        } break;
+
+        case 'decreasePlayerVolume': {
+            if (elementUnderCursor !== null) {
+                elementUnderCursor.enableContextMenu = false;
+
+                let newVolume = elementUnderCursor.volume - playerVolumeStep;
+                if (newVolume < 0.0) newVolume = 0.0
+                elementUnderCursor.volume = newVolume;
+            }
+        } break;
+
         case 'moveCaretToEnd': {
             if (elementUnderCursor !== null) {
                 elementUnderCursor.focus({ preventScroll: true });

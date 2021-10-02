@@ -27,7 +27,7 @@ var configs = {
     /// 'Replace' will display interactive menu only (link, image, selected text),
     /// and 'combine' will add it as outer circle level
     'interactiveMenusBehavior': 'replace',  /// possible values: 'replace', 'combine'
-    'addLinkTooltip': true,
+    'addLinkTooltip': false,
     'showFullLinkInTooltip': false,
     'showCategoryIconInTooltip': true,
     'showLinkTextInTooltip': true,

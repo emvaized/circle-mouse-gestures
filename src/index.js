@@ -5,6 +5,13 @@ function init() {
             // calculateCircleRadius();
         }
     })
+
+    /// Fix for older browsers which don't support String.replaceAll (used here in a lot of places)
+    if (!String.prototype.replaceAll) {
+        String.prototype.replaceAll = function (find, replace) {
+            return this.replace(new RegExp(find.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g'), replace);
+        };
+    }
 }
 
 let anyButtonIsSelected = false;

@@ -295,6 +295,14 @@
         "message": "When menu for element is inactive:",
         "description": "Label for circle menu button"
     },
+    "increasePlayerVolume": {
+        "message": "Volume+",
+        "description": "Label for circle menu button"
+    },
+    "decreasePlayerVolume": {
+        "message": "Volume-",
+        "description": "Label for circle menu button"
+    },
     "innerWidth": {
         "message": "Center radius",
         "description": "Label for circle menu button"
