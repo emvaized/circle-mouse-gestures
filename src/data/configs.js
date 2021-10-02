@@ -9,7 +9,7 @@ var configs = {
     'useMouseWheelGestures': true,
     'addTextLabels': true,
     'dimBackground': true,
-    'backgroundDimmerOpacity': 0.2,
+    'backgroundDimmerOpacity': 0.05,
     'circleOpacity': 1.0,
     'innerCircleRadius': 30,
     'circleRadius': 115,
@@ -37,6 +37,10 @@ var configs = {
     'addCircleShadow': false,
     'highlightElementOnHover': false,
     'showTitleOnHoverWhenHidden': true,
+    'horizontalWheelActionsEnabled': false,
+    'continiousVerticalScrollDetection': true,
+    'continiousHorizontalScrollDetection': false,
+    'applySettingsImmediately': false,
     'delayToShowTitleOnHoverWhenHidden': 600, // ms
     'circleShadowOpacity': 0.3,
 
@@ -47,6 +51,8 @@ var configs = {
         'rockerMiddleClick': 'noAction',
         'mouseWheelUpAction': 'pageZoomIn',
         'mouseWheelDownAction': 'pageZoomOut',
+        'mouseWheelLeftAction': 'noAction',
+        'mouseWheelRightAction': 'noAction',
         'levels': [
             {
                 'width': 100,
@@ -79,6 +85,8 @@ var configs = {
         'rockerMiddleClick': 'openLinkPreview',
         'mouseWheelUpAction': 'scrollToTop',
         'mouseWheelDownAction': 'scrollToBottom',
+        'mouseWheelLeftAction': 'noAction',
+        'mouseWheelRightAction': 'noAction',
         'levels': [
             {
                 'buttons': [
@@ -98,6 +106,8 @@ var configs = {
         'rockerMiddleClick': 'noAction',
         'mouseWheelUpAction': 'scrollToTop',
         'mouseWheelDownAction': 'scrollToBottom',
+        'mouseWheelLeftAction': 'noAction',
+        'mouseWheelRightAction': 'noAction',
         'levels': [
             {
                 'buttons': [
@@ -117,6 +127,8 @@ var configs = {
         'rockerMiddleClick': 'noAction',
         'mouseWheelUpAction': 'scrollToTop',
         'mouseWheelDownAction': 'scrollToBottom',
+        'mouseWheelLeftAction': 'noAction',
+        'mouseWheelRightAction': 'noAction',
         'levels': [
             {
                 'buttons': [
@@ -136,15 +148,16 @@ var configs = {
         'rockerMiddleClick': 'noAction',
         'mouseWheelUpAction': 'scrollToTop',
         'mouseWheelDownAction': 'scrollToBottom',
+        'mouseWheelLeftAction': 'noAction',
+        'mouseWheelRightAction': 'noAction',
         'levels': [
             {
                 'buttons': [
-                    { 'id': 'openInFgTab' },
                     { 'id': 'copyUrl' },
                     { 'id': 'downloadUrlAs' },
-                    { 'id': 'copyImage' },
-                    // { 'id': 'openImageFullscreen' },
                     { 'id': 'searchImageOnGoogle' },
+                    { 'id': 'copyImage' },
+                    { 'id': 'openImageFullscreen' },
                 ]
             }
         ]
@@ -157,6 +170,8 @@ var configs = {
         'rockerMiddleClick': 'noAction',
         'mouseWheelUpAction': 'scrollToTop',
         'mouseWheelDownAction': 'scrollToBottom',
+        'mouseWheelLeftAction': 'noAction',
+        'mouseWheelRightAction': 'noAction',
         'levels': [
             {
                 'buttons': [
@@ -189,7 +204,8 @@ function loadUserConfigs(callback) {
             if (configs.debugMode)
                 if (configs.debugMode) console.log('CMG user configs loaded from memory');
 
-            callback();
+            if (callback)
+                callback();
         });
 }
 

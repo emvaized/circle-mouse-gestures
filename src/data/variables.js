@@ -106,7 +106,6 @@ var defaultConfigs = {
                     { 'id': 'scrollToBottom' },
                     { 'id': 'restoreClosedTab' },
                     { 'id': 'switchToPreviousTab' },
-                    // { 'id': 'translatePage' },
                     { 'id': 'translate' },
                     { 'id': 'scrollToTop' },
                     { 'id': 'copyUrl' },
@@ -177,12 +176,11 @@ var defaultConfigs = {
         'levels': [
             {
                 'buttons': [
-                    { 'id': 'openInFgTab' },
                     { 'id': 'copyUrl' },
                     { 'id': 'downloadUrlAs' },
-                    { 'id': 'copyImage' },
-                    // { 'id': 'openImageFullscreen' },
                     { 'id': 'searchImageOnGoogle' },
+                    { 'id': 'copyImage' },
+                    { 'id': 'openImageFullscreen' },
                 ]
             }
         ]

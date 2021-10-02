@@ -3,6 +3,7 @@ html {
 }
 
 .cmg-circle-canvas{
+  all: revert;
   /* transition: var(--cmg-circle-transition); */
   visibility: visible;
   opacity: 0.0;
@@ -11,7 +12,7 @@ html {
   background-color: transparent;
   color: transparent;
   pointer-events: none;
-  transition: transform var(--cmg-anim-duration) ease-out, opacity var(--cmg-anim-duration) ease-out;
+  transition: transform var(--cmg-anim-duration) ease-out, opacity var(--cmg-anim-duration) ease-out !important;
   transform: scale(0.0);
 }
 
@@ -82,6 +83,14 @@ html {
   outline: 2px solid var(--cmg-player-color) !important;
 }
 
+#cmg-page-dimmer {
+  overflow: hidden; z-index: 9999; 
+  width: 100%; height: 100%;  
+  opacity: 0.0; 
+  transition: opacity var(--cmg-anim-duration) ease-out; 
+  position:fixed;
+   background: black !important; top: 0px; left: 0px;
+}
 
 /* Link preview part */
 #cmg-link-preview {

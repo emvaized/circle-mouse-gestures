@@ -51,6 +51,10 @@
         "message": "Appearance",
         "description": ""
     },
+    "applySettingsImmediately": {
+        "message": "Apply settings immediately",
+        "description": ""
+    },
     "backgroundColor": {
         "message": "Background color",
         "description": ""
@@ -123,6 +127,18 @@
         "message": "Configure",
         "description": ""
     },
+    "continiousScrollDetectionHint": {
+        "message": "Allows to continuously register an action while right mouse button is pressed. \nUseful for some actions, for example Zoom in/out page",
+        "description": ""
+    },
+    "continiousVerticalScrollDetection": {
+        "message": "Continuous vertical scroll detection",
+        "description": ""
+    },
+    "continiousHorizontalScrollDetection": {
+        "message": "Continuous horizontal scroll detection",
+        "description": ""
+    },
     "copyAllText": {
         "message": "Copy all",
         "description": ""
@@ -173,6 +189,10 @@
     },
     "dimBackgroundTooltip": {
         "message": "Page contents will be dimmed while menu is shown",
+        "description": ""
+    },
+    "applySettingsImmediatelyTooltip": {
+        "message": "Apply settings every second time the menu is open. Disable for better performance",
         "description": ""
     },
     "doNothing": {
@@ -248,7 +268,11 @@
         "description": ""
     },
     "highlightElementOnHoverTooltip": {
-        "message": "Add border to element which has it's special menu in CMG. May not work on some pages",
+        "message": "ON hover add border to element which has it's special menu in CMG. May increase the CPU load",
+        "description": ""
+    },
+    "horizontalWheelActionsEnabled": {
+        "message": "Horizontal wheel actions",
         "description": ""
     },
     "image": {
@@ -317,6 +341,14 @@
     },
     "mouseWheelDownAction": {
         "message": "Wheel up",
+        "description": ""
+    },
+    "mouseWheelLeftAction": {
+        "message": "Wheel left",
+        "description": ""
+    },
+    "mouseWheelRightAction": {
+        "message": "Wheel right",
         "description": ""
     },
     "mouseWheelUpAction": {
@@ -569,6 +601,10 @@
     },
     "searchText": {
         "message": "Search",
+        "description": ""
+    },
+    "secondAction": {
+        "message": "Second action",
         "description": ""
     },
     "segmentColor": {

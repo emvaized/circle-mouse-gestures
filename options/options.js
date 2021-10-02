@@ -202,12 +202,16 @@ function generateBehaviorConfigs() {
         'debugMode',
         'addLinkTooltip',
         'showRegularMenuIfNoAction',
+        'applySettingsImmediately',
 
         'addCircleShadow',
         'circleShadowOpacity',
         'backgroundDimmerOpacity',
         'storeCurrentScrollPosition',
         'highlightElementOnHover',
+
+        'continiousVerticalScrollDetection',
+        'continiousHorizontalScrollDetection',
 
         'animateHideRelativeToSelected',
     ];
@@ -246,6 +250,10 @@ function generateBehaviorConfigs() {
     document.getElementById('addLinkTooltipTooltip').innerText = chrome.i18n.getMessage('addLinkTooltipTooltip');
     document.getElementById('highlightElementOnHoverTooltip').innerText = chrome.i18n.getMessage('highlightElementOnHoverTooltip');
     document.getElementById('storeCurrentScrollPositionTooltip').innerText = chrome.i18n.getMessage('storeCurrentScrollPositionTooltip');
+
+    document.getElementById('continiousVerticalScrollDetectionTooltip').innerText = chrome.i18n.getMessage('continiousScrollDetectionHint');
+    document.getElementById('continiousHorizontalScrollDetectionTooltip').innerText = chrome.i18n.getMessage('continiousScrollDetectionHint');
+    document.getElementById('applySettingsImmediatelyTooltip').innerText = chrome.i18n.getMessage('applySettingsImmediatelyTooltip');
 
     /// Proccess 'inactive menu for item behavior' dropdown
     let inactiveMenuBehavior = document.getElementById('inactiveMenuBehavior');
@@ -290,15 +298,18 @@ function generateGesturesConfigs() {
     let gesturesConfigs = document.getElementById('gestures-config');
     gesturesConfigs.innerHTML = '';
 
-    let rockerActionContainer = document.createElement('div');
-    rockerActionContainer.setAttribute('class', 'option');
-
     /// Subheader
     let gesturesSubheader = document.createElement('div');
     gesturesSubheader.setAttribute('class', 'sub-header');
     gesturesSubheader.setAttribute('style', 'margin-bottom: 8px;');
-    gesturesSubheader.innerHTML = chrome.i18n.getMessage('additional');
-    rockerActionContainer.appendChild(gesturesSubheader);
+    // gesturesSubheader.innerHTML = '+ ' + chrome.i18n.getMessage('additional');
+    gesturesSubheader.innerHTML = '+ ' + chrome.i18n.getMessage('secondAction') + ':';
+    gesturesConfigs.appendChild(gesturesSubheader);
+
+    let rockerActionContainer = document.createElement('div');
+    rockerActionContainer.setAttribute('class', 'option');
+
+
 
     /// Rocker action dropdown
     let rockerIidentifier = `regularRockerActionDropdown`;
@@ -347,7 +358,6 @@ function generateGesturesConfigs() {
     /// Wheel down action dropdown
     let wheelDowndropdownContainer = document.createElement('div');
     wheelDowndropdownContainer.setAttribute('class', 'option');
-
     let wheelDownIidentifier = `regularWheelDownActionDropdown`;
     let wheelDowndropdown = createActionDropdownButton(wheelDownIidentifier, configs[selectedMenuType].mouseWheelDownAction, function (newValue) {
         configs[selectedMenuType].mouseWheelDownAction = newValue;
@@ -357,8 +367,59 @@ function generateGesturesConfigs() {
 
     gesturesConfigs.appendChild(wheelDowndropdownContainer);
 
+    /// Horizontal wheel part
 
+    /// Swicher
+    let horizontalWheelSwitcherDiv = document.createElement('div');
+    horizontalWheelSwitcherDiv.className = 'option';
+    horizontalWheelSwitcherDiv.style.marginTop = '15px';
+    let horWheelLabel = document.createElement('label');
+    horWheelLabel.innerText = chrome.i18n.getMessage('horizontalWheelActionsEnabled') + '   ';
+    horizontalWheelSwitcherDiv.appendChild(horWheelLabel);
+    let horWheelInput = document.createElement('input');
+    horWheelInput.type = 'checkbox';
+    horWheelInput.id = 'horizontalWheelActionsEnabled';
+    if (configs.horizontalWheelActionsEnabled) horWheelInput.setAttribute('checked', true);
+
+    let horizontalWheelWrapper = document.createElement('div');
+
+    horWheelInput.addEventListener('change', function (newVal) {
+        configs.horizontalWheelActionsEnabled = horWheelInput.checked;
+        saveAllSettings();
+        horizontalWheelWrapper.className = configs.horizontalWheelActionsEnabled ? 'visible-option' : 'hidden-option';
+        document.getElementById('continiousHorizontalScrollDetection').parentNode.parentNode.className = configs.horizontalWheelActionsEnabled ? 'option visible-option' : 'option hidden-option';
+    })
+
+    horWheelLabel.appendChild(horWheelInput);
+    gesturesConfigs.appendChild(horizontalWheelSwitcherDiv);
+
+    let wheelLeftDropdownContainer = document.createElement('div');
+    wheelLeftDropdownContainer.setAttribute('class', 'option');
+    let wheelLeftIidentifier = `regularWheelLeftActionDropdown`;
+    let wheelLeftDropdown = createActionDropdownButton(wheelLeftIidentifier, configs[selectedMenuType].mouseWheelLeftAction ?? 'noAction', function (newValue) {
+        configs[selectedMenuType].mouseWheelLeftAction = newValue;
+        saveAllSettings();
+    }, chrome.i18n.getMessage('mouseWheelLeftAction'));
+    wheelLeftDropdownContainer.appendChild(wheelLeftDropdown);
+
+    let wheelRightDropdownContainer = document.createElement('div');
+    wheelRightDropdownContainer.setAttribute('class', 'option');
+    let wheelRightIidentifier = `regularWheelRightActionDropdown`;
+    let wheelRightDropdown = createActionDropdownButton(wheelRightIidentifier, configs[selectedMenuType].mouseWheelRightAction ?? 'noAction', function (newValue) {
+        configs[selectedMenuType].mouseWheelRightAction = newValue;
+        saveAllSettings();
+    }, chrome.i18n.getMessage('mouseWheelRightAction'));
+    wheelRightDropdownContainer.appendChild(wheelRightDropdown);
+
+    horizontalWheelWrapper.appendChild(wheelLeftDropdownContainer);
+    horizontalWheelWrapper.appendChild(wheelRightDropdownContainer);
+    gesturesConfigs.appendChild(horizontalWheelWrapper);
+
+
+    /// Set disabled sections
     gesturesConfigs.className = configs.openCircleOn == 'rightClick' ? 'configs-container visible-option' : 'configs-container hidden-option';
+    horizontalWheelWrapper.className = configs.horizontalWheelActionsEnabled ? 'visible-option' : 'hidden-option';
+    document.getElementById('continiousHorizontalScrollDetection').parentNode.parentNode.className = configs.horizontalWheelActionsEnabled ? 'option visible-option' : 'option hidden-option';
 
     /// Add 'open circle on' dropdown
     let openMenuOnDropdown = document.getElementById('openCircleOn');

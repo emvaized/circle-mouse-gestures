@@ -61,6 +61,9 @@ function setPageListeners() {
         if (e.ctrlKey) return;
         if (fullscreenImageIsOpen == true) return;
 
+        if (configs.applySettingsImmediately)
+            loadUserConfigs();
+
         if (configs.debugMode)
             console.log('Pushed button ' + evt.button.toString());
 
@@ -321,13 +324,36 @@ function checkScrollDirection(event) {
     if (circleIsShown == false && rightClickIsHolded == false) return;
     if (configs.openCircleOn !== 'rightClick') return;
 
-    if (checkScrollDirectionIsUp(event)) {
-        event.preventDefault();
-        triggerButtonAction(configs[typeOfMenu].mouseWheelUpAction);
-    } else {
-        event.preventDefault();
-        triggerButtonAction(configs[typeOfMenu].mouseWheelDownAction);
+    // if (checkScrollDirectionIsUp(event)) {
+    if (event.deltaY != 0) {
+        if (!configs.continiousVerticalScrollDetection && !circleIsShown) return;
+
+        if (event.deltaY < 0) {
+            event.preventDefault();
+            triggerButtonAction(configs[typeOfMenu].mouseWheelUpAction);
+        } else if (event.deltaY > 0) {
+            event.preventDefault();
+            triggerButtonAction(configs[typeOfMenu].mouseWheelDownAction);
+        }
     }
+    else {
+
+        /// Horizontal scroll
+        if (configs.horizontalWheelActionsEnabled) {
+            if (!configs.continiousHorizontalScrollDetection && !circleIsShown) return;
+
+            console.log(window.location.href);
+
+            if (event.deltaX < 0) {
+                event.preventDefault();
+                triggerButtonAction(configs[typeOfMenu].mouseWheelLeftAction);
+            } else if (event.deltaX > 0) {
+                event.preventDefault();
+                triggerButtonAction(configs[typeOfMenu].mouseWheelRightAction);
+            }
+        }
+    }
+
     hideCircle();
 }
 

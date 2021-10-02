@@ -1,10 +1,13 @@
 #1.2.2
-- Added support for continuous scroll detection in mouse wheen gestures! Works great with Zoom in/out actions
-- Performance optimizations
-- Improvements for link preview & new nice open transition
-- 'Copy' commands now display browser notification on success
+- Added support for continuous scroll detection for mouse wheel gestures! Works great with zoom in/out actions
+- Added horizontal wheel scroll actions
 - Added new option to show title hint on hovering action, when it's icon-only (default: on)
-- Improved 'long left click to open' option
+- 'Copy' commands now display browser notification on success
+
+- Performance optimizations
+- Improvements for link preview + new nice open transition
+- Improved 'long left click to open' functionality
+- Other small fixes and improvements
 
 #1.2.1
 - Improved 'long left click to open menu' functionality

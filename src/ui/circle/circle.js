@@ -52,10 +52,6 @@ function setCanvas() {
     circle.setAttribute('width', `${canvasRadius}px !imporant`);
     circle.setAttribute('height', `${canvasRadius}px !imporant`);
 
-    // circle.style.opacity = 0.0;
-    // circle.style.transform = 'scale(0.0)';
-    // circle.style.transition = `opacity ${configs.animationDuration}ms ease, transform ${configs.animationDuration}ms ease`;
-    // circle.style.visibility = 'visible';
     circle.style.left = `${leftCoord}px`;
     circle.style.top = `${topCoord}px`;
 

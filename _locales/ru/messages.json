@@ -51,6 +51,10 @@
         "message": "Внешний вид",
         "description": ""
     },
+    "applySettingsImmediately": {
+        "message": "Применять настройки немедленно",
+        "description": ""
+    },
     "backgroundColor": {
         "message": "Цвет фона",
         "description": ""
@@ -123,6 +127,18 @@
         "message": "Настроить",
         "description": ""
     },
+    "continiousScrollDetectionHint": {
+        "message": "Позволяет непрерывно выполнять действие при прокрутке, пока зажата правая кнопка мыши. \nПолезно для некоторых действий, например Увеличить/Уменьшить страницу",
+        "description": ""
+    },
+    "continiousVerticalScrollDetection": {
+        "message": "Непрерывный слушатель верт. прокрутки",
+        "description": ""
+    },
+    "continiousHorizontalScrollDetection": {
+        "message": "Непрерывный слушатель горизонт. прокрутки",
+        "description": ""
+    },
     "copied": {
         "message": "Скопировано в буфер обмена",
         "description": ""
@@ -177,6 +193,10 @@
     },
     "dimBackgroundTooltip": {
         "message": "Содержимое страницы будет затемнено, пока меню отображается",
+        "description": ""
+    },
+    "applySettingsImmediatelyTooltip": {
+        "message": "Обновляет настройки при каждом втором открытии меню. Отключите для лучшей производительности",
         "description": ""
     },
     "doNothing": {
@@ -252,7 +272,11 @@
         "description": ""
     },
     "highlightElementOnHoverTooltip": {
-        "message": "Добавить рамку элементу, имеющему специальное меню в CMG. Может работать некорректно на некоторых страницах",
+        "message": "При наведении добавить рамку элементу, имеющему специальное меню в CMG. Увеличивает нагрузку на процессор",
+        "description": ""
+    },
+    "horizontalWheelActionsEnabled": {
+        "message": "Жесты горизонтальной прокрутки",
         "description": ""
     },
     "image": {
@@ -325,6 +349,14 @@
     },
     "mouseWheelDownAction": {
         "message": "Колесико вниз",
+        "description": ""
+    },
+    "mouseWheelLeftAction": {
+        "message": "Колесико влево",
+        "description": ""
+    },
+    "mouseWheelRightAction": {
+        "message": "Колесико вправо",
         "description": ""
     },
     "mouseWheelUpAction": {
@@ -573,6 +605,10 @@
     },
     "searchText": {
         "message": "Искать",
+        "description": ""
+    },
+    "secondAction": {
+        "message": "Второе действие",
         "description": ""
     },
     "segmentColor": {
