@@ -2,7 +2,7 @@
 var configs = {
     'debugMode': false,
     'cmgEnabled': true,
-    'storeCurrentScrollPosition': true,
+    'storeCurrentScrollPosition': false,
     'animateHideRelativeToSelected': false,
     'animationDuration': 200,
     'hideCircleIfNoActionSelected': true,
