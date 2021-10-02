@@ -24,6 +24,7 @@ var circle;
 var circleIsShown = false;
 var rocketButtonPressed;
 var leftClickIsHolded = false;
+var rightClickIsHolded = false;
 var linkTooltip;
 var rockerCircle;
 var backgroundDimmer;

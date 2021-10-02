@@ -37,6 +37,7 @@ var configs = {
     'addCircleShadow': false,
     'highlightElementOnHover': false,
     'showTitleOnHoverWhenHidden': true,
+    'delayToShowTitleOnHoverWhenHidden': 600, // ms
     'circleShadowOpacity': 0.3,
 
     /// Menus

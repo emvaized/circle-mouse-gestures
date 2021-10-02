@@ -20,6 +20,7 @@ function init() {
 
             document.getElementById('navbar-settings-label').innerHTML = ' ' + chrome.i18n.getMessage('settings').toLowerCase();
             document.getElementById('circleShadowOpacity').parentNode.setAttribute('title', chrome.i18n.getMessage('opacity'));
+            document.getElementById('delayToShowTitleOnHoverWhenHidden').parentNode.setAttribute('title', chrome.i18n.getMessage('delay') + ' (ms)');
             document.getElementById('backgroundDimmerOpacity').parentNode.setAttribute('title', chrome.i18n.getMessage('opacity'));
             document.getElementById('updateToApplyLabel').innerHTML = chrome.i18n.getMessage('updateToApply');
         })
@@ -195,6 +196,7 @@ function generateBehaviorConfigs() {
     let inputIds = [
         'addTextLabels',
         'showTitleOnHoverWhenHidden',
+        'delayToShowTitleOnHoverWhenHidden',
         'dimBackground',
         'hideCircleIfNoActionSelected',
         'circleHideAnimation',
@@ -1120,6 +1122,7 @@ function updateDisabledOptions() {
     /// Grey out unavailable optoins
     document.querySelector("#showRegularMenuIfNoAction").parentNode.parentNode.className = document.querySelector("#hideCircleIfNoActionSelected").checked && document.getElementById('openCircleOn').value == 'rightClick' ? 'option enabled-option' : 'option disabled-option';
     document.querySelector("#circleShadowOpacity").parentNode.className = document.querySelector("#addCircleShadow").checked ? 'visible-option' : 'hidden-option';
+    document.querySelector("#delayToShowTitleOnHoverWhenHidden").parentNode.className = document.querySelector("#showTitleOnHoverWhenHidden").checked ? 'visible-option' : 'hidden-option';
     document.querySelector("#backgroundDimmerOpacity").parentNode.className = document.querySelector("#dimBackground").checked ? 'visible-option' : 'hidden-option';
     document.querySelector("#hideCircleIfNoActionSelected").parentNode.className = document.getElementById('openCircleOn').value == 'rightClick' ? 'enabled-option' : 'disabled-option';
 

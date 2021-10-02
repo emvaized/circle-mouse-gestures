@@ -85,6 +85,7 @@ function setPageListeners() {
             /// Right click
             // if (evt.button == 2) {
             if (evt.buttons == 2) {
+                rightClickIsHolded = true;
                 if (leftClickIsHolded) return;
 
                 processAndShowCircle(e);
@@ -147,6 +148,7 @@ function setPageListeners() {
                 if (lastMouseDownEvent !== null) lastMouseDownEvent = null;
                 hideCircle();
             } else if (evt.button == 2) {
+                rightClickIsHolded = false;
                 /// Right click
 
                 if (circleIsShown == false) return;
@@ -203,15 +205,12 @@ function setPageListeners() {
             if (window.getSelection().toString() !== '')
                 clearTimeout(timerForLongLeftClick);
         });
-
-
     }
 
-    document.addEventListener('wheel', checkScrollDirection);
+    document.addEventListener('wheel', checkScrollDirection, { passive: false });
 
     /// Listener to highlight hovered elements
     var prevHoveredDomElement = null;   // previous dom that we want to track, so we can remove the previous styling
-
 
     document.addEventListener('DOMContentLoaded', function () {
         document.body.style.setProperty('--cmg-circle-opacity', configs.circleOpacity);
@@ -311,7 +310,6 @@ function setPageListeners() {
             }, false);
         }
     })
-
 }
 
 function checkScrollDirection(event) {
@@ -320,11 +318,14 @@ function checkScrollDirection(event) {
     if (configs.storeCurrentScrollPosition && Object.keys(previousScrollPosition).length > 0)
         previousScrollPosition = {};
 
-    if (circleIsShown == false) return;
+    if (circleIsShown == false && rightClickIsHolded == false) return;
+    if (configs.openCircleOn !== 'rightClick') return;
 
     if (checkScrollDirectionIsUp(event)) {
+        event.preventDefault();
         triggerButtonAction(configs[typeOfMenu].mouseWheelUpAction);
     } else {
+        event.preventDefault();
         triggerButtonAction(configs[typeOfMenu].mouseWheelDownAction);
     }
     hideCircle();

@@ -1,4 +1,4 @@
-let hintTooltip, tooltipTimer, delayToShowTooltip = 600;
+let hintTooltip, tooltipTimer;
 const hintSpacing = 5, fadeTransitionForHint = 100, curve = 'ease-out', borderRadius = 4;
 
 function showHintTooltip(id, bgColor, fgColor, isOnTop) {

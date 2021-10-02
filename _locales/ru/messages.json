@@ -160,7 +160,11 @@
         "description": ""
     },
     "delayForLongLeftClick": {
-        "message": "Прод-сть удержания",
+        "message": "Продолжительность удержания",
+        "description": ""
+    },
+    "delay": {
+        "message": "Задержка",
         "description": ""
     },
     "deleteLabel": {

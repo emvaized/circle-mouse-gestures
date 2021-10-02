@@ -159,6 +159,10 @@
         "message": "Hold duration",
         "description": ""
     },
+    "delay": {
+        "message": "Delay",
+        "description": ""
+    },
     "deleteLabel": {
         "message": "Remove",
         "description": ""
