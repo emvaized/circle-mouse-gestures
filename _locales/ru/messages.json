@@ -259,6 +259,14 @@
         "message": "Изображение",
         "description": "Ярлык для кнопки кругового меню"
     },
+    "imageCopyFailTitle": {
+        "message": "Ошибка при копировании изображения!",
+        "description": ""
+    },
+    "imageCopyFailMessage": {
+        "message": "Скорее всего, из-за запрета CORS на сайте-источнике изображения",
+        "description": ""
+    },
     "imageMenu": {
         "message": "Меню изображения",
         "description": ""

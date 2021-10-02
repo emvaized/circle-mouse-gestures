@@ -171,8 +171,9 @@ async function fallbackCopyImg(src) {
         chrome.runtime.sendMessage(
             {
                 actionToDo: 'showBrowserNotification',
-                title: 'Failed to copy image',
-                message: "Most likely this is due to the CORS policy on image's source website",
+                title: chrome.i18n.getMessage('imageCopyFailTitle'),
+                message: chrome.i18n.getMessage('imageCopyFailMessage'),
+                image: '../../icons/success/block.svg'
                 // url: 'https://google.com'
             });
 

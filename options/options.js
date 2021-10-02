@@ -39,7 +39,6 @@ function setMenuTypeDropdown() {
     ];
 
     let navBar = document.getElementById('navbar');
-
     let menuTypeDropdownContainer = document.createElement('div');
 
     let menuTypeDropdown = document.createElement('select');

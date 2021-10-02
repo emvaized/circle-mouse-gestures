@@ -255,6 +255,14 @@
         "message": "Image",
         "description": ""
     },
+    "imageCopyFailTitle": {
+        "message": "Failed to copy image",
+        "description": ""
+    },
+    "imageCopyFailMessage": {
+        "message": "Most likely this is due to the CORS policy on image's source website",
+        "description": ""
+    },
     "imageMenu": {
         "message": "Menu for image",
         "description": ""

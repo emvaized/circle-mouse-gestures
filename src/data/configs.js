@@ -45,8 +45,8 @@ var configs = {
         'color': "#4c4c4c",
         'rockerLeftClick': 'reloadTab',
         'rockerMiddleClick': 'noAction',
-        'mouseWheelUpAction': 'scrollToTop',
-        'mouseWheelDownAction': 'scrollToBottom',
+        'mouseWheelUpAction': 'pageZoomIn',
+        'mouseWheelDownAction': 'pageZoomOut',
         'levels': [
             {
                 'width': 100,

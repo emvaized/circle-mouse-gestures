@@ -280,7 +280,7 @@ chrome.runtime.onMessage.addListener(
             } break;
 
             case 'showBrowserNotification': {
-                displayNotification(request.title, request.message, request.url)
+                displayNotification(request.title, request.message, request.url, request.image)
             } break;
 
             case 'duplicateTab': {
@@ -382,12 +382,13 @@ chrome.runtime.onMessage.addListener(
  * displays a browser notification
  * opens an URL on click if specified (non-specified)
  **/
-function displayNotification(title, message, link) {
+function displayNotification(title, message, link, image) {
     // create notification
     // const createNotification = 
     chrome.notifications.create({
         "type": "basic",
-        "iconUrl": "../../icons/icon-monotone-48.png",
+        // "iconUrl": "../../icons/icon-monotone-48.png",
+        "iconUrl": image ?? "../../icons/icon-monotone-48.png",
         "title": title,
         "message": message
     });
