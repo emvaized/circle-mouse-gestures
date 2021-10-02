@@ -81,8 +81,8 @@ var configs = {
 
     'linkMenu': {
         'color': "#3777CD",
-        'rockerLeftClick': 'openInFgTab',
-        'rockerMiddleClick': 'openLinkPreview',
+        'rockerLeftClick': 'openInBgTab',
+        'rockerMiddleClick': 'openInFgTab',
         'mouseWheelUpAction': 'scrollToTop',
         'mouseWheelDownAction': 'scrollToBottom',
         'mouseWheelLeftAction': 'noAction',
