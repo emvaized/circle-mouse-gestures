@@ -31,8 +31,6 @@ var backgroundDimmer;
 var elementUnderCursor;
 var currentClipboardContent;
 var fullscreenImageIsOpen = false;
-var playerVolumeStep = 0.1;
-
 
 var selectedButtons = {}; /// index of level: index of button
 var preselectedButtons = {};

@@ -1,5 +1,5 @@
 #1.2.2
-- Added support for continuous scroll detection for mouse wheel gestures! Works great with zoom in/out actions
+- Added support for continuous scroll detection for mouse wheel gestures! Works great with zoom in/out actions, or volume+- for players
 - Added horizontal wheel scroll actions
 - Added new option to show title hint on hovering action, when it's icon-only (default: on)
 - 'Copy' commands now display browser notification on success

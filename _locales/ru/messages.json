@@ -407,6 +407,10 @@
         "message": "Поднять",
         "description": ""
     },
+    "mutePlayer": {
+        "message": "Заглушить",
+        "description": ""
+    },
     "navigation": {
         "message": "Навигация",
         "description": ""

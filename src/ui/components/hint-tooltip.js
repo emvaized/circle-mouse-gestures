@@ -1,7 +1,9 @@
+/// Shows action name on hover when it's not visible (because disabled or level is too thin)
+
 let hintTooltip, tooltipTimer;
 const hintSpacing = 5, fadeTransitionForHint = 100, curve = 'ease-out', borderRadius = 4;
 
-function showHintTooltip(id, bgColor, fgColor, isOnTop) {
+function showHintTooltip(id, bgColor, fgColor, isOnTop, opacity = 1.0) {
     // if (hintTooltip != null) return;
     if (configs.debugMode)
         console.log('showing hint tooltip for ' + id);
@@ -26,7 +28,7 @@ function showHintTooltip(id, bgColor, fgColor, isOnTop) {
     hintTooltip.style.left = `${leftCoord + (canvasRadius / 2) - (hintTooltip.clientWidth / 2)}px`;
 
     setTimeout(function () {
-        hintTooltip.style.opacity = 1.0;
+        hintTooltip.style.opacity = opacity;
     }, 1);
 }
 

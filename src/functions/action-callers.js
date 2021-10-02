@@ -1,3 +1,5 @@
+let playerVolumeStep = 0.1;
+let lastPlayerVolume;
 
 
 function triggerButtonAction(actionToPerform) {
@@ -219,6 +221,19 @@ function triggerButtonAction(actionToPerform) {
                 let newVolume = elementUnderCursor.volume - playerVolumeStep;
                 if (newVolume < 0.0) newVolume = 0.0
                 elementUnderCursor.volume = newVolume;
+            }
+        } break;
+
+        case 'mutePlayer': {
+            if (elementUnderCursor !== null) {
+                elementUnderCursor.enableContextMenu = false;
+
+                if (elementUnderCursor.volume == 0.0) {
+                    elementUnderCursor.volume = lastPlayerVolume ?? 0.5;
+                } else {
+                    lastPlayerVolume = elementUnderCursor.volume;
+                    elementUnderCursor.volume = 0.0;
+                }
             }
         } break;
 

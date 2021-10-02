@@ -131,6 +131,7 @@ var sortedActionButtons = {
             'fasterPlaybackSpeed',
             'increasePlayerVolume',
             'decreasePlayerVolume',
+            'mutePlayer',
         ],
         '—': [
             'noAction'

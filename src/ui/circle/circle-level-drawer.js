@@ -54,7 +54,7 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
                 if (!shouldDrawLabel && configs.showTitleOnHoverWhenHidden) {
                     tooltipTimer = setTimeout(function () {
                         let isOnTop = E.clientY < topCoord + (canvasRadius / 2);
-                        showHintTooltip(segment.id, colorForButton, `rgb(${outlineColorRgb.red}, ${outlineColorRgb.green}, ${outlineColorRgb.blue}`, isOnTop);
+                        showHintTooltip(segment.id, colorForButton, `rgb(${outlineColorRgb.red}, ${outlineColorRgb.green}, ${outlineColorRgb.blue}`, isOnTop, levelOpacity);
                     }, configs.delayToShowTitleOnHoverWhenHidden)
                 }
             } catch (error) {
