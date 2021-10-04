@@ -287,6 +287,10 @@
         "message": "Most likely this is due to the CORS policy on image's source website",
         "description": ""
     },
+    "imageCopySuccessMessage": {
+        "message": "Image was copied successfully",
+        "description": ""
+    },
     "imageMenu": {
         "message": "Menu for image",
         "description": ""

@@ -54,6 +54,9 @@ function setCanvas() {
 
     circle.style.left = `${leftCoord}px`;
     circle.style.top = `${topCoord}px`;
+    //circle.style.opacity = 0.0;
+    //circle.style.transform = 'scale(0.0)';
+    //circle.style.transition = 'transform var(--cmg-anim-duration) ease-out, opacity var(--cmg-anim-duration) ease-out';
 
     // document.body.appendChild(circle);
     ctx = circle.getContext('2d');
@@ -62,6 +65,8 @@ function setCanvas() {
 
     setTimeout(function () {
         circle.classList.add('cmg-circle-visible');
+        //circle.style.opacity = configs.circleOpacity;
+        //circle.style.transform = 'scale(1.0)';
     }, 2);
 
     document.addEventListener('mousemove', mouseMoveListener);
@@ -239,6 +244,9 @@ function hideCircle() {
                 circle.style.transition = '';
 
             circle.style.transform = showRockerActionInCenter && rocketButtonPressed !== null ? 'scale(0.0)' : 'scale(1.5)';
+
+            if (!showRockerActionInCenter && !rocketButtonPressed)
+                circle.classList.add('cmg-circle-scale-up');
 
             let selectedButton;
             let selectedLevel;

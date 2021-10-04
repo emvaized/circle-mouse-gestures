@@ -182,7 +182,8 @@ chrome.runtime.onMessage.addListener(
                     maxResults: 1
                 }, function (sessionInfos) {
                     if (!sessionInfos.length) {
-                        if (configs.debugMode) console.log("No sessions found")
+                        // if (configs.debugMode) 
+                        console.log("No sessions found")
                         return;
                     }
                     let sessionInfo = sessionInfos[0];
@@ -341,10 +342,7 @@ chrome.runtime.onMessage.addListener(
                             chrome.tabs.remove(sender.tab.id, function () { });
                         });
                 }
-
             } break;
-
-
 
 
             case 'checkNextTabAvailability': {

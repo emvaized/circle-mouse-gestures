@@ -1,3 +1,6 @@
+#1.2.3
+- Fixed circle transition not working on some websites
+
 #1.2.2
 - Added support for continuous scroll detection for mouse wheel gestures! Works great with zoom in/out actions, or volume+- for players
 - Added horizontal wheel scroll actions

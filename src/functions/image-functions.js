@@ -1,12 +1,13 @@
 ///  Copy image methods
-
-async function copyImg(src) {
+function copyImg(src) {
     if (configs.debugMode) {
         console.log('image source:');
         console.log(src);
-        console.log(elementUnderCursor)
     }
 
+    let errors = false;
+
+    if (configs.debugMode) console.log('trying to copy image...');
     getBase64Image(elementUnderCursor, function (base64) {
         // base64 gere
         if (configs.debugMode)
@@ -15,10 +16,7 @@ async function copyImg(src) {
     }, function (e) {
 
         /// Error callback
-        if (configs.debugMode) {
-            // console.log(e);
-            console.log('trying method 2...');
-        }
+        if (configs.debugMode) console.log('trying method 2...');
 
         try {
             /// Trying to use proxy to bypass CORS
@@ -27,20 +25,43 @@ async function copyImg(src) {
                     console.log('received response: ');
                     console.log(base64);
                 }
-                if (base64 !== null && base64 !== undefined && !base64.includes('data:text/xml')) {
+                if (base64 !== null && base64 !== undefined && !base64.includes('data:text/xml'))
                     copyPngFromSource(base64);
-                } else {
+                else
                     fallbackCopyImg(src);
-                }
+
             }, fallbackCopyImg)
         } catch (e) {
 
             /// Fallback method
-            if (configs.debugMode)
-                console.log(e);
-            fallbackCopyImg(src);
+            try {
+                fallbackCopyImg(src);
+            } catch (e) {
+                if (configs.debugMode) console.log('failed to copy image');
+                errors = true;
+            }
         }
     });
+
+
+    /// Print success notification
+    if (errors) {
+        chrome.runtime.sendMessage(
+            {
+                actionToDo: 'showBrowserNotification',
+                title: chrome.i18n.getMessage('imageCopyFailTitle'),
+                message: chrome.i18n.getMessage('imageCopyFailMessage'),
+                image: '../../icons/success/block.svg'
+            });
+    } else {
+        chrome.runtime.sendMessage(
+            {
+                actionToDo: 'showBrowserNotification',
+                title: chrome.i18n.getMessage('copied'),
+                message: chrome.i18n.getMessage('imageCopySuccessMessage'),
+                image: src
+            });
+    }
 }
 
 /// First method to get image - tries to draw it on canvas
@@ -86,27 +107,13 @@ var getDataUri = function (targetUrl, callback, errorCallback) {
             console.log("received error:");
             console.log(e);
         }
-        errorCallback(targetUrl)
+        // errorCallback(targetUrl)
+        throw new Error(e);
     };
     var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     xhr.open('GET', proxyUrl + targetUrl);
     xhr.responseType = 'blob';
     xhr.send();
-
-    // fetch(proxyUrl + targetUrl).then(function (response) {
-    //     var reader = new FileReader();
-    //     reader.onloadend = function () {
-    //         callback(reader.result);
-    //     };
-    //     reader.readAsDataURL(response);
-    // }).catch(function (e) {
-    //     if (configs.debugMode) {
-    //         console.log("received error:");
-    //         console.log(e);
-    //     }
-    //     errorCallback(targetUrl)
-    // })
-
 };
 
 
@@ -152,31 +159,22 @@ function copyPngFromSource(src) {
 
 /// Fallback method - affected by CORS-issue, but why not to try?
 async function fallbackCopyImg(src) {
-    if (configs.debugMode) console.log('Trying method 3 to copy image...');
+    if (configs.debugMode) console.log('trying method 3...');
 
-    try {
-        const img = await fetch(src);
-        const imgBlob = await img.blob();
+    // const img = await fetch(src);
+    const img = await fetch(src).then((response) => {
+        if (response.status >= 400 && response.status < 600) throw new Error("Bad response from server");
+        return response;
+    }).catch((error) => {
+        // Your error is here!
+        throw new Error("Bad response from server");
+    });
+    const imgBlob = await img.blob();
 
-        if (src.endsWith(".png")) {
-            copyImageToClipboard(imgBlob);
-        } else {
-            convertToPng(imgBlob);
-        }
-    } catch (e) {
-        if (configs.debugMode) {
-            console.log(e);
-            console.log('cannot copy this image');
-        }
-        chrome.runtime.sendMessage(
-            {
-                actionToDo: 'showBrowserNotification',
-                title: chrome.i18n.getMessage('imageCopyFailTitle'),
-                message: chrome.i18n.getMessage('imageCopyFailMessage'),
-                image: '../../icons/success/block.svg'
-                // url: 'https://google.com'
-            });
-
+    if (src.endsWith(".png")) {
+        copyImageToClipboard(imgBlob);
+    } else {
+        convertToPng(imgBlob);
     }
 }
 

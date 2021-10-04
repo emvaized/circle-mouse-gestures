@@ -4,22 +4,25 @@ html {
 
 .cmg-circle-canvas{
   all: revert;
-  /* transition: var(--cmg-circle-transition); */
   visibility: visible;
-  opacity: 0.0;
   position: fixed;
   z-index: 9999999 !important;
   background-color: transparent;
   color: transparent;
   pointer-events: none;
   transition: transform var(--cmg-anim-duration) ease-out, opacity var(--cmg-anim-duration) ease-out !important;
-  transform: scale(0.0);
+  opacity: 0.0 !important;
+  transform: scale(0.0) !important;
 }
 
 .cmg-circle-visible{
-  opacity: var(--cmg-circle-opacity);
-  transform: scale(1.0);
+  opacity: var(--cmg-circle-opacity) !important;
+  transform: scale(1.0) !important;
   pointer-events: auto;
+}
+
+.cmg-circle-scale-up {
+  transform: scale(1.35) !important;
 }
 
 .cmg-rocker-icon{
