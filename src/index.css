@@ -10,9 +10,9 @@ html {
   background-color: transparent;
   color: transparent;
   pointer-events: none;
-  transition: transform var(--cmg-anim-duration) ease-out, opacity var(--cmg-anim-duration) ease-out !important;
+  /* transition: transform var(--cmg-anim-duration) ease-out, opacity var(--cmg-anim-duration) ease-out !important;
   opacity: 0.0 !important;
-  transform: scale(0.0) !important;
+  transform: scale(0.0) !important; */
 }
 
 .cmg-circle-visible{

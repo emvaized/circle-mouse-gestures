@@ -370,6 +370,12 @@ chrome.runtime.onMessage.addListener(
             case 'inspectPage': {
                 chrome.developerPrivate.openDevTools()
             } break;
+
+            // case 'copyImageFromUrl': {
+            //     try {
+            //         copyImageFromUrl(request.url);
+            //     } catch (error) { console.log(error); }
+            // } break;
         }
     }
 );
@@ -403,4 +409,51 @@ function displayNotification(title, message, link, image) {
     //     }
     // });
     // });
+}
+
+
+
+async function copyImageFromUrl(src, callback) {
+    // if (data.target.nodeName.toLowerCase() === "img" && data.target.src) {
+    const response = await fetch(src);
+    const mimeType = response.headers.get("Content-Type");
+
+    switch (mimeType) {
+        case "image/jpeg": {
+            const buffer = await response.arrayBuffer();
+            await browser.clipboard.setImageData(buffer, "jpeg");
+            callback(true);
+        } break;
+
+        case "image/png": {
+            const buffer = await response.arrayBuffer();
+            await browser.clipboard.setImageData(buffer, "png");
+            callback(true);
+        } break;
+
+        // convert other file types to png using the canvas api
+        default: {
+            const image = await new Promise((resolve, reject) => {
+                const image = new Image();
+                image.onload = () => resolve(image);
+                image.onerror = reject;
+                image.src = data.target.src;
+            });
+
+            const canvas = document.createElement('canvas');
+            canvas.width = image.naturalWidth;
+            canvas.height = image.naturalHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(image, 0, 0);
+
+            // read png image from canvas as blob and write it to clipboard
+            const blob = await new Promise((resolve) => canvas.toBlob(resolve), "image/png");
+            const buffer = await blob.arrayBuffer();
+            await browser.clipboard.setImageData(buffer, "png");
+            callback(true);
+        } break;
+    }
+    // confirm success
+    // return true;
+    // }
 }

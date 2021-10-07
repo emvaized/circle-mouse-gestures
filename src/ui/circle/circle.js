@@ -54,9 +54,10 @@ function setCanvas() {
 
     circle.style.left = `${leftCoord}px`;
     circle.style.top = `${topCoord}px`;
-    //circle.style.opacity = 0.0;
-    //circle.style.transform = 'scale(0.0)';
-    //circle.style.transition = 'transform var(--cmg-anim-duration) ease-out, opacity var(--cmg-anim-duration) ease-out';
+    circle.style.opacity = 0.0;
+    circle.style.transform = 'scale(0.0)';
+    // circle.style.transition = 'transform var(--cmg-anim-duration) ease-out, opacity var(--cmg-anim-duration) ease-out';
+    circle.style.transition = `transform ${configs.animationDuration}ms ease-out, opacity ${configs.animationDuration}ms ease-out`;
 
     // document.body.appendChild(circle);
     ctx = circle.getContext('2d');
@@ -64,10 +65,10 @@ function setCanvas() {
     document.body.appendChild(circle);
 
     setTimeout(function () {
-        circle.classList.add('cmg-circle-visible');
-        //circle.style.opacity = configs.circleOpacity;
-        //circle.style.transform = 'scale(1.0)';
-    }, 2);
+        // circle.classList.add('cmg-circle-visible');
+        circle.style.opacity = configs.circleOpacity;
+        circle.style.transform = 'scale(1.0)';
+    }, 3);
 
     document.addEventListener('mousemove', mouseMoveListener);
 }
@@ -226,9 +227,9 @@ function hideCircle() {
         if (circle == null || circle == undefined) return;
 
         if (configs.circleHideAnimation) {
-            // circle.style.opacity = 0.0;
-            // circle.style.pointerEvents = 'none';
-            circle.classList.remove('cmg-circle-visible');
+            circle.style.opacity = 0.0;
+            circle.style.pointerEvents = 'none';
+            // circle.classList.remove('cmg-circle-visible');
         }
 
         const selectedKeys = Object.keys(selectedButtons);
