@@ -782,5 +782,9 @@
     "cursorCorner": {
         "message": "Under cursor + in corner when no space",
         "description": ""
+    },
+    "cursorOverflow": {
+        "message": "Under cursor + shift when no space",
+        "description": ""
     }
 }

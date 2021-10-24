@@ -59,35 +59,61 @@ function setCanvas() {
     circle.style.transform = 'scale(0.0)';
     circle.style.transition = `transform ${configs.animationDuration}ms ease-out, opacity ${configs.animationDuration}ms ease-out`;
 
-    if (configs.circleLocation == 'alwaysCursor') {
-        circleShownInCorner = false;
-    } else if (configs.circleLocation == 'alwaysCorner') {
+    circleShownInCorner = false;
+    showMousePointer = false;
+
+    if (configs.circleLocation == 'alwaysCorner') {
         circleShownInCorner = true;
-    } else if (configs.circleLocation == 'cursorCorner') {
+    }
+    else if (configs.circleLocation == 'cursorCorner') {
         if (leftCoord < 0 || topCoord < 0 || (leftCoord + canvasRadius) > window.innerWidth || (topCoord + canvasRadius) > window.innerHeight)
             circleShownInCorner = true;
-        else
-            circleShownInCorner = false;
     }
 
     /// Handle off-screen case
     if (circleShownInCorner) {
-        // circle.style.left = `0px`;
-        circle.style.left = `${window.innerWidth - canvasRadius - cornerSidePadding}px`;
-        circle.style.top = `${window.innerHeight - canvasRadius - cornerSidePadding}px`;
+        realLeftCoord = window.innerWidth - canvasRadius - cornerSidePadding;
+        realTopCoord = window.innerHeight - canvasRadius - cornerSidePadding;
+        // circle.style.left = `${window.innerWidth - canvasRadius - cornerSidePadding}px`;
+        // circle.style.top = `${window.innerHeight - canvasRadius - cornerSidePadding}px`;
         circleShownInCorner = true;
+        showMousePointer = true;
 
+    } else {
+        // circle.style.left = `${leftCoord}px`;
+        // circle.style.top = `${topCoord}px`;
+
+        realLeftCoord = leftCoord;
+        realTopCoord = topCoord;
+
+        if (configs.circleLocation == 'cursorOverflow') {
+            if (leftCoord < 0) {
+                realLeftCoord = 0; showMousePointer = true;
+            } else if ((leftCoord + canvasRadius) > window.innerWidth) {
+                realLeftCoord = leftCoord - ((leftCoord + canvasRadius) - window.innerWidth);
+                showMousePointer = true;
+            }
+
+            if (topCoord < 0) {
+                realTopCoord = 0; showMousePointer = true;
+            } else if ((topCoord + canvasRadius) > window.innerHeight) {
+                realTopCoord = topCoord - ((topCoord + canvasRadius) - window.innerHeight);
+                showMousePointer = true;
+            }
+        }
+    }
+
+    circle.style.left = `${realLeftCoord}px`;
+    circle.style.top = `${realTopCoord}px`;
+
+    if (showMousePointer) {
         /// create mouse pointer
         cornerMousePointer = document.createElement('div');
         cornerMousePointer.setAttribute('id', 'cmg-corner-mouse-pointer');
         cornerMousePointer.style.border = `1.5px solid ${configs[typeOfMenu].color}`;
-        cornerMousePointer.style.transform = `translate(${window.innerWidth - (canvasRadius / 2) - cornerSidePadding}px, ${window.innerHeight - (canvasRadius / 2) - cornerSidePadding}px)`
-        document.body.appendChild(cornerMousePointer);
-
         deltaX = 0; deltaY = 0;
-    } else {
-        circle.style.left = `${leftCoord}px`;
-        circle.style.top = `${topCoord}px`;
+        cornerMousePointer.style.transform = `translate(${(realLeftCoord + (canvasRadius / 2)) + deltaX}px, ${(realTopCoord + (canvasRadius / 2)) + deltaY}px)`
+        document.body.appendChild(cornerMousePointer);
     }
 
     ctx = circle.getContext('2d');
@@ -108,12 +134,12 @@ function mouseMoveListener(e) {
         drawCircle(e, typeOfMenu);
     } catch (error) { if (configs.debugMode) console.log(error); }
 
-    if (circleShownInCorner) {
+    if (showMousePointer) {
         deltaX += e.movementX;
         deltaY += e.movementY;
         cornerMousePointer = document.getElementById('cmg-corner-mouse-pointer');
         if (cornerMousePointer) {
-            cornerMousePointer.style.transform = `translate(${(window.innerWidth - (canvasRadius / 2) - cornerSidePadding) + deltaX}px, ${(window.innerHeight - (canvasRadius / 2) - cornerSidePadding) + deltaY}px)`
+            cornerMousePointer.style.transform = `translate(${(realLeftCoord + (canvasRadius / 2)) + deltaX}px, ${(realTopCoord + (canvasRadius / 2)) + deltaY}px)`
         }
     }
 }
@@ -362,7 +388,7 @@ function hideCircle() {
         scrollingElementUnderCursor = null;
 
         hideHintTooltip();
-        if (circleShownInCorner) cornerMousePointer.remove();
+        if (showMousePointer) cornerMousePointer.remove();
 
     } catch (e) { if (configs.debugMode) console.log(e); }
 }

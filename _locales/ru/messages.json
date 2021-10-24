@@ -786,5 +786,9 @@
     "cursorCorner": {
         "message": "Под курсором + в углу, когда нет места",
         "description": ""
+    },
+    "cursorOverflow": {
+        "message": "Под курсором + смещать, когда нет места",
+        "description": ""
     }
 }

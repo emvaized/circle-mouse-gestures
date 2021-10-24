@@ -311,7 +311,6 @@ function generateBehaviorConfigs() {
 
     /// Proccess 'circle location' dropdown
     let circleLocation = document.getElementById('circleLocation');
-    // circleLocation.parentNode.innerHTML = chrome.i18n.getMessage('circleLocation') + '<br/>' + circleLocation.parentNode.innerHTML;
     circleLocation.parentNode.innerHTML = chrome.i18n.getMessage('circleLocation') + ': ' + circleLocation.parentNode.innerHTML;
     setTimeout(function () {
         let circleLocation = document.getElementById('circleLocation');

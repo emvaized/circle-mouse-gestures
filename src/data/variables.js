@@ -13,8 +13,8 @@ var secondCircleRadius = configs.circleRadius * 1.5;
 var secondCircleInnerRadius = configs.circleRadius + configs.gapBetweenCircles;
 
 var ctx;
-var leftCoord = 0.0;
-var topCoord = 0.0;
+var leftCoord = 0.0, topCoord = 0.0;
+var realLeftCoord = 0.0, realTopCoord = 0.0;
 var selectedButtonSecondLevel;
 var typeOfMenu = 'regularMenu';
 var hoveredLink;
@@ -33,6 +33,7 @@ var currentClipboardContent;
 var fullscreenImageIsOpen = false;
 var cornerMousePointer;
 var circleShownInCorner = false;
+var showMousePointer = false;
 const cornerSidePadding = 30;
 
 var selectedButtons = {}; /// index of level: index of button

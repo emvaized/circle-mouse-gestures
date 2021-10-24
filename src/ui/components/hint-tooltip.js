@@ -23,14 +23,11 @@ function showHintTooltip(id, bgColor, fgColor, isOnTop, opacity = 1.0) {
     hintTooltip.style.position = 'fixed';
     document.body.appendChild(hintTooltip);
 
-    let topCoordReal = circleShownInCorner ? (window.innerHeight - canvasRadius - cornerSidePadding) : topCoord;
-    let leftCoordReal = circleShownInCorner ? (window.innerWidth - canvasRadius - cornerSidePadding) : leftCoord;
-
     hintTooltip.style.top = isOnTop && (linkTooltip == null || linkTooltip == undefined)
-        ? `${topCoordReal - hintTooltip.clientHeight - hintSpacing}px`
-        : `${topCoordReal + canvasRadius + hintSpacing}px`;
+        ? `${realTopCoord - hintTooltip.clientHeight - hintSpacing}px`
+        : `${realTopCoord + canvasRadius + hintSpacing}px`;
 
-    hintTooltip.style.left = `${leftCoordReal + (canvasRadius / 2) - (hintTooltip.clientWidth / 2)}px`;
+    hintTooltip.style.left = `${realLeftCoord + (canvasRadius / 2) - (hintTooltip.clientWidth / 2)}px`;
 
     setTimeout(function () {
         hintTooltip.style.opacity = opacity;
