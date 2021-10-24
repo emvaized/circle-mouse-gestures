@@ -1,6 +1,7 @@
 #1.2.4
 - Added separate configs for icons and labels opacity
 - Added 'Circle location' config (always under cursor / always corner / under cursor + in corner when no space / under cursor + shift when no space)
+- Resolved conflict with drag when 'long left click to open' is active
 - Changed some default configs
 - Small options page improvements
 

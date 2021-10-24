@@ -45,7 +45,6 @@ function showCircle(e) {
 }
 
 function setCanvas() {
-
     if (configs.debugMode) console.log('setting up canvas...');
 
     circle = document.createElement('canvas');
@@ -291,6 +290,9 @@ function hideCircle() {
     try {
         if (circle == null || circle == undefined) return;
 
+        if (configs.circleHideAnimation == false)
+            circle.style.transition = '';
+
         if (configs.circleHideAnimation) {
             circle.style.opacity = 0.0;
             circle.style.pointerEvents = 'none';
@@ -306,14 +308,13 @@ function hideCircle() {
         }
         else {
             /// Some action was selected
-            if (configs.circleHideAnimation == false)
-                circle.style.transition = '';
+            if (configs.circleHideAnimation) {
+                circle.style.transform = showRockerActionInCenter && rocketButtonPressed !== null ? 'scale(0.0)' : 'scale(1.5)';
 
-            circle.style.transform = showRockerActionInCenter && rocketButtonPressed !== null ? 'scale(0.0)' : 'scale(1.5)';
-
-            if (!showRockerActionInCenter && !rocketButtonPressed)
-                // circle.classList.add('cmg-circle-scale-up');
-                circle.style.transform = 'scale(1.35)';
+                if (!showRockerActionInCenter && !rocketButtonPressed)
+                    // circle.classList.add('cmg-circle-scale-up');
+                    circle.style.transform = 'scale(1.35)';
+            }
 
             let selectedButton;
             let selectedLevel;

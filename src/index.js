@@ -81,7 +81,8 @@ function setPageListeners() {
 
                 timerForLongLeftClick = setTimeout(function () {
                     /// Distance of cursor move during timeout, after which menu will not be opened
-                    const thresholdToNotRegister = window.innerHeight / 25;
+                    // const thresholdToNotRegister = window.innerHeight / 25;
+                    const thresholdToNotRegister = configs.innerCircleRadius;
 
                     if (
                         Math.abs(lastMouseDownEvent.clientX - longPressTimerInitEvent.dx) < thresholdToNotRegister &&
@@ -199,6 +200,7 @@ function setPageListeners() {
 
     if (configs.openCircleOn == 'longLeftClick') {
         document.addEventListener('mousemove', function (e) {
+            console.log(e);
             if (e.button == 0) {
 
                 if (circleIsShown) {
@@ -210,6 +212,10 @@ function setPageListeners() {
                 }
             }
         });
+
+        document.addEventListener("dragstart", function (event) {
+            clearTimeout(timerForLongLeftClick);
+        }, false);
 
         document.addEventListener('selectionchange', function (e) {
             if (window.getSelection().toString() !== '')
