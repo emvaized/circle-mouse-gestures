@@ -1,4 +1,4 @@
-/// Shows action name on hover when it's not visible (because disabled or level is too thin)
+/// Shows action name on hover when it's icon-only (because disabled or level is too thin)
 
 let hintTooltip, tooltipTimer;
 const hintSpacing = 5, fadeTransitionForHint = 100, curve = 'ease-out', borderRadius = 4;
@@ -22,10 +22,15 @@ function showHintTooltip(id, bgColor, fgColor, isOnTop, opacity = 1.0) {
 
     hintTooltip.style.position = 'fixed';
     document.body.appendChild(hintTooltip);
+
+    let topCoordReal = circleShownInCorner ? (window.innerHeight - canvasRadius - cornerSidePadding) : topCoord;
+    let leftCoordReal = circleShownInCorner ? (window.innerWidth - canvasRadius - cornerSidePadding) : leftCoord;
+
     hintTooltip.style.top = isOnTop && (linkTooltip == null || linkTooltip == undefined)
-        ? `${topCoord - hintTooltip.clientHeight - hintSpacing}px`
-        : `${topCoord + canvasRadius + hintSpacing}px`;
-    hintTooltip.style.left = `${leftCoord + (canvasRadius / 2) - (hintTooltip.clientWidth / 2)}px`;
+        ? `${topCoordReal - hintTooltip.clientHeight - hintSpacing}px`
+        : `${topCoordReal + canvasRadius + hintSpacing}px`;
+
+    hintTooltip.style.left = `${leftCoordReal + (canvasRadius / 2) - (hintTooltip.clientWidth / 2)}px`;
 
     setTimeout(function () {
         hintTooltip.style.opacity = opacity;

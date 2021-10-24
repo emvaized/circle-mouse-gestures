@@ -1,5 +1,6 @@
 var totalCircleRadius;
 let enabledLevelsCount;
+let deltaX = 0, deltaY = 0;
 
 function showCircle(e) {
     const evt = e || window.event;
@@ -52,14 +53,43 @@ function setCanvas() {
     circle.setAttribute('width', `${canvasRadius}px !imporant`);
     circle.setAttribute('height', `${canvasRadius}px !imporant`);
 
-    circle.style.left = `${leftCoord}px`;
-    circle.style.top = `${topCoord}px`;
+    // circle.style.left = `${leftCoord}px`;
+    // circle.style.top = `${topCoord}px`;
     circle.style.opacity = 0.0;
     circle.style.transform = 'scale(0.0)';
-    // circle.style.transition = 'transform var(--cmg-anim-duration) ease-out, opacity var(--cmg-anim-duration) ease-out';
     circle.style.transition = `transform ${configs.animationDuration}ms ease-out, opacity ${configs.animationDuration}ms ease-out`;
 
-    // document.body.appendChild(circle);
+    if (configs.circleLocation == 'alwaysCursor') {
+        circleShownInCorner = false;
+    } else if (configs.circleLocation == 'alwaysCorner') {
+        circleShownInCorner = true;
+    } else if (configs.circleLocation == 'cursorCorner') {
+        if (leftCoord < 0 || topCoord < 0 || (leftCoord + canvasRadius) > window.innerWidth || (topCoord + canvasRadius) > window.innerHeight)
+            circleShownInCorner = true;
+        else
+            circleShownInCorner = false;
+    }
+
+    /// Handle off-screen case
+    if (circleShownInCorner) {
+        // circle.style.left = `0px`;
+        circle.style.left = `${window.innerWidth - canvasRadius - cornerSidePadding}px`;
+        circle.style.top = `${window.innerHeight - canvasRadius - cornerSidePadding}px`;
+        circleShownInCorner = true;
+
+        /// create mouse pointer
+        cornerMousePointer = document.createElement('div');
+        cornerMousePointer.setAttribute('id', 'cmg-corner-mouse-pointer');
+        cornerMousePointer.style.border = `1.5px solid ${configs[typeOfMenu].color}`;
+        cornerMousePointer.style.transform = `translate(${window.innerWidth - (canvasRadius / 2) - cornerSidePadding}px, ${window.innerHeight - (canvasRadius / 2) - cornerSidePadding}px)`
+        document.body.appendChild(cornerMousePointer);
+
+        deltaX = 0; deltaY = 0;
+    } else {
+        circle.style.left = `${leftCoord}px`;
+        circle.style.top = `${topCoord}px`;
+    }
+
     ctx = circle.getContext('2d');
     drawCircle(false, typeOfMenu);
     document.body.appendChild(circle);
@@ -77,6 +107,15 @@ function mouseMoveListener(e) {
     try {
         drawCircle(e, typeOfMenu);
     } catch (error) { if (configs.debugMode) console.log(error); }
+
+    if (circleShownInCorner) {
+        deltaX += e.movementX;
+        deltaY += e.movementY;
+        cornerMousePointer = document.getElementById('cmg-corner-mouse-pointer');
+        if (cornerMousePointer) {
+            cornerMousePointer.style.transform = `translate(${(window.innerWidth - (canvasRadius / 2) - cornerSidePadding) + deltaX}px, ${(window.innerHeight - (canvasRadius / 2) - cornerSidePadding) + deltaY}px)`
+        }
+    }
 }
 
 function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvailability = true, shouldRespectBoundaries) {
@@ -323,6 +362,7 @@ function hideCircle() {
         scrollingElementUnderCursor = null;
 
         hideHintTooltip();
+        if (circleShownInCorner) cornerMousePointer.remove();
 
     } catch (e) { if (configs.debugMode) console.log(e); }
 }

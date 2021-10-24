@@ -31,6 +31,9 @@ var backgroundDimmer;
 var elementUnderCursor;
 var currentClipboardContent;
 var fullscreenImageIsOpen = false;
+var cornerMousePointer;
+var circleShownInCorner = false;
+const cornerSidePadding = 30;
 
 var selectedButtons = {}; /// index of level: index of button
 var preselectedButtons = {};
@@ -88,6 +91,7 @@ var defaultConfigs = {
     'applySettingsImmediately': false,
     'delayToShowTitleOnHoverWhenHidden': 600, // ms
     'circleShadowOpacity': 0.3,
+    'circleLocation': 'cursorCorner', /// possible values: 'alwaysCursor', 'alwaysCorner', cursorCorner'
 
     /// Menus
     'regularMenu': {
@@ -135,9 +139,9 @@ var defaultConfigs = {
         'levels': [
             {
                 'buttons': [
-                    { 'id': 'openInFgTab' },
-                    { 'id': 'copyUrl' },
+                    // { 'id': 'openInFgTab' },
                     { 'id': 'openInBgTab' },
+                    { 'id': 'copyUrl' },
                     { 'id': 'copyLinkText' },
                     { 'id': 'openLinkPreview' },
                 ]

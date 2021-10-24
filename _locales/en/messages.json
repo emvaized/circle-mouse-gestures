@@ -656,7 +656,7 @@
         "description": ""
     },
     "showTitleOnHoverWhenHidden": {
-        "message": "Show action hint on hover (when hidden)",
+        "message": "Show action hint on hover (when icon-only)",
         "description": ""
     },
     "slowerPlaybackSpeed": {
@@ -664,7 +664,7 @@
         "description": ""
     },
     "standardBackground": {
-        "message": "Standard background color",
+        "message": "Background color",
         "description": ""
     },
     "storeCurrentScrollPosition": {
@@ -753,6 +753,34 @@
     },
     "animateHideRelativeToSelected": {
         "message": "Animate relative to selected option",
+        "description": ""
+    },
+    "labelOpacity": {
+        "message": "Labels opacity",
+        "description": ""
+    },
+    "iconOpacity": {
+        "message": "Icons opacity",
+        "description": ""
+    },
+    "backgroundOpacity": {
+        "message": "Background opacity",
+        "description": ""
+    },
+    "circleLocation": {
+        "message": "Circle location",
+        "description": ""
+    },
+    "alwaysCorner": {
+        "message": "Always in corner",
+        "description": ""
+    },
+    "alwaysCursor": {
+        "message": "Always under cursor",
+        "description": ""
+    },
+    "cursorCorner": {
+        "message": "Under cursor + in corner when no space",
         "description": ""
     }
 }

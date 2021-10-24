@@ -11,7 +11,7 @@ var configs = {
     'dimBackground': true,
     'backgroundDimmerOpacity': 0.05,
     'circleOpacity': 1.0,
-    'innerCircleRadius': 30,
+    'innerCircleRadius': 21,
     'circleRadius': 115,
     'interactiveCircleRadius': 57,
     'gapBetweenCircles': 8,
@@ -43,6 +43,7 @@ var configs = {
     'applySettingsImmediately': false,
     'delayToShowTitleOnHoverWhenHidden': 600, // ms
     'circleShadowOpacity': 0.3,
+    'circleLocation': 'cursorCorner', /// possible values: 'alwaysCursor', 'alwaysCorner', cursorCorner'
 
     /// Menus
     'regularMenu': {
@@ -90,9 +91,9 @@ var configs = {
         'levels': [
             {
                 'buttons': [
-                    { 'id': 'openInFgTab' },
-                    { 'id': 'copyUrl' },
+                    // { 'id': 'openInFgTab' },
                     { 'id': 'openInBgTab' },
+                    { 'id': 'copyUrl' },
                     { 'id': 'copyLinkText' },
                     { 'id': 'openLinkPreview' },
                 ]

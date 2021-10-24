@@ -1,5 +1,5 @@
 ///
-/// This options page is done quite shitty, ideally should be rewritten
+/// This options page code is quite messy, ideally it should be rewritten
 
 var delayToAddListeners = 1;
 var bodyMarginLeft = 0.0;
@@ -177,10 +177,29 @@ function generateAppearanceControls() {
         appearanceContainer.appendChild(gapBetweenLevelsSlider);
     }
 
-    /// Create circle opacity slider
+    /// Create label opacity slider
+    if (document.getElementById('labelOpacity') == undefined) {
+        let labelOpacitySlider = createRangeSlider('labelOpacity', configs.labelOpacity, null, function (newVal) {
+            configs.labelOpacity = newVal;
+        }, 0.1, 1.0, null, 0.1);
+        labelOpacitySlider.style.padding = '0px 5px';
+
+        appearanceContainer.appendChild(labelOpacitySlider);
+    }
+
+    /// Create icons opacity slider
+    if (document.getElementById('iconOpacity') == undefined) {
+        let iconOpacitySlider = createRangeSlider('iconOpacity', configs.iconOpacity, null, function (newVal) {
+            configs.iconOpacity = newVal;
+        }, 0.1, 1.0, null, 0.1);
+        iconOpacitySlider.style.padding = '0px 5px';
+
+        appearanceContainer.appendChild(iconOpacitySlider);
+    }
+
+    /// Create whole circle opacity slider
     if (document.getElementById('circleOpacity') == undefined) {
         let circleOpacitySlider = createRangeSlider('circleOpacity', configs.circleOpacity, null, function (newVal) {
-            console.log(newVal);
             configs.circleOpacity = newVal;
         }, 0.1, 1.0, null, 0.1);
         circleOpacitySlider.style.padding = '0px 5px';
@@ -289,6 +308,26 @@ function generateBehaviorConfigs() {
 
         document.getElementById('behavior-config').appendChild(animationDurationSlider);
     }
+
+    /// Proccess 'circle location' dropdown
+    let circleLocation = document.getElementById('circleLocation');
+    // circleLocation.parentNode.innerHTML = chrome.i18n.getMessage('circleLocation') + '<br/>' + circleLocation.parentNode.innerHTML;
+    circleLocation.parentNode.innerHTML = chrome.i18n.getMessage('circleLocation') + ': ' + circleLocation.parentNode.innerHTML;
+    setTimeout(function () {
+        let circleLocation = document.getElementById('circleLocation');
+        circleLocation.addEventListener('change', function () {
+            configs.circleLocation = circleLocation.value;
+            saveAllSettings();
+        })
+    }, delayToAddListeners);
+
+    /// Set translated and selected options
+    document.getElementById('circleLocation').querySelectorAll('option').forEach(function (option) {
+        if (chrome.i18n.getMessage(option.getAttribute('value')))
+            option.innerHTML = chrome.i18n.getMessage(option.getAttribute('value'));
+        if (configs.circleLocation == option.getAttribute('value'))
+            option.setAttribute('selected', 0);
+    })
 
 }
 
@@ -811,8 +850,6 @@ function generateLevelConfigs(levelIndex = 0) {
     }, 50, 200, chrome.i18n.getMessage("levelWidth"));
     container.appendChild(levelWidthSlider);
 
-    // container.innerHTML += '<br />';
-
     /// 'Use custom color' switch
     var customColorContainer = document.createElement('div');
     customColorContainer.setAttribute('class', 'option');
@@ -886,7 +923,7 @@ function generateLevelConfigs(levelIndex = 0) {
     let levelOpacitySlider = createRangeSlider(levelOpacitySliderId, configs[selectedMenuType].levels[levelIndex].opacity ?? configs.circleOpacity, null, function (newVal) {
         let ind = levelOpacitySliderId.split('-')[1];
         configs[selectedMenuType].levels[ind].opacity = newVal;
-    }, 0, 1, chrome.i18n.getMessage("opacity"), 0.05);
+    }, 0, 1, chrome.i18n.getMessage("backgroundOpacity"), 0.05);
 
     levelOpacitySlider.style.paddingTop = '5px';
 

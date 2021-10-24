@@ -660,7 +660,7 @@
         "description": ""
     },
     "showTitleOnHoverWhenHidden": {
-        "message": "Показывать подсказку при наведении (когда скрыта)",
+        "message": "Показывать подсказку при наведении (когда только иконка)",
         "description": ""
     },
     "slowerPlaybackSpeed": {
@@ -668,7 +668,7 @@
         "description": ""
     },
     "standardBackground": {
-        "message": "Стандартный цвет фона",
+        "message": "Цвет фона",
         "description": ""
     },
     "storeCurrentScrollPosition": {
@@ -757,6 +757,34 @@
     },
     "writeAReview": {
         "message": "Написать отзыв",
+        "description": ""
+    },
+    "labelOpacity": {
+        "message": "Прозрачность текста",
+        "description": ""
+    },
+    "iconOpacity": {
+        "message": "Прозрачность иконок",
+        "description": ""
+    },
+    "backgroundOpacity": {
+        "message": "Прозрачность фона",
+        "description": ""
+    },
+    "circleLocation": {
+        "message": "Расположение меню",
+        "description": ""
+    },
+    "alwaysCorner": {
+        "message": "Всегда в углу",
+        "description": ""
+    },
+    "alwaysCursor": {
+        "message": "Всегда под курсором",
+        "description": ""
+    },
+    "cursorCorner": {
+        "message": "Под курсором + в углу, когда нет места",
         "description": ""
     }
 }
