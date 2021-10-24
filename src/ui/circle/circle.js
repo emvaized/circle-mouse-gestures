@@ -149,7 +149,7 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
         my = (canvasRadius / 2);
     } else {
         mx = e.pageX - leftCoord;
-        my = e.pageY - topCoord - window.scrollY;
+        my = e.pageY - topCoord - (showIndexes ? 0 : window.scrollY);
     }
 
     let mangle = (-Math.atan2(mx - (canvasRadius / 2), my - (canvasRadius / 2)) + Math.PI * 2.5) % (Math.PI * 2);
