@@ -32,6 +32,7 @@ var elementUnderCursor;
 var currentClipboardContent;
 var fullscreenImageIsOpen = false;
 var cornerMousePointer;
+var ghostMousePointerRadius = 5;
 var circleShownInCorner = false;
 var showMousePointer = false;
 const cornerSidePadding = 30;

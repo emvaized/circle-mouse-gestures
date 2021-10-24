@@ -73,11 +73,8 @@ function setCanvas() {
     if (circleShownInCorner) {
         realLeftCoord = window.innerWidth - canvasRadius - cornerSidePadding;
         realTopCoord = window.innerHeight - canvasRadius - cornerSidePadding;
-        // circle.style.left = `${window.innerWidth - canvasRadius - cornerSidePadding}px`;
-        // circle.style.top = `${window.innerHeight - canvasRadius - cornerSidePadding}px`;
         circleShownInCorner = true;
         showMousePointer = true;
-
     } else {
         // circle.style.left = `${leftCoord}px`;
         // circle.style.top = `${topCoord}px`;
@@ -111,7 +108,7 @@ function setCanvas() {
         cornerMousePointer.setAttribute('id', 'cmg-corner-mouse-pointer');
         cornerMousePointer.style.border = `1.5px solid ${configs[typeOfMenu].color}`;
         deltaX = 0; deltaY = 0;
-        cornerMousePointer.style.transform = `translate(${(realLeftCoord + (canvasRadius / 2)) + deltaX}px, ${(realTopCoord + (canvasRadius / 2)) + deltaY}px)`
+        cornerMousePointer.style.transform = `translate(${(realLeftCoord + (canvasRadius / 2)) - ghostMousePointerRadius}px, ${(realTopCoord + (canvasRadius / 2)) - ghostMousePointerRadius}px)`
         document.body.appendChild(cornerMousePointer);
     }
 
@@ -138,7 +135,7 @@ function mouseMoveListener(e) {
         deltaY += e.movementY;
         cornerMousePointer = document.getElementById('cmg-corner-mouse-pointer');
         if (cornerMousePointer) {
-            cornerMousePointer.style.transform = `translate(${(realLeftCoord + (canvasRadius / 2)) + deltaX}px, ${(realTopCoord + (canvasRadius / 2)) + deltaY}px)`
+            cornerMousePointer.style.transform = `translate(${(realLeftCoord + (canvasRadius / 2)) + deltaX - ghostMousePointerRadius}px, ${(realTopCoord + (canvasRadius / 2)) + deltaY - ghostMousePointerRadius}px)`
         }
     }
 }

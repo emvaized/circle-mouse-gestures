@@ -179,17 +179,17 @@ function setPageListeners() {
                     }
 
                 } else {
-                    if (configs.animateHideRelativeToSelected) {
-                        let xPercent = (e.clientX - leftCoord) / (canvasRadius);
-                        if (xPercent < 0) xPercent = 0.0;
-                        if (xPercent > 1) xPercent = 1.0;
+                    // if (configs.animateHideRelativeToSelected) {
+                    //     let xPercent = (e.clientX - leftCoord) / (canvasRadius);
+                    //     if (xPercent < 0) xPercent = 0.0;
+                    //     if (xPercent > 1) xPercent = 1.0;
 
-                        let yPercent = (e.clientY - topCoord) / (canvasRadius);
-                        if (yPercent < 0) yPercent = 0.0;
-                        if (yPercent > 1) yPercent = 1.0;
+                    //     let yPercent = (e.clientY - topCoord) / (canvasRadius);
+                    //     if (yPercent < 0) yPercent = 0.0;
+                    //     if (yPercent > 1) yPercent = 1.0;
 
-                        circle.style.transformOrigin = `${xPercent * 100}% ${yPercent * 100}%`;
-                    }
+                    //     circle.style.transformOrigin = `${xPercent * 100}% ${yPercent * 100}%`;
+                    // }
 
                     hideCircle();
                 }
@@ -233,6 +233,7 @@ function setPageListeners() {
         // document.body.style.setProperty('--cmg-circle-transition', `opacity ${configs.animationDuration}ms ease-out, transform ${configs.animationDuration}ms ease-out`);
         document.body.style.setProperty('--cmg-anim-duration', `${configs.animationDuration}ms`);
         document.body.style.setProperty('--cmg-link-prevew-anim-duration', `300ms`);
+        document.body.style.setProperty('--cmg-ghost-mouse-pointer-size', `${ghostMousePointerRadius * 2}px`);
 
         if (configs.highlightElementOnHover) {
             // Mouse listener for any move event on the current document.

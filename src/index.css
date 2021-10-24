@@ -87,7 +87,7 @@ html {
 }
 
 #cmg-corner-mouse-pointer {
-  z-index: 99999999;height: 10px; width: 10px; border-radius: 50%; position: fixed; top: 0px; left: 0px; background: white; 
+  z-index: 99999999;height: var(--cmg-ghost-mouse-pointer-size); width: var(--cmg-ghost-mouse-pointer-size); border-radius: 50%; position: fixed; top: 0px; left: 0px; background: white; 
 }
 
 #cmg-page-dimmer {
