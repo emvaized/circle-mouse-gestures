@@ -97,8 +97,8 @@ async function showLinkTooltip() {
                 if (label !== null)
                     label.innerHTML = chrome.i18n.getMessage('clipboard') + '<br />';
 
-                const dxToShow = leftCoord + (canvasRadius / 2) - (linkTooltip.clientWidth / 2);
-                const dyToShow = topCoord - (linkTooltip.clientHeight) - 8;
+                const dxToShow = realLeftCoord + (canvasRadius / 2) - (linkTooltip.clientWidth / 2);
+                const dyToShow = realTopCoord - (linkTooltip.clientHeight) - 8;
                 linkTooltip.style.transform = `translate(${dxToShow}px, ${dyToShow}px)`;
             }
         }
@@ -112,13 +112,13 @@ async function showLinkTooltip() {
 
     document.body.appendChild(linkTooltip);
 
-    let dxToShow = leftCoord + (canvasRadius / 2) - (linkTooltip.clientWidth / 2);
-    let dyToShow = topCoord - (linkTooltip.clientHeight) - 8;
+    let dxToShow = realLeftCoord + (canvasRadius / 2) - (linkTooltip.clientWidth / 2);
+    let dyToShow = realTopCoord - (linkTooltip.clientHeight) - 8;
 
     if (configs.addCircleShadow)
         dyToShow += 15;
 
-    linkTooltip.style.transform = `translate(${dxToShow}px, ${topCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px) scale(0.0)`;
+    linkTooltip.style.transform = `translate(${dxToShow}px, ${realTopCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px) scale(0.0)`;
 
     setTimeout(function () {
         linkTooltip.style.transition = `transform ${configs.animationDuration}ms ease-out, opacity ${configs.animationDuration}ms ease-out`;
@@ -130,8 +130,8 @@ async function showLinkTooltip() {
 function hideLinkTooltip() {
     if (linkTooltip == undefined || linkTooltip == null) return;
 
-    const dxShown = leftCoord + (canvasRadius / 2) - (linkTooltip.clientWidth / 2);
-    linkTooltip.style.transform = `translate(${dxShown}px, ${topCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px) scale(0.0)`;
+    const dxShown = realLeftCoord + (canvasRadius / 2) - (linkTooltip.clientWidth / 2);
+    linkTooltip.style.transform = `translate(${dxShown}px, ${realTopCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px) scale(0.0)`;
     linkTooltip.style.opacity = 0.0;
     setTimeout(function () {
         if (linkTooltip !== null && linkTooltip.parentNode !== null)
