@@ -48,14 +48,12 @@ function setCanvas() {
     if (configs.debugMode) console.log('setting up canvas...');
 
     circle = document.createElement('canvas');
-    circle.className = 'cmg-circle-canvas';
+
     circle.setAttribute('width', `${canvasRadius}px !imporant`);
     circle.setAttribute('height', `${canvasRadius}px !imporant`);
+    circle.className = 'cmg-circle-canvas';
 
-    circle.style.opacity = 0.0;
-    circle.style.transform = 'scale(0.0)';
-    circle.style.transition = `transform ${configs.animationDuration}ms ease-out, opacity ${configs.animationDuration}ms ease-out`;
-
+    /// Calculate coordinates to show + detect off-screen
     circleShownInCorner = false;
     showMousePointer = false;
 
@@ -67,7 +65,6 @@ function setCanvas() {
             circleShownInCorner = true;
     }
 
-    /// Handle off-screen case
     if (circleShownInCorner) {
         realLeftCoord = window.innerWidth - canvasRadius - cornerSidePadding;
         realTopCoord = window.innerHeight - canvasRadius - cornerSidePadding;
@@ -97,8 +94,8 @@ function setCanvas() {
     circle.style.left = `${realLeftCoord}px`;
     circle.style.top = `${realTopCoord}px`;
 
+    /// Create ghost mouse pointer (when circle is not under cursor)
     if (showMousePointer) {
-        /// create mouse pointer
         cornerMousePointer = document.createElement('div');
         cornerMousePointer.setAttribute('id', 'cmg-corner-mouse-pointer');
         cornerMousePointer.style.border = `1.5px solid ${configs[typeOfMenu].color}`;
@@ -107,13 +104,76 @@ function setCanvas() {
         document.body.appendChild(cornerMousePointer);
     }
 
+    /// Add blur
+    if (configs.addBlur) {
+        blurCircle = document.createElement('div');
+        blurCircle.className = 'cmg-blur-circle';
+        blurCircle.style.left = `${realLeftCoord}px`;
+        blurCircle.style.top = `${realTopCoord}px`;
+        blurCircle.style.width = `${canvasRadius}px`;
+        blurCircle.style.height = `${canvasRadius}px`;
+        document.body.appendChild(blurCircle);
+    }
+
+    /// Set initial stylings
+    switch (configs.showCircleAnimation) {
+        case 'noAnimation': {
+            circle.style.opacity = configs.circleOpacity;
+            circle.style.transform = 'scale(1.0)';
+
+            if (configs.addBlur) {
+                blurCircle.style.opacity = 1.0;
+                blurCircle.style.transform = 'scale(1.0)';
+            }
+        } break;
+        case 'fade': {
+            circle.style.opacity = 0.0;
+            circle.style.transform = 'scale(1.0)';
+
+            if (configs.addBlur) {
+                blurCircle.style.opacity = 0.0;
+                blurCircle.style.transform = 'scale(1.0)';
+            }
+        } break;
+        case 'scale': {
+            circle.style.opacity = 0.0;
+            circle.style.transform = 'scale(0.0)';
+
+            if (configs.addBlur) {
+                blurCircle.style.opacity = 0.0;
+                blurCircle.style.transform = 'scale(0.0)';
+            }
+        } break;
+    }
+
+    circle.style.transition = `transform ${configs.animationDuration}ms ease-out, opacity ${configs.animationDuration}ms ease-out`;
+    if (configs.addBlur)
+        blurCircle.style.transition = `transform ${configs.animationDuration}ms ease-out, opacity ${configs.animationDuration}ms ease-out`;
+
     ctx = circle.getContext('2d');
     drawCircle(false, typeOfMenu);
     document.body.appendChild(circle);
 
+    /// Trigger the transition
     setTimeout(function () {
-        circle.style.opacity = configs.circleOpacity;
-        circle.style.transform = 'scale(1.0)';
+        // circle.style.opacity = configs.circleOpacity;
+        // circle.style.transform = 'scale(1.0)';
+
+        switch (configs.showCircleAnimation) {
+            case 'noAnimation': { } break;
+            case 'fade': {
+                circle.style.opacity = configs.circleOpacity;
+                if (configs.addBlur) blurCircle.style.opacity = 1.0;
+            } break;
+            case 'scale': {
+                circle.style.opacity = configs.circleOpacity;
+                circle.style.transform = 'scale(1.0)';
+                if (configs.addBlur) {
+                    blurCircle.style.opacity = 1.0;
+                    blurCircle.style.transform = 'scale(1.0)';
+                }
+            } break;
+        }
     }, 3);
 
     document.addEventListener('mousemove', mouseMoveListener);
@@ -281,11 +341,26 @@ function hideCircle() {
     try {
         if (circle == null || circle == undefined) return;
 
-        if (configs.circleHideAnimation == false)
-            circle.style.transition = '';
-
         circle.style.pointerEvents = 'none';
-        circle.style.opacity = 0.0;
+
+        switch (configs.hideCircleAnimation) {
+            case 'noAnimation': {
+                circle.style.transition = '';
+                circle.style.opacity = 0.0;
+                if (configs.addBlur) {
+                    blurCircle.style.transition = '';
+                    blurCircle.style.opacity = 0.0;
+                }
+            } break;
+            case 'fade': {
+                circle.style.opacity = 0.0;
+                if (configs.addBlur) blurCircle.style.opacity = 0.0;
+            } break;
+            case 'scale': {
+                circle.style.opacity = 0.0;
+                if (configs.addBlur) blurCircle.style.opacity = 0.0;
+            } break;
+        }
 
         /// Remove ghost pointer when circle is not under cursor
         if (showMousePointer && cornerMousePointer) cornerMousePointer.remove();
@@ -293,12 +368,12 @@ function hideCircle() {
         const selectedKeys = Object.keys(selectedButtons);
 
         if (rocketButtonPressed == null && selectedKeys.length == 0) {
-            if (configs.circleHideAnimation)
+            if (configs.hideCircleAnimation == 'scale')
                 circle.style.transform = 'scale(0.0)';
         }
         else {
             /// Some action was selected
-            if (configs.circleHideAnimation) {
+            if (configs.hideCircleAnimation == 'scale') {
                 circle.style.transform = showRockerActionInCenter && rocketButtonPressed !== null ? 'scale(0.0)' : 'scale(1.5)';
 
                 if (!showRockerActionInCenter && !rocketButtonPressed)
@@ -361,8 +436,13 @@ function hideCircle() {
                 circle = null;
             }
 
+            if (configs.addBlur && blurCircle) {
+                blurCircle.remove();
+                blurCircle = null;
+            }
+
             selectedButtons = {};
-        }, configs.circleHideAnimation ? configs.animationDuration : 0);
+        }, configs.hideCircleAnimation == 'noAnimation' ? 0 : configs.animationDuration);
 
         if (hoveredLink !== null && linkTooltip !== null)
             hideLinkTooltip();

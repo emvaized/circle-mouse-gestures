@@ -36,6 +36,7 @@ var ghostMousePointerRadius = 5;
 var circleShownInCorner = false;
 var showMousePointer = false;
 const cornerSidePadding = 30;
+var blurCircle;
 
 var selectedButtons = {}; /// index of level: index of button
 var preselectedButtons = {};
@@ -95,6 +96,10 @@ var defaultConfigs = {
     'circleShadowOpacity': 0.3,
     'circleLocation': 'cursorOverflow', /// possible values: 'alwaysCursor', 'alwaysCorner', cursorCorner', 'cursorOverflow'
     'longLeftClickThreshold': 21,
+    'addBlur': true,
+    'blurRadius': 5,
+    'showCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
+    'hideCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
 
     /// Menus
     'regularMenu': {

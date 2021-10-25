@@ -814,5 +814,33 @@
     "longLeftClickThresholdTooltip": {
         "message": "If cursor moved by this amount of pixels, do not open menu on timer end",
         "description": ""
+    },
+    "addBlur": {
+        "message": "Add blur effect",
+        "description": ""
+    },
+    "blurRadiusHint": {
+        "message": "Blur radius (px)",
+        "description": ""
+    },
+    "showCircleAnimation": {
+        "message": "Show animation",
+        "description": ""
+    },
+    "hideCircleAnimation": {
+        "message": "Hide animation",
+        "description": ""
+    },
+    "scale": {
+        "message": "Scale",
+        "description": ""
+    },
+    "fade": {
+        "message": "Fade",
+        "description": ""
+    },
+    "noAnimation": {
+        "message": "No animation",
+        "description": ""
     }
 }

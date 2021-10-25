@@ -9,11 +9,17 @@ html {
   z-index: 9999999 !important;
   background-color: transparent;
   color: transparent;
-  /* pointer-events: none; */
-  /* transition: transform var(--cmg-anim-duration) ease-out, opacity var(--cmg-anim-duration) ease-out !important;
-  opacity: 0.0 !important;
-  transform: scale(0.0) !important; */
 }
+
+.cmg-blur-circle {
+  z-index: 9999998 !important;
+  backdrop-filter: blur(4px);
+  position: fixed;
+  border-radius: 50%;
+}
+
+
+
 
 .cmg-circle-visible{
   opacity: var(--cmg-circle-opacity) !important;

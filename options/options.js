@@ -23,6 +23,7 @@ function optionsInit() {
 
             document.getElementById('navbar-settings-label').innerHTML = ' ' + chrome.i18n.getMessage('settings').toLowerCase();
             document.getElementById('circleShadowOpacity').parentNode.setAttribute('title', chrome.i18n.getMessage('opacity'));
+            document.getElementById('blurRadius').parentNode.setAttribute('title', chrome.i18n.getMessage('blurRadiusHint'));
             document.getElementById('delayToShowTitleOnHoverWhenHidden').parentNode.setAttribute('title', chrome.i18n.getMessage('delay') + ' (ms)');
             document.getElementById('backgroundDimmerOpacity').parentNode.setAttribute('title', chrome.i18n.getMessage('opacity'));
             document.getElementById('updateToApplyLabel').innerHTML = chrome.i18n.getMessage('updateToApply');
@@ -190,6 +191,16 @@ function generateAppearanceControls() {
         appearanceContainer.appendChild(gapBetweenLevelsSlider);
     }
 
+    /// Create whole circle opacity slider
+    if (document.getElementById('circleOpacity') == undefined) {
+        let circleOpacitySlider = createRangeSlider('circleOpacity', configs.circleOpacity, null, function (newVal) {
+            configs.circleOpacity = newVal;
+        }, 0.1, 1.0, null, 0.1);
+        circleOpacitySlider.style.padding = '0px 5px';
+
+        appearanceContainer.appendChild(circleOpacitySlider);
+    }
+
     /// Create label opacity slider
     if (document.getElementById('labelOpacity') == undefined) {
         let labelOpacitySlider = createRangeSlider('labelOpacity', configs.labelOpacity, null, function (newVal) {
@@ -210,17 +221,8 @@ function generateAppearanceControls() {
         appearanceContainer.appendChild(iconOpacitySlider);
     }
 
-    /// Create whole circle opacity slider
-    if (document.getElementById('circleOpacity') == undefined) {
-        let circleOpacitySlider = createRangeSlider('circleOpacity', configs.circleOpacity, null, function (newVal) {
-            configs.circleOpacity = newVal;
-        }, 0.1, 1.0, null, 0.1);
-        circleOpacitySlider.style.padding = '0px 5px';
 
-        appearanceContainer.appendChild(circleOpacitySlider);
-    }
-
-    /// Set menu type color
+    /// Set menu color selector
     let menuTypeColor = document.getElementById('menuTypeColor');
     document.getElementById('menuTypeColorLabel').innerText = chrome.i18n.getMessage('menuColor');
     menuTypeColor.setAttribute('value', configs[selectedMenuType].color);
@@ -252,7 +254,6 @@ function generateBehaviorConfigs() {
         'delayToShowTitleOnHoverWhenHidden',
         'dimBackground',
         'hideCircleIfNoActionSelected',
-        'circleHideAnimation',
         'debugMode',
         'addLinkTooltip',
         'showRegularMenuIfNoAction',
@@ -260,13 +261,18 @@ function generateBehaviorConfigs() {
 
         'addCircleShadow',
         'circleShadowOpacity',
+        'addBlur',
+        'blurRadius',
+
+
         'backgroundDimmerOpacity',
         'storeCurrentScrollPosition',
         'highlightElementOnHover',
         'continiousVerticalScrollDetection',
         'continiousHorizontalScrollDetection',
-        // 'animateHideRelativeToSelected',
         'copyNotification',
+        // 'animateHideRelativeToSelected',
+        // 'circleHideAnimation',
     ];
 
     inputIds.forEach(function (inputId) {
@@ -352,11 +358,50 @@ function generateBehaviorConfigs() {
         })
     }, delayToAddListeners);
 
-    /// Set translated and selected options
+    /// set translated and selected options
     document.getElementById('circleLocation').querySelectorAll('option').forEach(function (option) {
         if (chrome.i18n.getMessage(option.getAttribute('value')))
             option.innerHTML = chrome.i18n.getMessage(option.getAttribute('value'));
         if (configs.circleLocation == option.getAttribute('value'))
+            option.setAttribute('selected', 0);
+    })
+
+
+    /// Proccess 'show animation' dropdown
+    let showCircleAnimation = document.getElementById('showCircleAnimation');
+    showCircleAnimation.parentNode.innerHTML = chrome.i18n.getMessage('showCircleAnimation') + ':<br/> ' + showCircleAnimation.parentNode.innerHTML;
+    setTimeout(function () {
+        let showCircleAnimation = document.getElementById('showCircleAnimation');
+        showCircleAnimation.addEventListener('change', function () {
+            configs.showCircleAnimation = showCircleAnimation.value;
+            saveAllSettings();
+        })
+    }, delayToAddListeners);
+
+    /// set translated and selected options
+    document.getElementById('showCircleAnimation').querySelectorAll('option').forEach(function (option) {
+        if (chrome.i18n.getMessage(option.getAttribute('value')))
+            option.innerHTML = chrome.i18n.getMessage(option.getAttribute('value'));
+        if (configs.showCircleAnimation == option.getAttribute('value'))
+            option.setAttribute('selected', 0);
+    })
+
+    /// Proccess 'hide animation' dropdown
+    let hideCircleAnimation = document.getElementById('hideCircleAnimation');
+    hideCircleAnimation.parentNode.innerHTML = chrome.i18n.getMessage('hideCircleAnimation') + ':<br/> ' + hideCircleAnimation.parentNode.innerHTML;
+    setTimeout(function () {
+        let hideCircleAnimation = document.getElementById('hideCircleAnimation');
+        hideCircleAnimation.addEventListener('change', function () {
+            configs.hideCircleAnimation = hideCircleAnimation.value;
+            saveAllSettings();
+        })
+    }, delayToAddListeners);
+
+    /// set translated and selected options
+    document.getElementById('hideCircleAnimation').querySelectorAll('option').forEach(function (option) {
+        if (chrome.i18n.getMessage(option.getAttribute('value')))
+            option.innerHTML = chrome.i18n.getMessage(option.getAttribute('value'));
+        if (configs.hideCircleAnimation == option.getAttribute('value'))
             option.setAttribute('selected', 0);
     })
 
@@ -1214,6 +1259,7 @@ function updateDisabledOptions() {
     /// Grey out unavailable optoins
     document.querySelector("#showRegularMenuIfNoAction").parentNode.parentNode.className = document.querySelector("#hideCircleIfNoActionSelected").checked && document.getElementById('openCircleOn').value == 'rightClick' ? 'option enabled-option' : 'option disabled-option';
     document.querySelector("#circleShadowOpacity").parentNode.className = document.querySelector("#addCircleShadow").checked ? 'visible-option' : 'hidden-option';
+    document.querySelector("#blurRadius").parentNode.className = document.querySelector("#addBlur").checked ? 'visible-option' : 'hidden-option';
     document.querySelector("#delayToShowTitleOnHoverWhenHidden").parentNode.className = document.querySelector("#showTitleOnHoverWhenHidden").checked ? 'visible-option' : 'hidden-option';
     document.querySelector("#backgroundDimmerOpacity").parentNode.className = document.querySelector("#dimBackground").checked ? 'visible-option' : 'hidden-option';
     document.querySelector("#hideCircleIfNoActionSelected").parentNode.className = document.getElementById('openCircleOn').value == 'rightClick' ? 'enabled-option' : 'disabled-option';

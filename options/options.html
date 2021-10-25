@@ -90,6 +90,26 @@
                             <label><input style='margin-left: 5%; display: inline !important;' type="number" max='1.0'
                                     min='0.0' step='0.05' id="circleShadowOpacity"></input></label>
                         </div>
+                        <div class='option'>
+                            <label><input type="checkbox" id="addBlur"></input></label>
+                            <label><input style='margin-left: 5%; display: inline !important;' type="number" max='20'
+                                    min='1' step='1' id="blurRadius"></input></label>
+                        </div>
+
+                        <div class='option'><label><select id="showCircleAnimation">
+                                    <option value="noAnimation">No animation</option>
+                                    <option value="fade">Fade</option>
+                                    <option value="scale">Scale</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class='option'><label><select id="hideCircleAnimation">
+                                    <option value="noAnimation">No animation</option>
+                                    <option value="fade">Fade</option>
+                                    <option value="scale">Scale</option>
+                                </select>
+                            </label>
+                        </div>
                     </div>
                 </div>
 
@@ -161,8 +181,8 @@
                             </label>
                         </div>
 
-                        <div class='option'><label><input type="checkbox" id="circleHideAnimation"></input></label>
-                        </div>
+                        <!-- <div class='option'><label><input type="checkbox" id="circleHideAnimation"></input></label>
+                        </div> -->
                         <!-- <div class='option'><label><input type="checkbox" id="animateHideRelativeToSelected"></input></label>
             </div> -->
 

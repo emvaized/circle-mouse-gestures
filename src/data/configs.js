@@ -34,7 +34,7 @@ var configs = {
     'showLinkTextInTooltip': true,
     'showLinkTooltipForPageItself': false,
     'linkTooltipOpacity': 1.0,
-    'circleHideAnimation': true,
+    // 'circleHideAnimation': true,
     'addCircleShadow': false,
     'highlightElementOnHover': false,
     'showTitleOnHoverWhenHidden': true,
@@ -46,6 +46,10 @@ var configs = {
     'circleShadowOpacity': 0.3,
     'circleLocation': 'cursorOverflow', /// possible values: 'alwaysCursor', 'alwaysCorner', cursorCorner', 'cursorOverflow
     'longLeftClickThreshold': 21,
+    'addBlur': true,
+    'blurRadius': 5,
+    'showCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
+    'hideCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
 
     /// Menus
     'regularMenu': {

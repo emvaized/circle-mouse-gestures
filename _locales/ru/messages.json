@@ -818,5 +818,33 @@
     "longLeftClickThresholdTooltip": {
         "message": "Если курсор сдвинулся на это расстояние, не открывать меню по окончанию таймера",
         "description": ""
+    },
+    "addBlur": {
+        "message": "Эффект размытия",
+        "description": ""
+    },
+    "blurRadiusHint": {
+        "message": "Радиус размытия (px)",
+        "description": ""
+    },
+    "showCircleAnimation": {
+        "message": "Анимация появления",
+        "description": ""
+    },
+    "hideCircleAnimation": {
+        "message": "Анимация скрытия",
+        "description": ""
+    },
+    "scale": {
+        "message": "Увеличение",
+        "description": ""
+    },
+    "fade": {
+        "message": "Проявление",
+        "description": ""
+    },
+    "noAnimation": {
+        "message": "Без анимации",
+        "description": ""
     }
 }
