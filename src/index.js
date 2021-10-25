@@ -216,6 +216,14 @@ function setPageListeners() {
             clearTimeout(timerForLongLeftClick);
         }, false);
 
+        // document.addEventListener("scroll", function (event) {
+        //     clearTimeout(timerForLongLeftClick);
+        // });
+
+        window.addEventListener('scroll', function () {
+            clearTimeout(timerForLongLeftClick);
+        }, true);
+
         document.addEventListener('selectionchange', function (e) {
             if (window.getSelection().toString() !== '')
                 clearTimeout(timerForLongLeftClick);

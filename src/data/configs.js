@@ -44,7 +44,7 @@ var configs = {
     'applySettingsImmediately': false,
     'delayToShowTitleOnHoverWhenHidden': 600, // ms
     'circleShadowOpacity': 0.3,
-    'circleLocation': 'cursorCorner', /// possible values: 'alwaysCursor', 'alwaysCorner', cursorCorner', 'cursorOverflow
+    'circleLocation': 'cursorOverflow', /// possible values: 'alwaysCursor', 'alwaysCorner', cursorCorner', 'cursorOverflow
 
     /// Menus
     'regularMenu': {

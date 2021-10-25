@@ -772,7 +772,7 @@
         "description": ""
     },
     "circleLocation": {
-        "message": "Circle location",
+        "message": "Circle position",
         "description": ""
     },
     "alwaysCorner": {
