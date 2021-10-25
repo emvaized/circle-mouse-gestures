@@ -13,12 +13,10 @@ html {
 
 .cmg-blur-circle {
   z-index: 9999998 !important;
-  backdrop-filter: blur(4px);
   position: fixed;
   border-radius: 50%;
+  mask-image: radial-gradient(circle 20px at 50% 50%, transparent 30px, purple 0);
 }
-
-
 
 
 .cmg-circle-visible{

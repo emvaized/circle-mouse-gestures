@@ -47,7 +47,7 @@ var configs = {
     'circleLocation': 'cursorOverflow', /// possible values: 'alwaysCursor', 'alwaysCorner', cursorCorner', 'cursorOverflow
     'longLeftClickThreshold': 21,
     'addBlur': true,
-    'blurRadius': 5,
+    'blurRadius': 4,
     'showCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
     'hideCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
 

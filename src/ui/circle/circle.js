@@ -112,7 +112,9 @@ function setCanvas() {
         blurCircle.style.top = `${realTopCoord}px`;
         blurCircle.style.width = `${canvasRadius}px`;
         blurCircle.style.height = `${canvasRadius}px`;
+        blurCircle.style.backdropFilter = `blur(${configs.blurRadius}px)`;
         document.body.appendChild(blurCircle);
+
     }
 
     /// Set initial stylings
