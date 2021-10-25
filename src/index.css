@@ -9,7 +9,7 @@ html {
   z-index: 9999999 !important;
   background-color: transparent;
   color: transparent;
-  pointer-events: none;
+  /* pointer-events: none; */
   /* transition: transform var(--cmg-anim-duration) ease-out, opacity var(--cmg-anim-duration) ease-out !important;
   opacity: 0.0 !important;
   transform: scale(0.0) !important; */

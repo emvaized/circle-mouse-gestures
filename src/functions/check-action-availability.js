@@ -40,16 +40,14 @@ function checkButtonAvailability(e, id) {
         case 'switchToNextTab': {
             chrome.runtime.sendMessage({ actionToDo: 'checkNextTabAvailability' }, (response) => {
                 updateButtonAvailability(e, 'switchToNextTab', !response);
-            }
-            );
+            });
             return true;
         }
 
         case 'switchToPreviousTab': {
             chrome.runtime.sendMessage({ actionToDo: 'checkPrevTabAvailability' }, (response) => {
                 updateButtonAvailability(e, 'switchToPreviousTab', !response);
-            }
-            );
+            });
             return true;
         }
 

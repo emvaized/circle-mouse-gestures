@@ -14,11 +14,16 @@ async function copyImg(src) {
 
     let isFirefox = navigator.userAgent.indexOf("Firefox") > -1;
     if (isFirefox) {
-        imageCopyError = await chrome.runtime.sendMessage({ actionToDo: 'copyImageFirefox', url: src });
-    } else
+        chrome.runtime.sendMessage({ actionToDo: 'copyImageFirefox', url: src }, (response) => {
+            imageCopyError = response ? !response : true;
 
+            /// Print finish notification
+            if (configs.copyNotification)
+                showNotification(src);
+        });
+    } else {
+        /// Chrome-bases methods
         getBase64Image(elementUnderCursor, function (base64) {
-            // base64 gere
             copyPngFromSource(base64);
         }, function (e) {
             /// Error callback
@@ -49,25 +54,30 @@ async function copyImg(src) {
             }
         });
 
-    /// Print success notification
-    if (configs.copyNotification)
-        if (imageCopyError) {
-            chrome.runtime.sendMessage(
-                {
-                    actionToDo: 'showBrowserNotification',
-                    title: chrome.i18n.getMessage('imageCopyFailTitle'),
-                    message: chrome.i18n.getMessage('imageCopyFailMessage'),
-                    image: '../../icons/success/block.svg'
-                });
-        } else {
-            chrome.runtime.sendMessage(
-                {
-                    actionToDo: 'showBrowserNotification',
-                    title: chrome.i18n.getMessage('copied'),
-                    message: chrome.i18n.getMessage('imageCopySuccessMessage'),
-                    image: src
-                });
-        }
+        /// Print finish notification
+        if (configs.copyNotification)
+            showNotification(src);
+    }
+}
+
+function showNotification(src) {
+    if (imageCopyError) {
+        chrome.runtime.sendMessage(
+            {
+                actionToDo: 'showBrowserNotification',
+                title: chrome.i18n.getMessage('imageCopyFailTitle'),
+                message: chrome.i18n.getMessage('imageCopyFailMessage'),
+                image: '../../icons/success/block.svg'
+            });
+    } else {
+        chrome.runtime.sendMessage(
+            {
+                actionToDo: 'showBrowserNotification',
+                title: chrome.i18n.getMessage('copied'),
+                message: chrome.i18n.getMessage('imageCopySuccessMessage'),
+                image: src
+            });
+    }
 }
 
 /// First method to get image - tries to draw it on canvas

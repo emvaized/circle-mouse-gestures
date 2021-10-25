@@ -372,21 +372,22 @@ chrome.runtime.onMessage.addListener(
             } break;
 
             case 'copyImageFirefox': {
-                copyImageFirefox(request.url);
-            } break;
+                copyImageFirefox(request.url, function (result) {
+                    sendResponse(result);
+                });
 
+                return true;
+            } break;
         }
     }
 );
 
 
-
-
-async function copyImageFirefox(src) {
-    const response = await fetch(src);
-    const mimeType = response.headers.get("Content-Type");
-
+async function copyImageFirefox(src, callback) {
     try {
+        const response = await fetch(src);
+        const mimeType = response.headers.get("Content-Type");
+
         switch (mimeType) {
             case "image/jpeg": {
                 const buffer = await response.arrayBuffer();
@@ -419,11 +420,31 @@ async function copyImageFirefox(src) {
                 await chrome.clipboard.setImageData(buffer, "png");
             } break;
         }
-    } catch (e) { return false; }
 
-    // confirm success
-    return true;
+        // confirm success
+        // return true;
+        callback(true);
+    } catch (e) { callback(false); }
 }
+
+function timeoutPromise(ms, promise) {
+    return new Promise((resolve, reject) => {
+        const timeoutId = setTimeout(() => {
+            reject(new Error("promise timeout"))
+        }, ms);
+        promise.then(
+            (res) => {
+                clearTimeout(timeoutId);
+                resolve(res);
+            },
+            (err) => {
+                clearTimeout(timeoutId);
+                reject(err);
+            }
+        );
+    })
+}
+
 
 
 
