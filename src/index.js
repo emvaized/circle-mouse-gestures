@@ -200,7 +200,6 @@ function setPageListeners() {
 
     if (configs.openCircleOn == 'longLeftClick') {
         document.addEventListener('mousemove', function (e) {
-            console.log(e);
             if (e.button == 0) {
 
                 if (circleIsShown) {

@@ -128,7 +128,6 @@ function triggerButtonAction(actionToPerform) {
 
         case 'copyImage': {
             copyImg(hoveredLink);
-            // chrome.runtime.sendMessage({ actionToDo: 'copyImageFromUrl', url: hoveredLink });
         } break;
 
         case 'openImageFullscreen': {

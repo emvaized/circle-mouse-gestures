@@ -117,8 +117,10 @@ function openLinkPreview(elementUnderCursor) {
 
     /// Create title
     const hintSpan = document.createElement('span');
-    hintSpan.setAttribute('class', 'cmg-link-preview-title')
-    hintSpan.innerText = url;
+    hintSpan.setAttribute('class', 'cmg-link-preview-title');
+    hintSpan.setAttribute('title', url);
+    const maxTitleLength = 90;
+    hintSpan.innerText = url.length > maxTitleLength ? url.substring(0, maxTitleLength) + '...' : url;
 
     document.body.appendChild(hintSpan);
     hintSpan.style.transform = `translate(${dxToShow + (desiredWidth / 2) - (hintSpan.clientWidth / 2)}px, ${dyToShow - (headerTopPadding * 1.3)}px)`;

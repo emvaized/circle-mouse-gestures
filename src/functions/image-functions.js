@@ -1,67 +1,73 @@
 ///  Copy image methods
-function copyImg(src) {
+let imageCopyError = false;
+
+async function copyImg(src) {
     if (configs.debugMode) {
         console.log('image source:');
         console.log(src);
     }
 
-    let errors = false;
+    imageCopyError = false;
 
     if (configs.debugMode) console.log('trying to copy image...');
-    getBase64Image(elementUnderCursor, function (base64) {
-        // base64 gere
-        if (configs.debugMode)
-            console.log(base64);
-        copyPngFromSource(base64);
-    }, function (e) {
 
-        /// Error callback
-        if (configs.debugMode) console.log('trying method 2...');
 
-        try {
-            /// Trying to use proxy to bypass CORS
-            getDataUri(src, function (base64) {
-                if (configs.debugMode) {
-                    console.log('received response: ');
-                    console.log(base64);
-                }
-                if (base64 !== null && base64 !== undefined && !base64.includes('data:text/xml'))
-                    copyPngFromSource(base64);
-                else
-                    fallbackCopyImg(src);
+    let isFirefox = navigator.userAgent.indexOf("Firefox") > -1;
+    if (isFirefox) {
+        imageCopyError = await chrome.runtime.sendMessage({ actionToDo: 'copyImageFirefox', url: src });
+    } else
 
-            }, fallbackCopyImg)
-        } catch (e) {
+        getBase64Image(elementUnderCursor, function (base64) {
+            // base64 gere
+            copyPngFromSource(base64);
+        }, function (e) {
+            /// Error callback
+            if (configs.debugMode) console.log('trying method 2...');
 
-            /// Fallback method
             try {
-                fallbackCopyImg(src);
-            } catch (e) {
-                if (configs.debugMode) console.log('failed to copy image');
-                errors = true;
-            }
-        }
-    });
+                /// Trying to use proxy to bypass CORS
+                getDataUri(src, function (base64) {
+                    if (configs.debugMode) {
+                        console.log('received response: ');
+                        console.log(base64);
+                    }
+                    if (base64 !== null && base64 !== undefined && !base64.includes('data:text/xml'))
+                        copyPngFromSource(base64);
+                    else
+                        fallbackCopyImg(src);
 
+                }, fallbackCopyImg)
+            } catch (e) {
+
+                /// Fallback method
+                try {
+                    fallbackCopyImg(src);
+                } catch (e) {
+                    if (configs.debugMode) console.log('failed to copy image');
+                    imageCopyError = true;
+                }
+            }
+        });
 
     /// Print success notification
-    if (errors) {
-        chrome.runtime.sendMessage(
-            {
-                actionToDo: 'showBrowserNotification',
-                title: chrome.i18n.getMessage('imageCopyFailTitle'),
-                message: chrome.i18n.getMessage('imageCopyFailMessage'),
-                image: '../../icons/success/block.svg'
-            });
-    } else {
-        chrome.runtime.sendMessage(
-            {
-                actionToDo: 'showBrowserNotification',
-                title: chrome.i18n.getMessage('copied'),
-                message: chrome.i18n.getMessage('imageCopySuccessMessage'),
-                image: src
-            });
-    }
+    if (configs.copyNotification)
+        if (imageCopyError) {
+            chrome.runtime.sendMessage(
+                {
+                    actionToDo: 'showBrowserNotification',
+                    title: chrome.i18n.getMessage('imageCopyFailTitle'),
+                    message: chrome.i18n.getMessage('imageCopyFailMessage'),
+                    image: '../../icons/success/block.svg'
+                });
+        } else {
+            chrome.runtime.sendMessage(
+                {
+                    actionToDo: 'showBrowserNotification',
+                    title: chrome.i18n.getMessage('copied'),
+                    message: chrome.i18n.getMessage('imageCopySuccessMessage'),
+                    image: src
+                });
+        }
 }
 
 /// First method to get image - tries to draw it on canvas
@@ -86,7 +92,7 @@ function getBase64Image(img, callback, errorCallback) {
         var ctx = canvas.getContext("2d");
         ctx.drawImage(newImg, 0, 0);
         var base64 = canvas.toDataURL("image/png");
-        callback(base64)
+        callback(base64);
 
     }, errorCallback)
 }
@@ -142,7 +148,6 @@ function createImage(options) {
     return img;
 }
 
-
 function copyPngFromSource(src) {
     const imageUrl = src;
     const canvas = document.createElement("canvas");
@@ -157,7 +162,7 @@ function copyPngFromSource(src) {
     };
 }
 
-/// Fallback method - affected by CORS-issue, but why not to try?
+/// 3rd fallback method - affected by CORS-issue, but why not to try?
 async function fallbackCopyImg(src) {
     if (configs.debugMode) console.log('trying method 3...');
 
@@ -177,6 +182,30 @@ async function fallbackCopyImg(src) {
         convertToPng(imgBlob);
     }
 }
+
+async function copyImageToClipboard(pngBlob) {
+    if (configs.debugMode) {
+        console.log('trying to copy fetched image to clipboard:');
+        console.log(pngBlob);
+    }
+
+    try {
+        await navigator.clipboard.write([
+            new ClipboardItem({
+                [pngBlob.type]: pngBlob
+            })
+        ]);
+        if (configs.debugMode)
+            console.log("Image copied");
+    } catch (error) {
+        if (configs.debugMode)
+            console.error(error);
+
+        imageCopyError = true;
+    }
+}
+
+
 
 
 

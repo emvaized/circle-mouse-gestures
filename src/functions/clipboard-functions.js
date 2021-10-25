@@ -35,28 +35,10 @@ function copyToClipboard(text) {
         navigator.clipboard.writeText(text);
     }
 
-    chrome.runtime.sendMessage({
-        actionToDo: 'showBrowserNotification',
-        title: chrome.i18n.getMessage("copied") ?? 'Copied URL',
-        message: text,
-    });
-}
-
-async function copyImageToClipboard(pngBlob) {
-    if (configs.debugMode) {
-        console.log('trying to copy image to clipboard:');
-        console.log(pngBlob);
-    }
-    try {
-        await navigator.clipboard.write([
-            new ClipboardItem({
-                [pngBlob.type]: pngBlob
-            })
-        ]);
-        if (configs.debugMode)
-            console.log("Image copied");
-    } catch (error) {
-        if (configs.debugMode)
-            console.error(error);
-    }
+    if (configs.copyNotification)
+        chrome.runtime.sendMessage({
+            actionToDo: 'showBrowserNotification',
+            title: chrome.i18n.getMessage("copied") ?? 'Copied URL',
+            message: text,
+        });
 }

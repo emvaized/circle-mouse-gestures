@@ -24,7 +24,7 @@
         "description": ""
     },
     "addTextLabels": {
-        "message": "Использовать текстовые подсказки",
+        "message": "Использовать текстовые подписи",
         "description": ""
     },
     "addTextLabelsTooltip": {
@@ -248,7 +248,7 @@
         "description": ""
     },
     "gesturesTitle": {
-        "message": "Кнопки",
+        "message": "Кнопки мыши",
         "description": ""
     },
     "githubPage": {
@@ -660,7 +660,11 @@
         "description": ""
     },
     "showTitleOnHoverWhenHidden": {
-        "message": "Показывать подсказку при наведении (когда только иконка)",
+        "message": "Показывать подсказку при наведении",
+        "description": ""
+    },
+    "showTitleOnHoverWhenHiddenTooltip": {
+        "message": "Когда видима только иконка, показывать текст при наведении",
         "description": ""
     },
     "slowerPlaybackSpeed": {
@@ -668,7 +672,7 @@
         "description": ""
     },
     "standardBackground": {
-        "message": "Цвет фона",
+        "message": "Цвет уровня",
         "description": ""
     },
     "storeCurrentScrollPosition": {
@@ -789,6 +793,22 @@
     },
     "cursorOverflow": {
         "message": "Под курсором + смещать, когда нет места",
+        "description": ""
+    },
+    "copyNotification": {
+        "message": "Уведомление при успешном копировании",
+        "description": ""
+    },
+    "menuColor": {
+        "message": "Цвет выбранного меню",
+        "description": ""
+    },
+    "levelColor": {
+        "message": "Цвет уровня",
+        "description": ""
+    },
+    "refreshPageIfDoesntWork": {
+        "message": "Если не работает, обновите страницу",
         "description": ""
     }
 }

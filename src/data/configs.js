@@ -18,6 +18,7 @@ var configs = {
     'gapBeforeInteractiveCircle': 8,
     'addCircleOutlines': true,
     'showRegularMenuIfNoAction': true,
+    'copyNotification': true,
     'labelOpacity': 0.75,
     'iconOpacity': 1.0,
     'inactiveMenuBehavior': 'regularMenuFallback', /// possible values: 'regularMenuFallback', 'doNothing'

@@ -206,6 +206,25 @@ function generateAppearanceControls() {
 
         appearanceContainer.appendChild(circleOpacitySlider);
     }
+
+    /// Set menu type color
+    let menuTypeColor = document.getElementById('menuTypeColor');
+    document.getElementById('menuTypeColorLabel').innerText = chrome.i18n.getMessage('menuColor');
+    menuTypeColor.setAttribute('value', configs[selectedMenuType].color);
+    setTimeout(function () {
+
+        menuTypeColor.addEventListener('input', function (newVal) {
+            configs[selectedMenuType].color = menuTypeColor.value;
+            drawCirclePreview();
+        });
+
+        menuTypeColor.addEventListener('change', function (newVal) {
+            saveAllSettings();
+            generateButtonsControls();
+        });
+
+    }, delayToAddListeners);
+
 }
 
 /// Behavior configs
@@ -234,6 +253,7 @@ function generateBehaviorConfigs() {
         'continiousVerticalScrollDetection',
         'continiousHorizontalScrollDetection',
         // 'animateHideRelativeToSelected',
+        'copyNotification',
     ];
 
     inputIds.forEach(function (inputId) {
@@ -270,6 +290,7 @@ function generateBehaviorConfigs() {
     document.getElementById('addLinkTooltipTooltip').innerText = chrome.i18n.getMessage('addLinkTooltipTooltip');
     document.getElementById('highlightElementOnHoverTooltip').innerText = chrome.i18n.getMessage('highlightElementOnHoverTooltip');
     document.getElementById('storeCurrentScrollPositionTooltip').innerText = chrome.i18n.getMessage('storeCurrentScrollPositionTooltip');
+    document.getElementById('showTitleOnHoverWhenHiddenTooltip').innerText = chrome.i18n.getMessage('showTitleOnHoverWhenHiddenTooltip');
 
     document.getElementById('continiousVerticalScrollDetectionTooltip').innerText = chrome.i18n.getMessage('continiousScrollDetectionHint');
     document.getElementById('continiousHorizontalScrollDetectionTooltip').innerText = chrome.i18n.getMessage('continiousScrollDetectionHint');
@@ -309,7 +330,7 @@ function generateBehaviorConfigs() {
 
     /// Proccess 'circle location' dropdown
     let circleLocation = document.getElementById('circleLocation');
-    circleLocation.parentNode.innerHTML = chrome.i18n.getMessage('circleLocation') + ': ' + circleLocation.parentNode.innerHTML;
+    circleLocation.parentNode.innerHTML = chrome.i18n.getMessage('circleLocation') + ':<br/> ' + circleLocation.parentNode.innerHTML;
     setTimeout(function () {
         let circleLocation = document.getElementById('circleLocation');
         circleLocation.addEventListener('change', function () {
@@ -874,7 +895,7 @@ function generateLevelConfigs(levelIndex = 0) {
         });
 
         resetLevelColorButton.addEventListener("mouseover", function (e) {
-            resetButtonColor.style.opacity = 1.0;
+            resetLevelColorButton.style.opacity = 1.0;
         });
 
         resetLevelColorButton.addEventListener("mouseout", function (e) {
@@ -1148,7 +1169,8 @@ function updateDisabledOptions() {
         document.getElementById('behavior-config').style.opacity = 0.3;
         document.getElementById('gestures-config').style.opacity = 0.3;
     } else {
-        document.getElementById('clickSegmentToHighlight').innerHTML = chrome.i18n.getMessage('clickSegmentToHighlight');
+        // document.getElementById('clickSegmentToHighlight').innerHTML = chrome.i18n.getMessage('clickSegmentToHighlight');
+        document.getElementById('clickSegmentToHighlight').innerText = chrome.i18n.getMessage('clickSegmentToHighlight') + `\n(` + chrome.i18n.getMessage('refreshPageIfDoesntWork').toLowerCase() + ')';
         document.getElementById('appearance-config').style.opacity = 1.0;
         document.getElementById('behavior-config').style.opacity = 1.0;
         document.getElementById('gestures-config').style.opacity = 1.0;

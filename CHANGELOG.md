@@ -3,6 +3,7 @@
 - Added 'Circle location' config (always under cursor / always corner / under cursor + in corner when no space / under cursor + shift when no space)
 - Resolved conflict with drag when 'long left click to open' is active
 - Fixed issue when circle still had hide animation despite it's disabled in settings
+- Improved image copy on Firefox
 - Changed some default configs
 - Small options page improvements
 

@@ -244,7 +244,7 @@
         "description": ""
     },
     "gesturesTitle": {
-        "message": "Buttons",
+        "message": "Mouse buttons",
         "description": ""
     },
     "githubPage": {
@@ -656,7 +656,11 @@
         "description": ""
     },
     "showTitleOnHoverWhenHidden": {
-        "message": "Show action hint on hover (when icon-only)",
+        "message": "Show action hint on hover",
+        "description": ""
+    },
+    "showTitleOnHoverWhenHiddenTooltip": {
+        "message": "When action is icon-only, show tooltip on hover",
         "description": ""
     },
     "slowerPlaybackSpeed": {
@@ -664,7 +668,7 @@
         "description": ""
     },
     "standardBackground": {
-        "message": "Background color",
+        "message": "Level color",
         "description": ""
     },
     "storeCurrentScrollPosition": {
@@ -785,6 +789,22 @@
     },
     "cursorOverflow": {
         "message": "Under cursor + shift when no space",
+        "description": ""
+    },
+    "copyNotification": {
+        "message": "Notification on copy success",
+        "description": ""
+    },
+    "menuColor": {
+        "message": "Selected menu color",
+        "description": ""
+    },
+    "levelColor": {
+        "message": "Level color",
+        "description": ""
+    },
+    "refreshPageIfDoesntWork": {
+        "message": "Refresh page if doesn't work",
         "description": ""
     }
 }
