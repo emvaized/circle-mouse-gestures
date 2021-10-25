@@ -806,5 +806,13 @@
     "refreshPageIfDoesntWork": {
         "message": "Refresh page if doesn't work",
         "description": ""
+    },
+    "longLeftClickThreshold": {
+        "message": "Threshold to not open menu",
+        "description": ""
+    },
+    "longLeftClickThresholdTooltip": {
+        "message": "If cursor moved by this amount of pixels, do not open menu on timer end",
+        "description": ""
     }
 }

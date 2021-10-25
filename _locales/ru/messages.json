@@ -810,5 +810,13 @@
     "refreshPageIfDoesntWork": {
         "message": "Если не работает, обновите страницу",
         "description": ""
+    },
+    "longLeftClickThreshold": {
+        "message": "Смещение курсора для игнорирования",
+        "description": ""
+    },
+    "longLeftClickThresholdTooltip": {
+        "message": "Если курсор сдвинулся на это расстояние, не открывать меню по окончанию таймера",
+        "description": ""
     }
 }

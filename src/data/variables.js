@@ -94,6 +94,7 @@ var defaultConfigs = {
     'delayToShowTitleOnHoverWhenHidden': 600, // ms
     'circleShadowOpacity': 0.3,
     'circleLocation': 'cursorOverflow', /// possible values: 'alwaysCursor', 'alwaysCorner', cursorCorner', 'cursorOverflow'
+    'longLeftClickThreshold': 21,
 
     /// Menus
     'regularMenu': {

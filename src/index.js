@@ -81,8 +81,7 @@ function setPageListeners() {
 
                 timerForLongLeftClick = setTimeout(function () {
                     /// Distance of cursor move during timeout, after which menu will not be opened
-                    // const thresholdToNotRegister = window.innerHeight / 25;
-                    const thresholdToNotRegister = configs.innerCircleRadius;
+                    const thresholdToNotRegister = configs.longLeftClickThreshold ?? configs.innerCircleRadius;
 
                     if (
                         Math.abs(lastMouseDownEvent.clientX - longPressTimerInitEvent.dx) < thresholdToNotRegister &&
@@ -222,8 +221,8 @@ function setPageListeners() {
         }, true);
 
         document.addEventListener('selectionchange', function (e) {
-            // if (window.getSelection().toString() !== '')
-            clearTimeout(timerForLongLeftClick);
+            if (window.getSelection().toString() !== '')
+                clearTimeout(timerForLongLeftClick);
         });
     }
 

@@ -72,6 +72,7 @@ function setMenuTypeDropdown() {
             let newValue = listenedDropdown.value;
             selectedMenuType = newValue;
             preselectedButtons = {};
+            selectedButtons = {};
 
             drawCirclePreview(selectedMenuType);
             generateButtonsControls();
@@ -362,7 +363,6 @@ function generateGesturesConfigs() {
     let gesturesSubheader = document.createElement('div');
     gesturesSubheader.setAttribute('class', 'sub-header');
     gesturesSubheader.setAttribute('style', 'margin-bottom: 8px;');
-    // gesturesSubheader.innerHTML = '+ ' + chrome.i18n.getMessage('additional');
     gesturesSubheader.innerHTML = '+ ' + chrome.i18n.getMessage('secondAction') + ':';
     gesturesConfigs.appendChild(gesturesSubheader);
 
@@ -377,16 +377,7 @@ function generateGesturesConfigs() {
     }, chrome.i18n.getMessage('leftClick'));
 
     rockerActionContainer.appendChild(dropdown);
-
-
-    /// Attach tooltip
-    // rockerActionContainer.firstChild.firstChild.setAttribute('class', 'tooltip');
-    // let tooltipText = document.createElement('span');
-    // tooltipText.innerText = chrome.i18n.getMessage('rockerActionTooltip');
-    // tooltipText.setAttribute('class', 'tooltiptext');
-    // rockerActionContainer.firstChild.firstChild.appendChild(tooltipText);
     gesturesConfigs.appendChild(rockerActionContainer);
-
 
     /// Middle click action dropdown
     let middleClickDropdownContainer = document.createElement('div');
@@ -425,7 +416,7 @@ function generateGesturesConfigs() {
 
     gesturesConfigs.appendChild(wheelDowndropdownContainer);
 
-    /// Horizontal wheel part
+    /// Horizontal wheel gestures
 
     /// Swicher
     let horizontalWheelSwitcherDiv = document.createElement('div');
@@ -451,6 +442,7 @@ function generateGesturesConfigs() {
     horWheelLabel.appendChild(horWheelInput);
     gesturesConfigs.appendChild(horizontalWheelSwitcherDiv);
 
+    /// Gestures
     let wheelLeftDropdownContainer = document.createElement('div');
     wheelLeftDropdownContainer.setAttribute('class', 'option');
     let wheelLeftIidentifier = `regularWheelLeftActionDropdown`;
@@ -473,7 +465,6 @@ function generateGesturesConfigs() {
     horizontalWheelWrapper.appendChild(wheelRightDropdownContainer);
     gesturesConfigs.appendChild(horizontalWheelWrapper);
 
-
     /// Set disabled sections
     gesturesConfigs.className = configs.openCircleOn == 'rightClick' ? 'configs-container visible-option' : 'configs-container hidden-option';
     horizontalWheelWrapper.className = configs.horizontalWheelActionsEnabled ? 'visible-option' : 'hidden-option';
@@ -488,6 +479,7 @@ function generateGesturesConfigs() {
         openMenuOnDropdown.addEventListener('change', function (val) {
             configs.openCircleOn = openMenuOnDropdown.value;
             document.querySelector("#delayForLongLeftClick").parentNode.className = openMenuOnDropdown.value == 'longLeftClick' ? 'visible-option' : 'hidden-option';
+            document.querySelector("#longLeftClickThreshold").parentNode.parentNode.className = openMenuOnDropdown.value == 'longLeftClick' ? 'visible-option' : 'hidden-option';
             gesturesConfigs.className = openMenuOnDropdown.value == 'rightClick' ? 'configs-container visible-option' : 'configs-container hidden-option';
             saveAllSettings();
             updateDisabledOptions();
@@ -504,10 +496,46 @@ function generateGesturesConfigs() {
     /// Add long left click duration slider
     let longLeftClickDelay = createRangeSlider('delayForLongLeftClick', configs.delayForLongLeftClick, 'ms', function (newVal) {
         configs.delayForLongLeftClick = newVal;
-    }, 50, 2000);
+    }, 50, 2000, null, 25);
     longLeftClickDelay.style.padding = '0px 5px 12px';
     longLeftClickDelay.className = configs.openCircleOn == 'longLeftClick' ? 'visible-option' : 'hidden-option';
     document.getElementById('openCircleOnContainer').appendChild(longLeftClickDelay);
+
+    /// Add config for long left click threshold to not register (px)
+    let longLeftClickThresholdContainer = document.createElement('div');
+    longLeftClickThresholdContainer.className = 'option';
+
+    /// input
+    let longLeftClickThreshold = document.createElement('input');
+    longLeftClickThreshold.setAttribute('type', 'number');
+    longLeftClickThreshold.setAttribute('min', '1');
+    longLeftClickThreshold.setAttribute('max', '1000');
+    longLeftClickThreshold.setAttribute('title', 'px');
+    longLeftClickThreshold.setAttribute('id', 'longLeftClickThreshold');
+    longLeftClickThreshold.setAttribute('value', configs.longLeftClickThreshold);
+
+    setTimeout(function () {
+        longLeftClickThreshold.addEventListener('change', function (nevVal) {
+            configs.longLeftClickThreshold = longLeftClickThreshold.value;
+            saveAllSettings();
+        });
+    }, delayToAddListeners);
+
+    /// label
+    let longLeftClickThresholdLabel = document.createElement('label');
+    longLeftClickThresholdLabel.innerText = chrome.i18n.getMessage('longLeftClickThreshold') + ': ';
+    longLeftClickThresholdLabel.className = 'tooltip';
+
+    /// tooltip
+    let longLeftClickThresholdTooltip = document.createElement('span');
+    longLeftClickThresholdTooltip.innerText = chrome.i18n.getMessage('longLeftClickThresholdTooltip');
+    longLeftClickThresholdTooltip.className = 'tooltiptext';
+
+    longLeftClickThresholdLabel.appendChild(longLeftClickThreshold);
+    longLeftClickThresholdLabel.appendChild(longLeftClickThresholdTooltip);
+    longLeftClickThresholdContainer.appendChild(longLeftClickThresholdLabel);
+    document.getElementById('openCircleOnContainer').appendChild(longLeftClickThresholdContainer);
+    longLeftClickThresholdContainer.className = configs.openCircleOn == 'longLeftClick' ? 'visible-option' : 'hidden-option';
 
 }
 

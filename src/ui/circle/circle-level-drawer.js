@@ -27,8 +27,6 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
 
         /// Specific color for segment
         const colorForButton = segment.color !== null && segment.color !== undefined ? segment.color : segmentColor;
-        // if (segment.color !== null && segment.color !== undefined)
-        // colorForButton = segment.color;
 
         /// Color for outline, font and icon
         const outlineColorRgb = getTextColorForBackground(colorForButton, 1.0);

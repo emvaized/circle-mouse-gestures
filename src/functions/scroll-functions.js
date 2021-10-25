@@ -19,7 +19,7 @@ function scrollElementUnderCursor(scrollingElement, offset, id) {
     let currentScrollPosition;
 
     function saveCurrentScrollPosition() {
-        if (id !== null) {
+        if (configs.storeCurrentScrollPosition && id !== null) {
             previousScrollPosition[id == 'scrollToTop' ? 'scrollToBottom' : 'scrollToTop'] = currentScrollPosition;
             if (configs.debugMode) {
                 console.log('stored current scroll position:');
