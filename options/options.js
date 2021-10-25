@@ -49,13 +49,14 @@ function setMenuTypeDropdown() {
     menuTypeDropdown.setAttribute('id', menuTypeDropdownId);
     menuTypeDropdownContainer.appendChild(menuTypeDropdown);
 
-    let isFirefox = navigator.userAgent.indexOf("Firefox") > -1;
-    if (isFirefox == false) {
-        let arrowIndicator = document.createElement('div');
-        arrowIndicator.innerHTML = '>';
-        arrowIndicator.setAttribute('id', 'typeOfMenuDropdownArrow');
-        menuTypeDropdownContainer.appendChild(arrowIndicator);
-    }
+    /// Add arrow dropdown indicator
+    // let isFirefox = navigator.userAgent.indexOf("Firefox") > -1;
+    // if (isFirefox == false) {
+    //     let arrowIndicator = document.createElement('div');
+    //     arrowIndicator.innerHTML = '>';
+    //     arrowIndicator.setAttribute('id', 'typeOfMenuDropdownArrow');
+    //     menuTypeDropdownContainer.appendChild(arrowIndicator);
+    // }
 
     options.forEach(function (val) {
         let option = document.createElement('option');
@@ -494,48 +495,56 @@ function generateGesturesConfigs() {
     })
 
     /// Add long left click duration slider
-    let longLeftClickDelay = createRangeSlider('delayForLongLeftClick', configs.delayForLongLeftClick, 'ms', function (newVal) {
-        configs.delayForLongLeftClick = newVal;
-    }, 50, 2000, null, 25);
-    longLeftClickDelay.style.padding = '0px 5px 12px';
-    longLeftClickDelay.className = configs.openCircleOn == 'longLeftClick' ? 'visible-option' : 'hidden-option';
-    document.getElementById('openCircleOnContainer').appendChild(longLeftClickDelay);
+    // document.getElementById('openCircleOnContainer').innerHTML = '';
 
-    /// Add config for long left click threshold to not register (px)
-    let longLeftClickThresholdContainer = document.createElement('div');
-    longLeftClickThresholdContainer.className = 'option';
+    if (!document.getElementById('delayForLongLeftClick')) {
+        let longLeftClickDelay = createRangeSlider('delayForLongLeftClick', configs.delayForLongLeftClick, 'ms', function (newVal) {
+            configs.delayForLongLeftClick = newVal;
+        }, 50, 2000, null, 25);
+        longLeftClickDelay.style.padding = '0px 5px 12px';
+        longLeftClickDelay.className = configs.openCircleOn == 'longLeftClick' ? 'visible-option' : 'hidden-option';
+        document.getElementById('openCircleOnContainer').appendChild(longLeftClickDelay);
+    }
 
-    /// input
-    let longLeftClickThreshold = document.createElement('input');
-    longLeftClickThreshold.setAttribute('type', 'number');
-    longLeftClickThreshold.setAttribute('min', '1');
-    longLeftClickThreshold.setAttribute('max', '1000');
-    longLeftClickThreshold.setAttribute('title', 'px');
-    longLeftClickThreshold.setAttribute('id', 'longLeftClickThreshold');
-    longLeftClickThreshold.setAttribute('value', configs.longLeftClickThreshold);
 
-    setTimeout(function () {
-        longLeftClickThreshold.addEventListener('change', function (nevVal) {
-            configs.longLeftClickThreshold = longLeftClickThreshold.value;
-            saveAllSettings();
-        });
-    }, delayToAddListeners);
+    if (!document.getElementById('longLeftClickThreshold')) {
+        /// Add config for long left click threshold to not register (px)
+        let longLeftClickThresholdContainer = document.createElement('div');
+        longLeftClickThresholdContainer.className = 'option';
 
-    /// label
-    let longLeftClickThresholdLabel = document.createElement('label');
-    longLeftClickThresholdLabel.innerText = chrome.i18n.getMessage('longLeftClickThreshold') + ': ';
-    longLeftClickThresholdLabel.className = 'tooltip';
+        /// input
+        let longLeftClickThreshold = document.createElement('input');
+        longLeftClickThreshold.setAttribute('type', 'number');
+        longLeftClickThreshold.setAttribute('min', '1');
+        longLeftClickThreshold.setAttribute('max', '1000');
+        longLeftClickThreshold.setAttribute('title', 'px');
+        longLeftClickThreshold.setAttribute('id', 'longLeftClickThreshold');
+        longLeftClickThreshold.setAttribute('value', configs.longLeftClickThreshold);
 
-    /// tooltip
-    let longLeftClickThresholdTooltip = document.createElement('span');
-    longLeftClickThresholdTooltip.innerText = chrome.i18n.getMessage('longLeftClickThresholdTooltip');
-    longLeftClickThresholdTooltip.className = 'tooltiptext';
+        setTimeout(function () {
+            longLeftClickThreshold.addEventListener('change', function (nevVal) {
+                configs.longLeftClickThreshold = longLeftClickThreshold.value;
+                saveAllSettings();
+            });
+        }, delayToAddListeners);
 
-    longLeftClickThresholdLabel.appendChild(longLeftClickThreshold);
-    longLeftClickThresholdLabel.appendChild(longLeftClickThresholdTooltip);
-    longLeftClickThresholdContainer.appendChild(longLeftClickThresholdLabel);
-    document.getElementById('openCircleOnContainer').appendChild(longLeftClickThresholdContainer);
-    longLeftClickThresholdContainer.className = configs.openCircleOn == 'longLeftClick' ? 'visible-option' : 'hidden-option';
+        /// label
+        let longLeftClickThresholdLabel = document.createElement('label');
+        longLeftClickThresholdLabel.innerText = chrome.i18n.getMessage('longLeftClickThreshold') + ': ';
+        longLeftClickThresholdLabel.className = 'tooltip';
+
+        /// tooltip
+        let longLeftClickThresholdTooltip = document.createElement('span');
+        longLeftClickThresholdTooltip.innerText = chrome.i18n.getMessage('longLeftClickThresholdTooltip');
+        longLeftClickThresholdTooltip.className = 'tooltiptext';
+
+        longLeftClickThresholdLabel.appendChild(longLeftClickThreshold);
+        longLeftClickThresholdLabel.appendChild(longLeftClickThresholdTooltip);
+        longLeftClickThresholdContainer.appendChild(longLeftClickThresholdLabel);
+        document.getElementById('openCircleOnContainer').appendChild(longLeftClickThresholdContainer);
+        longLeftClickThresholdContainer.className = configs.openCircleOn == 'longLeftClick' ? 'visible-option' : 'hidden-option';
+    }
+
 
 }
 
@@ -1158,34 +1167,25 @@ function createRangeSlider(id, value, units, callbackOnChange, min = 50, max = 2
 
 function positionSettingsInCenter() {
     let circlePreviewSegment = document.getElementById('circle-preview');
-
     let occupiedWidth = circlePreviewSegment.clientWidth;
-
     let allLevelConfigs = document.querySelectorAll('.level-configs');
 
     if (allLevelConfigs.length > 3)
-        // allLevelConfigs = [allLevelConfigs[0], allLevelConfigs[1], allLevelConfigs[2],];
         allLevelConfigs.splice(3, 1);
 
-
     allLevelConfigs.forEach(function (el) {
-        // occupiedWidth += el.clientWidth;
         occupiedWidth += el.clientWidth + 30;
     });
 
     let occupiedPercent = occupiedWidth / window.screen.width * 100;
-    // let occupiedPercent = occupiedWidth / window.innerWidth * 100;
-
     bodyMarginLeft = (100 - occupiedPercent) / 2.5;
 
     document.getElementById('content').style.marginLeft = `${bodyMarginLeft}%`;
-
 }
 
 function updateDisabledOptions() {
 
     /// Grey out settings when no levels added or enabled
-
     let enabledLevelsCount = 0;
     for (var i = 0; i < configs[selectedMenuType].levels.length; i++) {
         if (configs[selectedMenuType].levels[i].enabled !== false) enabledLevelsCount += 1;

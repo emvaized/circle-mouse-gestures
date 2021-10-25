@@ -277,4 +277,8 @@ input {
     #updateToApplyLabel, #navbar-title, #navbar-settings-label {
         display: none !important;
     }
+
+    #content {
+        margin-left: 0px !important;
+    }
 }
