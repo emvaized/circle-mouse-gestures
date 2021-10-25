@@ -8,7 +8,7 @@ let selectedMenuType = 'regularMenu';
 let isFirefox = navigator.userAgent.indexOf("Firefox") > -1;
 
 
-function init() {
+function optionsInit() {
     try {
         loadUserConfigs(function (conf) {
             setMenuTypeDropdown();
@@ -26,6 +26,18 @@ function init() {
             document.getElementById('delayToShowTitleOnHoverWhenHidden').parentNode.setAttribute('title', chrome.i18n.getMessage('delay') + ' (ms)');
             document.getElementById('backgroundDimmerOpacity').parentNode.setAttribute('title', chrome.i18n.getMessage('opacity'));
             document.getElementById('updateToApplyLabel').innerHTML = chrome.i18n.getMessage('updateToApply');
+
+            /// Transition centering + recalculate on window resize
+            setTimeout(function () {
+                let contentEl = document.getElementById('content');
+                contentEl.classList.add('content-transition');
+
+                window.addEventListener('resize', function () {
+                    contentEl.classList.remove('content-transition');
+                    positionSettingsInCenter();
+                    contentEl.classList.add('content-transition');
+                })
+            }, delayToAddListeners);
         })
     } catch (e) { if (configs.debugMode) console.log(e); }
 }
@@ -138,8 +150,7 @@ function drawCirclePreview(typeOfMenu = selectedMenuType) {
 
         drawCircle(false, selectedMenuType, true, false, true);
 
-        positionSettingsInCenter();
-        // setTimeout(positionSettingsInCenter, 1);
+        // positionSettingsInCenter();
     } catch (e) {
         if (configs.debugMode) console.log(e);
     }
@@ -495,8 +506,6 @@ function generateGesturesConfigs() {
     })
 
     /// Add long left click duration slider
-    // document.getElementById('openCircleOnContainer').innerHTML = '';
-
     if (!document.getElementById('delayForLongLeftClick')) {
         let longLeftClickDelay = createRangeSlider('delayForLongLeftClick', configs.delayForLongLeftClick, 'ms', function (newVal) {
             configs.delayForLongLeftClick = newVal;
@@ -506,11 +515,11 @@ function generateGesturesConfigs() {
         document.getElementById('openCircleOnContainer').appendChild(longLeftClickDelay);
     }
 
-
+    /// Add config for long left click threshold to not register (px)
     if (!document.getElementById('longLeftClickThreshold')) {
-        /// Add config for long left click threshold to not register (px)
         let longLeftClickThresholdContainer = document.createElement('div');
         longLeftClickThresholdContainer.className = 'option';
+        longLeftClickThresholdContainer.style.padding = '0px 5px 12px';
 
         /// input
         let longLeftClickThreshold = document.createElement('input');
@@ -591,6 +600,7 @@ function generateLevelConfigs(levelIndex = 0) {
 
             drawCirclePreview();
             generateButtonsControls();
+            positionSettingsInCenter();
             saveAllSettings();
         });
     }, delayToAddListeners);
@@ -621,7 +631,6 @@ function generateLevelConfigs(levelIndex = 0) {
             generateButtonsControls();
             positionSettingsInCenter();
             drawCirclePreview();
-
             saveAllSettings();
         });
     }, delayToAddListeners);
@@ -1003,15 +1012,7 @@ function generateAddLevelButton() {
     document.getElementById('buttons-config-container').appendChild(addLevelButton);
 
     addLevelButton.addEventListener('click', function () {
-
-        let buttonsToPush;
-
-        // if (configs[selectedMenuType].levels == null || configs[selectedMenuType].levels.undefined || configs[selectedMenuType].levels.length == 0) {
-        //     console.log(defaultConfigs);
-        buttonsToPush = defaultConfigs[selectedMenuType].levels[0].buttons;
-        // } else {
-        //     buttonsToPush = configs[selectedMenuType].levels[configs[selectedMenuType].levels.length - 1].buttons;
-        // }
+        let buttonsToPush = defaultConfigs[selectedMenuType].levels[0].buttons;
 
         configs[selectedMenuType].levels.push({
             'width': 60,
@@ -1177,10 +1178,16 @@ function positionSettingsInCenter() {
         occupiedWidth += el.clientWidth + 30;
     });
 
-    let occupiedPercent = occupiedWidth / window.screen.width * 100;
+    let screenWidth = window.innerWidth;
+    let occupiedPercent = occupiedWidth / screenWidth * 100;
     bodyMarginLeft = (100 - occupiedPercent) / 2.5;
 
+    /// Center main content
     document.getElementById('content').style.marginLeft = `${bodyMarginLeft}%`;
+
+    /// Center bottom settings container
+    let generalSettingsContainer = document.getElementById('general-settings-container');
+    generalSettingsContainer.style.marginLeft = `${(screenWidth / 2) - (generalSettingsContainer.clientWidth / 2) - (screenWidth * bodyMarginLeft / 100) - 35}px`;
 }
 
 function updateDisabledOptions() {
@@ -1214,4 +1221,4 @@ function updateDisabledOptions() {
 
 }
 
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", optionsInit);

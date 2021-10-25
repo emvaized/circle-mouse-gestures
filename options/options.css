@@ -52,6 +52,10 @@ button {
       padding-top: 50px;
 }
 
+.content-transition {
+    transition: margin-left 250ms ease;
+}
+
 .buttons-item {
     margin: 1px;
 }
@@ -274,11 +278,10 @@ input {
 }
 
 @media (max-width: 800px) {
-    #updateToApplyLabel, #navbar-title, #navbar-settings-label {
-        display: none !important;
-    }
+    #updateToApplyLabel, #navbar-title, #navbar-settings-label { display: none !important; }
+    #content { margin-left: 0px !important; }
+}
 
-    #content {
-        margin-left: 0px !important;
-    }
+@media (max-width: 1200px) {
+   #general-settings-container { margin-left: 0px !important; }
 }
