@@ -52,8 +52,6 @@ function setCanvas() {
     circle.setAttribute('width', `${canvasRadius}px !imporant`);
     circle.setAttribute('height', `${canvasRadius}px !imporant`);
 
-    // circle.style.left = `${leftCoord}px`;
-    // circle.style.top = `${topCoord}px`;
     circle.style.opacity = 0.0;
     circle.style.transform = 'scale(0.0)';
     circle.style.transition = `transform ${configs.animationDuration}ms ease-out, opacity ${configs.animationDuration}ms ease-out`;
@@ -76,9 +74,6 @@ function setCanvas() {
         circleShownInCorner = true;
         showMousePointer = true;
     } else {
-        // circle.style.left = `${leftCoord}px`;
-        // circle.style.top = `${topCoord}px`;
-
         realLeftCoord = leftCoord;
         realTopCoord = topCoord;
 
@@ -117,7 +112,6 @@ function setCanvas() {
     document.body.appendChild(circle);
 
     setTimeout(function () {
-        // circle.classList.add('cmg-circle-visible');
         circle.style.opacity = configs.circleOpacity;
         circle.style.transform = 'scale(1.0)';
     }, 3);
@@ -290,15 +284,14 @@ function hideCircle() {
         if (configs.circleHideAnimation == false)
             circle.style.transition = '';
 
-        if (configs.circleHideAnimation) {
-            circle.style.opacity = 0.0;
-            circle.style.pointerEvents = 'none';
-            // circle.classList.remove('cmg-circle-visible');
-        }
+        circle.style.pointerEvents = 'none';
+        circle.style.opacity = 0.0;
+
+        /// Remove ghost pointer when circle is not under cursor
+        if (showMousePointer && cornerMousePointer) cornerMousePointer.remove();
 
         const selectedKeys = Object.keys(selectedButtons);
 
-        // if (rocketButtonPressed == null && anyButtonIsSelected == false) {
         if (rocketButtonPressed == null && selectedKeys.length == 0) {
             if (configs.circleHideAnimation)
                 circle.style.transform = 'scale(0.0)';
@@ -309,7 +302,6 @@ function hideCircle() {
                 circle.style.transform = showRockerActionInCenter && rocketButtonPressed !== null ? 'scale(0.0)' : 'scale(1.5)';
 
                 if (!showRockerActionInCenter && !rocketButtonPressed)
-                    // circle.classList.add('cmg-circle-scale-up');
                     circle.style.transform = 'scale(1.35)';
             }
 
@@ -386,7 +378,6 @@ function hideCircle() {
         scrollingElementUnderCursor = null;
 
         hideHintTooltip();
-        if (showMousePointer) cornerMousePointer.remove();
 
     } catch (e) { if (configs.debugMode) console.log(e); }
 }

@@ -16,7 +16,7 @@
         "description": ""
     },
     "addLinkTooltipTooltip": {
-        "message": "Show additional info for links, images etc.",
+        "message": "Show additional info for links, images etc. on top of circle",
         "description": ""
     },
     "addMoreLevelsToActivateMenu": {

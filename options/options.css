@@ -78,12 +78,6 @@ button {
     display: block;
 }
 
-#buttons-config-container{
-    padding-top: 15px;
-    float: left;
-    margin-bottom: 15px;
-}
-
 .configs-container{
     float: top;
     padding: 0px 0px;
@@ -172,6 +166,7 @@ input {
     font-size: 0.35em;
     text-align: center;
     transition: opacity 300ms ease-in-out;
+    z-index: 10;
     line-height: 1.25;
     /* transform: translate(-15%, 0) */
 }
@@ -180,8 +175,25 @@ input {
     opacity: 1.0;
 }
 
+#circle-preview-container {
+    /* align-items: center;text-align: center;  */
+    height: 100%;
+    margin-right: 35px;
+}
+
 #appearance-config {
     padding-bottom: 5px;
+}
+
+#general-settings-container {
+    background: #e8e8e8; padding: 25px; border-radius: 15px; float: left;
+    margin-bottom: 35px;
+}
+
+#buttons-config-container{
+    padding-top: 15px;
+    float: left;
+    margin-bottom: 15px;
 }
 
 
@@ -259,4 +271,10 @@ input {
   .tooltip::after{
       line-height: 0.9;
   }
+}
+
+@media (max-width: 800px) {
+    #updateToApplyLabel, #navbar-title, #navbar-settings-label {
+        display: none !important;
+    }
 }

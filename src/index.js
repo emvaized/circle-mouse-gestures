@@ -212,25 +212,27 @@ function setPageListeners() {
             }
         });
 
+        /// Discard circle appear timer for following events
         document.addEventListener("dragstart", function (event) {
             clearTimeout(timerForLongLeftClick);
         }, false);
-
-        // document.addEventListener("scroll", function (event) {
-        //     clearTimeout(timerForLongLeftClick);
-        // });
 
         window.addEventListener('scroll', function () {
             clearTimeout(timerForLongLeftClick);
         }, true);
 
         document.addEventListener('selectionchange', function (e) {
-            if (window.getSelection().toString() !== '')
-                clearTimeout(timerForLongLeftClick);
+            // if (window.getSelection().toString() !== '')
+            clearTimeout(timerForLongLeftClick);
         });
     }
 
     document.addEventListener('wheel', checkScrollDirection, { passive: false });
+
+    document.addEventListener("visibilitychange", function (event) {
+        /// When tab lost or regained focus, release the right mouse key
+        if (rightClickIsHolded) rightClickIsHolded = false;
+    });
 
     /// Listener to highlight hovered elements
     var prevHoveredDomElement = null;   // previous dom that we want to track, so we can remove the previous styling
@@ -345,8 +347,9 @@ function checkScrollDirection(event) {
     if (circleIsShown == false && rightClickIsHolded == false) return;
     if (configs.openCircleOn !== 'rightClick') return;
 
-    // if (checkScrollDirectionIsUp(event)) {
     if (event.deltaY != 0) {
+        /// Vertical scroll
+
         if (!configs.continiousVerticalScrollDetection && !circleIsShown) return;
 
         if (event.deltaY < 0) {
@@ -362,8 +365,6 @@ function checkScrollDirection(event) {
         /// Horizontal scroll
         if (configs.horizontalWheelActionsEnabled) {
             if (!configs.continiousHorizontalScrollDetection && !circleIsShown) return;
-
-            console.log(window.location.href);
 
             if (event.deltaX < 0) {
                 event.preventDefault();

@@ -23,156 +23,171 @@
     </div>
     <br />
     <div id='content'>
-        <div style='align-items: center;text-align: center; height: 100%;'>
-            <div id='circle-preview-title' class='header'></div>
-            <div id='clickSegmentToHighlight' class='sub-header'></div>
-            <br />
+        <div style='float: left; max-width: 100%'>
+            <div id='circle-preview-container'>
+                <div id='circle-preview-title' class='header'></div>
+                <div id='clickSegmentToHighlight' class='sub-header'></div>
+                <br />
 
-            <canvas id='circle-preview'>
-            </canvas>
-            <div id='circle-segment-controls'></div>
+                <canvas id='circle-preview'>
+                </canvas>
+                <div id='circle-segment-controls'></div>
 
-            <br />
-            <br />
+                <br />
+                <br />
 
-            <span id='gesturesTitle' class='header'></span>
-            <div id='openCircleOnContainer' class='configs-container'>
-                <div class='option'><label><select id="openCircleOn">
-                            <option value="rightClick">Right click</option>
-                            <option value="longLeftClick">Long left click</option>
-                        </select>
-                    </label>
+                <span id='gesturesTitle' class='header'></span>
+                <div id='openCircleOnContainer' class='configs-container'>
+                    <div class='option'><label><select id="openCircleOn">
+                                <option value="rightClick">Right click</option>
+                                <option value="longLeftClick">Long left click</option>
+                            </select>
+                        </label>
+                    </div>
                 </div>
+
+                <div id='gestures-config' class='configs-container'></div> <!-- created fully in JS -->
+
+                <br />
+                <br />
+
+                <br />
+
             </div>
 
-            <div id='gestures-config' class='configs-container'></div>
+            <div id='buttons-config-container'></div>
 
-            <br />
-            <!-- <hr /> -->
-            <br />
+        </div>
 
+        <div id='general-settings-container'>
             <span style="top: 50px" id='generalSettingsTitle' class='header'></span>
             <br />
             <br />
 
-            <span id='appearanceTitle' class='sub-header'></span>
-            <br />
+            <div>
 
-            <div id='appearance-config' class='configs-container'>
-                <div class='option'>
-                    <input type="color" id="menuTypeColor"></input>
-                    <label id='menuTypeColorLabel'>Menu color</label>
+                <div style='float: left; margin-right: 50px;margin-bottom: 30px;'>
+                    <span id='appearanceTitle' class='sub-header'></span>
+                    <br />
+
+                    <div id='appearance-config' class='configs-container'>
+                        <div class='option'>
+                            <input type="color" id="menuTypeColor"></input>
+                            <label id='menuTypeColorLabel'>Menu color</label>
+                        </div>
+                        <div class='option'>
+                            <label class='tooltip'>
+                                <input type="checkbox" id="addTextLabels"></input>
+                                <span id="addTextLabelsTooltip" class="tooltiptext"></span>
+                            </label>
+                        </div>
+                        <div class='option'>
+                            <label class='tooltip'>
+                                <input type="checkbox" id="showTitleOnHoverWhenHidden"></input>
+                                <span id="showTitleOnHoverWhenHiddenTooltip" class="tooltiptext"></span>
+                            </label>
+                            <label><input style=' display: inline !important; max-width: 80px;' type="number" max='5000'
+                                    min='0' step='50' id="delayToShowTitleOnHoverWhenHidden"></input></label>
+                        </div>
+                        <div class='option'>
+                            <label><input type="checkbox" id="addCircleShadow"></input></label>
+                            <label><input style='margin-left: 5%; display: inline !important;' type="number" max='1.0'
+                                    min='0.0' step='0.05' id="circleShadowOpacity"></input></label>
+                        </div>
+                    </div>
                 </div>
-                <div class='option'>
-                    <label class='tooltip'>
-                        <input type="checkbox" id="addTextLabels"></input>
-                        <span id="addTextLabelsTooltip" class="tooltiptext"></span>
-                    </label>
-                </div>
-                <div class='option'>
-                    <label class='tooltip'>
-                        <input type="checkbox" id="showTitleOnHoverWhenHidden"></input>
-                        <span id="showTitleOnHoverWhenHiddenTooltip" class="tooltiptext"></span>
-                    </label>
-                    <label><input style=' display: inline !important; max-width: 80px;' type="number" max='5000' min='0'
-                            step='50' id="delayToShowTitleOnHoverWhenHidden"></input></label>
-                </div>
-                <div class='option'>
-                    <label><input type="checkbox" id="addCircleShadow"></input></label>
-                    <label><input style='margin-left: 5%; display: inline !important;' type="number" max='1.0' min='0.0'
-                            step='0.05' id="circleShadowOpacity"></input></label>
+
+                <div style='float: left;'>
+                    <span id='behaviorTitle' class='sub-header'></span>
+                    <br />
+
+                    <div id='behavior-config' class='configs-container'>
+                        <div class='option'>
+                            <label class='tooltip'>
+                                <input type="checkbox" id="dimBackground"></input>
+                                <span id="dimBackgroundTooltip" class="tooltiptext"></span>
+                            </label>
+                            <label><input style='margin-left: 5%; display: inline !important;' type="number" max='1.0'
+                                    min='0.0' step='0.05' id="backgroundDimmerOpacity"></input></label>
+                        </div>
+                        <div class='option'><label><select id="circleLocation">
+                                    <option value="alwaysCursor">Always under cursor</option>
+                                    <option value="alwaysCorner">Always in corner</option>
+                                    <option value="cursorCorner">Under cursor + in corner when no space</option>
+                                    <option value="cursorOverflow">Under cursor + shift when no space</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class='option'>
+                            <label class='tooltip'>
+                                <input type="checkbox" id="addLinkTooltip"></input>
+                                <span id="addLinkTooltipTooltip" class="tooltiptext"></span>
+                            </label>
+                        </div>
+                        <div class='option'><label><input type="checkbox"
+                                    id="hideCircleIfNoActionSelected"></input></label>
+                        </div>
+                        <div class='option'>
+                            <label class='tooltip'>
+                                <input type="checkbox" id="showRegularMenuIfNoAction"></input>
+                                <span id="windowsOnlyTooltip" class="tooltiptext">Windows-only</span>
+                            </label>
+                        </div>
+                        <div class='option'><label class='tooltip'>
+                                <input type="checkbox" id="continiousVerticalScrollDetection"></input>
+                                <span id="continiousVerticalScrollDetectionTooltip" class="tooltiptext"></span>
+                            </label>
+                        </div>
+                        <div class='option'><label class='tooltip'>
+                                <input type="checkbox" id="continiousHorizontalScrollDetection"></input>
+                                <span id="continiousHorizontalScrollDetectionTooltip" class="tooltiptext"></span>
+                            </label>
+                        </div>
+                        <div class='option'><label class='tooltip'>
+                                <input type="checkbox" id="storeCurrentScrollPosition"></input>
+                                <span id="storeCurrentScrollPositionTooltip" class="tooltiptext"></span>
+                            </label>
+                        </div>
+
+                        <div class='option'><label class='tooltip'>
+                                <input type="checkbox" id="applySettingsImmediately"></input>
+                                <span id="applySettingsImmediatelyTooltip" class="tooltiptext"></span>
+                            </label>
+                        </div>
+                        <div class='option'><label>
+                                <input type="checkbox" id="copyNotification"></input>
+                            </label>
+                        </div>
+
+                        <div class='option'><label class='tooltip'>
+                                <input type="checkbox" id="highlightElementOnHover"></input>
+                                <span id="highlightElementOnHoverTooltip" class="tooltiptext"></span>
+                            </label>
+                        </div>
+
+                        <div class='option'><label><input type="checkbox" id="circleHideAnimation"></input></label>
+                        </div>
+                        <!-- <div class='option'><label><input type="checkbox" id="animateHideRelativeToSelected"></input></label>
+            </div> -->
+
+                    </div>
+
+                    <hr />
+                    <div class='option'><label><select id="inactiveMenuBehavior">
+                                <option value="regularMenuFallback">Show regular menu</option>
+                                <option value="doNothing">Do nothing</option>
+                            </select>
+                        </label>
+                    </div>
                 </div>
             </div>
-
-            <br />
-
-            <span id='behaviorTitle' class='sub-header'></span>
-            <br />
-
-            <div id='behavior-config' class='configs-container'>
-                <div class='option'>
-                    <label class='tooltip'>
-                        <input type="checkbox" id="dimBackground"></input>
-                        <span id="dimBackgroundTooltip" class="tooltiptext"></span>
-                    </label>
-                    <label><input style='margin-left: 5%; display: inline !important;' type="number" max='1.0' min='0.0'
-                            step='0.05' id="backgroundDimmerOpacity"></input></label>
-                </div>
-                <div class='option'><label><select id="circleLocation">
-                            <option value="alwaysCursor">Always under cursor</option>
-                            <option value="alwaysCorner">Always in corner</option>
-                            <option value="cursorCorner">Under cursor + in corner when no space</option>
-                            <option value="cursorOverflow">Under cursor + shift when no space</option>
-                        </select>
-                    </label>
-                </div>
-                <div class='option'>
-                    <label class='tooltip'>
-                        <input type="checkbox" id="addLinkTooltip"></input>
-                        <span id="addLinkTooltipTooltip" class="tooltiptext"></span>
-                    </label>
-                </div>
-                <div class='option'><label><input type="checkbox" id="circleHideAnimation"></input></label>
-                </div>
-                <!-- <div class='option'><label><input type="checkbox" id="animateHideRelativeToSelected"></input></label>
-                </div> -->
-                <div class='option'><label><input type="checkbox" id="hideCircleIfNoActionSelected"></input></label>
-                </div>
-                <div class='option'>
-                    <label class='tooltip'>
-                        <input type="checkbox" id="showRegularMenuIfNoAction"></input>
-                        <span id="windowsOnlyTooltip" class="tooltiptext">Windows-only</span>
-                    </label>
-                </div>
-                <div class='option'><label class='tooltip'>
-                        <input type="checkbox" id="storeCurrentScrollPosition"></input>
-                        <span id="storeCurrentScrollPositionTooltip" class="tooltiptext"></span>
-                    </label>
-                </div>
-
-                <div class='option'><label class='tooltip'>
-                        <input type="checkbox" id="applySettingsImmediately"></input>
-                        <span id="applySettingsImmediatelyTooltip" class="tooltiptext"></span>
-                    </label>
-                </div>
-                <div class='option'><label>
-                        <input type="checkbox" id="copyNotification"></input>
-                    </label>
-                </div>
-
-                <div class='option'><label class='tooltip'>
-                        <input type="checkbox" id="highlightElementOnHover"></input>
-                        <span id="highlightElementOnHoverTooltip" class="tooltiptext"></span>
-                    </label>
-                </div>
-
-                <div class='option'><label class='tooltip'>
-                        <input type="checkbox" id="continiousVerticalScrollDetection"></input>
-                        <span id="continiousVerticalScrollDetectionTooltip" class="tooltiptext"></span>
-                    </label>
-                </div>
-                <div class='option'><label class='tooltip'>
-                        <input type="checkbox" id="continiousHorizontalScrollDetection"></input>
-                        <span id="continiousHorizontalScrollDetectionTooltip" class="tooltiptext"></span>
-                    </label>
-                </div>
-
-            </div>
-
-            <hr />
-
-            <div class='option'><label><select id="inactiveMenuBehavior">
-                        <option value="regularMenuFallback">Show regular menu</option>
-                        <option value="doNothing">Do nothing</option>
-                    </select>
-                </label>
-            </div>
-            <br />
-
         </div>
 
-        <div id='buttons-config-container'></div>
+
     </div>
+
+
+
 
     <script src="options.js"></script>
     <script src="../src/data/actions.js"></script>

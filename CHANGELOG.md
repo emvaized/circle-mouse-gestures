@@ -1,6 +1,7 @@
 #1.2.5
-- Changed default setting for 'Circle position'
-- Circle no longer appears when drag scrollbars with 'long left click to open' is enabled
+- Settings layout & design improvements
+- Circle no longer appears when dragging scrollbars while 'long left click to open' is enabled
+- Changed default setting for 'Circle position' to 'cursorOverflow'
 
 #1.2.4
 - Added separate configs for icons and labels opacity

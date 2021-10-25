@@ -16,7 +16,7 @@
         "description": ""
     },
     "addLinkTooltipTooltip": {
-        "message": "Показывать дополнительную информацию для ссылок, изображений и т.д.",
+        "message": "Показывать вверху меню дополнительную информацию для ссылок, изображений и т.д.",
         "description": ""
     },
     "addMoreLevelsToActivateMenu": {
@@ -28,7 +28,7 @@
         "description": ""
     },
     "addTextLabelsTooltip": {
-        "message": "Спрятаны, когда недостаточно места",
+        "message": "Будут скрыты, когда недостаточно места",
         "description": ""
     },
     "addToBookmarks": {
