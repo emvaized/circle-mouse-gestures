@@ -522,7 +522,7 @@ function processAndShowCircle(e) {
 
     if (hoveredLink !== null) {
         ///  Attach current domain
-        if (!hoveredLink.includes('://') && !hoveredLink.includes('data:image/')) {
+        if (!hoveredLink.includes('://') && !hoveredLink.includes('data:image/') && !hoveredLink.includes('mailto:')) {
             let splittedUrl = window.location.href.split('/');
             hoveredLink = splittedUrl[0] + '/' + splittedUrl[1] + '/' + splittedUrl[2] + '/' + hoveredLink;
         }

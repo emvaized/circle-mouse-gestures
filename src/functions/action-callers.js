@@ -19,6 +19,7 @@ function triggerButtonAction(actionToPerform) {
         } break;
 
         case 'copyUrl': {
+            if (hoveredLink && hoveredLink.includes('mailto:')) hoveredLink = hoveredLink.replaceAll('mailto:', '');
             copyToClipboard(typeOfMenu == 'regularMenu' ? window.location.href : hoveredLink);
         } break;
 
