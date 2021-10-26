@@ -238,13 +238,14 @@ input {
     /* Position the tooltip text */
     position: absolute;
     z-index: 1000 !important;
-    bottom: 150%;
+    bottom: 155%;
     left: 50%;
     margin-left: -80px;
   
     /* Fade in tooltip */
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: opacity 0.3s; 
+    transition-delay: 300ms;
 }
 
 /* Tooltip arrow */
