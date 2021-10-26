@@ -314,6 +314,7 @@ function generateBehaviorConfigs() {
     document.getElementById('continiousVerticalScrollDetectionTooltip').innerText = chrome.i18n.getMessage('continiousScrollDetectionHint');
     document.getElementById('continiousHorizontalScrollDetectionTooltip').innerText = chrome.i18n.getMessage('continiousScrollDetectionHint');
     document.getElementById('applySettingsImmediatelyTooltip').innerText = chrome.i18n.getMessage('applySettingsImmediatelyTooltip');
+    document.getElementById('addBlurTooltip').innerText = chrome.i18n.getMessage('addBlurTooltip');
 
     /// Proccess 'inactive menu for item behavior' dropdown
     let inactiveMenuBehavior = document.getElementById('inactiveMenuBehavior');

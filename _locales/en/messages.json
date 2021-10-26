@@ -816,7 +816,7 @@
         "description": ""
     },
     "addBlur": {
-        "message": "Add blur effect",
+        "message": "Background blur",
         "description": ""
     },
     "blurRadiusHint": {
@@ -845,6 +845,10 @@
     },
     "excludedDomains": {
         "message": "Excluded domains",
+        "description": ""
+    },
+    "addBlurTooltip": {
+        "message": "Can be seen only when circle opacity is less than 1.0",
         "description": ""
     }
 }

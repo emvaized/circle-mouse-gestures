@@ -820,7 +820,7 @@
         "description": ""
     },
     "addBlur": {
-        "message": "Эффект размытия",
+        "message": "Размытие фона",
         "description": ""
     },
     "blurRadiusHint": {
@@ -849,6 +849,10 @@
     },
     "excludedDomains": {
         "message": "Исключенные домены",
+        "description": ""
+    },
+    "addBlurTooltip": {
+        "message": "Заметно только при прозрачности круга меньше 1.0",
         "description": ""
     }
 }
