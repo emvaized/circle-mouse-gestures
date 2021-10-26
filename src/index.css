@@ -11,20 +11,12 @@ html {
   color: transparent;
 }
 
+/* Adds background blur for circle */
 .cmg-blur-circle {
-  z-index: 9999998 !important;
+  pointer-events: none !important;
+  z-index: 9999998 !important; 
   position: fixed;
   border-radius: 50%;
-}
-
-.cmg-circle-visible{
-  opacity: var(--cmg-circle-opacity) !important;
-  transform: scale(1.0) !important;
-  pointer-events: auto;
-}
-
-.cmg-circle-scale-up {
-  transform: scale(1.35) !important;
 }
 
 .cmg-rocker-icon{
@@ -98,7 +90,8 @@ html {
   opacity: 0.0; 
   transition: opacity var(--cmg-anim-duration) ease-out; 
   position:fixed;
-   background: black !important; top: 0px; left: 0px;
+  background: black !important; top: 0px; left: 0px;
+  pointer-events: none !important;
 }
 
 /* Link preview part */
