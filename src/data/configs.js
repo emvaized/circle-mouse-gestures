@@ -46,7 +46,7 @@ var configs = {
     'circleShadowOpacity': 0.3,
     'circleLocation': 'cursorOverflow', /// possible values: 'alwaysCursor', 'alwaysCorner', cursorCorner', 'cursorOverflow
     'longLeftClickThreshold': 21,
-    'addBlur': true,
+    'addBlur': false,
     'blurRadius': 4,
     'excludedDomains': '',
     'showCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
@@ -215,7 +215,7 @@ function loadUserConfigs(callback) {
             // configs.excludedDomains = userConfigs.excludedDomains || '';
             if (configs.excludedDomains !== null && configs.excludedDomains !== undefined && configs.excludedDomains !== '')
                 configs.excludedDomains.split(',').forEach(function (domain) {
-                    if (window.location.href.includes(domain.trim())) configs.cmgEnabled = false;
+                    if (window.location.href.includes(domain.trim().toLowerCase())) configs.cmgEnabled = false;
                 });
 
             if (callback)

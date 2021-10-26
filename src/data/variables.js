@@ -96,7 +96,7 @@ var defaultConfigs = {
     'circleShadowOpacity': 0.3,
     'circleLocation': 'cursorOverflow', /// possible values: 'alwaysCursor', 'alwaysCorner', cursorCorner', 'cursorOverflow'
     'longLeftClickThreshold': 21,
-    'addBlur': true,
+    'addBlur': false,
     'blurRadius': 4,
     'excludedDomains': '',
     'showCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'

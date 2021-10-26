@@ -64,6 +64,7 @@ function setVersionLabel() {
   let label = document.getElementById('extension-version');
   var manifestData = chrome.runtime.getManifest();
   label.innerHTML = manifestData.version + ` (<a target='_blank' href='https://github.com/emvaized/circle-mouse-gestures/blob/master/CHANGELOG.md'>${chrome.i18n.getMessage("whatsNew") ?? "What's new"}</a>)`;
+  label.onclick = function () { window.close(); }
 }
 
 

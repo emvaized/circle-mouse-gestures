@@ -22,7 +22,7 @@ h3 {
 }
 
 input {
-  vertical-align: middle;
+  vertical-align: middle; max-width: 100%;
 }
 
 #updatePageLabel {
