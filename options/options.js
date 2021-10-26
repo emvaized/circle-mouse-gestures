@@ -1291,6 +1291,9 @@ function updateDisabledOptions() {
     // document.querySelector("#animateHideRelativeToSelected").parentNode.className = document.querySelector("#circleHideAnimation").checked ? 'visible-option' : 'hidden-option';
     document.querySelector("#addGhostPointer").parentNode.parentNode.className = document.querySelector("#circleLocation").value == 'alwaysCursor' ? 'hidden-option' : 'option visible-option';
 
+    /// Hide options for Firefox
+    if (navigator.userAgent.indexOf("Firefox") > -1)
+        document.querySelector("#mouseLeaveBehavior").parentNode.parentNode.className = 'hidden-option';
 }
 
 document.addEventListener("DOMContentLoaded", optionsInit);
