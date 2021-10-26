@@ -24,7 +24,7 @@
         "description": ""
     },
     "addTextLabels": {
-        "message": "Использовать текстовые подписи",
+        "message": "Показывать текстовые подписи",
         "description": ""
     },
     "addTextLabelsTooltip": {
@@ -264,7 +264,7 @@
         "description": ""
     },
     "hideCircleIfNoActionSelected": {
-        "message": "Прятать круг, если действие не выбрано",
+        "message": "Прятать круг при отпускании, если действие не выбрано",
         "description": ""
     },
     "highlightElementOnHover": {
@@ -660,7 +660,7 @@
         "description": ""
     },
     "showTitleOnHoverWhenHidden": {
-        "message": "Показывать заголовок при наведении",
+        "message": "Показывать подсказку при наведении",
         "description": ""
     },
     "showTitleOnHoverWhenHiddenTooltip": {

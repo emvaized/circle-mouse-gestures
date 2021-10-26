@@ -28,11 +28,11 @@
         "description": ""
     },
     "addTextLabels": {
-        "message": "Add text labels",
+        "message": "Display text labels",
         "description": ""
     },
     "addTextLabelsTooltip": {
-        "message": "Hidden when there is no space",
+        "message": "Will be hidden when there is not enough space",
         "description": ""
     },
     "addToBookmarks": {
@@ -260,7 +260,7 @@
         "description": ""
     },
     "hideCircleIfNoActionSelected": {
-        "message": "Hide circle if no action selected",
+        "message": "Hide menu on mouse up if nothing selected",
         "description": ""
     },
     "highlightElementOnHover": {
@@ -656,11 +656,11 @@
         "description": ""
     },
     "showTitleOnHoverWhenHidden": {
-        "message": "Show action title on hover",
+        "message": "Show label tooltip on hover",
         "description": ""
     },
     "showTitleOnHoverWhenHiddenTooltip": {
-        "message": "When action is icon-only, show tooltip with action title on hover",
+        "message": "When action is icon-only, show tooltip with label on hover",
         "description": ""
     },
     "slowerPlaybackSpeed": {
@@ -748,7 +748,7 @@
         "description": ""
     },
     "windowsOnly": {
-        "message": "Will work only on Windows. On other systems (Linux, MacOS) will require double click",
+        "message": "Shows regular context menu on mouse up. Will work only on Windows, on other systems (Linux, MacOS) may require double click",
         "description": ""
     },
     "writeAReview": {
