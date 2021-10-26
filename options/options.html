@@ -145,10 +145,11 @@
                                 <span id="addGhostPointerTooltip" class="tooltiptext"></span>
                             </label>
                         </div>
-                        <div class='option'>
-                            <label class='tooltip'>
-                                <input type="checkbox" id="addLinkTooltip"></input>
-                                <span id="addLinkTooltipTooltip" class="tooltiptext"></span>
+                        <div class='option'><label><select id="mouseLeaveBehavior">
+                                    <option value="doNothing">Do nothing</option>
+                                    <option value="hideMenu">Hide menu</option>
+                                    <option value="hideMenuAndSelect">Hide menu + select highlighted</option>
+                                </select>
                             </label>
                         </div>
                         <div class='option'><label><input type="checkbox"
@@ -183,6 +184,12 @@
                         </div>
                         <div class='option'><label>
                                 <input type="checkbox" id="copyNotification"></input>
+                            </label>
+                        </div>
+                        <div class='option'>
+                            <label class='tooltip'>
+                                <input type="checkbox" id="addLinkTooltip"></input>
+                                <span id="addLinkTooltipTooltip" class="tooltiptext"></span>
                             </label>
                         </div>
 

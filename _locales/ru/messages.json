@@ -12,7 +12,7 @@
         "description": ""
     },
     "addLinkTooltip": {
-        "message": "Показывать вспомогательную панель",
+        "message": "Показывать вспомогательную инфо-панель",
         "description": ""
     },
     "addLinkTooltipTooltip": {
@@ -660,11 +660,11 @@
         "description": ""
     },
     "showTitleOnHoverWhenHidden": {
-        "message": "Показывать подсказку при наведении",
+        "message": "Показывать заголовок при наведении",
         "description": ""
     },
     "showTitleOnHoverWhenHiddenTooltip": {
-        "message": "Когда видима только иконка, показывать текст при наведении",
+        "message": "Когда видима только иконка, показывать подсказку с названием действия при наведении",
         "description": ""
     },
     "slowerPlaybackSpeed": {
@@ -865,6 +865,18 @@
     },
     "reviewButton": {
         "message": "Написать отзыв",
+        "description": ""
+    },
+    "mouseLeaveBehavior": {
+        "message": "Когда курсор покидает окно",
+        "description": ""
+    },
+    "hideMenu": {
+        "message": "Спрятать меню",
+        "description": ""
+    },
+    "hideMenuAndSelect": {
+        "message": "Спрятать меню + выбрать подсвеченное",
         "description": ""
     }
 }

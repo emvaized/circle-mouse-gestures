@@ -12,11 +12,11 @@
         "description": ""
     },
     "addLinkTooltip": {
-        "message": "Show helper tooltip",
+        "message": "Show helper tooltip with more info",
         "description": ""
     },
     "addLinkTooltipTooltip": {
-        "message": "Show additional info for links, images etc. on top of circle",
+        "message": "Show additional info for links, images etc. on top of the circle",
         "description": ""
     },
     "addMoreLevelsToActivateMenu": {
@@ -44,7 +44,7 @@
         "description": ""
     },
     "animationDuration": {
-        "message": "Animation duration",
+        "message": "Animations duration",
         "description": ""
     },
     "appearanceHeader": {
@@ -124,7 +124,7 @@
         "description": ""
     },
     "configure": {
-        "message": "Configure",
+        "message": "Settings",
         "description": ""
     },
     "continiousScrollDetectionHint": {
@@ -656,11 +656,11 @@
         "description": ""
     },
     "showTitleOnHoverWhenHidden": {
-        "message": "Show action hint on hover",
+        "message": "Show action title on hover",
         "description": ""
     },
     "showTitleOnHoverWhenHiddenTooltip": {
-        "message": "When action is icon-only, show tooltip on hover",
+        "message": "When action is icon-only, show tooltip with action title on hover",
         "description": ""
     },
     "slowerPlaybackSpeed": {
@@ -861,6 +861,18 @@
     },
     "reviewButton": {
         "message": "Add a review",
+        "description": ""
+    },
+    "mouseLeaveBehavior": {
+        "message": "When cursor leaves window",
+        "description": ""
+    },
+    "hideMenu": {
+        "message": "Hide menu",
+        "description": ""
+    },
+    "hideMenuAndSelect": {
+        "message": "Hide menu + select highlighted",
         "description": ""
     }
 }

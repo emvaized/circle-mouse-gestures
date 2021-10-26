@@ -368,7 +368,27 @@ function generateBehaviorConfigs() {
             option.innerHTML = chrome.i18n.getMessage(option.getAttribute('value'));
         if (configs.circleLocation == option.getAttribute('value'))
             option.setAttribute('selected', 0);
-    })
+    });
+
+
+    /// Proccess 'mouseLeaveBehavior' dropdown
+    let mouseLeaveBehavior = document.getElementById('mouseLeaveBehavior');
+    mouseLeaveBehavior.parentNode.innerHTML = chrome.i18n.getMessage('mouseLeaveBehavior') + ':<br/> ' + mouseLeaveBehavior.parentNode.innerHTML;
+    setTimeout(function () {
+        let mouseLeaveBehavior = document.getElementById('mouseLeaveBehavior');
+        mouseLeaveBehavior.addEventListener('change', function () {
+            configs.mouseLeaveBehavior = mouseLeaveBehavior.value;
+            saveAllSettings();
+        })
+    }, delayToAddListeners);
+
+    /// set translated and selected options
+    document.getElementById('mouseLeaveBehavior').querySelectorAll('option').forEach(function (option) {
+        if (chrome.i18n.getMessage(option.getAttribute('value')))
+            option.innerHTML = chrome.i18n.getMessage(option.getAttribute('value'));
+        if (configs.mouseLeaveBehavior == option.getAttribute('value'))
+            option.setAttribute('selected', 0);
+    });
 
 
     /// Proccess 'show animation' dropdown

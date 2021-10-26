@@ -173,9 +173,8 @@ function setPageListeners() {
 
                 if (anyButtonIsSelected == false) {
                     /// Leave circle open (like a context menu) - or hide it
-                    if (configs.hideCircleIfNoActionSelected) {
+                    if (configs.hideCircleIfNoActionSelected)
                         hideCircle();
-                    }
 
                 } else {
                     // if (configs.animateHideRelativeToSelected) {

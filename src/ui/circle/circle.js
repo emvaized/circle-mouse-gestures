@@ -196,6 +196,7 @@ function setCanvas() {
     }, 3);
 
     document.addEventListener('mousemove', mouseMoveListener);
+    document.addEventListener('mouseleave', mouseLeaveListener);
 }
 
 function mouseMoveListener(e) {
@@ -210,6 +211,21 @@ function mouseMoveListener(e) {
         if (cornerMousePointer) {
             cornerMousePointer.style.transform = `translate(${(realLeftCoord + (canvasRadius / 2)) + deltaX - ghostMousePointerRadius}px, ${(realTopCoord + (canvasRadius / 2)) + deltaY - ghostMousePointerRadius}px)`
         }
+    }
+}
+
+function mouseLeaveListener(e) {
+    switch (configs.mouseLeaveBehavior) {
+        case 'doNothing': { } break;
+        case 'hideMenu': {
+            selectedButtons = {};
+            rightClickIsHolded = false;
+            hideCircle();
+        } break;
+        case 'hideMenuAndSelect': {
+            rightClickIsHolded = false;
+            hideCircle();
+        } break;
     }
 }
 
@@ -474,6 +490,7 @@ function hideCircle() {
         buttonsAvailability = {};
         buttonsStatuses = {};
         document.removeEventListener('mousemove', mouseMoveListener);
+        document.removeEventListener('mousemove', mouseLeaveListener);
         scrollingElementUnderCursor = null;
 
         hideHintTooltip();

@@ -102,6 +102,7 @@ var defaultConfigs = {
     'excludedDomains': '',
     'showCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
     'hideCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
+    'mouseLeaveBehavior': 'hideMenu', /// possible values: 'doNothing', 'hideMenu', 'hideMenuAndSelect'
 
     /// Menus
     'regularMenu': {
