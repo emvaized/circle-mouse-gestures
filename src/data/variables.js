@@ -98,6 +98,7 @@ var defaultConfigs = {
     'longLeftClickThreshold': 21,
     'addBlur': true,
     'blurRadius': 4,
+    'excludedDomains': '',
     'showCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
     'hideCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
 

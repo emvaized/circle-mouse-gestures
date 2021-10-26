@@ -48,6 +48,7 @@ var configs = {
     'longLeftClickThreshold': 21,
     'addBlur': true,
     'blurRadius': 4,
+    'excludedDomains': '',
     'showCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
     'hideCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
 
@@ -208,8 +209,14 @@ function loadUserConfigs(callback) {
                     configs[key] = userConfigs[key];
             }
 
-            if (configs.debugMode)
-                if (configs.debugMode) console.log('CMG user configs loaded from memory');
+            if (configs.debugMode) console.log('CMG user configs loaded from memory');
+
+            /// Check for domain to be in black list
+            // configs.excludedDomains = userConfigs.excludedDomains || '';
+            if (configs.excludedDomains !== null && configs.excludedDomains !== undefined && configs.excludedDomains !== '')
+                configs.excludedDomains.split(',').forEach(function (domain) {
+                    if (window.location.href.includes(domain.trim())) configs.cmgEnabled = false;
+                });
 
             if (callback)
                 callback();

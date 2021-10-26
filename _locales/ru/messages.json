@@ -846,5 +846,9 @@
     "noAnimation": {
         "message": "Без анимации",
         "description": ""
+    },
+    "excludedDomains": {
+        "message": "Исключенные домены",
+        "description": ""
     }
 }

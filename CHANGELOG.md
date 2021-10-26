@@ -2,7 +2,7 @@
 - Added configs for circle show and hide animations
 - Added blur effect config
 - Added 'long left click threshold' option
-
+- Added 'Excluded domains' config in popup
 - Settings page layout & design improvements
 - Circle no longer appears when dragging scrollbars while 'long left click to open' is enabled
 - 'Copy link' command now removes 'mailto:' from links
