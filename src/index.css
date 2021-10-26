@@ -15,9 +15,7 @@ html {
   z-index: 9999998 !important;
   position: fixed;
   border-radius: 50%;
-  mask-image: radial-gradient(circle 20px at 50% 50%, transparent 30px, purple 0);
 }
-
 
 .cmg-circle-visible{
   opacity: var(--cmg-circle-opacity) !important;
@@ -52,7 +50,7 @@ html {
 .cmg-link-tooltip {
   all: revert;
   font-family: Arial, Helvetica, sans-serif !important;
-  left: 0px; top: 0px;z-index: 99999; font-size: 13.5px;opacity: 0.0; align-items: center;display:inline-block !important; 
+  left: 0px; top: 0px;z-index: 99999; font-size: 13.5px; align-items: center;display:inline-block !important; 
   position: fixed !important;border-radius: 9px;color: white; text-align: center; padding: 6px; pointer-events: none;
 }
 

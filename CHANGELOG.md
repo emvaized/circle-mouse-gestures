@@ -1,11 +1,12 @@
 #1.2.5
-- Added 'long left click threshold' option
 - Added configs for circle show and hide animations
 - Added blur effect config
-- Settings layout & design improvements
+- Added 'long left click threshold' option
+
+- Settings page layout & design improvements
 - Circle no longer appears when dragging scrollbars while 'long left click to open' is enabled
-- Changed default setting for 'Circle position' to 'cursorOverflow'
 - 'Copy link' command now removes 'mailto:' from links
+- Changed default setting for 'Circle position' to 'cursorOverflow'
 
 #1.2.4
 - Added separate configs for icons and labels opacity

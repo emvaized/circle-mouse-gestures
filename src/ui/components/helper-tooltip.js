@@ -12,6 +12,9 @@ async function showLinkTooltip() {
     if (configs.addCircleShadow)
         linkTooltip.style.boxShadow = `0px 5px 12px 0 rgba(0,0,0,${configs.circleShadowOpacity})`;
 
+    // if (configs.addBlur)
+    //     linkTooltip.style.backdropFilter = `blur(${configs.blurRadius}px)`;
+
     let linkToDisplay = hoveredLink.replaceAll('http://', '').replaceAll('https://', '').replaceAll('www.', '').trim();
     if (linkToDisplay[linkToDisplay.length - 1] == '/') linkToDisplay = linkToDisplay.slice(0, -1);
 
@@ -118,7 +121,21 @@ async function showLinkTooltip() {
     if (configs.addCircleShadow)
         dyToShow += 15;
 
-    linkTooltip.style.transform = `translate(${dxToShow}px, ${realTopCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px) scale(0.0)`;
+    // linkTooltip.style.transform = `translate(${dxToShow}px, ${realTopCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px) scale(0.0)`;
+    switch (configs.showCircleAnimation) {
+        case 'noAnimation': {
+            linkTooltip.style.opacity = configs.circleOpacity ?? 1.0;
+            linkTooltip.style.transform = `translate(${dxToShow}px, ${dyToShow}px) scale(1.0)`;
+        } break;
+        case 'fade': {
+            linkTooltip.style.opacity = 0.0;
+            linkTooltip.style.transform = `translate(${dxToShow}px, ${dyToShow}px) scale(1.0)`;
+        } break;
+        case 'scale': {
+            linkTooltip.style.opacity = 0.0;
+            linkTooltip.style.transform = `translate(${dxToShow}px, ${realTopCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px) scale(0.0)`;
+        } break;
+    }
 
     setTimeout(function () {
         linkTooltip.style.transition = `transform ${configs.animationDuration}ms ease-out, opacity ${configs.animationDuration}ms ease-out`;
@@ -131,12 +148,25 @@ function hideLinkTooltip() {
     if (linkTooltip == undefined || linkTooltip == null) return;
 
     const dxShown = realLeftCoord + (canvasRadius / 2) - (linkTooltip.clientWidth / 2);
-    linkTooltip.style.transform = `translate(${dxShown}px, ${realTopCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px) scale(0.0)`;
-    linkTooltip.style.opacity = 0.0;
+
+    switch (configs.hideCircleAnimation) {
+        case 'noAnimation': {
+            linkTooltip.style.transition = '';
+            linkTooltip.style.opacity = 0.0;
+        } break;
+        case 'fade': {
+            linkTooltip.style.opacity = 0.0;
+        } break;
+        case 'scale': {
+            linkTooltip.style.transform = `translate(${dxShown}px, ${realTopCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px) scale(0.0)`;
+            linkTooltip.style.opacity = 0.0;
+        } break;
+    }
+
     setTimeout(function () {
         if (linkTooltip !== null && linkTooltip.parentNode !== null)
             linkTooltip.remove();;
         linkTooltip = null;
-    }, 200);
+    }, configs.hideCircleAnimation == 'noAnimation' ? 0 : configs.animationDuration);
 }
 

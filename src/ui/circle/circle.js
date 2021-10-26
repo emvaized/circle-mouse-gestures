@@ -113,6 +113,21 @@ function setCanvas() {
         blurCircle.style.width = `${canvasRadius}px`;
         blurCircle.style.height = `${canvasRadius}px`;
         blurCircle.style.backdropFilter = `blur(${configs.blurRadius}px)`;
+
+        // let precision = 64;
+        let precision = 32;
+        // let radius = configs.innerCircleRadius / 3;
+        let radius = configs.innerCircleRadius / canvasRadius * 100;
+        let c = [...Array(precision)].map((_, i) => {
+            let a = -i / (precision - 1) * Math.PI * 2;
+            let x = Math.cos(a) * radius + 50;
+            let y = Math.sin(a) * radius + 50;
+            return `${x}% ${y}%`
+        })
+
+        blurCircle.style.clipPath =
+            `polygon(100% 50%, 100% 100%, 0 100%, 0 0, 100% 0, 100% 50%, ${c.join(',')})`;
+
         document.body.appendChild(blurCircle);
 
     }
