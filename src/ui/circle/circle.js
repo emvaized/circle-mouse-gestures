@@ -91,6 +91,8 @@ function setCanvas() {
         }
     }
 
+    if (!configs.addGhostPointer) showMousePointer = false;
+
     circle.style.left = `${realLeftCoord}px`;
     circle.style.top = `${realTopCoord}px`;
 

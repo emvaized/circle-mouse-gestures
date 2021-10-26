@@ -271,6 +271,7 @@ function generateBehaviorConfigs() {
         'continiousVerticalScrollDetection',
         'continiousHorizontalScrollDetection',
         'copyNotification',
+        'addGhostPointer',
         // 'animateHideRelativeToSelected',
         // 'circleHideAnimation',
     ];
@@ -315,6 +316,7 @@ function generateBehaviorConfigs() {
     document.getElementById('continiousHorizontalScrollDetectionTooltip').innerText = chrome.i18n.getMessage('continiousScrollDetectionHint');
     document.getElementById('applySettingsImmediatelyTooltip').innerText = chrome.i18n.getMessage('applySettingsImmediatelyTooltip');
     document.getElementById('addBlurTooltip').innerText = chrome.i18n.getMessage('addBlurTooltip');
+    document.getElementById('addGhostPointerTooltip').innerText = chrome.i18n.getMessage('addGhostPointerTooltip');
 
     /// Proccess 'inactive menu for item behavior' dropdown
     let inactiveMenuBehavior = document.getElementById('inactiveMenuBehavior');
@@ -356,6 +358,7 @@ function generateBehaviorConfigs() {
         circleLocation.addEventListener('change', function () {
             configs.circleLocation = circleLocation.value;
             saveAllSettings();
+            document.querySelector("#addGhostPointer").parentNode.parentNode.className = document.querySelector("#circleLocation").value == 'alwaysCursor' ? 'hidden-option' : 'option visible-option';
         })
     }, delayToAddListeners);
 
@@ -1265,6 +1268,7 @@ function updateDisabledOptions() {
     document.querySelector("#backgroundDimmerOpacity").parentNode.className = document.querySelector("#dimBackground").checked ? 'visible-option' : 'hidden-option';
     document.querySelector("#hideCircleIfNoActionSelected").parentNode.className = document.getElementById('openCircleOn').value == 'rightClick' ? 'enabled-option' : 'disabled-option';
     // document.querySelector("#animateHideRelativeToSelected").parentNode.className = document.querySelector("#circleHideAnimation").checked ? 'visible-option' : 'hidden-option';
+    document.querySelector("#addGhostPointer").parentNode.parentNode.className = document.querySelector("#circleLocation").value == 'alwaysCursor' ? 'hidden-option' : 'option visible-option';
 
 }
 

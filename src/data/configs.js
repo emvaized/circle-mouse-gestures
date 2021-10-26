@@ -47,6 +47,7 @@ const configs = {
     'circleLocation': 'cursorOverflow', /// possible values: 'alwaysCursor', 'alwaysCorner', cursorCorner', 'cursorOverflow
     'longLeftClickThreshold': 21,
     'addBlur': false,
+    'addGhostPointer': true,
     'blurRadius': 4,
     'excludedDomains': '',
     'showCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
