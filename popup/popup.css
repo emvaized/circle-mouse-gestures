@@ -1,5 +1,5 @@
  html, body {
-  min-width: 125px;
+  min-width: 140px;
   max-width: 180px;
   align-items: center;
 }
@@ -14,11 +14,9 @@ button {
 }
 
 h3 {
-    color: grey;
-    text-align: center;
-    /* margin: 0px; */
-    margin-top: 3px;
-
+  color: grey;
+  text-align: center;
+  margin-top: 3px;
 }
 
 input {
@@ -28,15 +26,15 @@ input {
 #updatePageLabel {
   color: grey;
   opacity: 0.5;
- font-size: 75%; 
- text-align: center;
- transition: all 300ms ease-in-out;
+  font-size: 75%; 
+  text-align: center;
+  transition: all 300ms ease-in-out;
 }
 
 .enabled-checkbox, .checkboxLabel {
-    padding: 0px 0px 6px 0px;
-    /* text-align: center; */
-    cursor: pointer;
+  padding: 0px 0px 6px 0px;
+  /* text-align: center; */
+  cursor: pointer;
 }
 
 .enabled-checkbox:hover {
@@ -45,11 +43,9 @@ input {
   border-radius: 3px;
 }
 
-
 #enabledCheckbox {
   cursor: pointer;
 }
-
 
 .clear {
  background-color: #FBFBC9;

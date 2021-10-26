@@ -1,3 +1,10 @@
+#1.2.6
+- Clicking on 'What's new' in popup now closes the popup
+- Excluded domains config is not case-sensitive now
+- Background dimmer no longer messes up with 'Open regular menu if no action selected'
+- Added small delay before options tooltip gets revealed
+- Changed default config for blur to false
+
 #1.2.5
 - Added configs for circle show and hide animations
 - Added blur effect config
