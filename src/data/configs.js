@@ -1,5 +1,5 @@
 /// Configs
-var configs = {
+const configs = {
     'debugMode': false,
     'cmgEnabled': true,
     'storeCurrentScrollPosition': false,

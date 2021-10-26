@@ -1,5 +1,5 @@
 /// Map of actions available to be selected from dropdown
-var sortedActionButtons = {
+const sortedActionButtons = {
     'regularMenu': {
         'navigation': [
             'goBack',
