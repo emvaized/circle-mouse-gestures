@@ -1,6 +1,22 @@
 {
+    "addBlur": {
+        "message": "Background blur",
+        "description": ""
+    },
+    "addBlurTooltip": {
+        "message": "Can be seen only when circle opacity is less than 1.0",
+        "description": ""
+    },
     "addCircleShadow": {
         "message": "Add shadow",
+        "description": ""
+    },
+    "addGhostPointer": {
+        "message": "Show ghost pointer",
+        "description": ""
+    },
+    "addGhostPointerTooltip": {
+        "message": "When circle is not under cursor, show ghost pointer indicating real cursor position relative to the circle",
         "description": ""
     },
     "addLabel": {
@@ -43,6 +59,18 @@
         "message": "Additional",
         "description": ""
     },
+    "alwaysCorner": {
+        "message": "Always in corner",
+        "description": ""
+    },
+    "alwaysCursor": {
+        "message": "Always under cursor",
+        "description": ""
+    },
+    "animateHideRelativeToSelected": {
+        "message": "Animate relative to selected option",
+        "description": ""
+    },
     "animationDuration": {
         "message": "Animations duration",
         "description": ""
@@ -55,12 +83,24 @@
         "message": "Apply settings immediately",
         "description": ""
     },
+    "applySettingsImmediatelyTooltip": {
+        "message": "Apply settings every second time the menu is open. Disable for better performance",
+        "description": ""
+    },
     "backgroundColor": {
         "message": "Background color",
         "description": ""
     },
+    "backgroundOpacity": {
+        "message": "Background opacity",
+        "description": ""
+    },
     "behaviorTitle": {
         "message": "Behavior",
+        "description": ""
+    },
+    "blurRadiusHint": {
+        "message": "Blur radius (px)",
         "description": ""
     },
     "boldText": {
@@ -81,6 +121,10 @@
     },
     "circleLevel": {
         "message": "Level",
+        "description": ""
+    },
+    "circleLocation": {
+        "message": "Circle position",
         "description": ""
     },
     "circleOpacity": {
@@ -127,6 +171,10 @@
         "message": "Settings",
         "description": ""
     },
+    "continiousHorizontalScrollDetection": {
+        "message": "Continuous horizontal scroll detection",
+        "description": ""
+    },
     "continiousScrollDetectionHint": {
         "message": "Allows to continuously register an action while right mouse button is pressed. \nUseful for some actions, for example Zoom in/out page",
         "description": ""
@@ -135,8 +183,8 @@
         "message": "Continuous vertical scroll detection",
         "description": ""
     },
-    "continiousHorizontalScrollDetection": {
-        "message": "Continuous horizontal scroll detection",
+    "copied": {
+        "message": "Copied to clipboard",
         "description": ""
     },
     "copyAllText": {
@@ -151,6 +199,10 @@
         "message": "Copy text",
         "description": ""
     },
+    "copyNotification": {
+        "message": "Notification on copy success",
+        "description": ""
+    },
     "copyText": {
         "message": "Copy",
         "description": ""
@@ -159,8 +211,12 @@
         "message": "Copy link",
         "description": ""
     },
-    "copied": {
-        "message": "Copied to clipboard",
+    "cursorCorner": {
+        "message": "Under cursor + in corner when no space",
+        "description": ""
+    },
+    "cursorOverflow": {
+        "message": "Under cursor + shift when no space",
         "description": ""
     },
     "cutText": {
@@ -171,12 +227,16 @@
         "message": "Debug mode",
         "description": ""
     },
-    "delayForLongLeftClick": {
-        "message": "Hold duration",
-        "description": ""
+    "decreasePlayerVolume": {
+        "message": "Volume-",
+        "description": "Label for circle menu button"
     },
     "delay": {
         "message": "Delay",
+        "description": ""
+    },
+    "delayForLongLeftClick": {
+        "message": "Hold duration",
         "description": ""
     },
     "deleteLabel": {
@@ -189,10 +249,6 @@
     },
     "dimBackgroundTooltip": {
         "message": "Page contents will be dimmed while menu is shown",
-        "description": ""
-    },
-    "applySettingsImmediatelyTooltip": {
-        "message": "Apply settings every second time the menu is open. Disable for better performance",
         "description": ""
     },
     "doNothing": {
@@ -223,9 +279,17 @@
         "message": "Enabled",
         "description": ""
     },
+    "excludedDomains": {
+        "message": "Excluded domains",
+        "description": ""
+    },
     "extensionDescription": {
         "message": "Customizable circle menu on right mouse click",
         "description": "Extension description"
+    },
+    "fade": {
+        "message": "Fade",
+        "description": ""
     },
     "fastForwardVideo": {
         "message": "Fast forward",
@@ -247,6 +311,10 @@
         "message": "Mouse buttons",
         "description": ""
     },
+    "githubHint": {
+        "message": "You can share your ideas and bug reports here",
+        "description": ""
+    },
     "githubPage": {
         "message": "GitHub",
         "description": ""
@@ -259,8 +327,20 @@
         "message": "Go forward",
         "description": ""
     },
+    "hideCircleAnimation": {
+        "message": "Hide animation",
+        "description": ""
+    },
     "hideCircleIfNoActionSelected": {
         "message": "Hide menu on mouse up if nothing selected",
+        "description": ""
+    },
+    "hideMenu": {
+        "message": "Hide menu",
+        "description": ""
+    },
+    "hideMenuAndSelect": {
+        "message": "Hide menu + select highlighted",
         "description": ""
     },
     "highlightElementOnHover": {
@@ -275,16 +355,20 @@
         "message": "Horizontal wheel actions",
         "description": ""
     },
+    "iconOpacity": {
+        "message": "Icons opacity",
+        "description": ""
+    },
     "image": {
         "message": "Image",
         "description": ""
     },
-    "imageCopyFailTitle": {
-        "message": "Failed to copy image",
-        "description": ""
-    },
     "imageCopyFailMessage": {
         "message": "Most likely this is due to the CORS policy on image's source website",
+        "description": ""
+    },
+    "imageCopyFailTitle": {
+        "message": "Failed to copy image",
         "description": ""
     },
     "imageCopySuccessMessage": {
@@ -301,10 +385,6 @@
     },
     "increasePlayerVolume": {
         "message": "Volume+",
-        "description": "Label for circle menu button"
-    },
-    "decreasePlayerVolume": {
-        "message": "Volume-",
         "description": "Label for circle menu button"
     },
     "innerWidth": {
@@ -327,8 +407,16 @@
         "message": "Italic",
         "description": ""
     },
+    "labelOpacity": {
+        "message": "Labels opacity",
+        "description": ""
+    },
     "leftClick": {
         "message": "Left click",
+        "description": ""
+    },
+    "levelColor": {
+        "message": "Level color",
         "description": ""
     },
     "levelWidth": {
@@ -349,6 +437,22 @@
     },
     "longLeftClick": {
         "message": "Long left click",
+        "description": ""
+    },
+    "longLeftClickThreshold": {
+        "message": "Threshold to not open menu",
+        "description": ""
+    },
+    "longLeftClickThresholdTooltip": {
+        "message": "If cursor moved by this amount of pixels, do not open menu on timer end",
+        "description": ""
+    },
+    "menuColor": {
+        "message": "Selected menu color",
+        "description": ""
+    },
+    "mouseLeaveBehavior": {
+        "message": "When cursor leaves window",
         "description": ""
     },
     "mouseWheelDownAction": {
@@ -429,6 +533,10 @@
     },
     "noAction": {
         "message": "No action",
+        "description": ""
+    },
+    "noAnimation": {
+        "message": "No animation",
         "description": ""
     },
     "normalPlaybackSpeed": {
@@ -519,6 +627,10 @@
         "message": "Redo",
         "description": ""
     },
+    "refreshPageIfDoesntWork": {
+        "message": "Refresh page if doesn't work",
+        "description": ""
+    },
     "regularMenu": {
         "message": "Regular menu",
         "description": ""
@@ -545,6 +657,10 @@
     },
     "restoreClosedTab": {
         "message": "Restore closed tab",
+        "description": ""
+    },
+    "reviewButton": {
+        "message": "Add a review",
         "description": ""
     },
     "rewindVideo": {
@@ -581,6 +697,10 @@
     },
     "rotateLabel": {
         "message": "Rotate",
+        "description": ""
+    },
+    "scale": {
+        "message": "Scale",
         "description": ""
     },
     "scroll": {
@@ -649,6 +769,10 @@
     },
     "settings": {
         "message": "Settings",
+        "description": ""
+    },
+    "showCircleAnimation": {
+        "message": "Show animation",
         "description": ""
     },
     "showRegularMenuIfNoAction": {
@@ -753,130 +877,6 @@
     },
     "writeAReview": {
         "message": "Write a review",
-        "description": ""
-    },
-    "animateHideRelativeToSelected": {
-        "message": "Animate relative to selected option",
-        "description": ""
-    },
-    "labelOpacity": {
-        "message": "Labels opacity",
-        "description": ""
-    },
-    "iconOpacity": {
-        "message": "Icons opacity",
-        "description": ""
-    },
-    "backgroundOpacity": {
-        "message": "Background opacity",
-        "description": ""
-    },
-    "circleLocation": {
-        "message": "Circle position",
-        "description": ""
-    },
-    "alwaysCorner": {
-        "message": "Always in corner",
-        "description": ""
-    },
-    "alwaysCursor": {
-        "message": "Always under cursor",
-        "description": ""
-    },
-    "cursorCorner": {
-        "message": "Under cursor + in corner when no space",
-        "description": ""
-    },
-    "cursorOverflow": {
-        "message": "Under cursor + shift when no space",
-        "description": ""
-    },
-    "copyNotification": {
-        "message": "Notification on copy success",
-        "description": ""
-    },
-    "menuColor": {
-        "message": "Selected menu color",
-        "description": ""
-    },
-    "levelColor": {
-        "message": "Level color",
-        "description": ""
-    },
-    "refreshPageIfDoesntWork": {
-        "message": "Refresh page if doesn't work",
-        "description": ""
-    },
-    "longLeftClickThreshold": {
-        "message": "Threshold to not open menu",
-        "description": ""
-    },
-    "longLeftClickThresholdTooltip": {
-        "message": "If cursor moved by this amount of pixels, do not open menu on timer end",
-        "description": ""
-    },
-    "addBlur": {
-        "message": "Background blur",
-        "description": ""
-    },
-    "blurRadiusHint": {
-        "message": "Blur radius (px)",
-        "description": ""
-    },
-    "showCircleAnimation": {
-        "message": "Show animation",
-        "description": ""
-    },
-    "hideCircleAnimation": {
-        "message": "Hide animation",
-        "description": ""
-    },
-    "scale": {
-        "message": "Scale",
-        "description": ""
-    },
-    "fade": {
-        "message": "Fade",
-        "description": ""
-    },
-    "noAnimation": {
-        "message": "No animation",
-        "description": ""
-    },
-    "excludedDomains": {
-        "message": "Excluded domains",
-        "description": ""
-    },
-    "addBlurTooltip": {
-        "message": "Can be seen only when circle opacity is less than 1.0",
-        "description": ""
-    },
-    "addGhostPointer": {
-        "message": "Show ghost pointer",
-        "description": ""
-    },
-    "addGhostPointerTooltip": {
-        "message": "When circle is not under cursor, show ghost pointer indicating real cursor position relative to the circle",
-        "description": ""
-    },
-    "reviewButton": {
-        "message": "Add a review",
-        "description": ""
-    },
-    "mouseLeaveBehavior": {
-        "message": "When cursor leaves window",
-        "description": ""
-    },
-    "hideMenu": {
-        "message": "Hide menu",
-        "description": ""
-    },
-    "hideMenuAndSelect": {
-        "message": "Hide menu + select highlighted",
-        "description": ""
-    },
-    "githubHint": {
-        "message": "You can share your ideas and bug reports here",
         "description": ""
     }
 }

@@ -1,6 +1,22 @@
 {
+    "addBlur": {
+        "message": "Размытие фона",
+        "description": ""
+    },
+    "addBlurTooltip": {
+        "message": "Заметно только при прозрачности круга меньше 1.0",
+        "description": ""
+    },
     "addCircleShadow": {
         "message": "Добавить тень",
+        "description": ""
+    },
+    "addGhostPointer": {
+        "message": "Показывать призрачный указатель",
+        "description": ""
+    },
+    "addGhostPointerTooltip": {
+        "message": "Когда круг находится не под курсором, показывать призрачный указатель, указывающий реальное положение курсора относительно круга",
         "description": ""
     },
     "addLabel": {
@@ -39,6 +55,14 @@
         "message": "Дополнительно",
         "description": ""
     },
+    "alwaysCorner": {
+        "message": "Всегда в углу",
+        "description": ""
+    },
+    "alwaysCursor": {
+        "message": "Всегда под курсором",
+        "description": ""
+    },
     "animateHideRelativeToSelected": {
         "message": "Анимировать скрытие относительно выбранного сектора",
         "description": ""
@@ -55,12 +79,24 @@
         "message": "Применять настройки немедленно",
         "description": ""
     },
+    "applySettingsImmediatelyTooltip": {
+        "message": "Обновляет настройки при каждом втором открытии меню. Отключите для лучшей производительности",
+        "description": ""
+    },
     "backgroundColor": {
         "message": "Цвет фона",
         "description": ""
     },
+    "backgroundOpacity": {
+        "message": "Прозрачность фона",
+        "description": ""
+    },
     "behaviorTitle": {
         "message": "Поведение",
+        "description": ""
+    },
+    "blurRadiusHint": {
+        "message": "Радиус размытия (px)",
         "description": ""
     },
     "boldText": {
@@ -81,6 +117,10 @@
     },
     "circleLevel": {
         "message": "Уровень",
+        "description": ""
+    },
+    "circleLocation": {
+        "message": "Положение меню",
         "description": ""
     },
     "circleOpacity": {
@@ -127,16 +167,16 @@
         "message": "Настроить",
         "description": ""
     },
+    "continiousHorizontalScrollDetection": {
+        "message": "Непрерывный слушатель горизонт. прокрутки",
+        "description": ""
+    },
     "continiousScrollDetectionHint": {
         "message": "Позволяет непрерывно выполнять действие при прокрутке, пока зажата правая кнопка мыши. \nПолезно для некоторых действий, например Увеличить/Уменьшить страницу",
         "description": ""
     },
     "continiousVerticalScrollDetection": {
         "message": "Непрерывный слушатель верт. прокрутки",
-        "description": ""
-    },
-    "continiousHorizontalScrollDetection": {
-        "message": "Непрерывный слушатель горизонт. прокрутки",
         "description": ""
     },
     "copied": {
@@ -159,6 +199,10 @@
         "message": "Копировать текст",
         "description": ""
     },
+    "copyNotification": {
+        "message": "Уведомление при успешном копировании",
+        "description": ""
+    },
     "copyText": {
         "message": "Копировать",
         "description": ""
@@ -166,6 +210,14 @@
     "copyUrl": {
         "message": "Копировать ссылку",
         "description": "Ярлык для кнопки кругового меню"
+    },
+    "cursorCorner": {
+        "message": "Под курсором + в углу, когда нет места",
+        "description": ""
+    },
+    "cursorOverflow": {
+        "message": "Под курсором + смещать, когда нет места",
+        "description": ""
     },
     "cutText": {
         "message": "Вырезать",
@@ -175,12 +227,16 @@
         "message": "Режим отладки",
         "description": ""
     },
-    "delayForLongLeftClick": {
-        "message": "Продолжительность удержания",
-        "description": ""
+    "decreasePlayerVolume": {
+        "message": "Громкость-",
+        "description": "Label for circle menu button"
     },
     "delay": {
         "message": "Задержка",
+        "description": ""
+    },
+    "delayForLongLeftClick": {
+        "message": "Продолжительность удержания",
         "description": ""
     },
     "deleteLabel": {
@@ -193,10 +249,6 @@
     },
     "dimBackgroundTooltip": {
         "message": "Содержимое страницы будет затемнено, пока меню отображается",
-        "description": ""
-    },
-    "applySettingsImmediatelyTooltip": {
-        "message": "Обновляет настройки при каждом втором открытии меню. Отключите для лучшей производительности",
         "description": ""
     },
     "doNothing": {
@@ -227,9 +279,17 @@
         "message": "Включено",
         "description": ""
     },
+    "excludedDomains": {
+        "message": "Исключенные домены",
+        "description": ""
+    },
     "extensionDescription": {
         "message": "Настраиваемое круговое меню при правом клике мышью",
         "description": "Extension description"
+    },
+    "fade": {
+        "message": "Проявление",
+        "description": ""
     },
     "fastForwardVideo": {
         "message": "Перемотать вперед",
@@ -251,6 +311,10 @@
         "message": "Кнопки мыши",
         "description": ""
     },
+    "githubHint": {
+        "message": "Делитесь своими идеями и баг-репортами здесь",
+        "description": ""
+    },
     "githubPage": {
         "message": "GitHub",
         "description": ""
@@ -263,8 +327,20 @@
         "message": "Вперед",
         "description": ""
     },
+    "hideCircleAnimation": {
+        "message": "Анимация скрытия",
+        "description": ""
+    },
     "hideCircleIfNoActionSelected": {
         "message": "Прятать круг при отпускании, если действие не выбрано",
+        "description": ""
+    },
+    "hideMenu": {
+        "message": "Спрятать меню",
+        "description": ""
+    },
+    "hideMenuAndSelect": {
+        "message": "Спрятать меню + выбрать подсвеченное",
         "description": ""
     },
     "highlightElementOnHover": {
@@ -279,16 +355,20 @@
         "message": "Жесты горизонтальной прокрутки",
         "description": ""
     },
+    "iconOpacity": {
+        "message": "Прозрачность иконок",
+        "description": ""
+    },
     "image": {
         "message": "Изображение",
         "description": "Ярлык для кнопки кругового меню"
     },
-    "imageCopyFailTitle": {
-        "message": "Ошибка при копировании изображения!",
-        "description": ""
-    },
     "imageCopyFailMessage": {
         "message": "Скорее всего, из-за запрета CORS на сайте-источнике изображения",
+        "description": ""
+    },
+    "imageCopyFailTitle": {
+        "message": "Ошибка при копировании изображения!",
         "description": ""
     },
     "imageCopySuccessMessage": {
@@ -305,10 +385,6 @@
     },
     "increasePlayerVolume": {
         "message": "Громкость+",
-        "description": "Label for circle menu button"
-    },
-    "decreasePlayerVolume": {
-        "message": "Громкость-",
         "description": "Label for circle menu button"
     },
     "innerWidth": {
@@ -331,8 +407,16 @@
         "message": "Курсив",
         "description": ""
     },
+    "labelOpacity": {
+        "message": "Прозрачность текста",
+        "description": ""
+    },
     "leftClick": {
         "message": "Левый клик",
+        "description": ""
+    },
+    "levelColor": {
+        "message": "Цвет уровня",
         "description": ""
     },
     "levelWidth": {
@@ -355,8 +439,20 @@
         "message": "Удержание левого клика",
         "description": ""
     },
-    "move": {
-        "message": "Переместить",
+    "longLeftClickThreshold": {
+        "message": "Смещение курсора для игнорирования",
+        "description": ""
+    },
+    "longLeftClickThresholdTooltip": {
+        "message": "Если курсор сдвинулся на это расстояние, не открывать меню по окончанию таймера",
+        "description": ""
+    },
+    "menuColor": {
+        "message": "Цвет выбранного меню",
+        "description": ""
+    },
+    "mouseLeaveBehavior": {
+        "message": "Когда курсор покидает окно",
         "description": ""
     },
     "mouseWheelDownAction": {
@@ -373,6 +469,10 @@
     },
     "mouseWheelUpAction": {
         "message": "Колесико вверх",
+        "description": ""
+    },
+    "move": {
+        "message": "Переместить",
         "description": ""
     },
     "moveCaretToEnd": {
@@ -433,6 +533,10 @@
     },
     "noAction": {
         "message": "Нет действия",
+        "description": ""
+    },
+    "noAnimation": {
+        "message": "Без анимации",
         "description": ""
     },
     "normalPlaybackSpeed": {
@@ -523,6 +627,10 @@
         "message": "Вернуть действие",
         "description": ""
     },
+    "refreshPageIfDoesntWork": {
+        "message": "Если не работает, обновите страницу",
+        "description": ""
+    },
     "regularMenu": {
         "message": "Основное меню",
         "description": ""
@@ -549,6 +657,10 @@
     },
     "restoreClosedTab": {
         "message": "Восстановить закрытую вкладку",
+        "description": ""
+    },
+    "reviewButton": {
+        "message": "Написать отзыв",
         "description": ""
     },
     "rewindVideo": {
@@ -585,6 +697,10 @@
     },
     "rotateLabel": {
         "message": "Повернуть",
+        "description": ""
+    },
+    "scale": {
+        "message": "Увеличение",
         "description": ""
     },
     "scroll": {
@@ -653,6 +769,10 @@
     },
     "settings": {
         "message": "Настройки",
+        "description": ""
+    },
+    "showCircleAnimation": {
+        "message": "Анимация появления",
         "description": ""
     },
     "showRegularMenuIfNoAction": {
@@ -761,126 +881,6 @@
     },
     "writeAReview": {
         "message": "Написать отзыв",
-        "description": ""
-    },
-    "labelOpacity": {
-        "message": "Прозрачность текста",
-        "description": ""
-    },
-    "iconOpacity": {
-        "message": "Прозрачность иконок",
-        "description": ""
-    },
-    "backgroundOpacity": {
-        "message": "Прозрачность фона",
-        "description": ""
-    },
-    "circleLocation": {
-        "message": "Положение меню",
-        "description": ""
-    },
-    "alwaysCorner": {
-        "message": "Всегда в углу",
-        "description": ""
-    },
-    "alwaysCursor": {
-        "message": "Всегда под курсором",
-        "description": ""
-    },
-    "cursorCorner": {
-        "message": "Под курсором + в углу, когда нет места",
-        "description": ""
-    },
-    "cursorOverflow": {
-        "message": "Под курсором + смещать, когда нет места",
-        "description": ""
-    },
-    "copyNotification": {
-        "message": "Уведомление при успешном копировании",
-        "description": ""
-    },
-    "menuColor": {
-        "message": "Цвет выбранного меню",
-        "description": ""
-    },
-    "levelColor": {
-        "message": "Цвет уровня",
-        "description": ""
-    },
-    "refreshPageIfDoesntWork": {
-        "message": "Если не работает, обновите страницу",
-        "description": ""
-    },
-    "longLeftClickThreshold": {
-        "message": "Смещение курсора для игнорирования",
-        "description": ""
-    },
-    "longLeftClickThresholdTooltip": {
-        "message": "Если курсор сдвинулся на это расстояние, не открывать меню по окончанию таймера",
-        "description": ""
-    },
-    "addBlur": {
-        "message": "Размытие фона",
-        "description": ""
-    },
-    "blurRadiusHint": {
-        "message": "Радиус размытия (px)",
-        "description": ""
-    },
-    "showCircleAnimation": {
-        "message": "Анимация появления",
-        "description": ""
-    },
-    "hideCircleAnimation": {
-        "message": "Анимация скрытия",
-        "description": ""
-    },
-    "scale": {
-        "message": "Увеличение",
-        "description": ""
-    },
-    "fade": {
-        "message": "Проявление",
-        "description": ""
-    },
-    "noAnimation": {
-        "message": "Без анимации",
-        "description": ""
-    },
-    "excludedDomains": {
-        "message": "Исключенные домены",
-        "description": ""
-    },
-    "addBlurTooltip": {
-        "message": "Заметно только при прозрачности круга меньше 1.0",
-        "description": ""
-    },
-    "addGhostPointer": {
-        "message": "Показывать призрачный указатель",
-        "description": ""
-    },
-    "addGhostPointerTooltip": {
-        "message": "Когда круг находится не под курсором, показывать призрачный указатель, указывающий реальное положение курсора относительно круга",
-        "description": ""
-    },
-    "reviewButton": {
-        "message": "Написать отзыв",
-        "description": ""
-    },
-    "mouseLeaveBehavior": {
-        "message": "Когда курсор покидает окно",
-        "description": ""
-    },
-    "hideMenu": {
-        "message": "Спрятать меню",
-        "description": ""
-    },
-    "hideMenuAndSelect": {
-        "message": "Спрятать меню + выбрать подсвеченное",
-        "description": ""
-    },
-    "githubHint": {
-        "message": "Делитесь своими идеями и баг-репортами здесь",
         "description": ""
     }
 }
