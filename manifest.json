@@ -15,6 +15,9 @@
     ],
     "persistent": false
   },
+  "web_accessible_resources": [
+    "icons/icon-monotone-48.png"
+  ],
   "content_scripts": [
     {
       "matches": [

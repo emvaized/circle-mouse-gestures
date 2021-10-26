@@ -7,8 +7,9 @@ var bodyMarginLeft = 0.0;
 let selectedMenuType = 'regularMenu';
 let isFirefox = navigator.userAgent.indexOf("Firefox") > -1;
 
-
 function optionsInit() {
+    document.title = chrome.i18n.getMessage('settings') + ' — CMG';
+
     try {
         loadUserConfigs(function (conf) {
             setMenuTypeDropdown();
