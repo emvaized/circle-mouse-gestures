@@ -7,11 +7,12 @@
 }
 
 #navbar-title {
-      float: left;
-      display: block;
-      margin-left: 30px;
-      font-size: 18px;
-      font-weight: 600;
+    float: left;
+    display: block;
+    margin-left: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #3B3E43;
 }
 
 #navbar-settings-label {
@@ -128,8 +129,8 @@ label{
 .sub-header {
     font-size: 15px;
     color: grey;
-    font-style: italic;
-    /* opacity: 0.75; */
+    /* font-style: italic; */
+    opacity: 0.8;
 }
 
 hr {
