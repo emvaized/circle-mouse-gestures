@@ -38,6 +38,7 @@ function restoreOptions() {
   /// Footer buttons
   let settingsButton = document.querySelector('#settingsButton'); settingsButton.innerHTML = chrome.i18n.getMessage("configure") + ' ' + settingsButton.innerHTML;
   let githubButton = document.querySelector('#githubPage'); githubButton.innerHTML = chrome.i18n.getMessage("githubPage") + ' ' + githubButton.innerHTML;
+  githubButton.setAttribute('title', chrome.i18n.getMessage("githubHint"));
   let supportButton = document.querySelector('#supportButton'); supportButton.innerHTML = chrome.i18n.getMessage("supportButton") + ' ' + supportButton.innerHTML;
   let reviewButton = document.querySelector('#reviewButton'); reviewButton.innerHTML = chrome.i18n.getMessage("reviewButton") + ' ' + reviewButton.innerHTML;
 

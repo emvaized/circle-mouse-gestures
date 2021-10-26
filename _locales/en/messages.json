@@ -874,5 +874,9 @@
     "hideMenuAndSelect": {
         "message": "Hide menu + select highlighted",
         "description": ""
+    },
+    "githubHint": {
+        "message": "You can share your ideas and bug reports here",
+        "description": ""
     }
 }

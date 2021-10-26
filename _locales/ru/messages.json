@@ -878,5 +878,9 @@
     "hideMenuAndSelect": {
         "message": "Спрятать меню + выбрать подсвеченное",
         "description": ""
+    },
+    "githubHint": {
+        "message": "Делитесь своими идеями и баг-репортами здесь",
+        "description": ""
     }
 }
