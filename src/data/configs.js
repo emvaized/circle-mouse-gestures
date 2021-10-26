@@ -210,7 +210,7 @@ function loadUserConfigs(callback) {
                     configs[key] = userConfigs[key];
             }
 
-            if (configs.debugMode) console.log('CMG user configs loaded from memory');
+            if (configs.debugMode) { console.log('CMG user configs loaded from memory:'); console.log(userConfigs); }
 
             /// Check for domain to be in black list
             // configs.excludedDomains = userConfigs.excludedDomains || '';
