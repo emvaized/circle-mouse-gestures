@@ -36,9 +36,10 @@ function restoreOptions() {
   }, 3);
 
   /// Footer buttons
-  document.querySelector('#settingsButton').innerHTML += ' ' + chrome.i18n.getMessage("configure");
-  document.querySelector('#githubPage').innerHTML += ' ' + chrome.i18n.getMessage("githubPage");
-  document.querySelector('#supportButton').innerHTML += ' ' + chrome.i18n.getMessage("supportButton");
+  let settingsButton = document.querySelector('#settingsButton'); settingsButton.innerHTML = chrome.i18n.getMessage("configure") + ' ' + settingsButton.innerHTML;
+  let githubButton = document.querySelector('#githubPage'); githubButton.innerHTML = chrome.i18n.getMessage("githubPage") + ' ' + githubButton.innerHTML;
+  let supportButton = document.querySelector('#supportButton'); supportButton.innerHTML = chrome.i18n.getMessage("supportButton") + ' ' + supportButton.innerHTML;
+  let reviewButton = document.querySelector('#reviewButton'); reviewButton.innerHTML = chrome.i18n.getMessage("reviewButton") + ' ' + reviewButton.innerHTML;
 
   document.querySelector("#supportButton").addEventListener("click", function (val) {
     window.close();
@@ -52,11 +53,11 @@ function restoreOptions() {
     chrome.runtime.openOptionsPage();
     window.close();
   });
-  // document.querySelector("#writeAReviewButton").addEventListener("click", function (val) {
-  //   window.close();
-  //   let isFirefox = navigator.userAgent.indexOf("Firefox") > -1;
-  //   window.open(isFirefox ? 'https://addons.mozilla.org/ru/firefox/addon/selection-actions/' : 'https://chrome.google.com/webstore/detail/selecton/pemdbnndbdpbelmfcddaihdihdfmnadi/reviews', '_blank');
-  // });
+  document.querySelector("#reviewButton").addEventListener("click", function (val) {
+    window.close();
+    let isFirefox = navigator.userAgent.indexOf("Firefox") > -1;
+    window.open(isFirefox ? 'https://addons.mozilla.org/ru/firefox/addon/circle-mouse-gestures/' : 'https://chrome.google.com/webstore/detail/circle-mouse-gestures-pie/kkknhbbfjlibfjagilggkcelmcobgefa/reviews', '_blank');
+  });
 }
 
 

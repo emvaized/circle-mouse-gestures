@@ -858,5 +858,9 @@
     "addGhostPointerTooltip": {
         "message": "When circle is not under cursor, show ghost pointer indicating real cursor position relative to the circle",
         "description": ""
+    },
+    "reviewButton": {
+        "message": "Add a review",
+        "description": ""
     }
 }
