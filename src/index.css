@@ -28,7 +28,6 @@
   text-transform: none !important;
   outline: none !important;
   text-align: center !important;
-  /* font-size: 12.5px !important; */
   line-height: 1.0 !important;
   left: 0px; right: 0px;
   border-radius: 50%;  position:absolute !Important; z-index:99999;align-items: center; text-align: center; vertical-align: middle;
@@ -86,7 +85,6 @@
 .cmg-link-preview-button {
   all:revert;
   color: white;
-  /* opacity: 0.7; */
   background-color: transparent;
   transition:  background-color 100ms ease-out;
   padding: 15px;
@@ -94,7 +92,6 @@
 }
 
 .cmg-link-preview-button:hover {
-  /* color: rgba(256,256,256,1.0) !important; */
   opacity: 1.0;
   background-color: rgba(256,256,256,0.35) !important;
 }

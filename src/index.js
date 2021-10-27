@@ -122,6 +122,7 @@ function setPageListeners() {
         } else if ("buttons" in evt) {
             // if (configs.debugMode)
             //     console.log('Released button ' + evt.button.toString());
+
             /// Left click
             if (evt.button == 0) {
                 leftClickIsHolded = false;
