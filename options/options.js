@@ -163,7 +163,7 @@ function generateAppearanceControls() {
     /// Translate title
     document.getElementById('appearanceTitle').innerHTML = chrome.i18n.getMessage('appearanceHeader');
     document.getElementById('generalSettingsTitle').innerHTML = chrome.i18n.getMessage('generalSettings');
-    document.getElementById('addTextLabelsTooltip').innerHTML = chrome.i18n.getMessage('addTextLabelsTooltip');
+    // document.getElementById('addTextLabelsTooltip').innerHTML = chrome.i18n.getMessage('addTextLabelsTooltip');
 
     let appearanceContainer = document.getElementById('appearance-config');
 
@@ -251,6 +251,7 @@ function generateBehaviorConfigs() {
     /// Options for boolean cofnigs
     let inputIds = [
         'addTextLabels',
+        'hideLabelIfNoSpace',
         'showActionIcons',
         'showTitleOnHoverWhenHidden',
         'delayToShowTitleOnHoverWhenHidden',
@@ -1289,6 +1290,7 @@ function updateDisabledOptions() {
     document.querySelector("#delayToShowTitleOnHoverWhenHidden").parentNode.className = document.querySelector("#showTitleOnHoverWhenHidden").checked ? 'visible-option' : 'hidden-option';
     document.querySelector("#backgroundDimmerOpacity").parentNode.className = document.querySelector("#dimBackground").checked ? 'visible-option' : 'hidden-option';
     document.querySelector("#hideCircleIfNoActionSelected").parentNode.className = document.getElementById('openCircleOn').value == 'rightClick' ? 'enabled-option' : 'disabled-option';
+    document.querySelector("#hideLabelIfNoSpace").parentNode.className = document.getElementById('addTextLabels').checked ? 'enabled-option' : 'disabled-option';
     // document.querySelector("#animateHideRelativeToSelected").parentNode.className = document.querySelector("#circleHideAnimation").checked ? 'visible-option' : 'hidden-option';
     document.querySelector("#addGhostPointer").parentNode.parentNode.className = document.querySelector("#circleLocation").value == 'alwaysCursor' ? 'hidden-option' : 'option visible-option';
 

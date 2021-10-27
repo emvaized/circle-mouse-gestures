@@ -34,7 +34,6 @@ const configs = {
     'showLinkTextInTooltip': true,
     'showLinkTooltipForPageItself': false,
     'linkTooltipOpacity': 1.0,
-    // 'circleHideAnimation': true,
     'addCircleShadow': false,
     'highlightElementOnHover': false,
     'showTitleOnHoverWhenHidden': true,
@@ -50,6 +49,7 @@ const configs = {
     'addGhostPointer': true,
     'blurRadius': 4,
     'showActionIcons': true,
+    'hideLabelIfNoSpace': true,
     'excludedDomains': '',
     'showCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
     'hideCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'

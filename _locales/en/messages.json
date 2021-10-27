@@ -335,6 +335,10 @@
         "message": "Hide menu on mouse up if nothing selected",
         "description": ""
     },
+    "hideLabelIfNoSpace": {
+        "message": "Hide label when no enough space",
+        "description": ""
+    },
     "hideMenu": {
         "message": "Hide menu",
         "description": ""

@@ -31,7 +31,8 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
         /// Color for outline, font and icon
         const outlineColorRgb = getTextColorForBackground(colorForButton, 1.0);
         var outlineColor = `rgba(${outlineColorRgb.red}, ${outlineColorRgb.green}, ${outlineColorRgb.blue}, 0.5)`;
-        let shouldDrawLabel = configs.addTextLabels && circleRadius - innerCircleRadius > iconSize * 2.5 && segment.id !== 'noAction';
+        // let shouldDrawLabel = configs.addTextLabels && circleRadius - innerCircleRadius > iconSize * 2.5 && segment.id !== 'noAction';
+        let shouldDrawLabel = configs.addTextLabels && (circleRadius - innerCircleRadius > iconSize * 2.5 || !configs.hideLabelIfNoSpace) && segment.id !== 'noAction';
 
         if (selectedButtons[level] == i || preselectedButtons[level] == i) {
             /// Segment is hovered
@@ -230,7 +231,8 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
         let verticalShiftForIcon = 0.0;
         ctx.fillStyle = textColor;
 
-        const shouldDrawLabel = configs.addTextLabels && circleRadius - innerCircleRadius > iconSize * 2.5 && segment.id !== 'noAction';
+        // const shouldDrawLabel = configs.addTextLabels && circleRadius - innerCircleRadius > iconSize * 2.5 && segment.id !== 'noAction';
+        const shouldDrawLabel = configs.addTextLabels && (circleRadius - innerCircleRadius > iconSize * 2.5 || !configs.hideLabelIfNoSpace) && segment.id !== 'noAction';
         if (shouldDrawLabel) verticalShiftForIcon = wrapLabel(ctx, textToDraw, dxForText, configs.showActionIcons ? dyForText + 15 : dyForText, segmentLength * 0.4, labelSize);
 
         /// Draw icon    

@@ -40,7 +40,7 @@
         "description": ""
     },
     "addTextLabels": {
-        "message": "Показывать текстовые подписи",
+        "message": "Показывать заголовки действий",
         "description": ""
     },
     "addTextLabelsTooltip": {
@@ -333,6 +333,10 @@
     },
     "hideCircleIfNoActionSelected": {
         "message": "Прятать круг при отпускании, если действие не выбрано",
+        "description": ""
+    },
+    "hideLabelIfNoSpace": {
+        "message": "Прятать заголовок, когда недостаточно места",
         "description": ""
     },
     "hideMenu": {
@@ -784,11 +788,11 @@
         "description": ""
     },
     "showTitleOnHoverWhenHidden": {
-        "message": "Показывать подсказку при наведении",
+        "message": "Показывать заголовок при наведении",
         "description": ""
     },
     "showTitleOnHoverWhenHiddenTooltip": {
-        "message": "Когда видима только иконка, показывать подсказку с названием действия при наведении",
+        "message": "Когда видима только иконка, показывать подсказку с заголовком действия при наведении",
         "description": ""
     },
     "slowerPlaybackSpeed": {

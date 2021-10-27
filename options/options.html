@@ -74,23 +74,6 @@
                             <label id='menuTypeColorLabel'>Menu color</label>
                         </div>
                         <div class='option'>
-                            <label class='tooltip'>
-                                <input type="checkbox" id="addTextLabels"></input>
-                                <span id="addTextLabelsTooltip" class="tooltiptext"></span>
-                            </label>
-                        </div>
-                        <div class='option'>
-                            <label><input type="checkbox" id="showActionIcons"></input></label>
-                        </div>
-                        <div class='option'>
-                            <label class='tooltip'>
-                                <input type="checkbox" id="showTitleOnHoverWhenHidden"></input>
-                                <span id="showTitleOnHoverWhenHiddenTooltip" class="tooltiptext"></span>
-                            </label>
-                            <label><input style=' display: inline !important; max-width: 80px;' type="number" max='5000'
-                                    min='0' step='50' id="delayToShowTitleOnHoverWhenHidden"></input></label>
-                        </div>
-                        <div class='option'>
                             <label><input type="checkbox" id="addCircleShadow"></input></label>
                             <label><input style='margin-left: 5%; display: inline !important;' type="number" max='1.0'
                                     min='0.0' step='0.05' id="circleShadowOpacity"></input></label>
@@ -120,6 +103,27 @@
                                 </select>
                             </label>
                         </div>
+                        <div class='option'>
+                            <label><input type="checkbox" id="showActionIcons"></input></label>
+                        </div>
+                        <div class='option'>
+                            <label>
+                                <input type="checkbox" id="addTextLabels"></input>
+                                <!-- <span id="addTextLabelsTooltip" class="tooltiptext"></span> -->
+                            </label>
+                        </div>
+                        <div class='option'>
+                            <label><input type="checkbox" id="hideLabelIfNoSpace"></input></label>
+                        </div>
+                        <div class='option'>
+                            <label class='tooltip'>
+                                <input type="checkbox" id="showTitleOnHoverWhenHidden"></input>
+                                <span id="showTitleOnHoverWhenHiddenTooltip" class="tooltiptext"></span>
+                            </label>
+                            <label><input style=' display: inline !important; max-width: 80px;' type="number" max='5000'
+                                    min='0' step='50' id="delayToShowTitleOnHoverWhenHidden"></input></label>
+                        </div>
+
                     </div>
                 </div>
 
@@ -135,14 +139,6 @@
                             </label>
                             <label><input style='margin-left: 5%; display: inline !important;' type="number" max='1.0'
                                     min='0.0' step='0.05' id="backgroundDimmerOpacity"></input></label>
-                        </div>
-                        <div class='option'><label><select id="circleLocation">
-                                    <option value="alwaysCursor">Always under cursor</option>
-                                    <option value="alwaysCorner">Always in corner</option>
-                                    <option value="cursorCorner">Under cursor + in corner when no space</option>
-                                    <option value="cursorOverflow">Under cursor + shift when no space</option>
-                                </select>
-                            </label>
                         </div>
                         <div class='option'>
                             <label class='tooltip'>
@@ -176,9 +172,12 @@
                                 <span id="continiousHorizontalScrollDetectionTooltip" class="tooltiptext"></span>
                             </label>
                         </div>
-                        <div class='option'><label class='tooltip'>
-                                <input type="checkbox" id="storeCurrentScrollPosition"></input>
-                                <span id="storeCurrentScrollPositionTooltip" class="tooltiptext"></span>
+                        <div class='option'><label><select id="circleLocation">
+                                    <option value="alwaysCursor">Always under cursor</option>
+                                    <option value="alwaysCorner">Always in corner</option>
+                                    <option value="cursorCorner">Under cursor + in corner when no space</option>
+                                    <option value="cursorOverflow">Under cursor + shift when no space</option>
+                                </select>
                             </label>
                         </div>
 
@@ -191,6 +190,12 @@
                                 <input type="checkbox" id="copyNotification"></input>
                             </label>
                         </div>
+                        <div class='option'><label class='tooltip'>
+                                <input type="checkbox" id="storeCurrentScrollPosition"></input>
+                                <span id="storeCurrentScrollPositionTooltip" class="tooltiptext"></span>
+                            </label>
+                        </div>
+
                         <div class='option'>
                             <label class='tooltip'>
                                 <input type="checkbox" id="addLinkTooltip"></input>

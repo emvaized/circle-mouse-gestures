@@ -99,6 +99,7 @@ var defaultConfigs = {
     'addGhostPointer': true,
     'addBlur': false,
     'showActionIcons': true,
+    'hideLabelIfNoSpace': true,
     'blurRadius': 4,
     'excludedDomains': '',
     'showCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
