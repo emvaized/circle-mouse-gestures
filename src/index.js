@@ -2,7 +2,6 @@ function init() {
     loadUserConfigs(function () {
         if (configs.cmgEnabled) {
             setPageListeners();
-            // calculateCircleRadius();
         }
     })
 
@@ -18,34 +17,6 @@ let anyButtonIsSelected = false;
 var timerForLongLeftClick;
 var lastMouseDownEvent;
 var longPressTimerInitEvent;
-
-// var totalCircleRadius;
-// var enabledLevelsCount;
-
-// function calculateCircleRadius() {
-//     totalCircleRadius = 0.0;
-//     enabledLevelsCount = 0;
-
-//     const len = configs[typeOfMenu].levels.length;
-//     for (let i = 0; i < len; i++) {
-//         let level = configs[typeOfMenu].levels[i];
-
-//         /// Calculate total circle radius with only enabled levels
-//         if (level.enabled !== false) {
-//             totalCircleRadius += configs.gapBetweenCircles + (level.width ?? configs.circleRadius);
-//             enabledLevelsCount += 1;
-//         }
-//     }
-
-//     canvasRadius = totalCircleRadius * 2 + 2;
-
-//     if (configs.addCircleShadow)
-//         canvasRadius *= 1.2;
-
-//     if (typeOfMenu !== 'regularMenu' && configs.interactiveMenusBehavior == 'combine') {
-//         canvasRadius += (configs.interactiveCircleRadius + configs.gapBeforeInteractiveCircle) * 2;
-//     }
-// }
 
 function setPageListeners() {
     /// Page listeners
@@ -246,10 +217,10 @@ function setPageListeners() {
             // Mouse listener for any move event on the current document.
 
             // Unique ID for the classNames
-            var MOUSE_VISITED_CLASSNAME = 'crx_mouse_visited';
-            var MOUSE_VISITED_CLASSNAME_IMAGE = 'crx_mouse_visited_img';
-            var MOUSE_VISITED_CLASSNAME_INPUT = 'crx_mouse_visited_input';
-            var MOUSE_VISITED_CLASSNAME_PLAYER = 'crx_mouse_visited_player';
+            var MOUSE_VISITED_CLASSNAME = 'cmg_hover_mouse_visited';
+            var MOUSE_VISITED_CLASSNAME_IMAGE = 'cmg_hover_mouse_visited_img';
+            var MOUSE_VISITED_CLASSNAME_INPUT = 'cmg_hover_mouse_visited_input';
+            var MOUSE_VISITED_CLASSNAME_PLAYER = 'cmg_hover_mouse_visited_player';
 
             document.body.style.setProperty('--cmg-link-color', configs['linkMenu'].color);
             document.body.style.setProperty('--cmg-img-color', configs['imageMenu'].color);
