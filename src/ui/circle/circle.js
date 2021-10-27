@@ -27,9 +27,8 @@ function showCircle(e) {
             if (configs.addCircleShadow)
                 canvasRadius *= 1.2;
 
-            if (typeOfMenu !== 'regularMenu' && configs.interactiveMenusBehavior == 'combine') {
+            if (typeOfMenu !== 'regularMenu' && configs.interactiveMenusBehavior == 'combine')
                 canvasRadius += (configs.interactiveCircleRadius + configs.gapBeforeInteractiveCircle) * 2;
-            }
 
             leftCoord = e.clientX - (canvasRadius / 2) + 1;
             topCoord = e.clientY - (canvasRadius / 2) + window.scrollY + 1;
@@ -131,7 +130,6 @@ function setCanvas() {
             `polygon(100% 50%, 100% 100%, 0 100%, 0 0, 100% 0, 100% 50%, ${c.join(',')})`;
 
         document.body.appendChild(blurCircle);
-
     }
 
     /// Set initial stylings
@@ -173,10 +171,8 @@ function setCanvas() {
     drawCircle(false, typeOfMenu);
     document.body.appendChild(circle);
 
-    /// Trigger the transition
+    /// Trigger hide transition
     setTimeout(function () {
-        // circle.style.opacity = configs.circleOpacity;
-        // circle.style.transform = 'scale(1.0)';
 
         switch (configs.showCircleAnimation) {
             case 'noAnimation': { } break;
