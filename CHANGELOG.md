@@ -1,3 +1,10 @@
+#1.2.7
+- Added new config 'Behavior when cursor leaves window'
+- Added option to disable ghost pointer when circle is not under cursor
+- Improved popup design + added "Add review" button
+- Debug mode now prints stored configs in console
+- Updated translations
+
 #1.2.6
 - Clicking on 'What's new' in popup now closes the popup
 - Excluded domains config is not case-sensitive now
