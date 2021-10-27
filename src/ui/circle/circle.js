@@ -196,7 +196,7 @@ function setCanvas() {
     }, 3);
 
     document.addEventListener('mousemove', mouseMoveListener);
-    document.addEventListener('mouseleave', mouseLeaveListener);
+    document.body.addEventListener('mouseleave', mouseLeaveListener);
 }
 
 function mouseMoveListener(e) {
@@ -490,7 +490,7 @@ function hideCircle() {
         buttonsAvailability = {};
         buttonsStatuses = {};
         document.removeEventListener('mousemove', mouseMoveListener);
-        document.removeEventListener('mousemove', mouseLeaveListener);
+        document.body.removeEventListener('mousemove', mouseLeaveListener);
         scrollingElementUnderCursor = null;
 
         hideHintTooltip();
