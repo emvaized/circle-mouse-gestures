@@ -215,18 +215,19 @@ function mouseMoveListener(e) {
 }
 
 function mouseLeaveListener(e) {
-    switch (configs.mouseLeaveBehavior) {
-        case 'doNothing': { } break;
-        case 'hideMenu': {
-            selectedButtons = {};
-            rightClickIsHolded = false;
-            hideCircle();
-        } break;
-        case 'hideMenuAndSelect': {
-            rightClickIsHolded = false;
-            hideCircle();
-        } break;
-    }
+    if (circleIsShown)
+        switch (configs.mouseLeaveBehavior) {
+            case 'doNothing': { } break;
+            case 'hideMenu': {
+                selectedButtons = {};
+                rightClickIsHolded = false;
+                hideCircle();
+            } break;
+            case 'hideMenuAndSelect': {
+                rightClickIsHolded = false;
+                hideCircle();
+            } break;
+        }
 }
 
 function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvailability = true, shouldRespectBoundaries) {
@@ -375,7 +376,9 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
 function hideCircle() {
     try {
         if (circle == null || circle == undefined) return;
+        circleIsShown = false;
 
+        /// Hide circle
         circle.style.pointerEvents = 'none';
 
         switch (configs.hideCircleAnimation) {
@@ -400,6 +403,7 @@ function hideCircle() {
         /// Remove ghost pointer when circle is not under cursor
         if (showMousePointer && cornerMousePointer) cornerMousePointer.remove();
 
+        /// Detect and select highlighted action
         const selectedKeys = Object.keys(selectedButtons);
 
         if (rocketButtonPressed == null && selectedKeys.length == 0) {
@@ -460,8 +464,7 @@ function hideCircle() {
             }
         }
 
-        if (configs.dimBackground) hideBackgroundDimmer();
-
+        /// Set timeout to remove circle from DOM
         setTimeout(function () {
             textSelection = null;
 
@@ -479,14 +482,6 @@ function hideCircle() {
             selectedButtons = {};
         }, configs.hideCircleAnimation == 'noAnimation' ? 0 : configs.animationDuration);
 
-        if (hoveredLink !== null && linkTooltip !== null)
-            hideLinkTooltip();
-
-        if (rockerCircle !== null)
-            hideRockerIcon(rocketButtonPressed !== null);
-
-        /// Reset variables
-        circleIsShown = false;
         buttonsAvailability = {};
         buttonsStatuses = {};
         document.removeEventListener('mousemove', mouseMoveListener);
@@ -494,6 +489,14 @@ function hideCircle() {
         scrollingElementUnderCursor = null;
 
         hideHintTooltip();
+
+        if (configs.dimBackground) hideBackgroundDimmer();
+
+        if (hoveredLink !== null && linkTooltip !== null)
+            hideLinkTooltip();
+
+        if (rockerCircle !== null)
+            hideRockerIcon(rocketButtonPressed !== null);
 
     } catch (e) { if (configs.debugMode) console.log(e); }
 }
