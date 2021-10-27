@@ -6,7 +6,9 @@ function restoreOptions() {
   chrome.storage.local.get(
     ['cmgEnabled', 'excludedDomains'], function (res) {
       document.querySelector("#enabledCheckbox").checked = res.cmgEnabled ?? true;
-      document.querySelector("#excludedDomains").value = res.excludedDomains ?? '';
+      let excludedDomainsInp = document.querySelector("#excludedDomains");
+      excludedDomainsInp.value = res.excludedDomains ?? '';
+      excludedDomainsInp.parentNode.parentNode.className = res.cmgEnabled ? 'option enabled' : 'option disabled';
     });
 
   /// Enabled checkbox
@@ -18,6 +20,7 @@ function restoreOptions() {
       chrome.storage.local.set({
         cmgEnabled: document.querySelector('#enabledCheckbox').checked,
       });
+      document.querySelector('#excludedDomains').parentNode.parentNode.className = document.querySelector('#enabledCheckbox').checked ? 'option enabled opacityTransition' : 'option disabled opacityTransition';
     });
   }, 3);
 

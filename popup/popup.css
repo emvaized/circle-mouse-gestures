@@ -1,18 +1,6 @@
 html, body {
-  min-width: 160px;
+  min-width: 125px;
   max-width: 180px;
-  /* align-items: center; */
-}
-
-@-moz-document url-prefix() {
-  html, body {
-    width: 200px; 
-    max-width: 200px; 
-  }
-
-  #excludedDomains {
-    max-width: 96%;
-  }
 }
 
 #popup-header img {
@@ -30,9 +18,13 @@ input {
 }
 
 .enabled-checkbox, .checkboxLabel {
-  padding: 0px 0px 6px 0px;
+  padding: 3px 0px;
   cursor: pointer;
   /* text-align: center; */
+}
+
+.enabled-checkbox {
+  align-items: center;
 }
 
 .enabled-checkbox:hover {
@@ -48,16 +40,14 @@ input {
 button {
   margin: 4px auto;
   padding: 4px;
-  text-align: center;
+  text-align: justify;
   font-size: 1.0em;
   cursor: pointer;
   width: 100%;
 }
 
 button img {
-  /* position: relative; left: 0px; top: 3px; */
-  float: right;
-  padding: 3px 3px 0px;
+  float: left; padding-right: 5px;
 } 
 
 #extension-version {
@@ -67,3 +57,34 @@ button img {
   margin-top: 3px;
 }
 
+hr {
+  opacity: 0.3;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.enabled {
+  opacity: 1.0;
+}
+
+.opacityTransition {
+  transition: opacity 150ms ease-in-out;
+}
+
+@-moz-document url-prefix() {
+  html, body {
+    width: 200px; 
+    max-width: 200px; 
+  }
+
+  #excludedDomains {
+    max-width: 96%;
+  }
+
+  button img {
+    padding-top: 4px;
+  }
+}
