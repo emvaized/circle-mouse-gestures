@@ -231,13 +231,13 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
         ctx.fillStyle = textColor;
 
         const shouldDrawLabel = configs.addTextLabels && circleRadius - innerCircleRadius > iconSize * 2.5 && segment.id !== 'noAction';
-        if (shouldDrawLabel) verticalShiftForIcon = wrapLabel(ctx, textToDraw, dxForText, dyForText + 15, segmentLength * 0.4, labelSize);
+        if (shouldDrawLabel) verticalShiftForIcon = wrapLabel(ctx, textToDraw, dxForText, configs.showActionIcons ? dyForText + 15 : dyForText, segmentLength * 0.4, labelSize);
 
         /// Draw icon    
         ctx.fillStyle = iconColor;
         ctx.font = `${iconSize}px sans-serif`;
 
-        if (segment.id !== 'noAction')
+        if (segment.id !== 'noAction' & configs.showActionIcons)
             if (actionIcons[segment.id].length <= 3) {
                 /// Draw unicode icon
                 ctx.fillText(actionIcons[segment.id], dxForText, dyForText - (circleRadius - innerCircleRadius > iconSize * 2.5 ? 4 : -4) - (verticalShiftForIcon == 0 ? 6 : verticalShiftForIcon) / 2);

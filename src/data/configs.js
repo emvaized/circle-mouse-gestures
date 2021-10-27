@@ -49,6 +49,7 @@ const configs = {
     'addBlur': false,
     'addGhostPointer': true,
     'blurRadius': 4,
+    'showActionIcons': true,
     'excludedDomains': '',
     'showCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
     'hideCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'

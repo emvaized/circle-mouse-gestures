@@ -771,6 +771,10 @@
         "message": "Настройки",
         "description": ""
     },
+    "showActionIcons": {
+        "message": "Показывать иконки действий",
+        "description": ""
+    },
     "showCircleAnimation": {
         "message": "Анимация появления",
         "description": ""

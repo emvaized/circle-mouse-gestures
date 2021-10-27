@@ -251,6 +251,7 @@ function generateBehaviorConfigs() {
     /// Options for boolean cofnigs
     let inputIds = [
         'addTextLabels',
+        'showActionIcons',
         'showTitleOnHoverWhenHidden',
         'delayToShowTitleOnHoverWhenHidden',
         'dimBackground',

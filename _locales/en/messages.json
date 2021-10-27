@@ -771,6 +771,10 @@
         "message": "Settings",
         "description": ""
     },
+    "showActionIcons": {
+        "message": "Show action icons",
+        "description": ""
+    },
     "showCircleAnimation": {
         "message": "Show animation",
         "description": ""
