@@ -7,12 +7,16 @@
   color: transparent;
 }
 
+
 /* Adds background blur for circle */
 .cmg-blur-circle {
   pointer-events: none !important;
   z-index: 9999998 !important; 
   position: fixed;
   border-radius: 50%;
+  backdrop-filter: var(--cmg-blur-filter) !important;
+  -webkit-backdrop-filter: var(--cmg-blur-filter) !important;
+
 }
 
 .cmg-rocker-icon{

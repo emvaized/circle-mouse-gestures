@@ -697,6 +697,7 @@ function generateLevelConfigs(levelIndex = 0) {
     let removeLevelButton = document.createElement('a');
     let removeLevelButtonId = `removeLevelButton-${levelIndex}`;
     removeLevelButton.setAttribute('style', 'float: right; cursor: pointer;');
+    removeLevelButton.setAttribute('class', 'delete-level-button');
     removeLevelButton.setAttribute('id', removeLevelButtonId);
     removeLevelButton.innerText = chrome.i18n.getMessage("deleteLabel");
     headerContainer.appendChild(removeLevelButton);
@@ -734,7 +735,6 @@ function generateLevelConfigs(levelIndex = 0) {
 
         let entry = document.createElement('div');
         entry.setAttribute('class', 'buttons-item');
-        entry.setAttribute('style', 'padding:10px; cursor: pointer;');
         let entryIdentifier = `buttonConfigEntry-${levelIndex}-${i}`;
         entry.setAttribute('id', entryIdentifier);
 
@@ -866,7 +866,8 @@ function generateLevelConfigs(levelIndex = 0) {
         resetButtonColorButton.textContent = '↻';
         let resetButtonColorId = `resetButtonColor-${levelIndex}-${i}`;
         resetButtonColorButton.setAttribute('title', chrome.i18n.getMessage("resetColor"));
-        resetButtonColorButton.setAttribute('style', 'display: inline-block; opacity: 0.5; float: right; transform: translate(0px, 0px); font-size: 16px; vertical-align: middle; transition: opacity 150ms ease-out;');
+        // resetButtonColorButton.setAttribute('style', 'display: inline-block; opacity: 0.5; float: right; transform: translate(0px, 0px); font-size: 16px; vertical-align: middle; transition: opacity 150ms ease-out;');
+        resetButtonColorButton.setAttribute('style', 'display: inline-block; opacity: 0.5; font-size: 16px; vertical-align: middle; transition: opacity 150ms ease-out;');
         resetButtonColorButton.setAttribute('id', resetButtonColorId);
         setTimeout(function () {
             let resetButtonColor = document.getElementById(resetButtonColorId);
@@ -894,7 +895,8 @@ function generateLevelConfigs(levelIndex = 0) {
         let customButtonColorInput = document.createElement('input');
         let customButtonColorInputId = `customButtonColorInput-${levelIndex}-${i}`;
         customButtonColorInput.setAttribute('type', 'color');
-        customButtonColorInput.setAttribute('style', 'display: inline-block; max-width: 30px;  padding: 0px; vertical-align: middle; float: right; transform: translate(2px, 0px) ');
+        // customButtonColorInput.setAttribute('style', 'display: inline-block; max-width: 30px;  padding: 0px; vertical-align: middle; float: right; transform: translate(2px, 0px) ');
+        customButtonColorInput.setAttribute('style', 'display: inline-block; max-width: 30px;  padding: 0px; vertical-align: middle;  transform: translate(2px, 0px) ');
         customButtonColorInput.setAttribute('id', customButtonColorInputId);
         customButtonColorInput.setAttribute('title', chrome.i18n.getMessage("segmentColor"));
 
@@ -1123,6 +1125,13 @@ function createActionDropdownButton(id, initialValue, cbOnChange, label) {
     /// Generate dropdown button
     let select = document.createElement('select');
     select.setAttribute('id', id);
+
+    /// Exclude unavailable actions for Safari
+    // if (navigator.userAgent.indexOf("Safari") != -1) {
+    //     delete sortedActionButtons['page']["pageZoomIn"];
+    //     delete sortedActionButtons['page']["pageZoomOut"];
+    //     delete sortedActionButtons["tab"]["restoreClosedTab"];
+    // }
 
     /// Populate entries with regular menu actions
     if (selectedMenuType !== 'regularMenu') {
