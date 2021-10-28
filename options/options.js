@@ -866,8 +866,7 @@ function generateLevelConfigs(levelIndex = 0) {
         resetButtonColorButton.textContent = '↻';
         let resetButtonColorId = `resetButtonColor-${levelIndex}-${i}`;
         resetButtonColorButton.setAttribute('title', chrome.i18n.getMessage("resetColor"));
-        // resetButtonColorButton.setAttribute('style', 'display: inline-block; opacity: 0.5; float: right; transform: translate(0px, 0px); font-size: 16px; vertical-align: middle; transition: opacity 150ms ease-out;');
-        resetButtonColorButton.setAttribute('style', 'display: inline-block; opacity: 0.5; font-size: 16px; vertical-align: middle; transition: opacity 150ms ease-out;');
+        resetButtonColorButton.setAttribute('style', 'display: inline-block; opacity: 0.5; font-size: 16px; margin-left: 12px; vertical-align: middle; transition: opacity 150ms ease-out;');
         resetButtonColorButton.setAttribute('id', resetButtonColorId);
         setTimeout(function () {
             let resetButtonColor = document.getElementById(resetButtonColorId);
@@ -930,8 +929,8 @@ function generateLevelConfigs(levelIndex = 0) {
         actionButtonsContainer.appendChild(moveDownButton);
         actionButtonsContainer.appendChild(deleteButton);
 
-        actionButtonsContainer.appendChild(customButtonColorInput);
         actionButtonsContainer.appendChild(resetButtonColorButton);
+        actionButtonsContainer.appendChild(customButtonColorInput);
 
         entry.appendChild(actionButtonsContainer);
 
@@ -1112,7 +1111,7 @@ function generateAddLevelButton() {
 /// Service functions
 function createActionDropdownButton(id, initialValue, cbOnChange, label) {
     let selectContainer = document.createElement('div');
-    selectContainer.setAttribute('style', 'display: inline');
+    selectContainer.style.display = 'inline';
 
     /// Generate label
     if (label !== null && label !== undefined && label !== '') {
@@ -1143,7 +1142,7 @@ function createActionDropdownButton(id, initialValue, cbOnChange, label) {
             let items = sortedActionButtons['regularMenu'][key];
             items.forEach(function (item) {
                 let option = document.createElement('option');
-                option.innerHTML = chrome.i18n.getMessage(item);
+                option.innerText = chrome.i18n.getMessage(item);
                 option.setAttribute('value', item);
                 if (item == initialValue) {
                     option.setAttribute('selected', true);
@@ -1163,7 +1162,7 @@ function createActionDropdownButton(id, initialValue, cbOnChange, label) {
         let items = sortedActionButtons[selectedMenuType][key];
         items.forEach(function (item) {
             let option = document.createElement('option');
-            option.innerHTML = chrome.i18n.getMessage(item);
+            option.innerText = chrome.i18n.getMessage(item);
             option.setAttribute('value', item);
             if (item == initialValue) {
                 option.setAttribute('selected', true);
