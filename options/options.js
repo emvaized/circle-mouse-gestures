@@ -866,8 +866,8 @@ function generateLevelConfigs(levelIndex = 0) {
         resetButtonColorButton.textContent = '↻';
         let resetButtonColorId = `resetButtonColor-${levelIndex}-${i}`;
         resetButtonColorButton.setAttribute('title', chrome.i18n.getMessage("resetColor"));
-        resetButtonColorButton.setAttribute('style', 'display: inline-block; opacity: 0.5; font-size: 16px; margin-left: 12px; vertical-align: middle; transition: opacity 150ms ease-out;');
         resetButtonColorButton.setAttribute('id', resetButtonColorId);
+        resetButtonColorButton.setAttribute('class', 'reset-segment-color-button');
         setTimeout(function () {
             let resetButtonColor = document.getElementById(resetButtonColorId);
             resetButtonColor.addEventListener("mouseup", function (e) {
