@@ -109,11 +109,21 @@ function setCanvas() {
     if (configs.addBlur) {
         blurCircle = document.createElement('div');
         blurCircle.className = 'cmg-blur-circle';
-        blurCircle.style.left = `${realLeftCoord}px`;
-        blurCircle.style.top = `${realTopCoord}px`;
-        blurCircle.style.width = `${canvasRadius}px`;
-        blurCircle.style.height = `${canvasRadius}px`;
-        // blurCircle.style.backdropFilter = `blur(${configs.blurRadius}px)`;
+        // blurCircle.style.left = `${realLeftCoord}px`;
+        // blurCircle.style.top = `${realTopCoord}px`;
+        // blurCircle.style.width = `${canvasRadius}px`;
+        // blurCircle.style.height = `${canvasRadius}px`;
+
+        blurCircle.setAttribute('style', `pointer-events: none !important;
+        z-index: 9999998 !important; 
+        position: fixed;
+        border-radius: 50%;
+        left: ${realLeftCoord}px;
+        top: ${realTopCoord}px;
+        width: ${canvasRadius}px;
+        height: ${canvasRadius}px;
+        backdrop-filter: blur(${configs.blurRadius}px) !important;
+        -webkit-backdrop-filter: blur(${configs.blurRadius}px) !important;`);
 
         // let precision = 64;
         let precision = 32;
