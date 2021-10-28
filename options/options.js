@@ -10,6 +10,14 @@ let isFirefox = navigator.userAgent.indexOf("Firefox") > -1;
 function optionsInit() {
     document.title = chrome.i18n.getMessage('settings') + ' — CMG';
 
+    let inputsWithTooltip = document.querySelectorAll('.tooltip');
+    inputsWithTooltip.forEach(function (el) {
+        let tooltipHint = document.createElement('div');
+        tooltipHint.className = 'tooltipHint';
+        tooltipHint.innerText = '?';
+        el.prepend(tooltipHint);
+    })
+
     try {
         loadUserConfigs(function (conf) {
             setMenuTypeDropdown();
