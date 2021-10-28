@@ -246,7 +246,7 @@ input {
   
     /* Fade in tooltip */
     opacity: 0;
-    transition: opacity 300ms, visibility 300ms; 
+    transition: opacity 250ms, visibility 250ms; 
 }
 
 /* Tooltip arrow */
@@ -266,7 +266,7 @@ input {
 .tooltipHint:hover ~ .tooltiptext {
     visibility: visible;
     opacity: 1;
-    /* transition-delay: 400ms; */
+    transition-delay: 150ms;
 }
 
 
