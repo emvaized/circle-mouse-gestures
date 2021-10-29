@@ -1,14 +1,5 @@
 function openImageFullscreen(elementUnderCursor) {
 
-    // picture > * gets all the sources and img in a picture
-    // :not(picture) img gets all the img tags not inside a picture, or else we'd have duplicates
-    // const imageSets = [...document.querySelectorAll('picture > *, :not(picture) img')].map(element => [
-    //     element.src,
-    //     ...(element.srcset ?? '')
-    //         .split(',')
-    //         .map(s => s.split(' ')[0])
-    // ].filter(Boolean)); // filter filters out any empty strings
-
     let transitionDuration = 300;
     let bgOpacity = 0.5;
     let scale = 1.0;
@@ -34,6 +25,9 @@ function openImageFullscreen(elementUnderCursor) {
     const originalWidth = originalImage.clientWidth;
     const desiredHeight = window.innerHeight * screenHeightToTakeInitially;
     scale = desiredHeight / originalHeight;
+
+    if (originalWidth * scale > window.innerWidth)
+        scale = (window.innerWidth - 150) / originalWidth;
 
     /// Final dx/dy calculation
     let dxToShow = window.innerWidth / 2 - (originalWidth * scale / 2);
@@ -149,7 +143,7 @@ function openImageFullscreen(elementUnderCursor) {
 
     const rotationLabel = document.createElement('span');
     rotationLabel.setAttribute('style', 'vertical-align: middle');
-    rotationLabel.innerText = '🗘';
+    rotationLabel.innerText = '⟳';
     rotateButton.appendChild(rotationLabel);
     topControlsContainer.appendChild(rotateButton);
 
