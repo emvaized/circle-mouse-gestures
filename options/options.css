@@ -277,12 +277,6 @@ input {
     display: inline-block; opacity: 0.5; font-size: 16px; margin-left: 12px; vertical-align: middle; transition: opacity 150ms ease-out;
 }
 
-
-@-moz-document url-prefix() {
-  hr { opacity: 0.15; }
-  .tooltip::after{ line-height: 0.9; }
-}
-
 @media (max-width: 800px) {
     #updateToApplyLabel, #navbar-title, #navbar-settings-label { display: none !important; }
     #content { margin-left: 0px !important; }
@@ -292,6 +286,12 @@ input {
    #general-settings-container { margin-left: 0px !important; }
 }
 
+@-moz-document url-prefix() {
+  hr { opacity: 0.15; }
+  .tooltip::after{ line-height: 0.9; }
+  input[type='color'] { padding: 3px !important;}
+}
+
 @media not all and (min-resolution:.001dpcm){ @supports (-webkit-appearance:none) {
     .tooltip::after{ font-size: 12px; }
     .buttons-item { padding: 5px 10px; }
@@ -299,5 +299,4 @@ input {
     .delete-level-button:hover { color: red; }
     #addLevelButton { font-size: 42px; }
     .reset-segment-color-button { vertical-align: top; }
-
 }}
