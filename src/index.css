@@ -82,7 +82,7 @@
 /* Link preview part */
 #cmg-link-preview {
   background-color: transparent; position: fixed; z-index: 999999 !important; top: 0px; left: 0px; transform-origin: 50% 50%;
-  transition: opacity var(--cmg-link-prevew-anim-duration) ease-out, transform var(--cmg-link-prevew-anim-duration) ease-out, background-color var(--cmg-link-prevew-anim-duration) ease-out;
+  /* transition: opacity var(--cmg-link-prevew-anim-duration) ease-out, transform var(--cmg-link-prevew-anim-duration) ease-out, background-color var(--cmg-link-prevew-anim-duration) ease-out; */
 }
 
 .cmg-link-preview-button {

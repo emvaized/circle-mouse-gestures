@@ -94,6 +94,8 @@ function openLinkPreview(elementUnderCursor) {
 
     iframe.style.transform = `translate(${linkRect.left + (linkRect.width / 2) - (desiredWidth / 2)}px, ${linkRect.top + (linkRect.height / 2) - (desiredHeight / 2)}px) scale(0.0)`; /// From link 2
     iframe.style.opacity = 0.0;
+    let previewTransitionDuration = 300;
+    iframe.style.transition = `opacity ${previewTransitionDuration}ms ease-out, transform ${previewTransitionDuration}ms ease-out, background-color ${previewTransitionDuration}ms ease-out`;
 
     /// Show view
     document.body.appendChild(iframe);
