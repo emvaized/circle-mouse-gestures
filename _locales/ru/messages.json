@@ -88,7 +88,7 @@
         "description": ""
     },
     "backgroundOpacity": {
-        "message": "Прозрачность фона",
+        "message": "Прозрачность",
         "description": ""
     },
     "behaviorTitle": {
@@ -424,7 +424,7 @@
         "description": ""
     },
     "levelWidth": {
-        "message": "Ширина уровня",
+        "message": "Ширина",
         "description": ""
     },
     "levels": {
