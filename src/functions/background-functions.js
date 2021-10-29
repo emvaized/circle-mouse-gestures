@@ -458,24 +458,10 @@ function displayNotification(title, message, link, image) {
     // const createNotification = 
     chrome.notifications.create({
         "type": "basic",
-        // "iconUrl": "../../icons/icon-monotone-48.png",
         "iconUrl": image ?? "../../icons/icon-monotone-48.png",
         "title": title,
         "message": message
     });
-    // createNotification.then((notificationId) => {
-    // if an URL is specified register an onclick listener
-    // if (link) chrome.notifications.onClicked.addListener(function handleNotificationClick(id) {
-    //     if (id === notificationId) {
-    //         chrome.tabs.create({
-    //             url: link,
-    //             active: true
-    //         });
-    //         // remove event listener
-    //         chrome.notifications.onClicked.removeListener(handleNotificationClick);
-    //     }
-    // });
-    // });
 }
 
 

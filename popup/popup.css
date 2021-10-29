@@ -92,8 +92,7 @@ hr {
 
 /* Safari design fixes */ 
 @media not all and (min-resolution:.001dpcm){ @supports (-webkit-appearance:none) { 
-   
   button img { display: none; } 
-  button { text-align: center; margin: 2px auto; }
-  html, body { width: 165px; }
+  button { text-align: center; margin: 2px auto;}
+  html, body { width: 165px; max-width: 165px; }
 }}

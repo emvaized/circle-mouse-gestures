@@ -737,10 +737,11 @@ function generateLevelConfigs(levelIndex = 0) {
         entry.setAttribute('class', 'buttons-item');
         let entryIdentifier = `buttonConfigEntry-${levelIndex}-${i}`;
         entry.setAttribute('id', entryIdentifier);
+        entry.style.borderRadius = '5px'
 
         /// Highlight the button when segment was selected by mouse
         if (selectedButtons[levelIndex] == i || preselectedButtons[levelIndex] == i)
-            entry.style.background = 'lightGrey';
+            entry.style.background = 'lightgray';
 
         /// Counter
         let numberText = document.createElement('span');
@@ -937,8 +938,7 @@ function generateLevelConfigs(levelIndex = 0) {
         /// Set on click listener for entry
         setTimeout(function () {
             document.getElementById(entryIdentifier).addEventListener('mousedown', function (e) {
-                var el = document.elementFromPoint(e.clientX, e.clientY);
-                if (configs.debugMode) console.log(`clicked on ${el.tagName}`);
+                let el = document.elementFromPoint(e.clientX, e.clientY);
 
                 /// Prevent listener from blocking select dropdowns behavior
                 if (el.tagName == 'SELECT' || el.tagName == 'INPUT') {
