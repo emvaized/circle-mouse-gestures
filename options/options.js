@@ -200,6 +200,8 @@ function generateAppearanceControls() {
         appearanceContainer.appendChild(gapBetweenLevelsSlider);
     }
 
+    let opacitySliders = document.getElementById('placeholder-opacity-sliders');
+
     /// Create whole circle opacity slider
     if (document.getElementById('circleOpacity') == undefined) {
         let circleOpacitySlider = createRangeSlider('circleOpacity', configs.circleOpacity, null, function (newVal) {
@@ -207,7 +209,8 @@ function generateAppearanceControls() {
         }, 0.1, 1.0, null, 0.1);
         circleOpacitySlider.style.padding = '0px 5px';
 
-        appearanceContainer.appendChild(circleOpacitySlider);
+        // appearanceContainer.appendChild(circleOpacitySlider);
+        opacitySliders.appendChild(circleOpacitySlider);
     }
 
     /// Create label opacity slider
@@ -217,7 +220,8 @@ function generateAppearanceControls() {
         }, 0.1, 1.0, null, 0.1);
         labelOpacitySlider.style.padding = '0px 5px';
 
-        appearanceContainer.appendChild(labelOpacitySlider);
+        // appearanceContainer.appendChild(labelOpacitySlider);
+        opacitySliders.appendChild(labelOpacitySlider);
     }
 
     /// Create icons opacity slider
@@ -227,7 +231,8 @@ function generateAppearanceControls() {
         }, 0.1, 1.0, null, 0.1);
         iconOpacitySlider.style.padding = '0px 5px';
 
-        appearanceContainer.appendChild(iconOpacitySlider);
+        // appearanceContainer.appendChild(iconOpacitySlider);
+        opacitySliders.appendChild(iconOpacitySlider);
     }
 
 
@@ -404,7 +409,8 @@ function generateBehaviorConfigs() {
 
     /// Proccess 'show animation' dropdown
     let showCircleAnimation = document.getElementById('showCircleAnimation');
-    showCircleAnimation.parentNode.innerHTML = chrome.i18n.getMessage('showCircleAnimation') + ':<br/> ' + showCircleAnimation.parentNode.innerHTML;
+    // showCircleAnimation.parentNode.innerHTML = chrome.i18n.getMessage('showCircleAnimation') + ': ' + showCircleAnimation.parentNode.innerHTML;
+    showCircleAnimation.parentNode.innerHTML = chrome.i18n.getMessage('showCircleAnimation') + ': ' + showCircleAnimation.parentNode.innerHTML;
     setTimeout(function () {
         let showCircleAnimation = document.getElementById('showCircleAnimation');
         showCircleAnimation.addEventListener('change', function () {
@@ -423,7 +429,8 @@ function generateBehaviorConfigs() {
 
     /// Proccess 'hide animation' dropdown
     let hideCircleAnimation = document.getElementById('hideCircleAnimation');
-    hideCircleAnimation.parentNode.innerHTML = chrome.i18n.getMessage('hideCircleAnimation') + ':<br/> ' + hideCircleAnimation.parentNode.innerHTML;
+    // hideCircleAnimation.parentNode.innerHTML = chrome.i18n.getMessage('hideCircleAnimation') + ':<br/> ' + hideCircleAnimation.parentNode.innerHTML;
+    hideCircleAnimation.parentNode.innerHTML = chrome.i18n.getMessage('hideCircleAnimation') + ': ' + hideCircleAnimation.parentNode.innerHTML;
     setTimeout(function () {
         let hideCircleAnimation = document.getElementById('hideCircleAnimation');
         hideCircleAnimation.addEventListener('change', function () {

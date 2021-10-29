@@ -11,7 +11,6 @@ async function copyImg(src) {
 
     if (configs.debugMode) console.log('trying to copy image...');
 
-
     let isFirefox = navigator.userAgent.indexOf("Firefox") > -1;
     if (isFirefox) {
         chrome.runtime.sendMessage({ actionToDo: 'copyImageFirefox', url: src }, (response) => {
