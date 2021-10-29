@@ -183,7 +183,6 @@ function setCanvas() {
 
     /// Trigger hide transition
     setTimeout(function () {
-
         switch (configs.showCircleAnimation) {
             case 'noAnimation': { } break;
             case 'fade': {
@@ -201,6 +200,7 @@ function setCanvas() {
         }
     }, 3);
 
+    /// Attach mouse listeners
     document.addEventListener('mousemove', mouseMoveListener);
     document.body.addEventListener('mouseleave', mouseLeaveListener);
 }
@@ -214,9 +214,8 @@ function mouseMoveListener(e) {
         deltaX += e.movementX;
         deltaY += e.movementY;
         cornerMousePointer = document.getElementById('cmg-corner-mouse-pointer');
-        if (cornerMousePointer) {
-            cornerMousePointer.style.transform = `translate(${(realLeftCoord + (canvasRadius / 2)) + deltaX - ghostMousePointerRadius}px, ${(realTopCoord + (canvasRadius / 2)) + deltaY - ghostMousePointerRadius}px)`
-        }
+        if (cornerMousePointer)
+            cornerMousePointer.style.transform = `translate(${(realLeftCoord + (canvasRadius / 2)) + deltaX - ghostMousePointerRadius}px, ${(realTopCoord + (canvasRadius / 2)) + deltaY - ghostMousePointerRadius}px)`;
     }
 }
 

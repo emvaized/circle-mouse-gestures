@@ -194,12 +194,15 @@ function setPageListeners() {
         document.addEventListener('selectionchange', function (e) {
             if (window.getSelection().toString() !== '')
                 clearTimeout(timerForLongLeftClick);
-
         });
 
         document.addEventListener("webkitmouseforcedown", function (event) {
             if (circleIsShown) hideCircle();
             else clearTimeout(timerForLongLeftClick);
+        });
+
+        document.addEventListener("visibilitychange", function (event) {
+            clearTimeout(timerForLongLeftClick);
         });
     }
 
@@ -208,6 +211,7 @@ function setPageListeners() {
     document.addEventListener("visibilitychange", function (event) {
         /// When tab lost or regained focus, release the right mouse key
         if (rightClickIsHolded) rightClickIsHolded = false;
+        if (circleIsShown) hideCircle();
     });
 
     /// Listener to highlight hovered elements
