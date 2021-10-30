@@ -293,11 +293,13 @@ function openLinkPreview(elementUnderCursor) {
         iframe.style.opacity = 0.0;
 
         const updatedlinkRect = elementUnderCursor.getBoundingClientRect();
-        const shouldUseScaleAnimation = updatedlinkRect.top < 0 || updatedlinkRect.top > window.innerHeight;
+        const shouldUseDefaultAnimation = updatedlinkRect.top < 0 || updatedlinkRect.top > window.innerHeight;
 
-        iframe.style.transform = shouldUseScaleAnimation ?
-            `translate(${dxToShow}px, ${dyToShow}px) scale(0.0)` :
+        iframe.style.transform = shouldUseDefaultAnimation ?
+            // `translate(${dxToShow}px, ${dyToShow}px) scale(0.0)` :
+            `translate(${dxToShow}px, ${window.screen.height}px)` :
             `translate(${updatedlinkRect.left + (updatedlinkRect.width / 2) - (desiredWidth / 2)}px, ${updatedlinkRect.top + (updatedlinkRect.height / 2) - (desiredHeight / 2)}px) scale(0.0)`; /// To link transition 2
+
         // iframe.style.transform = `translate(${dxToShow}px, ${window.screen.height}px)`; /// Slide down transition
         // iframe.style.transform = `translate(${dxToShow}px, ${dyToShow}px) scale(0.0)`; /// Scale down transition
 
