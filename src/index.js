@@ -22,7 +22,7 @@ function setPageListeners() {
     /// Page listeners
 
     document.addEventListener("contextmenu", function (e) {
-        if (e.ctrlKey || leftClickIsHolded) return;
+        if (e.ctrlKey || e.metaKey || leftClickIsHolded) return;
         if (typeOfMenu == '') return;
         if (configs.showRegularMenuIfNoAction && configs.hideCircleIfNoActionSelected == true
             && anyButtonIsSelected == false && circleIsShown == false && fullscreenImageIsOpen == false) {
@@ -36,7 +36,7 @@ function setPageListeners() {
 
         evt = e || window.event;
 
-        if (e.ctrlKey) return;
+        if (e.ctrlKey || e.metaKey) return;
         if (fullscreenImageIsOpen == true) return;
 
         if (configs.applySettingsImmediately)
