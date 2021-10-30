@@ -95,4 +95,5 @@ hr {
   button img { display: none; } 
   button { text-align: center; margin: 2px auto;}
   html, body { width: 165px; max-width: 165px; }
+  h3 { color: black; opacity: 0.5; font-weight: 500; }
 }}
