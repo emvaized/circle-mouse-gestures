@@ -76,7 +76,7 @@
   /* transition: opacity var(--cmg-anim-duration) ease-out !important;  */
   position:fixed;
   background: black !important; top: 0px; left: 0px;
-  /* pointer-events: none !important; */
+  pointer-events: none !important;
 }
 
 /* Link preview part */
