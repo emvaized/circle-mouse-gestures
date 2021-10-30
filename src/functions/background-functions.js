@@ -371,82 +371,25 @@ chrome.runtime.onMessage.addListener(
                 chrome.developerPrivate.openDevTools()
             } break;
 
-            case 'copyImageFirefox': {
-                copyImageFirefox(request.url, function (result) {
+            case 'copyPrefetchedImageFirefox': {
+                copyPrefetchedImage(request.blob, function (result) {
                     sendResponse(result);
                 });
-
                 return true;
             } break;
         }
     }
 );
 
-
-async function copyImageFirefox(src, callback) {
+async function copyPrefetchedImage(blob, callback) {
     try {
-        const response = await fetch(src);
-        const mimeType = response.headers.get("Content-Type");
-
-        switch (mimeType) {
-            case "image/jpeg": {
-                const buffer = await response.arrayBuffer();
-                await chrome.clipboard.setImageData(buffer, "jpeg");
-            } break;
-
-            case "image/png": {
-                const buffer = await response.arrayBuffer();
-                await chrome.clipboard.setImageData(buffer, "png");
-            } break;
-
-            // convert other file types to png using the canvas api
-            default: {
-                const image = await new Promise((resolve, reject) => {
-                    const image = new Image();
-                    image.onload = () => resolve(image);
-                    image.onerror = reject;
-                    image.src = src;
-                });
-
-                const canvas = document.createElement('canvas');
-                canvas.width = image.naturalWidth;
-                canvas.height = image.naturalHeight;
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(image, 0, 0);
-
-                // read png image from canvas as blob and write it to clipboard
-                const blob = await new Promise((resolve) => canvas.toBlob(resolve), "image/png");
-                const buffer = await blob.arrayBuffer();
-                await chrome.clipboard.setImageData(buffer, "png");
-            } break;
-        }
-
-        // confirm success
-        // return true;
+        const buffer = await blob.arrayBuffer();
+        await chrome.clipboard.setImageData(buffer, "png");
         callback(true);
-    } catch (e) { callback(false); }
+    } catch (e) {
+        callback(false);
+    }
 }
-
-function timeoutPromise(ms, promise) {
-    return new Promise((resolve, reject) => {
-        const timeoutId = setTimeout(() => {
-            reject(new Error("promise timeout"))
-        }, ms);
-        promise.then(
-            (res) => {
-                clearTimeout(timeoutId);
-                resolve(res);
-            },
-            (err) => {
-                clearTimeout(timeoutId);
-                reject(err);
-            }
-        );
-    })
-}
-
-
-
 
 
 /**
