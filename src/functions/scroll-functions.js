@@ -1,8 +1,9 @@
 function getScrollParent(node) {
     const isElement = node instanceof HTMLElement;
     const overflowY = isElement && window.getComputedStyle(node).overflowY;
-    const overflowX = isElement && window.getComputedStyle(node).overflowX;
-    const isScrollable = overflowY !== 'visible' && overflowY !== 'hidden' && overflowX !== 'auto';
+    // const overflowX = isElement && window.getComputedStyle(node).overflowX;
+    // const isScrollable = overflowY !== 'visible' && overflowY !== 'hidden' && overflowX !== 'auto';
+    const isScrollable = overflowY !== 'visible' && overflowY !== 'hidden';
 
     if (!node) {
         return null;
@@ -15,7 +16,6 @@ function getScrollParent(node) {
 
 
 function scrollElementUnderCursor(scrollingElement, offset, id) {
-
     let currentScrollPosition;
 
     function saveCurrentScrollPosition() {
@@ -135,8 +135,8 @@ function scrollElementToAmount(element, amount) {
 
 function canScrollTop(element) {
 
-    if (scrollingElementUnderCursor == null || scrollingElementUnderCursor == undefined)
-        scrollingElementUnderCursor = getScrollParent(element);
+    // if (scrollingElementUnderCursor == null || scrollingElementUnderCursor == undefined)
+    scrollingElementUnderCursor = getScrollParent(element);
 
     let scrollAmount;
 
@@ -156,8 +156,8 @@ function canScrollTop(element) {
 function canScrollBottom(element) {
 
     try {
-        if (scrollingElementUnderCursor == null || scrollingElementUnderCursor == undefined)
-            scrollingElementUnderCursor = getScrollParent(element);
+        // if (scrollingElementUnderCursor == null || scrollingElementUnderCursor == undefined)
+        scrollingElementUnderCursor = getScrollParent(element);
 
         let scrollAmount;
         let bottomOffset;
