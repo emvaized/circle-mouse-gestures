@@ -1,4 +1,11 @@
-1.2.8
+#1.2.9
+- Improved 'scroll' functions
+- Changed scroll animation to work in more browsers
+- Show options hints only when hovering question mark + added delay before hint shown
+- Changed blur mechanism for better compatibility on websites
+- Various fixes and improvements
+
+#1.2.8
 - Added option to disable showing icons, for text-only appearance
 - Added option to not hide text labels when there's no enough space
 - Fixed issue with animated scroll on some websites
