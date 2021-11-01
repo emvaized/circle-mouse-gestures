@@ -15,7 +15,7 @@ function getScrollParent(node) {
 }
 
 
-function scrollElementUnderCursor(scrollingElement, offset, id) {
+function scrollElementUnderCursor(scrollingElement, offset, id, directionTop = false) {
     let currentScrollPosition;
 
     function saveCurrentScrollPosition() {
@@ -31,12 +31,15 @@ function scrollElementUnderCursor(scrollingElement, offset, id) {
     if (scrollingElement == null || scrollingElement.scrollHeight == document.body.scrollHeight) {
         currentScrollPosition = window.scrollY;
         // window.scrollTo({ top: offset, behavior: 'smooth' });
+
+        if (offset == null || offset == undefined) offset = currentScrollPosition + (window.innerHeight * 0.7 * (directionTop ? -1 : 1));
         smoothScrollTo(offset, 350);
 
     } else {
 
         currentScrollPosition = scrollingElement.scrollTop;
         // scrollingElement.scrollTo({ top: offset, behavior: 'smooth' });
+        if (offset == null || offset == undefined) offset = currentScrollPosition + (window.innerHeight * 0.7 * (directionTop ? -1 : 1));
         smoothScrollTo(offset, 350, scrollingElement);
 
         /// If element's scroll posiiton has not change after 1ms, scroll the window instead
@@ -93,20 +96,11 @@ function scrollElementToTop(element) {
         scrollingElementUnderCursor = getScrollParent(element);
 
     try {
-        // let bottomOffset = scrollingElementUnderCursor.scrollHeight - scrollingElementUnderCursor.clientHeight;
-
-        // let currentScrollPosition = scrollingElementUnderCursor.scrollTop ?? window.scrollY;
-
-        // if (configs.storeCurrentScrollPosition && currentScrollPosition !== bottomOffset)
-        //     previousScrollPosition['scrollToBottom'] = currentScrollPosition;
-
-
         scrollElementUnderCursor(scrollingElementUnderCursor, 0, 'scrollToTop')
     } catch (e) { if (configs.debugMode) console.log(e); }
 }
 
 function scrollElementToBottom(element) {
-
     if (scrollingElementUnderCursor == null || scrollingElementUnderCursor == undefined)
         scrollingElementUnderCursor = getScrollParent(element);
 
@@ -123,12 +117,13 @@ function scrollElementToBottom(element) {
 
 }
 
-function scrollElementToAmount(element, amount) {
+function scrollElementToAmount(element, amount, directionTop) {
     if (scrollingElementUnderCursor == null || scrollingElementUnderCursor == undefined)
         scrollingElementUnderCursor = getScrollParent(element);
 
     try {
-        scrollElementUnderCursor(scrollingElementUnderCursor, amount)
+        // scrollElementUnderCursor(scrollingElementUnderCursor, amount)
+        scrollElementUnderCursor(scrollingElementUnderCursor, amount, null, directionTop)
     } catch (e) { console.log(e); }
 }
 

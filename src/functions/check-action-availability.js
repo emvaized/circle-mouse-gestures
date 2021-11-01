@@ -2,10 +2,10 @@ function checkButtonAvailability(e, id) {
     switch (id) {
         case 'scrollToTop': return canScrollTop(elementUnderCursor);
         case 'scrollToBottom': return canScrollBottom(elementUnderCursor);
-        case 'scrollPageUp': return window.scrollY !== 0.0;
-        case 'scrollPageDown': {
-            return window.screen.height + window.scrollY < document.documentElement.scrollHeight;
-        }
+        // case 'scrollPageUp': return window.scrollY !== 0.0;
+        // case 'scrollPageDown': { return window.screen.height + window.scrollY < document.documentElement.scrollHeight; }        
+        case 'scrollPageUp': return canScrollTop(elementUnderCursor);
+        case 'scrollPageDown': return canScrollBottom(elementUnderCursor)
         case 'goBack': {
             return window.history.length !== 1;
         };

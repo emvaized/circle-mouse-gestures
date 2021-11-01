@@ -44,11 +44,13 @@ function triggerButtonAction(actionToPerform) {
         } break;
 
         case 'scrollPageUp': {
-            window.scrollTo({ top: window.scrollY - window.innerHeight * .9, behavior: 'smooth' });
+            // window.scrollTo({ top: window.scrollY - window.innerHeight * .9, behavior: 'smooth' });
+            scrollElementToAmount(elementUnderCursor, null, true)
         } break;
 
         case 'scrollPageDown': {
-            window.scrollTo({ top: window.scrollY + window.innerHeight * .9, behavior: 'smooth' });
+            // window.scrollTo({ top: window.scrollY + window.innerHeight * .9, behavior: 'smooth' });
+            scrollElementToAmount(elementUnderCursor, null, false)
         } break;
 
         case 'undoAction': {
