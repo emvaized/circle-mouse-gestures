@@ -30,18 +30,21 @@ function scrollElementUnderCursor(scrollingElement, offset, id) {
 
     if (scrollingElement == null || scrollingElement.scrollHeight == document.body.scrollHeight) {
         currentScrollPosition = window.scrollY;
-        window.scrollTo({ top: offset, behavior: 'smooth' });
-    }
-    else {
+        // window.scrollTo({ top: offset, behavior: 'smooth' });
+        smoothScrollTo(offset, 350);
+
+    } else {
 
         currentScrollPosition = scrollingElement.scrollTop;
-        scrollingElement.scrollTo({ top: offset, behavior: 'smooth' });
+        // scrollingElement.scrollTo({ top: offset, behavior: 'smooth' });
+        smoothScrollTo(offset, 350, scrollingElement);
 
         /// If element's scroll posiiton has not change after 1ms, scroll the window instead
         setTimeout(function () {
             if (scrollingElement.scrollTop == currentScrollPosition) {
                 currentScrollPosition = window.scrollY;
-                window.scrollTo({ top: offset, behavior: 'smooth' });
+                // window.scrollTo({ top: offset, behavior: 'smooth' });
+                smoothScrollTo(offset, 350);
                 saveCurrentScrollPosition();
             }
         }, 1)
@@ -49,6 +52,39 @@ function scrollElementUnderCursor(scrollingElement, offset, id) {
 
     saveCurrentScrollPosition();
 }
+
+// Polyfilled smooth scrolling
+/// source: https://gist.github.com/eyecatchup/d210786daa23fd57db59634dd231f341
+const smoothScrollTo = (to, duration, elem) => {
+    const element = elem ?? (document.scrollingElement || document.documentElement),
+        start = element.scrollTop,
+        change = to - start,
+        startDate = +new Date();
+
+    // t = current time
+    // b = start value
+    // c = change in value
+    // d = duration
+    const easeInOutQuad = (t, b, c, d) => {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+    };
+
+    const animateScroll = _ => {
+        const currentDate = +new Date();
+        const currentTime = currentDate - startDate;
+        element.scrollTop = parseInt(easeInOutQuad(currentTime, start, change, duration));
+        if (currentTime < duration) {
+            requestAnimationFrame(animateScroll);
+        }
+        else {
+            element.scrollTop = to;
+        }
+    };
+    animateScroll();
+};
 
 // var scrollingElementUnderCursor;
 
