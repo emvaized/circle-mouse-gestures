@@ -1133,13 +1133,20 @@ function createActionDropdownButton(id, initialValue, cbOnChange, label) {
     select.setAttribute('id', id);
 
     /// Exclude unavailable actions for Safari
-    // if (navigator.userAgent.indexOf("Safari") != -1) {
-    //     delete sortedActionButtons['page']["pageZoomIn"];
-    //     delete sortedActionButtons['page']["pageZoomOut"];
-    //     delete sortedActionButtons["tab"]["restoreClosedTab"];
-    // }
+    // const pageActions = sortedActionButtons['regularMenu']['page'];
+    // let index = pageActions.indexOf("pageZoomIn");
+    // if (index > -1) pageActions.splice(index, 1);
+    // index = pageActions.indexOf("pageZoomOut");
+    // if (index > -1) pageActions.splice(index, 1);
+    // const tabActions = sortedActionButtons['regularMenu']['tab'];
+    // index = tabActions.indexOf("restoreClosedTab");
+    // if (index > -1) tabActions.splice(index, 1);
+
 
     /// Populate entries with regular menu actions
+
+    let setValue = false;
+
     if (selectedMenuType !== 'regularMenu') {
         Object.keys(sortedActionButtons['regularMenu']).forEach(function (key) {
             if (key == '—') return;
@@ -1153,6 +1160,7 @@ function createActionDropdownButton(id, initialValue, cbOnChange, label) {
                 option.setAttribute('value', item);
                 if (item == initialValue) {
                     option.setAttribute('selected', true);
+                    setValue = true;
                 }
                 optGroup.appendChild(option);
             });
@@ -1173,12 +1181,15 @@ function createActionDropdownButton(id, initialValue, cbOnChange, label) {
             option.setAttribute('value', item);
             if (item == initialValue) {
                 option.setAttribute('selected', true);
+                setValue = true;
             }
             optGroup.appendChild(option);
         });
 
         select.appendChild(optGroup);
     });
+
+    if (setValue == false) select.querySelector(`[value='noAction']`).setAttribute('selected', true);
 
     setTimeout(function () {
         let listenedDropdown = document.getElementById(id);
@@ -1262,27 +1273,29 @@ function createRangeSlider(id, value, units, callbackOnChange, min = 50, max = 2
 }
 
 function positionSettingsInCenter() {
-    let circlePreviewSegment = document.getElementById('circle-preview');
-    let occupiedWidth = circlePreviewSegment.clientWidth;
-    let allLevelConfigs = document.querySelectorAll('.level-configs');
+    setTimeout(function () {
+        let circlePreviewSegment = document.getElementById('circle-preview');
+        let occupiedWidth = circlePreviewSegment.clientWidth;
+        let allLevelConfigs = document.querySelectorAll('.level-configs');
 
-    if (allLevelConfigs.length > 3)
-        allLevelConfigs.splice(3, 1);
+        if (allLevelConfigs.length > 3)
+            allLevelConfigs.splice(3, 1);
 
-    allLevelConfigs.forEach(function (el) {
-        occupiedWidth += el.clientWidth + 30;
-    });
+        allLevelConfigs.forEach(function (el) {
+            occupiedWidth += el.clientWidth + 30;
+        });
 
-    let screenWidth = window.innerWidth;
-    let occupiedPercent = occupiedWidth / screenWidth * 100;
-    bodyMarginLeft = (100 - occupiedPercent) / 2.5;
+        let screenWidth = window.innerWidth;
+        let occupiedPercent = occupiedWidth / screenWidth * 100;
+        bodyMarginLeft = (100 - occupiedPercent) / 2.5;
 
-    /// Center main content
-    document.getElementById('content').style.marginLeft = `${bodyMarginLeft}%`;
+        /// Center main content
+        document.getElementById('content').style.marginLeft = `${bodyMarginLeft}%`;
 
-    /// Center bottom settings container
-    let generalSettingsContainer = document.getElementById('general-settings-container');
-    generalSettingsContainer.style.marginLeft = `${(screenWidth / 2) - (generalSettingsContainer.clientWidth / 2) - (screenWidth * bodyMarginLeft / 100) - 35}px`;
+        /// Center bottom settings container
+        let generalSettingsContainer = document.getElementById('general-settings-container');
+        generalSettingsContainer.style.marginLeft = `${(screenWidth / 2) - (generalSettingsContainer.clientWidth / 2) - (screenWidth * bodyMarginLeft / 100) - 35}px`;
+    }, 1)
 }
 
 function updateDisabledOptions() {
