@@ -27,18 +27,18 @@ https://chrome.google.com/webstore/detail/circle-mouse-gestures/kkknhbbfjlibfjag
 ### FAQ
 
 **How to open regular context menu?**
-* 1) Double right click on element should always open regular context menu, 
-* 2) Right click while holding the left mouse button
-* 3) Right click while holding CTRL key
-* 4) On Windows, it will also get open on right mouse up if no circle section was selected (while "Show regular menu if no action selected" is on)
+* Double right click on element should always open regular context menu, 
+* Right click while holding the left mouse button
+* Right click while holding CTRL key
+* On Windows, it will also get open on right mouse up if no circle section was selected (while "Show regular menu if no action selected" is on)
 
 **Why extension doesn't work on new tab page?**
-* This is basic security limitation in most modern browsers. Browser extension could not execute it's scripts on new tab page (speed dial), as well as on service pages ("chrome://", "about:*", etc.) and in extensions store.
+* This is basic security limitation in most modern browsers. Browser extension could not execute it's scripts on new tab page (speed dial), as well as on service pages (`chrome://`, `about:*`, etc.) and in extensions store
 
 **Blur option is not working in Firefox**
-* As it stated (here)[https://bugzilla.mozilla.org/show_bug.cgi?id=1578503], you would need first to enable this feature in your browser by visiting about:config and setting `layout.css.backdrop-filter.enabled` to *true* 
+* As it stated [here](https://bugzilla.mozilla.org/show_bug.cgi?id=1578503), you would need first to enable this feature in your browser by visiting `about:config` page and setting `layout.css.backdrop-filter.enabled` to *true* 
 
 **How to add CMG settings as Vivaldi side panel?**
-* Use this URL: *chrome-extension://*{ID OF EXTENSION}*/options/options.html*, where {ID OF EXTENSION} is a unique extension ID on your computer. You can get this from extension details page on chrome://extensions
+* Use this URL: *chrome-extension://*{ID OF EXTENSION}*/options/options.html*, where {ID OF EXTENSION} is a unique extension ID on your computer. You can get this from extension details page in `chrome://extensions`
 
 ----
