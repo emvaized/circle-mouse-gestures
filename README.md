@@ -29,8 +29,8 @@ https://chrome.google.com/webstore/detail/circle-mouse-gestures/kkknhbbfjlibfjag
 **How to open regular context menu?**
 * Double right click on element should always open regular context menu, 
 * Right click while holding the left mouse button
-* Right click while holding CTRL key
-* On Windows, it will also get open on right mouse up if no circle section was selected (while "Show regular menu if no action selected" is on)
+* Right click while holding the CTRL key
+* On Windows, it will also get open on right mouse up if no circle section was selected (while "Show regular menu if no action selected" setting is on)
 
 **Why extension doesn't work on new tab page?**
 * This is basic security limitation in most modern browsers. Browser extension could not execute it's scripts on new tab page (speed dial), as well as on service pages (`chrome://`, `about:*`, etc.) and in extensions store
