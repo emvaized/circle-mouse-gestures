@@ -729,7 +729,8 @@ function generateLevelConfigs(levelIndex = 0) {
 
     /// Generate level configs container
     let container = document.createElement('div');
-    container.setAttribute('style', 'float:left; padding: 15px; border: 1px solid lightGrey; margin-top: 15px; margin-right: 30px;  max-width: 300px;');
+    // container.setAttribute('style', 'float:left; padding: 15px; border: 1px solid lightGrey; margin-top: 15px; margin-right: 30px;  max-width: 300px;');
+    container.setAttribute('style', 'float:left; padding: 15px; border: 1px solid lightGrey; margin-top: 15px; margin-right: 30px;  max-width: 265px;');
     container.setAttribute('class', 'level-configs');
     container.innerHTML = '';
 
@@ -783,7 +784,8 @@ function generateLevelConfigs(levelIndex = 0) {
             urlInput.id = urlInputIdentifier;
             urlInput.title = 'URL';
             urlInput.placeholder = 'URL';
-            urlInput.style.pointer = 'auto';
+            // urlInput.style.width = '100%';
+            // urlInput.style.marginLeft = '12px';
             if (item.url) urlInput.setAttribute('value', item.url);
 
             setTimeout(function () {
@@ -804,9 +806,10 @@ function generateLevelConfigs(levelIndex = 0) {
             const labelInput = document.createElement('input');
             const labelInputIdentifier = `labelInput-${levelIndex}-${i}`;
             labelInput.id = labelInputIdentifier;
-            labelInput.title = 'Label';
-            labelInput.placeholder = 'Label';
-            labelInput.style.pointer = 'auto';
+            labelInput.title = chrome.i18n.getMessage('label') ?? 'Label';
+            labelInput.placeholder = chrome.i18n.getMessage('label') ?? 'Label';
+            // labelInput.style.width = '100%';
+            // labelInput.style.marginLeft = '12px';
             if (item.label) labelInput.setAttribute('value', item.label);
 
             setTimeout(function () {

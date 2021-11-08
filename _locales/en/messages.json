@@ -411,6 +411,10 @@
         "message": "Italic",
         "description": ""
     },
+    "label": {
+        "message": "Label",
+        "description": ""
+    },
     "labelOpacity": {
         "message": "Labels opacity",
         "description": ""

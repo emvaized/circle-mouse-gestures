@@ -411,6 +411,10 @@
         "message": "Курсив",
         "description": ""
     },
+    "label": {
+        "message": "Заголовок",
+        "description": ""
+    },
     "labelOpacity": {
         "message": "Прозрачность текста",
         "description": ""

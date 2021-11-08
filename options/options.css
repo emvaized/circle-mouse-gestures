@@ -115,7 +115,7 @@ label{
 }
 
 #circle-preview {
-    margin-right: 90px;
+    margin-right: 90px; cursor: pointer;
 }
 
 .header {
@@ -274,7 +274,7 @@ input {
 }
 
 .reset-segment-color-button {
-    display: inline-block; opacity: 0.5; font-size: 16px; margin-left: 12px; vertical-align: middle; transition: opacity 150ms ease-out;
+    display: inline-block; opacity: 0.5; font-size: 16px; margin-left: 15px; vertical-align: middle; transition: opacity 150ms ease-out;
 }
 
 /* Ghost images for website favicons */
