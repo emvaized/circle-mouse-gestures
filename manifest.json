@@ -41,6 +41,7 @@
         "src/utils/fullscreen-image.js",
         "src/utils/link-preview.js",
         "src/utils/text-too-long.js",
+        "src/utils/tab-switcher.js",
         "src/ui/circle/circle.js",
         "src/ui/circle/circle-level-drawer.js",
         "src/ui/circle/bg-dimmer.js",

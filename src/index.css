@@ -129,6 +129,51 @@
   opacity: 0;
 }
 
+/* Tab switcher */
+.cmg-tab-switcher {
+  background-color: white;
+  position: fixed;
+  z-index: 999999;
+  opacity: 0;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 6px;
+}
+
+.vertical-switcher {
+  overflow-x: auto;
+  overflow-y: scroll;
+  max-height: 50%;
+}
+
+.horizontal-switcher {
+  overflow-x: scroll;
+  overflow-y: auto;
+  display: flex;
+  max-width: 50%;
+}
+
+.cmg-tab-switcher-entry {
+  padding: 6px; cursor: pointer;
+}
+
+.cmg-tab-switcher-entry:hover {
+  background: lightgray;
+}
+
+.highlighted-tab {
+  background: lightgray;
+}
+
+.horizontal-tab-switcher-label {
+  max-height: 50px;
+  max-width: 75px;
+  display: block;
+  overflow: hidden;
+  font-size: 13px;
+}
+
 /* html {
   scroll-behavior: smooth !important;
 } */

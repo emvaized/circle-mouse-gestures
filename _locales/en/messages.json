@@ -791,6 +791,14 @@
         "message": "Show regular menu if no action selected",
         "description": ""
     },
+    "showTabSwitcherHorizontal": {
+        "message": "Open tab switcher (horizontal)",
+        "description": ""
+    },
+    "showTabSwitcherVertical": {
+        "message": "Open tab switcher (vertical)",
+        "description": ""
+    },
     "showTitleOnHoverWhenHidden": {
         "message": "Show label tooltip on hover",
         "description": ""

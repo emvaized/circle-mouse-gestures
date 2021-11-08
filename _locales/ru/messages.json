@@ -791,6 +791,14 @@
         "message": "Показывать обычное меню, если действие не выбрано",
         "description": ""
     },
+    "showTabSwitcherHorizontal": {
+        "message": "Переключатель вкладок (гориз.)",
+        "description": ""
+    },
+    "showTabSwitcherVertical": {
+        "message": "Переключатель вкладок (верт.)",
+        "description": ""
+    },
     "showTitleOnHoverWhenHidden": {
         "message": "Показывать заголовок при наведении",
         "description": ""

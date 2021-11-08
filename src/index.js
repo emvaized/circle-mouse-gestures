@@ -330,15 +330,16 @@ function checkScrollDirection(event) {
 
     if (event.deltaY != 0) {
         /// Vertical scroll
-
         if (!configs.continiousVerticalScrollDetection && !circleIsShown) return;
 
         if (event.deltaY < 0) {
+            if (!circleIsShown && configs[typeOfMenu].mouseWheelUpAction.includes('showTabSwitcher')) return;
             event.preventDefault();
-            triggerButtonAction(configs[typeOfMenu].mouseWheelUpAction);
+            triggerButtonAction(configs[typeOfMenu].mouseWheelUpAction, undefined, 'up');
         } else if (event.deltaY > 0) {
+            if (!circleIsShown && configs[typeOfMenu].mouseWheelUpAction.includes('showTabSwitcher')) return;
             event.preventDefault();
-            triggerButtonAction(configs[typeOfMenu].mouseWheelDownAction);
+            triggerButtonAction(configs[typeOfMenu].mouseWheelDownAction, undefined, 'down');
         }
     }
     else {
@@ -348,11 +349,13 @@ function checkScrollDirection(event) {
             if (!configs.continiousHorizontalScrollDetection && !circleIsShown) return;
 
             if (event.deltaX < 0) {
+                if (!circleIsShown && configs[typeOfMenu].mouseWheelUpAction.includes('showTabSwitcher')) return;
                 event.preventDefault();
-                triggerButtonAction(configs[typeOfMenu].mouseWheelLeftAction);
+                triggerButtonAction(configs[typeOfMenu].mouseWheelLeftAction, undefined, 'up');
             } else if (event.deltaX > 0) {
+                if (!circleIsShown && configs[typeOfMenu].mouseWheelUpAction.includes('showTabSwitcher')) return;
                 event.preventDefault();
-                triggerButtonAction(configs[typeOfMenu].mouseWheelRightAction);
+                triggerButtonAction(configs[typeOfMenu].mouseWheelRightAction, undefined, 'down');
             }
         }
     }

@@ -54,8 +54,7 @@ function checkButtonAvailability(e, id) {
         case 'closeCurrentTab': {
             chrome.runtime.sendMessage({ actionToDo: 'checkPinTabStatus' }, (response) => {
                 updateButtonAvailability(e, 'closeCurrentTab', !response);
-            }
-            );
+            });
             return true;
         }
 

@@ -2,7 +2,9 @@ let playerVolumeStep = 0.1;
 let lastPlayerVolume;
 
 
-function triggerButtonAction(actionToPerform, urlToOpen) {
+function triggerButtonAction(actionToPerform, urlToOpen, scrollDirection) {
+    /// scrollDirection is 'up' or 'down'
+
     if (configs.debugMode) {
         if (configs.debugMode) console.log('Action to perform: ');
         if (configs.debugMode) console.log(actionToPerform);
@@ -282,6 +284,18 @@ function triggerButtonAction(actionToPerform, urlToOpen) {
 
         case 'print': {
             window.print();
+        } break;
+
+        case 'showTabSwitcherVertical': {
+            chrome.runtime.sendMessage({ actionToDo: 'returnAllTabs' }, (tabs) => {
+                openTabSwitcher(tabs, true, scrollDirection);
+            });
+        } break;
+
+        case 'showTabSwitcherHorizontal': {
+            chrome.runtime.sendMessage({ actionToDo: 'returnAllTabs' }, (tabs) => {
+                openTabSwitcher(tabs, false, scrollDirection);
+            });
         } break;
 
         case 'normalPlaybackSpeed': {

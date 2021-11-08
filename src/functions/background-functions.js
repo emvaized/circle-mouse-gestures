@@ -288,7 +288,6 @@ chrome.runtime.onMessage.addListener(
                 chrome.tabs.duplicate(sender.tab.id, function () { });
             } break;
 
-
             case 'moveToNewWindow': {
                 if (request.url !== null && request.url !== sender.tab.url)
                     chrome.windows.create({ "url": request.url });
@@ -300,8 +299,6 @@ chrome.runtime.onMessage.addListener(
                         chrome.tabs.create({ windowId: window.id, index: 0, active: true, pinned: sender.tab.pinned, url: sender.tab.url })
                     });
                 }
-
-
             } break;
 
             case 'openInPrivateWindow': {
@@ -369,6 +366,25 @@ chrome.runtime.onMessage.addListener(
 
             case 'inspectPage': {
                 chrome.developerPrivate.openDevTools()
+            } break;
+
+            case 'returnAllTabs': {
+                chrome.tabs.query({
+                    // windowId: sender.tab.windowId
+                    currentWindow: true
+                }, function (tabs) {
+                    sendResponse(tabs);
+                });
+                return true;
+            } break;
+
+            case 'switchToIndexedTab': {
+                chrome.tabs.query({ currentWindow: true }, function (tabs) {
+                    chrome.tabs.update(tabs[request.index].id, { active: true });
+                });
+
+                // chrome.tabs.update(request.index, { active: true });
+                return true;
             } break;
 
             case 'copyPrefetchedImageFirefox': {

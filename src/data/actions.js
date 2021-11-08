@@ -8,6 +8,8 @@ const sortedActionButtons = {
             'switchToNextTab',
 
             'openUrl',
+            'showTabSwitcherVertical',
+            'showTabSwitcherHorizontal',
         ],
         'tab': [
             'newTab',
