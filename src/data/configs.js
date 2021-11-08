@@ -72,6 +72,7 @@ const configs = {
                     { 'id': 'newTab' },
                     { 'id': 'goBack' },
                     { 'id': 'closeCurrentTab' },
+                    // { 'id': 'openUrl', 'url': 'translate.google.com', 'label': 'Translate' },
                 ]
             },
             {

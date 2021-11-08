@@ -2,13 +2,19 @@ let playerVolumeStep = 0.1;
 let lastPlayerVolume;
 
 
-function triggerButtonAction(actionToPerform) {
+function triggerButtonAction(actionToPerform, urlToOpen) {
     if (configs.debugMode) {
         if (configs.debugMode) console.log('Action to perform: ');
         if (configs.debugMode) console.log(actionToPerform);
     }
 
     switch (actionToPerform) {
+
+        case 'openUrl': {
+            if (urlToOpen == null || urlToOpen == undefined) return;
+            if (!urlToOpen.includes('://')) urlToOpen = 'https://' + urlToOpen;
+            chrome.runtime.sendMessage({ actionToDo: 'openInFgTab', url: urlToOpen });
+        } break;
 
         case 'copyLinkText': {
             copyToClipboard(hoveredLinkTitle);

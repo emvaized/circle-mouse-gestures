@@ -120,6 +120,16 @@
   left: 0px; top: 0px;
 }
 
+/* Ghost images for website favicons */
+[id^='cmg-ghost-favicon'] {
+  position: fixed; 
+  top: 0px; 
+  left: 0px; 
+  z-index: 888;
+  pointer-events: none !important;
+  opacity: 0;
+}
+
 /* html {
   scroll-behavior: smooth !important;
 } */

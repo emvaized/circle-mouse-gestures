@@ -575,6 +575,10 @@
         "message": "Link preview",
         "description": ""
     },
+    "openUrl": {
+        "message": "Open URL",
+        "description": ""
+    },
     "page": {
         "message": "Page",
         "description": ""

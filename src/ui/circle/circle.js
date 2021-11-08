@@ -438,16 +438,20 @@ function hideCircle() {
 
             if (rocketButtonPressed == null && typeOfMenu !== null) {
                 let actionToPerform;
+                let customUrlToOpen;
 
                 if (selectedLevel == configs['regularMenu'].levels.length) {
                     const shownButtons = configs[typeOfMenu]['buttons'];
                     if (shownButtons == undefined) return;
                     actionToPerform = shownButtons[selectedButton].id;
+                    if (actionToPerform == 'openUrl') customUrlToOpen = shownButtons[selectedButton].url;
                 } else {
                     const shownButtons = configs[typeOfMenu].levels[selectedLevel]['buttons'];
                     if (shownButtons == undefined) return;
                     actionToPerform = shownButtons[selectedButton].id;
+                    if (actionToPerform == 'openUrl') customUrlToOpen = shownButtons[selectedButton].url;
                 }
+
 
                 if (configs.storeCurrentScrollPosition && (actionToPerform == 'scrollToTop' || actionToPerform == 'scrollToBottom')) {
                     let previousPosition = previousScrollPosition[actionToPerform];
@@ -465,7 +469,7 @@ function hideCircle() {
                     console.log(actionToPerform);
                 }
                 if (actionToPerform !== 'noAction')
-                    triggerButtonAction(actionToPerform);
+                    triggerButtonAction(actionToPerform, customUrlToOpen);
             }
         }
 
@@ -502,6 +506,11 @@ function hideCircle() {
 
         if (rockerCircle !== null)
             hideRockerIcon(rocketButtonPressed !== null);
+
+        /// Hide all ghost images for website favicons
+        document.querySelectorAll(`[id^='cmg-ghost-favicon']`).forEach(function (favicon) {
+            favicon.remove();
+        })
 
     } catch (e) { if (configs.debugMode) console.log(e); }
 }

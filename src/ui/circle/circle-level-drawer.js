@@ -221,7 +221,14 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
 
         /// Draw text label underneath
         ctx.font = `${labelSize}px sans-serif`;
-        let textToDraw = returnActionLabel(segment.id);
+        let textToDraw;
+
+        if (segment.id == 'openUrl')
+            textToDraw = segment.label ?? segment.url ?? returnActionLabel(segment.id);
+        else
+            textToDraw = returnActionLabel(segment.id);
+
+
 
         if (textToDraw.length >= 21) {
             /// Obfuscate shortened label with '...'
@@ -243,6 +250,53 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
             if (actionIcons[segment.id].length <= 3) {
                 /// Draw unicode icon
                 ctx.fillText(actionIcons[segment.id], dxForText, dyForText - (circleRadius - innerCircleRadius > iconSize * 2.5 ? 4 : -4) - (verticalShiftForIcon == 0 ? 6 : verticalShiftForIcon) / 2);
+            } else if (segment.id == 'openUrl' && segment.url) {
+
+                function errorCallback() {
+                    /// Draw SVG icon
+                    try {
+                        ctx.save();
+                        let p = returnActionIconPath(e, segment.id);
+
+                        ctx.translate(dxForText - (iconSize / 2), dyForText - (verticalShiftForIcon == 0 && shouldDrawLabel ? 6 : verticalShiftForIcon) - (iconSize / (circleRadius - innerCircleRadius > iconSize * 2.5 ? 1.5 : 2)));
+                        let scale = iconSize / 24;
+                        ctx.scale(scale, scale);
+                        ctx.fill(p);
+                        ctx.restore();
+                    } catch (e) {
+                        if (configs.debugMode)
+                            if (configs.debugMode) console.log(e);
+                    }
+                }
+
+                try {
+                    const idForFaviconImage = `cmg-ghost-favicon-${segment.url}`;
+                    let image = document.getElementById(idForFaviconImage);
+                    if (image == undefined) {
+                        image = document.createElement('img');
+                        image.src = 'https://www.google.com/s2/favicons?sz=24&domain_url=' + segment.url;
+                        image.setAttribute('height', `${iconSize}px`);
+                        image.setAttribute('width', `${iconSize}px`);
+                        image.id = idForFaviconImage;
+                        //image.style.position = 'fixed'; image.style.top = '0px'; image.style.left = '0px'; image.style.zIndex = '888';
+                        // image.style.opacity = 0;
+                        document.body.appendChild(image);
+
+                        image.onload = function () {
+                            ctx.drawImage(image, dxForText - (iconSize / 2), dyForText - (verticalShiftForIcon == 0 && shouldDrawLabel ? 6 : verticalShiftForIcon) - (iconSize / (circleRadius - innerCircleRadius > iconSize * 2.5 ? 1.5 : 2)), iconSize, iconSize);
+                            // image.remove();
+                        }
+                        image.onerror = function () {
+                            image.remove();
+                            errorCallback();
+                        }
+                    } else {
+                        ctx.drawImage(image, dxForText - (iconSize / 2), dyForText - (verticalShiftForIcon == 0 && shouldDrawLabel ? 6 : verticalShiftForIcon) - (iconSize / (circleRadius - innerCircleRadius > iconSize * 2.5 ? 1.5 : 2)), iconSize, iconSize);
+                    }
+
+
+                } catch (e) { errorCallback(); }
+
             } else {
                 /// Draw SVG icon
                 try {

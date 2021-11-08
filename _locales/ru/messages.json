@@ -575,6 +575,10 @@
         "message": "Превью ссылки",
         "description": ""
     },
+    "openUrl": {
+        "message": "Открыть URL",
+        "description": ""
+    },
     "page": {
         "message": "Страница",
         "description": ""

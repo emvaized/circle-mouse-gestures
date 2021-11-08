@@ -27,7 +27,9 @@ function optionsInit() {
             generateBehaviorConfigs();
             generateGesturesConfigs();
             positionSettingsInCenter();
-            drawCirclePreview(selectedMenuType);
+            setTimeout(function () {
+                drawCirclePreview(selectedMenuType);
+            }, 0)
             preselectedButtons = {};
 
             document.getElementById('navbar-settings-label').innerHTML = ' ' + chrome.i18n.getMessage('settings').toLowerCase();
@@ -740,9 +742,9 @@ function generateLevelConfigs(levelIndex = 0) {
     for (var i = 0; i < configs[selectedMenuType].levels[levelIndex].buttons.length; i++) {
         let item = configs[selectedMenuType].levels[levelIndex].buttons[i];
 
-        let entry = document.createElement('div');
+        const entry = document.createElement('div');
         entry.setAttribute('class', 'buttons-item');
-        let entryIdentifier = `buttonConfigEntry-${levelIndex}-${i}`;
+        const entryIdentifier = `buttonConfigEntry-${levelIndex}-${i}`;
         entry.setAttribute('id', entryIdentifier);
         entry.style.borderRadius = '5px'
 
@@ -751,15 +753,15 @@ function generateLevelConfigs(levelIndex = 0) {
             entry.style.background = 'lightgray';
 
         /// Counter
-        let numberText = document.createElement('span');
+        const numberText = document.createElement('span');
         numberText.textContent = (i + 1).toString();
         numberText.setAttribute('style', 'color: grey; position: relative; left: -20px; top: 0px;');
         entry.appendChild(numberText);
 
         /// Button action dropdown
-        let dropdownIdentifier = `actionDropdown-${levelIndex}-${i}`;
+        const dropdownIdentifier = `actionDropdown-${levelIndex}-${i}`;
 
-        let actionDropdown = createActionDropdownButton(dropdownIdentifier, item.id, function (newValue) {
+        const actionDropdown = createActionDropdownButton(dropdownIdentifier, item.id, function (newValue) {
             let parts = dropdownIdentifier.split('-');
             configs[selectedMenuType].levels[parts[1]].buttons[parts[2]] = { 'id': newValue };
             drawCirclePreview();
@@ -767,15 +769,72 @@ function generateLevelConfigs(levelIndex = 0) {
             saveAllSettings();
         });
         entry.appendChild(actionDropdown);
-
         entry.innerHTML += '<br />';
 
+        /// "Open url" customization
+        if (item.id == 'openUrl') {
+
+            const openUrlContainer = document.createElement('div');
+            openUrlContainer.style.padding = '5px';
+
+            /// URL input
+            const urlInput = document.createElement('input');
+            const urlInputIdentifier = `urlInput-${levelIndex}-${i}`;
+            urlInput.id = urlInputIdentifier;
+            urlInput.title = 'URL';
+            urlInput.placeholder = 'URL';
+            urlInput.style.pointer = 'auto';
+            if (item.url) urlInput.setAttribute('value', item.url);
+
+            setTimeout(function () {
+                const inp = document.getElementById(urlInputIdentifier);
+                inp.addEventListener('change', function (newVal) {
+
+                    let parts = urlInputIdentifier.split('-');
+                    configs[selectedMenuType].levels[parts[1]].buttons[parts[2]]['url'] = inp.value;
+                    // drawCirclePreview();
+                    generateButtonsControls();
+                    saveAllSettings();
+                })
+            }, delayToAddListeners)
+
+            openUrlContainer.appendChild(urlInput);
+
+            /// label input
+            const labelInput = document.createElement('input');
+            const labelInputIdentifier = `labelInput-${levelIndex}-${i}`;
+            labelInput.id = labelInputIdentifier;
+            labelInput.title = 'Label';
+            labelInput.placeholder = 'Label';
+            labelInput.style.pointer = 'auto';
+            if (item.label) labelInput.setAttribute('value', item.label);
+
+            setTimeout(function () {
+                const inp = document.getElementById(labelInputIdentifier);
+                inp.addEventListener('change', function (newVal) {
+
+                    let parts = labelInputIdentifier.split('-');
+                    configs[selectedMenuType].levels[parts[1]].buttons[parts[2]]['label'] = inp.value;
+                    drawCirclePreview();
+                    generateButtonsControls();
+                    saveAllSettings();
+                })
+            }, delayToAddListeners)
+
+            openUrlContainer.appendChild(labelInput);
+
+            entry.appendChild(openUrlContainer);
+            // entry.innerHTML += '<br />';
+        }
+
+
+
         /// Move up/down buttons
-        var actionButtonsContainer = document.createElement('div');
+        const actionButtonsContainer = document.createElement('div');
         actionButtonsContainer.setAttribute('style', 'position: relative; right: -7px; padding-top: 3px ');
 
-        let moveUpButtonIdentifier = `moveUpButton-${levelIndex}-${i}`;
-        var moveUpButton = document.createElement('button');
+        const moveUpButtonIdentifier = `moveUpButton-${levelIndex}-${i}`;
+        const moveUpButton = document.createElement('button');
         moveUpButton.textContent = 'ᐱ';
         moveUpButton.setAttribute('style', 'max-width: 40px; min-width: 40px; padding: 1px; align-items: center');
         moveUpButton.setAttribute('id', moveUpButtonIdentifier);
@@ -809,9 +868,8 @@ function generateLevelConfigs(levelIndex = 0) {
             });
         }, delayToAddListeners);
 
-        let moveDownButtonIdentifier = `moveDownButton-${levelIndex}-${i}`;
-
-        var moveDownButton = document.createElement('button');
+        const moveDownButtonIdentifier = `moveDownButton-${levelIndex}-${i}`;
+        const moveDownButton = document.createElement('button');
         moveDownButton.textContent = 'ᐯ';
         moveDownButton.setAttribute('style', 'max-width: 40px; min-width: 40px;  padding: 1px; align-items: center');
         moveDownButton.setAttribute('id', moveDownButtonIdentifier);
