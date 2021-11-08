@@ -284,7 +284,8 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
 
                         image.onload = function () {
                             ctx.drawImage(image, dxForText - (iconSize / 2), dyForText - (verticalShiftForIcon == 0 && shouldDrawLabel ? 6 : verticalShiftForIcon) - (iconSize / (circleRadius - innerCircleRadius > iconSize * 2.5 ? 1.5 : 2)), iconSize, iconSize);
-                            // image.remove();
+                            if (showIndexes)
+                                image.remove();
                         }
                         image.onerror = function () {
                             image.remove();

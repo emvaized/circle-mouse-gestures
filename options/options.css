@@ -277,6 +277,17 @@ input {
     display: inline-block; opacity: 0.5; font-size: 16px; margin-left: 12px; vertical-align: middle; transition: opacity 150ms ease-out;
 }
 
+/* Ghost images for website favicons */
+[id^='cmg-ghost-favicon'] {
+    position: fixed; 
+    top: 0px; left: 0px; 
+    z-index: 888;
+    pointer-events: none !important;
+    opacity: 0;
+}
+
+
+
 @media (max-width: 800px) {
     #updateToApplyLabel, #navbar-title, #navbar-settings-label { display: none !important; }
     #content { margin-left: 0px !important; }
