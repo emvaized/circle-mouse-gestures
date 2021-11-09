@@ -46,7 +46,7 @@ function openImageFullscreen(elementUnderCursor) {
 
     /// Background dimmer
     let imgBackgroundDimmer = document.createElement('div');
-    imgBackgroundDimmer.setAttribute('style', `${clickOutsideToExit ? 'cursor: pointer;' : ''}z-index: 99999; width:${document.documentElement.clientWidth}px;height: ${document.documentElement.scrollHeight}px;  opacity: 0.0; transition: opacity ${transitionDuration}ms ease-in-out; position:fixed; background: black !important; top: 0px; left: 0px;`);
+    imgBackgroundDimmer.setAttribute('style', `${clickOutsideToExit ? 'cursor: pointer;' : ''}z-index: 99999; width:100%;height:100%;  opacity: 0.0; transition: opacity ${transitionDuration}ms ease-in-out; position:fixed; background: black !important; top: 0px; left: 0px;`);
     document.body.appendChild(imgBackgroundDimmer);
 
     /// Add dimmer listeners
@@ -95,23 +95,20 @@ function openImageFullscreen(elementUnderCursor) {
     hintSpan.innerHTML += '.<br/>';
     hintSpan.innerHTML += chrome.i18n.getMessage("rightClickToClose") ? chrome.i18n.getMessage("rightClickToClose") : 'Right click to close';
 
-    hintSpan.setAttribute('style', `all:revert;color: rgba(256,256,256,0.85); text-align: center; transition: opacity ${transitionDuration}ms ease-in-out; position: fixed; left: 50%; top: ${headerTopPadding}px; font-size: 18px; line-height: 1.25;font-family: Arial, sans-serif !important;`);
-    hintSpan.setAttribute('id', `smooth-image-view-top-hint`);
+    hintSpan.setAttribute('style', `all:revert; transition: opacity ${transitionDuration}ms ease-in-out; top: ${headerTopPadding}px; color: rgba(256,256,256,0.85); text-align: center;position: fixed; left: 50%; font-size: 18px; line-height: 1.25;font-family: Arial, sans-serif !important;`);
+    hintSpan.setAttribute('id', 'smooth-image-view-top-hint');
     imgBackgroundDimmer.appendChild(hintSpan);
     hintSpan.style.transform = `translate(-${hintSpan.clientWidth / 2}px, 0px)`;
 
     setTimeout(function () {
-        // let hint = document.getElementById('smooth-image-view-top-hint');
-        // hint.style.opacity = 0.0;
         hintSpan.style.opacity = 0.0;
-    }, 3000)
+    }, 3000);
 
     /// Buttons in top right corner
     let buttonSize = 24;
     let btnInnerPadding = 15;
     let topControlsContainer = document.createElement('div');
     topControlsContainer.setAttribute('style', `all:revert; position: fixed; z-index:100003; right: ${headerTopPadding}px; top: ${headerTopPadding - (buttonSize / 2)}px; transition: opacity ${transitionDuration}ms ease-in-out`);
-    document.body.appendChild(topControlsContainer);
 
     /// Add close button
     const closeButton = document.createElement('div');
@@ -143,7 +140,8 @@ function openImageFullscreen(elementUnderCursor) {
 
     const rotationLabel = document.createElement('span');
     rotationLabel.setAttribute('style', 'vertical-align: middle');
-    rotationLabel.innerText = '⟳';
+    // rotationLabel.innerText = '⟳';
+    rotationLabel.innerText = '⭮';
     rotateButton.appendChild(rotationLabel);
     topControlsContainer.appendChild(rotateButton);
 
@@ -195,7 +193,9 @@ function openImageFullscreen(elementUnderCursor) {
                 rotationWrapper.style.transform = `rotate(0deg)`;
             }, transitionDuration)
         }
-    })
+    });
+
+    document.body.appendChild(topControlsContainer);
 
     /// Create image
     let idForImage = 'cmg-fullscreen-image';

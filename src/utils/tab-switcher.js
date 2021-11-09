@@ -46,10 +46,9 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
 
         /// title
         const title = document.createElement('span');
-        title.textContent = tab.title;
+        title.textContent = (tab.audible ? '🔊 ' : '') + tab.title;
         title.style.verticalAlign = 'super';
         title.style.color = 'black';
-        tabTile.appendChild(title);
 
         /// special styling for horizontal layout
         if (!isVertical) {
@@ -59,7 +58,10 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
 
             title.classList.add('horizontal-tab-switcher-label');
             title.title = tab.title;
+        } else {
+            title.classList.add('vertical-tab-switcher-label');
         }
+        tabTile.appendChild(title);
 
         /// select on mouse down
         tabTile.addEventListener('mousedown', function () {
@@ -72,7 +74,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
             tabTile.style.border = '1.5px solid blue';
             focusedTile = i;
             setTimeout(function () {
-                tabTile.scrollIntoView({ block: 'center', inline: "center", behavior: "smooth" });
+                tabTile.scrollIntoView({ block: 'center', inline: "center" });
             }, 1)
         }
 
@@ -85,11 +87,11 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
         if (initScrollDirection == 'up') {
             focusedTile -= 1;
             tabTiles[focusedTile].classList.add('highlighted-tab');
-            tabTiles[focusedTile].scrollIntoView({ block: 'center', inline: "center", behavior: "smooth" });
+            tabTiles[focusedTile].scrollIntoView({ block: 'center', inline: "center" });
         } else if (initScrollDirection == 'down') {
             focusedTile += 1;
             tabTiles[focusedTile].classList.add('highlighted-tab');
-            tabTiles[focusedTile].scrollIntoView({ block: 'center', inline: "center", behavior: "smooth" });
+            tabTiles[focusedTile].scrollIntoView({ block: 'center', inline: "center" });
         }
     }
 
