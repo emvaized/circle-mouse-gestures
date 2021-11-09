@@ -37,7 +37,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
             filterInput.style.top = `${switcherRect.top - 50}px`;
             filterInput.style.left = `${switcherRect.left + 50}px`;
             filterInput.style.width = `${switcherRect.width}px`;
-            filterInput.placeholder = `${tabs.length} ${chrome.i18n.getMessage('tabsAmount').toLowerCase()} — ${chrome.i18n.getMessage('typeToQuery').toLowerCase()}`;
+            filterInput.placeholder = `${tabs.length} ${chrome.i18n.getMessage('tabsAmount').toLowerCase()} — ${chrome.i18n.getMessage('typeToQuery').toLowerCase()}...`;
             document.body.appendChild(filterInput);
             filterInput.focus();
 
