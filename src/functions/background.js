@@ -383,7 +383,6 @@ chrome.runtime.onMessage.addListener(
                     chrome.tabs.update(tabs[request.index].id, { active: true });
                 });
 
-                // chrome.tabs.update(request.index, { active: true });
                 return true;
             } break;
 

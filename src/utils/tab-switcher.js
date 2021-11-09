@@ -341,8 +341,11 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
             backgroundDimmer.onmouseout = null;
 
             setTimeout(function () {
-                backgroundDimmer.remove();
-                topControlsContainer.remove();
+                try {
+                    backgroundDimmer.remove();
+                    topControlsContainer.remove();
+                } catch (e) { }
+
             }, transitionDuration);
         }
 
