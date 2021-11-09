@@ -254,12 +254,13 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
 
 
     /// Buttons in top right corner
+    let topControlsContainer;
     if (!rightClickIsHolded) {
         let buttonSize = 24;
         let btnInnerPadding = 15;
         let headerTopPadding = 30;
 
-        let topControlsContainer = document.createElement('div');
+        topControlsContainer = document.createElement('div');
         topControlsContainer.setAttribute('style', `all:revert; position: fixed; z-index:100003; right: ${headerTopPadding}px; top: ${headerTopPadding - (buttonSize / 2)}px; transition: opacity ${transitionDuration}ms ease-in-out`);
 
         /// Add close button
