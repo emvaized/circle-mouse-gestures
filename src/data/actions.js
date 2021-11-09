@@ -22,13 +22,6 @@ const sortedActionButtons = {
             'moveTabLeft',
             'moveTabRight',
         ],
-        'window': [
-            'newWindow',
-            'moveToNewWindow',
-            'newPrivateWindow',
-            'openInPrivateWindow',
-            'closeWindow',
-        ],
         'page': [
             'pageZoomIn',
             'pageZoomOut',
@@ -48,6 +41,13 @@ const sortedActionButtons = {
             'scrollToBottom',
             'scrollPageUp',
             'scrollPageDown',
+        ],
+        'window': [
+            'newWindow',
+            'moveToNewWindow',
+            'newPrivateWindow',
+            'openInPrivateWindow',
+            'closeWindow',
         ],
         '—': [
             'noAction'

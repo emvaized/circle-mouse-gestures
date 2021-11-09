@@ -64,7 +64,6 @@ function setPageListeners() {
         } else if ("buttons" in evt) {
 
             /// Right click
-            // if (evt.button == 2) {
             if (evt.buttons == 2) {
                 rightClickIsHolded = true;
                 if (leftClickIsHolded) return;
@@ -333,28 +332,27 @@ function checkScrollDirection(event) {
         if (!configs.continiousVerticalScrollDetection && !circleIsShown) return;
 
         if (event.deltaY < 0) {
-            if (!circleIsShown && configs[typeOfMenu].mouseWheelUpAction.includes('showTabSwitcher')) return;
             event.preventDefault();
+            if (!circleIsShown && configs[typeOfMenu].mouseWheelUpAction.includes('showTabSwitcher')) return;
             triggerButtonAction(configs[typeOfMenu].mouseWheelUpAction, undefined, 'up');
         } else if (event.deltaY > 0) {
-            if (!circleIsShown && configs[typeOfMenu].mouseWheelUpAction.includes('showTabSwitcher')) return;
             event.preventDefault();
+            if (!circleIsShown && configs[typeOfMenu].mouseWheelUpAction.includes('showTabSwitcher')) return;
             triggerButtonAction(configs[typeOfMenu].mouseWheelDownAction, undefined, 'down');
         }
-    }
-    else {
+    } else {
 
         /// Horizontal scroll
         if (configs.horizontalWheelActionsEnabled) {
             if (!configs.continiousHorizontalScrollDetection && !circleIsShown) return;
 
             if (event.deltaX < 0) {
-                if (!circleIsShown && configs[typeOfMenu].mouseWheelUpAction.includes('showTabSwitcher')) return;
                 event.preventDefault();
+                if (!circleIsShown && configs[typeOfMenu].mouseWheelUpAction.includes('showTabSwitcher')) return;
                 triggerButtonAction(configs[typeOfMenu].mouseWheelLeftAction, undefined, 'up');
             } else if (event.deltaX > 0) {
-                if (!circleIsShown && configs[typeOfMenu].mouseWheelUpAction.includes('showTabSwitcher')) return;
                 event.preventDefault();
+                if (!circleIsShown && configs[typeOfMenu].mouseWheelUpAction.includes('showTabSwitcher')) return;
                 triggerButtonAction(configs[typeOfMenu].mouseWheelRightAction, undefined, 'down');
             }
         }
