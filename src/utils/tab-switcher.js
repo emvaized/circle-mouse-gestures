@@ -45,12 +45,6 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
             document.body.appendChild(filterInput);
             filterInput.focus();
 
-            /// close button
-            let closeButton = document.createElement('div');
-            closeButton.textContent = '✕';
-            closeButton.setAttribute('style', 'position: relative; left: 0px; color: white')
-            filterInput.appendChild(closeButton);
-
             /// add 'no tabs matching' placeholder
             let noTabsMatchingPlaceholder = document.createElement('span');
             noTabsMatchingPlaceholder.textContent = chrome.i18n.getMessage('noMatchingTabsFound');
@@ -207,30 +201,6 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
     }
 
 
-    /// Utility functions
-    function highlightUpperTab() {
-        if (focusedTile > 0) {
-            tabTiles[focusedTile].classList.remove('highlighted-tab');
-            focusedTile -= 1;
-            tabTiles[focusedTile].classList.add('highlighted-tab');
-            tabTiles[focusedTile].scrollIntoView({ block: verticalScrollAlign, inline: horizontalScrollAlign });
-        }
-    }
-
-    function highlightLowerTab() {
-        if (focusedTile < tabs.length - 1) {
-            tabTiles[focusedTile].classList.remove('highlighted-tab');
-            focusedTile += 1;
-            tabTiles[focusedTile].classList.add('highlighted-tab');
-            tabTiles[focusedTile].scrollIntoView({ block: verticalScrollAlign, inline: horizontalScrollAlign });
-        }
-    }
-
-    function selectTab(index) {
-        chrome.runtime.sendMessage({ actionToDo: 'switchToIndexedTab', index: index });
-    }
-
-
     /// Background dimmer
     let bgOpacity = 0.5;
     let clickOutsideToExit = true;
@@ -283,6 +253,62 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
     }, 1);
 
 
+    /// Buttons in top right corner
+    if (!rightClickIsHolded) {
+        let buttonSize = 24;
+        let btnInnerPadding = 15;
+        let headerTopPadding = 30;
+
+        let topControlsContainer = document.createElement('div');
+        topControlsContainer.setAttribute('style', `all:revert; position: fixed; z-index:100003; right: ${headerTopPadding}px; top: ${headerTopPadding - (buttonSize / 2)}px; transition: opacity ${transitionDuration}ms ease-in-out`);
+
+        /// Add close button
+        const closeButton = document.createElement('div');
+        closeButton.setAttribute('title', chrome.i18n.getMessage("closeLabel") ? chrome.i18n.getMessage("closeLabel") : 'Close');
+        closeButton.setAttribute('class', 'cmg-link-preview-button');
+        closeButton.style.width = `${buttonSize + btnInnerPadding}px`;
+        closeButton.style.height = `${buttonSize + btnInnerPadding}px`;
+        closeButton.style.fontSize = `${buttonSize}px`;
+
+        const btnLabel = document.createElement('span');
+        btnLabel.style.verticalAlign = 'middle';
+        btnLabel.innerText = '✕';
+        closeButton.appendChild(btnLabel);
+        topControlsContainer.appendChild(closeButton);
+
+        closeButton.addEventListener('mousedown', function () {
+            closeTabSwitcher();
+        });
+
+        document.body.appendChild(topControlsContainer);
+    }
+
+
+    /// Utility functions
+    function highlightUpperTab() {
+        if (focusedTile > 0) {
+            tabTiles[focusedTile].classList.remove('highlighted-tab');
+            focusedTile -= 1;
+            tabTiles[focusedTile].classList.add('highlighted-tab');
+            tabTiles[focusedTile].scrollIntoView({ block: verticalScrollAlign, inline: horizontalScrollAlign });
+        }
+    }
+
+    function highlightLowerTab() {
+        if (focusedTile < tabs.length - 1) {
+            tabTiles[focusedTile].classList.remove('highlighted-tab');
+            focusedTile += 1;
+            tabTiles[focusedTile].classList.add('highlighted-tab');
+            tabTiles[focusedTile].scrollIntoView({ block: verticalScrollAlign, inline: horizontalScrollAlign });
+        }
+    }
+
+    function selectTab(index) {
+        chrome.runtime.sendMessage({ actionToDo: 'switchToIndexedTab', index: index });
+    }
+
+    /// Close functions
+
     function closeTabSwitcher(transition = true) {
         hideBgDimmer();
         hideSwitcher(transition);
@@ -315,6 +341,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
 
             setTimeout(function () {
                 backgroundDimmer.remove();
+                topControlsContainer.remove();
             }, transitionDuration);
         }
 

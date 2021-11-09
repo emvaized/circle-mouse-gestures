@@ -120,7 +120,7 @@ function openImageFullscreen(elementUnderCursor) {
     closeButton.style.fontSize = `${buttonSize}px`;
 
     const btnLabel = document.createElement('span');
-    btnLabel.setAttribute('style', 'vertical-align: middle');
+    btnLabel.style.verticalAlign = 'middle';
     btnLabel.innerText = '✕';
     closeButton.appendChild(btnLabel);
     topControlsContainer.appendChild(closeButton);
