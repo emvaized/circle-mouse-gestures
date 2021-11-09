@@ -163,6 +163,10 @@
   padding: 6px; cursor: pointer;
 }
 
+.cmg-tab-switcher-entry span {
+  line-height: 1.25;
+}
+
 .cmg-tab-switcher-entry:hover {
   background: lightgray;
 }
