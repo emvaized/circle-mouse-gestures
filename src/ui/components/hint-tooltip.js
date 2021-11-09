@@ -3,10 +3,10 @@
 let hintTooltip, tooltipTimer;
 const hintSpacing = 5, fadeTransitionForHint = 100, curve = 'ease-out', borderRadius = 4;
 
-function showHintTooltip(id, bgColor, fgColor, isOnTop, opacity = 1.0) {
+function showHintTooltip(text, bgColor, fgColor, isOnTop, opacity = 1.0) {
     // if (hintTooltip != null) return;
     if (configs.debugMode)
-        console.log('showing hint tooltip for ' + id);
+        console.log('showing hint tooltip for ' + text);
     hintTooltip = document.createElement('div');
     hintTooltip.className = 'cmg-circle-hint-tooltip';
     hintTooltip.style.backgroundColor = bgColor;
@@ -18,7 +18,7 @@ function showHintTooltip(id, bgColor, fgColor, isOnTop, opacity = 1.0) {
     hintTooltip.style.fontSize = '15px';
     hintTooltip.style.textAlign = 'center';
     hintTooltip.style.transition = `opacity ${fadeTransitionForHint}ms ${curve}`;
-    hintTooltip.innerText = chrome.i18n.getMessage(id);
+    hintTooltip.innerText = text;
 
     hintTooltip.style.position = 'fixed';
     document.body.appendChild(hintTooltip);

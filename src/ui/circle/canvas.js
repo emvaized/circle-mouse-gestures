@@ -53,7 +53,8 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
                 if (!shouldDrawLabel && configs.showTitleOnHoverWhenHidden && showIndexes == false) {
                     tooltipTimer = setTimeout(function () {
                         let isOnTop = E.clientY < topCoord + (canvasRadius / 2);
-                        showHintTooltip(segment.id, colorForButton, `rgb(${outlineColorRgb.red}, ${outlineColorRgb.green}, ${outlineColorRgb.blue}`, isOnTop, levelOpacity);
+                        showHintTooltip(segment.id == 'openUrl' ? (segment.label ?? segment.url ?? chrome.i18n.getMessage(segment.id)) : chrome.i18n.getMessage(segment.id),
+                            colorForButton, `rgb(${outlineColorRgb.red}, ${outlineColorRgb.green}, ${outlineColorRgb.blue}`, isOnTop, levelOpacity);
                     }, configs.delayToShowTitleOnHoverWhenHidden)
                 }
             } catch (error) {
@@ -227,8 +228,6 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
             textToDraw = segment.label ?? segment.url ?? returnActionLabel(segment.id);
         else
             textToDraw = returnActionLabel(segment.id);
-
-
 
         if (textToDraw.length >= 21) {
             /// Obfuscate shortened label with '...'
