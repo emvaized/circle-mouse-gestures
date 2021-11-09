@@ -177,14 +177,14 @@
 
 .horizontal-tab-switcher-label {
   max-height: 50px;
-  max-width: 75px;
+  width: 75px;
   display: block;
   overflow: hidden;
-  font-size: 13px;
+  font-size: 13px !important;
 }
 
 .vertical-tab-switcher-label{
-  font-size: 14px;
+  font-size: 14px !important;
 }
 
 .cmg-tab-switcher-filter {

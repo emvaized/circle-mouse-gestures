@@ -1,7 +1,7 @@
 function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
     const transitionDuration = 200;
     const verticalFaviconSize = 20;
-    const horizontalFaviconSize = 60;
+    let horizontalFaviconSize = 60;
     const verticalScrollAlign = 'nearest'; // 'center'
     const horizontalScrollAlign = 'nearest'; // 'center'
     const borderRadius = 3;
@@ -92,7 +92,37 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
 
         /// favicon
         const favicon = document.createElement('img');
-        favicon.src = tab.favIconUrl;
+
+        /// use tab thumbnail image if available
+        let imgSrc;
+        if (!isVertical && tab.extData) {
+            let parsed = JSON.parse(tab.extData);
+            if (parsed.thumbnail) {
+                imgSrc = parsed.thumbnail;
+                favicon.style.aspectRatio = 'auto';
+                favicon.style.width = 'unset';
+                horizontalFaviconSize = 75;
+
+                /// add website favicon when using thumbnail
+                setTimeout(function () {
+                    let siteFavicon = document.createElement('img');
+                    siteFavicon.setAttribute('height', `15px`);
+                    siteFavicon.setAttribute('width', `15px`);
+                    siteFavicon.src = tab.favIconUrl;
+
+                    siteFavicon.style.display = 'block';
+                    siteFavicon.style.margin = '3px auto';
+                    tabTile.prepend(siteFavicon);
+
+                    title.style.width = '110px';
+                }, 1)
+
+            }
+        }
+
+        if (!imgSrc) imgSrc = tab.favIconUrl;
+        favicon.src = imgSrc;
+
         favicon.setAttribute('height', isVertical ? `${verticalFaviconSize}px` : `${horizontalFaviconSize}px`);
         favicon.setAttribute('width', isVertical ? `${verticalFaviconSize}px` : `${horizontalFaviconSize}px`);
         favicon.style.display = 'inline';
@@ -127,7 +157,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
         })
 
         /// draw border around selected
-        if (tab.selected) {
+        if (tab.active) {
             tabTile.style.border = '1.5px solid blue';
             focusedTile = i;
             setTimeout(function () {
@@ -187,16 +217,18 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
         if (e.key === "Escape") { // escape key maps to keycode `27`
             e.preventDefault();
             closeTabSwitcher();
-        } else if (e.key == 'ArrowUp') {
-            e.preventDefault();
-            highlightUpperTab();
-        } else if (e.key == 'ArrowDown') {
-            e.preventDefault();
-            highlightLowerTab();
         } else if (e.key == 'Enter') {
             e.preventDefault();
             closeTabSwitcher(false);
             selectTab(focusedTile);
+        }
+
+        if ((isVertical && e.key == 'ArrowUp') || (!isVertical && e.key == 'ArrowLeft')) {
+            e.preventDefault();
+            highlightUpperTab();
+        } else if ((isVertical && e.key == 'ArrowDown') || (!isVertical && e.key == 'ArrowRight')) {
+            e.preventDefault();
+            highlightLowerTab();
         }
     }
 
