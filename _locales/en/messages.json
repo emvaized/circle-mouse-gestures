@@ -547,6 +547,10 @@
         "message": "No animation",
         "description": ""
     },
+    "noMatchingTabsFound": {
+        "message": "No matching tabs found",
+        "description": ""
+    },
     "normalPlaybackSpeed": {
         "message": "Normal speed",
         "description": ""
@@ -796,11 +800,11 @@
         "description": ""
     },
     "showTabSwitcherHorizontal": {
-        "message": "Open tab switcher (horizontal)",
+        "message": "Tab switcher (horizontal)",
         "description": ""
     },
     "showTabSwitcherVertical": {
-        "message": "Open tab switcher (vertical)",
+        "message": "Tab switcher (vertical)",
         "description": ""
     },
     "showTitleOnHoverWhenHidden": {
@@ -847,6 +851,10 @@
         "message": "Tab",
         "description": ""
     },
+    "tabsAmount": {
+        "message": "Tabs",
+        "description": ""
+    },
     "textFieldMenu": {
         "message": "Menu for input field",
         "description": ""
@@ -861,6 +869,10 @@
     },
     "translate": {
         "message": "Translate",
+        "description": ""
+    },
+    "typeToQuery": {
+        "message": "Type to query",
         "description": ""
     },
     "underlineText": {

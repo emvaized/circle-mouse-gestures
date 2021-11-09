@@ -16,18 +16,70 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
         container.classList.add('horizontal-switcher');
     }
 
+    /// align at center
+    container.classList.add('center-aligned-switcher');
 
     /// trigger show-up transition
     setTimeout(function () {
         container.style.opacity = 1;
+
+        /// add search query only when in static mode
+        if (!rightClickIsHolded) {
+            const switcherRect = container.getBoundingClientRect();
+            container.classList.remove('center-aligned-switcher');
+            container.style.top = `${switcherRect.top}px`
+            container.style.left = `${switcherRect.left}px`
+
+            /// add filter input
+            filterInput = document.createElement('input');
+            filterInput.className = 'cmg-tab-switcher-filter';
+            // filterInput.setAttribute('autofocus', true);
+            filterInput.style.top = `${switcherRect.top - 50}px`;
+            filterInput.style.left = `${switcherRect.left + 50}px`;
+            filterInput.style.width = `${switcherRect.width}px`;
+            filterInput.placeholder = `${tabs.length} ${chrome.i18n.getMessage('tabsAmount').toLowerCase()} — ${chrome.i18n.getMessage('typeToQuery').toLowerCase()}`;
+            document.body.appendChild(filterInput);
+            filterInput.focus();
+
+            /// add 'no tabs matching' placeholder
+            let noTabsMatchingPlaceholder = document.createElement('span');
+            noTabsMatchingPlaceholder.textContent = chrome.i18n.getMessage('noMatchingTabsFound');
+            noTabsMatchingPlaceholder.style.display = 'none';
+            container.appendChild(noTabsMatchingPlaceholder);
+
+            filterInput.addEventListener('input', function (q) {
+                let val = filterInput.value.toLowerCase();
+                let atLeastOneTabVisible = false;
+
+                focusedTile = 0;
+
+                for (i = 0; i < tabsLength; i++) {
+                    if (tabs[i].title.toLowerCase().indexOf(val) > -1 || tabs[i].url.toLowerCase().indexOf(val) > -1) {
+                        tabTiles[i].style.display = "";
+                        atLeastOneTabVisible = true;
+                    } else {
+                        tabTiles[i].style.display = "none";
+                    }
+                }
+
+                /// make placeholder visible
+                if (atLeastOneTabVisible) {
+                    noTabsMatchingPlaceholder.style.display = 'none';
+                } else {
+                    noTabsMatchingPlaceholder.style.display = '';
+                }
+
+            });
+        }
+
     }, 0);
 
     /// Generate tab tiles
     const tabTiles = [];
     let focusedTile = -1;
 
-    const l = tabs.length;
-    for (let i = 0; i < l; i++) {
+    const tabsLength = tabs.length;
+    for (let i = 0; i < tabsLength; i++) {
         const tab = tabs[i];
 
         const tabTile = document.createElement('div');
@@ -235,7 +287,11 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
         container.style.opacity = 0;
         setTimeout(function () {
             container.remove();
-        }, transitionDuration)
+        }, transitionDuration);
+
+        try {
+            filterInput.remove();
+        } catch (e) { }
     }
 
     function hideBgDimmer(transition = true) {

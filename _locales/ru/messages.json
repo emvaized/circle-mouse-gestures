@@ -547,6 +547,10 @@
         "message": "Без анимации",
         "description": ""
     },
+    "noMatchingTabsFound": {
+        "message": "Нет вкладок, соответствующих запросу",
+        "description": ""
+    },
     "normalPlaybackSpeed": {
         "message": "Нормальная скорость",
         "description": ""
@@ -796,11 +800,11 @@
         "description": ""
     },
     "showTabSwitcherHorizontal": {
-        "message": "Переключатель вкладок (гориз.)",
+        "message": "Список вкладок (гориз.)",
         "description": ""
     },
     "showTabSwitcherVertical": {
-        "message": "Переключатель вкладок (верт.)",
+        "message": "Список вкладок (верт.)",
         "description": ""
     },
     "showTitleOnHoverWhenHidden": {
@@ -847,6 +851,10 @@
         "message": "Вкладка",
         "description": ""
     },
+    "tabsAmount": {
+        "message": "Вкладок",
+        "description": ""
+    },
     "textFieldMenu": {
         "message": "Меню поля ввода",
         "description": ""
@@ -865,6 +873,10 @@
     },
     "translatePage": {
         "message": "Перевести страницу",
+        "description": ""
+    },
+    "typeToQuery": {
+        "message": "Введите, чтобы искать",
         "description": ""
     },
     "underlineText": {
