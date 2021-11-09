@@ -136,7 +136,7 @@
   z-index: 999999;
   opacity: 0;
   padding: 6px;
-
+  border-radius: 4px;
 }
 
 .center-aligned-switcher {

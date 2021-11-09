@@ -247,10 +247,11 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
         ctx.font = `${iconSize}px sans-serif`;
 
         if (segment.id !== 'noAction' & configs.showActionIcons)
-            if (actionIcons[segment.id].length <= 3) {
-                /// Draw unicode icon
-                ctx.fillText(actionIcons[segment.id], dxForText, dyForText - (circleRadius - innerCircleRadius > iconSize * 2.5 ? 4 : -4) - (verticalShiftForIcon == 0 ? 6 : verticalShiftForIcon) / 2);
-            } else if (segment.id == 'openUrl' && segment.url) {
+            // if (actionIcons[segment.id].length <= 3) {
+            //     /// Draw unicode icon
+            //     ctx.fillText(actionIcons[segment.id], dxForText, dyForText - (circleRadius - innerCircleRadius > iconSize * 2.5 ? 4 : -4) - (verticalShiftForIcon == 0 ? 6 : verticalShiftForIcon) / 2);
+            // } else 
+            if (segment.id == 'openUrl' && segment.url) {
 
                 function errorCallback() {
                     /// Draw SVG icon
@@ -264,8 +265,7 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
                         ctx.fill(p);
                         ctx.restore();
                     } catch (e) {
-                        if (configs.debugMode)
-                            if (configs.debugMode) console.log(e);
+                        if (configs.debugMode) console.log(e);
                     }
                 }
 

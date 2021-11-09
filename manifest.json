@@ -11,7 +11,7 @@
   },
   "background": {
     "scripts": [
-      "src/functions/background-functions.js"
+      "src/functions/background.js"
     ],
     "persistent": false
   },
@@ -37,13 +37,12 @@
         "src/functions/image-functions.js",
         "src/functions/scroll-functions.js",
         "src/functions/text-format-functions.js",
-        "src/functions/input-changes-stack.js",
-        "src/utils/fullscreen-image.js",
+        "src/utils/image-viewer.js",
         "src/utils/link-preview.js",
         "src/utils/text-too-long.js",
         "src/utils/tab-switcher.js",
         "src/ui/circle/circle.js",
-        "src/ui/circle/circle-level-drawer.js",
+        "src/ui/circle/canvas.js",
         "src/ui/circle/bg-dimmer.js",
         "src/ui/components/helper-tooltip.js",
         "src/ui/components/hint-tooltip.js",

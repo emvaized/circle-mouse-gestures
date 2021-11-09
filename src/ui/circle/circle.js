@@ -489,6 +489,11 @@ function hideCircle() {
             }
 
             selectedButtons = {};
+
+            /// Hide all ghost images for website favicons
+            document.querySelectorAll(`[id^='cmg-ghost-favicon']`).forEach(function (favicon) {
+                favicon.remove();
+            })
         }, configs.hideCircleAnimation == 'noAnimation' ? 0 : configs.animationDuration);
 
         buttonsAvailability = {};
@@ -507,10 +512,6 @@ function hideCircle() {
         if (rockerCircle !== null)
             hideRockerIcon(rocketButtonPressed !== null);
 
-        /// Hide all ghost images for website favicons
-        document.querySelectorAll(`[id^='cmg-ghost-favicon']`).forEach(function (favicon) {
-            favicon.remove();
-        })
 
     } catch (e) { if (configs.debugMode) console.log(e); }
 }
