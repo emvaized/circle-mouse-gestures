@@ -4,12 +4,15 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
     const horizontalFaviconSize = 60;
     const verticalScrollAlign = 'nearest'; // 'center'
     const horizontalScrollAlign = 'nearest'; // 'center'
-    const borderRadius = 4;
+    const borderRadius = 3;
+
+    let filterInput;
 
     /// main container
     const container = document.createElement('div');
     container.className = 'cmg-tab-switcher';
     container.style.transition = `opacity ${transitionDuration}ms ease-out`;
+    container.style.borderRadius = borderRadius + 'px';
     if (isVertical) {
         container.classList.add('vertical-switcher');
     } else {
@@ -18,6 +21,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
 
     /// align at center
     container.classList.add('center-aligned-switcher');
+
 
     /// trigger show-up transition
     setTimeout(function () {
@@ -40,6 +44,12 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
             filterInput.placeholder = `${tabs.length} ${chrome.i18n.getMessage('tabsAmount').toLowerCase()} — ${chrome.i18n.getMessage('typeToQuery').toLowerCase()}...`;
             document.body.appendChild(filterInput);
             filterInput.focus();
+
+            /// close button
+            let closeButton = document.createElement('div');
+            closeButton.textContent = '✕';
+            closeButton.setAttribute('style', 'position: relative; left: 0px; color: white')
+            filterInput.appendChild(closeButton);
 
             /// add 'no tabs matching' placeholder
             let noTabsMatchingPlaceholder = document.createElement('span');
