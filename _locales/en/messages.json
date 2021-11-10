@@ -176,7 +176,7 @@
         "description": ""
     },
     "continiousScrollDetectionHint": {
-        "message": "Allows to continuously register an action while right mouse button is pressed. \nUseful for some actions, for example Zoom in/out page",
+        "message": "Allows to continuously register an action while right mouse button is pressed. \n\nUseful for some actions, for example Page zoom in/out, or Open tab switcher",
         "description": ""
     },
     "continiousVerticalScrollDetection": {

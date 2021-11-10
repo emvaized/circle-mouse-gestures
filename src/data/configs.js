@@ -39,7 +39,7 @@ const configs = {
     'showTitleOnHoverWhenHidden': true,
     'horizontalWheelActionsEnabled': false,
     'continiousVerticalScrollDetection': true,
-    'continiousHorizontalScrollDetection': false,
+    'continiousHorizontalScrollDetection': true,
     'applySettingsImmediately': false,
     'delayToShowTitleOnHoverWhenHidden': 600, // ms
     'circleShadowOpacity': 0.3,
@@ -62,8 +62,8 @@ const configs = {
         'rockerMiddleClick': 'noAction',
         'mouseWheelUpAction': 'pageZoomIn',
         'mouseWheelDownAction': 'pageZoomOut',
-        'mouseWheelLeftAction': 'noAction',
-        'mouseWheelRightAction': 'noAction',
+        'mouseWheelLeftAction': 'showTabSwitcherHorizontal',
+        'mouseWheelRightAction': 'showTabSwitcherHorizontal',
         'levels': [
             {
                 'width': 100,

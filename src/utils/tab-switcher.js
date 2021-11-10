@@ -11,6 +11,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
     const verticalScrollAlign = 'nearest'; // 'center'
     const horizontalScrollAlign = 'nearest'; // 'center'
     const borderRadius = 3;
+    const enabledContiniousScrollDetection = ((isVertical && configs.continiousVerticalScrollDetection) || (!isVertical && configs.continiousHorizontalScrollDetection));
 
     let filterInput;
 
@@ -33,7 +34,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
         container.style.opacity = 1;
 
         /// add search query only when in static mode
-        if (!rightClickIsHolded) {
+        if (!rightClickIsHolded || !enabledContiniousScrollDetection) {
             const switcherRect = container.getBoundingClientRect();
             container.classList.remove('center-aligned-switcher');
             container.style.top = `${switcherRect.top}px`
@@ -175,7 +176,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
     }
 
     /// initial scroll direction
-    if (initScrollDirection) {
+    if (initScrollDirection && enabledContiniousScrollDetection) {
         if (initScrollDirection == 'up') {
             focusedTile -= 1;
             tabTiles[focusedTile].classList.add('highlighted-tab');
@@ -188,7 +189,8 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
     }
 
     /// Make switcher controllable by scroll
-    if (rightClickIsHolded) {
+    // if (rightClickIsHolded) {
+    if (rightClickIsHolded && enabledContiniousScrollDetection) {
         document.addEventListener('mouseup', mouseUpScrollListener);
         document.addEventListener('wheel', scrollListener, { passive: false });
         container.style.pointerEvents = 'none';
@@ -292,7 +294,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
 
     /// Buttons in top right corner
     let topControlsContainer;
-    if (!rightClickIsHolded) {
+    if (!rightClickIsHolded || !enabledContiniousScrollDetection) {
         let buttonSize = 24;
         let btnInnerPadding = 15;
         let headerTopPadding = 30;
