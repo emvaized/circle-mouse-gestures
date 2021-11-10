@@ -50,6 +50,7 @@ const configs = {
     'blurRadius': 4,
     'showActionIcons': true,
     'hideLabelIfNoSpace': true,
+    'showUpdateNotification': true,
     'excludedDomains': '',
     'showCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
     'hideCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'

@@ -815,6 +815,10 @@
         "message": "When action is icon-only, show tooltip with label on hover",
         "description": ""
     },
+    "showUpdateNotification": {
+        "message": "Show notification on extension update",
+        "description": ""
+    },
     "slowerPlaybackSpeed": {
         "message": "Slower speed",
         "description": ""
@@ -893,6 +897,20 @@
     },
     "updateToApply": {
         "message": "Update tabs to apply new settings",
+        "description": ""
+    },
+    "updateNotificationTitle": {
+        "message": "CMG was updated to $VERSION$",
+        "description": "",
+        "placeholders": {
+            "version": {
+                "content": "$1",
+                "example": "1.0.0"
+            }
+        }
+    },
+    "updateNotificationMessage": {
+        "message": "Click here to see what's new",
         "description": ""
     },
     "useCustomColor": {

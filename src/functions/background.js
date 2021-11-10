@@ -3,19 +3,27 @@ chrome.runtime.onInstalled.addListener(function (details) {
     if (details.reason == 'install') {
         chrome.runtime.openOptionsPage();
     }
-    // else if (details.reason == 'update') {
-    //             // show update notification
-    //             if (Config.get("Settings.General.updateNotification")) {
-    //                 // get manifest for new version number
-    //                 const manifest = browser.runtime.getManifest();
-    //                 // show update notification and open changelog on click
-    //                 displayNotification(
-    //                     browser.i18n.getMessage('addonUpdateNotificationTitle', manifest.name),
-    //                     browser.i18n.getMessage('addonUpdateNotificationMessage', manifest.version),
-    //                     "https://github.com/Robbendebiene/Gesturefy/releases"
-    //                 );
-    //             }
-    // }
+    else if (details.reason == 'update') {
+        // show update notification
+        let shouldShowNotification = true;
+        const storageKey = 'showUpdateNotification';
+
+        chrome.storage.local.get([storageKey], function (val) {
+            if (val[storageKey] !== null && val[storageKey] !== undefined)
+                shouldShowNotification = val[storageKey];
+
+            if (shouldShowNotification) {
+                // get manifest for new version number
+                const manifest = chrome.runtime.getManifest();
+                // show update notification and open changelog on click
+                displayNotification(
+                    chrome.i18n.getMessage('updateNotificationTitle', manifest.version),
+                    chrome.i18n.getMessage('updateNotificationMessage'),
+                    "https://github.com/emvaized/circle-mouse-gestures/blob/master/CHANGELOG.md"
+                );
+            }
+        });
+    }
 });
 
 /// Listener to open url in new tab
@@ -413,13 +421,24 @@ async function copyPrefetchedImage(blob, callback) {
  **/
 function displayNotification(title, message, link, image) {
     // create notification
-    // const createNotification = 
+    // const createNotification =
     chrome.notifications.create({
         "type": "basic",
         "iconUrl": image ?? "../../icons/icon-monotone-48.png",
         "title": title,
-        "message": message
+        "message": message,
+    }, function (notificationId) {
+        // if an URL is specified register an onclick listener
+        if (link)
+            chrome.notifications.onClicked.addListener(function handleNotificationClick(id) {
+                if (id === notificationId) {
+                    chrome.tabs.create({
+                        url: link,
+                        active: true
+                    });
+                    // remove event listener
+                    chrome.notifications.onClicked.removeListener(handleNotificationClick);
+                }
+            });
     });
 }
-
-

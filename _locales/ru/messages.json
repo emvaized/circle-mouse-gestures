@@ -815,6 +815,10 @@
         "message": "Когда видима только иконка, показывать подсказку с заголовком действия при наведении",
         "description": ""
     },
+    "showUpdateNotification": {
+        "message": "Показать уведомление при обновлении CMG",
+        "description": ""
+    },
     "slowerPlaybackSpeed": {
         "message": "Медленная скорость",
         "description": ""
@@ -893,6 +897,20 @@
     },
     "untoggleFullscreen": {
         "message": "Выйти из полноэкранного режима",
+        "description": ""
+    },
+    "updateNotificationTitle": {
+        "message": "CMG обновился до $VERSION$",
+        "description": "",
+        "placeholders": {
+            "version": {
+                "content": "$1",
+                "example": "1.0.0"
+            }
+        }
+    },
+    "updateNotificationMessage": {
+        "message": "Кликните, чтобы узнать что нового",
         "description": ""
     },
     "updateToApply": {

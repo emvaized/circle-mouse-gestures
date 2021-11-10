@@ -289,6 +289,7 @@ function generateBehaviorConfigs() {
         'continiousVerticalScrollDetection',
         'continiousHorizontalScrollDetection',
         'copyNotification',
+        'showUpdateNotification',
         'addGhostPointer',
         // 'animateHideRelativeToSelected',
         // 'circleHideAnimation',
