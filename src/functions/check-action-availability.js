@@ -1,4 +1,6 @@
 function checkButtonAvailability(e, id) {
+    if (!configs.checkButtonsAvailability) return true;
+
     switch (id) {
         case 'scrollToTop': return canScrollTop(elementUnderCursor);
         case 'scrollToBottom': return canScrollBottom(elementUnderCursor);

@@ -111,6 +111,14 @@
         "message": "Buttons",
         "description": ""
     },
+    "checkButtonsAvailability": {
+        "message": "Check buttons availability",
+        "description": ""
+    },
+    "checkButtonsAvailabilityTooltip": {
+        "message": "When CMG detects that action is not available, icon will be greyed out.\n\n Disabling this may improve performance",
+        "description": ""
+    },
     "circleHideAnimation": {
         "message": "Circle hide animation",
         "description": ""

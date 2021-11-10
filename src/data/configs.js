@@ -51,6 +51,7 @@ const configs = {
     'showActionIcons': true,
     'hideLabelIfNoSpace': true,
     'showUpdateNotification': true,
+    'checkButtonsAvailability': true,
     'excludedDomains': '',
     'showCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
     'hideCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'

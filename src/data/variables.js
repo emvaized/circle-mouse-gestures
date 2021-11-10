@@ -100,6 +100,8 @@ var defaultConfigs = {
     'addBlur': false,
     'showActionIcons': true,
     'hideLabelIfNoSpace': true,
+    'showUpdateNotification': true,
+    'checkButtonsAvailability': true,
     'blurRadius': 4,
     'excludedDomains': '',
     'showCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'

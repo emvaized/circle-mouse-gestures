@@ -291,6 +291,7 @@ function generateBehaviorConfigs() {
         'copyNotification',
         'showUpdateNotification',
         'addGhostPointer',
+        'checkButtonsAvailability',
         // 'animateHideRelativeToSelected',
         // 'circleHideAnimation',
     ];
@@ -336,6 +337,7 @@ function generateBehaviorConfigs() {
     document.getElementById('applySettingsImmediatelyTooltip').innerText = chrome.i18n.getMessage('applySettingsImmediatelyTooltip');
     document.getElementById('addBlurTooltip').innerText = chrome.i18n.getMessage('addBlurTooltip');
     document.getElementById('addGhostPointerTooltip').innerText = chrome.i18n.getMessage('addGhostPointerTooltip');
+    document.getElementById('checkButtonsAvailabilityTooltip').innerText = chrome.i18n.getMessage('checkButtonsAvailabilityTooltip');
 
     /// Proccess 'inactive menu for item behavior' dropdown
     let inactiveMenuBehavior = document.getElementById('inactiveMenuBehavior');

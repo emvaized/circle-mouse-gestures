@@ -107,6 +107,14 @@
         "message": "Кнопки",
         "description": ""
     },
+    "checkButtonsAvailability": {
+        "message": "Проверять доступность действий",
+        "description": ""
+    },
+    "checkButtonsAvailabilityTooltip": {
+        "message": "Когда CMG понимает, что действие недоступно, иконка будет затемнена.\n\n Отключение этого может улучшить производительность",
+        "description": ""
+    },
     "circleHideAnimation": {
         "message": "Анимация исчезновения меню",
         "description": ""
