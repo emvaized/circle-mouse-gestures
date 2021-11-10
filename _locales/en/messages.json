@@ -775,6 +775,10 @@
         "message": "Select more",
         "description": ""
     },
+    "selectLastVisitedTab": {
+        "message": "Recent tab",
+        "description": ""
+    },
     "selectedText": {
         "message": "Selected text",
         "description": ""

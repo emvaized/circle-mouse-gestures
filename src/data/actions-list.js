@@ -6,6 +6,7 @@ const sortedActionButtons = {
             'goForward',
             'switchToPreviousTab',
             'switchToNextTab',
+            'selectLastVisitedTab',
 
             'openUrl',
             'showTabSwitcherVertical',

@@ -26,11 +26,31 @@ chrome.runtime.onInstalled.addListener(function (details) {
     }
 });
 
+/// Keep track of last 2 tabs ids for switching between them with 'Recent tab' action 
+const recentTabIndexes = [];
+chrome.tabs.onActivated.addListener(function (activeInfo) {
+    recentTabIndexes.push(activeInfo.tabId);
+    if (recentTabIndexes.length > 2) recentTabIndexes.shift();
+});
+
+
 /// Listener to open url in new tab
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
         // if (request.typeOfAction == 'mgc-regular-menu')
         switch (request.actionToDo) {
+            case 'checkSelectLastVisitedTab': {
+                chrome.tabs.get(recentTabIndexes[0], function (tab) {
+                    sendResponse(tab);
+                });
+                return true;
+            } break;
+
+            case 'selectLastVisitedTab': {
+                if (recentTabIndexes.length > 0)
+                    chrome.tabs.update(recentTabIndexes[0], { active: true });
+            } break;
+
             case 'newTab': {
                 chrome.tabs.create({ index: sender.tab.index + 1 });
             } break;

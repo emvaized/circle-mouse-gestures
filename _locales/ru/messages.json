@@ -771,6 +771,10 @@
         "message": "Выделить всё",
         "description": ""
     },
+    "selectLastVisitedTab": {
+        "message": "Посл. вкладка",
+        "description": ""
+    },
     "selectMore": {
         "message": "Выделить больше",
         "description": ""
