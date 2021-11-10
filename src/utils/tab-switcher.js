@@ -13,7 +13,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
     const borderRadius = 3;
     const enabledContiniousScrollDetection = ((isVertical && configs.continiousVerticalScrollDetection) || (!isVertical && configs.continiousHorizontalScrollDetection));
 
-    let filterInput;
+    let filterInput, topControlsContainer;
 
     /// main container
     const container = document.createElement('div');
@@ -37,15 +37,17 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
         if (!rightClickIsHolded || !enabledContiniousScrollDetection) {
             const switcherRect = container.getBoundingClientRect();
             container.classList.remove('center-aligned-switcher');
-            container.style.top = `${switcherRect.top}px`
-            container.style.left = `${switcherRect.left}px`
+            container.style.top = `${switcherRect.top}px`;
+            container.style.left = `${switcherRect.left}px`;
+
+            const closeButtonSize = 24;
 
             /// add filter input
             filterInput = document.createElement('input');
             filterInput.className = 'cmg-tab-switcher-filter';
             // filterInput.setAttribute('autofocus', true);
             filterInput.style.top = `${switcherRect.top - 50}px`;
-            filterInput.style.left = `${switcherRect.left + 50}px`;
+            filterInput.style.left = `${switcherRect.left}px`;
             filterInput.style.width = `${switcherRect.width}px`;
             filterInput.placeholder = `${tabs.length} ${chrome.i18n.getMessage('tabsAmount').toLowerCase()} — ${chrome.i18n.getMessage('typeToQuery').toLowerCase()}...`;
             document.body.appendChild(filterInput);
@@ -80,7 +82,35 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
                 }
 
             });
+
+            /// Add close button in top right corner
+            let btnInnerPadding = 15;
+
+            topControlsContainer = document.createElement('div');
+            // topControlsContainer.setAttribute('style', `all:revert; position: fixed; z-index:100003; right: ${headerTopPadding}px; top: ${headerTopPadding - (buttonSize / 2)}px; transition: opacity ${transitionDuration}ms ease-in-out`);
+            topControlsContainer.setAttribute('style', `all:revert; position: fixed; z-index:100003; left: ${switcherRect.left + switcherRect.width + (closeButtonSize / 2)}px; top: ${switcherRect.top - (closeButtonSize * 2.5)}px; transition: opacity ${transitionDuration}ms ease-in-out`);
+
+            /// Add close button
+            const closeButton = document.createElement('div');
+            closeButton.setAttribute('title', chrome.i18n.getMessage("closeLabel") ? chrome.i18n.getMessage("closeLabel") : 'Close');
+            closeButton.setAttribute('class', 'cmg-link-preview-button');
+            closeButton.style.width = `${closeButtonSize + btnInnerPadding}px`;
+            closeButton.style.height = `${closeButtonSize + btnInnerPadding}px`;
+            closeButton.style.fontSize = `${closeButtonSize}px`;
+
+            const btnLabel = document.createElement('span');
+            btnLabel.style.verticalAlign = 'middle';
+            btnLabel.innerText = '✕';
+            closeButton.appendChild(btnLabel);
+            topControlsContainer.appendChild(closeButton);
+
+            closeButton.addEventListener('mousedown', function () {
+                closeTabSwitcher();
+            });
+
+            document.body.appendChild(topControlsContainer);
         }
+
 
     }, 0);
 
@@ -290,38 +320,6 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
             }
         }
     }, 1);
-
-
-    /// Buttons in top right corner
-    let topControlsContainer;
-    if (!rightClickIsHolded || !enabledContiniousScrollDetection) {
-        let buttonSize = 24;
-        let btnInnerPadding = 15;
-        let headerTopPadding = 30;
-
-        topControlsContainer = document.createElement('div');
-        topControlsContainer.setAttribute('style', `all:revert; position: fixed; z-index:100003; right: ${headerTopPadding}px; top: ${headerTopPadding - (buttonSize / 2)}px; transition: opacity ${transitionDuration}ms ease-in-out`);
-
-        /// Add close button
-        const closeButton = document.createElement('div');
-        closeButton.setAttribute('title', chrome.i18n.getMessage("closeLabel") ? chrome.i18n.getMessage("closeLabel") : 'Close');
-        closeButton.setAttribute('class', 'cmg-link-preview-button');
-        closeButton.style.width = `${buttonSize + btnInnerPadding}px`;
-        closeButton.style.height = `${buttonSize + btnInnerPadding}px`;
-        closeButton.style.fontSize = `${buttonSize}px`;
-
-        const btnLabel = document.createElement('span');
-        btnLabel.style.verticalAlign = 'middle';
-        btnLabel.innerText = '✕';
-        closeButton.appendChild(btnLabel);
-        topControlsContainer.appendChild(closeButton);
-
-        closeButton.addEventListener('mousedown', function () {
-            closeTabSwitcher();
-        });
-
-        document.body.appendChild(topControlsContainer);
-    }
 
 
     /// Utility functions
