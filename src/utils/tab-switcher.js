@@ -207,11 +207,11 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
 
     /// initial scroll direction
     if (initScrollDirection && enabledContiniousScrollDetection) {
-        if (initScrollDirection == 'up') {
+        if (initScrollDirection == 'up' && focusedTile > 0) {
             focusedTile -= 1;
             tabTiles[focusedTile].classList.add('highlighted-tab');
             tabTiles[focusedTile].scrollIntoView({ block: verticalScrollAlign, inline: horizontalScrollAlign });
-        } else if (initScrollDirection == 'down') {
+        } else if (initScrollDirection == 'down' && focusedTile < tabs.length - 1) {
             focusedTile += 1;
             tabTiles[focusedTile].classList.add('highlighted-tab');
             tabTiles[focusedTile].scrollIntoView({ block: verticalScrollAlign, inline: horizontalScrollAlign });
