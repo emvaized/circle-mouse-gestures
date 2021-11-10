@@ -1,4 +1,10 @@
 function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
+
+    if (configs.debugMode) {
+        console.log('List of tabs for tabs switcher:');
+        console.log(tabs);
+    }
+
     const transitionDuration = 200;
     const verticalFaviconSize = 20;
     let horizontalFaviconSize = 60;
@@ -21,7 +27,6 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
 
     /// align at center
     container.classList.add('center-aligned-switcher');
-
 
     /// trigger show-up transition
     setTimeout(function () {

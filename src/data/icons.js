@@ -37,7 +37,7 @@ const actionIcons = {
     'selectAllText': `M3 5h2V3c-1.1 0-2 .9-2 2zm0 8h2v-2H3v2zm4 8h2v-2H7v2zM3 9h2V7H3v2zm10-6h-2v2h2V3zm6 0v2h2c0-1.1-.9-2-2-2zM5 21v-2H3c0 1.1.9 2 2 2zm-2-4h2v-2H3v2zM9 3H7v2h2V3zm2 18h2v-2h-2v2zm8-8h2v-2h-2v2zm0 8c1.1 0 2-.9 2-2h-2v2zm0-12h2V7h-2v2zm0 8h2v-2h-2v2zm-4 4h2v-2h-2v2zm0-16h2V3h-2v2zM7 17h10V7H7v10zm2-8h6v6H9V9z`,
     'selectAll': `M3 5h2V3c-1.1 0-2 .9-2 2zm0 8h2v-2H3v2zm4 8h2v-2H7v2zM3 9h2V7H3v2zm10-6h-2v2h2V3zm6 0v2h2c0-1.1-.9-2-2-2zM5 21v-2H3c0 1.1.9 2 2 2zm-2-4h2v-2H3v2zM9 3H7v2h2V3zm2 18h2v-2h-2v2zm8-8h2v-2h-2v2zm0 8c1.1 0 2-.9 2-2h-2v2zm0-12h2V7h-2v2zm0 8h2v-2h-2v2zm-4 4h2v-2h-2v2zm0-16h2V3h-2v2zM7 17h10V7H7v10zm2-8h6v6H9V9z`,
     'selectMore': `M 17,5 H 15 V 3 h 2 z m 4,16 V 15 L 18.71,17.29 16.41,15 15,16.41 17.29,18.7 15,21 Z M 19,9 h 2 V 7 h -2 z m 0,4 h 2 v -2 h -2 z m -8,8 h 2 V 19 H 11 Z M 7,5 H 9 V 3 H 7 Z M 3,17 H 5 V 15 H 3 Z m 2,4 V 19 H 3 c 0,1.1 0.9,2 2,2 z M 19,3 v 2 h 2 C 21,3.9 20.1,3 19,3 Z m -8,2 h 2 V 3 H 11 Z M 3,9 H 5 V 7 H 3 Z M 7,21 H 9 V 19 H 7 Z M 3,13 H 5 V 11 H 3 Z M 3,5 H 5 V 3 C 3.9,3 3,3.9 3,5 Z`,
-    'clearInputField': '✕',
+    'clearInputField': 'M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z',
     'undoAction': 'M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z',
     'redoAction': 'M18.4 10.6C16.55 8.99 14.15 8 11.5 8c-4.65 0-8.58 3.03-9.96 7.22L3.9 16c1.05-3.19 4.05-5.5 7.6-5.5 1.95 0 3.73.72 5.12 1.88L13 16h9V7l-3.6 3.6z',
     'moveCaretToStart': 'M11 9l1.42 1.42L8.83 14H18V4h2v12H8.83l3.59 3.58L11 21l-6-6 6-6z',
