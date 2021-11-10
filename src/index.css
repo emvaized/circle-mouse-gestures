@@ -137,6 +137,7 @@
   opacity: 0;
   padding: 6px;
   font-family: sans-serif;
+  align-items: end;
 }
 
 .center-aligned-switcher {
@@ -174,7 +175,8 @@
 
 
 .horizontal-tab-switcher-label {
-  max-height: 50px;
+  /* max-height: 50px; */
+  height: 50px;
   width: 75px;
   display: block;
   overflow: hidden;

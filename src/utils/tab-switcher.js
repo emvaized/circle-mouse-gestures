@@ -87,8 +87,8 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
     /// Generate tab tiles
     const tabTiles = [];
     let focusedTile = -1;
-
     const tabsLength = tabs.length;
+
     for (let i = 0; i < tabsLength; i++) {
         const tab = tabs[i];
 
@@ -112,17 +112,16 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
                 /// add website favicon when using thumbnail
                 setTimeout(function () {
                     let siteFavicon = document.createElement('img');
-                    siteFavicon.setAttribute('height', `15px`);
-                    siteFavicon.setAttribute('width', `15px`);
+                    siteFavicon.setAttribute('height', '15px');
+                    siteFavicon.setAttribute('width', '15px');
                     siteFavicon.src = tab.favIconUrl;
+                    // siteFavicon.style.height = '15px';
 
                     siteFavicon.style.display = 'block';
                     siteFavicon.style.margin = '3px auto';
                     tabTile.prepend(siteFavicon);
-
                     title.style.width = '110px';
                 }, 1)
-
             }
         }
 
