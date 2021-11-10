@@ -348,11 +348,11 @@ function checkScrollDirection(event) {
 
             if (event.deltaX < 0) {
                 event.preventDefault();
-                if (!circleIsShown && configs[typeOfMenu].mouseWheelUpAction.includes('showTabSwitcher')) return;
+                if (!circleIsShown && configs[typeOfMenu].mouseWheelLeftAction.includes('showTabSwitcher')) return;
                 triggerButtonAction(configs[typeOfMenu].mouseWheelLeftAction, undefined, 'up');
             } else if (event.deltaX > 0) {
                 event.preventDefault();
-                if (!circleIsShown && configs[typeOfMenu].mouseWheelUpAction.includes('showTabSwitcher')) return;
+                if (!circleIsShown && configs[typeOfMenu].mouseWheelRightAction.includes('showTabSwitcher')) return;
                 triggerButtonAction(configs[typeOfMenu].mouseWheelRightAction, undefined, 'down');
             }
         }

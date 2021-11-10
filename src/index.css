@@ -167,13 +167,11 @@
   line-height: 1.25;
 }
 
-.cmg-tab-switcher-entry:hover {
-  background: lightgray;
+.cmg-tab-switcher-entry:hover, .highlighted-tab {
+  /* background: lightgray; */
+  background: rgba(0,0,0,0.25);
 }
 
-.highlighted-tab {
-  background: lightgray;
-}
 
 .horizontal-tab-switcher-label {
   max-height: 50px;
