@@ -135,7 +135,8 @@ var defaultConfigs = {
                     { 'id': 'scrollToBottom' },
                     { 'id': 'restoreClosedTab' },
                     { 'id': 'switchToPreviousTab' },
-                    { 'id': 'translate' },
+                    // { 'id': 'translate' },
+                    { 'id': 'selectLastVisitedTab' },
                     { 'id': 'scrollToTop' },
                     { 'id': 'copyUrl' },
                 ]
