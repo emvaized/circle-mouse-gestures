@@ -51,7 +51,7 @@ function restoreOptions() {
   });
   document.querySelector("#githubPage").addEventListener("click", function (val) {
     window.close();
-    window.open('https://github.com/emvaized/circle-mouse-gestures', '_blank');
+    window.open('https://github.com/emvaized/circle-mouse-gestures/issues', '_blank');
   });
   document.querySelector("#settingsButton").addEventListener("click", function (val) {
     chrome.runtime.openOptionsPage();
