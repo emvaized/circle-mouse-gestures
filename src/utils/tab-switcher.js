@@ -126,6 +126,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
         }
 
         if (!imgSrc) imgSrc = tab.favIconUrl;
+        if (!imgSrc) imgSrc = 'https://www.google.com/s2/favicons?sz=64&domain_url=' + tab.url.split('/')[2];
         favicon.src = imgSrc;
 
         favicon.setAttribute('height', isVertical ? `${verticalFaviconSize}px` : `${horizontalFaviconSize}px`);
