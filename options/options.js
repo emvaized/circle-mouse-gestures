@@ -733,7 +733,6 @@ function generateLevelConfigs(levelIndex = 0) {
     /// Generate level configs container
     let container = document.createElement('div');
     // container.setAttribute('style', 'float:left; padding: 15px; border: 1px solid lightGrey; margin-top: 15px; margin-right: 30px;  max-width: 300px;');
-    container.setAttribute('style', 'float:left; padding: 15px; border: 1px solid lightGrey; margin-top: 15px; margin-right: 30px;  max-width: 265px;');
     container.setAttribute('class', 'level-configs');
     container.innerHTML = '';
 
