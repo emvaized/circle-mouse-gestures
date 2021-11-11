@@ -12,8 +12,8 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
     const horizontalScrollAlign = 'nearest'; // 'center'
     const borderRadius = 3;
     const enabledContiniousScrollDetection = ((isVertical && configs.continiousVerticalScrollDetection) || (!isVertical && configs.continiousHorizontalScrollDetection));
-
     let filterInput, topControlsContainer;
+    const filteredTiles = [];
 
     /// main container
     const container = document.createElement('div');
@@ -45,7 +45,6 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
             /// add filter input
             filterInput = document.createElement('input');
             filterInput.className = 'cmg-tab-switcher-filter';
-            // filterInput.setAttribute('autofocus', true);
             filterInput.style.top = `${switcherRect.top - 50}px`;
             filterInput.style.left = `${switcherRect.left}px`;
             filterInput.style.width = `${switcherRect.width}px`;
@@ -64,21 +63,26 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
                 let atLeastOneTabVisible = false;
 
                 focusedTile = 0;
+                filteredTiles.splice(0);
 
                 for (i = 0; i < tabsLength; i++) {
                     if (tabs[i].title.toLowerCase().indexOf(val) > -1 || tabs[i].url.toLowerCase().indexOf(val) > -1) {
                         tabTiles[i].style.display = "";
                         atLeastOneTabVisible = true;
+                        filteredTiles.push(tabTiles[i]);
                     } else {
                         tabTiles[i].style.display = "none";
                     }
+                    tabTiles[i].classList.remove('highlighted-tab');
                 }
 
                 /// make placeholder visible
                 if (atLeastOneTabVisible) {
                     noTabsMatchingPlaceholder.style.display = 'none';
+                    filteredTiles[focusedTile].classList.add('highlighted-tab');
                 } else {
                     noTabsMatchingPlaceholder.style.display = '';
+                    focusedTile = -1;
                 }
 
             });
@@ -87,7 +91,6 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
             let btnInnerPadding = 15;
 
             topControlsContainer = document.createElement('div');
-            // topControlsContainer.setAttribute('style', `all:revert; position: fixed; z-index:100003; right: ${headerTopPadding}px; top: ${headerTopPadding - (buttonSize / 2)}px; transition: opacity ${transitionDuration}ms ease-in-out`);
             topControlsContainer.setAttribute('style', `all:revert; position: fixed; z-index:100003; left: ${switcherRect.left + switcherRect.width + (closeButtonSize / 2)}px; top: ${switcherRect.top - (closeButtonSize * 2.5)}px; transition: opacity ${transitionDuration}ms ease-in-out`);
 
             /// Add close button
@@ -205,7 +208,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
         tabTiles.push(tabTile);
     }
 
-    /// initial scroll direction
+    /// initial scroll action
     if (initScrollDirection && enabledContiniousScrollDetection) {
         if (initScrollDirection == 'up' && focusedTile > 0) {
             focusedTile -= 1;
@@ -219,7 +222,6 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
     }
 
     /// Make switcher controllable by scroll
-    // if (rightClickIsHolded) {
     if (rightClickIsHolded && enabledContiniousScrollDetection) {
         document.addEventListener('mouseup', mouseUpScrollListener);
         document.addEventListener('wheel', scrollListener, { passive: false });
@@ -246,7 +248,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
     function mouseUpScrollListener(e) {
         closeTabSwitcher(false);
         document.removeEventListener('wheel', scrollListener, { passive: false });
-        chrome.runtime.sendMessage({ actionToDo: 'switchToIndexedTab', index: focusedTile });
+        selectTab(focusedTile);
     }
 
     /// Keyboard listener
@@ -324,29 +326,46 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
 
     /// Utility functions
     function highlightUpperTab() {
+        const tiles = filteredTiles.length > 0 ? filteredTiles : tabTiles;
+
         if (focusedTile > 0) {
-            tabTiles[focusedTile].classList.remove('highlighted-tab');
+            // tabTiles[focusedTile].classList.remove('highlighted-tab');
+            // focusedTile -= 1;
+            // tabTiles[focusedTile].classList.add('highlighted-tab');
+            // tabTiles[focusedTile].scrollIntoView({ block: verticalScrollAlign, inline: horizontalScrollAlign });
+            tiles[focusedTile].classList.remove('highlighted-tab');
             focusedTile -= 1;
-            tabTiles[focusedTile].classList.add('highlighted-tab');
-            tabTiles[focusedTile].scrollIntoView({ block: verticalScrollAlign, inline: horizontalScrollAlign });
+            tiles[focusedTile].classList.add('highlighted-tab');
+            tiles[focusedTile].scrollIntoView({ block: verticalScrollAlign, inline: horizontalScrollAlign });
         }
     }
 
     function highlightLowerTab() {
-        if (focusedTile < tabs.length - 1) {
-            tabTiles[focusedTile].classList.remove('highlighted-tab');
+        // if (focusedTile < tabs.length - 1) {
+        //     tabTiles[focusedTile].classList.remove('highlighted-tab');
+        //     focusedTile += 1;
+        //     tabTiles[focusedTile].classList.add('highlighted-tab');
+        //     tabTiles[focusedTile].scrollIntoView({ block: verticalScrollAlign, inline: horizontalScrollAlign });
+        // }
+        const tiles = filteredTiles.length > 0 ? filteredTiles : tabTiles;
+
+        if (focusedTile < tiles.length - 1) {
+            tiles[focusedTile].classList.remove('highlighted-tab');
             focusedTile += 1;
-            tabTiles[focusedTile].classList.add('highlighted-tab');
-            tabTiles[focusedTile].scrollIntoView({ block: verticalScrollAlign, inline: horizontalScrollAlign });
+            tiles[focusedTile].classList.add('highlighted-tab');
+            tiles[focusedTile].scrollIntoView({ block: verticalScrollAlign, inline: horizontalScrollAlign });
         }
     }
 
     function selectTab(index) {
-        chrome.runtime.sendMessage({ actionToDo: 'switchToIndexedTab', index: index });
+        let tileToSelect = filteredTiles.length > 0 ? filteredTiles[index] : tabTiles[index];
+        let tabToSelect = tabs[tabTiles.indexOf(tileToSelect)];
+
+        chrome.runtime.sendMessage({ actionToDo: 'switchToIndexedTab', id: tabToSelect.id });
     }
 
-    /// Close functions
 
+    /// Close functions
     function closeTabSwitcher(transition = true) {
         hideBgDimmer();
         hideSwitcher(transition);

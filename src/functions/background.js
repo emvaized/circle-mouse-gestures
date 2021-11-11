@@ -407,9 +407,10 @@ chrome.runtime.onMessage.addListener(
             } break;
 
             case 'switchToIndexedTab': {
-                chrome.tabs.query({ currentWindow: true }, function (tabs) {
-                    chrome.tabs.update(tabs[request.index].id, { active: true });
-                });
+                chrome.tabs.update(request.id, { active: true });
+                // chrome.tabs.query({ currentWindow: true }, function (tabs) {
+                //     chrome.tabs.update(tabs[request.index].id, { active: true });
+                // });
 
                 return true;
             } break;
