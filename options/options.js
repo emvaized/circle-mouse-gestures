@@ -741,9 +741,11 @@ function generateLevelConfigs(levelIndex = 0) {
 
     container.appendChild(headerContainer);
 
+    const levelButtons = configs[selectedMenuType].levels[levelIndex].buttons;
+
     /// Generate entries
-    for (var i = 0; i < configs[selectedMenuType].levels[levelIndex].buttons.length; i++) {
-        let item = configs[selectedMenuType].levels[levelIndex].buttons[i];
+    for (let i = 0, l = levelButtons.length; i < l; i++) {
+        let item = levelButtons[i];
 
         const entry = document.createElement('div');
         entry.setAttribute('class', 'buttons-item');
