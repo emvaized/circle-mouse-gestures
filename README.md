@@ -9,13 +9,15 @@ CMG is supposed to provide a better implementation of mouse gestures and drag ge
 Extension features:
 - separate gestures for links, images, input fields etc.
 - support for rocker gestures, mouse wheel gestures
-- supports horizontal mouse wheel gestures - great on mouses wheel horizontal wheel, such as MX Master
+- supports horizontal wheel gestures - great on mouses with horizontal wheel, such as MX Master
 - image preview and link preview (like in Safari on mac)
 - vertical and horizontal tab switcher
 - gestures on long left click (works great on macbook)
 - great customization options
 
 ... and many more
+
+
 
 
 Download for Firefox:
