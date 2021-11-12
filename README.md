@@ -44,7 +44,7 @@ https://chrome.google.com/webstore/detail/circle-mouse-gestures/kkknhbbfjlibfjag
 * As it stated [here](https://bugzilla.mozilla.org/show_bug.cgi?id=1578503), you would need first to enable this feature in your browser by visiting `about:config` page and setting `layout.css.backdrop-filter.enabled` to *true* 
 
 **Favicons are not shown for "Open URL" action icon or in tab switcher**
-CMG fetches favicons for websites from Google. It is possible that you have Ad-blocker installed, which blocks all requests to Google services. It may also be that current website blocks all external requests at all for security reasons, which prevents CMG from loading favicons.
+* CMG fetches favicons for websites from Google. It is possible that you have Ad-blocker installed, which blocks all requests to Google services. It may also be that current website blocks all external requests at all for security reasons, which prevents CMG from loading favicons.
 
 **How to add CMG settings as Vivaldi side panel?**
 * Use this URL: *chrome-extension://*{ID OF EXTENSION}*/options/options.html*, where {ID OF EXTENSION} is a unique extension ID on your computer. You can get this from extension details page in `chrome://extensions`
