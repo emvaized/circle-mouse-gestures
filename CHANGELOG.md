@@ -1,3 +1,11 @@
+#1.3.0
+- Added tab switcher action (vertical and horizontal). It can be controlled with mouse wheel and provides search field
+- Added "Open URL" action, with ability to set any URL and label
+- Added "Recent tab" action, which switches between current and last used tab
+- Added extension update notification, with the ability to disable in settings
+- Added config "Check buttons availability"
+- Performance improvements and bug fixes
+
 #1.2.9
 - Improved 'scroll' functions
 - Changed scroll animation to work in more browsers

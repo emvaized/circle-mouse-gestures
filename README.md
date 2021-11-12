@@ -14,6 +14,7 @@ Extension features:
 - vertical and horizontal tab switcher
 - gestures on long left click (works great on macbook)
 - great customization options
+
 ... and many more
 
 
