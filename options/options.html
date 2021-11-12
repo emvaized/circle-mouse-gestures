@@ -92,6 +92,11 @@
                         <div class='option'>
                             <label><input type="checkbox" id="showActionIcons"></input></label>
                         </div>
+                        <div class='option'><label class='tooltip'>
+                                <input type="checkbox" id="checkButtonsAvailability"></input>
+                                <span id="checkButtonsAvailabilityTooltip" class="tooltiptext"></span>
+                            </label>
+                        </div>
                         <div class='option'>
                             <label>
                                 <input type="checkbox" id="addTextLabels"></input>
@@ -108,12 +113,6 @@
                             </label>
                             <label><input style=' display: inline !important; max-width: 80px;' type="number" max='5000'
                                     min='0' step='50' id="delayToShowTitleOnHoverWhenHidden"></input></label>
-                        </div>
-
-                        <div class='option'><label class='tooltip'>
-                                <input type="checkbox" id="checkButtonsAvailability"></input>
-                                <span id="checkButtonsAvailabilityTooltip" class="tooltiptext"></span>
-                            </label>
                         </div>
 
                         <div id='placeholder-opacity-sliders' style='margin-bottom: 10px'></div>
@@ -149,12 +148,6 @@
                             <label><input style='margin-left: 5%; display: inline !important;' type="number" max='1.0'
                                     min='0.0' step='0.05' id="backgroundDimmerOpacity"></input></label>
                         </div>
-                        <div class='option'>
-                            <label class='tooltip'>
-                                <input type="checkbox" id="addGhostPointer"></input>
-                                <span id="addGhostPointerTooltip" class="tooltiptext"></span>
-                            </label>
-                        </div>
                         <div class='option'><label><select id="mouseLeaveBehavior">
                                     <option value="doNothing">Do nothing</option>
                                     <option value="hideMenu">Hide menu</option>
@@ -189,7 +182,13 @@
                                 </select>
                             </label>
                         </div>
-
+                        <div class='option'>
+                            <label class='tooltip'>
+                                <input type="checkbox" id="addGhostPointer"></input>
+                                <span id="addGhostPointerTooltip" class="tooltiptext"></span>
+                            </label>
+                        </div>
+                        <hr />
                         <div class='option'><label class='tooltip'>
                                 <input type="checkbox" id="applySettingsImmediately"></input>
                                 <span id="applySettingsImmediatelyTooltip" class="tooltiptext"></span>
