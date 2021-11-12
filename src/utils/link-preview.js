@@ -95,7 +95,7 @@ function openLinkPreview(elementUnderCursor) {
     iframe.style.transform = `translate(${linkRect.left + (linkRect.width / 2) - (desiredWidth / 2)}px, ${linkRect.top + (linkRect.height / 2) - (desiredHeight / 2)}px) scale(0.0)`; /// From link 2
     iframe.style.opacity = 0.0;
     let previewTransitionDuration = 300;
-    iframe.style.transition = `opacity ${previewTransitionDuration}ms ease-out, transform ${previewTransitionDuration}ms ease-out, background-color ${previewTransitionDuration}ms ease-out`;
+    iframe.style.transition = `opacity ${previewTransitionDuration}ms ease-out, transform ${previewTransitionDuration}ms ease-out, background-color ${previewTransitionDuration}ms ease-out, box-shadow ${previewTransitionDuration}ms ease-out`;
 
     /// Show view
     document.body.appendChild(iframe);
@@ -107,6 +107,7 @@ function openLinkPreview(elementUnderCursor) {
         fullscreenImageIsOpen = true;
         iframe.style.backgroundColor = 'white';
         iframe.style.opacity = 1.0;
+        iframe.classList.add('cmg-overlay-shadow');
 
         document.addEventListener('keydown', keyboardListener);
 
@@ -291,6 +292,7 @@ function openLinkPreview(elementUnderCursor) {
 
     function hidePreview() {
         iframe.style.opacity = 0.0;
+        iframe.classList.remove('cmg-overlay-shadow');
 
         const updatedlinkRect = elementUnderCursor.getBoundingClientRect();
         const shouldUseDefaultAnimation = updatedlinkRect.top < 0 || updatedlinkRect.top > window.innerHeight;

@@ -82,7 +82,6 @@
 /* Link preview part */
 #cmg-link-preview {
   background-color: transparent; position: fixed; z-index: 999999 !important; top: 0px; left: 0px; transform-origin: 50% 50%;
-  /* transition: opacity var(--cmg-link-prevew-anim-duration) ease-out, transform var(--cmg-link-prevew-anim-duration) ease-out, background-color var(--cmg-link-prevew-anim-duration) ease-out; */
 }
 
 .cmg-link-preview-button {
@@ -173,7 +172,6 @@
   background: rgba(0,0,0,0.25);
 }
 
-
 .horizontal-tab-switcher-label {
   /* max-height: 50px; */
   height: 50px;
@@ -190,7 +188,7 @@
 .cmg-tab-switcher-filter {
   position: fixed;
   z-index: 99999999;
-  background: transparent;
+  background: transparent !important;
   color: white;
   border: unset; outline: unset;
   height: 50px; font-size: 24px;
@@ -200,6 +198,11 @@
   color: rgba(256,256,256,0.8);
 }
 
+
+/* Add shadow to fullscreen overlays (image view, link preview, tab switcher, etc) */
+.cmg-overlay-shadow {
+  box-shadow: var(--cmg-fullscreen-overlays-shadow);
+}
 
 
 

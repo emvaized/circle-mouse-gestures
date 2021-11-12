@@ -18,7 +18,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
     /// main container
     const container = document.createElement('div');
     container.className = 'cmg-tab-switcher';
-    container.style.transition = `opacity ${transitionDuration}ms ease-out`;
+    container.style.transition = `opacity ${transitionDuration}ms ease-out, box-shadow ${transitionDuration}ms ease-out`;
     container.style.borderRadius = borderRadius + 'px';
     if (isVertical) {
         container.classList.add('vertical-switcher');
@@ -32,6 +32,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
     /// trigger show-up transition
     setTimeout(function () {
         container.style.opacity = 1;
+        container.classList.add('cmg-overlay-shadow');
 
         /// add search query only when in static mode
         if (!rightClickIsHolded || !enabledContiniousScrollDetection) {
@@ -378,13 +379,18 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
     function hideSwitcher(transition = true) {
         if (!transition) container.style.transition = '';
         container.style.opacity = 0;
+        container.classList.remove('cmg-overlay-shadow');
+
         setTimeout(function () {
             container.remove();
         }, transitionDuration);
 
-        try {
-            filterInput.remove();
-        } catch (e) { }
+        setTimeout(function () {
+            try {
+                filterInput.remove();
+            } catch (e) { }
+        }, 0)
+
     }
 
     function hideBgDimmer(transition = true) {
