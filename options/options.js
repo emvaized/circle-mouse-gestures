@@ -50,6 +50,16 @@ function optionsInit() {
                     contentEl.classList.add('content-transition');
                 })
             }, delayToAddListeners);
+
+            /// Circle preview
+            document.getElementById('circle-preview-title').innerHTML = chrome.i18n.getMessage('circlePreview');
+            document.getElementById('circle-preview').onmousedown = function (e) {
+                selectedButtons = {};
+                preselectedButtons = {};
+
+                drawCircle(e, selectedMenuType, true, false, true);
+                generateButtonsControls();
+            }
         })
     } catch (e) { if (configs.debugMode) console.log(e); }
 }
@@ -119,16 +129,6 @@ function setMenuTypeDropdown() {
 /// Circle preview
 function drawCirclePreview(typeOfMenu = selectedMenuType) {
     try {
-        document.getElementById('circle-preview-title').innerHTML = chrome.i18n.getMessage('circlePreview');
-
-        document.getElementById('circle-preview').onmousedown = function (e) {
-            selectedButtons = {};
-            preselectedButtons = {};
-
-            drawCircle(e, selectedMenuType, true, false, true);
-            generateButtonsControls();
-        }
-
         updateDisabledOptions();
 
         totalCircleRadius = 0.0;
@@ -157,11 +157,16 @@ function drawCirclePreview(typeOfMenu = selectedMenuType) {
         circle.style.opacity = configs.circleOpacity;
         ctx = circle.getContext('2d');
 
-        leftCoord = circle.getBoundingClientRect().left;
-        topCoord = circle.getBoundingClientRect().top;
+        // leftCoord = circle.getBoundingClientRect().left;
+        // topCoord = circle.getBoundingClientRect().top;
+
+        /// Add small delay to cover body's margin left transition
+        setTimeout(function () {
+            leftCoord = circle.getBoundingClientRect().left;
+            topCoord = circle.getBoundingClientRect().top;
+        }, 250);
 
         drawCircle(false, selectedMenuType, true, false, true);
-
         // positionSettingsInCenter();
     } catch (e) {
         if (configs.debugMode) console.log(e);
@@ -282,7 +287,6 @@ function generateBehaviorConfigs() {
         'addBlur',
         'blurRadius',
 
-
         'backgroundDimmerOpacity',
         'storeCurrentScrollPosition',
         'highlightElementOnHover',
@@ -315,7 +319,8 @@ function generateBehaviorConfigs() {
                     let input = document.getElementById(inputId);
 
                     configs[inputId] = input.getAttribute('type') == 'checkbox' ? input.checked : input.value;
-                    drawCirclePreview();
+                    // drawCirclePreview();
+                    drawCircle(false, selectedMenuType, true, false, true);
                     saveAllSettings();
                 } catch (error) {
                     if (configs.debugMode) console.log(error);
@@ -358,7 +363,6 @@ function generateBehaviorConfigs() {
         if (configs.inactiveMenuBehavior == option.getAttribute('value'))
             option.setAttribute('selected', 0);
     })
-
 
     /// Create animation duration config
     if (document.getElementById('animationDuration') == undefined) {
@@ -450,8 +454,7 @@ function generateBehaviorConfigs() {
             option.innerHTML = chrome.i18n.getMessage(option.getAttribute('value'));
         if (configs.hideCircleAnimation == option.getAttribute('value'))
             option.setAttribute('selected', 0);
-    })
-
+    });
 }
 
 /// Gesture configs
@@ -474,13 +477,13 @@ function generateGesturesConfigs() {
     rockerActionContainer.setAttribute('class', 'option');
 
     /// Rocker action dropdown
-    let rockerIidentifier = `regularRockerActionDropdown`;
-    let dropdown = createActionDropdownButton(rockerIidentifier, configs[selectedMenuType].rockerLeftClick, function (newValue) {
+    let rockerIidentifier = 'regularRockerActionDropdown';
+    let leftClickDropdown = createActionDropdownButton(rockerIidentifier, configs[selectedMenuType].rockerLeftClick, function (newValue) {
         configs[selectedMenuType].rockerLeftClick = newValue;
         saveAllSettings();
     }, chrome.i18n.getMessage('leftClick'));
 
-    rockerActionContainer.appendChild(dropdown);
+    rockerActionContainer.appendChild(leftClickDropdown);
     gesturesConfigs.appendChild(rockerActionContainer);
 
     /// Middle click action dropdown
@@ -831,9 +834,7 @@ function generateLevelConfigs(levelIndex = 0) {
             openUrlContainer.appendChild(labelInput);
 
             entry.appendChild(openUrlContainer);
-            // entry.innerHTML += '<br />';
         }
-
 
 
         /// Move up/down buttons
@@ -1137,7 +1138,7 @@ function generateLevelConfigs(levelIndex = 0) {
 
     /// Level opacity
     let levelOpacitySliderId = `levelOpacity-${levelIndex}`;
-    let levelOpacitySlider = createRangeSlider(levelOpacitySliderId, configs[selectedMenuType].levels[levelIndex].opacity ?? configs.circleOpacity, null, function (newVal) {
+    let levelOpacitySlider = createRangeSlider(levelOpacitySliderId, configs[selectedMenuType].levels[levelIndex].opacity ?? 1.0, null, function (newVal) {
         let ind = levelOpacitySliderId.split('-')[1];
         configs[selectedMenuType].levels[ind].opacity = newVal;
     }, 0, 1, chrome.i18n.getMessage("backgroundOpacity"), 0.05);
@@ -1254,7 +1255,7 @@ function createActionDropdownButton(id, initialValue, cbOnChange, label) {
         select.appendChild(optGroup);
     });
 
-    if (setValue == false) select.querySelector(`[value='noAction']`).setAttribute('selected', true);
+    if (setValue == false) try { select.querySelector(`[value='noAction']`).setAttribute('selected', true); } catch (err) { }
 
     setTimeout(function () {
         let listenedDropdown = document.getElementById(id);
