@@ -382,15 +382,17 @@ function processAndShowCircle(e) {
     selectedButtons = {};
     rocketButtonPressed = null;
 
-    if (configs.debugMode)
-        if (configs.debugMode) console.log('Showing mouse gestures circle...');
-    var el = document.elementFromPoint(e.clientX, e.clientY);
+    if (configs.debugMode) console.log('Showing mouse gestures circle...');
+    const el = document.elementFromPoint(e.clientX, e.clientY);
     elementUnderCursor = el;
+    const elStyle = window.getComputedStyle(el);
 
-    if (el.tagName == 'IMG') {
+    // if (el.tagName == 'IMG') {
+    if (el.tagName == 'IMG' || (elStyle.backgroundImage && elStyle.backgroundImage.includes('url('))) {
         /// Image is hovered
         typeOfMenu = 'imageMenu';
-        hoveredLink = el.getAttribute('src');
+        // hoveredLink = el.getAttribute('src');
+        hoveredLink = el.getAttribute('src') ?? elStyle.backgroundImage.replace('url("', '').replace('")', '');
     } else if (el.tagName == 'VIDEO' || el.tagName == 'AUDIO') {
         /// html-5 videoplayer is hovered
         typeOfMenu = 'playerMenu';
@@ -403,8 +405,7 @@ function processAndShowCircle(e) {
         hoveredLink = fileLink.replaceAll('blob:', '');
 
         // hoveredLink = window.location.href;
-    }
-    else if (el.tagName == 'A' || el.parentNode.tagName == 'A'
+    } else if (el.tagName == 'A' || el.parentNode.tagName == 'A'
         // || el.firstChild.tagName == 'A'
     ) {
         /// Link is hovered
@@ -507,8 +508,13 @@ function processAndShowCircle(e) {
     if (hoveredLink !== null) {
         ///  Attach current domain
         if (!hoveredLink.includes('://') && !hoveredLink.includes('data:image/') && !hoveredLink.includes('mailto:')) {
-            let splittedUrl = window.location.href.split('/');
-            hoveredLink = splittedUrl[0] + '/' + splittedUrl[1] + '/' + splittedUrl[2] + '/' + hoveredLink;
+            if (hoveredLink[0] == '/' && hoveredLink[1] == '/') {
+                /// special handling for links like "//lh3.googleusercontent.com/..." 
+                hoveredLink = 'https:' + hoveredLink;
+            } else {
+                let splittedUrl = window.location.href.split('/');
+                hoveredLink = splittedUrl[0] + '/' + splittedUrl[1] + '/' + splittedUrl[2] + '/' + hoveredLink;
+            }
         }
     }
 
