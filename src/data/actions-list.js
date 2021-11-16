@@ -109,6 +109,7 @@ const sortedActionButtons = {
     {
         'imageMenu': [
             'openInFgTab',
+            'downloadUrl',
             'downloadUrlAs',
             'openInBgTab',
             'searchImageOnGoogle',

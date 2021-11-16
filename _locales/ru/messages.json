@@ -264,19 +264,19 @@
         "description": ""
     },
     "downloadUrl": {
-        "message": "Загрузить",
+        "message": "Сохранить",
         "description": ""
     },
     "downloadUrlAs": {
-        "message": "Загрузить",
+        "message": "Сохранить как",
         "description": ""
     },
     "downloadVideo": {
-        "message": "Загрузить видео",
+        "message": "Скачать видео",
         "description": ""
     },
     "downloadVideoSavefromNet": {
-        "message": "Загрузить с Savefrom.net",
+        "message": "Скачать с Savefrom.net",
         "description": ""
     },
     "duplicateTab": {
