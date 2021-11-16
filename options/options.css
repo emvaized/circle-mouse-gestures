@@ -306,7 +306,7 @@ input {
   hr { opacity: 0.15; }
   .tooltip::after{ line-height: 0.9; }
   input[type='color'] { padding: 3px !important;}
-  .level-configs { max-width: 290px; }
+  .level-configs { max-width: 310px; }
 }
 
 @media not all and (min-resolution:.001dpcm){ @supports (-webkit-appearance:none) {
