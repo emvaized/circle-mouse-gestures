@@ -128,7 +128,9 @@ chrome.runtime.onMessage.addListener(
             } break;
 
             case 'downloadUrl': {
-                var fileName = request.url.split('#').shift().split('?').shift().split('/').pop();
+                let fileName = request.url.split('#').shift().split('?').shift().split('/').pop();
+                if (fileName && !fileName.includes('.')) fileName += '.jpg';
+
                 chrome.downloads.download({
                     url: request.url,
                     filename: fileName ?? 'image',
@@ -137,7 +139,9 @@ chrome.runtime.onMessage.addListener(
             } break;
 
             case 'downloadUrlAs': {
-                var fileName = request.url.split('#').shift().split('?').shift().split('/').pop();
+                let fileName = request.url.split('#').shift().split('?').shift().split('/').pop();
+                if (fileName && !fileName.includes('.')) fileName += '.jpg';
+
                 chrome.downloads.download({
                     url: request.url,
                     filename: fileName ?? 'image',
