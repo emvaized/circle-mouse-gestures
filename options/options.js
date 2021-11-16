@@ -1242,6 +1242,9 @@ function createActionDropdownButton(id, initialValue, cbOnChange, label) {
 
         let items = sortedActionButtons[selectedMenuType][key];
         items.forEach(function (item) {
+            /// Exclude 'open url' from mouse button actions
+            if (!id.includes('actionDropdown-') && item == 'openUrl') return;
+
             let option = document.createElement('option');
             option.innerText = chrome.i18n.getMessage(item);
             option.setAttribute('value', item);
