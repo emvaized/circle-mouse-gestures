@@ -36,9 +36,11 @@ function copyToClipboard(text) {
     }
 
     if (configs.copyNotification)
-        chrome.runtime.sendMessage({
-            actionToDo: 'showBrowserNotification',
-            title: chrome.i18n.getMessage("copied") ?? 'Copied URL',
-            message: text,
-        });
+        setTimeout(function () {
+            chrome.runtime.sendMessage({
+                actionToDo: 'showBrowserNotification',
+                title: chrome.i18n.getMessage("copied") ?? 'Copied URL',
+                message: text,
+            });
+        }, 1)
 }
