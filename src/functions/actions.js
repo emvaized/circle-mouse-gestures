@@ -330,7 +330,7 @@ function triggerButtonAction(actionToPerform, urlToOpen, scrollDirection) {
                     if (typeOfMenu == 'selectionMenu' || typeOfMenu == 'textFieldMenu')
                         chrome.runtime.sendMessage({ actionToDo: actionToPerform, url: textSelection.toString().trim(), selectedText: textSelection.toString() });
                     else
-                        chrome.runtime.sendMessage({ actionToDo: actionToPerform, url: link, linkText: hoveredLinkTitle })
+                        chrome.runtime.sendMessage({ actionToDo: actionToPerform, url: link, typeOfMenu: typeOfMenu, linkText: hoveredLinkTitle ?? '' })
                 } else {
                     chrome.runtime.sendMessage({ actionToDo: actionToPerform, url: window.location.href })
                 }

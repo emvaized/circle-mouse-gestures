@@ -201,7 +201,7 @@
 
 /* Add shadow to fullscreen overlays (image view, link preview, tab switcher, etc) */
 .cmg-overlay-shadow {
-  box-shadow: var(--cmg-fullscreen-overlays-shadow);
+  box-shadow: var(--cmg-fullscreen-overlays-shadow) !important;
 }
 
 

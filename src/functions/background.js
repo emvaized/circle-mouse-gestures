@@ -129,7 +129,16 @@ chrome.runtime.onMessage.addListener(
 
             case 'downloadUrl': {
                 let fileName = request.url.split('#').shift().split('?').shift().split('/').pop();
-                if (fileName && !fileName.includes('.')) fileName += '.jpg';
+                // if (fileName && !fileName.includes('.') && request.typeOfMenu) fileName += request.typeOfMenu == 'playerMenu' ? 'mp4' : '.jpg';
+                if (fileName && !fileName.includes('.') && request.typeOfMenu) {
+                    let extensionToAdd = '';
+                    switch (request.typeOfMenu) {
+                        case 'playerMenu': extensionToAdd = '.mp4'; break;
+                        case 'imageMenu': extensionToAdd = '.jpg'; break;
+                    }
+
+                    fileName += extensionToAdd;
+                }
 
                 chrome.downloads.download({
                     url: request.url,
@@ -140,7 +149,14 @@ chrome.runtime.onMessage.addListener(
 
             case 'downloadUrlAs': {
                 let fileName = request.url.split('#').shift().split('?').shift().split('/').pop();
-                if (fileName && !fileName.includes('.')) fileName += '.jpg';
+                if (fileName && !fileName.includes('.') && request.typeOfMenu) {
+                    let extensionToAdd = '';
+                    switch (request.typeOfMenu) {
+                        case 'playerMenu': extensionToAdd = '.mp4'; break;
+                        case 'imageMenu': extensionToAdd = '.jpg'; break;
+                    }
+                    fileName += extensionToAdd;
+                }
 
                 chrome.downloads.download({
                     url: request.url,

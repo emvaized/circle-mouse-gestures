@@ -129,6 +129,7 @@ const sortedActionButtons = {
             'replayVideo',
             'rewindVideo',
             'fastForwardVideo',
+            'downloadUrl',
             'downloadUrlAs',
             'downloadVideoSavefromNet',
             'playerFullScreen',

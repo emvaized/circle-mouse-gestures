@@ -154,6 +154,7 @@ function openImageFullscreen(elementUnderCursor) {
             rotationWrapper.style.transition = `transform ${transitionDuration}ms ease-in-out`;
 
         rotationWrapper.style.transform = `rotate(${rotationSteps[rotationStepsCounter]}deg)`;
+        img.classList.remove('cmg-overlay-shadow');
 
         /// Correct image position to fit height
         // if (rotationStepsCounter == 1 || rotationStepsCounter == 3) {
@@ -206,12 +207,12 @@ function openImageFullscreen(elementUnderCursor) {
     img.style.maxHeight = `${originalHeight}px`;
 
     const rotationWrapper = document.createElement('div');
-    rotationWrapper.style.transition = `transform ${transitionDuration}ms ease-in-out, box-shadow ${transitionDuration}ms ease-in-out`;
+    rotationWrapper.style.transition = `transform ${transitionDuration}ms ease-in-out`;
     rotationWrapper.appendChild(img);
 
     const copyOfImage = document.createElement('div');
     copyOfImage.setAttribute('id', idForImage);
-    copyOfImage.setAttribute('style', `transform-origin: 0% 0%; cursor: grab; position: fixed; transition: transform ${transitionDuration}ms ease-in-out; left: 0px; top: 0px; transform: translate(${imageRect.left}px, ${imageRect.top}px); z-index: 100002;`)
+    copyOfImage.setAttribute('style', `transform-origin: 0% 0%; cursor: grab; position: fixed; transition: transform ${transitionDuration}ms ease-in-out, box-shadow ${transitionDuration}ms ease-in-out; left: 0px; top: 0px; transform: translate(${imageRect.left}px, ${imageRect.top}px); z-index: 100002;`)
     copyOfImage.style.maxHeight = `${originalHeight}px`;
     copyOfImage.appendChild(rotationWrapper);
 
@@ -223,7 +224,7 @@ function openImageFullscreen(elementUnderCursor) {
 
         // let copyOfImage = document.getElementById(idForImage);
         copyOfImage.style.transform = `translate(${dxToShow}px, ${dyToShow}px) scale(${scale})`;
-        rotationWrapper.classList.add('cmg-overlay-shadow');
+        img.classList.add('cmg-overlay-shadow');
 
         copyOfImage.addEventListener('mousedown', function (e) {
             evt = e || window.event;
@@ -406,7 +407,7 @@ function openImageFullscreen(elementUnderCursor) {
 
     function hideFullscreenImg() {
         if (copyOfImage.style.transition == '')
-            copyOfImage.style.transition = `transform ${transitionDuration}ms ease-in-out, scale ${transitionDuration}ms ease-in-out`;
+            copyOfImage.style.transition = `transform ${transitionDuration}ms ease-in-out, scale ${transitionDuration}ms ease-in-out, box-shadow ${transitionDuration}ms`;
 
         if (rotationWrapper.style.transition == '')
             rotationWrapper.style.transition = `transform ${transitionDuration}ms ease-in-out`;
@@ -421,7 +422,7 @@ function openImageFullscreen(elementUnderCursor) {
             copyOfImage.style.transform = `translate(${updatedImageRect.left}px, ${updatedImageRect.top}px)`;
 
         rotationWrapper.style.transform = `rotate(0deg)`;
-        rotationWrapper.classList.remove('cmg-overlay-shadow');
+        img.classList.remove('cmg-overlay-shadow');
         setTimeout(function () {
             /// Make original image transparent
             originalImage.style.opacity = 1;
