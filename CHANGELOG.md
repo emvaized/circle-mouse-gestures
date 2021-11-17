@@ -1,3 +1,11 @@
+1.3.1
+- Fixed copy notification lag on Firefox
+- Improve naming of downloaded images
+- Separated 'Download' and 'Download as' actions, so to be able to download images immediately
+- Improved image recognition
+- Add small shadow to fullscreen overlays (link preview, view image, tab switcher)
+- Options page fixes & improvements
+
 #1.3.0
 - Added tab switcher action (vertical and horizontal). It can be controlled with mouse wheel and provides search field
 - Added "Open URL" action, with ability to set any URL and label
