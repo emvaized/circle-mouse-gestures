@@ -40,6 +40,7 @@ chrome.runtime.onMessage.addListener(
         // if (request.typeOfAction == 'mgc-regular-menu')
         switch (request.actionToDo) {
             case 'checkSelectLastVisitedTab': {
+                if (recentTabIndexes[0] == sender.tab.id) return false;
                 chrome.tabs.get(recentTabIndexes[0], function (tab) {
                     sendResponse(tab);
                 });
