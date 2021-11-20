@@ -93,6 +93,10 @@
   border-radius: 50%;text-align: center;cursor: pointer; 
 }
 
+.cmg-rotation-wrapper{
+  all:revert;
+}
+
 .cmg-link-preview-button:hover {
   opacity: 1.0;
   background-color: rgba(256,256,256,0.35) !important;
@@ -127,6 +131,12 @@
   pointer-events: none !important;
   opacity: 0;
 }
+
+.cmg-video-controls {
+  background-color: rgba(0,0,0,0.2); border-radius: 6px;padding: 3px 15px; align-items: center; opacity: 0.65; transition: opacity 100ms ease;
+}
+
+.cmg-video-controls:hover {opacity: 1.0;}
 
 /* Tab switcher */
 .cmg-tab-switcher {

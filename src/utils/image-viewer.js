@@ -39,7 +39,8 @@ function openImageFullscreen(elementUnderCursor) {
     const initialDy = dyToShow;
 
     /// Make original image transparent
-    let originalImageStyle = originalImage.currentStyle || window.getComputedStyle(originalImage);
+    // let originalImageStyle = originalImage.currentStyle || window.getComputedStyle(originalImage);
+    let originalImageStyle = window.getComputedStyle(originalImage);
     let originalImageTransition = originalImageStyle.transition;
     originalImage.style.transition = 'none';
     originalImage.style.opacity = 0;
@@ -154,7 +155,7 @@ function openImageFullscreen(elementUnderCursor) {
             rotationWrapper.style.transition = `transform ${transitionDuration}ms ease-in-out`;
 
         rotationWrapper.style.transform = `rotate(${rotationSteps[rotationStepsCounter]}deg)`;
-        img.classList.remove('cmg-overlay-shadow');
+        viewer.classList.remove('cmg-overlay-shadow');
 
         /// Correct image position to fit height
         // if (rotationStepsCounter == 1 || rotationStepsCounter == 3) {
@@ -198,23 +199,74 @@ function openImageFullscreen(elementUnderCursor) {
 
     document.body.appendChild(topControlsContainer);
 
-    /// Create image
-    let idForImage = 'cmg-fullscreen-image';
-    let img = document.createElement('img');
-    // img.setAttribute('height', `${originalHeight}px`);
-    img.setAttribute('src', originalImage.getAttribute('src'));
-    img.setAttribute('style', `border-radius: ${borderRadius}px;`);
-    img.style.maxHeight = `${originalHeight}px`;
+    /// Create viewer
+
+    // let img = document.createElement('img');
+    // img.setAttribute('src', originalImage.getAttribute('src'));
+    const isVideo = elementUnderCursor.tagName == 'VIDEO';
+    let viewer = document.createElement(isVideo ? 'video' : 'img');
+    if (isVideo) {
+        /// set video progress
+        let currentTime = elementUnderCursor.currentTime;
+        seekPlayerToTime(viewer, currentTime);
+
+        /// Set video source
+        let sourceTag = elementUnderCursor.querySelector('source');
+        if (sourceTag) {
+            let source = sourceTag.cloneNode();
+            // let source = document.createElement('source');
+            // source.setAttribute('src', sourceTag.src);
+            // source.setAttribute('type', sourceTag.type ?? 'video/mp4');
+            viewer.appendChild(source);
+
+            if (elementUnderCursor.paused !== true) {
+                elementUnderCursor.pause();
+                viewer.play();
+            }
+        }
+    } else
+        viewer.setAttribute('src', hoveredLink);
+
+    viewer.setAttribute('style', `border-radius: ${borderRadius}px;`);
+    viewer.style.maxHeight = `${originalHeight}px`;
 
     const rotationWrapper = document.createElement('div');
+    rotationWrapper.className = 'cmg-rotation-wrapper';
     rotationWrapper.style.transition = `transform ${transitionDuration}ms ease-in-out`;
-    rotationWrapper.appendChild(img);
+    rotationWrapper.appendChild(viewer);
 
+    const idForElement = 'cmg-fullscreen-image';
     const copyOfImage = document.createElement('div');
-    copyOfImage.setAttribute('id', idForImage);
+    copyOfImage.setAttribute('id', idForElement);
     copyOfImage.setAttribute('style', `transform-origin: 0% 0%; cursor: grab; position: fixed; transition: transform ${transitionDuration}ms ease-in-out, box-shadow ${transitionDuration}ms ease-in-out; left: 0px; top: 0px; transform: translate(${imageRect.left}px, ${imageRect.top}px); z-index: 100002;`)
     copyOfImage.style.maxHeight = `${originalHeight}px`;
     copyOfImage.appendChild(rotationWrapper);
+
+
+    /// Add controls for video
+    if (isVideo) {
+        setTimeout(function () {
+            try {
+                let controlsWrapper = document.createElement('div');
+                // controlsWrapper.setAttribute('style', 'background-color: rgba(0,0,0,0.2); border-radius: 6px;padding: 3px 15px; align-items: center;');
+                controlsWrapper.className = 'cmg-video-controls';
+
+                controlsWrapper.innerHTML = `
+                <div style="display:inline;margin-right: 4px;vertical-align:top;font-weight: 1000;" id="cmg-play-pause">${viewer.paused == true ? '▶' : '| |'}</div>
+                <input type="range" id="cmg-seek-bar" value="0">
+                <input type="range" id="cmg-volume-bar" style="float:right; max-width:100px" min="0" max="1" step="0.1" value="1">
+                <div style="display:inline; float: right; margin-right: 4px;" id="cmg-mute">🔊</div>
+                `;
+                copyOfImage.appendChild(controlsWrapper);
+                setVideoControlsListeners(viewer);
+
+            } catch (e) {
+                console.log(e);
+                /// set default hmlt controls
+                viewer.setAttribute('controls', 'controls');
+            }
+        }, 0)
+    }
 
     document.body.appendChild(copyOfImage);
 
@@ -224,9 +276,9 @@ function openImageFullscreen(elementUnderCursor) {
 
         // let copyOfImage = document.getElementById(idForImage);
         copyOfImage.style.transform = `translate(${dxToShow}px, ${dyToShow}px) scale(${scale})`;
-        img.classList.add('cmg-overlay-shadow');
+        viewer.classList.add('cmg-overlay-shadow');
 
-        copyOfImage.addEventListener('mousedown', function (e) {
+        viewer.addEventListener('mousedown', function (e) {
             evt = e || window.event;
             if ("buttons" in evt) {
                 if (evt.button == 1 || evt.button == 2) {
@@ -422,7 +474,7 @@ function openImageFullscreen(elementUnderCursor) {
             copyOfImage.style.transform = `translate(${updatedImageRect.left}px, ${updatedImageRect.top}px)`;
 
         rotationWrapper.style.transform = `rotate(0deg)`;
-        img.classList.remove('cmg-overlay-shadow');
+        viewer.classList.remove('cmg-overlay-shadow');
         setTimeout(function () {
             /// Make original image transparent
             originalImage.style.opacity = 1;
@@ -455,6 +507,84 @@ function openImageFullscreen(elementUnderCursor) {
 
         // if (scaleSlider !== null && scaleSlider !== undefined)
         //     scaleSlider.parentNode.removeChild(scaleSlider);
+    }
+
+
+    function setVideoControlsListeners(video) {
+
+        // Buttons
+        let playButton = document.getElementById("cmg-play-pause");
+        let muteButton = document.getElementById("cmg-mute");
+        // let fullScreenButton = document.getElementById("cmg-full-screen-button");
+
+        // Sliders
+        let seekBar = document.getElementById("cmg-seek-bar");
+        let volumeBar = document.getElementById("cmg-volume-bar");
+
+        // Event listener for the play/pause button
+        playButton.addEventListener("click", function () {
+            if (video.paused == true) {
+                video.play();
+                playButton.innerHTML = "| |";
+            } else {
+                video.pause();
+                playButton.innerHTML = "▶";
+            }
+        });
+
+        // Event listener for the mute button
+        muteButton.addEventListener("click", function () {
+            if (video.muted == false) {
+                video.muted = true;
+                muteButton.innerHTML = "🔇";
+            } else {
+                video.muted = false;
+                muteButton.innerHTML = "🔊";
+            }
+        });
+
+        // Event listener for the full-screen button
+        // fullScreenButton.addEventListener("click", function () {
+        //     if (video.requestFullscreen) {
+        //         video.requestFullscreen();
+        //     } else if (video.mozRequestFullScreen) {
+        //         video.mozRequestFullScreen(); // Firefox
+        //     } else if (video.webkitRequestFullscreen) {
+        //         video.webkitRequestFullscreen(); // Chrome and Safari
+        //     }
+        // });
+
+        // Event listener for the seek bar
+        seekBar.addEventListener("input", function () {
+            let time = video.duration * (seekBar.value / 100);
+            video.currentTime = time;
+        });
+
+
+        // Update the seek bar as the video plays
+        video.addEventListener("timeupdate", function () {
+            let value = (100 / video.duration) * video.currentTime;
+
+            seekBar.value = value;
+            if (time == 0 || time == 1.0) playButton.innerHTML = "▶";
+            print(value);
+        });
+
+        // Pause the video when the seek handle is being dragged
+        seekBar.addEventListener("mousedown", function () {
+            video.pause();
+        });
+
+        // Play the video when the seek handle is dropped
+        seekBar.addEventListener("mouseup", function () {
+            video.play();
+        });
+
+        // Event listener for the volume bar
+        volumeBar.addEventListener("input", function () {
+            // Update the video volume
+            video.volume = volumeBar.value;
+        });
     }
 
 
@@ -519,3 +649,5 @@ function openImageFullscreen(elementUnderCursor) {
     // }
 
 }
+
+

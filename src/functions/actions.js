@@ -191,16 +191,16 @@ function triggerButtonAction(actionToPerform, urlToOpen, scrollDirection) {
 
         case 'rewindVideo': {
             if (elementUnderCursor !== null) {
-                let currentTime = elementUnderCursor.currentTime;;
-                seekPlayerToTime(elementUnderCursor, currentTime - 10)
+                let currentTime = elementUnderCursor.currentTime;
+                seekPlayerToTime(elementUnderCursor, currentTime - 10);
             }
 
         } break;
 
         case 'fastForwardVideo': {
             if (elementUnderCursor !== null) {
-                let currentTime = elementUnderCursor.currentTime;;
-                seekPlayerToTime(elementUnderCursor, currentTime + 10)
+                let currentTime = elementUnderCursor.currentTime;
+                seekPlayerToTime(elementUnderCursor, currentTime + 10);
             }
 
         } break;

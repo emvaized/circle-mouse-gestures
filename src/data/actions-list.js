@@ -94,7 +94,6 @@ const sortedActionButtons = {
             'clearInputField',
             'moveCaretToStart',
             'moveCaretToEnd',
-
             'boldText',
             'italicText',
             'underlineText',
@@ -115,7 +114,7 @@ const sortedActionButtons = {
             'searchImageOnGoogle',
             'copyUrl',
             'copyImage',
-            'openImageFullscreen', /// Image-view
+            'openImageFullscreen',
         ],
         '—': [
             'noAction'
@@ -139,6 +138,7 @@ const sortedActionButtons = {
             'increasePlayerVolume',
             'decreasePlayerVolume',
             'mutePlayer',
+            'openImageFullscreen',
         ],
         '—': [
             'noAction'

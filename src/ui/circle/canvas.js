@@ -245,11 +245,13 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
         ctx.fillStyle = iconColor;
         ctx.font = `${iconSize}px sans-serif`;
 
-        if (segment.id !== 'noAction' & configs.showActionIcons)
+        if (segment.id !== 'noAction' && configs.showActionIcons)
             // if (actionIcons[segment.id].length <= 3) {
             //     /// Draw unicode icon
             //     ctx.fillText(actionIcons[segment.id], dxForText, dyForText - (circleRadius - innerCircleRadius > iconSize * 2.5 ? 4 : -4) - (verticalShiftForIcon == 0 ? 6 : verticalShiftForIcon) / 2);
             // } else 
+
+            // console.log(segment.url);
             if (segment.id == 'openUrl' && segment.url) {
 
                 function errorCallback() {
@@ -273,7 +275,7 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
                     let image = document.getElementById(idForFaviconImage);
                     if (image == undefined) {
                         image = document.createElement('img');
-                        image.src = 'https://www.google.com/s2/favicons?sz=24&domain_url=' + segment.url;
+                        image.src = 'https://www.google.com/s2/favicons?sz=24&domain_url=' + segment.url.replace('https://', '').split('/')[0];
                         image.setAttribute('height', `${iconSize}px`);
                         image.setAttribute('width', `${iconSize}px`);
                         image.id = idForFaviconImage;
