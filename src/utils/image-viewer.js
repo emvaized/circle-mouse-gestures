@@ -232,6 +232,8 @@ function openImageFullscreen(elementUnderCursor) {
 
     const rotationWrapper = document.createElement('div');
     rotationWrapper.className = 'cmg-rotation-wrapper';
+
+    rotationWrapper.setAttribute('style', 'display: inline !important;visibility: visible !important; height: unset !important; width: unset !important;');
     rotationWrapper.style.transition = `transform ${transitionDuration}ms ease-in-out`;
     rotationWrapper.appendChild(viewer);
 
