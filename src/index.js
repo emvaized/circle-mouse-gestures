@@ -388,10 +388,9 @@ function processAndShowCircle(e) {
     const elStyle = window.getComputedStyle(el);
 
     // if (el.tagName == 'IMG') {
-    if (el.tagName == 'IMG' || (elStyle.backgroundImage && elStyle.backgroundImage.includes('url('))) {
+    if (el.tagName == 'IMG' || (el.tagName !== 'HTML' && elStyle.backgroundImage && elStyle.backgroundImage.includes('url('))) {
         /// Image is hovered
         typeOfMenu = 'imageMenu';
-        // hoveredLink = el.getAttribute('src');
         hoveredLink = el.getAttribute('src') ?? elStyle.backgroundImage.replace('url("', '').replace('")', '');
     } else if (el.tagName == 'VIDEO' || el.tagName == 'AUDIO') {
         /// html-5 videoplayer is hovered
@@ -403,8 +402,6 @@ function processAndShowCircle(e) {
             } catch (e) { if (configs.debugMode) console.log(e); }
         }
         hoveredLink = fileLink.replaceAll('blob:', '');
-
-        // hoveredLink = window.location.href;
     } else if (el.tagName == 'A' || el.parentNode.tagName == 'A'
         // || el.firstChild.tagName == 'A'
     ) {
