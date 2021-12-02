@@ -1208,9 +1208,7 @@ function createActionDropdownButton(id, initialValue, cbOnChange, label) {
     // index = tabActions.indexOf("restoreClosedTab");
     // if (index > -1) tabActions.splice(index, 1);
 
-
     /// Populate entries with regular menu actions
-
     let setValue = false;
 
     if (selectedMenuType !== 'regularMenu') {

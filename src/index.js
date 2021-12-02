@@ -1,6 +1,10 @@
 function init() {
     loadUserConfigs(function () {
         if (configs.cmgEnabled) {
+            document.documentElement.style.setProperty('--cmg-link-prevew-anim-duration', `300ms`);
+            document.documentElement.style.setProperty('--cmg-ghost-mouse-pointer-size', `${ghostMousePointerRadius * 2}px`);
+            document.documentElement.style.setProperty('--cmg-fullscreen-overlays-shadow', '0px 10px 50px rgba(0,0,0,0.25)');
+
             setPageListeners();
         }
     })
@@ -217,10 +221,6 @@ function setPageListeners() {
     var prevHoveredDomElement = null;   // previous dom that we want to track, so we can remove the previous styling
 
     document.addEventListener('DOMContentLoaded', function () {
-        document.documentElement.style.setProperty('--cmg-link-prevew-anim-duration', `300ms`);
-        document.documentElement.style.setProperty('--cmg-ghost-mouse-pointer-size', `${ghostMousePointerRadius * 2}px`);
-        document.documentElement.style.setProperty('--cmg-fullscreen-overlays-shadow', '0px 10px 50px rgba(0,0,0,0.25)');
-
         if (configs.highlightElementOnHover) {
             // Mouse listener for any move event on the current document.
 
