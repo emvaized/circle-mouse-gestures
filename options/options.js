@@ -1065,7 +1065,7 @@ function generateLevelConfigs(levelIndex = 0) {
     let levelWidthSlider = createRangeSlider(widthInputId, configs[selectedMenuType].levels[levelIndex].width ?? configs.circleRadius, 'px', function (newVal) {
         let ind = widthInputId.split('-')[1];
         configs[selectedMenuType].levels[ind].width = newVal;
-    }, 50, 200, chrome.i18n.getMessage("levelWidth"));
+    }, 40, 200, chrome.i18n.getMessage("levelWidth"), 5);
     container.appendChild(levelWidthSlider);
 
     /// 'Use custom color' switch

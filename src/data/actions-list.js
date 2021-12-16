@@ -48,6 +48,7 @@ const sortedActionButtons = {
             'moveToNewWindow',
             'newPrivateWindow',
             'openInPrivateWindow',
+            'minimizeWindow',
             'closeWindow',
         ],
         '—': [

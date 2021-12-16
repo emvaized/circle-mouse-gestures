@@ -319,6 +319,12 @@ chrome.runtime.onMessage.addListener(
                 });
             } break;
 
+            case 'minimizeWindow': {
+                chrome.windows.update(sender.tab.windowId, {
+                    state: 'minimized'
+                });
+            } break;
+
             case 'getCurrentClipboardContent': {
                 try {
                     navigator.clipboard.readText().then(text => sendResponse(text));

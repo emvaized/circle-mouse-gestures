@@ -467,6 +467,10 @@
         "message": "Цвет выбранного меню",
         "description": ""
     },
+    "minimizeWindow": {
+        "message": "Свернуть",
+        "description": ""
+    },
     "mouseLeaveBehavior": {
         "message": "Когда курсор покидает окно",
         "description": ""

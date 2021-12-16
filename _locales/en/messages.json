@@ -467,6 +467,10 @@
         "message": "Selected menu color",
         "description": ""
     },
+    "minimizeWindow": {
+        "message": "Minimize",
+        "description": ""
+    },
     "mouseLeaveBehavior": {
         "message": "When cursor leaves window",
         "description": ""
