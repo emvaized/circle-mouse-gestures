@@ -292,6 +292,9 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
 
                         if (mradius > totalRadius1 && level !== enabledLevelsCount - 1) continue;
 
+                        /// Ignore pointer over 'no action' segments
+                        if (!showIndexes && levelData['buttons'][i]['id'] == 'noAction') continue;
+
                         if (mradius > (level == 0 ? configs.innerCircleRadius : (configs[typeOfMenu].levels[level - 1].width ?? configs.circleRadius)))
                             if (((mangle > angle && mangle < (angle + Math.PI / (segmentsCount / 2)))
                                 || (mangle > (Math.PI * (segmentsCount * 2 - (segmentsCount % 2 == 0.0 ? 1 : 0.5)) / segmentsCount) && i == 0))
