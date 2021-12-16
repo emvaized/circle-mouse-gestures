@@ -42,7 +42,7 @@
         "src/utils/page-shrinker.js",
         "src/utils/tab-switcher.js",
         "src/ui/circle/circle.js",
-        "src/ui/circle/canvas.js",
+        "src/ui/circle/canvas-drawer.js",
         "src/ui/circle/bg-dimmer.js",
         "src/ui/components/helper-tooltip.js",
         "src/ui/components/hint-tooltip.js",
