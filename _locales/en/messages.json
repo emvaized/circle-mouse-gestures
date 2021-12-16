@@ -463,12 +463,16 @@
         "message": "If cursor moved by this amount of pixels, do not open menu on timer end",
         "description": ""
     },
+    "maximizeWindow": {
+        "message": "Maximize window",
+        "description": ""
+    },
     "menuColor": {
         "message": "Selected menu color",
         "description": ""
     },
     "minimizeWindow": {
-        "message": "Minimize",
+        "message": "Minimize window",
         "description": ""
     },
     "mouseLeaveBehavior": {

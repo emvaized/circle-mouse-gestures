@@ -319,6 +319,14 @@ chrome.runtime.onMessage.addListener(
                 });
             } break;
 
+            case 'maximizeWindow': {
+                chrome.windows.get(sender.tab.windowId, function (window) {
+                    chrome.windows.update(sender.tab.windowId, {
+                        state: window.state === 'maximized' ? 'normal' : 'maximized'
+                    });
+                });
+            } break;
+
             case 'minimizeWindow': {
                 chrome.windows.update(sender.tab.windowId, {
                     state: 'minimized'

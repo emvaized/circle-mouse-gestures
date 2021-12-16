@@ -463,12 +463,16 @@
         "message": "Если курсор сдвинулся на это расстояние, не открывать меню по окончанию таймера",
         "description": ""
     },
+    "maximizeWindow": {
+        "message": "Развернуть окно",
+        "description": ""
+    },
     "menuColor": {
         "message": "Цвет выбранного меню",
         "description": ""
     },
     "minimizeWindow": {
-        "message": "Свернуть",
+        "message": "Свернуть окно",
         "description": ""
     },
     "mouseLeaveBehavior": {
