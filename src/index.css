@@ -211,13 +211,15 @@
   position: fixed;
   z-index: 99999999;
   background: transparent !important;
-  color: white;
+  color: white !important;
   border: unset; outline: unset;
-  height: 50px; font-size: 24px;
+  height: 50px; font-size: 24px !important;
+  font-weight: 300 !important;
+  font-family: Arial, sans-serif !important;
 }
 
 .cmg-tab-switcher-filter::placeholder {
-  color: rgba(256,256,256,0.8);
+  color: rgba(256,256,256,0.8) !important;
 }
 
 
