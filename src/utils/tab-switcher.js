@@ -59,7 +59,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
             if (parsed.thumbnail) {
                 imgSrc = parsed.thumbnail;
                 favicon.style.aspectRatio = 'auto';
-                horizontalFaviconSize = isGridView ? 120 : 75;
+                horizontalFaviconSize = isGridView ? 120 : 100;
                 favicon.style.width = `${horizontalFaviconSize}px`;
 
                 if (isGridView) {
@@ -77,14 +77,15 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
                         siteFavicon.setAttribute('width', '15px');
                         siteFavicon.src = tab.favIconUrl;
 
-                        // siteFavicon.style.display = 'block';
-                        // siteFavicon.style.margin = '3px auto';
-                        // tabTile.prepend(siteFavicon);
+                        siteFavicon.style.display = 'block';
+                        siteFavicon.style.margin = '3px auto';
+                        tabTile.prepend(siteFavicon);
 
-                        siteFavicon.style.display = 'inline';
-                        siteFavicon.style.verticalAlign = 'top';
-                        siteFavicon.style.marginRight = '4px';
-                        title.prepend(siteFavicon);
+                        /// To display favicon in title
+                        // siteFavicon.style.display = 'inline';
+                        // siteFavicon.style.verticalAlign = 'top';
+                        // siteFavicon.style.marginRight = '4px';
+                        // title.prepend(siteFavicon);
                     }
                 }, 1)
             }
@@ -94,8 +95,8 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
         if (!imgSrc) imgSrc = 'https://www.google.com/s2/favicons?sz=64&domain_url=' + tab.url.split('/')[2]; /// try using google favicons
         favicon.src = imgSrc;
 
-        if (!isGridView)
-            favicon.setAttribute('height', isVertical ? `${verticalFaviconSize}px` : `${horizontalFaviconSize}px`);
+        // if (!isGridView)
+        //     favicon.setAttribute('height', isVertical ? `${verticalFaviconSize}px` : `${horizontalFaviconSize}px`);
         favicon.setAttribute('width', isVertical ? `${verticalFaviconSize}px` : `${horizontalFaviconSize}px`);
         favicon.style.display = 'inline';
         favicon.style.marginRight = '6px';
@@ -125,15 +126,38 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
 
         /// select on mouse down
         tabTile.addEventListener('mousedown', function (e) {
-
             if (e.button == 0) {
                 closeTabSwitcher(false);
-                // selectTab(i);
                 selectTab(tabTiles.indexOf(tabTile));
             }
-            else if (e.button == 1)
+            else if (e.button == 1) {
+                e.preventDefault();
                 closeTab(tabTile);
-        })
+            }
+        });
+
+        if (!rightClickIsHolded || !enabledContiniousScrollDetection) {
+            let closeButton = document.createElement('div');
+            closeButton.textContent = '✕';
+            closeButton.className = 'cmg-tab-switcher-close-button';
+            closeButton.addEventListener('mousedown', function (e) {
+                e.stopPropagation();
+                closeTab(tabTile);
+            });
+
+            tabTile.appendChild(closeButton);
+
+            /// show close button on mouse over
+            tabTile.addEventListener('mouseover', function (e) {
+                closeButton.style.pointerEvents = 'auto';
+                closeButton.style.opacity = 1;
+            })
+
+            tabTile.addEventListener('mouseout', function (e) {
+                closeButton.style.pointerEvents = 'none';
+                closeButton.style.opacity = 0;
+            })
+        }
 
         /// draw border around selected
         if (tab.active) {

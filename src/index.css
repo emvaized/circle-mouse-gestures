@@ -169,7 +169,7 @@
 }
 
 .cmg-tab-switcher-entry {
-  padding: 6px; cursor: pointer;
+  padding: 6px; cursor: pointer; position: relative;
 }
 
 .cmg-tab-switcher-entry span {
@@ -180,6 +180,18 @@
   /* background: lightgray; */
   background: rgba(0,0,0,0.25);
 }
+
+/* Tab switcher close button */
+.cmg-tab-switcher-close-button {
+  position: absolute; top: 0px; right: 0px;transition:opacity 100ms ease; opacity: 0; pointer-events: none;  padding: 2px 4px; 
+  color: black;  background-color: rgba(256,256,256,0.5);
+}
+
+.cmg-tab-switcher-close-button:hover {
+  background-color: red;
+  color: white;
+}
+
 
 .horizontal-tab-switcher-label {
   /* max-height: 50px; */
