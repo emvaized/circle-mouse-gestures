@@ -819,6 +819,10 @@
         "message": "Показывать обычное меню, если действие не выбрано",
         "description": ""
     },
+    "showTabSwitcherGrid": {
+        "message": "Список вкладок (сетка)",
+        "description": ""
+    },
     "showTabSwitcherHorizontal": {
         "message": "Список вкладок (гориз.)",
         "description": ""

@@ -819,6 +819,10 @@
         "message": "Show regular menu if no action selected",
         "description": ""
     },
+    "showTabSwitcherGrid": {
+        "message": "Tab switcher (grid)",
+        "description": ""
+    },
     "showTabSwitcherHorizontal": {
         "message": "Tab switcher (horizontal)",
         "description": ""

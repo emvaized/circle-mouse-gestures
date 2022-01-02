@@ -1068,6 +1068,16 @@ function generateLevelConfigs(levelIndex = 0) {
     }, 40, 200, chrome.i18n.getMessage("levelWidth"), 5);
     container.appendChild(levelWidthSlider);
 
+    /// Custom level gap
+    // if (levelIndex > 0) {
+    //     let levelGapInputId = `levelGapInput-${levelIndex}`;
+    //     let levelGapSlider = createRangeSlider(levelGapInputId, configs[selectedMenuType].levels[levelIndex].levelGap ?? configs.gapBetweenCircles, 'px', function (newVal) {
+    //         let ind = levelGapInputId.split('-')[1];
+    //         configs[selectedMenuType].levels[ind].levelGap = newVal;
+    //     }, 0, 100, 'Level gap');
+    //     container.appendChild(levelGapSlider);
+    // }
+
     /// 'Use custom color' switch
     var customColorContainer = document.createElement('div');
     customColorContainer.setAttribute('class', 'option');

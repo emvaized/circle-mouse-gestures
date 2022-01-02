@@ -1,4 +1,4 @@
-function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
+function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridView = false) {
 
     if (configs.debugMode) {
         console.log('List of tabs for tabs switcher:');
@@ -26,20 +26,148 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
         container.classList.add('horizontal-switcher');
     }
 
-    /// align at center
+    /// apply grid view styling
+    if (isGridView) {
+        container.classList.add('grid-view-switcher');
+        container.style.maxHeight = `${window.screen.height * 0.8}px`;
+        container.style.maxWidth = `${window.screen.width * 0.8}px`;
+    }
+
+    /// align switcher at screen center
     container.classList.add('center-aligned-switcher');
+
+    /// Generate tab tiles
+    const tabTiles = [];
+    let focusedTile = -1;
+    const tabsLength = tabs.length;
+
+    for (let i = 0; i < tabsLength; i++) {
+        const tab = tabs[i];
+
+        const tabTile = document.createElement('div');
+        tabTile.className = 'cmg-tab-switcher-entry';
+        tabTile.style.borderRadius = borderRadius + 'px';
+
+        /// favicon
+        const favicon = document.createElement('img');
+
+        /// use tab thumbnail image if available
+        let imgSrc;
+        if (!isVertical && tab.extData) {
+            let parsed = JSON.parse(tab.extData);
+            if (parsed.thumbnail) {
+                imgSrc = parsed.thumbnail;
+                favicon.style.aspectRatio = 'auto';
+                favicon.style.width = 'unset';
+                horizontalFaviconSize = isGridView ? 120 : 75;
+
+                /// add website favicon when using thumbnail
+                setTimeout(function () {
+                    let siteFavicon = document.createElement('img');
+                    siteFavicon.setAttribute('height', '15px');
+                    siteFavicon.setAttribute('width', '15px');
+                    siteFavicon.src = tab.favIconUrl;
+                    // siteFavicon.style.height = '15px';
+
+                    siteFavicon.style.display = 'block';
+                    siteFavicon.style.margin = '3px auto';
+                    tabTile.prepend(siteFavicon);
+                    title.style.width = '110px';
+                }, 1)
+            }
+        }
+
+        if (!imgSrc) imgSrc = tab.favIconUrl;
+        if (!imgSrc) imgSrc = 'https://www.google.com/s2/favicons?sz=64&domain_url=' + tab.url.split('/')[2]; /// try using google favicons
+        favicon.src = imgSrc;
+
+        if (!isGridView)
+            favicon.setAttribute('height', isVertical ? `${verticalFaviconSize}px` : `${horizontalFaviconSize}px`);
+        favicon.setAttribute('width', isVertical ? `${verticalFaviconSize}px` : `${horizontalFaviconSize}px`);
+        favicon.style.display = 'inline';
+        favicon.style.marginRight = '6px';
+        // favicon.aspectRadio = 'unset';
+        // favicon.crossOrigin = "anonymous";
+        tabTile.appendChild(favicon);
+
+        /// title
+        const title = document.createElement('span');
+        title.textContent = (tab.audible ? '🔊 ' : '') + tab.title;
+        title.style.verticalAlign = 'super';
+        title.style.color = 'black';
+
+        /// special styling for horizontal layout
+        if (!isVertical) {
+            tabTile.style.display = 'inline';
+            tabTile.style.textAlign = 'center';
+            tabTile.style.padding = '0px 12px';
+
+            title.classList.add('horizontal-tab-switcher-label');
+            title.title = tab.title;
+        } else {
+            title.classList.add('vertical-tab-switcher-label');
+        }
+        tabTile.appendChild(title);
+
+        /// select on mouse down
+        tabTile.addEventListener('mousedown', function () {
+            closeTabSwitcher(false);
+            selectTab(i);
+        })
+
+        /// draw border around selected
+        if (tab.active) {
+            tabTile.style.border = '1.5px solid blue';
+            focusedTile = i;
+            setTimeout(function () {
+                tabTile.scrollIntoView({ block: 'center', inline: 'center' });
+            }, 1)
+        }
+
+        container.appendChild(tabTile);
+        tabTiles.push(tabTile);
+    }
+
+    /// initial scroll action
+    if (initScrollDirection && enabledContiniousScrollDetection) {
+        if (initScrollDirection == 'up' && focusedTile > 0) {
+            focusedTile -= 1;
+            tabTiles[focusedTile].classList.add('highlighted-tab');
+            tabTiles[focusedTile].scrollIntoView({ block: verticalScrollAlign, inline: horizontalScrollAlign });
+        } else if (initScrollDirection == 'down' && focusedTile < tabs.length - 1) {
+            focusedTile += 1;
+            tabTiles[focusedTile].classList.add('highlighted-tab');
+            tabTiles[focusedTile].scrollIntoView({ block: verticalScrollAlign, inline: horizontalScrollAlign });
+        }
+    }
+
+    /// Make switcher controllable by scroll
+    if (rightClickIsHolded && enabledContiniousScrollDetection) {
+        document.addEventListener('mouseup', mouseUpScrollListener);
+        document.addEventListener('wheel', scrollListener, { passive: false });
+        container.style.pointerEvents = 'none';
+    } else {
+        /// static switcher
+        document.addEventListener('keydown', keyboardListener);
+    }
+
+    /// append switcher to the document
+    document.body.appendChild(container);
 
     /// trigger show-up transition
     setTimeout(function () {
         container.style.opacity = 1;
         container.classList.add('cmg-overlay-shadow');
+    }, 1);
 
+    /// add controls after delay 
+    setTimeout(function () {
         /// add search query only when in static mode
         if (!rightClickIsHolded || !enabledContiniousScrollDetection) {
             const switcherRect = container.getBoundingClientRect();
-            container.classList.remove('center-aligned-switcher');
-            container.style.top = `${switcherRect.top}px`;
-            container.style.left = `${switcherRect.left}px`;
+            // container.classList.remove('center-aligned-switcher');
+            // container.style.top = `${switcherRect.top}px`;
+            // container.style.left = `${switcherRect.left}px`;
 
             const closeButtonSize = 24;
 
@@ -114,125 +242,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
 
             document.body.appendChild(topControlsContainer);
         }
-
-
-    }, 0);
-
-    /// Generate tab tiles
-    const tabTiles = [];
-    let focusedTile = -1;
-    const tabsLength = tabs.length;
-
-    for (let i = 0; i < tabsLength; i++) {
-        const tab = tabs[i];
-
-        const tabTile = document.createElement('div');
-        tabTile.className = 'cmg-tab-switcher-entry';
-        tabTile.style.borderRadius = borderRadius + 'px';
-
-        /// favicon
-        const favicon = document.createElement('img');
-
-        /// use tab thumbnail image if available
-        let imgSrc;
-        if (!isVertical && tab.extData) {
-            let parsed = JSON.parse(tab.extData);
-            if (parsed.thumbnail) {
-                imgSrc = parsed.thumbnail;
-                favicon.style.aspectRatio = 'auto';
-                favicon.style.width = 'unset';
-                horizontalFaviconSize = 75;
-
-                /// add website favicon when using thumbnail
-                setTimeout(function () {
-                    let siteFavicon = document.createElement('img');
-                    siteFavicon.setAttribute('height', '15px');
-                    siteFavicon.setAttribute('width', '15px');
-                    siteFavicon.src = tab.favIconUrl;
-                    // siteFavicon.style.height = '15px';
-
-                    siteFavicon.style.display = 'block';
-                    siteFavicon.style.margin = '3px auto';
-                    tabTile.prepend(siteFavicon);
-                    title.style.width = '110px';
-                }, 1)
-            }
-        }
-
-        if (!imgSrc) imgSrc = tab.favIconUrl;
-        if (!imgSrc) imgSrc = 'https://www.google.com/s2/favicons?sz=64&domain_url=' + tab.url.split('/')[2]; /// try using google favicons
-        favicon.src = imgSrc;
-
-        favicon.setAttribute('height', isVertical ? `${verticalFaviconSize}px` : `${horizontalFaviconSize}px`);
-        favicon.setAttribute('width', isVertical ? `${verticalFaviconSize}px` : `${horizontalFaviconSize}px`);
-        favicon.style.display = 'inline';
-        favicon.style.marginRight = '6px';
-        // favicon.aspectRadio = 'unset';
-        // favicon.crossOrigin = "anonymous";
-        tabTile.appendChild(favicon);
-
-        /// title
-        const title = document.createElement('span');
-        title.textContent = (tab.audible ? '🔊 ' : '') + tab.title;
-        title.style.verticalAlign = 'super';
-        title.style.color = 'black';
-
-        /// special styling for horizontal layout
-        if (!isVertical) {
-            tabTile.style.display = 'inline';
-            tabTile.style.textAlign = 'center';
-            tabTile.style.padding = '0px 12px';
-
-            title.classList.add('horizontal-tab-switcher-label');
-            title.title = tab.title;
-        } else {
-            title.classList.add('vertical-tab-switcher-label');
-        }
-        tabTile.appendChild(title);
-
-        /// select on mouse down
-        tabTile.addEventListener('mousedown', function () {
-            closeTabSwitcher(false);
-            selectTab(i);
-        })
-
-        /// draw border around selected
-        if (tab.active) {
-            tabTile.style.border = '1.5px solid blue';
-            focusedTile = i;
-            setTimeout(function () {
-                tabTile.scrollIntoView({ block: 'center', inline: 'center' });
-            }, 1)
-        }
-
-        container.appendChild(tabTile);
-        tabTiles.push(tabTile);
-    }
-
-    /// initial scroll action
-    if (initScrollDirection && enabledContiniousScrollDetection) {
-        if (initScrollDirection == 'up' && focusedTile > 0) {
-            focusedTile -= 1;
-            tabTiles[focusedTile].classList.add('highlighted-tab');
-            tabTiles[focusedTile].scrollIntoView({ block: verticalScrollAlign, inline: horizontalScrollAlign });
-        } else if (initScrollDirection == 'down' && focusedTile < tabs.length - 1) {
-            focusedTile += 1;
-            tabTiles[focusedTile].classList.add('highlighted-tab');
-            tabTiles[focusedTile].scrollIntoView({ block: verticalScrollAlign, inline: horizontalScrollAlign });
-        }
-    }
-
-    /// Make switcher controllable by scroll
-    if (rightClickIsHolded && enabledContiniousScrollDetection) {
-        document.addEventListener('mouseup', mouseUpScrollListener);
-        document.addEventListener('wheel', scrollListener, { passive: false });
-        container.style.pointerEvents = 'none';
-    } else {
-        /// static switcher
-        document.addEventListener('keydown', keyboardListener);
-    }
-
-    document.body.appendChild(container);
+    }, transitionDuration / 3);
 
     /// Scroll listener
     function scrollListener(event) {
@@ -330,10 +340,6 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
         const tiles = filteredTiles.length > 0 ? filteredTiles : tabTiles;
 
         if (focusedTile > 0) {
-            // tabTiles[focusedTile].classList.remove('highlighted-tab');
-            // focusedTile -= 1;
-            // tabTiles[focusedTile].classList.add('highlighted-tab');
-            // tabTiles[focusedTile].scrollIntoView({ block: verticalScrollAlign, inline: horizontalScrollAlign });
             tiles[focusedTile].classList.remove('highlighted-tab');
             focusedTile -= 1;
             tiles[focusedTile].classList.add('highlighted-tab');
@@ -342,12 +348,6 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
     }
 
     function highlightLowerTab() {
-        // if (focusedTile < tabs.length - 1) {
-        //     tabTiles[focusedTile].classList.remove('highlighted-tab');
-        //     focusedTile += 1;
-        //     tabTiles[focusedTile].classList.add('highlighted-tab');
-        //     tabTiles[focusedTile].scrollIntoView({ block: verticalScrollAlign, inline: horizontalScrollAlign });
-        // }
         const tiles = filteredTiles.length > 0 ? filteredTiles : tabTiles;
 
         if (focusedTile < tiles.length - 1) {
@@ -410,6 +410,5 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection) {
 
             }, transitionDuration);
         }
-
     }
 }

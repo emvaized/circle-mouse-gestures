@@ -298,6 +298,12 @@ function triggerButtonAction(actionToPerform, urlToOpen, scrollDirection) {
             });
         } break;
 
+        case 'showTabSwitcherGrid': {
+            chrome.runtime.sendMessage({ actionToDo: 'returnAllTabs' }, (tabs) => {
+                openTabSwitcher(tabs, false, scrollDirection, true);
+            });
+        } break;
+
         case 'normalPlaybackSpeed': {
             if (elementUnderCursor !== null) {
                 elementUnderCursor.playbackRate = 1;

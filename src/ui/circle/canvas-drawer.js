@@ -274,7 +274,8 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
                     let image = document.getElementById(idForFaviconImage);
                     if (image == undefined) {
                         image = document.createElement('img');
-                        image.src = 'https://www.google.com/s2/favicons?sz=24&domain_url=' + segment.url.replace('https://', '').split('/')[0];
+                        // image.src = 'https://www.google.com/s2/favicons?sz=24&domain_url=' + segment.url.replace('https://', '').split('/')[0];
+                        image.src = 'https://s2.googleusercontent.com/s2/favicons?domain=' + segment.url.replace('https://', '').split('/')[0];
                         image.setAttribute('height', `${iconSize}px`);
                         image.setAttribute('width', `${iconSize}px`);
                         image.id = idForFaviconImage;
@@ -284,8 +285,8 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
 
                         image.onload = function () {
                             ctx.drawImage(image, dxForText - (iconSize / 2), dyForText - (verticalShiftForIcon == 0 && shouldDrawLabel ? 6 : verticalShiftForIcon) - (iconSize / (circleRadius - innerCircleRadius > iconSize * 2.5 ? 1.5 : 2)), iconSize, iconSize);
-                            if (showIndexes)
-                                image.remove();
+                            // if (showIndexes)
+                            image.remove();
                         }
                         image.onerror = function () {
                             image.remove();

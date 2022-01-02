@@ -11,6 +11,7 @@ const sortedActionButtons = {
             'openUrl',
             'showTabSwitcherVertical',
             'showTabSwitcherHorizontal',
+            'showTabSwitcherGrid',
         ],
         'tab': [
             'newTab',

@@ -17,7 +17,7 @@ function showCircle(e) {
 
                 /// Calculate total circle radius with only enabled levels
                 if (level.enabled !== false) {
-                    totalCircleRadius += configs.gapBetweenCircles + (level.width ?? configs.circleRadius);
+                    totalCircleRadius += (level.levelGap ?? configs.gapBetweenCircles) + (level.width ?? configs.circleRadius);
                     enabledLevelsCount += 1;
                 }
             }
@@ -295,7 +295,7 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
                         /// Ignore pointer over 'no action' segments
                         if (!showIndexes && levelData['buttons'][i]['id'] == 'noAction') continue;
 
-                        if (mradius > (level == 0 ? configs.innerCircleRadius : (configs[typeOfMenu].levels[level - 1].width ?? configs.circleRadius)))
+                        if (mradius > (level == 0 ? configs.innerCircleRadius : (configs[typeOfMenu].levels[level - 1].width ?? configs.circleRadius))) {
                             if (((mangle > angle && mangle < (angle + Math.PI / (segmentsCount / 2)))
                                 || (mangle > (Math.PI * (segmentsCount * 2 - (segmentsCount % 2 == 0.0 ? 1 : 0.5)) / segmentsCount) && i == 0))
                             ) {
@@ -307,6 +307,7 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
                                     break;
                                 }
                             }
+                        }
                     }
 
                     totalRadius1 -= levelData.width ?? configs.circleRadius;
@@ -339,7 +340,7 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
                     totalRadius,
                     /// innerCircleRadius
                     i == 0 ? configs.innerCircleRadius :
-                        totalRadius - (levelData.width ?? configs.circleRadius) + configs.gapBetweenCircles,
+                        totalRadius - (levelData.width ?? configs.circleRadius) + (levelData.levelGap ?? configs.gapBetweenCircles),
                     ///level
                     i,
                     /// shouldRespectBoundary
@@ -368,7 +369,7 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
                     ctx.beginPath();
                     ctx.globalCompositeOperation = 'destination-out';
                     ctx.arc(canvasRadius / 2, canvasRadius / 2, (i == 0 ? configs.innerCircleRadius :
-                        totalRadius - (levelData.width ?? configs.circleRadius) + configs.gapBetweenCircles) * 0.75, 0, 2 * Math.PI, false);
+                        totalRadius - (levelData.width ?? configs.circleRadius) + (levelData.levelGap ?? configs.gapBetweenCircles)) * 0.75, 0, 2 * Math.PI, false);
                     ctx.filter = 'blur(6px)';
                     ctx.fill();
                     ctx.restore();
