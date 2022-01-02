@@ -31,6 +31,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
         container.classList.add('grid-view-switcher');
         container.style.maxHeight = `${window.screen.height * 0.8}px`;
         container.style.maxWidth = `${window.screen.width * 0.8}px`;
+        container.style.gridTemplateColumns = `repeat(${Math.round(window.screen.width / 200)}, 1fr)`;
     }
 
     /// align switcher at screen center
@@ -58,21 +59,33 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
             if (parsed.thumbnail) {
                 imgSrc = parsed.thumbnail;
                 favicon.style.aspectRatio = 'auto';
-                favicon.style.width = 'unset';
                 horizontalFaviconSize = isGridView ? 120 : 75;
+                favicon.style.width = `${horizontalFaviconSize}px`;
+
+                if (isGridView) {
+                    favicon.style.marginTop = '3px';
+                    favicon.style.marginBottom = '0.5px';
+                }
 
                 /// add website favicon when using thumbnail
                 setTimeout(function () {
-                    let siteFavicon = document.createElement('img');
-                    siteFavicon.setAttribute('height', '15px');
-                    siteFavicon.setAttribute('width', '15px');
-                    siteFavicon.src = tab.favIconUrl;
-                    // siteFavicon.style.height = '15px';
-
-                    siteFavicon.style.display = 'block';
-                    siteFavicon.style.margin = '3px auto';
-                    tabTile.prepend(siteFavicon);
                     title.style.width = '110px';
+
+                    if (tab.favIconUrl && tab.favIconUrl !== '') {
+                        const siteFavicon = document.createElement('img');
+                        siteFavicon.setAttribute('height', '15px');
+                        siteFavicon.setAttribute('width', '15px');
+                        siteFavicon.src = tab.favIconUrl;
+
+                        // siteFavicon.style.display = 'block';
+                        // siteFavicon.style.margin = '3px auto';
+                        // tabTile.prepend(siteFavicon);
+
+                        siteFavicon.style.display = 'inline';
+                        siteFavicon.style.verticalAlign = 'top';
+                        siteFavicon.style.marginRight = '4px';
+                        title.prepend(siteFavicon);
+                    }
                 }, 1)
             }
         }
@@ -107,12 +120,19 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
         } else {
             title.classList.add('vertical-tab-switcher-label');
         }
+
         tabTile.appendChild(title);
 
         /// select on mouse down
-        tabTile.addEventListener('mousedown', function () {
-            closeTabSwitcher(false);
-            selectTab(i);
+        tabTile.addEventListener('mousedown', function (e) {
+
+            if (e.button == 0) {
+                closeTabSwitcher(false);
+                // selectTab(i);
+                selectTab(tabTiles.indexOf(tabTile));
+            }
+            else if (e.button == 1)
+                closeTab(tabTile);
         })
 
         /// draw border around selected
@@ -363,6 +383,21 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
         let tabToSelect = tabs[tabTiles.indexOf(tileToSelect)];
 
         chrome.runtime.sendMessage({ actionToDo: 'switchToIndexedTab', id: tabToSelect.id });
+    }
+
+    function closeTab(tabTile) {
+        tabTile.remove();
+
+        let index = tabTiles.indexOf(tabTile);
+        tabTiles.splice(index, 1);
+
+        let filteredIndex = filteredTiles.indexOf(tabTile);
+        filteredTiles.splice(filteredIndex, 1);
+
+        let tabToRemove = tabs[index];
+        tabs.splice(index, 1);
+
+        chrome.runtime.sendMessage({ actionToDo: 'closeIndexedTab', id: tabToRemove.id });
     }
 
 

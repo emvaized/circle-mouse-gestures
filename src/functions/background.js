@@ -450,6 +450,10 @@ chrome.runtime.onMessage.addListener(
                 return true;
             } break;
 
+            case 'closeIndexedTab': {
+                chrome.tabs.remove(request.id, function () { });
+            } break;
+
             case 'copyPrefetchedImageFirefox': {
                 copyPrefetchedImage(request.blob, function (result) {
                     sendResponse(result);

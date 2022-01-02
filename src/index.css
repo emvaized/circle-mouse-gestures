@@ -222,8 +222,7 @@
 
 .grid-view-switcher {
   display: grid;
-  /* grid-template-columns: repeat(6, 1fr); */
-  grid-template-columns: repeat(10, 1fr);
+  /* grid-template-columns: repeat(10, 1fr); */
   grid-column-gap: 10px;
   grid-row-gap: 10px;
 }
