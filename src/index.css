@@ -197,10 +197,11 @@
 .horizontal-tab-switcher-label {
   /* max-height: 50px; */
   height: 50px;
-  width: 75px;
+  width: 120px;
   display: block;
   overflow: hidden;
   font-size: 13px !important;
+  text-overflow: ellipsis;
 }
 
 .vertical-tab-switcher-label{
@@ -211,15 +212,13 @@
   position: fixed;
   z-index: 99999999;
   background: transparent !important;
-  color: white !important;
+  color: white;
   border: unset; outline: unset;
-  height: 50px; font-size: 24px !important;
-  font-weight: 300 !important;
-  font-family: Arial, sans-serif !important;
+  height: 50px; font-size: 24px;
 }
 
 .cmg-tab-switcher-filter::placeholder {
-  color: rgba(256,256,256,0.8) !important;
+  color: rgba(256,256,256,0.8);
 }
 
 

@@ -67,6 +67,7 @@
     "default_popup": "popup/popup.html"
   },
   "permissions": [
+    "<all_urls>",
     "tabs",
     "storage",
     "sessions",

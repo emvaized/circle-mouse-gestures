@@ -433,7 +433,6 @@ chrome.runtime.onMessage.addListener(
 
             case 'returnAllTabs': {
                 chrome.tabs.query({
-                    // windowId: sender.tab.windowId
                     currentWindow: true
                 }, function (tabs) {
                     sendResponse(tabs);
@@ -443,10 +442,6 @@ chrome.runtime.onMessage.addListener(
 
             case 'switchToIndexedTab': {
                 chrome.tabs.update(request.id, { active: true });
-                // chrome.tabs.query({ currentWindow: true }, function (tabs) {
-                //     chrome.tabs.update(tabs[request.index].id, { active: true });
-                // });
-
                 return true;
             } break;
 
@@ -457,6 +452,27 @@ chrome.runtime.onMessage.addListener(
             case 'copyPrefetchedImageFirefox': {
                 copyPrefetchedImage(request.blob, function (result) {
                     sendResponse(result);
+                });
+                return true;
+            } break;
+
+            case 'firefoxCaptureTab': {
+                const thumbWidth = window.screen.width / 1.5;
+
+                const capturing = browser.tabs.captureTab(request.id, {
+                    'format': 'jpeg', 'quality': 30, 'scale': window.devicePixelRatio * 0.2,
+                    /// attempt to trim horizontal white space s
+                    'rect': {
+                        'x': (window.screen.width - thumbWidth) / 2.5,
+                        'y': 0,
+                        'width': thumbWidth,
+                        'height': window.screen.height / 1.35,
+                    }
+                });
+                capturing.then(function (result) {
+                    sendResponse(result);
+                }, function (error) {
+                    sendResponse(error);
                 });
                 return true;
             } break;
@@ -477,7 +493,7 @@ async function copyPrefetchedImage(blob, callback) {
 
 /**
  * displays a browser notification
- * opens an URL on click if specified (non-specified)
+ * opens an URL on click if specified
  **/
 function displayNotification(title, message, link, image) {
     // create notification

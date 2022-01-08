@@ -77,11 +77,12 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
                         siteFavicon.setAttribute('width', '15px');
                         siteFavicon.src = tab.favIconUrl;
 
+                        /// to display favicon as block element
                         siteFavicon.style.display = 'block';
                         siteFavicon.style.margin = '3px auto';
                         tabTile.prepend(siteFavicon);
 
-                        /// To display favicon in title
+                        /// to display favicon in title
                         // siteFavicon.style.display = 'inline';
                         // siteFavicon.style.verticalAlign = 'top';
                         // siteFavicon.style.marginRight = '4px';
@@ -95,8 +96,6 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
         if (!imgSrc) imgSrc = 'https://www.google.com/s2/favicons?sz=64&domain_url=' + tab.url.split('/')[2]; /// try using google favicons
         favicon.src = imgSrc;
 
-        // if (!isGridView)
-        //     favicon.setAttribute('height', isVertical ? `${verticalFaviconSize}px` : `${horizontalFaviconSize}px`);
         favicon.setAttribute('width', isVertical ? `${verticalFaviconSize}px` : `${horizontalFaviconSize}px`);
         favicon.style.display = 'inline';
         favicon.style.marginRight = '6px';
@@ -121,7 +120,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
         } else {
             title.classList.add('vertical-tab-switcher-label');
         }
-
+        // tabTile.title = tab.title;
         tabTile.appendChild(title);
 
         /// select on mouse down
@@ -170,6 +169,36 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
 
         container.appendChild(tabTile);
         tabTiles.push(tabTile);
+
+        /// try to fetch thumbnail if Firefox
+        if (navigator.userAgent.indexOf("Firefox") > -1)
+            captureTabPreviewFirefox(favicon, tab, title);
+    }
+
+    async function captureTabPreviewFirefox(favicon, tab, title) {
+
+        chrome.runtime.sendMessage({
+            actionToDo: 'firefoxCaptureTab', id: tab.id
+        }, (data) => {
+            // console.log('thumb data for ' + tab.id);
+            // console.log(data);
+            if (data == undefined) return;
+
+            favicon.src = data;
+            // favicon.style.aspectRatio = '1/0.7';
+            favicon.setAttribute('width', `${120}px`);
+            // title.style.width = '120px';
+
+            const siteFavicon = document.createElement('img');
+            siteFavicon.setAttribute('height', '15px');
+            siteFavicon.setAttribute('width', '15px');
+            siteFavicon.src = tab.favIconUrl;
+            siteFavicon.style.display = 'inline';
+            siteFavicon.style.verticalAlign = 'top';
+            siteFavicon.style.marginRight = '4px';
+            title.prepend(siteFavicon);
+        });
+
     }
 
     /// initial scroll action
@@ -325,7 +354,6 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
             highlightLowerTab();
         }
     }
-
 
     /// Background dimmer
     let bgOpacity = 0.5;
