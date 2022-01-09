@@ -175,31 +175,11 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
             captureTabPreviewFirefox(favicon, tab, title);
     }
 
-    async function captureTabPreviewFirefox(favicon, tab, title) {
-
-        chrome.runtime.sendMessage({
-            actionToDo: 'firefoxCaptureTab', id: tab.id
-        }, (data) => {
-            // console.log('thumb data for ' + tab.id);
-            // console.log(data);
-            if (data == undefined) return;
-
-            favicon.src = data;
-            // favicon.style.aspectRatio = '1/0.7';
-            favicon.setAttribute('width', `${120}px`);
-            // title.style.width = '120px';
-
-            const siteFavicon = document.createElement('img');
-            siteFavicon.setAttribute('height', '15px');
-            siteFavicon.setAttribute('width', '15px');
-            siteFavicon.src = tab.favIconUrl;
-            siteFavicon.style.display = 'inline';
-            siteFavicon.style.verticalAlign = 'top';
-            siteFavicon.style.marginRight = '4px';
-            title.prepend(siteFavicon);
-        });
-
-    }
+    /// 'Add new tab' tile
+    // const addNewTabTile = document.createElement('div');
+    // addNewTabTile.textContent = '+';
+    // addNewTabTile.className = 'cmg-tab-switcher-entry';
+    // container.appendChild(addNewTabTile);
 
     /// initial scroll action
     if (initScrollDirection && enabledContiniousScrollDetection) {
@@ -315,7 +295,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
 
             document.body.appendChild(topControlsContainer);
         }
-    }, transitionDuration / 3);
+    }, transitionDuration / 2);
 
     /// Scroll listener
     function scrollListener(event) {
@@ -452,8 +432,38 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
         chrome.runtime.sendMessage({ actionToDo: 'closeIndexedTab', id: tabToRemove.id });
     }
 
+    let titleFaviconPrototype;
 
-    /// Close functions
+    async function captureTabPreviewFirefox(favicon, tab, title) {
+        chrome.runtime.sendMessage({
+            actionToDo: 'firefoxCaptureTab', id: tab.id
+        }, (data) => {
+            // console.log('thumb data for ' + tab.id);
+            // console.log(data);
+            if (data == undefined) return;
+
+            favicon.src = data;
+            favicon.setAttribute('width', `${120}px`);
+
+            /// Append tab favicon to title
+            try {
+                console.log(titleFaviconPrototype);
+                if (titleFaviconPrototype == undefined) {
+                    titleFaviconPrototype = new Image();
+                    titleFaviconPrototype.setAttribute('height', '15px');
+                    titleFaviconPrototype.setAttribute('width', '15px');
+                    titleFaviconPrototype.style.display = 'inline';
+                    titleFaviconPrototype.style.verticalAlign = 'top';
+                    titleFaviconPrototype.style.marginRight = '4px';
+                }
+
+                const favicon = titleFaviconPrototype.cloneNode(true);
+                favicon.src = tab.favIconUrl;
+                title.prepend(favicon);
+            } catch (e) { }
+        });
+    }
+
     function closeTabSwitcher(transition = true) {
         hideBgDimmer();
         hideSwitcher(transition);

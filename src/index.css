@@ -155,15 +155,13 @@
 }
 
 .vertical-switcher {
-  overflow-x: auto;
-  overflow-y: scroll;
+  overflow: auto;
   max-height: 50%;
   min-width: 40%;
 }
 
 .horizontal-switcher {
-  overflow-x: scroll;
-  overflow-y: auto;
+  overflow: auto;
   display: flex;
   max-width: 50%;
 }
