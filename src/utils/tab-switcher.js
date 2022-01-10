@@ -1,5 +1,4 @@
 function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridView = false) {
-
     if (configs.debugMode) {
         console.log('List of tabs for tabs switcher:');
         console.log(tabs);
@@ -14,6 +13,10 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
     const enabledContiniousScrollDetection = ((isVertical && configs.continiousVerticalScrollDetection) || (!isVertical && configs.continiousHorizontalScrollDetection));
     let filterInput, topControlsContainer;
     const filteredTiles = [];
+    const githubFaviconSrc = 'https://www.google.com/s2/favicons?sz=64&domain_url=github.community';
+
+    /// prototype for tab favicon
+    let titleFaviconPrototype;
 
     /// main container
     const container = document.createElement('div');
@@ -37,6 +40,14 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
     /// align switcher at screen center
     container.classList.add('center-aligned-switcher');
 
+    /// open new tab on double-clicking tab switcher
+    container.addEventListener('click', function (ev) {
+        if (ev.detail == 2) {
+            closeTabSwitcher();
+            openNewTab();
+        }
+    })
+
     /// Generate tab tiles
     const tabTiles = [];
     let focusedTile = -1;
@@ -50,58 +61,38 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
         tabTile.style.borderRadius = borderRadius + 'px';
 
         /// favicon
-        const favicon = document.createElement('img');
+        const tabThumbnail = document.createElement('img');
+        tabThumbnail.style.margin = '10px 0px';
 
-        /// use tab thumbnail image if available
+        /// use tab thumbnail image if available (only Vivaldi)
         let imgSrc;
         if (!isVertical && tab.extData) {
             let parsed = JSON.parse(tab.extData);
             if (parsed.thumbnail) {
                 imgSrc = parsed.thumbnail;
-                favicon.style.aspectRatio = 'auto';
-                horizontalFaviconSize = isGridView ? 120 : 100;
-                favicon.style.width = `${horizontalFaviconSize}px`;
-
-                if (isGridView) {
-                    favicon.style.marginTop = '3px';
-                    favicon.style.marginBottom = '0.5px';
-                }
+                tabThumbnail.style.margin = '3px 0px';
 
                 /// add website favicon when using thumbnail
                 setTimeout(function () {
-                    title.style.width = '110px';
-
+                    tabThumbnail.setAttribute('width', `${120}px`);
                     if (tab.favIconUrl && tab.favIconUrl !== '') {
-                        const siteFavicon = document.createElement('img');
-                        siteFavicon.setAttribute('height', '15px');
-                        siteFavicon.setAttribute('width', '15px');
-                        siteFavicon.src = tab.favIconUrl;
-
-                        /// to display favicon as block element
-                        siteFavicon.style.display = 'block';
-                        siteFavicon.style.margin = '3px auto';
-                        tabTile.prepend(siteFavicon);
-
-                        /// to display favicon in title
-                        // siteFavicon.style.display = 'inline';
-                        // siteFavicon.style.verticalAlign = 'top';
-                        // siteFavicon.style.marginRight = '4px';
-                        // title.prepend(siteFavicon);
+                        appendTitleFavicon(tab.url.includes('https://github.com/') ? githubFaviconSrc : tab.favIconUrl, title);
                     }
                 }, 1)
             }
         }
 
-        if (!imgSrc) imgSrc = tab.favIconUrl;
-        if (!imgSrc) imgSrc = 'https://www.google.com/s2/favicons?sz=64&domain_url=' + tab.url.split('/')[2]; /// try using google favicons
-        favicon.src = imgSrc;
+        if (!imgSrc) {
+            imgSrc = tab.favIconUrl;
+            if (tab.url.includes('https://github.com/')) imgSrc = githubFaviconSrc;
+            if (!imgSrc) imgSrc = 'https://www.google.com/s2/favicons?sz=64&domain_url=' + tab.url.split('/')[2]; /// try using google favicons
+        }
+        tabThumbnail.src = imgSrc;
 
-        favicon.setAttribute('width', isVertical ? `${verticalFaviconSize}px` : `${horizontalFaviconSize}px`);
-        favicon.style.display = 'inline';
-        favicon.style.marginRight = '6px';
-        // favicon.aspectRadio = 'unset';
-        // favicon.crossOrigin = "anonymous";
-        tabTile.appendChild(favicon);
+        tabThumbnail.setAttribute('width', isVertical ? `${verticalFaviconSize}px` : `${horizontalFaviconSize}px`);
+        tabThumbnail.style.display = 'inline';
+        tabThumbnail.style.marginRight = '6px';
+        tabTile.appendChild(tabThumbnail);
 
         /// title
         const title = document.createElement('span');
@@ -172,7 +163,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
 
         /// try to fetch thumbnail if Firefox
         if (navigator.userAgent.indexOf("Firefox") > -1)
-            captureTabPreviewFirefox(favicon, tab, title);
+            captureTabPreviewFirefox(tabThumbnail, tab, title);
     }
 
     /// 'Add new tab' tile
@@ -218,10 +209,6 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
         /// add search query only when in static mode
         if (!rightClickIsHolded || !enabledContiniousScrollDetection) {
             const switcherRect = container.getBoundingClientRect();
-            // container.classList.remove('center-aligned-switcher');
-            // container.style.top = `${switcherRect.top}px`;
-            // container.style.left = `${switcherRect.left}px`;
-
             const closeButtonSize = 24;
 
             /// add filter input
@@ -417,6 +404,10 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
         chrome.runtime.sendMessage({ actionToDo: 'switchToIndexedTab', id: tabToSelect.id });
     }
 
+    function openNewTab() {
+        chrome.runtime.sendMessage({ actionToDo: 'newTab' });
+    }
+
     function closeTab(tabTile) {
         tabTile.remove();
 
@@ -432,9 +423,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
         chrome.runtime.sendMessage({ actionToDo: 'closeIndexedTab', id: tabToRemove.id });
     }
 
-    let titleFaviconPrototype;
-
-    async function captureTabPreviewFirefox(favicon, tab, title) {
+    async function captureTabPreviewFirefox(thumbnail, tab, title) {
         chrome.runtime.sendMessage({
             actionToDo: 'firefoxCaptureTab', id: tab.id
         }, (data) => {
@@ -442,26 +431,32 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
             // console.log(data);
             if (data == undefined) return;
 
-            favicon.src = data;
-            favicon.setAttribute('width', `${120}px`);
+            /// Set captured image as thumbnail
+            thumbnail.src = data;
+            thumbnail.setAttribute('width', `${120}px`);
+            thumbnail.style.margin = '3px 0px';
 
             /// Append tab favicon to title
-            try {
-                console.log(titleFaviconPrototype);
-                if (titleFaviconPrototype == undefined) {
-                    titleFaviconPrototype = new Image();
-                    titleFaviconPrototype.setAttribute('height', '15px');
-                    titleFaviconPrototype.setAttribute('width', '15px');
-                    titleFaviconPrototype.style.display = 'inline';
-                    titleFaviconPrototype.style.verticalAlign = 'top';
-                    titleFaviconPrototype.style.marginRight = '4px';
-                }
-
-                const favicon = titleFaviconPrototype.cloneNode(true);
-                favicon.src = tab.favIconUrl;
-                title.prepend(favicon);
-            } catch (e) { }
+            if (tab.favIconUrl && tab.favIconUrl != '')
+                appendTitleFavicon(tab.url.includes('https://github.com/') ? githubFaviconSrc : tab.favIconUrl, title);
         });
+    }
+
+    function appendTitleFavicon(faviconUrl, title) {
+        try {
+            if (titleFaviconPrototype == undefined) {
+                titleFaviconPrototype = new Image();
+                titleFaviconPrototype.setAttribute('height', '15px');
+                titleFaviconPrototype.setAttribute('width', '15px');
+                titleFaviconPrototype.style.display = 'inline';
+                titleFaviconPrototype.style.verticalAlign = 'top';
+                titleFaviconPrototype.style.marginRight = '4px';
+            }
+
+            const favicon = titleFaviconPrototype.cloneNode(true);
+            favicon.src = faviconUrl;
+            title.prepend(favicon);
+        } catch (e) { }
     }
 
     function closeTabSwitcher(transition = true) {
