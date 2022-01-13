@@ -292,7 +292,7 @@
         "description": ""
     },
     "extensionDescription": {
-        "message": "Customizable circle menu on right mouse click",
+        "message": "Circle menu with actions on right mouse click",
         "description": "Extension description"
     },
     "fade": {

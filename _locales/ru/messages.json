@@ -292,7 +292,7 @@
         "description": ""
     },
     "extensionDescription": {
-        "message": "Настраиваемое круговое меню при правом клике мышью",
+        "message": "Круговое меню с действиями при правом клике мышью",
         "description": "Extension description"
     },
     "fade": {
