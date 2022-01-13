@@ -13,7 +13,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
     const enabledContiniousScrollDetection = ((isVertical && configs.continiousVerticalScrollDetection) || (!isVertical && configs.continiousHorizontalScrollDetection));
     let filterInput, topControlsContainer;
     const filteredTiles = [];
-    const githubFaviconSrc = 'https://www.google.com/s2/favicons?sz=64&domain_url=github.community';
+    const githubFaviconSrc = 'https://www.google.com/s2/favicons?sz=64&domain_url=https://github.com';
 
     /// prototype for tab favicon
     let titleFaviconPrototype;
@@ -76,7 +76,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
                 setTimeout(function () {
                     tabThumbnail.setAttribute('width', `${120}px`);
                     if (tab.favIconUrl && tab.favIconUrl !== '') {
-                        appendTitleFavicon(tab.url.includes('https://github.com/') ? githubFaviconSrc : tab.favIconUrl, title);
+                        appendTitleFavicon(tab.url.includes('github.com/') ? githubFaviconSrc : tab.favIconUrl, title);
                     }
                 }, 1)
             }
@@ -84,7 +84,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
 
         if (!imgSrc) {
             imgSrc = tab.favIconUrl;
-            if (tab.url.includes('https://github.com/')) imgSrc = githubFaviconSrc;
+            if (tab.url.includes('github.com/')) imgSrc = githubFaviconSrc;
             if (!imgSrc) imgSrc = 'https://www.google.com/s2/favicons?sz=64&domain_url=' + tab.url.split('/')[2]; /// try using google favicons
         }
         tabThumbnail.src = imgSrc;
@@ -438,7 +438,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
 
             /// Append tab favicon to title
             if (tab.favIconUrl && tab.favIconUrl != '')
-                appendTitleFavicon(tab.url.includes('https://github.com/') ? githubFaviconSrc : tab.favIconUrl, title);
+                appendTitleFavicon(tab.url.includes('github.com/') ? githubFaviconSrc : tab.favIconUrl, title);
         });
     }
 
