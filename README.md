@@ -7,21 +7,23 @@ Circle menu recreates the way mouse gestures were represented in good old Opera 
 CMG is supposed to provide a better implementation of mouse gestures and drag gestures, while replacing the regular context menu at the same time — but regular context menu is always there whenever you need it. Perfect for fullscreen browsing!
 
 Extension features:
-- separate gestures for links, images, input fields etc.
-- support for rocker gestures, mouse wheel gestures
-- supports horizontal wheel gestures - great on mouses with horizontal wheel, such as MX Master
-- image preview and link preview (like in Safari on mac)
-- vertical and horizontal tab switcher
-- gestures on long left click (works great on macbook)
-- great customization options
+- Regular actions, such as 'Go back', 'New tab', 'Scroll to top' etc.
+- Separate gestures for links, images, input fields etc.
+- Support for rocker gestures and mouse wheel gestures
+- Supports horizontal wheel gestures - great on mouses with horizontal wheel, such as MX Master
+- Support for trigger on long left click
+- Great customization options - add actions levels, set their width and color for each action
 
-... and many more
-
+Additional tools:
+- Link preview (like in Safari on mac)
+- Tab switcher (vertical/horizontal/grid), with ability to quickly switch or close tabs
+- Image viewer, with ability to zoom and rotate given image 
+- Page shrinker, which adds horizontal space to page for easier reading
 
 
 
 Download for Firefox:
-https://addons.mozilla.org/ru/firefox/addon/circle-mouse-gestures/
+https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/
 
 Download for Chrome:
 https://chrome.google.com/webstore/detail/circle-mouse-gestures/kkknhbbfjlibfjagilggkcelmcobgefa
@@ -43,8 +45,17 @@ https://chrome.google.com/webstore/detail/circle-mouse-gestures/kkknhbbfjlibfjag
 **Blur option is not working in Firefox**
 * As it stated [here](https://bugzilla.mozilla.org/show_bug.cgi?id=1578503), you would need first to enable this feature in your browser by visiting `about:config` page and setting `layout.css.backdrop-filter.enabled` to *true* 
 
-**Favicons are not shown for "Open URL" action icon or in tab switcher**
+**Favicons are not shown for "Open URL" action and/or in tab switcher**
 * CMG fetches favicons for websites from Google. It is possible that you have Ad-blocker installed, which blocks all requests to Google services. It may also be that current website blocks all external requests at all for security reasons, which prevents CMG from loading favicons.
+
+**Favicon for "Open URL" action shows blue globe**
+* Perhaps there's no corresponding favicon in Google's favicon database. Try to play around with url.
+
+**Link preview is not working**
+* Link preview's functionality is based on embedded iframes, and some websites restrict those for security considerations. It's not possible to get around this.
+
+**How to get thumbnails(previews) in tab switcher?**
+* This functionality is currently only available in [Vivaldi](https://vivaldi.com/) and [Firefox](https://www.mozilla.org/firefox/new/), and is working out of the box. Other browsers do not provide such ability to get this data for browser extensions (or I didn't find those).
 
 **How to add CMG settings as Vivaldi side panel?**
 * Use this URL: *chrome-extension://*{ID OF EXTENSION}*/options/options.html*, where {ID OF EXTENSION} is a unique extension ID on your computer. You can get this from extension details page in `chrome://extensions`
