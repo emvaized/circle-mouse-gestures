@@ -43,7 +43,7 @@ https://chrome.google.com/webstore/detail/circle-mouse-gestures/kkknhbbfjlibfjag
 * This is basic security limitation in most modern browsers. Browser extension could not execute it's scripts on new tab page (speed dial), as well as on service pages (`chrome://`, `about:*`, etc.) and in extensions store
 
 **Blur option is not working in Firefox**
-* As it stated [here](https://bugzilla.mozilla.org/show_bug.cgi?id=1578503), you would need first to enable this feature in your browser by visiting [about:config](about:config) page, search for `layout.css.backdrop-filter.enabled` and set it to *true* 
+* As it stated [here](https://bugzilla.mozilla.org/show_bug.cgi?id=1578503), you would need first to enable this feature in your browser by visiting `about:config` page, search for `layout.css.backdrop-filter.enabled` and set it to *true* 
 
 **Favicons are not shown for "Open URL" action and/or in tab switcher**
 * CMG fetches favicons for websites from Google. It is possible that you have Ad-blocker installed, which blocks all requests to Google services. It may also be that current website blocks all external requests at all for security reasons, which prevents CMG from loading favicons.
