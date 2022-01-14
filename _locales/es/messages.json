@@ -1,174 +1,174 @@
 {
     "addBlur": {
-        "message": "Background blur",
+        "message": "Desenfoque de fondo",
         "description": ""
     },
     "addBlurTooltip": {
-        "message": "Can be seen only when circle opacity is less than 1.0",
+        "message": "Solo se puede ver cuando la opacidad del círculo es inferior a 1,0",
         "description": ""
     },
     "addCircleShadow": {
-        "message": "Add shadow",
+        "message": "Añadir sombra",
         "description": ""
     },
     "addGhostPointer": {
-        "message": "Show ghost pointer",
+        "message": "Mostrar puntero fantasma",
         "description": ""
     },
     "addGhostPointerTooltip": {
-        "message": "When circle is not under cursor, show ghost pointer indicating real cursor position relative to the circle",
+        "message": "Cuando el círculo no está debajo del cursor, muestra un puntero fantasma que indica la posición real del cursor en relación con el círculo",
         "description": ""
     },
     "addLabel": {
-        "message": "Add segment",
+        "message": "Agregar segmento",
         "description": ""
     },
     "addLevel": {
-        "message": "Add level",
+        "message": "Agregar nivel",
         "description": ""
     },
     "addLinkTooltip": {
-        "message": "Show helper tooltip with more info",
+        "message": "Mostrar información sobre herramientas de ayuda con más información",
         "description": ""
     },
     "addLinkTooltipTooltip": {
-        "message": "Show additional info for links, images etc. on top of the circle",
+        "message": "Mostrar información adicional para enlaces, imágenes, etc. en la parte superior del círculo",
         "description": ""
     },
     "addMoreLevelsToActivateMenu": {
-        "message": "This menu is inactive. <br/>Add levels to activate it",
+        "message": "Este menú está inactivo. <br/>Agrega niveles para activarlo",
         "description": ""
     },
     "addNewButton": {
-        "message": "Add new",
+        "message": "Añadir nuevo",
         "description": ""
     },
     "addTextLabels": {
-        "message": "Display text labels",
+        "message": "Mostrar etiquetas de texto",
         "description": ""
     },
     "addTextLabelsTooltip": {
-        "message": "Will be hidden when there is not enough space",
+        "message": "Se ocultará cuando no haya suficiente espacio",
         "description": ""
     },
     "addToBookmarks": {
-        "message": "Add to bookmarks",
+        "message": "Añadir a marcadores",
         "description": ""
     },
     "additional": {
-        "message": "Additional",
+        "message": "Adicional",
         "description": ""
     },
     "alwaysCorner": {
-        "message": "Always in corner",
+        "message": "Siempre en la esquina",
         "description": ""
     },
     "alwaysCursor": {
-        "message": "Always under cursor",
+        "message": "Siempre bajo el cursor",
         "description": ""
     },
     "animateHideRelativeToSelected": {
-        "message": "Animate relative to selected option",
+        "message": "Animar relativo a la opción seleccionada",
         "description": ""
     },
     "animationDuration": {
-        "message": "Animations duration",
+        "message": "Duración de las animaciones",
         "description": ""
     },
     "appearanceHeader": {
-        "message": "Appearance",
+        "message": "Apariencia",
         "description": ""
     },
     "applySettingsImmediately": {
-        "message": "Apply settings immediately",
+        "message": "Aplicar la configuración inmediatamente",
         "description": ""
     },
     "applySettingsImmediatelyTooltip": {
-        "message": "Apply settings every time the menu is open. Disable for better performance",
+        "message": "Aplicar la configuración cada vez que se abre el menú. Desactivar para un mejor rendimiento",
         "description": ""
     },
     "backgroundColor": {
-        "message": "Background color",
+        "message": "Color de fondo",
         "description": ""
     },
     "backgroundOpacity": {
-        "message": "Background opacity",
+        "message": "Opacidad de fondo",
         "description": ""
     },
     "behaviorTitle": {
-        "message": "Behavior",
+        "message": "Conducta",
         "description": ""
     },
     "blurRadiusHint": {
-        "message": "Blur radius (px)",
+        "message": "Radio de desenfoque (px)",
         "description": ""
     },
     "boldText": {
-        "message": "Bold",
+        "message": "Negrita",
         "description": ""
     },
     "buttonsHeader": {
-        "message": "Buttons",
+        "message": "Botones",
         "description": ""
     },
     "checkButtonsAvailability": {
-        "message": "Check buttons availability",
+        "message": "Consultar disponibilidad de botones",
         "description": ""
     },
     "checkButtonsAvailabilityTooltip": {
-        "message": "When CMG detects that action is not available, icon will be greyed out.\n\n Disabling this may improve performance",
+        "message": "Cuando CMG detecta que la acción no está disponible, el icono se atenuará.\n\n Deshabilitar esto puede mejorar el rendimiento",
         "description": ""
     },
     "circleHideAnimation": {
-        "message": "Circle hide animation",
+        "message": "Animación de ocultar círculo",
         "description": ""
     },
     "circleHideAnimationTooltip": {
-        "message": "Disable for snappier behavior",
+        "message": "Deshabilitar para un comportamiento más rápido",
         "description": ""
     },
     "circleLevel": {
-        "message": "Level",
+        "message": "Nivel",
         "description": ""
     },
     "circleLocation": {
-        "message": "Circle position",
+        "message": "Posición del círculo",
         "description": ""
     },
     "circleOpacity": {
-        "message": "Whole circle opacity",
+        "message": "Opacidad de círculo completo",
         "description": ""
     },
     "circlePreview": {
-        "message": "Preview",
+        "message": "Preestreno",
         "description": ""
     },
     "clearInputField": {
-        "message": "Clear",
+        "message": "Despejar",
         "description": ""
     },
     "clickSegmentToHighlight": {
-        "message": "Click any segment to highlight",
+        "message": "Haga clic en cualquier segmento para resaltar",
         "description": ""
     },
     "clipboard": {
-        "message": "Clipboard",
+        "message": "Portapapeles",
         "description": ""
     },
     "closeAllTabsExceptCurrent": {
-        "message": "Close other tabs",
+        "message": "Cerrar otras pestañas",
         "description": ""
     },
     "closeCurrentTab": {
-        "message": "Close tab",
+        "message": "Cerrar pestaña",
         "description": ""
     },
     "closeLabel": {
-        "message": "Close",
+        "message": "Cerrar",
         "description": ""
     },
     "closeWindow": {
-        "message": "Close window",
+        "message": "Cerrar ventana",
         "description": ""
     },
     "colorLabel": {
@@ -176,151 +176,151 @@
         "description": ""
     },
     "configure": {
-        "message": "Settings",
+        "message": "Ajustes",
         "description": ""
     },
     "continiousHorizontalScrollDetection": {
-        "message": "Continuous horizontal scroll detection",
+        "message": "Detección de desplazamiento horizontal continuo",
         "description": ""
     },
     "continiousScrollDetectionHint": {
-        "message": "Allows to continuously register an action while right mouse button is pressed. \n\nUseful for some actions, for example Page zoom in/out, or Open tab switcher",
+        "message": "Permite registrar continuamente una acción mientras se presiona el botón derecho del mouse. \n\nÚtil para algunas acciones, por ejemplo, acercar/alejar la página o cambiar de pestaña abierta",
         "description": ""
     },
     "continiousVerticalScrollDetection": {
-        "message": "Continuous vertical scroll detection",
+        "message": "Detección de desplazamiento vertical continuo",
         "description": ""
     },
     "copied": {
-        "message": "Copied to clipboard",
+        "message": "Copiado al portapapeles",
         "description": ""
     },
     "copyAllText": {
-        "message": "Copy all",
+        "message": "Cópialo todo",
         "description": ""
     },
     "copyImage": {
-        "message": "Copy image",
+        "message": "Copiar imagen",
         "description": ""
     },
     "copyLinkText": {
-        "message": "Copy text",
+        "message": "Copiar texto",
         "description": ""
     },
     "copyNotification": {
-        "message": "Notification on copy success",
+        "message": "Notificación sobre el éxito de la copia",
         "description": ""
     },
     "copyText": {
-        "message": "Copy",
+        "message": "Copiar",
         "description": ""
     },
     "copyUrl": {
-        "message": "Copy link",
+        "message": "Copiar link",
         "description": ""
     },
     "cursorCorner": {
-        "message": "Under cursor + in corner when no space",
+        "message": "Debajo del cursor + en la esquina cuando no hay espacio",
         "description": ""
     },
     "cursorOverflow": {
-        "message": "Under cursor + shift when no space",
+        "message": "Debajo del cursor + shift cuando no hay espacio",
         "description": ""
     },
     "cutText": {
-        "message": "Cut",
+        "message": "Cortar",
         "description": ""
     },
     "debugMode": {
-        "message": "Debug mode",
+        "message": "Modo de depuración",
         "description": ""
     },
     "decreasePlayerVolume": {
-        "message": "Volume-",
+        "message": "Volumen-",
         "description": "Label for circle menu button"
     },
     "delay": {
-        "message": "Delay",
+        "message": "Demora",
         "description": ""
     },
     "delayForLongLeftClick": {
-        "message": "Hold duration",
+        "message": "Duración de espera",
         "description": ""
     },
     "deleteLabel": {
-        "message": "Remove",
+        "message": "Eliminar",
         "description": ""
     },
     "dimBackground": {
-        "message": "Dim page",
+        "message": "Página tenue",
         "description": ""
     },
     "dimBackgroundTooltip": {
-        "message": "Page contents will be dimmed while menu is shown",
+        "message": "El contenido de la página se atenuará mientras se muestra el menú",
         "description": ""
     },
     "doNothing": {
-        "message": "Do nothing",
+        "message": "Hacer nada",
         "description": ""
     },
     "downloadUrl": {
-        "message": "Download",
+        "message": "Descargar",
         "description": ""
     },
     "downloadUrlAs": {
-        "message": "Download as",
+        "message": "Descargar como",
         "description": ""
     },
     "downloadVideo": {
-        "message": "Download video",
+        "message": "Descargar video",
         "description": ""
     },
     "downloadVideoSavefromNet": {
-        "message": "Download from Savefrom.net",
+        "message": "Descargar desde Savefrom.net",
         "description": ""
     },
     "duplicateTab": {
-        "message": "Duplicate tab",
+        "message": "Pestaña duplicada",
         "description": ""
     },
     "enabled": {
-        "message": "Enabled",
+        "message": "Habilitado",
         "description": ""
     },
     "excludedDomains": {
-        "message": "Excluded domains",
+        "message": "Dominios excluidos",
         "description": ""
     },
     "extensionDescription": {
-        "message": "Circle menu with actions on right mouse click",
+        "message": "Menú circular con acciones al hacer clic con el botón derecho del mouse",
         "description": "Extension description"
     },
     "fade": {
-        "message": "Fade",
+        "message": "Desvanecerse",
         "description": ""
     },
     "fastForwardVideo": {
-        "message": "Fast forward",
+        "message": "Avance rápido",
         "description": ""
     },
     "fasterPlaybackSpeed": {
-        "message": "Faster speed",
+        "message": "Velocidad más rápida",
         "description": ""
     },
     "gapBetweenCircles": {
-        "message": "Levels padding",
+        "message": "Relleno de niveles",
         "description": ""
     },
     "generalSettings": {
-        "message": "General settings",
+        "message": "Configuración general",
         "description": ""
     },
     "gesturesTitle": {
-        "message": "Mouse buttons",
+        "message": "Botones del ratón",
         "description": ""
     },
     "githubHint": {
-        "message": "You can share your ideas and bug reports here",
+        "message": "Puede compartir sus ideas e informes de errores aquí",
         "description": ""
     },
     "githubPage": {
@@ -328,603 +328,603 @@
         "description": ""
     },
     "goBack": {
-        "message": "Go back",
+        "message": "Volver",
         "description": ""
     },
     "goForward": {
-        "message": "Go forward",
+        "message": "Avanzar",
         "description": ""
     },
     "hideCircleAnimation": {
-        "message": "Hide animation",
+        "message": "Ocultar animación",
         "description": ""
     },
     "hideCircleIfNoActionSelected": {
-        "message": "Hide menu on mouse up if nothing selected",
+        "message": "Ocultar menú con el mouse hacia arriba si no se seleccionó nada",
         "description": ""
     },
     "hideLabelIfNoSpace": {
-        "message": "Hide label when no enough space",
+        "message": "Ocultar etiqueta cuando no hay suficiente espacio",
         "description": ""
     },
     "hideMenu": {
-        "message": "Hide menu",
+        "message": "Ocultar el menú",
         "description": ""
     },
     "hideMenuAndSelect": {
-        "message": "Hide menu + select highlighted",
+        "message": "Ocultar menú + seleccionar resaltado",
         "description": ""
     },
     "highlightElementOnHover": {
-        "message": "Highlight page elements on hover",
+        "message": "Resaltar elementos de página al pasar el mouse",
         "description": ""
     },
     "highlightElementOnHoverTooltip": {
-        "message": "Add border to element which has it's special menu in CMG on mouse hover. May increase the CPU load",
+        "message": "Agregue un borde al elemento que tiene su menú especial en CMG al pasar el mouse. Puede aumentar la carga de la CPU",
         "description": ""
     },
     "horizontalWheelActionsEnabled": {
-        "message": "Horizontal wheel actions",
+        "message": "Acciones de rueda horizontal",
         "description": ""
     },
     "iconOpacity": {
-        "message": "Icons opacity",
+        "message": "Opacidad de los iconos",
         "description": ""
     },
     "image": {
-        "message": "Image",
+        "message": "Imagen",
         "description": ""
     },
     "imageCopyFailMessage": {
-        "message": "Most likely this is due to the CORS policy on image's source website",
+        "message": "Lo más probable es que esto se deba a la política de CORS en el sitio web de origen de la imagen.",
         "description": ""
     },
     "imageCopyFailTitle": {
-        "message": "Failed to copy image",
+        "message": "No se pudo copiar la imagen",
         "description": ""
     },
     "imageCopySuccessMessage": {
-        "message": "Image was copied successfully",
+        "message": "La imagen se copió con éxito",
         "description": ""
     },
     "imageMenu": {
-        "message": "Menu for image",
+        "message": "Menú para imagen",
         "description": ""
     },
     "inactiveMenuBehavior": {
-        "message": "When menu for element is inactive:",
+        "message": "Cuando el menú para el elemento está inactivo:",
         "description": "Label for circle menu button"
     },
     "increasePlayerVolume": {
-        "message": "Volume+",
+        "message": "Volumen+",
         "description": "Label for circle menu button"
     },
     "innerWidth": {
-        "message": "Center radius",
+        "message": "Radio del centro",
         "description": "Label for circle menu button"
     },
     "innerWidthTooltip": {
-        "message": "Radius of inactive zone in the center of circle",
+        "message": "Radio de la zona inactiva en el centro del círculo",
         "description": ""
     },
     "inputField": {
-        "message": "Input field",
+        "message": "Campo de entrada",
         "description": ""
     },
     "inspectPage": {
-        "message": "Inspect page",
+        "message": "Inspeccionar página",
         "description": ""
     },
     "italicText": {
-        "message": "Italic",
+        "message": "Cursiva",
         "description": ""
     },
     "label": {
-        "message": "Label",
+        "message": "Etiqueta",
         "description": ""
     },
     "labelOpacity": {
-        "message": "Labels opacity",
+        "message": "Opacidad de las etiquetas",
         "description": ""
     },
     "leftClick": {
-        "message": "Left click",
+        "message": "Click izquierdo",
         "description": ""
     },
     "levelColor": {
-        "message": "Level color",
+        "message": "Color de nivel",
         "description": ""
     },
     "levelWidth": {
-        "message": "Level width",
+        "message": "Ancho de nivel",
         "description": ""
     },
     "levels": {
-        "message": "Levels",
+        "message": "Niveles",
         "description": ""
     },
     "link": {
-        "message": "Link",
+        "message": "Enlace",
         "description": ""
     },
     "linkMenu": {
-        "message": "Menu for link",
+        "message": "Menú para enlace",
         "description": ""
     },
     "longLeftClick": {
-        "message": "Long left click",
+        "message": "Clic izquierdo largo",
         "description": ""
     },
     "longLeftClickThreshold": {
-        "message": "Threshold to not open menu",
+        "message": "Umbral para no abrir menú",
         "description": ""
     },
     "longLeftClickThresholdTooltip": {
-        "message": "If cursor has moved by this amount of pixels, do not open menu on timer end",
+        "message": "Si el cursor se ha movido por esta cantidad de píxeles, no abra el menú al final del temporizador",
         "description": ""
     },
     "maximizeWindow": {
-        "message": "Maximize window",
+        "message": "Maximizar ventana",
         "description": ""
     },
     "menuColor": {
-        "message": "Selected menu color",
+        "message": "Color de menú seleccionado",
         "description": ""
     },
     "minimizeWindow": {
-        "message": "Minimize window",
+        "message": "Minimizar ventana",
         "description": ""
     },
     "mouseLeaveBehavior": {
-        "message": "When cursor leaves window",
+        "message": "Cuando el cursor sale de la ventana",
         "description": ""
     },
     "mouseWheelDownAction": {
-        "message": "Wheel down",
+        "message": "Rueda abajo",
         "description": ""
     },
     "mouseWheelLeftAction": {
-        "message": "Wheel left",
+        "message": "Rueda izquierda",
         "description": ""
     },
     "mouseWheelRightAction": {
-        "message": "Wheel right",
+        "message": "Rueda derecha",
         "description": ""
     },
     "mouseWheelUpAction": {
-        "message": "Wheel up",
+        "message": "Rueda arriba",
         "description": ""
     },
     "move": {
-        "message": "Move",
+        "message": "Muevete",
         "description": ""
     },
     "moveCaretToEnd": {
-        "message": "Move caret to end",
+        "message": "Cursor al final",
         "description": ""
     },
     "moveCaretToStart": {
-        "message": "Move caret to start",
+        "message": "Cursor para comenzar",
         "description": ""
     },
     "moveClockwise": {
-        "message": "Clockwise",
+        "message": "Dextrorso",
         "description": ""
     },
     "moveCounterClockwise": {
-        "message": "Counterclockwise",
+        "message": "Sinistrórsum",
         "description": ""
     },
     "moveDownLabel": {
-        "message": "Move down",
+        "message": "Mover hacia abajo",
         "description": ""
     },
     "moveTabLeft": {
-        "message": "Move tab left",
+        "message": "Mover pestaña a la izquierda",
         "description": ""
     },
     "moveTabRight": {
-        "message": "Move tab right",
+        "message": "Mover pestaña a la derecha",
         "description": ""
     },
     "moveToNewWindow": {
-        "message": "Open in new window",
+        "message": "Abrir en Nueva ventana",
         "description": ""
     },
     "moveUpLabel": {
-        "message": "Move up",
+        "message": "Ascender",
         "description": ""
     },
     "mutePlayer": {
-        "message": "Mute",
+        "message": "Mudo",
         "description": ""
     },
     "navigation": {
-        "message": "Navigation",
+        "message": "Navegación",
         "description": ""
     },
     "newPrivateWindow": {
-        "message": "New private tab",
+        "message": "Nueva pestaña privada",
         "description": ""
     },
     "newTab": {
-        "message": "New tab",
+        "message": "Nueva pestaña",
         "description": ""
     },
     "newWindow": {
-        "message": "New window",
+        "message": "Nueva ventana",
         "description": ""
     },
     "noAction": {
-        "message": "No action",
+        "message": "Sin acción",
         "description": ""
     },
     "noAnimation": {
-        "message": "No animation",
+        "message": "Sin animación",
         "description": ""
     },
     "noMatchingTabsFound": {
-        "message": "No matching tabs found",
+        "message": "No se encontraron pestañas coincidentes",
         "description": ""
     },
     "normalPlaybackSpeed": {
-        "message": "Normal speed",
+        "message": "Velocidad normal",
         "description": ""
     },
     "opacity": {
-        "message": "Opacity",
+        "message": "Opacidad",
         "description": ""
     },
     "openCircleOn": {
-        "message": "Open menu on",
+        "message": "Abrir menú en",
         "description": ""
     },
     "openImageFullscreen": {
-        "message": "View",
+        "message": "Vista",
         "description": ""
     },
     "openInBgTab": {
-        "message": "Background tab",
+        "message": "Pestaña de fondo",
         "description": ""
     },
     "openInFgTab": {
-        "message": "Open in new tab",
+        "message": "Abrir en nueva pestaña",
         "description": ""
     },
     "openInPrivateWindow": {
-        "message": "Open in private window",
+        "message": "Abrir en ventana privada",
         "description": ""
     },
     "openLinkPreview": {
-        "message": "Link preview",
+        "message": "Previa del enlace",
         "description": ""
     },
     "openUrl": {
-        "message": "Open URL",
+        "message": "Abrir URL",
         "description": ""
     },
     "page": {
-        "message": "Page",
+        "message": "Página",
         "description": ""
     },
     "pageZoomIn": {
-        "message": "Zoom in",
+        "message": "Acercar",
         "description": ""
     },
     "pageZoomOut": {
-        "message": "Zoom out",
+        "message": "Alejar",
         "description": ""
     },
     "pasteText": {
-        "message": "Paste",
+        "message": "Pegar",
         "description": ""
     },
     "pauseVideo": {
-        "message": "Pause",
+        "message": "Pausa",
         "description": ""
     },
     "pinTab": {
-        "message": "Pin tab",
+        "message": "Pestaña pin",
         "description": ""
     },
     "playPauseVideo": {
-        "message": "Play/Pause",
+        "message": "Reproducir/Pausar",
         "description": ""
     },
     "playVideo": {
-        "message": "Play",
+        "message": "Reproduce",
         "description": ""
     },
     "player": {
-        "message": "Player",
+        "message": "Reproductor",
         "description": ""
     },
     "playerFullScreen": {
-        "message": "Request fullscreen",
+        "message": "Pantalla completa",
         "description": ""
     },
     "playerMenu": {
-        "message": "Menu for player",
+        "message": "Menú para reproductor",
         "description": ""
     },
     "print": {
-        "message": "Print",
+        "message": "Impresión",
         "description": ""
     },
     "quickActions": {
-        "message": "Quick actions",
+        "message": "Acciones rápidas",
         "description": ""
     },
     "redoAction": {
-        "message": "Redo",
+        "message": "Rehacer",
         "description": ""
     },
     "refreshPageIfDoesntWork": {
-        "message": "Refresh page if doesn't work",
+        "message": "Actualizar página si no funciona",
         "description": ""
     },
     "regularMenu": {
-        "message": "Regular menu",
+        "message": "Menú normal",
         "description": ""
     },
     "regularMenuFallback": {
-        "message": "Show regular menu",
+        "message": "Mostrar menú habitual",
         "description": ""
     },
     "reloadTab": {
-        "message": "Reload",
+        "message": "Recargar",
         "description": ""
     },
     "replayVideo": {
-        "message": "Replay",
+        "message": "Repetir",
         "description": ""
     },
     "resetColor": {
-        "message": "Reset color",
+        "message": "Restablecer color",
         "description": ""
     },
     "restore": {
-        "message": "Restore",
+        "message": "Restaurar",
         "description": ""
     },
     "restoreClosedTab": {
-        "message": "Restore closed tab",
+        "message": "Restaurar pestaña cerrada",
         "description": ""
     },
     "reviewButton": {
-        "message": "Add a review",
+        "message": "Agrega una reseña",
         "description": ""
     },
     "rewindVideo": {
-        "message": "Rewind",
+        "message": "Rebobinar",
         "description": ""
     },
     "rightClick": {
-        "message": "Right click",
+        "message": "Click derecho",
         "description": ""
     },
     "rightClickToClose": {
-        "message": "Right click to close",
+        "message": "Click derecho para cerrar",
         "description": ""
     },
     "rockerAction": {
-        "message": "Rocker action",
+        "message": "Acción de enroque",
         "description": ""
     },
     "rockerActionTooltip": {
-        "message": "Gets called by left click in center while holding the right button",
+        "message": "Se llama haciendo clic con el botón izquierdo en el centro mientras se mantiene presionado el botón derecho",
         "description": ""
     },
     "rockerGesture": {
-        "message": "Rocker gesture",
+        "message": "Gesto de enroque",
         "description": ""
     },
     "rockerGestureDescription": {
-        "message": "Triggered when you click left mouse button while holding the right button",
+        "message": "Se activa cuando hace clic con el botón izquierdo del mouse mientras mantiene presionado el botón derecho",
         "description": ""
     },
     "rockerMiddleClick": {
-        "message": "Middle click",
+        "message": "Clic central",
         "description": ""
     },
     "rotateLabel": {
-        "message": "Rotate",
+        "message": "Girar",
         "description": ""
     },
     "scale": {
-        "message": "Scale",
+        "message": "Escala",
         "description": ""
     },
     "scroll": {
-        "message": "Scroll",
+        "message": "Voluta",
         "description": ""
     },
     "scrollBack": {
-        "message": "Scroll back",
+        "message": "Desplazarse hacia atrás",
         "description": ""
     },
     "scrollPageDown": {
-        "message": "Page down",
+        "message": "Página abajo",
         "description": ""
     },
     "scrollPageUp": {
-        "message": "Page up",
+        "message": "Página arriba",
         "description": ""
     },
     "scrollToBottom": {
-        "message": "Scroll to bottom",
+        "message": "Desplazarse al final",
         "description": ""
     },
     "scrollToResize": {
-        "message": "Scroll or double click to resize",
+        "message": "Desplácese o haga doble clic para cambiar el tamaño",
         "description": ""
     },
     "scrollToTop": {
-        "message": "Scroll to top",
+        "message": "Desplácese para comenzar",
         "description": ""
     },
     "searchImageOnGoogle": {
-        "message": "Search image",
+        "message": "Buscar imagen",
         "description": ""
     },
     "searchText": {
-        "message": "Search",
+        "message": "Buscar",
         "description": ""
     },
     "secondAction": {
-        "message": "Second action",
+        "message": "Segunda acción",
         "description": ""
     },
     "segmentColor": {
-        "message": "Segment color",
+        "message": "Color del segmento",
         "description": ""
     },
     "selectAll": {
-        "message": "Select all",
+        "message": "Seleccionar todo",
         "description": ""
     },
     "selectAllText": {
-        "message": "Select all",
+        "message": "Seleccionar todo",
         "description": ""
     },
     "selectMore": {
-        "message": "Select more",
+        "message": "Seleccionar más",
         "description": ""
     },
     "selectLastVisitedTab": {
-        "message": "Recent tab",
+        "message": "Pestaña reciente",
         "description": ""
     },
     "selectedText": {
-        "message": "Selected text",
+        "message": "Texto seleccionado",
         "description": ""
     },
     "selectionMenu": {
-        "message": "Menu for text selection",
+        "message": "Menú de selección de texto",
         "description": ""
     },
     "settings": {
-        "message": "Settings",
+        "message": "Ajustes",
         "description": ""
     },
     "showActionIcons": {
-        "message": "Show action icons",
+        "message": "Mostrar iconos de acción",
         "description": ""
     },
     "showCircleAnimation": {
-        "message": "Show animation",
+        "message": "Mostrar animación",
         "description": ""
     },
     "showRegularMenuIfNoAction": {
-        "message": "Show regular menu if no action selected",
+        "message": "Mostrar el menú normal si no se selecciona ninguna acción",
         "description": ""
     },
     "showTabSwitcherGrid": {
-        "message": "Tab switcher (grid)",
+        "message": "Pestañas (cuadrícula)",
         "description": ""
     },
     "showTabSwitcherHorizontal": {
-        "message": "Tab switcher (horizontal)",
+        "message": "Pestañas (horizontal)",
         "description": ""
     },
     "showTabSwitcherVertical": {
-        "message": "Tab switcher (vertical)",
+        "message": "Pestañas (vertical)",
         "description": ""
     },
     "showTitleOnHoverWhenHidden": {
-        "message": "Show label tooltip on hover",
+        "message": "Mostrar etiqueta al pasar el mouse",
         "description": ""
     },
     "showTitleOnHoverWhenHiddenTooltip": {
-        "message": "When action is icon-only, show tooltip with label on hover",
+        "message": "Cuando la acción es solo un ícono, mostrar etiqueta al pasar el mouse",
         "description": ""
     },
     "showUpdateNotification": {
-        "message": "Show notification on extension update",
+        "message": "Mostrar notificación sobre la actualización de la extensión",
         "description": ""
     },
     "slowerPlaybackSpeed": {
-        "message": "Slower speed",
+        "message": "Velocidad más lenta",
         "description": ""
     },
     "standardBackground": {
-        "message": "Level color",
+        "message": "Color de nivel",
         "description": ""
     },
     "storeCurrentScrollPosition": {
-        "message": "Remember current scroll position",
+        "message": "Recordar la posición de desplazamiento actual",
         "description": ""
     },
     "storeCurrentScrollPositionTooltip": {
-        "message": "Changes 'scroll to top' and 'scroll to bottom actions with 'scroll back' when possible",
+        "message": "Cambia las acciones 'desplazarse hacia arriba' y 'desplazarse hacia abajo' con 'desplazarse hacia atrás' cuando sea posible",
         "description": ""
     },
     "strikeText": {
-        "message": "Strikethrough",
+        "message": "Tachado",
         "description": ""
     },
     "supportButton": {
-        "message": "Support project",
+        "message": "Apoyar",
         "description": ""
     },
     "switchToNextTab": {
-        "message": "Next tab",
+        "message": "Pestaña siguiente",
         "description": ""
     },
     "switchToPreviousTab": {
-        "message": "Previous tab",
+        "message": "Pestaña anterior",
         "description": ""
     },
     "tab": {
-        "message": "Tab",
+        "message": "Pestaña",
         "description": ""
     },
     "tabsAmount": {
-        "message": "Tabs",
+        "message": "Pestañas",
         "description": ""
     },
     "textFieldMenu": {
-        "message": "Menu for input field",
+        "message": "Menú de campo de entrada",
         "description": ""
     },
     "textTooLong": {
-        "message": "Shrink page",
+        "message": "Reducir página",
         "description": ""
     },
     "toggleFullscreen": {
-        "message": "Fullscreen",
+        "message": "Pantalla completa",
         "description": ""
     },
     "translate": {
-        "message": "Translate",
+        "message": "Traducir",
         "description": ""
     },
     "typeToQuery": {
-        "message": "Type to query",
+        "message": "Entrar para filtrar",
         "description": ""
     },
     "underlineText": {
-        "message": "Underline",
+        "message": "Subrayar",
         "description": ""
     },
     "undoAction": {
-        "message": "Undo",
+        "message": "Deshacer",
         "description": ""
     },
     "unpinTab": {
-        "message": "Unpin tab",
+        "message": "Pestaña desanclar",
         "description": ""
     },
     "untoggleFullscreen": {
-        "message": "Exit fullscreen",
+        "message": "Salir de pantalla completa",
         "description": ""
     },
     "updateToApply": {
-        "message": "Update tabs to apply new settings",
+        "message": "Actualizar pestañas para aplicar nuevas configuraciones",
         "description": ""
     },
     "updateNotificationTitle": {
-        "message": "CMG was updated to $VERSION$",
+        "message": "CMG se actualizó a $VERSION$",
         "description": "",
         "placeholders": {
             "version": {
@@ -934,27 +934,27 @@
         }
     },
     "updateNotificationMessage": {
-        "message": "Click here to see what's new",
+        "message": "Haga clic aquí para ver las novedades",
         "description": ""
     },
     "useCustomColor": {
-        "message": "Custom background",
+        "message": "Fondo personalizado",
         "description": ""
     },
     "whatsNew": {
-        "message": "What's new",
+        "message": "Qué hay de nuevo",
         "description": ""
     },
     "window": {
-        "message": "Window",
+        "message": "Ventana",
         "description": ""
     },
     "windowsOnly": {
-        "message": "Shows regular context menu on mouse up. Will work only on Windows, on other systems (Linux, MacOS) may require double click",
+        "message": "Muestra el menú de contexto regular con el mouse hacia arriba. Funcionará solo en Windows, en otros sistemas (Linux, MacOS) puede requerir doble clic",
         "description": ""
     },
     "writeAReview": {
-        "message": "Write a review",
+        "message": "Escribe una reseña",
         "description": ""
     }
 }
