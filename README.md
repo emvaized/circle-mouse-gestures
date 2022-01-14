@@ -43,7 +43,7 @@ https://chrome.google.com/webstore/detail/circle-mouse-gestures/kkknhbbfjlibfjag
 * This is basic security limitation in most modern browsers. Browser extension could not execute it's scripts on new tab page (speed dial), as well as on service pages (`chrome://`, `about:*`, etc.) and in extensions store
 
 **Blur option is not working in Firefox**
-* As it stated [here](https://bugzilla.mozilla.org/show_bug.cgi?id=1578503), you would need first to enable this feature in your browser by visiting `about:config` page and setting `layout.css.backdrop-filter.enabled` to *true* 
+* As it stated [here](https://bugzilla.mozilla.org/show_bug.cgi?id=1578503), you would need first to enable this feature in your browser by visiting [about:config](about:config) page, search for `layout.css.backdrop-filter.enabled` and set it to *true* 
 
 **Favicons are not shown for "Open URL" action and/or in tab switcher**
 * CMG fetches favicons for websites from Google. It is possible that you have Ad-blocker installed, which blocks all requests to Google services. It may also be that current website blocks all external requests at all for security reasons, which prevents CMG from loading favicons.
@@ -54,10 +54,9 @@ https://chrome.google.com/webstore/detail/circle-mouse-gestures/kkknhbbfjlibfjag
 **Link preview is not working**
 * Link preview's functionality is based on embedded iframes, and some websites restrict those for security considerations. It's not possible to get around this.
 
-**How to get thumbnails(previews) in tab switcher?**
+**How to get tab thumbnails (previews) in tab switcher?**
 * This functionality is currently only available in [Vivaldi](https://vivaldi.com/) and [Firefox](https://www.mozilla.org/firefox/new/), and is working out of the box. Other browsers do not provide such ability to get this data for browser extensions (or I didn't find those).
 
 **How to add CMG settings as Vivaldi side panel?**
 * Use this URL: *chrome-extension://*{ID OF EXTENSION}*/options/options.html*, where {ID OF EXTENSION} is a unique extension ID on your computer. You can get this from extension details page in `chrome://extensions`
 
-----
