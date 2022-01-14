@@ -18,7 +18,7 @@ Additional tools:
 - Link preview (like in Safari on mac)
 - Tab switcher (vertical/horizontal/grid), with ability to quickly switch or close tabs
 - Image viewer, with ability to zoom and rotate given image 
-- Page shrinker, which adds horizontal space to page for easier reading
+- Page shrinker, which adds horizontal space to page for easier reading on some websites
 
 
 

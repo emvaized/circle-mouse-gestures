@@ -1,15 +1,16 @@
 let leftPadding = 400;
 let rightPadding = 400;
 let handleSize = 15;
-let handleOpacity = 0.2;
-let handleOpacityHovered = 0.4;
-let handleOpacityFocused = 0.6;
+let handleOpacity = 0.5;
+let handleOpacityHovered = 0.75;
+let handleOpacityFocused = 1.0;
 let transitionDuration = 300;
-let handlesColor = '#3B3E43';
+// let handlesColor = '#3B3E43';
+let handlesColor = 'grey';
 let initialHandlesPercent = 90;
 let repositionHandlesVerticallyOnDrag = true;
 let handlePadding = 0;
-let handleShape = 'circle'; /// Possible values: circle, arrow
+let handleShape = 'arrow'; /// Possible values: circle, arrow
 let correctScrollPosition = true;
 let emptyAreaClickBehavior = 'singleclick'; /// possible values: 'singleclick', 'doubleclick'
 let highlightEmptyAreaOnHover = true;
@@ -29,7 +30,7 @@ function trimPage() {
     /// Return if already applied
     if (document.querySelector('.ttl-drag-handle') !== null) { untrim(); return; }
 
-    let handleStyle = `all: revert; opacity: 0; z-index: 9998; transition: opacity ${transitionDuration}ms ease-out;`;
+    let handleStyle = `all: revert; opacity: 0; z-index: 9998; transition: opacity ${transitionDuration}ms ease-out; cursor: grab;`;
     let circleHandleStyle = `background: ${handlesColor};border-radius: 50%; height: ${handleSize}px; width: ${handleSize}px;`;
     let rectangleLeftHandleStyle = `width: 0px; height: 0px; border-top: ${handleSize}px solid transparent; border-bottom: ${handleSize}px solid transparent; border-left: ${handleSize}px solid ${handlesColor};`;
     let rectangleRightHandleStyle = `width: 0px; height: 0px; border-top: ${handleSize}px solid transparent; border-bottom: ${handleSize}px solid transparent; border-right: ${handleSize}px solid ${handlesColor};`;
