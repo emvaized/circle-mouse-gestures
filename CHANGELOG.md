@@ -1,4 +1,14 @@
-1.3.1
+#1.3.2
+- Added Minimize/Maximize window actions
+- Add grid view tab switcher action
+- Tab switcher now is able to fetch thumbnails(previews) in Firefox
+- Added basic video support for "View" action
+- Less false positive image detections
+- Fixed image viewer not working on Medium
+- Added Spanish translation
+- Small fixes
+
+#1.3.1
 - Fixed copy notification lag on Firefox
 - Improve naming of downloaded images
 - Separated 'Download' and 'Download as' actions, so to be able to download images immediately
