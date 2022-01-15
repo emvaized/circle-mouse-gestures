@@ -109,10 +109,6 @@ function setCanvas() {
     if (configs.addBlur) {
         blurCircle = document.createElement('div');
         blurCircle.className = 'cmg-blur-circle';
-        // blurCircle.style.left = `${realLeftCoord}px`;
-        // blurCircle.style.top = `${realTopCoord}px`;
-        // blurCircle.style.width = `${canvasRadius}px`;
-        // blurCircle.style.height = `${canvasRadius}px`;
 
         blurCircle.setAttribute('style', `pointer-events: none !important;
         z-index: 9999998 !important; 
@@ -220,19 +216,20 @@ function mouseMoveListener(e) {
 }
 
 function mouseLeaveListener(e) {
-    if (circleIsShown)
+    if (circleIsShown) {
+        if (rightClickIsHolded) rightClickIsHolded = false;
+
         switch (configs.mouseLeaveBehavior) {
             case 'doNothing': { } break;
             case 'hideMenu': {
                 selectedButtons = {};
-                rightClickIsHolded = false;
                 hideCircle();
             } break;
             case 'hideMenuAndSelect': {
-                rightClickIsHolded = false;
                 hideCircle();
             } break;
         }
+    }
 }
 
 function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvailability = true, shouldRespectBoundaries) {

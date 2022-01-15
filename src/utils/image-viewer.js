@@ -141,7 +141,6 @@ function openImageFullscreen(elementUnderCursor) {
 
     const rotationLabel = document.createElement('span');
     rotationLabel.setAttribute('style', 'vertical-align: middle');
-    // rotationLabel.innerText = '⟳';
     rotationLabel.innerText = '⭮';
     rotateButton.appendChild(rotationLabel);
     topControlsContainer.appendChild(rotateButton);
@@ -156,36 +155,6 @@ function openImageFullscreen(elementUnderCursor) {
 
         rotationWrapper.style.transform = `rotate(${rotationSteps[rotationStepsCounter]}deg)`;
         viewer.classList.remove('cmg-overlay-shadow');
-
-        /// Correct image position to fit height
-        // if (rotationStepsCounter == 1 || rotationStepsCounter == 3) {
-        // scale = initialScale;
-        // dxToShow = initialDx;
-        // dyToShow = initialDy;
-
-        // if ((originalWidth * scale) > window.innerHeight * screenHeightToTakeInitially) {
-
-        //     // let centerX = window.innerWidth / 2;
-        //     // let centerY = window.innerHeight / 2;
-        //     let centerX = dxToShow + (originalWidth * scale / 2);
-        //     let centerY = dyToShow + (originalHeight * scale / 2);
-
-        //     let xs = (centerX - dxToShow) / scale,
-        //         ys = (centerY + window.scrollY - dyToShow) / scale;
-
-        //     let factorToApply = (window.innerHeight * screenHeightToTakeInitially) / (originalWidth * scale);
-        //     scale *= factorToApply;
-
-        //     dxToShow = centerX - xs * scale;
-        //     dyToShow = centerY + window.scrollY - ys * scale;
-        //     copyOfImage.style.transform = `translate(${dxToShow}px, ${dyToShow}px) scale(${scale})`;
-        // }
-        // } else {
-        //     // scale = initialScale;
-        //     // dxToShow = initialDx;
-        //     // dyToShow = initialDy;
-        //     // copyOfImage.style.transform = `translate(${dxToShow}px, ${dyToShow}px) scale(${scale})`;
-        // }
 
         /// Revert index when rotation is 360
         if (rotationStepsCounter == rotationSteps.length - 1) {
@@ -203,8 +172,9 @@ function openImageFullscreen(elementUnderCursor) {
 
     // let img = document.createElement('img');
     // img.setAttribute('src', originalImage.getAttribute('src'));
+
     const isVideo = elementUnderCursor.tagName == 'VIDEO';
-    let viewer = document.createElement(isVideo ? 'video' : 'img');
+    const viewer = document.createElement(isVideo ? 'video' : 'img');
     if (isVideo) {
         /// set video progress
         let currentTime = elementUnderCursor.currentTime;
@@ -219,7 +189,7 @@ function openImageFullscreen(elementUnderCursor) {
             // source.setAttribute('type', sourceTag.type ?? 'video/mp4');
             viewer.appendChild(source);
 
-            if (elementUnderCursor.paused !== true) {
+            if (elementUnderCursor.paused == false) {
                 elementUnderCursor.pause();
                 viewer.play();
             }
@@ -232,8 +202,7 @@ function openImageFullscreen(elementUnderCursor) {
 
     const rotationWrapper = document.createElement('div');
     rotationWrapper.className = 'cmg-rotation-wrapper';
-
-    rotationWrapper.setAttribute('style', 'display: inline !important;visibility: visible !important; height: unset !important; width: unset !important;');
+    rotationWrapper.setAttribute('style', 'display: block !important;visibility: visible !important; height: unset !important; width: unset !important;');
     rotationWrapper.style.transition = `transform ${transitionDuration}ms ease-in-out`;
     rotationWrapper.appendChild(viewer);
 

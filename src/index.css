@@ -90,6 +90,7 @@
   transition:  background-color 100ms ease-out;
   padding: 15px;
   border-radius: 50%;text-align: center;cursor: pointer; 
+  display: block !important; visibility: visible !important;
 }
 
 .cmg-rotation-wrapper{
