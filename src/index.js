@@ -28,8 +28,10 @@ function setPageListeners() {
     document.addEventListener("contextmenu", function (e) {
         if (e.ctrlKey || e.metaKey || leftClickIsHolded) return;
         if (typeOfMenu == '') return;
+
         if (configs.showRegularMenuIfNoAction && configs.hideCircleIfNoActionSelected == true
             && anyButtonIsSelected == false && circleIsShown == false && fullscreenImageIsOpen == false) {
+            if (rightClickIsHolded) rightClickIsHolded = false;
             return;
         }
 
