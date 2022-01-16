@@ -470,7 +470,7 @@ function generateGesturesConfigs() {
     let gesturesSubheader = document.createElement('div');
     gesturesSubheader.setAttribute('class', 'sub-header');
     gesturesSubheader.setAttribute('style', 'margin-bottom: 8px;');
-    gesturesSubheader.innerHTML = '+ ' + chrome.i18n.getMessage('secondAction') + ':';
+    gesturesSubheader.innerHTML = '+ ' + chrome.i18n.getMessage('secondAction').toLowerCase() + ':';
     gesturesConfigs.appendChild(gesturesSubheader);
 
     let rockerActionContainer = document.createElement('div');

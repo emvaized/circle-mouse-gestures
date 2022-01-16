@@ -312,7 +312,7 @@ input {
 @media not all and (min-resolution:.001dpcm){ @supports (-webkit-appearance:none) {
     .tooltip::after{ font-size: 12px; }
     .buttons-item { padding: 5px 10px; }
-    .delete-level-button { color: grey; transition: color 150ms ease }
+    .delete-level-button { color: grey; font-size: 14px; transition: color 150ms ease }
     .delete-level-button:hover { color: red; }
     #addLevelButton { font-size: 42px; }
     .reset-segment-color-button { vertical-align: top; }
