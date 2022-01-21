@@ -203,7 +203,6 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
 
         let centerDx = canvasRadius / 2;
         let centerDy = canvasRadius / 2;
-        // let textRadius = (circleRadius + innerCircleRadius) * 0.5;
         let textRadius = useRectangularShape ? innerCircleRadius + ((circleRadius - innerCircleRadius / 2) / (segmentsCount < 5 ? 3 : 5)) : (circleRadius + innerCircleRadius) * 0.5;
         const angle = (segmentsCount % 2 == 0.0 ? 0.0 : (Math.PI / segmentsCount) / 2) + i * (Math.PI / (segmentsCount / 2));
 
@@ -246,12 +245,6 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
         ctx.font = `${iconSize}px sans-serif`;
 
         if (segment.id !== 'noAction' && configs.showActionIcons)
-            // if (actionIcons[segment.id].length <= 3) {
-            //     /// Draw unicode icon
-            //     ctx.fillText(actionIcons[segment.id], dxForText, dyForText - (circleRadius - innerCircleRadius > iconSize * 2.5 ? 4 : -4) - (verticalShiftForIcon == 0 ? 6 : verticalShiftForIcon) / 2);
-            // } else 
-
-            // console.log(segment.url);
             if (segment.id == 'openUrl' && segment.url) {
 
                 function errorCallback() {
