@@ -51,6 +51,7 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
 
                 if (!shouldDrawLabel && configs.showTitleOnHoverWhenHidden && showIndexes == false) {
                     tooltipTimer = setTimeout(function () {
+                        if (!circleIsShown) return;
                         let isOnTop = E.clientY < topCoord + (canvasRadius / 2);
                         showHintTooltip(segment.id == 'openUrl' ? (segment.label ?? segment.url ?? chrome.i18n.getMessage(segment.id)) : chrome.i18n.getMessage(segment.id),
                             colorForButton, `rgb(${outlineColorRgb.red}, ${outlineColorRgb.green}, ${outlineColorRgb.blue}`, isOnTop, levelOpacity);
