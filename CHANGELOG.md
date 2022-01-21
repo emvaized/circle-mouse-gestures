@@ -1,3 +1,7 @@
+#1.3.3
+- Fixed continous scroll detection getting stuck after called regular context menu
+- Fixed bug when on-hover tooltip for icon-only action appeared after circle is closed
+
 #1.3.2
 - Added Minimize/Maximize window actions
 - Add grid view tab switcher action
