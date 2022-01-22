@@ -204,7 +204,7 @@
 }
 
 .vertical-tab-switcher-label{
-  font-size: 14px !important;
+  font-size: 14px !important; vertical-align: middle !important;
 }
 
 .cmg-tab-switcher-filter {

@@ -956,5 +956,17 @@
     "writeAReview": {
         "message": "Escribe una reseña",
         "description": ""
+    },
+    "bookmarks": {
+        "message": "Marcadores",
+        "description": ""
+    },
+    "showBookmarksVertical": {
+        "message": "Marcadores (vertical)",
+        "description": ""
+    },
+    "bookmarksAmount": {
+        "message": "Marcadores",
+        "description": ""
     }
 }

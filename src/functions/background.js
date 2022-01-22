@@ -440,6 +440,37 @@ chrome.runtime.onMessage.addListener(
                 return true;
             } break;
 
+            case 'returnAllBookmarks': {
+                const books = [];
+
+                function process_bookmark(bookmarks, isInitial = false) {
+                    for (let i = 0, l = bookmarks.length; i < l; i++) {
+                        let bookmark = bookmarks[i];
+                        if (bookmark.url) {
+                            // console.log("bookmark: " + bookmark.title + " ~  " + bookmark.url);
+                            books.push(bookmark);
+                        }
+
+                        if (bookmark.children) {
+                            process_bookmark(bookmark.children);
+                        }
+
+                        if (isInitial && i == l - 1) {
+                            // setTimeout(function () {
+                            sendResponse(books);
+                            // }, 3);
+                        }
+                    }
+                }
+
+                chrome.bookmarks.getTree(function (bookmarks) {
+                    process_bookmark(bookmarks, true);
+                });
+
+                return true;
+
+            } break;
+
             case 'switchToIndexedTab': {
                 chrome.tabs.update(request.id, { active: true });
                 return true;

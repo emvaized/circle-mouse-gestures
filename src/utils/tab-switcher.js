@@ -1,6 +1,12 @@
-function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridView = false) {
+function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridView = false, bookmarksMode = false) {
+    if (!tabs || tabs == undefined) return;
+
+    if (bookmarksMode) {
+        tabs.sort((a, b) => (a.dateAdded > b.dateAdded) ? -1 : ((b.dateAdded > a.dateAdded) ? 1 : 0))
+    }
+
     if (configs.debugMode) {
-        console.log('List of tabs for tabs switcher:');
+        console.log(bookmarksMode ? 'List of all user bookmarks' : 'List of tabs for tabs switcher:');
         console.log(tabs);
     }
 
@@ -50,7 +56,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
 
     /// Generate tab tiles
     const tabTiles = [];
-    let focusedTile = -1;
+    let focusedTile = 0;
     const tabsLength = tabs.length;
 
     for (let i = 0; i < tabsLength; i++) {
@@ -61,8 +67,12 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
         tabTile.style.borderRadius = borderRadius + 'px';
 
         /// favicon
-        const tabThumbnail = document.createElement('img');
-        tabThumbnail.style.margin = '10px 0px';
+        const tabImage = document.createElement('img');
+        tabImage.style.margin = '10px 0px';
+
+        if (isVertical) {
+            tabImage.style.verticalAlign = 'middle';
+        }
 
         /// use tab thumbnail image if available (only Vivaldi)
         let imgSrc;
@@ -70,11 +80,11 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
             let parsed = JSON.parse(tab.extData);
             if (parsed.thumbnail) {
                 imgSrc = parsed.thumbnail;
-                tabThumbnail.style.margin = '3px 0px';
+                tabImage.style.margin = '3px 0px';
 
                 /// add website favicon when using thumbnail
                 setTimeout(function () {
-                    tabThumbnail.setAttribute('width', `${120}px`);
+                    tabImage.setAttribute('width', `${120}px`);
                     if (tab.favIconUrl && tab.favIconUrl !== '') {
                         appendTitleFavicon(tab.url.includes('github.com/') ? githubFaviconSrc : tab.favIconUrl, title);
                     }
@@ -87,17 +97,17 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
             if (tab.url.includes('github.com/')) imgSrc = githubFaviconSrc;
             if (!imgSrc) imgSrc = 'https://www.google.com/s2/favicons?sz=64&domain_url=' + tab.url.split('/')[2]; /// try using google favicons
         }
-        tabThumbnail.src = imgSrc;
+        tabImage.src = imgSrc;
 
-        tabThumbnail.setAttribute('width', isVertical ? `${verticalFaviconSize}px` : `${horizontalFaviconSize}px`);
-        tabThumbnail.style.display = 'inline';
-        tabThumbnail.style.marginRight = '6px';
-        tabTile.appendChild(tabThumbnail);
+        tabImage.setAttribute('width', isVertical ? `${verticalFaviconSize}px` : `${horizontalFaviconSize}px`);
+        tabImage.style.display = 'inline';
+        tabImage.style.marginRight = '6px';
+        tabTile.appendChild(tabImage);
 
         /// title
         const title = document.createElement('span');
         title.textContent = (tab.audible ? '🔊 ' : '') + tab.title;
-        title.style.verticalAlign = 'super';
+        // title.style.verticalAlign = 'super';
         title.style.color = 'black';
 
         /// special styling for horizontal layout
@@ -113,16 +123,29 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
         }
         // tabTile.title = tab.title;
         tabTile.appendChild(title);
+        tabTile.setAttribute('title', tab.url);
 
         /// select on mouse down
         tabTile.addEventListener('mousedown', function (e) {
-            if (e.button == 0) {
-                closeTabSwitcher(false);
-                selectTab(tabTiles.indexOf(tabTile));
-            }
-            else if (e.button == 1) {
-                e.preventDefault();
-                closeTab(tabTile);
+            if (bookmarksMode) {
+
+                if (e.button == 0) {
+                    closeTabSwitcher(false);
+                    selectBookmark(tabTiles.indexOf(tabTile), true);
+                }
+                else if (e.button == 1) {
+                    selectBookmark(tabTiles.indexOf(tabTile), false);
+                }
+
+            } else {
+                if (e.button == 0) {
+                    closeTabSwitcher(false);
+                    selectTab(tabTiles.indexOf(tabTile));
+                }
+                else if (e.button == 1) {
+                    e.preventDefault();
+                    closeTab(tabTile);
+                }
             }
         });
 
@@ -137,16 +160,18 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
 
             tabTile.appendChild(closeButton);
 
-            /// show close button on mouse over
-            tabTile.addEventListener('mouseover', function (e) {
-                closeButton.style.pointerEvents = 'auto';
-                closeButton.style.opacity = 1;
-            })
+            /// show close button on mouse hover
+            if (!bookmarksMode) {
+                tabTile.addEventListener('mouseover', function (e) {
+                    closeButton.style.pointerEvents = 'auto';
+                    closeButton.style.opacity = 1;
+                })
 
-            tabTile.addEventListener('mouseout', function (e) {
-                closeButton.style.pointerEvents = 'none';
-                closeButton.style.opacity = 0;
-            })
+                tabTile.addEventListener('mouseout', function (e) {
+                    closeButton.style.pointerEvents = 'none';
+                    closeButton.style.opacity = 0;
+                })
+            }
         }
 
         /// draw border around selected
@@ -162,8 +187,8 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
         tabTiles.push(tabTile);
 
         /// try to fetch thumbnail if Firefox
-        if (navigator.userAgent.indexOf("Firefox") > -1)
-            captureTabPreviewFirefox(tabThumbnail, tab, title);
+        if (navigator.userAgent.indexOf("Firefox") > -1 && !bookmarksMode)
+            captureTabPreviewFirefox(tabImage, tab, title);
     }
 
     /// 'Add new tab' tile
@@ -217,7 +242,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
             filterInput.style.top = `${switcherRect.top - 50}px`;
             filterInput.style.left = `${switcherRect.left}px`;
             filterInput.style.width = `${switcherRect.width}px`;
-            filterInput.placeholder = `${tabs.length} ${chrome.i18n.getMessage('tabsAmount').toLowerCase()} — ${chrome.i18n.getMessage('typeToQuery').toLowerCase()}...`;
+            filterInput.placeholder = `${tabs.length} ${chrome.i18n.getMessage(bookmarksMode ? 'bookmarksAmount' : 'tabsAmount').toLowerCase()} — ${chrome.i18n.getMessage('typeToQuery').toLowerCase()}...`;
             document.body.appendChild(filterInput);
             filterInput.focus();
 
@@ -262,7 +287,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
             topControlsContainer = document.createElement('div');
             topControlsContainer.setAttribute('style', `all:revert; position: fixed; z-index:100003; left: ${switcherRect.left + switcherRect.width + (closeButtonSize / 2)}px; top: ${switcherRect.top - (closeButtonSize * 2.5)}px; transition: opacity ${transitionDuration}ms ease-in-out`);
 
-            /// Add close button
+            /// Add tab close button
             const closeButton = document.createElement('div');
             closeButton.setAttribute('title', chrome.i18n.getMessage("closeLabel") ? chrome.i18n.getMessage("closeLabel") : 'Close');
             closeButton.setAttribute('class', 'cmg-link-preview-button');
@@ -397,11 +422,22 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
         }
     }
 
+    function selectBookmark(index, foreground = false) {
+        let tileToSelect = filteredTiles.length > 0 ? filteredTiles[index] : tabTiles[index];
+        let tabToSelect = tabs[tabTiles.indexOf(tileToSelect)];
+
+        chrome.runtime.sendMessage({ actionToDo: foreground ? 'openInFgTab' : 'openInBgTab', url: tabToSelect.url });
+    }
+
     function selectTab(index) {
         let tileToSelect = filteredTiles.length > 0 ? filteredTiles[index] : tabTiles[index];
         let tabToSelect = tabs[tabTiles.indexOf(tileToSelect)];
 
-        chrome.runtime.sendMessage({ actionToDo: 'switchToIndexedTab', id: tabToSelect.id });
+        if (bookmarksMode) {
+            chrome.runtime.sendMessage({ actionToDo: 'openInFgTab', url: tabToSelect.url });
+        } else {
+            chrome.runtime.sendMessage({ actionToDo: 'switchToIndexedTab', id: tabToSelect.id });
+        }
     }
 
     function openNewTab() {

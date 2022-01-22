@@ -87,6 +87,7 @@ const actionIcons = {
     'showTabSwitcherGrid': 'M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h10v4h8v10z',
     'maximizeWindow': 'M3 3h18v2H3V3z',
     'minimizeWindow': 'M6 19h12v2H6v-2z',
+    'showBookmarksVertical': 'M15 7v12.97l-4.21-1.81-.79-.34-.79.34L5 19.97V7h10m4-6H8.99C7.89 1 7 1.9 7 3h10c1.1 0 2 .9 2 2v13l2 1V3c0-1.1-.9-2-2-2zm-4 4H5c-1.1 0-2 .9-2 2v16l7-3 7 3V7c0-1.1-.9-2-2-2z',
 };
 
 

@@ -960,5 +960,17 @@
     "writeAReview": {
         "message": "Написать отзыв",
         "description": ""
+    },
+    "bookmarks": {
+        "message": "Закладки",
+        "description": ""
+    },
+    "showBookmarksVertical": {
+        "message": "Закладки (вертикально)",
+        "description": ""
+    },
+    "bookmarksAmount": {
+        "message": "Закладок",
+        "description": ""
     }
 }

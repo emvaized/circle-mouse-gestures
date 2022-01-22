@@ -286,6 +286,12 @@ function triggerButtonAction(actionToPerform, urlToOpen, scrollDirection) {
             window.print();
         } break;
 
+        case 'showBookmarksVertical': {
+            chrome.runtime.sendMessage({ actionToDo: 'returnAllBookmarks' }, (bookmarks) => {
+                openTabSwitcher(bookmarks, true, scrollDirection, false, true);
+            });
+        } break;
+
         case 'showTabSwitcherVertical': {
             chrome.runtime.sendMessage({ actionToDo: 'returnAllTabs' }, (tabs) => {
                 openTabSwitcher(tabs, true, scrollDirection);

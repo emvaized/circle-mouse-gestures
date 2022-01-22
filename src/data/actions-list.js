@@ -31,7 +31,6 @@ const sortedActionButtons = {
             'translate',
             'print',
             // 'inspectPage', /// doesn't work
-            'addToBookmarks',
             'undoAction',
             'redoAction',
             'selectAll',
@@ -52,6 +51,10 @@ const sortedActionButtons = {
             'maximizeWindow',
             'minimizeWindow',
             'closeWindow',
+        ],
+        'bookmarks': [
+            'addToBookmarks',
+            'showBookmarksVertical',
         ],
         '—': [
             'noAction'
