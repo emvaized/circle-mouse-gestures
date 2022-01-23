@@ -1,3 +1,4 @@
+/// The same function is used for both tab switcher and bookmarks list actions
 function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridView = false, bookmarksMode = false) {
     if (!tabs || tabs == undefined) return;
 
@@ -19,7 +20,6 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
     const enabledContiniousScrollDetection = ((isVertical && configs.continiousVerticalScrollDetection) || (!isVertical && configs.continiousHorizontalScrollDetection));
     let filterInput, topControlsContainer;
     const filteredTiles = [];
-    const githubFaviconSrc = 'https://www.google.com/s2/favicons?sz=64&domain_url=https://github.com';
 
     /// prototype for tab favicon
     let titleFaviconPrototype;
@@ -38,8 +38,8 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
     /// apply grid view styling
     if (isGridView) {
         container.classList.add('grid-view-switcher');
-        container.style.maxHeight = `${window.screen.height * 0.8}px`;
-        container.style.maxWidth = `${window.screen.width * 0.8}px`;
+        container.style.maxHeight = '80%';
+        container.style.maxWidth = '85%';
         container.style.gridTemplateColumns = `repeat(${Math.round(window.screen.width / 200)}, 1fr)`;
     }
 
@@ -71,7 +71,8 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
 
         /// favicon
         const tabImage = document.createElement('img');
-        tabImage.style.margin = '10px 0px';
+        tabImage.className = 'cmg-tab-switcher-image';
+        tabImage.setAttribute('width', isVertical ? `${verticalFaviconSize}px` : `${horizontalFaviconSize}px`);
 
         if (isVertical) {
             tabImage.style.verticalAlign = 'middle';
@@ -89,7 +90,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
                 setTimeout(function () {
                     tabImage.setAttribute('width', `${120}px`);
                     if (tab.favIconUrl && tab.favIconUrl !== '') {
-                        appendTitleFavicon(tab.url.includes('github.com/') ? githubFaviconSrc : tab.favIconUrl, title);
+                        appendTitleFavicon(tab.favIconUrl, title);
                     }
                 }, 1)
             }
@@ -97,28 +98,19 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
 
         if (!imgSrc) {
             imgSrc = tab.favIconUrl;
-            if (tab.url.includes('github.com/')) imgSrc = githubFaviconSrc;
-            if (!imgSrc) imgSrc = 'https://www.google.com/s2/favicons?sz=64&domain_url=' + tab.url.split('/')[2]; /// try using google favicons
+            /// If favicon is absent, try using Google favicon
+            if (!imgSrc) imgSrc = 'https://www.google.com/s2/favicons?sz=64&domain_url=' + tab.url.split('/')[2];
         }
         tabImage.src = imgSrc;
-
-        tabImage.setAttribute('width', isVertical ? `${verticalFaviconSize}px` : `${horizontalFaviconSize}px`);
-        tabImage.style.display = 'inline';
-        tabImage.style.marginRight = '6px';
         tabTile.appendChild(tabImage);
 
         /// title
         const title = document.createElement('span');
         title.textContent = (tab.audible ? '🔊 ' : '') + (!tab.title || tab.title == '' ? tab.url : tab.title);
-        // title.style.verticalAlign = 'super';
-        title.style.color = 'black';
 
         /// special styling for horizontal layout
         if (!isVertical) {
-            tabTile.style.display = 'inline';
-            tabTile.style.textAlign = 'center';
-            tabTile.style.padding = '0px 12px';
-
+            tabTile.classList.add('horizontal-tab-switcher-entry');
             title.classList.add('horizontal-tab-switcher-label');
             title.title = tab.title;
         } else {
@@ -478,7 +470,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
 
             /// Append tab favicon to title
             if (tab.favIconUrl && tab.favIconUrl != '')
-                appendTitleFavicon(tab.url.includes('github.com/') ? githubFaviconSrc : tab.favIconUrl, title);
+                appendTitleFavicon(tab.favIconUrl, title);
         });
     }
 

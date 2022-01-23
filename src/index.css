@@ -149,6 +149,10 @@
   align-items: end;
 }
 
+.cmg-tab-switcher-image {
+  margin: 10px 0px; display: inline; margin-right: 6px;
+}
+
 .center-aligned-switcher {
   left: 50%;
   top: 50%;
@@ -157,8 +161,8 @@
 
 .vertical-switcher {
   overflow: auto;
-  max-height: 50%;
-  min-width: 40%;
+  max-height: 60%;
+  min-width: 60%;
 }
 
 .horizontal-switcher {
@@ -171,8 +175,12 @@
   padding: 6px; cursor: pointer; position: relative;
 }
 
+.horizontal-tab-switcher-entry {
+  display: inline; text-align: center; padding: 0px 12px;
+}
+
 .cmg-tab-switcher-entry span {
-  line-height: 1.25;
+  line-height: 1.25; color: black !important;
 }
 
 .cmg-tab-switcher-entry:hover, .highlighted-tab {
