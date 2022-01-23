@@ -332,12 +332,15 @@ function checkScrollDirection(event) {
 
         if (event.deltaY < 0) {
             event.preventDefault();
-            if (!circleIsShown && configs[typeOfMenu].mouseWheelUpAction.includes('showTabSwitcher')) return;
-            triggerButtonAction(configs[typeOfMenu].mouseWheelUpAction, undefined, 'up');
+            const mouseWheelUpAction = configs[typeOfMenu].mouseWheelUpAction;
+            if (!circleIsShown && actionShouldBreakScrollListener(mouseWheelUpAction)) return;
+            triggerButtonAction(mouseWheelUpAction, undefined, 'up');
+
         } else if (event.deltaY > 0) {
             event.preventDefault();
-            if (!circleIsShown && configs[typeOfMenu].mouseWheelUpAction.includes('showTabSwitcher')) return;
-            triggerButtonAction(configs[typeOfMenu].mouseWheelDownAction, undefined, 'down');
+            const mouseWheelDownAction = configs[typeOfMenu].mouseWheelDownAction;
+            if (!circleIsShown && actionShouldBreakScrollListener(mouseWheelDownAction)) return;
+            triggerButtonAction(mouseWheelDownAction, undefined, 'down');
         }
     } else {
 
@@ -347,12 +350,14 @@ function checkScrollDirection(event) {
 
             if (event.deltaX < 0) {
                 event.preventDefault();
-                if (!circleIsShown && configs[typeOfMenu].mouseWheelLeftAction.includes('showTabSwitcher')) return;
-                triggerButtonAction(configs[typeOfMenu].mouseWheelLeftAction, undefined, 'up');
+                const mouseWheelLeftAction = configs[typeOfMenu].mouseWheelLeftAction;
+                if (!circleIsShown && actionShouldBreakScrollListener(mouseWheelLeftAction)) return;
+                triggerButtonAction(mouseWheelLeftAction, undefined, 'up');
             } else if (event.deltaX > 0) {
                 event.preventDefault();
-                if (!circleIsShown && configs[typeOfMenu].mouseWheelRightAction.includes('showTabSwitcher')) return;
-                triggerButtonAction(configs[typeOfMenu].mouseWheelRightAction, undefined, 'down');
+                const mouseWheelRightAction = configs[typeOfMenu].mouseWheelRightAction;
+                if (!circleIsShown && actionShouldBreakScrollListener(mouseWheelRightAction)) return;
+                triggerButtonAction(mouseWheelRightAction, undefined, 'down');
             }
         }
     }
@@ -365,6 +370,10 @@ function checkScrollDirectionIsUp(event) {
         return event.wheelDelta > 0;
     }
     return event.deltaY < 0;
+}
+
+function actionShouldBreakScrollListener(action) {
+    return action.includes('showTabSwitcher') || action.includes('showBookmarks');
 }
 
 function processAndShowCircle(e) {

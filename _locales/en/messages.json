@@ -107,6 +107,14 @@
         "message": "Bold",
         "description": ""
     },
+    "bookmarks": {
+        "message": "Bookmarks",
+        "description": ""
+    },
+    "bookmarksAmount": {
+        "message": "Bookmarks",
+        "description": ""
+    },
     "buttonsHeader": {
         "message": "Buttons",
         "description": ""
@@ -787,12 +795,12 @@
         "message": "Select all",
         "description": ""
     },
-    "selectMore": {
-        "message": "Select more",
-        "description": ""
-    },
     "selectLastVisitedTab": {
         "message": "Recent tab",
+        "description": ""
+    },
+    "selectMore": {
+        "message": "Select more",
         "description": ""
     },
     "selectedText": {
@@ -811,6 +819,14 @@
         "message": "Show action icons",
         "description": ""
     },
+    "showBookmarksGrid": {
+        "message": "Bookmarks list (grid)",
+        "description": ""
+    },
+    "showBookmarksVertical": {
+        "message": "Bookmarks list (vertical)",
+        "description": ""
+    },
     "showCircleAnimation": {
         "message": "Show animation",
         "description": ""
@@ -820,15 +836,15 @@
         "description": ""
     },
     "showTabSwitcherGrid": {
-        "message": "Tab switcher (grid)",
+        "message": "Tabs (grid)",
         "description": ""
     },
     "showTabSwitcherHorizontal": {
-        "message": "Tab switcher (horizontal)",
+        "message": "Tabs (horizontal)",
         "description": ""
     },
     "showTabSwitcherVertical": {
-        "message": "Tab switcher (vertical)",
+        "message": "Tabs (vertical)",
         "description": ""
     },
     "showTitleOnHoverWhenHidden": {
@@ -919,8 +935,8 @@
         "message": "Exit fullscreen",
         "description": ""
     },
-    "updateToApply": {
-        "message": "Update tabs to apply new settings",
+    "updateNotificationMessage": {
+        "message": "Click here to see what's new",
         "description": ""
     },
     "updateNotificationTitle": {
@@ -933,8 +949,8 @@
             }
         }
     },
-    "updateNotificationMessage": {
-        "message": "Click here to see what's new",
+    "updateToApply": {
+        "message": "Update tabs to apply new settings",
         "description": ""
     },
     "useCustomColor": {
@@ -955,18 +971,6 @@
     },
     "writeAReview": {
         "message": "Write a review",
-        "description": ""
-    },
-    "bookmarks": {
-        "message": "Bookmarks",
-        "description": ""
-    },
-    "showBookmarksVertical": {
-        "message": "Bookmarks list (vertical)",
-        "description": ""
-    },
-    "bookmarksAmount": {
-        "message": "Bookmarks",
         "description": ""
     }
 }

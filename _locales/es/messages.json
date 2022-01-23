@@ -107,6 +107,14 @@
         "message": "Negrita",
         "description": ""
     },
+    "bookmarks": {
+        "message": "Marcadores",
+        "description": ""
+    },
+    "bookmarksAmount": {
+        "message": "Marcadores",
+        "description": ""
+    },
     "buttonsHeader": {
         "message": "Botones",
         "description": ""
@@ -787,12 +795,12 @@
         "message": "Seleccionar todo",
         "description": ""
     },
-    "selectMore": {
-        "message": "Seleccionar más",
-        "description": ""
-    },
     "selectLastVisitedTab": {
         "message": "Pestaña reciente",
+        "description": ""
+    },
+    "selectMore": {
+        "message": "Seleccionar más",
         "description": ""
     },
     "selectedText": {
@@ -809,6 +817,14 @@
     },
     "showActionIcons": {
         "message": "Mostrar iconos de acción",
+        "description": ""
+    },
+    "showBookmarksGrid": {
+        "message": "Marcadores (cuadrícula)",
+        "description": ""
+    },
+    "showBookmarksVertical": {
+        "message": "Marcadores (vertical)",
         "description": ""
     },
     "showCircleAnimation": {
@@ -919,8 +935,8 @@
         "message": "Salir de pantalla completa",
         "description": ""
     },
-    "updateToApply": {
-        "message": "Actualizar pestañas para aplicar nuevas configuraciones",
+    "updateNotificationMessage": {
+        "message": "Haga clic aquí para ver las novedades",
         "description": ""
     },
     "updateNotificationTitle": {
@@ -933,8 +949,8 @@
             }
         }
     },
-    "updateNotificationMessage": {
-        "message": "Haga clic aquí para ver las novedades",
+    "updateToApply": {
+        "message": "Actualizar pestañas para aplicar nuevas configuraciones",
         "description": ""
     },
     "useCustomColor": {
@@ -955,18 +971,6 @@
     },
     "writeAReview": {
         "message": "Escribe una reseña",
-        "description": ""
-    },
-    "bookmarks": {
-        "message": "Marcadores",
-        "description": ""
-    },
-    "showBookmarksVertical": {
-        "message": "Marcadores (vertical)",
-        "description": ""
-    },
-    "bookmarksAmount": {
-        "message": "Marcadores",
         "description": ""
     }
 }

@@ -55,6 +55,7 @@ const sortedActionButtons = {
         'bookmarks': [
             'addToBookmarks',
             'showBookmarksVertical',
+            'showBookmarksGrid',
         ],
         '—': [
             'noAction'

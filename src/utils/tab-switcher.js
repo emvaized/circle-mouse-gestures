@@ -59,6 +59,9 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
     let focusedTile = 0;
     const tabsLength = tabs.length;
 
+    let activeWasSet = false;
+    const currentUrl = window.location.href;
+
     for (let i = 0; i < tabsLength; i++) {
         const tab = tabs[i];
 
@@ -106,7 +109,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
 
         /// title
         const title = document.createElement('span');
-        title.textContent = (tab.audible ? '🔊 ' : '') + tab.title;
+        title.textContent = (tab.audible ? '🔊 ' : '') + (!tab.title || tab.title == '' ? tab.url : tab.title);
         // title.style.verticalAlign = 'super';
         title.style.color = 'black';
 
@@ -175,9 +178,10 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
         }
 
         /// draw border around selected
-        if (tab.active) {
+        if (tab.active || (bookmarksMode && tab.url == currentUrl && activeWasSet == false)) {
             tabTile.style.border = '1.5px solid blue';
             focusedTile = i;
+            activeWasSet = true;
             setTimeout(function () {
                 tabTile.scrollIntoView({ block: 'center', inline: 'center' });
             }, 1)
