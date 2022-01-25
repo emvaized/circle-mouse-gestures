@@ -16,11 +16,12 @@ Extension features:
 
 Additional tools:
 - Link preview (like in Safari on mac)
-- Tab switcher (vertical/horizontal/grid), with ability to quickly switch or close tabs
-- Image viewer, with ability to zoom and rotate given image 
+- Tab switcher (vertical/horizontal/grid), with ability to quickly switch, search and close tabs
+- Bookmarks viewer (list/grid), with ability to search and open bookmarks
+- Image viewer, with ability to view given image in fullscreen, zoom it and rotate 
 - Page shrinker, which adds horizontal space to page for easier reading on some websites
 
-
+<img src="https://github.com/emvaized/circle-mouse-gestures/blob/master/screenshots/1.png">
 
 Download for Firefox:
 https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/

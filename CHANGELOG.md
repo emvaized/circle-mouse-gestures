@@ -1,3 +1,8 @@
+#1.3.4
+- Added "Bookmarks list" action, with ability to query and open bookmarks
+- Tab switcher performance improved
+- Updated README
+
 #1.3.3
 - Fixed continuous scroll detection getting stuck after called regular context menu
 - Fixed bug when on-hover tooltip for icon-only action appeared after circle is closed
