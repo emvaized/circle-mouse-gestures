@@ -3,6 +3,7 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
     if (!tabs || tabs == undefined) return;
 
     if (bookmarksMode) {
+        /// If bookmarks are provided, sort by most recent
         tabs.sort((a, b) => (a.dateAdded > b.dateAdded) ? -1 : ((b.dateAdded > a.dateAdded) ? 1 : 0))
     }
 
@@ -14,8 +15,8 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
     const transitionDuration = 200;
     const verticalFaviconSize = 20;
     let horizontalFaviconSize = 60;
-    const verticalScrollAlign = 'nearest'; // 'center'
-    const horizontalScrollAlign = 'nearest'; // 'center'
+    const verticalScrollAlign = 'nearest';
+    const horizontalScrollAlign = 'nearest';
     const borderRadius = 3;
     const enabledContiniousScrollDetection = ((isVertical && configs.continiousVerticalScrollDetection) || (!isVertical && configs.continiousHorizontalScrollDetection));
     let filterInput, topControlsContainer;

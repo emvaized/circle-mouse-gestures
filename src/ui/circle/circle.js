@@ -177,7 +177,7 @@ function setCanvas() {
     drawCircle(false, typeOfMenu);
     document.body.appendChild(circle);
 
-    /// Trigger hide transition
+    /// Trigger show up transition
     setTimeout(function () {
         switch (configs.showCircleAnimation) {
             case 'noAnimation': { } break;
@@ -194,7 +194,7 @@ function setCanvas() {
                 }
             } break;
         }
-    }, 3);
+    }, 5);
 
     /// Attach mouse listeners
     document.addEventListener('mousemove', mouseMoveListener);
