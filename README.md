@@ -21,6 +21,8 @@ Additional tools:
 - Image viewer, with ability to view given image in fullscreen, zoom it and rotate 
 - Page shrinker, which adds horizontal space to page for easier reading on some websites
 
+----
+
 <img src="https://github.com/emvaized/circle-mouse-gestures/blob/master/screenshots/1.png">
 
 Download for Firefox:
