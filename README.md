@@ -25,14 +25,14 @@ Additional tools:
 
 <img src="https://github.com/emvaized/circle-mouse-gestures/blob/master/screenshots/1.png">
 
-Download for Firefox:
-https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/
+----
 
 Download for Chrome:
 https://chrome.google.com/webstore/detail/circle-mouse-gestures-pie/kkknhbbfjlibfjagilggkcelmcobgefa
 
+Download for Firefox:
+https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/
 
-----
 
 ### FAQ
 
