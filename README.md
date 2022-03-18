@@ -27,7 +27,7 @@ Download for Firefox:
 https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/
 
 Download for Chrome:
-https://chrome.google.com/webstore/detail/circle-mouse-gestures/kkknhbbfjlibfjagilggkcelmcobgefa
+https://chrome.google.com/webstore/detail/circle-mouse-gestures-pie/kkknhbbfjlibfjagilggkcelmcobgefa
 
 
 ----

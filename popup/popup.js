@@ -51,7 +51,7 @@ function restoreOptions() {
   });
   document.querySelector("#githubPage").addEventListener("click", function (val) {
     window.close();
-    window.open('https://github.com/emvaized/circle-mouse-gestures/issues', '_blank');
+    window.open('https://github.com/emvaized/circle-mouse-gestures', '_blank');
   });
   document.querySelector("#settingsButton").addEventListener("click", function (val) {
     chrome.runtime.openOptionsPage();
@@ -60,7 +60,7 @@ function restoreOptions() {
   document.querySelector("#reviewButton").addEventListener("click", function (val) {
     window.close();
     let isFirefox = navigator.userAgent.indexOf("Firefox") > -1;
-    window.open(isFirefox ? 'https://addons.mozilla.org/ru/firefox/addon/circle-mouse-gestures/' : 'https://chrome.google.com/webstore/detail/circle-mouse-gestures-pie/kkknhbbfjlibfjagilggkcelmcobgefa/reviews', '_blank');
+    window.open(isFirefox ? 'https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/' : 'https://chrome.google.com/webstore/detail/circle-mouse-gestures-pie/kkknhbbfjlibfjagilggkcelmcobgefa/reviews', '_blank');
   });
 }
 
