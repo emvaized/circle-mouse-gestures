@@ -2,8 +2,7 @@
 chrome.runtime.onInstalled.addListener(function (details) {
     if (details.reason == 'install') {
         chrome.runtime.openOptionsPage();
-    }
-    else if (details.reason == 'update') {
+    } else if (details.reason == 'update' && !details.temporary) {
         // show update notification
         let shouldShowNotification = true;
         const storageKey = 'showUpdateNotification';
