@@ -855,6 +855,10 @@
         "message": "When action is icon-only, show tooltip with label on hover",
         "description": ""
     },
+    "segmentsIndent": {
+        "message": "Gap between segments",
+        "description": ""
+    },
     "showUpdateNotification": {
         "message": "Show notification on extension update",
         "description": ""

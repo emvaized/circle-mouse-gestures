@@ -207,6 +207,15 @@ function generateAppearanceControls() {
         appearanceContainer.appendChild(gapBetweenLevelsSlider);
     }
 
+    /// Create gap between segments slider
+    if (document.getElementById('segmentsIndent') == undefined) {
+        let gapBetweenSegmentsSlider = createRangeSlider('segmentsIndent', configs.segmentsIndent, '%', function (newVal) {
+            configs.segmentsIndent = newVal;
+        }, 0.0, 0.1, undefined, 0.01);
+        gapBetweenSegmentsSlider.style.padding = '0px 5px';
+        appearanceContainer.appendChild(gapBetweenSegmentsSlider);
+    }
+
     let opacitySliders = document.getElementById('placeholder-opacity-sliders');
 
     /// Create whole circle opacity slider

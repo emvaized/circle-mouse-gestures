@@ -68,35 +68,20 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
 
         ctx.globalCompositeOperation = 'source-over';
         ctx.beginPath();
-        ctx.moveTo(canvasRadius / 2, canvasRadius / 2);
 
-        // if (useRectangularShape) {
-        //     if (segmentsCount < 5) {
-        //         let radiusDivider = segmentsCount == 4 ? Math.sqrt(2) : Math.sqrt(4);
-        //         let dxForTextStart = canvasRadius / 2 + Math.cos(angle) * (circleRadius) / radiusDivider;
-        //         let dyForTextStart = canvasRadius / 2 + Math.sin(angle) * (circleRadius) / radiusDivider;
-        //         let dxForTextMiddle = canvasRadius / 2 + Math.cos(angle + (Math.PI / (segmentsCount / 2) * 0.996 / 2)) * circleRadius;
-        //         let dyForTextMiddle = canvasRadius / 2 + Math.sin(angle + (Math.PI / (segmentsCount / 2) * 0.996 / 2)) * circleRadius;
-        //         let dxForTextEnd = canvasRadius / 2 + Math.cos(angle + Math.PI / (segmentsCount / 2) * 0.996) * (circleRadius) / radiusDivider;
-        //         let dyForTextEnd = canvasRadius / 2 + Math.sin(angle + Math.PI / (segmentsCount / 2) * 0.996) * (circleRadius) / radiusDivider;
+        const segmentIndent = (Math.PI / segmentsCount * configs.segmentsIndent);
+        const segmentIndentInner = segmentIndent * (circleRadius / innerCircleRadius);
 
-        //         ctx.lineTo(dxForTextStart, dyForTextStart);
-        //         ctx.lineTo(dxForTextMiddle, dyForTextMiddle);
-        //         ctx.lineTo(dxForTextEnd, dyForTextEnd);
-        //     } else {
-        //         let dxForTextStart = canvasRadius / 2 + Math.cos(angle) * circleRadius;
-        //         let dyForTextStart = canvasRadius / 2 + Math.sin(angle) * circleRadius;
-        //         let dxForTextEnd = canvasRadius / 2 + Math.cos(angle + Math.PI / (segmentsCount / 2) * 0.996) * circleRadius;
-        //         let dyForTextEnd = canvasRadius / 2 + Math.sin(angle + Math.PI / (segmentsCount / 2) * 0.996) * circleRadius;
+        const startDx = canvasRadius / 2 + Math.cos(angle + segmentIndentInner) * innerCircleRadius;
+        const startDy = canvasRadius / 2 + Math.sin(angle + segmentIndentInner) * innerCircleRadius;
+        ctx.moveTo(startDx, startDy);
 
-        //         ctx.lineTo(dxForTextStart, dyForTextStart);
-        //         ctx.lineTo(dxForTextEnd, dyForTextEnd);
-        //     }
-        // } else {
-        ctx.arc(canvasRadius / 2, canvasRadius / 2, circleRadius, angle, angle + (Math.PI / (segmentsCount / 2)), false);
-        // }
+        ctx.arc(canvasRadius / 2, canvasRadius / 2, circleRadius, angle + segmentIndent, angle + (Math.PI / (segmentsCount / 2)) - segmentIndent, false);
 
-        ctx.lineTo(canvasRadius / 2, canvasRadius / 2);
+        const endAngle = angle + (Math.PI / (segmentsCount / 2));
+        const endDx = canvasRadius / 2 + Math.cos(endAngle - segmentIndentInner) * innerCircleRadius;
+        const endDy = canvasRadius / 2 + Math.sin(endAngle - segmentIndentInner) * innerCircleRadius;
+        ctx.lineTo(endDx, endDy);
 
         if (configs.addCircleOutlines) {
             ctx.strokeStyle = outlineColor;
@@ -121,33 +106,12 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
     ctx.save();
     ctx.beginPath();
     ctx.globalCompositeOperation = 'destination-out';
-
-    if (useRectangularShape && level !== 0) {
-        ctx.moveTo(canvasRadius / 2, canvasRadius / 2 - (innerCircleRadius / 2));
-
-        for (i = 0; i < segmentsCount; i++) {
-            let segmentAngle = (segmentsCount % 2 == 0.0 ? (-Math.PI / segmentsCount) : (-Math.PI / segmentsCount) / 2) + i * (Math.PI / (segmentsCount / 2));
-
-            let dxForTextStart = canvasRadius / 2 + Math.cos(segmentAngle) * innerCircleRadius;
-            let dyForTextStart = canvasRadius / 2 + Math.sin(segmentAngle) * innerCircleRadius;
-            ctx.moveTo(dxForTextStart, dyForTextStart);
-
-            let dxForTextEnd = canvasRadius / 2 + Math.cos(segmentAngle + Math.PI / (segmentsCount / 2) * 0.996) * innerCircleRadius;
-            let dyForTextEnd = canvasRadius / 2 + Math.sin(segmentAngle + Math.PI / (segmentsCount / 2) * 0.996) * innerCircleRadius;
-
-            ctx.lineTo(dxForTextEnd, dyForTextEnd);
-            ctx.lineTo(canvasRadius / 2, canvasRadius / 2);
-            ctx.fill();
-        }
-
-    } else {
-        ctx.arc(canvasRadius / 2, canvasRadius / 2, innerCircleRadius, 0, 2 * Math.PI, false);
-        ctx.fill();
-    }
+    ctx.arc(canvasRadius / 2, canvasRadius / 2, innerCircleRadius, 0, 2 * Math.PI, false);
+    ctx.fill();
 
     ctx.restore();
 
-    if (configs.addCircleOutlines) {
+    if (configs.addCircleOutlines && configs.segmentsIndent == 0) {
         ctx.strokeStyle = outlineColor;
         ctx.stroke();
     }

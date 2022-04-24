@@ -787,6 +787,10 @@
         "message": "Color del segmento",
         "description": ""
     },
+    "segmentsIndent": {
+        "message": "Brecha entre segmentos",
+        "description": ""
+    },
     "selectAll": {
         "message": "Seleccionar todo",
         "description": ""
