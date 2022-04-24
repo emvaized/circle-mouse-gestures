@@ -209,7 +209,7 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
         ctx.font = `${iconSize}px sans-serif`;
 
         if (segment.id !== 'noAction' && configs.showActionIcons)
-            if (segment.id == 'openUrl' && segment.url) {
+            if (segment.id == 'openUrl' && segment.url && segment.url.includes('.')) {
 
                 function errorCallback() {
                     /// Draw SVG icon
@@ -244,7 +244,7 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
                         image.onload = function () {
                             ctx.drawImage(image, dxForText - (iconSize / 2), dyForText - (verticalShiftForIcon == 0 && shouldDrawLabel ? 6 : verticalShiftForIcon) - (iconSize / (circleRadius - innerCircleRadius > iconSize * 2.5 ? 1.5 : 2)), iconSize, iconSize);
                             // if (showIndexes)
-                            image.remove();
+                            // image.remove();
                         }
                         image.onerror = function () {
                             image.remove();

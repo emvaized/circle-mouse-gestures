@@ -744,7 +744,6 @@ function generateLevelConfigs(levelIndex = 0) {
 
     /// Generate level configs container
     let container = document.createElement('div');
-    // container.setAttribute('style', 'float:left; padding: 15px; border: 1px solid lightGrey; margin-top: 15px; margin-right: 30px;  max-width: 300px;');
     container.setAttribute('class', 'level-configs');
     container.innerHTML = '';
 
@@ -800,7 +799,7 @@ function generateLevelConfigs(levelIndex = 0) {
             urlInput.id = urlInputIdentifier;
             urlInput.title = 'URL';
             urlInput.placeholder = 'URL';
-            // urlInput.style.width = '100%';
+            urlInput.style.width = '100%';
             // urlInput.style.marginLeft = '12px';
             if (item.url) urlInput.setAttribute('value', item.url);
 
@@ -810,9 +809,9 @@ function generateLevelConfigs(levelIndex = 0) {
 
                     let parts = urlInputIdentifier.split('-');
                     configs[selectedMenuType].levels[parts[1]].buttons[parts[2]]['url'] = inp.value;
-                    // drawCirclePreview();
                     generateButtonsControls();
                     saveAllSettings();
+                    drawCirclePreview();
                 })
             }, delayToAddListeners)
 
@@ -824,8 +823,8 @@ function generateLevelConfigs(levelIndex = 0) {
             labelInput.id = labelInputIdentifier;
             labelInput.title = chrome.i18n.getMessage('label') ?? 'Label';
             labelInput.placeholder = chrome.i18n.getMessage('label') ?? 'Label';
-            // labelInput.style.width = '100%';
-            // labelInput.style.marginLeft = '12px';
+            labelInput.style.width = '100%';
+            labelInput.style.marginTop = '2px';
             if (item.label) labelInput.setAttribute('value', item.label);
 
             setTimeout(function () {

@@ -14,6 +14,8 @@ function triggerButtonAction(actionToPerform, urlToOpen, scrollDirection) {
 
         case 'openUrl': {
             if (urlToOpen == null || urlToOpen == undefined) return;
+
+            urlToOpen = urlToOpen.replaceAll('{selection}', textSelection.toString()).replaceAll('{pageUrl}', window.location.href).replaceAll('{url}', hoveredLink);
             if (!urlToOpen.includes('://')) urlToOpen = 'https://' + urlToOpen;
             chrome.runtime.sendMessage({ actionToDo: 'openInFgTab', url: urlToOpen });
         } break;
