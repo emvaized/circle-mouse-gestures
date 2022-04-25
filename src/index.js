@@ -189,6 +189,7 @@ function setPageListeners() {
 
         /// Discard circle appear timer for following events
         document.addEventListener("dragstart", function (event) {
+            if (circleIsShown) event.preventDefault();
             clearTimeout(timerForLongLeftClick);
         }, false);
 
