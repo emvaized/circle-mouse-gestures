@@ -7,6 +7,8 @@ function showCircle(e) {
     evt.preventDefault();
     if ("buttons" in evt) {
         if ((configs.openCircleOn == 'rightClick' && evt.button == 2) || (configs.openCircleOn == 'longLeftClick' && evt.button == 0)) {
+            if (e.clientX == 0 && e.clientY == 0) return;
+
             preselectedButtons = {};
 
             totalCircleRadius = 0.0;
@@ -31,7 +33,7 @@ function showCircle(e) {
                 canvasRadius += (configs.interactiveCircleRadius + configs.gapBeforeInteractiveCircle) * 2;
 
             leftCoord = e.clientX - (canvasRadius / 2) + 1;
-            topCoord = e.clientY - (canvasRadius / 2) + window.scrollY + 1;
+            // topCoord = e.clientY - (canvasRadius / 2) + window.scrollY + 1;
             topCoord = e.pageY - (canvasRadius / 2) - window.scrollY + 1;
 
             circleIsShown = true;

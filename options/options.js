@@ -651,7 +651,12 @@ function generateGesturesConfigs() {
         longLeftClickThresholdTooltip.innerText = chrome.i18n.getMessage('longLeftClickThresholdTooltip');
         longLeftClickThresholdTooltip.className = 'tooltiptext';
 
+        let hoverHint = document.createElement('div');
+        hoverHint.innerHTML = '?';
+        hoverHint.className = 'tooltipHint';
+
         longLeftClickThresholdLabel.appendChild(longLeftClickThreshold);
+        longLeftClickThresholdLabel.appendChild(hoverHint);
         longLeftClickThresholdLabel.appendChild(longLeftClickThresholdTooltip);
         longLeftClickThresholdContainer.appendChild(longLeftClickThresholdLabel);
         document.getElementById('openCircleOnContainer').appendChild(longLeftClickThresholdContainer);
