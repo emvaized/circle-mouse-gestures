@@ -197,6 +197,10 @@ function setPageListeners() {
             clearTimeout(timerForLongLeftClick);
         }, true);
 
+        document.addEventListener('selectstart', function (e) {
+            if (circleIsShown) e.preventDefault();
+        });
+
         document.addEventListener('selectionchange', function (e) {
             if (window.getSelection().toString() !== '')
                 clearTimeout(timerForLongLeftClick);
