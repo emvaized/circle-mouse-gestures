@@ -611,6 +611,10 @@
         "message": "Открыть URL",
         "description": ""
     },
+    "openUrlHint": {
+        "message": "Вы можете использовать специальные обозначения: \n\n {selection} для выделенного текста, \n{url} для url элемента под курсором, \n {pageUrl} для url тек. страницы",
+        "description": ""
+    },
     "page": {
         "message": "Страница",
         "description": ""

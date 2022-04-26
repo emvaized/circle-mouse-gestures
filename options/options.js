@@ -331,6 +331,7 @@ function generateBehaviorConfigs() {
                     // drawCirclePreview();
                     drawCircle(false, selectedMenuType, true, false, true);
                     saveAllSettings();
+                    updateDisabledOptions();
                 } catch (error) {
                     if (configs.debugMode) console.log(error);
                 }
@@ -818,9 +819,23 @@ function generateLevelConfigs(levelIndex = 0) {
                     saveAllSettings();
                     drawCirclePreview();
                 })
-            }, delayToAddListeners)
+            }, delayToAddListeners);
 
-            openUrlContainer.appendChild(urlInput);
+            /// add hint
+            let urlInputContainer = document.createElement('div');
+            let urlTooltip = document.createElement('span');
+            urlTooltip.innerText = chrome.i18n.getMessage('openUrlHint');
+            urlTooltip.className = 'tooltiptext';
+            let hoverHint = document.createElement('div');
+            hoverHint.innerHTML = '?';
+            hoverHint.className = 'tooltipHint';
+            urlInputContainer.classList.add('tooltip');
+            urlInputContainer.appendChild(urlInput);
+            urlInputContainer.appendChild(hoverHint);
+            urlInputContainer.appendChild(urlTooltip);
+            urlInputContainer.style.width = '100%';
+
+            openUrlContainer.appendChild(urlInputContainer);
 
             /// label input
             const labelInput = document.createElement('input');

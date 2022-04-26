@@ -611,6 +611,10 @@
         "message": "Open URL",
         "description": ""
     },
+    "openUrlHint": {
+        "message": "You can use some special codes, for example: \n\n {selection} for the selected text, \n{url} for the hovered element url, \n {pageUrl} for current page url",
+        "description": ""
+    },
     "page": {
         "message": "Page",
         "description": ""

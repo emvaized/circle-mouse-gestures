@@ -611,6 +611,10 @@
         "message": "Abrir URL",
         "description": ""
     },
+    "openUrlHint": {
+        "message": "Puede usar algunos códigos especiales, por ejemplo: \n\n{selection} para el texto seleccionado, \n{url} para la URL del elemento flotado, \n{pageUrl} para la URL de la página actual",
+        "description": ""
+    },
     "page": {
         "message": "Página",
         "description": ""
