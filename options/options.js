@@ -829,6 +829,9 @@ function generateLevelConfigs(levelIndex = 0) {
             let hoverHint = document.createElement('div');
             hoverHint.innerHTML = '?';
             hoverHint.className = 'tooltipHint';
+            hoverHint.style.border = '1px solid white';
+            hoverHint.style.top = '2.5px';
+
             urlInputContainer.classList.add('tooltip');
             urlInputContainer.appendChild(urlInput);
             urlInputContainer.appendChild(hoverHint);
