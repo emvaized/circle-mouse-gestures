@@ -297,6 +297,10 @@ input {
     cursor: pointer;
 }
 
+.buttons-item input {
+    cursor: text;
+}
+
 .reset-segment-color-button {
     display: inline-block;
     opacity: 0.5;
