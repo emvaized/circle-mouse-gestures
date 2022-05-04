@@ -39,7 +39,7 @@ https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/
 * Double right click on element should always open regular context menu, 
 * Right click while holding the left mouse button
 * Right click while holding the CTRL key
-* On Windows, it will also get open on right mouse up if no circle section was selected (while "Show regular menu if no action selected" setting is on)
+* On Windows, it will also get open on right mouse button up if no circle section was selected (while "Show regular menu if no action selected" setting is on). On Linux and MacOS this behavior can achieved only in Firefox by changing `ui.context_menus.after_mouseup` flag to `true` on `about:config` page.
 
 **Why extension doesn't work on new tab page?**
 * This is basic security limitation in most modern browsers. Browser extension could not execute it's scripts on new tab page (speed dial), as well as on service pages (`chrome://`, `about:*`, etc.) and in extensions store
@@ -62,3 +62,9 @@ https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/
 **How to add CMG settings as Vivaldi side panel?**
 * Use this URL: *chrome-extension://*{ID OF EXTENSION}*/options/options.html*, where {ID OF EXTENSION} is a unique extension ID on your computer. You can get this from extension details page in `chrome://extensions`
 
+
+
+**Ideas for future releases**
+* Import/export settings
+* Action to execute custom Javascript
+* OPtion for custom favicon for 'Open URL' action
