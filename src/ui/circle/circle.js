@@ -162,11 +162,11 @@ function setCanvas() {
         } break;
         case 'scale': {
             circle.style.opacity = 0.0;
-            circle.style.transform = 'scale(0.0)';
+            circle.style.transform = 'scale(0.1)';
 
             if (configs.addBlur) {
                 blurCircle.style.opacity = 0.0;
-                blurCircle.style.transform = 'scale(0.0)';
+                blurCircle.style.transform = 'scale(0.1)';
             }
         } break;
     }
