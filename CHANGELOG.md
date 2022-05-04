@@ -1,3 +1,10 @@
+1.3.6
+- Add possibility to add gap between segments
+- Options page small improvements
+- Fixed popup icons
+- Fixes for ‘long left click’ mode
+- Possible fix for show-up transition not working sometimes
+
 1.3.5
 - Changed support/donate link to the new Ko-Fi page
 - Fixed 'Add a review' link always leading to 'ru' page in Firefox
