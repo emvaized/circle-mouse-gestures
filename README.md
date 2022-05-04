@@ -62,7 +62,7 @@ https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/
 **How to add CMG settings as Vivaldi side panel?**
 * Use this URL: *chrome-extension://*{ID OF EXTENSION}*/options/options.html*, where {ID OF EXTENSION} is a unique extension ID on your computer. You can get this from extension details page in `chrome://extensions`
 
-
+---
 
 **Ideas for future releases**
 * Import/export settings
