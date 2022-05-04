@@ -67,4 +67,4 @@ https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/
 **Ideas for future releases**
 * Import/export settings
 * Action to execute custom Javascript
-* OPtion for custom favicon for 'Open URL' action
+* Option to set custom favicon for 'Open URL' action
