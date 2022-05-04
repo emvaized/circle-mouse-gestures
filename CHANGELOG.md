@@ -4,6 +4,7 @@
 - Fixed popup icons
 - Fixes for ‘long left click’ mode
 - Possible fix for show-up transition not working sometimes
+- 'Open URL' action now accepts few additional params
 
 1.3.5
 - Changed support/donate link to the new Ko-Fi page
