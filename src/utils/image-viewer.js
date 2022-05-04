@@ -141,7 +141,7 @@ function openImageFullscreen(elementUnderCursor) {
 
     const rotationLabel = document.createElement('span');
     rotationLabel.setAttribute('style', 'vertical-align: middle');
-    rotationLabel.innerText = '⭮';
+    rotationLabel.innerText = '↻';
     rotateButton.appendChild(rotationLabel);
     topControlsContainer.appendChild(rotateButton);
 
