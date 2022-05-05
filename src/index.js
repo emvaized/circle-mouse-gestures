@@ -472,7 +472,7 @@ function processAndShowCircle(e) {
             hoveredLink = window.location.href;
             hoveredLinkTitle = null;
         } else {
-            if (configs.openCircleOn == 'longLeftClick' && el.tagName === "SELECT") return;
+            if (configs.openCircleOn == 'longLeftClick' && (el.tagName === "SELECT" || el.tagName === "BUTTON")) return;
 
             typeOfMenu = 'regularMenu';
             hoveredLink = configs.showLinkTooltipForPageItself ? window.location.href : null;
