@@ -1,3 +1,7 @@
+1.3.7
+- New actions for links: "Open in side window" and "Open in popup window" (as an alternative to "Link preview" action)
+- Small fixes for ‘long left click’ mode
+
 1.3.6
 - Add possibility to add gap between segments
 - Options page small improvements
