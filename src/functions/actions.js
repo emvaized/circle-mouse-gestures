@@ -155,6 +155,10 @@ function triggerButtonAction(actionToPerform, urlToOpen, scrollDirection) {
             } catch (e) { if (configs.debugMode) console.log(e); }
         } break;
 
+        case 'openInPopupWindow': {
+            chrome.runtime.sendMessage({ actionToDo: 'openInPopupWindow', url: hoveredLink, dx: lastMouseDownEvent.screenX, dy: lastMouseDownEvent.screenY });
+        } break;
+
         case 'textTooLong': {
             try {
                 trimPage();

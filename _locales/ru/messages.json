@@ -599,8 +599,16 @@
         "message": "Открыть в новой вкладке",
         "description": "Ярлык для кнопки кругового меню"
     },
+    "openInPopupWindow": {
+        "message": "Открыть во всплывающем окне",
+        "description": ""
+    },
     "openInPrivateWindow": {
         "message": "Открыть в приватном окне",
+        "description": ""
+    },
+    "openInSideWindow": {
+        "message": "Открыть в боковом окне",
         "description": ""
     },
     "openLinkPreview": {

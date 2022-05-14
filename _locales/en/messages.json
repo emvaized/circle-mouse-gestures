@@ -599,8 +599,16 @@
         "message": "Open in new tab",
         "description": ""
     },
+    "openInPopupWindow": {
+        "message": "Open in popup window",
+        "description": ""
+    },
     "openInPrivateWindow": {
         "message": "Open in private window",
+        "description": ""
+    },
+    "openInSideWindow": {
+        "message": "Open in side window",
         "description": ""
     },
     "openLinkPreview": {

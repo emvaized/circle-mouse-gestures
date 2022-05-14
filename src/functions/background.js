@@ -32,6 +32,8 @@ chrome.tabs.onActivated.addListener(function (activeInfo) {
     if (recentTabIndexes.length > 2) recentTabIndexes.shift();
 });
 
+/// keep track of window opened 'sidebar' via "openInSideWindow" action
+let virtualSidebarWindowId;
 
 /// Listener to open url in new tab
 chrome.runtime.onMessage.addListener(
@@ -348,6 +350,131 @@ chrome.runtime.onMessage.addListener(
 
             case 'duplicateTab': {
                 chrome.tabs.duplicate(sender.tab.id, function () { });
+            } break;
+
+            case 'openInPopupWindow': {
+                if (request.url !== null && request.url !== sender.tab.url) {
+                    chrome.windows.get(
+                        sender.tab.windowId,
+                        function (parentWindow) {
+                            /// if original window is fullscreen, unmaximize it
+                            let originalWindowIsFullscreen = false;
+                            if (parentWindow.state == 'fullscreen') {
+                                originalWindowIsFullscreen = true;
+                                chrome.windows.update(parentWindow.id, {
+                                    'state': 'maximized'
+                                });
+                            }
+
+                            let height = 600, width = 500;
+                            let dx = request.dx - (width / 2), dy = request.dy - (height / 2);
+
+                            /// check for screen overflow
+                            if (dx < 0) dx = 0;
+                            if (dy < 0) dy = 0;
+                            if (dx + width > window.screen.width) dx = dx - (dx + width - window.screen.width);
+                            if (dy + height > window.screen.height) dy = dy - (dy + height - window.screen.height);
+
+                            /// create popup window
+                            setTimeout(function () {
+                                chrome.windows.create({
+                                    'url': request.url, 'type': 'popup', 'width': width, 'height': height,
+                                    'top': dy, 'left': dx
+                                }, function (popupWindow) {
+                                    /// set coordinates again (workaround for firefox bug)
+                                    chrome.windows.update(popupWindow.id, {
+                                        'top': dy, 'left': dx
+                                    });
+
+                                    /// close popup on click parent window
+                                    function windowFocusListener(windowId) {
+                                        if (windowId == sender.tab.windowId) {
+                                            chrome.windows.onFocusChanged.removeListener(windowFocusListener);
+                                            chrome.windows.remove(popupWindow.id);
+
+                                            if (originalWindowIsFullscreen) chrome.windows.update(parentWindow.id, {
+                                                'state': 'fullscreen'
+                                            });
+                                        }
+                                    }
+
+                                    setTimeout(function () {
+                                        chrome.windows.onFocusChanged.addListener(windowFocusListener);
+                                    }, 300);
+                                });
+                            }, originalWindowIsFullscreen ? 600 : 0)
+                        }
+                    );
+                }
+            } break;
+
+            /// "Open in sidebar" experiment
+            case 'openInSideWindow': {
+                if (request.url !== null && request.url !== sender.tab.url) {
+
+                    /// if 'sidebar' window already opened, open new tab in it
+                    if (virtualSidebarWindowId) {
+                        chrome.tabs.create({ windowId: virtualSidebarWindowId, active: true, url: request.url })
+                    } else {
+                        /// create new sidebar window
+                        let sidebarPercent = 35;
+                        let sidebarWidth = Math.round(window.screen.width * (sidebarPercent / 100));
+
+                        chrome.windows.get(
+                            sender.tab.windowId,
+                            function (parentWindow) {
+
+                                /// if original window is fullscreen, unmaximize it
+                                let originalWindowIsFullscreen = false;
+                                if (parentWindow.state == 'fullscreen') {
+                                    chrome.windows.update(parentWindow.id, {
+                                        'state': 'maximized'
+                                    });
+                                    originalWindowIsFullscreen = true;
+                                }
+
+                                /// store original window width
+                                const initialWidth = originalWindowIsFullscreen ? window.screen.width : parentWindow.width;
+
+                                /// resize original window
+                                chrome.windows.update(parentWindow.id, {
+                                    'width': initialWidth - sidebarWidth
+                                });
+
+                                /// create side window
+                                chrome.windows.create({
+                                    'url': request.url, 'width': sidebarWidth, 'height': window.screen.height,
+                                    'top': parentWindow.top, 'left': window.screen.width - sidebarWidth,
+                                    // 'type': 'popup',
+                                }, function (sideWindow) {
+                                    virtualSidebarWindowId = sideWindow.id;
+
+                                    /// workaround for Firefox
+                                    chrome.windows.update(sideWindow.id, {
+                                        'top': parentWindow.top, 'left': window.screen.width - sidebarWidth
+                                    });
+
+                                    /// Listen to sidebar close to restore original window's width
+                                    function onCloseListener(closedWindowId) {
+                                        if (closedWindowId == sideWindow.id) {
+                                            /// restore parent window original width
+                                            chrome.windows.update(parentWindow.id, originalWindowIsFullscreen ? {
+                                                'width': initialWidth,
+                                                'state': 'fullscreen'
+                                            } : {
+                                                'width': initialWidth
+                                            });
+
+                                            chrome.windows.onRemoved.removeListener(onCloseListener);
+                                            virtualSidebarWindowId = undefined;
+                                        }
+                                    }
+                                    chrome.windows.onRemoved.addListener(onCloseListener);
+                                });
+                            }
+                        );
+                    }
+                }
             } break;
 
             case 'moveToNewWindow': {

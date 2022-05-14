@@ -71,6 +71,8 @@ const sortedActionButtons = {
             'openInBgTab',
             'copyUrl',
             'openLinkPreview',
+            'openInPopupWindow',
+            'openInSideWindow',
         ],
         '—': [
             'noAction'

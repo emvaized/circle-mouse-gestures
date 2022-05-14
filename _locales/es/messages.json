@@ -599,8 +599,16 @@
         "message": "Abrir en nueva pestaña",
         "description": ""
     },
+    "openInPopupWindow": {
+        "message": "Abrir en ventana emergente",
+        "description": ""
+    },
     "openInPrivateWindow": {
         "message": "Abrir en ventana privada",
+        "description": ""
+    },
+    "openInSideWindow": {
+        "message": "Abrir en ventana lateral",
         "description": ""
     },
     "openLinkPreview": {
