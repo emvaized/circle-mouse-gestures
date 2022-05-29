@@ -56,6 +56,9 @@ https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/
 **Link preview is not working**
 * Link preview's functionality is based on embedded iframes, and some websites restrict those for security considerations. It's not possible to get around this.
 
+**"Copy image" action is not working**
+* Due to the limitations of browser extensions, it is not possible sometimes to copy image protected by CORS policy. I'm not aware of any way to overcome it.
+
 **How to get tab thumbnails (previews) in tab switcher?**
 * This functionality is currently only available in [Vivaldi](https://vivaldi.com/) and [Firefox](https://www.mozilla.org/firefox/new/), and is working out of the box. Other browsers do not provide such ability to get this data for browser extensions (or I didn't find those).
 
@@ -68,3 +71,10 @@ https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/
 * Import/export settings
 * Action to execute custom Javascript
 * Option to set custom favicon for 'Open URL' action
+
+
+---
+
+### Links to my other browser extensions
+[Selecton](https://github.com/emvaized/selecton-extension) – smart text selection popup
+[Google Tweaks](https://github.com/emvaized/google-tiles-extension) – set of tweaks for Google search page to make it easier to use
