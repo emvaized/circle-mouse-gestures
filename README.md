@@ -76,5 +76,5 @@ https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/
 ---
 
 ### Links to my other browser extensions
-[Selecton](https://github.com/emvaized/selecton-extension) – smart text selection popup
-[Google Tweaks](https://github.com/emvaized/google-tiles-extension) – set of tweaks for Google search page to make it easier to use
+* [Selecton](https://github.com/emvaized/selecton-extension) – smart text selection popup
+* [Google Tweaks](https://github.com/emvaized/google-tiles-extension) – set of tweaks for Google search page to make it easier to use
