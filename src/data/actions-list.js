@@ -20,6 +20,7 @@ const sortedActionButtons = {
             'pinTab',
             'closeAllTabsExceptCurrent',
             'reloadTab',
+            'reloadTabWithoutCache',
             'restoreClosedTab',
             'moveTabLeft',
             'moveTabRight',

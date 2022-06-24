@@ -91,6 +91,10 @@ chrome.runtime.onMessage.addListener(
                 chrome.tabs.reload(sender.tab.id);
             } break;
 
+            case 'reloadTabWithoutCache': {
+                chrome.tabs.reload(sender.tab.id, { bypassCache: true });
+            } break;
+
             case 'goBack': {
                 chrome.tabs.goBack(sender.tab.id);
             } break;

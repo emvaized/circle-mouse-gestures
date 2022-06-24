@@ -695,6 +695,10 @@
         "message": "Recargar",
         "description": ""
     },
+    "reloadTabWithoutCache": {
+        "message": "Recargar (sin caché)",
+        "description": ""
+    },
     "replayVideo": {
         "message": "Repetir",
         "description": ""

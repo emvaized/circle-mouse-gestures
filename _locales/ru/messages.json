@@ -695,6 +695,10 @@
         "message": "Обновить",
         "description": "Ярлык для кнопки кругового меню"
     },
+    "reloadTabWithoutCache": {
+        "message": "Обновить (без кэша)",
+        "description": ""
+    },
     "replayVideo": {
         "message": "Сначала",
         "description": ""
