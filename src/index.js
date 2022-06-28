@@ -4,6 +4,7 @@ function init() {
             document.documentElement.style.setProperty('--cmg-link-prevew-anim-duration', `300ms`);
             document.documentElement.style.setProperty('--cmg-ghost-mouse-pointer-size', `${ghostMousePointerRadius * 2}px`);
             document.documentElement.style.setProperty('--cmg-fullscreen-overlays-shadow', '0px 10px 50px rgba(0,0,0,0.25)');
+            document.documentElement.style.setProperty('--cmg-page-dimmer-opacity', configs.backgroundDimmerOpacity);
 
             setPageListeners();
         }
