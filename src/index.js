@@ -525,7 +525,7 @@ function processAndShowCircle(e) {
                 hoveredLink = 'https:' + hoveredLink;
             } else {
                 let splittedUrl = window.location.href.split('/');
-                hoveredLink = splittedUrl[0] + '/' + splittedUrl[1] + '/' + splittedUrl[2] + '/' + hoveredLink;
+                hoveredLink = splittedUrl[0] + '/' + splittedUrl[1] + '/' + splittedUrl[2] + hoveredLink;
             }
         }
     }
