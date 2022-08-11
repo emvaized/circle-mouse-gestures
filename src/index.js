@@ -22,6 +22,7 @@ let anyButtonIsSelected = false;
 var timerForLongLeftClick;
 var lastMouseDownEvent;
 var longPressTimerInitEvent;
+var rockerActionToPerform;
 
 function setPageListeners() {
     /// Page listeners
@@ -31,7 +32,7 @@ function setPageListeners() {
         if (typeOfMenu == '') return;
 
         if (configs.showRegularMenuIfNoAction && configs.hideCircleIfNoActionSelected == true
-            && anyButtonIsSelected == false && circleIsShown == false && fullscreenImageIsOpen == false) {
+            && anyButtonIsSelected == false && rockerActionToPerform == undefined && circleIsShown == false && fullscreenImageIsOpen == false) {
             if (rightClickIsHolded) rightClickIsHolded = false;
             return;
         }
@@ -51,6 +52,8 @@ function setPageListeners() {
 
         if (configs.debugMode)
             console.log('Pushed button ' + evt.button.toString());
+
+        rockerActionToPerform = undefined;
 
         if (configs.openCircleOn == 'longLeftClick') {
             if (evt.button == 0) {
@@ -85,8 +88,8 @@ function setPageListeners() {
                     hideCircle();
 
                     if (configs.debugMode) console.log('Rocker gesture recognized!');
-                    let actionToPerform = configs[typeOfMenu]['rockerLeftClick'];
-                    triggerButtonAction(actionToPerform);
+                    rockerActionToPerform = configs[typeOfMenu]['rockerLeftClick'];
+                    triggerButtonAction(rockerActionToPerform);
                 } else {
                     leftClickIsHolded = true;
                 }
@@ -99,8 +102,8 @@ function setPageListeners() {
                     hideCircle();
 
                     if (configs.debugMode) console.log('Rocker gesture recognized!');
-                    let actionToPerform = configs[typeOfMenu]['rockerMiddleClick'];
-                    triggerButtonAction(actionToPerform);
+                    rockerActionToPerform = configs[typeOfMenu]['rockerMiddleClick'];
+                    triggerButtonAction(rockerActionToPerform);
                 } else {
                     leftClickIsHolded = true;
                 }
@@ -126,9 +129,6 @@ function setPageListeners() {
                     }
             } else return;
         } else if ("buttons" in evt) {
-            // if (configs.debugMode)
-            //     console.log('Released button ' + evt.button.toString());
-
             /// Left click
             if (evt.button == 0) {
                 leftClickIsHolded = false;
@@ -400,7 +400,6 @@ function processAndShowCircle(e) {
     elementUnderCursor = el;
     const elStyle = window.getComputedStyle(el);
 
-    // if (el.tagName == 'IMG') {
     if (el.tagName == 'IMG' || (el.tagName !== 'HTML' && elStyle.backgroundImage && elStyle.backgroundImage.includes('url('))) {
         /// Image is hovered
         typeOfMenu = 'imageMenu';
@@ -416,7 +415,6 @@ function processAndShowCircle(e) {
         }
         hoveredLink = fileLink.replace('blob:', '');
     } else if (el.tagName == 'A' || el.parentNode.tagName == 'A'
-        // || el.firstChild.tagName == 'A'
     ) {
         /// Link is hovered
         typeOfMenu = 'linkMenu';
@@ -431,7 +429,6 @@ function processAndShowCircle(e) {
         && el.getAttribute('type') !== 'color'
     ) {
         /// Text field is hovered
-
         if (window.getSelection) {
             textSelection = window.getSelection();
         } else if (document.selection) {
