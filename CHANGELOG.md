@@ -1,3 +1,10 @@
+1.3.8
+- Add action 'Reload without cache'
+- Fix for black backdrop on some pages
+- Fix for an issue with extra slash in links
+- Fix for regular context menu still open after secondary button action was triggered
+- Update donate link to PayPal
+
 1.3.7
 - New actions for links: "Open in side window" and "Open in popup window" (as an alternative to "Link preview" action)
 - Small fixes for ‘long left click’ mode
