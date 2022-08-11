@@ -1,5 +1,3 @@
-[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct-single.svg)](https://vshymanskyy.github.io/StandWithUkraine)
-
 # <sub><img src="https://github.com/emvaized/circle-mouse-gestures/blob/master/icons/icon-monotone-48.png" height="48" width="48"></sub> Circle Mouse Gestures
 
 This extension introduces convenient circle menu (so-called pie menu) to improve interaction with your browser. 
@@ -67,11 +65,17 @@ https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/
 
 ---
 
-**Ideas for future releases**
+### Ideas for future releases
 * Import/export settings
 * Action to execute custom Javascript
 * Option to set custom favicon for 'Open URL' action
 
+---
+
+### Donate
+If you really enjoy my products, you may also consider making a small donation for a coffee :)
+
+<a href="https://www.paypal.com/donate/?business=2KDNGXNUVZW7N&no_recurring=0&currency_code=USD"><img src="https://www.paypalobjects.com/en_US/DK/i/btn/btn_donateCC_LG.gif" height="25"/></a>
 
 ---
 
