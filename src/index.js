@@ -77,6 +77,7 @@ function setPageListeners() {
             if (evt.buttons == 2) {
                 rightClickIsHolded = true;
                 if (leftClickIsHolded) return;
+                lastMouseDownEvent = e;
 
                 processAndShowCircle(e);
             } else if (evt.buttons == 3) {
