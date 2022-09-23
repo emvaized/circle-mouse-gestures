@@ -84,6 +84,10 @@ hr {
     width: 100%;
   }
 
+  button {
+    font-family: sans-serif;
+  }
+
   button img {
     padding-top: 4px;
   }
