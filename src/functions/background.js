@@ -104,32 +104,28 @@ chrome.runtime.onMessage.addListener(
             } break;
 
             case 'openInBgTab': {
-                let index = sender.tab.index;
                 chrome.tabs.create({
-                    url: request.url, active: false, index: index + 1
+                    url: request.url, active: false, index: sender.tab.index + 1
                 });
             } break;
 
             case 'openInFgTab': {
-                let index = sender.tab.index;
                 chrome.tabs.create({
-                    url: request.url, active: true, index: index + 1
+                    url: request.url, active: true, index: sender.tab.index + 1
                 });
             } break;
 
             case 'searchText': {
-                let index = sender.tab.index;
                 chrome.tabs.create({
-                    url: 'https://www.google.com/search?q=' + request.selectedText, active: true, index: index + 1
+                    url: 'https://www.google.com/search?q=' + request.selectedText, active: true, index: sender.tab.index + 1
                 });
             } break;
 
             case 'translate': {
-                let index = sender.tab.index;
                 chrome.tabs.create({
                     url: (request.url.includes('https://') || request.url.includes('http://') ?
                         'https://translate.google.com/translate?sl=auto&tl=ru&u=' :
-                        'https://translate.google.com/?sl=auto&tl=ru&text=') + encodeURI(request.url), active: true, index: index + 1
+                        'https://translate.google.com/?sl=auto&tl=ru&text=') + encodeURI(request.url), active: true, index: sender.tab.index + 1
                 });
             } break;
 
@@ -179,9 +175,8 @@ chrome.runtime.onMessage.addListener(
             } break;
 
             case 'searchImageOnGoogle': {
-                let index = sender.tab.index;
                 chrome.tabs.create({
-                    url: 'http://images.google.com/searchbyimage?image_url=' + request.url, active: true, index: index + 1
+                    url: 'http://images.google.com/searchbyimage?image_url=' + request.url, active: true, index: sender.tab.index + 1
                 });
             } break;
 
@@ -199,9 +194,7 @@ chrome.runtime.onMessage.addListener(
                             (acc.index >= sender.tab.index && cur.index < acc.index) || (cur.index < sender.tab.index && cur.index > acc.index) ? cur : acc
                         );
                     }
-                    if (nextTab) {
-                        chrome.tabs.update(nextTab.id, { active: true });
-                    }
+                    if (nextTab) chrome.tabs.update(nextTab.id, { active: true });
                 });
             } break;
 
@@ -235,11 +228,8 @@ chrome.runtime.onMessage.addListener(
                 chrome.sessions.getRecentlyClosed({
                     maxResults: 1
                 }, function (sessionInfos) {
-                    if (!sessionInfos.length) {
-                        // if (configs.debugMode) 
-                        console.log("No sessions found")
-                        return;
-                    }
+                    if (!sessionInfos.length) return;
+
                     let sessionInfo = sessionInfos[0];
                     if (sessionInfo.tab) {
                         chrome.sessions.restore(sessionInfo.tab.sessionId);
@@ -279,8 +269,6 @@ chrome.runtime.onMessage.addListener(
                         chrome.tabs.setZoom(sender.tab.id, newZoom);
                     }
                 });
-
-
 
             } break;
 
@@ -505,7 +493,6 @@ chrome.runtime.onMessage.addListener(
             case 'moveTabLeft': {
                 chrome.tabs.move(sender.tab.id, { index: sender.tab.index - 1 });
             } break;
-
 
             case 'pinTab': {
                 if (sender.tab.pinned) {
