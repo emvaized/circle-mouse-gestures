@@ -14,7 +14,7 @@ h3 {
 }
 
 input {
-  vertical-align: middle; max-width: 100%;
+  vertical-align: middle; max-width: 96%;
 }
 
 .enabled-checkbox, .checkboxLabel {
@@ -81,7 +81,8 @@ hr {
   }
 
   #excludedDomains {
-    width: 100%;
+    width: 98%;
+    max-width: 98%;
   }
 
   button {
