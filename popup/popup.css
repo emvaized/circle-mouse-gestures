@@ -76,12 +76,12 @@ hr {
 
 @-moz-document url-prefix() {
   html, body {
-    width: 200px; 
-    max-width: 200px; 
+    width: unset; 
+    max-width: unset; 
   }
 
   #excludedDomains {
-    max-width: 96%;
+    width: 100%;
   }
 
   button img {
