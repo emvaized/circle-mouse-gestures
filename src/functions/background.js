@@ -358,7 +358,8 @@ chrome.runtime.onMessage.addListener(
                                 });
                             }
 
-                            let height = 600, width = 500;
+                            // let height = 600, width = 500;
+                            let height = window.screen.height * 0.65, width = window.screen.height * 0.5;
                             let dx = request.dx - (width / 2), dy = request.dy - (height / 2);
 
                             /// check for screen overflow
