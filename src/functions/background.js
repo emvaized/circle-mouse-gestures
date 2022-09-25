@@ -124,8 +124,8 @@ chrome.runtime.onMessage.addListener(
             case 'translate': {
                 chrome.tabs.create({
                     url: (request.url.includes('https://') || request.url.includes('http://') ?
-                        'https://translate.google.com/translate?sl=auto&tl=ru&u=' :
-                        'https://translate.google.com/?sl=auto&tl=ru&text=') + encodeURI(request.url), active: true, index: sender.tab.index + 1
+                        'https://translate.google.com/translate?sl=auto&u=' :
+                        'https://translate.google.com/?sl=auto&text=') + encodeURI(request.url), active: true, index: sender.tab.index + 1
                 });
             } break;
 
