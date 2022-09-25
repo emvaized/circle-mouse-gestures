@@ -1,971 +1,729 @@
 {
     "addBlur": {
-        "message": "Achtergrondvervaging",
-        "description": ""
+        "message": "Achtergrondvervaging"
     },
     "addBlurTooltip": {
-        "message": "Alleen zichtbaar als de cirkeldoorzichtbaarheid lager dan 1.0 is",
-        "description": ""
+        "message": "Alleen zichtbaar als de cirkeldoorzichtbaarheid lager dan 1.0 is"
     },
     "addCircleShadow": {
-        "message": "Schaduw tonen",
-        "description": ""
+        "message": "Schaduw tonen"
     },
     "addGhostPointer": {
-        "message": "Schimcursor tonen",
-        "description": ""
+        "message": "Schimcursor tonen"
     },
     "addGhostPointerTooltip": {
-        "message": "Als de cirkel niet onder de cursor is, dan wordt er een schimcursor getoond die de cursorpositie aangeeft",
-        "description": ""
+        "message": "Als de cirkel niet onder de cursor is, dan wordt er een schimcursor getoond die de cursorpositie aangeeft"
     },
     "addLabel": {
-        "message": "Segment toevoegen",
-        "description": ""
+        "message": "Segment toevoegen"
     },
     "addLevel": {
-        "message": "Niveau toevoegen",
-        "description": ""
+        "message": "Niveau toevoegen"
     },
     "addLinkTooltip": {
-        "message": "Hulpballon met meer informatie tonen",
-        "description": ""
+        "message": "Hulpballon met meer informatie tonen"
     },
     "addLinkTooltipTooltip": {
-        "message": "Toon aanvullende informatie (links, afbeeldingen, etc.) op de cirkel",
-        "description": ""
+        "message": "Toon aanvullende informatie (links, afbeeldingen, etc.) op de cirkel"
     },
     "addMoreLevelsToActivateMenu": {
-        "message": "Dit menu is buiten gebruik. <br/>Voeg niveaus toe om het in gebruik te nemen.",
-        "description": ""
+        "message": "Dit menu is buiten gebruik. <br/>Voeg niveaus toe om het in gebruik te nemen."
     },
     "addNewButton": {
-        "message": "Toevoegen",
-        "description": ""
+        "message": "Toevoegen"
     },
     "addTextLabels": {
-        "message": "Tekstlabels tonen",
-        "description": ""
+        "message": "Tekstlabels tonen"
     },
     "addTextLabelsTooltip": {
-        "message": "Wordt bij onvoldoende ruimte verborgen",
-        "description": ""
+        "message": "Wordt bij onvoldoende ruimte verborgen"
     },
     "addToBookmarks": {
-        "message": "Toevoegen aan bladwijzers",
-        "description": ""
+        "message": "Toevoegen aan bladwijzers"
     },
     "additional": {
-        "message": "Extra",
-        "description": ""
+        "message": "Extra"
     },
     "alwaysCorner": {
-        "message": "Always in corner",
-        "description": ""
+        "message": "Always in corner"
     },
     "alwaysCursor": {
-        "message": "Altijd onder cursor",
-        "description": ""
+        "message": "Altijd onder cursor"
     },
     "animateHideRelativeToSelected": {
-        "message": "Animatie op basis van gekozen optie",
-        "description": ""
+        "message": "Animatie op basis van gekozen optie"
     },
     "animationDuration": {
-        "message": "Animatieduur",
-        "description": ""
+        "message": "Animatieduur"
     },
     "appearanceHeader": {
-        "message": "Vormgeving",
-        "description": ""
+        "message": "Vormgeving"
     },
     "applySettingsImmediately": {
-        "message": "Instellingen direct toepassen",
-        "description": ""
+        "message": "Instellingen direct toepassen"
     },
     "applySettingsImmediatelyTooltip": {
-        "message": "Pas de instellingen direct toe als het menu geopend is. Schakel uit om de prestaties te verbeteren.",
-        "description": ""
+        "message": "Pas de instellingen direct toe als het menu geopend is. Schakel uit om de prestaties te verbeteren."
     },
     "backgroundColor": {
-        "message": "Achtergrondkleur",
-        "description": ""
+        "message": "Achtergrondkleur"
     },
     "backgroundOpacity": {
-        "message": "Achtegronddoorzichtigheid",
-        "description": ""
+        "message": "Achtegronddoorzichtigheid"
     },
     "behaviorTitle": {
-        "message": "Gedrag",
-        "description": ""
+        "message": "Gedrag"
     },
     "blurRadiusHint": {
-        "message": "Vervaagstraal (in px)",
-        "description": ""
+        "message": "Vervaagstraal (in px)"
     },
     "boldText": {
-        "message": "Vetgedrukt",
-        "description": ""
+        "message": "Vetgedrukt"
     },
     "bookmarks": {
-        "message": "Bladwijzers",
-        "description": ""
+        "message": "Bladwijzers"
     },
     "bookmarksAmount": {
-        "message": "Bladwijzers",
-        "description": ""
+        "message": "Bladwijzers"
     },
     "buttonsHeader": {
-        "message": "Knoppen",
-        "description": ""
+        "message": "Knoppen"
     },
     "checkButtonsAvailability": {
-        "message": "Niet-beschikbare knoppen verbergen",
-        "description": ""
+        "message": "Niet-beschikbare knoppen verbergen"
     },
     "checkButtonsAvailabilityTooltip": {
-        "message": "Als CMG vaststelt dat een bepaalde actie niet beschikbaar is, dan wordt het bijbehorende pictogram grijsgemaakt.\n\n Schakel uit om de prestaties te verbeteren.",
-        "description": ""
+        "message": "Als CMG vaststelt dat een bepaalde actie niet beschikbaar is, dan wordt het bijbehorende pictogram grijsgemaakt.\n\n Schakel uit om de prestaties te verbeteren."
     },
     "circleHideAnimation": {
-        "message": "Verberganimatie",
-        "description": ""
+        "message": "Verberganimatie"
     },
     "circleHideAnimationTooltip": {
-        "message": "Schakel uit om de prestaties te verbeteren",
-        "description": ""
+        "message": "Schakel uit om de prestaties te verbeteren"
     },
     "circleLevel": {
-        "message": "Niveau",
-        "description": ""
+        "message": "Niveau"
     },
     "circleLocation": {
-        "message": "Cirkellocatie",
-        "description": ""
+        "message": "Cirkellocatie"
     },
     "circleOpacity": {
-        "message": "Doorzichtigheid van gehele cirkel",
-        "description": ""
+        "message": "Doorzichtigheid van gehele cirkel"
     },
     "circlePreview": {
-        "message": "Voorvertoning",
-        "description": ""
+        "message": "Voorvertoning"
     },
     "clearInputField": {
-        "message": "Wissen",
-        "description": ""
+        "message": "Wissen"
     },
     "clickSegmentToHighlight": {
-        "message": "Klik op een onderdeel om te markeren",
-        "description": ""
+        "message": "Klik op een onderdeel om te markeren"
     },
     "clipboard": {
-        "message": "Klembord",
-        "description": ""
+        "message": "Klembord"
     },
     "closeAllTabsExceptCurrent": {
-        "message": "Overige tabbladen sluiten",
-        "description": ""
+        "message": "Overige tabbladen sluiten"
     },
     "closeCurrentTab": {
-        "message": "Tabblad sluiten",
-        "description": ""
+        "message": "Tabblad sluiten"
     },
     "closeLabel": {
-        "message": "Sluiten",
-        "description": ""
+        "message": "Sluiten"
     },
     "closeWindow": {
-        "message": "Venster sluiten",
-        "description": ""
+        "message": "Venster sluiten"
     },
     "colorLabel": {
-        "message": "Kleur",
-        "description": ""
+        "message": "Kleur"
     },
     "configure": {
-        "message": "Instellingen",
-        "description": ""
+        "message": "Instellingen"
     },
     "continiousHorizontalScrollDetection": {
-        "message": "Horizontale scroldetectie",
-        "description": ""
+        "message": "Horizontale scroldetectie"
     },
     "continiousScrollDetectionHint": {
-        "message": "Zorgt voor continue actiedetectie na het indrukken van de rechtermuisknop. \n\nHandig bij gebruik van sommige acties, zoals in-/uitzoomen of het openen van de tabbladschakelaar.",
-        "description": ""
+        "message": "Zorgt voor continue actiedetectie na het indrukken van de rechtermuisknop. \n\nHandig bij gebruik van sommige acties, zoals in-/uitzoomen of het openen van de tabbladschakelaar."
     },
     "continiousVerticalScrollDetection": {
-        "message": "Verticale scroldetectie",
-        "description": ""
+        "message": "Verticale scroldetectie"
     },
     "copied": {
-        "message": "Gekopieerd naar het klembord",
-        "description": ""
+        "message": "Gekopieerd naar het klembord"
     },
     "copyAllText": {
-        "message": "Alles kopiëren",
-        "description": ""
+        "message": "Alles kopiëren"
     },
     "copyImage": {
-        "message": "Afbeelding kopiëren",
-        "description": ""
+        "message": "Afbeelding kopiëren"
     },
     "copyLinkText": {
-        "message": "Tekst kopiëren",
-        "description": ""
+        "message": "Tekst kopiëren"
     },
     "copyNotification": {
-        "message": "Melding tonen na kopiëren",
-        "description": ""
+        "message": "Melding tonen na kopiëren"
     },
     "copyText": {
-        "message": "Kopiëren",
-        "description": ""
+        "message": "Kopiëren"
     },
     "copyUrl": {
-        "message": "Link kopiëren",
-        "description": ""
+        "message": "Link kopiëren"
     },
     "cursorCorner": {
-        "message": "Onder cursor + in hoek zonder ruimte",
-        "description": ""
+        "message": "Onder cursor + in hoek zonder ruimte"
     },
     "cursorOverflow": {
-        "message": "Onder cursor + verschuiven indien geen ruimte",
-        "description": ""
+        "message": "Onder cursor + verschuiven indien geen ruimte"
     },
     "cutText": {
-        "message": "Knippen",
-        "description": ""
+        "message": "Knippen"
     },
     "debugMode": {
-        "message": "Foutopsporingsmodus",
-        "description": ""
+        "message": "Foutopsporingsmodus"
     },
     "decreasePlayerVolume": {
-        "message": "Volume-",
-        "description": "Label for circle menu button"
+        "message": "Volume-"
     },
     "delay": {
-        "message": "Wachttijd",
-        "description": ""
+        "message": "Wachttijd"
     },
     "delayForLongLeftClick": {
-        "message": "Duur van ingedrukt houden",
-        "description": ""
+        "message": "Duur van ingedrukt houden"
     },
     "deleteLabel": {
-        "message": "Verwijderen",
-        "description": ""
+        "message": "Verwijderen"
     },
     "dimBackground": {
-        "message": "Pagina donkerder maken",
-        "description": ""
+        "message": "Pagina donkerder maken"
     },
     "dimBackgroundTooltip": {
-        "message": "Maak de pagina donkerder zolang het menu uitgeklapt is",
-        "description": ""
+        "message": "Maak de pagina donkerder zolang het menu uitgeklapt is"
     },
     "doNothing": {
-        "message": "Niets doen",
-        "description": ""
+        "message": "Niets doen"
     },
     "downloadUrl": {
-        "message": "Downloaden",
-        "description": ""
+        "message": "Downloaden"
     },
     "downloadUrlAs": {
-        "message": "Downloaden als",
-        "description": ""
+        "message": "Downloaden als"
     },
     "downloadVideo": {
-        "message": "Video downloaden",
-        "description": ""
+        "message": "Video downloaden"
     },
     "downloadVideoSavefromNet": {
-        "message": "Downloaden van Savefrom.net",
-        "description": ""
+        "message": "Downloaden van Savefrom.net"
     },
     "duplicateTab": {
-        "message": "Tabblad klonen",
-        "description": ""
+        "message": "Tabblad klonen"
     },
     "enabled": {
-        "message": "Ingeschakeld",
-        "description": ""
+        "message": "Ingeschakeld"
     },
     "excludedDomains": {
-        "message": "Genegeerde domeinen",
-        "description": ""
+        "message": "Genegeerde domeinen"
     },
     "extensionDescription": {
-        "message": "Een cirkelmenu met acties ter vervanging van het rechtermuisknopmenu",
-        "description": "Extension description"
+        "message": "Een cirkelmenu met acties ter vervanging van het rechtermuisknopmenu"
     },
     "fade": {
-        "message": "Vervagen",
-        "description": ""
+        "message": "Vervagen"
     },
     "fastForwardVideo": {
-        "message": "Vooruitspoelen",
-        "description": ""
+        "message": "Vooruitspoelen"
     },
     "fasterPlaybackSpeed": {
-        "message": "Snelheid verhogen",
-        "description": ""
+        "message": "Snelheid verhogen"
     },
     "gapBetweenCircles": {
-        "message": "Niveau-opvulling",
-        "description": ""
+        "message": "Niveau-opvulling"
     },
     "generalSettings": {
-        "message": "Algemene instellingen",
-        "description": ""
+        "message": "Algemene instellingen"
     },
     "gesturesTitle": {
-        "message": "Muisknoppen",
-        "description": ""
+        "message": "Muisknoppen"
     },
     "githubHint": {
-        "message": "U kunt hier bugs melden en ideeën delen",
-        "description": ""
+        "message": "U kunt hier bugs melden en ideeën delen"
     },
     "githubPage": {
-        "message": "GitHub",
-        "description": ""
+        "message": "GitHub"
     },
     "goBack": {
-        "message": "Ga terug",
-        "description": ""
+        "message": "Ga terug"
     },
     "goForward": {
-        "message": "Ga vooruit",
-        "description": ""
+        "message": "Ga vooruit"
     },
     "hideCircleAnimation": {
-        "message": "Verberganimatie",
-        "description": ""
+        "message": "Verberganimatie"
     },
     "hideCircleIfNoActionSelected": {
-        "message": "Menu verbergen als cursor zonder actie wordt verplaatst",
-        "description": ""
+        "message": "Menu verbergen als cursor zonder actie wordt verplaatst"
     },
     "hideLabelIfNoSpace": {
-        "message": "Tekstlabels verbergen bij onvoldoende ruimte",
-        "description": ""
+        "message": "Tekstlabels verbergen bij onvoldoende ruimte"
     },
     "hideMenu": {
-        "message": "Menu verbergen",
-        "description": ""
+        "message": "Menu verbergen"
     },
     "hideMenuAndSelect": {
-        "message": "Menu verbergen + markering selecteren",
-        "description": ""
+        "message": "Menu verbergen + markering selecteren"
     },
     "highlightElementOnHover": {
-        "message": "Pagina-elementen makeren na aanwijzen",
-        "description": ""
+        "message": "Pagina-elementen makeren na aanwijzen"
     },
     "highlightElementOnHoverTooltip": {
-        "message": "Voor zie elementen met een speciaal menu van een kader na het aanwijzen ervan. Let op: dit kan van invloed zijn op de cpu-belasting!",
-        "description": ""
+        "message": "Voor zie elementen met een speciaal menu van een kader na het aanwijzen ervan. Let op: dit kan van invloed zijn op de cpu-belasting!"
     },
     "horizontalWheelActionsEnabled": {
-        "message": "Horizontale wielacties",
-        "description": ""
+        "message": "Horizontale wielacties"
     },
     "iconOpacity": {
-        "message": "Doorzichtigheid van pictogrammen",
-        "description": ""
+        "message": "Doorzichtigheid van pictogrammen"
     },
     "image": {
-        "message": "Afbeelding",
-        "description": ""
+        "message": "Afbeelding"
     },
     "imageCopyFailMessage": {
-        "message": "De oorzaak is waarschijnlijk het CORS-beleid van de website in kwestie",
-        "description": ""
+        "message": "De oorzaak is waarschijnlijk het CORS-beleid van de website in kwestie"
     },
     "imageCopyFailTitle": {
-        "message": "Kopiëren mislukt",
-        "description": ""
+        "message": "Kopiëren mislukt"
     },
     "imageCopySuccessMessage": {
-        "message": "De afbeelding is gekopieerd",
-        "description": ""
+        "message": "De afbeelding is gekopieerd"
     },
     "imageMenu": {
-        "message": "Afbeeldingenmenu",
-        "description": ""
+        "message": "Afbeeldingenmenu"
     },
     "inactiveMenuBehavior": {
-        "message": "Als het menu van een element inactief is:",
-        "description": "Label for circle menu button"
+        "message": "Als het menu van een element inactief is:"
     },
     "increasePlayerVolume": {
-        "message": "Volume+",
-        "description": "Label for circle menu button"
+        "message": "Volume+"
     },
     "innerWidth": {
-        "message": "Centrumstraal",
-        "description": "Label for circle menu button"
+        "message": "Centrumstraal"
     },
     "innerWidthTooltip": {
-        "message": "De straal van de of inactieve zone in het midden van de cirkel",
-        "description": ""
+        "message": "De straal van de of inactieve zone in het midden van de cirkel"
     },
     "inputField": {
-        "message": "Invoerveld",
-        "description": ""
+        "message": "Invoerveld"
     },
     "inspectPage": {
-        "message": "Pagina inspecteren",
-        "description": ""
+        "message": "Pagina inspecteren"
     },
     "italicText": {
-        "message": "Cursief",
-        "description": ""
+        "message": "Cursief"
     },
     "label": {
-        "message": "Label",
-        "description": ""
+        "message": "Label"
     },
     "labelOpacity": {
-        "message": "Labeldoorzichtigheid",
-        "description": ""
+        "message": "Labeldoorzichtigheid"
     },
     "leftClick": {
-        "message": "Linkermuisknop",
-        "description": ""
+        "message": "Linkermuisknop"
     },
     "levelColor": {
-        "message": "Niveaukleur",
-        "description": ""
+        "message": "Niveaukleur"
     },
     "levelWidth": {
-        "message": "Niveaubreedte",
-        "description": ""
+        "message": "Niveaubreedte"
     },
     "levels": {
-        "message": "Niveaus",
-        "description": ""
+        "message": "Niveaus"
     },
     "link": {
-        "message": "Link",
-        "description": ""
+        "message": "Link"
     },
     "linkMenu": {
-        "message": "Linkmenu",
-        "description": ""
+        "message": "Linkmenu"
     },
     "longLeftClick": {
-        "message": "Linkermuisknop ingedrukt houden",
-        "description": ""
+        "message": "Linkermuisknop ingedrukt houden"
     },
     "longLeftClickThreshold": {
-        "message": "Menu niet openen indien ingedrukt gedurende",
-        "description": ""
+        "message": "Menu niet openen indien ingedrukt gedurende"
     },
     "longLeftClickThresholdTooltip": {
-        "message": "Als de cursor met dit aantal pixels verschoven wordt, dan wordt het menu niet geopend",
-        "description": ""
+        "message": "Als de cursor met dit aantal pixels verschoven wordt, dan wordt het menu niet geopend"
     },
     "maximizeWindow": {
-        "message": "Venster maximaliseren",
-        "description": ""
+        "message": "Venster maximaliseren"
     },
     "menuColor": {
-        "message": "Menuselectiekleur",
-        "description": ""
+        "message": "Menuselectiekleur"
     },
     "minimizeWindow": {
-        "message": "Venster minimaliseren",
-        "description": ""
+        "message": "Venster minimaliseren"
     },
     "mouseLeaveBehavior": {
-        "message": "Als de cursor buiten het venster is",
-        "description": ""
+        "message": "Als de cursor buiten het venster is"
     },
     "mouseWheelDownAction": {
-        "message": "Wiel omlaag",
-        "description": ""
+        "message": "Wiel omlaag"
     },
     "mouseWheelLeftAction": {
-        "message": "Wiel naar links",
-        "description": ""
+        "message": "Wiel naar links"
     },
     "mouseWheelRightAction": {
-        "message": "Wiel naar rechts",
-        "description": ""
+        "message": "Wiel naar rechts"
     },
     "mouseWheelUpAction": {
-        "message": "Wiel omhoog",
-        "description": ""
+        "message": "Wiel omhoog"
     },
     "move": {
-        "message": "Verplaatsen",
-        "description": ""
+        "message": "Verplaatsen"
     },
     "moveCaretToEnd": {
-        "message": "Tekstcursor naar einde verplaatsen",
-        "description": ""
+        "message": "Tekstcursor naar einde verplaatsen"
     },
     "moveCaretToStart": {
-        "message": "Tekstcursor naar begin verplaatsen",
-        "description": ""
+        "message": "Tekstcursor naar begin verplaatsen"
     },
     "moveClockwise": {
-        "message": "Naar rechts draaien",
-        "description": ""
+        "message": "Naar rechts draaien"
     },
     "moveCounterClockwise": {
-        "message": "Naar links draaien",
-        "description": ""
+        "message": "Naar links draaien"
     },
     "moveDownLabel": {
-        "message": "Omlaag verplaatsen",
-        "description": ""
+        "message": "Omlaag verplaatsen"
     },
     "moveTabLeft": {
-        "message": "Tabblad naar links verplaatsen",
-        "description": ""
+        "message": "Tabblad naar links verplaatsen"
     },
     "moveTabRight": {
-        "message": "Tabblad naar rechts verplaatsen",
-        "description": ""
+        "message": "Tabblad naar rechts verplaatsen"
     },
     "moveToNewWindow": {
-        "message": "Openen in nieuw venster",
-        "description": ""
+        "message": "Openen in nieuw venster"
     },
     "moveUpLabel": {
-        "message": "Omhoog verplaatsen",
-        "description": ""
+        "message": "Omhoog verplaatsen"
     },
     "mutePlayer": {
-        "message": "Dempen",
-        "description": ""
+        "message": "Dempen"
     },
     "navigation": {
-        "message": "Navigatie",
-        "description": ""
+        "message": "Navigatie"
     },
     "newPrivateWindow": {
-        "message": "Nieuw privétabblad",
-        "description": ""
+        "message": "Nieuw privétabblad"
     },
     "newTab": {
-        "message": "Nieuw tabblad",
-        "description": ""
+        "message": "Nieuw tabblad"
     },
     "newWindow": {
-        "message": "Nieuw venster",
-        "description": ""
+        "message": "Nieuw venster"
     },
     "noAction": {
-        "message": "Geen actie",
-        "description": ""
+        "message": "Geen actie"
     },
     "noAnimation": {
-        "message": "Geen animatie",
-        "description": ""
+        "message": "Geen animatie"
     },
     "noMatchingTabsFound": {
-        "message": "Er zijn geen overeenkomende tabbladen aangetroffen",
-        "description": ""
+        "message": "Er zijn geen overeenkomende tabbladen aangetroffen"
     },
     "normalPlaybackSpeed": {
-        "message": "Normale snelheid",
-        "description": ""
+        "message": "Normale snelheid"
     },
     "opacity": {
-        "message": "Doorzichtigheid",
-        "description": ""
+        "message": "Doorzichtigheid"
     },
     "openCircleOn": {
-        "message": "Menu openen op",
-        "description": ""
+        "message": "Menu openen op"
     },
     "openImageFullscreen": {
-        "message": "Beeld",
-        "description": ""
+        "message": "Beeld"
     },
     "openInBgTab": {
-        "message": "Achtergrondtabblad",
-        "description": ""
+        "message": "Achtergrondtabblad"
     },
     "openInFgTab": {
-        "message": "Openen op nieuw tabblad",
-        "description": ""
+        "message": "Openen op nieuw tabblad"
     },
     "openInPopupWindow": {
-        "message": "Openen in pop-upvenster",
-        "description": ""
+        "message": "Openen in pop-upvenster"
     },
     "openInPrivateWindow": {
-        "message": "Openen in privévenster",
-        "description": ""
+        "message": "Openen in privévenster"
     },
     "openInSideWindow": {
-        "message": "Openen in zijbalkvenster",
-        "description": ""
+        "message": "Openen in zijbalkvenster"
     },
     "openLinkPreview": {
-        "message": "Link voorvertonen",
-        "description": ""
+        "message": "Link voorvertonen"
     },
     "openUrl": {
-        "message": "Url openen",
-        "description": ""
+        "message": "Url openen"
     },
     "openUrlHint": {
-        "message": "Hier kunt u gebruikmaken van speciale codes. Voorbeeld: \n\n {selection} betreft de geselecteerde tekst; \n{url} betreft de aangewezen element-url; \n {pageUrl} betreft de huidige pagina-url",
-        "description": ""
+        "message": "Hier kunt u gebruikmaken van speciale codes. Voorbeeld: \n\n {selection} betreft de geselecteerde tekst; \n{url} betreft de aangewezen element-url; \n {pageUrl} betreft de huidige pagina-url"
     },
     "page": {
-        "message": "Pagina",
-        "description": ""
+        "message": "Pagina"
     },
     "pageZoomIn": {
-        "message": "Inzoomen",
-        "description": ""
+        "message": "Inzoomen"
     },
     "pageZoomOut": {
-        "message": "Uitzoomen",
-        "description": ""
+        "message": "Uitzoomen"
     },
     "pasteText": {
-        "message": "Plakken",
-        "description": ""
+        "message": "Plakken"
     },
     "pauseVideo": {
-        "message": "Pauzeren",
-        "description": ""
+        "message": "Pauzeren"
     },
     "pinTab": {
-        "message": "Tabblad vastmaken",
-        "description": ""
+        "message": "Tabblad vastmaken"
     },
     "playPauseVideo": {
-        "message": "Afspelen/Pauzeren",
-        "description": ""
+        "message": "Afspelen/Pauzeren"
     },
     "playVideo": {
-        "message": "Afspelen",
-        "description": ""
+        "message": "Afspelen"
     },
     "player": {
-        "message": "Speler",
-        "description": ""
+        "message": "Speler"
     },
     "playerFullScreen": {
-        "message": "Op volledig scherm bekijken",
-        "description": ""
+        "message": "Op volledig scherm bekijken"
     },
     "playerMenu": {
-        "message": "Spelermenu",
-        "description": ""
+        "message": "Spelermenu"
     },
     "print": {
-        "message": "Afdrukken",
-        "description": ""
+        "message": "Afdrukken"
     },
     "quickActions": {
-        "message": "Snelle acties",
-        "description": ""
+        "message": "Snelle acties"
     },
     "redoAction": {
-        "message": "Opnieuw uitvoeren",
-        "description": ""
+        "message": "Opnieuw uitvoeren"
     },
     "refreshPageIfDoesntWork": {
-        "message": "Pagina's herladen bij verbindingsfouten",
-        "description": ""
+        "message": "Pagina's herladen bij verbindingsfouten"
     },
     "regularMenu": {
-        "message": "Browsermenu",
-        "description": ""
+        "message": "Browsermenu"
     },
     "regularMenuFallback": {
-        "message": "Browsermenu tonen",
-        "description": ""
+        "message": "Browsermenu tonen"
     },
     "reloadTab": {
-        "message": "Herladen",
-        "description": ""
+        "message": "Herladen"
     },
     "reloadTabWithoutCache": {
-        "message": "Herladen (cache omezeilen)",
-        "description": ""
+        "message": "Herladen (cache omezeilen)"
     },
     "replayVideo": {
-        "message": "Opnieuw afspelen",
-        "description": ""
+        "message": "Opnieuw afspelen"
     },
     "resetColor": {
-        "message": "Kleur wissen",
-        "description": ""
+        "message": "Kleur wissen"
     },
     "restore": {
-        "message": "Herstellen",
-        "description": ""
+        "message": "Herstellen"
     },
     "restoreClosedTab": {
-        "message": "Gesloten tabblad herstellen",
-        "description": ""
+        "message": "Gesloten tabblad herstellen"
     },
     "reviewButton": {
-        "message": "Recensie plaatsen",
-        "description": ""
+        "message": "Recensie plaatsen"
     },
     "rewindVideo": {
-        "message": "Terugspoelen",
-        "description": ""
+        "message": "Terugspoelen"
     },
     "rightClick": {
-        "message": "Rechtermuisknop",
-        "description": ""
+        "message": "Rechtermuisknop"
     },
     "rightClickToClose": {
-        "message": "Rechtsklikken om te sluiten",
-        "description": ""
+        "message": "Rechtsklikken om te sluiten"
     },
     "rockerAction": {
-        "message": "Muisgebaren",
-        "description": ""
+        "message": "Muisgebaren"
     },
     "rockerActionTooltip": {
-        "message": "Deze gebaren worden uitgevoerd door de rechtermuisknop ingedrukt te houden en dan op de linkermuisknop te drukken",
-        "description": ""
+        "message": "Deze gebaren worden uitgevoerd door de rechtermuisknop ingedrukt te houden en dan op de linkermuisknop te drukken"
     },
     "rockerGesture": {
-        "message": "Muisgebaar",
-        "description": ""
+        "message": "Muisgebaar"
     },
     "rockerGestureDescription": {
-        "message": "Dit gebaar wordt uitgevoerd door de rechtermuisknop ingedrukt te houden en dan op de linkermuisknop te drukken",
-        "description": ""
+        "message": "Dit gebaar wordt uitgevoerd door de rechtermuisknop ingedrukt te houden en dan op de linkermuisknop te drukken"
     },
     "rockerMiddleClick": {
-        "message": "Middelklik",
-        "description": ""
+        "message": "Middelklik"
     },
     "rotateLabel": {
-        "message": "Draaien",
-        "description": ""
+        "message": "Draaien"
     },
     "scale": {
-        "message": "Grootte aanpassen",
-        "description": ""
+        "message": "Grootte aanpassen"
     },
     "scroll": {
-        "message": "Scrollen",
-        "description": ""
+        "message": "Scrollen"
     },
     "scrollBack": {
-        "message": "Terugscrollen",
-        "description": ""
+        "message": "Terugscrollen"
     },
     "scrollPageDown": {
-        "message": "Pagina omlaag",
-        "description": ""
+        "message": "Pagina omlaag"
     },
     "scrollPageUp": {
-        "message": "Pagina omhoog",
-        "description": ""
+        "message": "Pagina omhoog"
     },
     "scrollToBottom": {
-        "message": "Naar onderkant scrollen",
-        "description": ""
+        "message": "Naar onderkant scrollen"
     },
     "scrollToResize": {
-        "message": "Scrol of dubbelklik om grootte aan te passen",
-        "description": ""
+        "message": "Scrol of dubbelklik om grootte aan te passen"
     },
     "scrollToTop": {
-        "message": "Naar bovenkant scrollen",
-        "description": ""
+        "message": "Naar bovenkant scrollen"
     },
     "searchImageOnGoogle": {
-        "message": "Zoeken naar afbeelding",
-        "description": ""
+        "message": "Zoeken naar afbeelding"
     },
     "searchText": {
-        "message": "Zoeken",
-        "description": ""
+        "message": "Zoeken"
     },
     "secondAction": {
-        "message": "Tweede actie",
-        "description": ""
+        "message": "Tweede actie"
     },
     "segmentColor": {
-        "message": "Onderdeelkleur",
-        "description": ""
+        "message": "Onderdeelkleur"
     },
     "selectAll": {
-        "message": "Alles selecteren",
-        "description": ""
+        "message": "Alles selecteren"
     },
     "selectAllText": {
-        "message": "Alles selecteren",
-        "description": ""
+        "message": "Alles selecteren"
     },
     "selectLastVisitedTab": {
-        "message": "Laatstgebruikt tabblad",
-        "description": ""
+        "message": "Laatstgebruikt tabblad"
     },
     "selectMore": {
-        "message": "Meer selecteren",
-        "description": ""
+        "message": "Meer selecteren"
     },
     "selectedText": {
-        "message": "Geselecteerde tekst",
-        "description": ""
+        "message": "Geselecteerde tekst"
     },
     "selectionMenu": {
-        "message": "Tekstselectiemenu",
-        "description": ""
+        "message": "Tekstselectiemenu"
     },
     "settings": {
-        "message": "Instellingen",
-        "description": ""
+        "message": "Instellingen"
     },
     "showActionIcons": {
-        "message": "Pictogrammen tonen naast acties",
-        "description": ""
+        "message": "Pictogrammen tonen naast acties"
     },
     "showBookmarksGrid": {
-        "message": "Bladwijzerlijst (rooster)",
-        "description": ""
+        "message": "Bladwijzerlijst (rooster)"
     },
     "showBookmarksVertical": {
-        "message": "Bladwijzerlijst (verticaal)",
-        "description": ""
+        "message": "Bladwijzerlijst (verticaal)"
     },
     "showCircleAnimation": {
-        "message": "Animatie tonen",
-        "description": ""
+        "message": "Animatie tonen"
     },
     "showRegularMenuIfNoAction": {
-        "message": "Browsermenu tonen indien geen actie is gekozen",
-        "description": ""
+        "message": "Browsermenu tonen indien geen actie is gekozen"
     },
     "showTabSwitcherGrid": {
-        "message": "Tabbladen (rooster)",
-        "description": ""
+        "message": "Tabbladen (rooster)"
     },
     "showTabSwitcherHorizontal": {
-        "message": "Tabbladen (horizontaal)",
-        "description": ""
+        "message": "Tabbladen (horizontaal)"
     },
     "showTabSwitcherVertical": {
-        "message": "Tabbladen (verticaal)",
-        "description": ""
+        "message": "Tabbladen (verticaal)"
     },
     "showTitleOnHoverWhenHidden": {
-        "message": "Hulpballonnen tonen na aanwijzen",
-        "description": ""
+        "message": "Hulpballonnen tonen na aanwijzen"
     },
     "showTitleOnHoverWhenHiddenTooltip": {
-        "message": "Hulpballonnen tonen na aanwijzen bij tonen van actiepictogrammen",
-        "description": ""
+        "message": "Hulpballonnen tonen na aanwijzen bij tonen van actiepictogrammen"
     },
     "segmentsIndent": {
-        "message": "Ruimte tussen onderdelen",
-        "description": ""
+        "message": "Ruimte tussen onderdelen"
     },
     "showUpdateNotification": {
-        "message": "Melding tonen na bijwerken van extensie",
-        "description": ""
+        "message": "Melding tonen na bijwerken van extensie"
     },
     "slowerPlaybackSpeed": {
-        "message": "Snelheid verlagen",
-        "description": ""
+        "message": "Snelheid verlagen"
     },
     "standardBackground": {
-        "message": "Niveaukleur",
-        "description": ""
+        "message": "Niveaukleur"
     },
     "storeCurrentScrollPosition": {
-        "message": "Huidige scrolpositie onthouden",
-        "description": ""
+        "message": "Huidige scrolpositie onthouden"
     },
     "storeCurrentScrollPositionTooltip": {
-        "message": "Pas de acties ‘Naar bovenkant scrollen’ en ‘Naar onderkant scrollen’ aan naar ‘terugscrollen’",
-        "description": ""
+        "message": "Pas de acties ‘Naar bovenkant scrollen’ en ‘Naar onderkant scrollen’ aan naar ‘terugscrollen’"
     },
     "strikeText": {
-        "message": "Doorhalen",
-        "description": ""
+        "message": "Doorhalen"
     },
     "supportButton": {
-        "message": "Project ondersteunen",
-        "description": ""
+        "message": "Project ondersteunen"
     },
     "switchToNextTab": {
-        "message": "Volgend tabblad",
-        "description": ""
+        "message": "Volgend tabblad"
     },
     "switchToPreviousTab": {
-        "message": "Vorig tabblad",
-        "description": ""
+        "message": "Vorig tabblad"
     },
     "tab": {
-        "message": "Tabblad",
-        "description": ""
+        "message": "Tabblad"
     },
     "tabsAmount": {
-        "message": "Tabbladen",
-        "description": ""
+        "message": "Tabbladen"
     },
     "textFieldMenu": {
-        "message": "Invoerveldmenu",
-        "description": ""
+        "message": "Invoerveldmenu"
     },
     "textTooLong": {
-        "message": "Pagina verkleinen",
-        "description": ""
+        "message": "Pagina verkleinen"
     },
     "toggleFullscreen": {
-        "message": "Volledig scherm",
-        "description": ""
+        "message": "Volledig scherm"
     },
     "translate": {
-        "message": "Vertalen",
-        "description": ""
+        "message": "Vertalen"
     },
     "translateInPopup": {
-        "message": "Vertalen in pop-up",
-        "description": ""
+        "message": "Vertalen in pop-up"
     },
     "typeToQuery": {
-        "message": "Typ om te zoeken",
-        "description": ""
+        "message": "Typ om te zoeken"
     },
     "underlineText": {
-        "message": "Onderstrepen",
-        "description": ""
+        "message": "Onderstrepen"
     },
     "undoAction": {
-        "message": "Ongedaan maken",
-        "description": ""
+        "message": "Ongedaan maken"
     },
     "unpinTab": {
-        "message": "Tabblad losmaken",
-        "description": ""
+        "message": "Tabblad losmaken"
     },
     "untoggleFullscreen": {
-        "message": "Volledig scherm verlaten",
-        "description": ""
+        "message": "Volledig scherm verlaten"
     },
     "updateNotificationMessage": {
-        "message": "Klik hier om het wijzigingslog te bekijken",
-        "description": ""
+        "message": "Klik hier om het wijzigingslog te bekijken"
     },
     "updateNotificationTitle": {
         "message": "CMG is bijgewerkt naar versie $VERSION$",
-        "description": "",
         "placeholders": {
             "version": {
                 "content": "$1",
@@ -974,27 +732,21 @@
         }
     },
     "updateToApply": {
-        "message": "Tabbladen bijwerken om nieuwe instellingen toe te passen",
-        "description": ""
+        "message": "Tabbladen bijwerken om nieuwe instellingen toe te passen"
     },
     "useCustomColor": {
-        "message": "Eigen achtergrond",
-        "description": ""
+        "message": "Eigen achtergrond"
     },
     "whatsNew": {
-        "message": "Wijzigingslog",
-        "description": ""
+        "message": "Wijzigingslog"
     },
     "window": {
-        "message": "Venster",
-        "description": ""
+        "message": "Venster"
     },
     "windowsOnly": {
-        "message": "Toont het browsermenu als de cursor omhoog wordt verplaatst. Let op: dit werkt alleen op Windows. Op andere systemen (Linux, macOS) is mogelijk dubbelklikken vereist.",
-        "description": ""
+        "message": "Toont het browsermenu als de cursor omhoog wordt verplaatst. Let op: dit werkt alleen op Windows. Op andere systemen (Linux, macOS) is mogelijk dubbelklikken vereist."
     },
     "writeAReview": {
-        "message": "Recensie plaatsen",
-        "description": ""
+        "message": "Recensie plaatsen"
     }
 }

@@ -1,971 +1,729 @@
 {
     "addBlur": {
-        "message": "Background blur",
-        "description": ""
+        "message": "Background blur"
     },
     "addBlurTooltip": {
-        "message": "Can be seen only when circle opacity is less than 1.0",
-        "description": ""
+        "message": "Can be seen only when circle opacity is less than 1.0"
     },
     "addCircleShadow": {
-        "message": "Add shadow",
-        "description": ""
+        "message": "Add shadow"
     },
     "addGhostPointer": {
-        "message": "Show ghost pointer",
-        "description": ""
+        "message": "Show ghost pointer"
     },
     "addGhostPointerTooltip": {
-        "message": "When circle is not under cursor, show ghost pointer indicating real cursor position relative to the circle",
-        "description": ""
+        "message": "When circle is not under cursor, show ghost pointer indicating real cursor position relative to the circle"
     },
     "addLabel": {
-        "message": "Add segment",
-        "description": ""
+        "message": "Add segment"
     },
     "addLevel": {
-        "message": "Add level",
-        "description": ""
+        "message": "Add level"
     },
     "addLinkTooltip": {
-        "message": "Show helper tooltip with more info",
-        "description": ""
+        "message": "Show helper tooltip with more info"
     },
     "addLinkTooltipTooltip": {
-        "message": "Show additional info for links, images etc. on top of the circle",
-        "description": ""
+        "message": "Show additional info for links, images etc. on top of the circle"
     },
     "addMoreLevelsToActivateMenu": {
-        "message": "This menu is inactive. <br/>Add levels to activate it",
-        "description": ""
+        "message": "This menu is inactive. <br/>Add levels to activate it"
     },
     "addNewButton": {
-        "message": "Add new",
-        "description": ""
+        "message": "Add new"
     },
     "addTextLabels": {
-        "message": "Display text labels",
-        "description": ""
+        "message": "Display text labels"
     },
     "addTextLabelsTooltip": {
-        "message": "Will be hidden when there is not enough space",
-        "description": ""
+        "message": "Will be hidden when there is not enough space"
     },
     "addToBookmarks": {
-        "message": "Add to bookmarks",
-        "description": ""
+        "message": "Add to bookmarks"
     },
     "additional": {
-        "message": "Additional",
-        "description": ""
+        "message": "Additional"
     },
     "alwaysCorner": {
-        "message": "Always in corner",
-        "description": ""
+        "message": "Always in corner"
     },
     "alwaysCursor": {
-        "message": "Always under cursor",
-        "description": ""
+        "message": "Always under cursor"
     },
     "animateHideRelativeToSelected": {
-        "message": "Animate relative to selected option",
-        "description": ""
+        "message": "Animate relative to selected option"
     },
     "animationDuration": {
-        "message": "Animations duration",
-        "description": ""
+        "message": "Animations duration"
     },
     "appearanceHeader": {
-        "message": "Appearance",
-        "description": ""
+        "message": "Appearance"
     },
     "applySettingsImmediately": {
-        "message": "Apply settings immediately",
-        "description": ""
+        "message": "Apply settings immediately"
     },
     "applySettingsImmediatelyTooltip": {
-        "message": "Apply settings every time the menu is open. Disable for better performance",
-        "description": ""
+        "message": "Apply settings every time the menu is open. Disable for better performance"
     },
     "backgroundColor": {
-        "message": "Background color",
-        "description": ""
+        "message": "Background color"
     },
     "backgroundOpacity": {
-        "message": "Background opacity",
-        "description": ""
+        "message": "Background opacity"
     },
     "behaviorTitle": {
-        "message": "Behavior",
-        "description": ""
+        "message": "Behavior"
     },
     "blurRadiusHint": {
-        "message": "Blur radius (px)",
-        "description": ""
+        "message": "Blur radius (px)"
     },
     "boldText": {
-        "message": "Bold",
-        "description": ""
+        "message": "Bold"
     },
     "bookmarks": {
-        "message": "Bookmarks",
-        "description": ""
+        "message": "Bookmarks"
     },
     "bookmarksAmount": {
-        "message": "Bookmarks",
-        "description": ""
+        "message": "Bookmarks"
     },
     "buttonsHeader": {
-        "message": "Buttons",
-        "description": ""
+        "message": "Buttons"
     },
     "checkButtonsAvailability": {
-        "message": "Check buttons availability",
-        "description": ""
+        "message": "Check buttons availability"
     },
     "checkButtonsAvailabilityTooltip": {
-        "message": "When CMG detects that action is not available, icon will be greyed out.\n\n Disabling this may improve performance",
-        "description": ""
+        "message": "When CMG detects that action is not available, icon will be greyed out.\n\n Disabling this may improve performance"
     },
     "circleHideAnimation": {
-        "message": "Circle hide animation",
-        "description": ""
+        "message": "Circle hide animation"
     },
     "circleHideAnimationTooltip": {
-        "message": "Disable for snappier behavior",
-        "description": ""
+        "message": "Disable for snappier behavior"
     },
     "circleLevel": {
-        "message": "Level",
-        "description": ""
+        "message": "Level"
     },
     "circleLocation": {
-        "message": "Circle position",
-        "description": ""
+        "message": "Circle position"
     },
     "circleOpacity": {
-        "message": "Whole circle opacity",
-        "description": ""
+        "message": "Whole circle opacity"
     },
     "circlePreview": {
-        "message": "Preview",
-        "description": ""
+        "message": "Preview"
     },
     "clearInputField": {
-        "message": "Clear",
-        "description": ""
+        "message": "Clear"
     },
     "clickSegmentToHighlight": {
-        "message": "Click any segment to highlight",
-        "description": ""
+        "message": "Click any segment to highlight"
     },
     "clipboard": {
-        "message": "Clipboard",
-        "description": ""
+        "message": "Clipboard"
     },
     "closeAllTabsExceptCurrent": {
-        "message": "Close other tabs",
-        "description": ""
+        "message": "Close other tabs"
     },
     "closeCurrentTab": {
-        "message": "Close tab",
-        "description": ""
+        "message": "Close tab"
     },
     "closeLabel": {
-        "message": "Close",
-        "description": ""
+        "message": "Close"
     },
     "closeWindow": {
-        "message": "Close window",
-        "description": ""
+        "message": "Close window"
     },
     "colorLabel": {
-        "message": "Color",
-        "description": ""
+        "message": "Color"
     },
     "configure": {
-        "message": "Settings",
-        "description": ""
+        "message": "Settings"
     },
     "continiousHorizontalScrollDetection": {
-        "message": "Continuous horizontal scroll detection",
-        "description": ""
+        "message": "Continuous horizontal scroll detection"
     },
     "continiousScrollDetectionHint": {
-        "message": "Allows to continuously register an action while right mouse button is pressed. \n\nUseful for some actions, for example Page zoom in/out, or Open tab switcher",
-        "description": ""
+        "message": "Allows to continuously register an action while right mouse button is pressed. \n\nUseful for some actions, for example Page zoom in/out, or Open tab switcher"
     },
     "continiousVerticalScrollDetection": {
-        "message": "Continuous vertical scroll detection",
-        "description": ""
+        "message": "Continuous vertical scroll detection"
     },
     "copied": {
-        "message": "Copied to clipboard",
-        "description": ""
+        "message": "Copied to clipboard"
     },
     "copyAllText": {
-        "message": "Copy all",
-        "description": ""
+        "message": "Copy all"
     },
     "copyImage": {
-        "message": "Copy image",
-        "description": ""
+        "message": "Copy image"
     },
     "copyLinkText": {
-        "message": "Copy text",
-        "description": ""
+        "message": "Copy text"
     },
     "copyNotification": {
-        "message": "Notification on copy success",
-        "description": ""
+        "message": "Notification on copy success"
     },
     "copyText": {
-        "message": "Copy",
-        "description": ""
+        "message": "Copy"
     },
     "copyUrl": {
-        "message": "Copy link",
-        "description": ""
+        "message": "Copy link"
     },
     "cursorCorner": {
-        "message": "Under cursor + in corner when no space",
-        "description": ""
+        "message": "Under cursor + in corner when no space"
     },
     "cursorOverflow": {
-        "message": "Under cursor + shift when no space",
-        "description": ""
+        "message": "Under cursor + shift when no space"
     },
     "cutText": {
-        "message": "Cut",
-        "description": ""
+        "message": "Cut"
     },
     "debugMode": {
-        "message": "Debug mode",
-        "description": ""
+        "message": "Debug mode"
     },
     "decreasePlayerVolume": {
-        "message": "Volume-",
-        "description": "Label for circle menu button"
+        "message": "Volume-"
     },
     "delay": {
-        "message": "Delay",
-        "description": ""
+        "message": "Delay"
     },
     "delayForLongLeftClick": {
-        "message": "Hold duration",
-        "description": ""
+        "message": "Hold duration"
     },
     "deleteLabel": {
-        "message": "Remove",
-        "description": ""
+        "message": "Remove"
     },
     "dimBackground": {
-        "message": "Dim page",
-        "description": ""
+        "message": "Dim page"
     },
     "dimBackgroundTooltip": {
-        "message": "Page contents will be dimmed while menu is shown",
-        "description": ""
+        "message": "Page contents will be dimmed while menu is shown"
     },
     "doNothing": {
-        "message": "Do nothing",
-        "description": ""
+        "message": "Do nothing"
     },
     "downloadUrl": {
-        "message": "Download",
-        "description": ""
+        "message": "Download"
     },
     "downloadUrlAs": {
-        "message": "Download as",
-        "description": ""
+        "message": "Download as"
     },
     "downloadVideo": {
-        "message": "Download video",
-        "description": ""
+        "message": "Download video"
     },
     "downloadVideoSavefromNet": {
-        "message": "Download from Savefrom.net",
-        "description": ""
+        "message": "Download from Savefrom.net"
     },
     "duplicateTab": {
-        "message": "Duplicate tab",
-        "description": ""
+        "message": "Duplicate tab"
     },
     "enabled": {
-        "message": "Enabled",
-        "description": ""
+        "message": "Enabled"
     },
     "excludedDomains": {
-        "message": "Excluded domains",
-        "description": ""
+        "message": "Excluded domains"
     },
     "extensionDescription": {
-        "message": "Circle menu with actions on right mouse click",
-        "description": "Extension description"
+        "message": "Circle menu with actions on right mouse click"
     },
     "fade": {
-        "message": "Fade",
-        "description": ""
+        "message": "Fade"
     },
     "fastForwardVideo": {
-        "message": "Fast forward",
-        "description": ""
+        "message": "Fast forward"
     },
     "fasterPlaybackSpeed": {
-        "message": "Faster speed",
-        "description": ""
+        "message": "Faster speed"
     },
     "gapBetweenCircles": {
-        "message": "Levels padding",
-        "description": ""
+        "message": "Levels padding"
     },
     "generalSettings": {
-        "message": "General settings",
-        "description": ""
+        "message": "General settings"
     },
     "gesturesTitle": {
-        "message": "Mouse buttons",
-        "description": ""
+        "message": "Mouse buttons"
     },
     "githubHint": {
-        "message": "You can share your ideas and bug reports here",
-        "description": ""
+        "message": "You can share your ideas and bug reports here"
     },
     "githubPage": {
-        "message": "GitHub",
-        "description": ""
+        "message": "GitHub"
     },
     "goBack": {
-        "message": "Go back",
-        "description": ""
+        "message": "Go back"
     },
     "goForward": {
-        "message": "Go forward",
-        "description": ""
+        "message": "Go forward"
     },
     "hideCircleAnimation": {
-        "message": "Hide animation",
-        "description": ""
+        "message": "Hide animation"
     },
     "hideCircleIfNoActionSelected": {
-        "message": "Hide menu on mouse up if nothing selected",
-        "description": ""
+        "message": "Hide menu on mouse up if nothing selected"
     },
     "hideLabelIfNoSpace": {
-        "message": "Hide label when no enough space",
-        "description": ""
+        "message": "Hide label when no enough space"
     },
     "hideMenu": {
-        "message": "Hide menu",
-        "description": ""
+        "message": "Hide menu"
     },
     "hideMenuAndSelect": {
-        "message": "Hide menu + select highlighted",
-        "description": ""
+        "message": "Hide menu + select highlighted"
     },
     "highlightElementOnHover": {
-        "message": "Highlight page elements on hover",
-        "description": ""
+        "message": "Highlight page elements on hover"
     },
     "highlightElementOnHoverTooltip": {
-        "message": "Add border to element which has it's special menu in CMG on mouse hover. May increase the CPU load",
-        "description": ""
+        "message": "Add border to element which has it's special menu in CMG on mouse hover. May increase the CPU load"
     },
     "horizontalWheelActionsEnabled": {
-        "message": "Horizontal wheel actions",
-        "description": ""
+        "message": "Horizontal wheel actions"
     },
     "iconOpacity": {
-        "message": "Icons opacity",
-        "description": ""
+        "message": "Icons opacity"
     },
     "image": {
-        "message": "Image",
-        "description": ""
+        "message": "Image"
     },
     "imageCopyFailMessage": {
-        "message": "Most likely this is due to the CORS policy on image's source website",
-        "description": ""
+        "message": "Most likely this is due to the CORS policy on image's source website"
     },
     "imageCopyFailTitle": {
-        "message": "Failed to copy image",
-        "description": ""
+        "message": "Failed to copy image"
     },
     "imageCopySuccessMessage": {
-        "message": "Image was copied successfully",
-        "description": ""
+        "message": "Image was copied successfully"
     },
     "imageMenu": {
-        "message": "Menu for image",
-        "description": ""
+        "message": "Menu for image"
     },
     "inactiveMenuBehavior": {
-        "message": "When menu for element is inactive:",
-        "description": "Label for circle menu button"
+        "message": "When menu for element is inactive:"
     },
     "increasePlayerVolume": {
-        "message": "Volume+",
-        "description": "Label for circle menu button"
+        "message": "Volume+"
     },
     "innerWidth": {
-        "message": "Center radius",
-        "description": "Label for circle menu button"
+        "message": "Center radius"
     },
     "innerWidthTooltip": {
-        "message": "Radius of inactive zone in the center of circle",
-        "description": ""
+        "message": "Radius of inactive zone in the center of circle"
     },
     "inputField": {
-        "message": "Input field",
-        "description": ""
+        "message": "Input field"
     },
     "inspectPage": {
-        "message": "Inspect page",
-        "description": ""
+        "message": "Inspect page"
     },
     "italicText": {
-        "message": "Italic",
-        "description": ""
+        "message": "Italic"
     },
     "label": {
-        "message": "Label",
-        "description": ""
+        "message": "Label"
     },
     "labelOpacity": {
-        "message": "Labels opacity",
-        "description": ""
+        "message": "Labels opacity"
     },
     "leftClick": {
-        "message": "Left click",
-        "description": ""
+        "message": "Left click"
     },
     "levelColor": {
-        "message": "Level color",
-        "description": ""
+        "message": "Level color"
     },
     "levelWidth": {
-        "message": "Level width",
-        "description": ""
+        "message": "Level width"
     },
     "levels": {
-        "message": "Levels",
-        "description": ""
+        "message": "Levels"
     },
     "link": {
-        "message": "Link",
-        "description": ""
+        "message": "Link"
     },
     "linkMenu": {
-        "message": "Menu for link",
-        "description": ""
+        "message": "Menu for link"
     },
     "longLeftClick": {
-        "message": "Long left click",
-        "description": ""
+        "message": "Long left click"
     },
     "longLeftClickThreshold": {
-        "message": "Threshold to not open menu",
-        "description": ""
+        "message": "Threshold to not open menu"
     },
     "longLeftClickThresholdTooltip": {
-        "message": "If cursor has moved by this amount of pixels, do not open menu on timer end",
-        "description": ""
+        "message": "If cursor has moved by this amount of pixels, do not open menu on timer end"
     },
     "maximizeWindow": {
-        "message": "Maximize window",
-        "description": ""
+        "message": "Maximize window"
     },
     "menuColor": {
-        "message": "Selected menu color",
-        "description": ""
+        "message": "Selected menu color"
     },
     "minimizeWindow": {
-        "message": "Minimize window",
-        "description": ""
+        "message": "Minimize window"
     },
     "mouseLeaveBehavior": {
-        "message": "When cursor leaves window",
-        "description": ""
+        "message": "When cursor leaves window"
     },
     "mouseWheelDownAction": {
-        "message": "Wheel down",
-        "description": ""
+        "message": "Wheel down"
     },
     "mouseWheelLeftAction": {
-        "message": "Wheel left",
-        "description": ""
+        "message": "Wheel left"
     },
     "mouseWheelRightAction": {
-        "message": "Wheel right",
-        "description": ""
+        "message": "Wheel right"
     },
     "mouseWheelUpAction": {
-        "message": "Wheel up",
-        "description": ""
+        "message": "Wheel up"
     },
     "move": {
-        "message": "Move",
-        "description": ""
+        "message": "Move"
     },
     "moveCaretToEnd": {
-        "message": "Move caret to end",
-        "description": ""
+        "message": "Move caret to end"
     },
     "moveCaretToStart": {
-        "message": "Move caret to start",
-        "description": ""
+        "message": "Move caret to start"
     },
     "moveClockwise": {
-        "message": "Clockwise",
-        "description": ""
+        "message": "Clockwise"
     },
     "moveCounterClockwise": {
-        "message": "Counterclockwise",
-        "description": ""
+        "message": "Counterclockwise"
     },
     "moveDownLabel": {
-        "message": "Move down",
-        "description": ""
+        "message": "Move down"
     },
     "moveTabLeft": {
-        "message": "Move tab left",
-        "description": ""
+        "message": "Move tab left"
     },
     "moveTabRight": {
-        "message": "Move tab right",
-        "description": ""
+        "message": "Move tab right"
     },
     "moveToNewWindow": {
-        "message": "Open in new window",
-        "description": ""
+        "message": "Open in new window"
     },
     "moveUpLabel": {
-        "message": "Move up",
-        "description": ""
+        "message": "Move up"
     },
     "mutePlayer": {
-        "message": "Mute",
-        "description": ""
+        "message": "Mute"
     },
     "navigation": {
-        "message": "Navigation",
-        "description": ""
+        "message": "Navigation"
     },
     "newPrivateWindow": {
-        "message": "New private tab",
-        "description": ""
+        "message": "New private tab"
     },
     "newTab": {
-        "message": "New tab",
-        "description": ""
+        "message": "New tab"
     },
     "newWindow": {
-        "message": "New window",
-        "description": ""
+        "message": "New window"
     },
     "noAction": {
-        "message": "No action",
-        "description": ""
+        "message": "No action"
     },
     "noAnimation": {
-        "message": "No animation",
-        "description": ""
+        "message": "No animation"
     },
     "noMatchingTabsFound": {
-        "message": "No matching tabs found",
-        "description": ""
+        "message": "No matching tabs found"
     },
     "normalPlaybackSpeed": {
-        "message": "Normal speed",
-        "description": ""
+        "message": "Normal speed"
     },
     "opacity": {
-        "message": "Opacity",
-        "description": ""
+        "message": "Opacity"
     },
     "openCircleOn": {
-        "message": "Open menu on",
-        "description": ""
+        "message": "Open menu on"
     },
     "openImageFullscreen": {
-        "message": "View",
-        "description": ""
+        "message": "View"
     },
     "openInBgTab": {
-        "message": "Background tab",
-        "description": ""
+        "message": "Background tab"
     },
     "openInFgTab": {
-        "message": "Open in new tab",
-        "description": ""
+        "message": "Open in new tab"
     },
     "openInPopupWindow": {
-        "message": "Open in popup window",
-        "description": ""
+        "message": "Open in popup window"
     },
     "openInPrivateWindow": {
-        "message": "Open in private window",
-        "description": ""
+        "message": "Open in private window"
     },
     "openInSideWindow": {
-        "message": "Open in side window",
-        "description": ""
+        "message": "Open in side window"
     },
     "openLinkPreview": {
-        "message": "Link preview",
-        "description": ""
+        "message": "Link preview"
     },
     "openUrl": {
-        "message": "Open URL",
-        "description": ""
+        "message": "Open URL"
     },
     "openUrlHint": {
-        "message": "You can use some special codes, for example: \n\n {selection} for the selected text, \n{url} for the hovered element url, \n {pageUrl} for current page url",
-        "description": ""
+        "message": "You can use some special codes, for example: \n\n {selection} for the selected text, \n{url} for the hovered element url, \n {pageUrl} for current page url"
     },
     "page": {
-        "message": "Page",
-        "description": ""
+        "message": "Page"
     },
     "pageZoomIn": {
-        "message": "Zoom in",
-        "description": ""
+        "message": "Zoom in"
     },
     "pageZoomOut": {
-        "message": "Zoom out",
-        "description": ""
+        "message": "Zoom out"
     },
     "pasteText": {
-        "message": "Paste",
-        "description": ""
+        "message": "Paste"
     },
     "pauseVideo": {
-        "message": "Pause",
-        "description": ""
+        "message": "Pause"
     },
     "pinTab": {
-        "message": "Pin tab",
-        "description": ""
+        "message": "Pin tab"
     },
     "playPauseVideo": {
-        "message": "Play/Pause",
-        "description": ""
+        "message": "Play/Pause"
     },
     "playVideo": {
-        "message": "Play",
-        "description": ""
+        "message": "Play"
     },
     "player": {
-        "message": "Player",
-        "description": ""
+        "message": "Player"
     },
     "playerFullScreen": {
-        "message": "Request fullscreen",
-        "description": ""
+        "message": "Request fullscreen"
     },
     "playerMenu": {
-        "message": "Menu for player",
-        "description": ""
+        "message": "Menu for player"
     },
     "print": {
-        "message": "Print",
-        "description": ""
+        "message": "Print"
     },
     "quickActions": {
-        "message": "Quick actions",
-        "description": ""
+        "message": "Quick actions"
     },
     "redoAction": {
-        "message": "Redo",
-        "description": ""
+        "message": "Redo"
     },
     "refreshPageIfDoesntWork": {
-        "message": "Refresh page if doesn't work",
-        "description": ""
+        "message": "Refresh page if doesn't work"
     },
     "regularMenu": {
-        "message": "Regular menu",
-        "description": ""
+        "message": "Regular menu"
     },
     "regularMenuFallback": {
-        "message": "Show regular menu",
-        "description": ""
+        "message": "Show regular menu"
     },
     "reloadTab": {
-        "message": "Reload",
-        "description": ""
+        "message": "Reload"
     },
     "reloadTabWithoutCache": {
-        "message": "Reload (no cache)",
-        "description": ""
+        "message": "Reload (no cache)"
     },
     "replayVideo": {
-        "message": "Replay",
-        "description": ""
+        "message": "Replay"
     },
     "resetColor": {
-        "message": "Reset color",
-        "description": ""
+        "message": "Reset color"
     },
     "restore": {
-        "message": "Restore",
-        "description": ""
+        "message": "Restore"
     },
     "restoreClosedTab": {
-        "message": "Restore closed tab",
-        "description": ""
+        "message": "Restore closed tab"
     },
     "reviewButton": {
-        "message": "Add a review",
-        "description": ""
+        "message": "Add a review"
     },
     "rewindVideo": {
-        "message": "Rewind",
-        "description": ""
+        "message": "Rewind"
     },
     "rightClick": {
-        "message": "Right click",
-        "description": ""
+        "message": "Right click"
     },
     "rightClickToClose": {
-        "message": "Right click to close",
-        "description": ""
+        "message": "Right click to close"
     },
     "rockerAction": {
-        "message": "Rocker action",
-        "description": ""
+        "message": "Rocker action"
     },
     "rockerActionTooltip": {
-        "message": "Gets called by left click in center while holding the right button",
-        "description": ""
+        "message": "Gets called by left click in center while holding the right button"
     },
     "rockerGesture": {
-        "message": "Rocker gesture",
-        "description": ""
+        "message": "Rocker gesture"
     },
     "rockerGestureDescription": {
-        "message": "Triggered when you click left mouse button while holding the right button",
-        "description": ""
+        "message": "Triggered when you click left mouse button while holding the right button"
     },
     "rockerMiddleClick": {
-        "message": "Middle click",
-        "description": ""
+        "message": "Middle click"
     },
     "rotateLabel": {
-        "message": "Rotate",
-        "description": ""
+        "message": "Rotate"
     },
     "scale": {
-        "message": "Scale",
-        "description": ""
+        "message": "Scale"
     },
     "scroll": {
-        "message": "Scroll",
-        "description": ""
+        "message": "Scroll"
     },
     "scrollBack": {
-        "message": "Scroll back",
-        "description": ""
+        "message": "Scroll back"
     },
     "scrollPageDown": {
-        "message": "Page down",
-        "description": ""
+        "message": "Page down"
     },
     "scrollPageUp": {
-        "message": "Page up",
-        "description": ""
+        "message": "Page up"
     },
     "scrollToBottom": {
-        "message": "Scroll to bottom",
-        "description": ""
+        "message": "Scroll to bottom"
     },
     "scrollToResize": {
-        "message": "Scroll or double click to resize",
-        "description": ""
+        "message": "Scroll or double click to resize"
     },
     "scrollToTop": {
-        "message": "Scroll to top",
-        "description": ""
+        "message": "Scroll to top"
     },
     "searchImageOnGoogle": {
-        "message": "Search image",
-        "description": ""
+        "message": "Search image"
     },
     "searchText": {
-        "message": "Search",
-        "description": ""
+        "message": "Search"
     },
     "secondAction": {
-        "message": "Second action",
-        "description": ""
+        "message": "Second action"
     },
     "segmentColor": {
-        "message": "Segment color",
-        "description": ""
+        "message": "Segment color"
     },
     "selectAll": {
-        "message": "Select all",
-        "description": ""
+        "message": "Select all"
     },
     "selectAllText": {
-        "message": "Select all",
-        "description": ""
+        "message": "Select all"
     },
     "selectLastVisitedTab": {
-        "message": "Recent tab",
-        "description": ""
+        "message": "Recent tab"
     },
     "selectMore": {
-        "message": "Select more",
-        "description": ""
+        "message": "Select more"
     },
     "selectedText": {
-        "message": "Selected text",
-        "description": ""
+        "message": "Selected text"
     },
     "selectionMenu": {
-        "message": "Menu for text selection",
-        "description": ""
+        "message": "Menu for text selection"
     },
     "settings": {
-        "message": "Settings",
-        "description": ""
+        "message": "Settings"
     },
     "showActionIcons": {
-        "message": "Show action icons",
-        "description": ""
+        "message": "Show action icons"
     },
     "showBookmarksGrid": {
-        "message": "Bookmarks list (grid)",
-        "description": ""
+        "message": "Bookmarks list (grid)"
     },
     "showBookmarksVertical": {
-        "message": "Bookmarks list (vertical)",
-        "description": ""
+        "message": "Bookmarks list (vertical)"
     },
     "showCircleAnimation": {
-        "message": "Show animation",
-        "description": ""
+        "message": "Show animation"
     },
     "showRegularMenuIfNoAction": {
-        "message": "Show regular menu if no action selected",
-        "description": ""
+        "message": "Show regular menu if no action selected"
     },
     "showTabSwitcherGrid": {
-        "message": "Tabs (grid)",
-        "description": ""
+        "message": "Tabs (grid)"
     },
     "showTabSwitcherHorizontal": {
-        "message": "Tabs (horizontal)",
-        "description": ""
+        "message": "Tabs (horizontal)"
     },
     "showTabSwitcherVertical": {
-        "message": "Tabs (vertical)",
-        "description": ""
+        "message": "Tabs (vertical)"
     },
     "showTitleOnHoverWhenHidden": {
-        "message": "Show label tooltip on hover",
-        "description": ""
+        "message": "Show label tooltip on hover"
     },
     "showTitleOnHoverWhenHiddenTooltip": {
-        "message": "When action is icon-only, show tooltip with label on hover",
-        "description": ""
+        "message": "When action is icon-only, show tooltip with label on hover"
     },
     "segmentsIndent": {
-        "message": "Gap between segments",
-        "description": ""
+        "message": "Gap between segments"
     },
     "showUpdateNotification": {
-        "message": "Show notification on extension update",
-        "description": ""
+        "message": "Show notification on extension update"
     },
     "slowerPlaybackSpeed": {
-        "message": "Slower speed",
-        "description": ""
+        "message": "Slower speed"
     },
     "standardBackground": {
-        "message": "Level color",
-        "description": ""
+        "message": "Level color"
     },
     "storeCurrentScrollPosition": {
-        "message": "Remember current scroll position",
-        "description": ""
+        "message": "Remember current scroll position"
     },
     "storeCurrentScrollPositionTooltip": {
-        "message": "Changes 'scroll to top' and 'scroll to bottom actions with 'scroll back' when possible",
-        "description": ""
+        "message": "Changes 'scroll to top' and 'scroll to bottom actions with 'scroll back' when possible"
     },
     "strikeText": {
-        "message": "Strikethrough",
-        "description": ""
+        "message": "Strikethrough"
     },
     "supportButton": {
-        "message": "Support project",
-        "description": ""
+        "message": "Support project"
     },
     "switchToNextTab": {
-        "message": "Next tab",
-        "description": ""
+        "message": "Next tab"
     },
     "switchToPreviousTab": {
-        "message": "Previous tab",
-        "description": ""
+        "message": "Previous tab"
     },
     "tab": {
-        "message": "Tab",
-        "description": ""
+        "message": "Tab"
     },
     "tabsAmount": {
-        "message": "Tabs",
-        "description": ""
+        "message": "Tabs"
     },
     "textFieldMenu": {
-        "message": "Menu for input field",
-        "description": ""
+        "message": "Menu for input field"
     },
     "textTooLong": {
-        "message": "Shrink page",
-        "description": ""
+        "message": "Shrink page"
     },
     "toggleFullscreen": {
-        "message": "Fullscreen",
-        "description": ""
+        "message": "Fullscreen"
     },
     "translate": {
-        "message": "Translate",
-        "description": ""
+        "message": "Translate"
     },
     "translateInPopup": {
-        "message": "Translate in popup",
-        "description": ""
+        "message": "Translate in popup"
     },
     "typeToQuery": {
-        "message": "Type to query",
-        "description": ""
+        "message": "Type to query"
     },
     "underlineText": {
-        "message": "Underline",
-        "description": ""
+        "message": "Underline"
     },
     "undoAction": {
-        "message": "Undo",
-        "description": ""
+        "message": "Undo"
     },
     "unpinTab": {
-        "message": "Unpin tab",
-        "description": ""
+        "message": "Unpin tab"
     },
     "untoggleFullscreen": {
-        "message": "Exit fullscreen",
-        "description": ""
+        "message": "Exit fullscreen"
     },
     "updateNotificationMessage": {
-        "message": "Click here to see what's new",
-        "description": ""
+        "message": "Click here to see what's new"
     },
     "updateNotificationTitle": {
         "message": "CMG was updated to $VERSION$",
-        "description": "",
         "placeholders": {
             "version": {
                 "content": "$1",
@@ -974,27 +732,21 @@
         }
     },
     "updateToApply": {
-        "message": "Update tabs to apply new settings",
-        "description": ""
+        "message": "Update tabs to apply new settings"
     },
     "useCustomColor": {
-        "message": "Custom background",
-        "description": ""
+        "message": "Custom background"
     },
     "whatsNew": {
-        "message": "What's new",
-        "description": ""
+        "message": "What's new"
     },
     "window": {
-        "message": "Window",
-        "description": ""
+        "message": "Window"
     },
     "windowsOnly": {
-        "message": "Shows regular context menu on mouse up. Will work only on Windows, on other systems (Linux, MacOS) may require double click",
-        "description": ""
+        "message": "Shows regular context menu on mouse up. Will work only on Windows, on other systems (Linux, MacOS) may require double click"
     },
     "writeAReview": {
-        "message": "Write a review",
-        "description": ""
+        "message": "Write a review"
     }
 }

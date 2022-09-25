@@ -1,975 +1,732 @@
 {
     "addBlur": {
-        "message": "Размытие фона",
-        "description": ""
+        "message": "Размытие фона"
     },
     "addBlurTooltip": {
-        "message": "Заметно только при прозрачности круга меньше 1.0",
-        "description": ""
+        "message": "Заметно только при прозрачности круга меньше 1.0"
     },
     "addCircleShadow": {
-        "message": "Добавить тень",
-        "description": ""
+        "message": "Добавить тень"
     },
     "addGhostPointer": {
-        "message": "Показывать призрачный указатель",
-        "description": ""
+        "message": "Показывать призрачный указатель"
     },
     "addGhostPointerTooltip": {
-        "message": "Когда круг находится не под курсором, показывать призрачный указатель, указывающий реальное положение курсора относительно круга",
-        "description": ""
+        "message": "Когда круг находится не под курсором, показывать призрачный указатель, указывающий реальное положение курсора относительно круга"
     },
     "addLabel": {
-        "message": "Добавить сегмент",
-        "description": ""
+        "message": "Добавить сегмент"
     },
     "addLevel": {
-        "message": "Добавить уровень",
-        "description": ""
+        "message": "Добавить уровень"
     },
     "addLinkTooltip": {
-        "message": "Показывать вспомогательную инфо-панель",
-        "description": ""
+        "message": "Показывать вспомогательную инфо-панель"
     },
     "addLinkTooltipTooltip": {
-        "message": "Показывать вверху меню дополнительную информацию для ссылок, изображений и т.д.",
-        "description": ""
+        "message": "Показывать вверху меню дополнительную информацию для ссылок, изображений и т.д."
     },
     "addMoreLevelsToActivateMenu": {
-        "message": "Это меню сейчас неактивно. <br/>Добавьте уровень, чтобы активировать",
-        "description": ""
+        "message": "Это меню сейчас неактивно. <br/>Добавьте уровень, чтобы активировать"
     },
     "addTextLabels": {
-        "message": "Показывать заголовки действий",
-        "description": ""
+        "message": "Показывать заголовки действий"
     },
     "addTextLabelsTooltip": {
-        "message": "Будут скрыты, когда недостаточно места",
-        "description": ""
+        "message": "Будут скрыты, когда недостаточно места"
     },
     "addToBookmarks": {
-        "message": "Добавить в закладки",
-        "description": ""
+        "message": "Добавить в закладки"
     },
     "additional": {
-        "message": "Дополнительно",
-        "description": ""
+        "message": "Дополнительно"
     },
     "alwaysCorner": {
-        "message": "Всегда в углу",
-        "description": ""
+        "message": "Всегда в углу"
     },
     "alwaysCursor": {
-        "message": "Всегда под курсором",
-        "description": ""
+        "message": "Всегда под курсором"
     },
     "animateHideRelativeToSelected": {
-        "message": "Анимировать скрытие относительно выбранного сектора",
-        "description": ""
+        "message": "Анимировать скрытие относительно выбранного сектора"
     },
     "animationDuration": {
-        "message": "Продолжительность анимаций",
-        "description": ""
+        "message": "Продолжительность анимаций"
     },
     "appearanceHeader": {
-        "message": "Внешний вид",
-        "description": ""
+        "message": "Внешний вид"
     },
     "applySettingsImmediately": {
-        "message": "Применять настройки немедленно",
-        "description": ""
+        "message": "Применять настройки немедленно"
     },
     "applySettingsImmediatelyTooltip": {
-        "message": "Обновляет настройки при каждом открытии меню. Отключите для лучшей производительности",
-        "description": ""
+        "message": "Обновляет настройки при каждом открытии меню. Отключите для лучшей производительности"
     },
     "backgroundColor": {
-        "message": "Цвет фона",
-        "description": ""
+        "message": "Цвет фона"
     },
     "backgroundOpacity": {
-        "message": "Прозрачность",
-        "description": ""
+        "message": "Прозрачность"
     },
     "behaviorTitle": {
-        "message": "Поведение",
-        "description": ""
+        "message": "Поведение"
     },
     "blurRadiusHint": {
-        "message": "Радиус размытия (px)",
-        "description": ""
+        "message": "Радиус размытия (px)"
     },
     "boldText": {
-        "message": "Жирный",
-        "description": ""
+        "message": "Жирный"
     },
     "bookmarks": {
-        "message": "Закладки",
-        "description": ""
+        "message": "Закладки"
     },
     "bookmarksAmount": {
-        "message": "Закладок",
-        "description": ""
+        "message": "Закладок"
     },
     "buttonsHeader": {
-        "message": "Кнопки",
-        "description": ""
+        "message": "Кнопки"
     },
     "checkButtonsAvailability": {
-        "message": "Проверять доступность действий",
-        "description": ""
+        "message": "Проверять доступность действий"
     },
     "checkButtonsAvailabilityTooltip": {
-        "message": "Когда CMG понимает, что действие недоступно, иконка будет затемнена.\n\n Отключение этого может улучшить производительность",
-        "description": ""
+        "message": "Когда CMG понимает, что действие недоступно, иконка будет затемнена.\n\n Отключение этого может улучшить производительность"
     },
     "circleHideAnimation": {
-        "message": "Анимация исчезновения меню",
-        "description": ""
+        "message": "Анимация исчезновения меню"
     },
     "circleHideAnimationTooltip": {
-        "message": "Отключите для более отзывчивой работы",
-        "description": ""
+        "message": "Отключите для более отзывчивой работы"
     },
     "circleLevel": {
-        "message": "Уровень",
-        "description": ""
+        "message": "Уровень"
     },
     "circleLocation": {
-        "message": "Положение меню",
-        "description": ""
+        "message": "Положение меню"
     },
     "circleOpacity": {
-        "message": "Прозрачность всего круга",
-        "description": ""
+        "message": "Прозрачность всего круга"
     },
     "circlePreview": {
-        "message": "Превью",
-        "description": ""
+        "message": "Превью"
     },
     "clearInputField": {
-        "message": "Очистить",
-        "description": ""
+        "message": "Очистить"
     },
     "clickSegmentToHighlight": {
-        "message": "Кликните на сегмент, чтобы подсветить",
-        "description": ""
+        "message": "Кликните на сегмент, чтобы подсветить"
     },
     "clipboard": {
-        "message": "Буфер обмена",
-        "description": ""
+        "message": "Буфер обмена"
     },
     "closeAllTabsExceptCurrent": {
-        "message": "Закрыть остальные вкладки",
-        "description": ""
+        "message": "Закрыть остальные вкладки"
     },
     "closeCurrentTab": {
-        "message": "Закрыть вкладку",
-        "description": "Ярлык для кнопки кругового меню"
+        "message": "Закрыть вкладку"
     },
     "closeLabel": {
-        "message": "Закрыть",
-        "description": ""
+        "message": "Закрыть"
     },
     "closeWindow": {
-        "message": "Закрыть окно",
-        "description": ""
+        "message": "Закрыть окно"
     },
     "colorLabel": {
-        "message": "Цвет",
-        "description": ""
+        "message": "Цвет"
     },
     "configure": {
-        "message": "Настроить",
-        "description": ""
+        "message": "Настроить"
     },
     "continiousHorizontalScrollDetection": {
-        "message": "Непрерывный слушатель горизонт. прокрутки",
-        "description": ""
+        "message": "Непрерывный слушатель горизонт. прокрутки"
     },
     "continiousScrollDetectionHint": {
-        "message": "Позволяет непрерывно выполнять действие при прокрутке, пока зажата правая кнопка мыши. \n\nПолезно для некоторых действий, например Увеличить/Уменьшить страницу, или Открыть список вкладок",
-        "description": ""
+        "message": "Позволяет непрерывно выполнять действие при прокрутке, пока зажата правая кнопка мыши. \n\nПолезно для некоторых действий, например Увеличить/Уменьшить страницу, или Открыть список вкладок"
     },
     "continiousVerticalScrollDetection": {
-        "message": "Непрерывный слушатель верт. прокрутки",
-        "description": ""
+        "message": "Непрерывный слушатель верт. прокрутки"
     },
     "copied": {
-        "message": "Скопировано в буфер обмена",
-        "description": ""
+        "message": "Скопировано в буфер обмена"
     },
     "copiedText": {
-        "message": "Скопированный текст",
-        "description": ""
+        "message": "Скопированный текст"
     },
     "copyAllText": {
-        "message": "Копировать всё",
-        "description": ""
+        "message": "Копировать всё"
     },
     "copyImage": {
-        "message": "Копировать изображение",
-        "description": ""
+        "message": "Копировать изображение"
     },
     "copyLinkText": {
-        "message": "Копировать текст",
-        "description": ""
+        "message": "Копировать текст"
     },
     "copyNotification": {
-        "message": "Уведомление при успешном копировании",
-        "description": ""
+        "message": "Уведомление при успешном копировании"
     },
     "copyText": {
-        "message": "Копировать",
-        "description": ""
+        "message": "Копировать"
     },
     "copyUrl": {
-        "message": "Копировать ссылку",
-        "description": "Ярлык для кнопки кругового меню"
+        "message": "Копировать ссылку"
     },
     "cursorCorner": {
-        "message": "Под курсором + в углу, когда нет места",
-        "description": ""
+        "message": "Под курсором + в углу, когда нет места"
     },
     "cursorOverflow": {
-        "message": "Под курсором + смещать, когда нет места",
-        "description": ""
+        "message": "Под курсором + смещать, когда нет места"
     },
     "cutText": {
-        "message": "Вырезать",
-        "description": ""
+        "message": "Вырезать"
     },
     "debugMode": {
-        "message": "Режим отладки",
-        "description": ""
+        "message": "Режим отладки"
     },
     "decreasePlayerVolume": {
-        "message": "Громкость-",
-        "description": "Label for circle menu button"
+        "message": "Громкость-"
     },
     "delay": {
-        "message": "Задержка",
-        "description": ""
+        "message": "Задержка"
     },
     "delayForLongLeftClick": {
-        "message": "Продолжительность удержания",
-        "description": ""
+        "message": "Продолжительность удержания"
     },
     "deleteLabel": {
-        "message": "Удалить",
-        "description": ""
+        "message": "Удалить"
     },
     "dimBackground": {
-        "message": "Затемнять страницу",
-        "description": ""
+        "message": "Затемнять страницу"
     },
     "dimBackgroundTooltip": {
-        "message": "Содержимое страницы будет затемнено, пока меню отображается",
-        "description": ""
+        "message": "Содержимое страницы будет затемнено, пока меню отображается"
     },
     "doNothing": {
-        "message": "Ничего не делать",
-        "description": ""
+        "message": "Ничего не делать"
     },
     "downloadUrl": {
-        "message": "Сохранить",
-        "description": ""
+        "message": "Сохранить"
     },
     "downloadUrlAs": {
-        "message": "Сохранить как",
-        "description": ""
+        "message": "Сохранить как"
     },
     "downloadVideo": {
-        "message": "Скачать видео",
-        "description": ""
+        "message": "Скачать видео"
     },
     "downloadVideoSavefromNet": {
-        "message": "Скачать с Savefrom.net",
-        "description": ""
+        "message": "Скачать с Savefrom.net"
     },
     "duplicateTab": {
-        "message": "Дублировать вкладку",
-        "description": ""
+        "message": "Дублировать вкладку"
     },
     "enabled": {
-        "message": "Включено",
-        "description": ""
+        "message": "Включено"
     },
     "excludedDomains": {
-        "message": "Исключенные домены",
-        "description": ""
+        "message": "Исключенные домены"
     },
     "extensionDescription": {
-        "message": "Круговое меню с действиями при правом клике мышью",
-        "description": "Extension description"
+        "message": "Круговое меню с действиями при правом клике мышью"
     },
     "fade": {
-        "message": "Проявление",
-        "description": ""
+        "message": "Проявление"
     },
     "fastForwardVideo": {
-        "message": "Перемотать вперед",
-        "description": ""
+        "message": "Перемотать вперед"
     },
     "fasterPlaybackSpeed": {
-        "message": "Быстрая скорость",
-        "description": ""
+        "message": "Быстрая скорость"
     },
     "gapBetweenCircles": {
-        "message": "Отступ между уровнями",
-        "description": ""
+        "message": "Отступ между уровнями"
     },
     "generalSettings": {
-        "message": "Общие настройки",
-        "description": ""
+        "message": "Общие настройки"
     },
     "gesturesTitle": {
-        "message": "Кнопки мыши",
-        "description": ""
+        "message": "Кнопки мыши"
     },
     "githubHint": {
-        "message": "Делитесь своими идеями и баг-репортами здесь",
-        "description": ""
+        "message": "Делитесь своими идеями и баг-репортами здесь"
     },
     "githubPage": {
-        "message": "GitHub",
-        "description": ""
+        "message": "GitHub"
     },
     "goBack": {
-        "message": "Назад",
-        "description": "Ярлык для кнопки кругового меню"
+        "message": "Назад"
     },
     "goForward": {
-        "message": "Вперед",
-        "description": ""
+        "message": "Вперед"
     },
     "hideCircleAnimation": {
-        "message": "Анимация скрытия",
-        "description": ""
+        "message": "Анимация скрытия"
     },
     "hideCircleIfNoActionSelected": {
-        "message": "Прятать круг при отпускании, если действие не выбрано",
-        "description": ""
+        "message": "Прятать круг при отпускании, если действие не выбрано"
     },
     "hideLabelIfNoSpace": {
-        "message": "Прятать заголовок, когда недостаточно места",
-        "description": ""
+        "message": "Прятать заголовок, когда недостаточно места"
     },
     "hideMenu": {
-        "message": "Спрятать меню",
-        "description": ""
+        "message": "Спрятать меню"
     },
     "hideMenuAndSelect": {
-        "message": "Спрятать меню + выбрать подсвеченное",
-        "description": ""
+        "message": "Спрятать меню + выбрать подсвеченное"
     },
     "highlightElementOnHover": {
-        "message": "Подсвечивать элементы страницы при наведении",
-        "description": ""
+        "message": "Подсвечивать элементы страницы при наведении"
     },
     "highlightElementOnHoverTooltip": {
-        "message": "При наведении добавить рамку элементу, имеющему специальное меню в CMG. Увеличивает нагрузку на процессор",
-        "description": ""
+        "message": "При наведении добавить рамку элементу, имеющему специальное меню в CMG. Увеличивает нагрузку на процессор"
     },
     "horizontalWheelActionsEnabled": {
-        "message": "Жесты горизонтальной прокрутки",
-        "description": ""
+        "message": "Жесты горизонтальной прокрутки"
     },
     "iconOpacity": {
-        "message": "Прозрачность иконок",
-        "description": ""
+        "message": "Прозрачность иконок"
     },
     "image": {
-        "message": "Изображение",
-        "description": "Ярлык для кнопки кругового меню"
+        "message": "Изображение"
     },
     "imageCopyFailMessage": {
-        "message": "Скорее всего, из-за запрета CORS на сайте-источнике изображения",
-        "description": ""
+        "message": "Скорее всего, из-за запрета CORS на сайте-источнике изображения"
     },
     "imageCopyFailTitle": {
-        "message": "Ошибка при копировании изображения!",
-        "description": ""
+        "message": "Ошибка при копировании изображения!"
     },
     "imageCopySuccessMessage": {
-        "message": "Изображение скопировано успешно",
-        "description": ""
+        "message": "Изображение скопировано успешно"
     },
     "imageMenu": {
-        "message": "Меню изображения",
-        "description": ""
+        "message": "Меню изображения"
     },
     "inactiveMenuBehavior": {
-        "message": "Когда меню элемента неактивно:",
-        "description": "Label for circle menu button"
+        "message": "Когда меню элемента неактивно:"
     },
     "increasePlayerVolume": {
-        "message": "Громкость+",
-        "description": "Label for circle menu button"
+        "message": "Громкость+"
     },
     "innerWidth": {
-        "message": "Радиус центра",
-        "description": ""
+        "message": "Радиус центра"
     },
     "innerWidthTooltip": {
-        "message": "Радиус неактивной зоны в центре круга",
-        "description": ""
+        "message": "Радиус неактивной зоны в центре круга"
     },
     "inputField": {
-        "message": "Поле ввода",
-        "description": ""
+        "message": "Поле ввода"
     },
     "inspectPage": {
-        "message": "Инспектировать",
-        "description": ""
+        "message": "Инспектировать"
     },
     "italicText": {
-        "message": "Курсив",
-        "description": ""
+        "message": "Курсив"
     },
     "label": {
-        "message": "Заголовок",
-        "description": ""
+        "message": "Заголовок"
     },
     "labelOpacity": {
-        "message": "Прозрачность текста",
-        "description": ""
+        "message": "Прозрачность текста"
     },
     "leftClick": {
-        "message": "Левый клик",
-        "description": ""
+        "message": "Левый клик"
     },
     "levelColor": {
-        "message": "Цвет уровня",
-        "description": ""
+        "message": "Цвет уровня"
     },
     "levelWidth": {
-        "message": "Ширина",
-        "description": ""
+        "message": "Ширина"
     },
     "levels": {
-        "message": "Уровни",
-        "description": ""
+        "message": "Уровни"
     },
     "link": {
-        "message": "Ссылка",
-        "description": "Ярлык для кнопки кругового меню"
+        "message": "Ссылка"
     },
     "linkMenu": {
-        "message": "Меню ссылки",
-        "description": ""
+        "message": "Меню ссылки"
     },
     "longLeftClick": {
-        "message": "Удержание левого клика",
-        "description": ""
+        "message": "Удержание левого клика"
     },
     "longLeftClickThreshold": {
-        "message": "Смещение курсора для игнорирования",
-        "description": ""
+        "message": "Смещение курсора для игнорирования"
     },
     "longLeftClickThresholdTooltip": {
-        "message": "Если курсор сдвинулся на это расстояние (px), не открывать меню по окончанию таймера",
-        "description": ""
+        "message": "Если курсор сдвинулся на это расстояние (px), не открывать меню по окончанию таймера"
     },
     "maximizeWindow": {
-        "message": "Развернуть окно",
-        "description": ""
+        "message": "Развернуть окно"
     },
     "menuColor": {
-        "message": "Цвет выбранного меню",
-        "description": ""
+        "message": "Цвет выбранного меню"
     },
     "minimizeWindow": {
-        "message": "Свернуть окно",
-        "description": ""
+        "message": "Свернуть окно"
     },
     "mouseLeaveBehavior": {
-        "message": "Когда курсор покидает окно",
-        "description": ""
+        "message": "Когда курсор покидает окно"
     },
     "mouseWheelDownAction": {
-        "message": "Колесико вниз",
-        "description": ""
+        "message": "Колесико вниз"
     },
     "mouseWheelLeftAction": {
-        "message": "Колесико влево",
-        "description": ""
+        "message": "Колесико влево"
     },
     "mouseWheelRightAction": {
-        "message": "Колесико вправо",
-        "description": ""
+        "message": "Колесико вправо"
     },
     "mouseWheelUpAction": {
-        "message": "Колесико вверх",
-        "description": ""
+        "message": "Колесико вверх"
     },
     "move": {
-        "message": "Переместить",
-        "description": ""
+        "message": "Переместить"
     },
     "moveCaretToEnd": {
-        "message": "Курсор в конец",
-        "description": ""
+        "message": "Курсор в конец"
     },
     "moveCaretToStart": {
-        "message": "Курсор в начало",
-        "description": ""
+        "message": "Курсор в начало"
     },
     "moveClockwise": {
-        "message": "По часовой стрелке",
-        "description": ""
+        "message": "По часовой стрелке"
     },
     "moveCounterClockwise": {
-        "message": "Против часовой стрелки",
-        "description": ""
+        "message": "Против часовой стрелки"
     },
     "moveDownLabel": {
-        "message": "Опустить",
-        "description": ""
+        "message": "Опустить"
     },
     "moveTabLeft": {
-        "message": "Переместить влево",
-        "description": ""
+        "message": "Переместить влево"
     },
     "moveTabRight": {
-        "message": "Переместить вправо",
-        "description": ""
+        "message": "Переместить вправо"
     },
     "moveToNewWindow": {
-        "message": "Открыть в новом окне",
-        "description": ""
+        "message": "Открыть в новом окне"
     },
     "moveUpLabel": {
-        "message": "Поднять",
-        "description": ""
+        "message": "Поднять"
     },
     "mutePlayer": {
-        "message": "Заглушить",
-        "description": ""
+        "message": "Заглушить"
     },
     "navigation": {
-        "message": "Навигация",
-        "description": ""
+        "message": "Навигация"
     },
     "newPrivateWindow": {
-        "message": "Новое приватное окно",
-        "description": ""
+        "message": "Новое приватное окно"
     },
     "newTab": {
-        "message": "Новая вкладка",
-        "description": "Ярлык для кнопки кругового меню"
+        "message": "Новая вкладка"
     },
     "newWindow": {
-        "message": "Новое окно",
-        "description": ""
+        "message": "Новое окно"
     },
     "noAction": {
-        "message": "Нет действия",
-        "description": ""
+        "message": "Нет действия"
     },
     "noAnimation": {
-        "message": "Без анимации",
-        "description": ""
+        "message": "Без анимации"
     },
     "noMatchingTabsFound": {
-        "message": "Нет вкладок, соответствующих запросу",
-        "description": ""
+        "message": "Нет вкладок, соответствующих запросу"
     },
     "normalPlaybackSpeed": {
-        "message": "Нормальная скорость",
-        "description": ""
+        "message": "Нормальная скорость"
     },
     "opacity": {
-        "message": "Прозрачность",
-        "description": ""
+        "message": "Прозрачность"
     },
     "openCircleOn": {
-        "message": "Открывать меню по:",
-        "description": ""
+        "message": "Открывать меню по:"
     },
     "openImageFullscreen": {
-        "message": "Посмотреть",
-        "description": ""
+        "message": "Посмотреть"
     },
     "openInBgTab": {
-        "message": "Открыть в \nфоновой вкладке",
-        "description": "Ярлык для кнопки кругового меню"
+        "message": "Открыть в \nфоновой вкладке"
     },
     "openInFgTab": {
-        "message": "Открыть в новой вкладке",
-        "description": "Ярлык для кнопки кругового меню"
+        "message": "Открыть в новой вкладке"
     },
     "openInPopupWindow": {
-        "message": "Открыть во всплывающем окне",
-        "description": ""
+        "message": "Открыть во всплывающем окне"
     },
     "openInPrivateWindow": {
-        "message": "Открыть в приватном окне",
-        "description": ""
+        "message": "Открыть в приватном окне"
     },
     "openInSideWindow": {
-        "message": "Открыть в боковом окне",
-        "description": ""
+        "message": "Открыть в боковом окне"
     },
     "openLinkPreview": {
-        "message": "Превью ссылки",
-        "description": ""
+        "message": "Превью ссылки"
     },
     "openUrl": {
-        "message": "Открыть URL",
-        "description": ""
+        "message": "Открыть URL"
     },
     "openUrlHint": {
-        "message": "Вы можете использовать специальные обозначения: \n\n {selection} для выделенного текста, \n{url} для url элемента под курсором, \n {pageUrl} для url тек. страницы",
-        "description": ""
+        "message": "Вы можете использовать специальные обозначения: \n\n {selection} для выделенного текста, \n{url} для url элемента под курсором, \n {pageUrl} для url тек. страницы"
     },
     "page": {
-        "message": "Страница",
-        "description": ""
+        "message": "Страница"
     },
     "pageZoomIn": {
-        "message": "Увеличить",
-        "description": ""
+        "message": "Увеличить"
     },
     "pageZoomOut": {
-        "message": "Уменьшить",
-        "description": ""
+        "message": "Уменьшить"
     },
     "pasteText": {
-        "message": "Вставить",
-        "description": ""
+        "message": "Вставить"
     },
     "pauseVideo": {
-        "message": "Пауза",
-        "description": ""
+        "message": "Пауза"
     },
     "pinTab": {
-        "message": "Закрепить вкладку",
-        "description": ""
+        "message": "Закрепить вкладку"
     },
     "playPauseVideo": {
-        "message": "Играть/Пауза",
-        "description": ""
+        "message": "Играть/Пауза"
     },
     "playVideo": {
-        "message": "Играть",
-        "description": ""
+        "message": "Играть"
     },
     "player": {
-        "message": "Проигрыватель",
-        "description": ""
+        "message": "Проигрыватель"
     },
     "playerFullScreen": {
-        "message": "Во весь экран",
-        "description": ""
+        "message": "Во весь экран"
     },
     "playerMenu": {
-        "message": "Меню проигрывателя",
-        "description": ""
+        "message": "Меню проигрывателя"
     },
     "print": {
-        "message": "Печать",
-        "description": ""
+        "message": "Печать"
     },
     "quickActions": {
-        "message": "Быстрые действия",
-        "description": ""
+        "message": "Быстрые действия"
     },
     "redoAction": {
-        "message": "Вернуть действие",
-        "description": ""
+        "message": "Вернуть действие"
     },
     "refreshPageIfDoesntWork": {
-        "message": "Если не работает, обновите страницу",
-        "description": ""
+        "message": "Если не работает, обновите страницу"
     },
     "regularMenu": {
-        "message": "Основное меню",
-        "description": ""
+        "message": "Основное меню"
     },
     "regularMenuFallback": {
-        "message": "Показать обычное меню",
-        "description": ""
+        "message": "Показать обычное меню"
     },
     "reloadTab": {
-        "message": "Обновить",
-        "description": "Ярлык для кнопки кругового меню"
+        "message": "Обновить"
     },
     "reloadTabWithoutCache": {
-        "message": "Обновить (без кэша)",
-        "description": ""
+        "message": "Обновить (без кэша)"
     },
     "replayVideo": {
-        "message": "Сначала",
-        "description": ""
+        "message": "Сначала"
     },
     "resetColor": {
-        "message": "Сбросить цвет",
-        "description": ""
+        "message": "Сбросить цвет"
     },
     "restore": {
-        "message": "Восстановить",
-        "description": ""
+        "message": "Восстановить"
     },
     "restoreClosedTab": {
-        "message": "Восстановить закрытую вкладку",
-        "description": ""
+        "message": "Восстановить закрытую вкладку"
     },
     "reviewButton": {
-        "message": "Написать отзыв",
-        "description": ""
+        "message": "Написать отзыв"
     },
     "rewindVideo": {
-        "message": "Перемотать назад",
-        "description": ""
+        "message": "Перемотать назад"
     },
     "rightClick": {
-        "message": "Правый клик",
-        "description": ""
+        "message": "Правый клик"
     },
     "rightClickToClose": {
-        "message": "Щелкните правой кнопкой, чтобы закрыть",
-        "description": ""
+        "message": "Щелкните правой кнопкой, чтобы закрыть"
     },
     "rockerAction": {
-        "message": "Жест рокировки",
-        "description": ""
+        "message": "Жест рокировки"
     },
     "rockerActionTooltip": {
-        "message": "Вызывается левым кликом в центре при удержании правой кнопки",
-        "description": ""
+        "message": "Вызывается левым кликом в центре при удержании правой кнопки"
     },
     "rockerGesture": {
-        "message": "Жест рокировки",
-        "description": ""
+        "message": "Жест рокировки"
     },
     "rockerGestureDescription": {
-        "message": "Вызывается, когда вы кликаете левой кнопкой мыши, удерживая правую кнопку",
-        "description": ""
+        "message": "Вызывается, когда вы кликаете левой кнопкой мыши, удерживая правую кнопку"
     },
     "rockerMiddleClick": {
-        "message": "Средний клик",
-        "description": ""
+        "message": "Средний клик"
     },
     "rotateLabel": {
-        "message": "Повернуть",
-        "description": ""
+        "message": "Повернуть"
     },
     "scale": {
-        "message": "Увеличение",
-        "description": ""
+        "message": "Увеличение"
     },
     "scroll": {
-        "message": "Прокрутка",
-        "description": ""
+        "message": "Прокрутка"
     },
     "scrollBack": {
-        "message": "Прокрутить обратно",
-        "description": ""
+        "message": "Прокрутить обратно"
     },
     "scrollPageDown": {
-        "message": "Прокрутить вниз",
-        "description": ""
+        "message": "Прокрутить вниз"
     },
     "scrollPageUp": {
-        "message": "Прокрутить вверх",
-        "description": ""
+        "message": "Прокрутить вверх"
     },
     "scrollToBottom": {
-        "message": "В конец страницы",
-        "description": ""
+        "message": "В конец страницы"
     },
     "scrollToResize": {
-        "message": "Прокрутка и двойной клик изменяют масштаб",
-        "description": ""
+        "message": "Прокрутка и двойной клик изменяют масштаб"
     },
     "scrollToTop": {
-        "message": "В начало страницы",
-        "description": ""
+        "message": "В начало страницы"
     },
     "searchImageOnGoogle": {
-        "message": "Поиск по картинке",
-        "description": ""
+        "message": "Поиск по картинке"
     },
     "searchText": {
-        "message": "Искать",
-        "description": ""
+        "message": "Искать"
     },
     "secondAction": {
-        "message": "Второе действие",
-        "description": ""
+        "message": "Второе действие"
     },
     "segmentColor": {
-        "message": "Цвет сегмента",
-        "description": ""
+        "message": "Цвет сегмента"
     },
     "segmentsIndent": {
-        "message": "Отступ между сегментами",
-        "description": ""
+        "message": "Отступ между сегментами"
     },
     "selectAll": {
-        "message": "Выделить всё",
-        "description": ""
+        "message": "Выделить всё"
     },
     "selectAllText": {
-        "message": "Выделить всё",
-        "description": ""
+        "message": "Выделить всё"
     },
     "selectLastVisitedTab": {
-        "message": "Вернуться к посл. вкладке",
-        "description": ""
+        "message": "Вернуться к посл. вкладке"
     },
     "selectMore": {
-        "message": "Выделить больше",
-        "description": ""
+        "message": "Выделить больше"
     },
     "selectedText": {
-        "message": "Выделенный текст",
-        "description": ""
+        "message": "Выделенный текст"
     },
     "selectionMenu": {
-        "message": "Меню выделения текста",
-        "description": ""
+        "message": "Меню выделения текста"
     },
     "settings": {
-        "message": "Настройки",
-        "description": ""
+        "message": "Настройки"
     },
     "showActionIcons": {
-        "message": "Показывать иконки действий",
-        "description": ""
+        "message": "Показывать иконки действий"
     },
     "showBookmarksGrid": {
-        "message": "Закладки (сетка)",
-        "description": ""
+        "message": "Закладки (сетка)"
     },
     "showBookmarksVertical": {
-        "message": "Закладки (список)",
-        "description": ""
+        "message": "Закладки (список)"
     },
     "showCircleAnimation": {
-        "message": "Анимация появления",
-        "description": ""
+        "message": "Анимация появления"
     },
     "showRegularMenuIfNoAction": {
-        "message": "Показывать обычное меню, если действие не выбрано",
-        "description": ""
+        "message": "Показывать обычное меню, если действие не выбрано"
     },
     "showTabSwitcherGrid": {
-        "message": "Вкладки (сетка)",
-        "description": ""
+        "message": "Вкладки (сетка)"
     },
     "showTabSwitcherHorizontal": {
-        "message": "Вкладки (гориз.)",
-        "description": ""
+        "message": "Вкладки (гориз.)"
     },
     "showTabSwitcherVertical": {
-        "message": "Вкладки (верт.)",
-        "description": ""
+        "message": "Вкладки (верт.)"
     },
     "showTitleOnHoverWhenHidden": {
-        "message": "Показывать заголовок при наведении",
-        "description": ""
+        "message": "Показывать заголовок при наведении"
     },
     "showTitleOnHoverWhenHiddenTooltip": {
-        "message": "Когда видима только иконка, показывать подсказку с заголовком действия при наведении",
-        "description": ""
+        "message": "Когда видима только иконка, показывать подсказку с заголовком действия при наведении"
     },
     "showUpdateNotification": {
-        "message": "Показать уведомление при обновлении CMG",
-        "description": ""
+        "message": "Показать уведомление при обновлении CMG"
     },
     "slowerPlaybackSpeed": {
-        "message": "Медленная скорость",
-        "description": ""
+        "message": "Медленная скорость"
     },
     "standardBackground": {
-        "message": "Цвет уровня",
-        "description": ""
+        "message": "Цвет уровня"
     },
     "storeCurrentScrollPosition": {
-        "message": "Запоминать позицию прокрутки",
-        "description": ""
+        "message": "Запоминать позицию прокрутки"
     },
     "storeCurrentScrollPositionTooltip": {
-        "message": "Заменяет действия 'В начало страницы' и 'В конец страницы' на 'Прокрутить обратно', когда возможно",
-        "description": ""
+        "message": "Заменяет действия 'В начало страницы' и 'В конец страницы' на 'Прокрутить обратно', когда возможно"
     },
     "strikeText": {
-        "message": "Зачеркнутый",
-        "description": ""
+        "message": "Зачеркнутый"
     },
     "supportButton": {
-        "message": "Поддержать",
-        "description": ""
+        "message": "Поддержать"
     },
     "switchToNextTab": {
-        "message": "След. вкладка",
-        "description": ""
+        "message": "След. вкладка"
     },
     "switchToPreviousTab": {
-        "message": "Пред. вкладка",
-        "description": ""
+        "message": "Пред. вкладка"
     },
     "tab": {
-        "message": "Вкладка",
-        "description": ""
+        "message": "Вкладка"
     },
     "tabsAmount": {
-        "message": "Вкладок",
-        "description": ""
+        "message": "Вкладок"
     },
     "textFieldMenu": {
-        "message": "Меню поля ввода",
-        "description": ""
+        "message": "Меню поля ввода"
     },
     "textTooLong": {
-        "message": "Сжать страницу",
-        "description": ""
+        "message": "Сжать страницу"
     },
     "toggleFullscreen": {
-        "message": "Полноэкранный режим",
-        "description": ""
+        "message": "Полноэкранный режим"
     },
     "translate": {
-        "message": "Перевести",
-        "description": ""
+        "message": "Перевести"
     },
     "translateInPopup": {
-        "message": "Перевести во всплывающем окне",
-        "description": ""
+        "message": "Перевести во всплывающем окне"
     },
     "translatePage": {
-        "message": "Перевести страницу",
-        "description": ""
+        "message": "Перевести страницу"
     },
     "typeToQuery": {
-        "message": "Введите, чтобы искать",
-        "description": ""
+        "message": "Введите, чтобы искать"
     },
     "underlineText": {
-        "message": "Подчеркивание",
-        "description": ""
+        "message": "Подчеркивание"
     },
     "undoAction": {
-        "message": "Отменить действие",
-        "description": ""
+        "message": "Отменить действие"
     },
     "unpinTab": {
-        "message": "Открепить вкладку",
-        "description": ""
+        "message": "Открепить вкладку"
     },
     "untoggleFullscreen": {
-        "message": "Выйти из полноэкранного режима",
-        "description": ""
+        "message": "Выйти из полноэкранного режима"
     },
     "updateNotificationMessage": {
-        "message": "Кликните, чтобы узнать что нового",
-        "description": ""
+        "message": "Кликните, чтобы узнать что нового"
     },
     "updateNotificationTitle": {
         "message": "CMG обновился до $VERSION$",
-        "description": "",
         "placeholders": {
             "version": {
                 "content": "$1",
@@ -978,27 +735,21 @@
         }
     },
     "updateToApply": {
-        "message": "Обновите вкладки, чтобы применить изменения",
-        "description": ""
+        "message": "Обновите вкладки, чтобы применить изменения"
     },
     "useCustomColor": {
-        "message": "Другой фон",
-        "description": ""
+        "message": "Другой фон"
     },
     "whatsNew": {
-        "message": "Что нового",
-        "description": ""
+        "message": "Что нового"
     },
     "window": {
-        "message": "Окно",
-        "description": ""
+        "message": "Окно"
     },
     "windowsOnly": {
-        "message": "Работает только на Windows. На других системах (Linux, MacOS) требует двойного клика",
-        "description": ""
+        "message": "Работает только на Windows. На других системах (Linux, MacOS) требует двойного клика"
     },
     "writeAReview": {
-        "message": "Написать отзыв",
-        "description": ""
+        "message": "Написать отзыв"
     }
 }
