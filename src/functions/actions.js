@@ -340,6 +340,10 @@ function triggerButtonAction(actionToPerform, urlToOpen, scrollDirection) {
             }
         } break;
 
+        case 'translateInPopup': {
+            chrome.runtime.sendMessage({ actionToDo: 'openInPopupWindow', url: 'https://translate.google.com/?sl=auto&text=' + textSelection.toString(), dx: lastMouseDownEvent.screenX, dy: lastMouseDownEvent.screenY });
+        } break;
+
         default: {
             /// Some action requre functions to be run in background.js, so we pass the action there
             if (actionToPerform !== null && actionToPerform !== undefined) {

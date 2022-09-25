@@ -935,6 +935,10 @@
         "message": "Vertalen",
         "description": ""
     },
+    "translateInPopup": {
+        "message": "Vertalen in pop-up",
+        "description": ""
+    },
     "typeToQuery": {
         "message": "Typ om te zoeken",
         "description": ""

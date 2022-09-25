@@ -935,6 +935,10 @@
         "message": "Traducir",
         "description": ""
     },
+    "translateInPopup": {
+        "message": "Traducir en popup",
+        "description": ""
+    },
     "typeToQuery": {
         "message": "Entrar para filtrar",
         "description": ""

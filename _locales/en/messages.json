@@ -935,6 +935,10 @@
         "message": "Translate",
         "description": ""
     },
+    "translateInPopup": {
+        "message": "Translate in popup",
+        "description": ""
+    },
     "typeToQuery": {
         "message": "Type to query",
         "description": ""

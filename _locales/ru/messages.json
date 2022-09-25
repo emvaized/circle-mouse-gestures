@@ -935,6 +935,10 @@
         "message": "Перевести",
         "description": ""
     },
+    "translateInPopup": {
+        "message": "Перевести во всплывающем окне",
+        "description": ""
+    },
     "translatePage": {
         "message": "Перевести страницу",
         "description": ""

@@ -86,6 +86,7 @@ const sortedActionButtons = {
             'copyText',
             'searchText',
             'translate',
+            'translateInPopup',
             'selectMore',
         ],
         '—': [
