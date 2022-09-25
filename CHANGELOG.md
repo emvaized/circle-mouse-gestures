@@ -1,3 +1,10 @@
+1.3.9
+- Fix non working 'Open in popup window' action
+- Add action 'Translate in popup window'
+- Reduced amount of false image detections
+- Added Dutch translation
+- Other small fixes and improvements
+
 1.3.8
 - Add action 'Reload without cache'
 - Fix for black backdrop on some pages
