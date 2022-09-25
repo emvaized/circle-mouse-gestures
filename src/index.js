@@ -401,7 +401,7 @@ function processAndShowCircle(e) {
     elementUnderCursor = el;
     const elStyle = window.getComputedStyle(el);
 
-    if (el.tagName == 'IMG' || (el.tagName !== 'HTML' && elStyle.backgroundImage && elStyle.backgroundImage.includes('url('))) {
+    if (el.tagName == 'IMG' || (el.tagName !== 'HTML' && elStyle.backgroundImage && elStyle.backgroundImage.includes('url(') && !elStyle.background.includes(' repeat'))) {
         /// Image is hovered
         typeOfMenu = 'imageMenu';
         hoveredLink = el.getAttribute('src') ?? elStyle.backgroundImage.replace('url("', '').replace('")', '');
