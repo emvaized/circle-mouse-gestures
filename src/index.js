@@ -401,34 +401,10 @@ function processAndShowCircle(e) {
     elementUnderCursor = el;
     const elStyle = window.getComputedStyle(el);
 
-    if (el.tagName == 'IMG' || (el.tagName !== 'HTML' && elStyle.backgroundImage && elStyle.backgroundImage.includes('url(') && !elStyle.background.includes(' repeat'))) {
-        /// Image is hovered
-        typeOfMenu = 'imageMenu';
-        hoveredLink = el.getAttribute('src') ?? elStyle.backgroundImage.replace('url("', '').replace('")', '');
-    } else if (el.tagName == 'VIDEO' || el.tagName == 'AUDIO') {
-        /// html-5 videoplayer is hovered
-        typeOfMenu = 'playerMenu';
-        let fileLink = el.getAttribute('src');
-        if (fileLink == null) {
-            try {
-                fileLink = el.querySelector('source').getAttribute('src');
-            } catch (e) { if (configs.debugMode) console.log(e); }
-        }
-        hoveredLink = fileLink.replace('blob:', '');
-    } else if (el.tagName == 'A' || el.parentNode.tagName == 'A'
-    ) {
-        /// Link is hovered
-        typeOfMenu = 'linkMenu';
-        hoveredLink = el.getAttribute('href') || el.getAttribute('data-url') || el.parentNode.getAttribute('href') || el.parentNode.getAttribute('data-url');
-        hoveredLinkTitle = el.textContent.trim();
-    } else if (
-        (el.tagName === "INPUT" ||
-            el.tagName === "TEXTAREA" ||
-            el.getAttribute('contenteditable') !== null)
+    if ((el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.getAttribute('contenteditable') !== null)
         && el.getAttribute('type') !== 'checkbox'
         && el.getAttribute('type') !== 'range'
-        && el.getAttribute('type') !== 'color'
-    ) {
+        && el.getAttribute('type') !== 'color') {
         /// Text field is hovered
         if (window.getSelection) {
             textSelection = window.getSelection();
@@ -452,9 +428,28 @@ function processAndShowCircle(e) {
         hoveredLinkTitle = null;
 
         el.focus({ preventScroll: false });
-    }
-    else {
-        /// Text selection is hovered
+    } else if (el.tagName == 'IMG' ||
+        (el.tagName !== 'HTML' && elStyle.backgroundImage && elStyle.backgroundImage.includes('url(') && !elStyle.background.includes(' repeat'))) {
+        /// Image is hovered
+        typeOfMenu = 'imageMenu';
+        hoveredLink = el.getAttribute('src') ?? elStyle.backgroundImage.replace('url("', '').replace('")', '');
+    } else if (el.tagName == 'VIDEO' || el.tagName == 'AUDIO') {
+        /// Html-5 player is hovered
+        typeOfMenu = 'playerMenu';
+        let fileLink = el.getAttribute('src');
+        if (fileLink == null) {
+            try {
+                fileLink = el.querySelector('source').getAttribute('src');
+            } catch (e) { if (configs.debugMode) console.log(e); }
+        }
+        hoveredLink = fileLink.replace('blob:', '');
+    } else if (el.tagName == 'A' || el.parentNode.tagName == 'A') {
+        /// Link is hovered
+        typeOfMenu = 'linkMenu';
+        hoveredLink = el.getAttribute('href') || el.getAttribute('data-url') || el.parentNode.getAttribute('href') || el.parentNode.getAttribute('data-url');
+        hoveredLinkTitle = el.textContent.trim();
+    } else {
+        /// Maybe text selection is hovered?
         if (window.getSelection) {
             textSelection = window.getSelection();
         } else if (document.selection) {
@@ -471,6 +466,7 @@ function processAndShowCircle(e) {
             hoveredLink = window.location.href;
             hoveredLinkTitle = null;
         } else {
+            /// Show regular menu
             if (configs.openCircleOn == 'longLeftClick' && (el.tagName === "SELECT" || el.tagName === "BUTTON")) return;
 
             typeOfMenu = 'regularMenu';
