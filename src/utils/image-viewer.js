@@ -244,10 +244,8 @@ function openImageFullscreen(elementUnderCursor) {
     /// Show fullscreen image
     setTimeout(function () {
         fullscreenImageIsOpen = true;
-
-        // let copyOfImage = document.getElementById(idForImage);
         copyOfImage.style.transform = `translate(${dxToShow}px, ${dyToShow}px) scale(${scale})`;
-        viewer.classList.add('cmg-overlay-shadow');
+        // viewer.classList.add('cmg-overlay-shadow');
 
         viewer.addEventListener('mousedown', function (e) {
             evt = e || window.event;
