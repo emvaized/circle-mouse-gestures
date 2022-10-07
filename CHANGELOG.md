@@ -1,3 +1,7 @@
+1.4.0
+- Removed shadow from Image viewer for better visibility with transparent images
+- Improved text field detection
+
 1.3.9
 - Fix non working 'Open in popup window' action
 - Add action 'Translate in popup window'
