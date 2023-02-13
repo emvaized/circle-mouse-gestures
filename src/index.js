@@ -342,12 +342,14 @@ function checkScrollDirection(event) {
             const mouseWheelUpAction = configs[typeOfMenu].mouseWheelUpAction;
             if (!circleIsShown && actionShouldBreakScrollListener(mouseWheelUpAction)) return;
             triggerButtonAction(mouseWheelUpAction, undefined, 'up');
-
+            anyButtonIsSelected = true;
+            
         } else if (event.deltaY > 0) {
             event.preventDefault();
             const mouseWheelDownAction = configs[typeOfMenu].mouseWheelDownAction;
             if (!circleIsShown && actionShouldBreakScrollListener(mouseWheelDownAction)) return;
             triggerButtonAction(mouseWheelDownAction, undefined, 'down');
+            anyButtonIsSelected = true;
         }
     } else {
 
@@ -360,11 +362,13 @@ function checkScrollDirection(event) {
                 const mouseWheelLeftAction = configs[typeOfMenu].mouseWheelLeftAction;
                 if (!circleIsShown && actionShouldBreakScrollListener(mouseWheelLeftAction)) return;
                 triggerButtonAction(mouseWheelLeftAction, undefined, 'up');
+                anyButtonIsSelected = true;
             } else if (event.deltaX > 0) {
                 event.preventDefault();
                 const mouseWheelRightAction = configs[typeOfMenu].mouseWheelRightAction;
                 if (!circleIsShown && actionShouldBreakScrollListener(mouseWheelRightAction)) return;
                 triggerButtonAction(mouseWheelRightAction, undefined, 'down');
+                anyButtonIsSelected = true;
             }
         }
     }
