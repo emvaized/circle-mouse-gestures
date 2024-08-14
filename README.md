@@ -23,11 +23,9 @@ Additional tools:
 
 <img src="https://github.com/emvaized/circle-mouse-gestures/blob/master/screenshots/screenshot.png">
 
-Download for Chrome:
-https://chrome.google.com/webstore/detail/circle-mouse-gestures-pie/kkknhbbfjlibfjagilggkcelmcobgefa
+[Download for Chrome](https://chrome.google.com/webstore/detail/circle-mouse-gestures-pie/kkknhbbfjlibfjagilggkcelmcobgefa)
 
-Download for Firefox:
-https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/
+[Download for Firefox](https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/)
 
 ## Building
 - `npm install` to install all dependencies
@@ -73,9 +71,9 @@ https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/
 
 
 ## Donate
-If you really enjoy this product, you may also consider making a small donation for a coffee :)
+If you really enjoy this product, please consider supporting its further development by making a small donation! 
 
-<a href="https://www.paypal.com/donate/?business=2KDNGXNUVZW7N&no_recurring=0&currency_code=USD"><img src="https://www.paypalobjects.com/en_US/DK/i/btn/btn_donateCC_LG.gif" height="25"/></a>
+<a href="https://ko-fi.com/emvaized"><img src="https://user-images.githubusercontent.com/7586345/125668092-55af2a45-aa7d-4795-93ed-de0a9a2828c5.png" alt="Support on Ko-fi" height="35"></a>     <a href="https://www.paypal.com/donate/?business=2KDNGXNUVZW7N&no_recurring=0&currency_code=USD"><img src="https://www.paypalobjects.com/en_US/DK/i/btn/btn_donateCC_LG.gif" height="35" width="70"/></a> 
 
 
 ## Links to my other browser extensions
