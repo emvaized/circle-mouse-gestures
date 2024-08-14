@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Circle Mouse Gestures (pie menu)",
   "version": "1.4.0",
   "description": "__MSG_extensionDescription__",
@@ -10,14 +10,9 @@
     "128": "icons/icon-monotone-128.png"
   },
   "background": {
-    "scripts": [
-      "src/functions/background.js"
-    ],
-    "persistent": false
+    "scripts": ["src/functions/background.js"],
+    "service_worker": "src/functions/background.js"
   },
-  "web_accessible_resources": [
-    "icons/icon-monotone-48.png"
-  ],
   "content_scripts": [
     {
       "matches": [
@@ -57,11 +52,9 @@
   ],
   "options_ui": {
     "page": "options/options.html",
-    "browser_style": true,
-    "chrome_style": true,
     "open_in_tab": true
   },
-  "browser_action": {
+  "action": {
     "default_icon": "icons/icon-monotone-48.png",
     "default_title": "Circle Mouse Gestures",
     "default_popup": "popup/popup.html"
