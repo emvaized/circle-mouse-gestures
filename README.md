@@ -1,4 +1,4 @@
-# <sub><img src="https://github.com/emvaized/circle-mouse-gestures/blob/master/icons/icon-monotone-48.png" height="48" width="48"></sub> Circle Mouse Gestures
+# <sub><img src="./icons/icon-new.png" height="48" width="48"></sub> Circle Mouse Gestures
 
 [![Changelog](https://img.shields.io/chrome-web-store/v/kkknhbbfjlibfjagilggkcelmcobgefa?label=version)](./CHANGELOG.md)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/users/kkknhbbfjlibfjagilggkcelmcobgefa?label=users&logo=googlechrome&logoColor=white)](https://chrome.google.com/webstore/detail/circle-mouse-gestures-pie/kkknhbbfjlibfjagilggkcelmcobgefa)

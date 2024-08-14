@@ -650,7 +650,7 @@ function displayNotification(title, message, link, image) {
     // const createNotification =
     chrome.notifications.create({
         "type": "basic",
-        "iconUrl": image ?? "./icons/icon-monotone-48.png",
+        "iconUrl": image ?? "./icons/icon-new.png",
         "title": title,
         "message": message,
     }, function (notificationId) {

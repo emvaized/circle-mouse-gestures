@@ -5,9 +5,9 @@
   "description": "__MSG_extensionDescription__",
   "default_locale": "en",
   "icons": {
-    "48": "icons/icon-monotone-48.png",
-    "96": "icons/icon-monotone-96.png",
-    "128": "icons/icon-monotone-128.png"
+    "48": "icons/icon-new.png",
+    "96": "icons/icon-new.png",
+    "128": "icons/icon-new.png"
   },
   "background": {
     "scripts": ["src/functions/background.js"],
@@ -55,7 +55,7 @@
     "open_in_tab": true
   },
   "action": {
-    "default_icon": "icons/icon-monotone-48.png",
+    "default_icon": "icons/icon-new.png",
     "default_title": "Circle Mouse Gestures",
     "default_popup": "popup/popup.html"
   },
