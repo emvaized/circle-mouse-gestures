@@ -1,5 +1,10 @@
 # <sub><img src="https://github.com/emvaized/circle-mouse-gestures/blob/master/icons/icon-monotone-48.png" height="48" width="48"></sub> Circle Mouse Gestures
 
+[![Changelog](https://img.shields.io/chrome-web-store/v/kkknhbbfjlibfjagilggkcelmcobgefa?label=version)](./CHANGELOG.md)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/users/kkknhbbfjlibfjagilggkcelmcobgefa?label=users&logo=googlechrome&logoColor=white)](https://chrome.google.com/webstore/detail/circle-mouse-gestures-pie/kkknhbbfjlibfjagilggkcelmcobgefa)
+[![Mozilla Add-on](https://img.shields.io/amo/users/circle-mouse-gestures?color=%23FF6611&label=users&logo=Firefox)](https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/kkknhbbfjlibfjagilggkcelmcobgefa)](https://chrome.google.com/webstore/detail/circle-mouse-gestures-pie/kkknhbbfjlibfjagilggkcelmcobgefa/reviews)
+
 This extension introduces convenient circle menu (so-called pie menu) to improve interaction with your browser. 
 Just hold down the right mouse button, highlight one of the actions and release the button. 
 
@@ -23,9 +28,12 @@ Additional tools:
 
 <img src="https://github.com/emvaized/circle-mouse-gestures/blob/master/screenshots/screenshot.png">
 
-[Download for Chrome](https://chrome.google.com/webstore/detail/circle-mouse-gestures-pie/kkknhbbfjlibfjagilggkcelmcobgefa)
+Get for Firefox: <br>
+<a href="https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/"><img src="https://user-images.githubusercontent.com/585534/107280546-7b9b2a00-6a26-11eb-8f9f-f95932f4bfec.png" alt="Get for Firefox"></a>
 
-[Download for Firefox](https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/)
+Get for Chrome (Edge, Brave, Vivaldi etc): <br> 
+<a href="https://chrome.google.com/webstore/detail/circle-mouse-gestures-pie/kkknhbbfjlibfjagilggkcelmcobgefa"><img src="https://user-images.githubusercontent.com/585534/107280622-91a8ea80-6a26-11eb-8d07-77c548b28665.png" alt="Get for Chrome"></a>
+
 
 ## Building
 - `npm install` to install all dependencies
