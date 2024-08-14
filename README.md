@@ -29,9 +29,11 @@ https://chrome.google.com/webstore/detail/circle-mouse-gestures-pie/kkknhbbfjlib
 Download for Firefox:
 https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/
 
----
+## Building
+- `npm install` to install all dependencies
+- `npm run build` to generate `dist` folder with minimized code of the extension
 
-### FAQ
+## FAQ
 
 **How to open regular context menu?**
 * Double right click on element should always open regular context menu, 
@@ -63,22 +65,19 @@ https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/
 **How to add CMG settings as Vivaldi side panel?**
 * Use this URL: *chrome-extension://*{ID OF EXTENSION}*/options/options.html*, where {ID OF EXTENSION} is a unique extension ID on your computer. You can get this from extension details page in `chrome://extensions`
 
----
 
-### Ideas for future releases
+## Ideas for future releases
 * Import/export settings
 * Action to execute custom Javascript
 * Option to set custom favicon for 'Open URL' action
 
----
 
-### Donate
+## Donate
 If you really enjoy this product, you may also consider making a small donation for a coffee :)
 
 <a href="https://www.paypal.com/donate/?business=2KDNGXNUVZW7N&no_recurring=0&currency_code=USD"><img src="https://www.paypalobjects.com/en_US/DK/i/btn/btn_donateCC_LG.gif" height="25"/></a>
 
----
 
-### Links to my other browser extensions
+## Links to my other browser extensions
 * [Selecton](https://github.com/emvaized/selecton-extension) – smart text selection popup
 * [Google Tweaks](https://github.com/emvaized/google-tiles-extension) – set of tweaks for Google search page to make it easier to use
