@@ -748,5 +748,26 @@
     },
     "writeAReview": {
         "message": "Recensie plaatsen"
+    },
+    "importSettings": {
+        "message": "Importinstellingen"
+    },
+    "exportSettings": {
+        "message": "Exportinstellingen"
+    },
+    "resetSettings": {
+        "message": "Reset instellingen"
+    },
+    "settingsWarning": {
+        "message": "Weet je het zeker? Het zal je huidige instellingen wissen!"
+    },
+    "manageSettingsLabel": {
+        "message": "Instellingen beheren"
+    },
+    "requireModifierForSpecificMenus": {
+        "message": "Modifier-toets nodig voor niet-reguliere menu's"
+    },
+    "requireModifierForSpecificMenusTooltip": {
+        "message": "Vereist dat de modifier-toets (Shift, Meta, Control of Alt) wordt ingedrukt om speciale menu's voor links, afbeeldingen etc. te tonen. Zonder modifier-toets wordt een normaal menu getoond"
     }
 }

@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="options.css" />
-    <link rel="icon" type="image/png" href="../icons/icon-monotone-48.png" />
+    <link rel="icon" type="image/png" href="../icons/icon-new.png" />
     <title>CMG Settings</title>
 </head>
 
@@ -233,12 +233,37 @@
                             </select>
                         </label>
                     </div>
+
+                    <div class='option'><label class='tooltip'>
+                        <input type="checkbox" id="requireModifierForSpecificMenus"></input>
+                        <span id="requireModifierForSpecificMenusTooltip" class="tooltiptext"></span>
+                    </label>
                 </div>
+                </div>
+                </div>
+                </div>
+
+              
             </div>
         </div>
+
+        <!-- General settings management -->
+        <span class="sub-header" id="manageSettingsLabel" style="float:left; width:100%; margin:0 8px 12px">Settings management</span>
+        <div class="option" style="float: left; margin-bottom: 10px">
+            <input type="file" id="importSettings" accept=".json">
+            <button type='button' id='importSettingsButton'>Import settings</button>
+        </div>
+        <div class="option" style="float: left; margin-bottom: 10px">
+            <button type='button' id='exportSettings'>Export settings</button>
+        </div>
+        <div class="option" style="float: left; margin-bottom: 10px">
+            <button type='button' id='resetSettings'>Reset settings</button>
+        </div>
+
     </div>
 
     <script src="options.js"></script>
+    <script src="../content.js"></script>
     <script src="../src/data/actions-list.js"></script>
     <script src="../src/data/icons.js"></script>
     <script src="../src/functions/action-functions.js"></script>

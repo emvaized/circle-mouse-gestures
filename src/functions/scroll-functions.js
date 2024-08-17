@@ -1,3 +1,4 @@
+
 function getScrollParent(node) {
     const isElement = node instanceof HTMLElement;
     const overflowY = isElement && window.getComputedStyle(node).overflowY;

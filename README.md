@@ -1,4 +1,9 @@
-# <sub><img src="https://github.com/emvaized/circle-mouse-gestures/blob/master/icons/icon-monotone-48.png" height="48" width="48"></sub> Circle Mouse Gestures
+# <sub><img src="./icons/icon-new.png" height="48" width="48"></sub> Circle Mouse Gestures
+
+[![Changelog](https://img.shields.io/chrome-web-store/v/kkknhbbfjlibfjagilggkcelmcobgefa?label=version)](./CHANGELOG.md)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/users/kkknhbbfjlibfjagilggkcelmcobgefa?label=users&logo=googlechrome&logoColor=white)](https://chrome.google.com/webstore/detail/circle-mouse-gestures-pie/kkknhbbfjlibfjagilggkcelmcobgefa)
+[![Mozilla Add-on](https://img.shields.io/amo/users/circle-mouse-gestures?color=%23FF6611&label=users&logo=Firefox)](https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/kkknhbbfjlibfjagilggkcelmcobgefa)](https://chrome.google.com/webstore/detail/circle-mouse-gestures-pie/kkknhbbfjlibfjagilggkcelmcobgefa/reviews)
 
 This extension introduces convenient circle menu (so-called pie menu) to improve interaction with your browser. 
 Just hold down the right mouse button, highlight one of the actions and release the button. 
@@ -23,15 +28,18 @@ Additional tools:
 
 <img src="https://github.com/emvaized/circle-mouse-gestures/blob/master/screenshots/screenshot.png">
 
-Download for Chrome:
-https://chrome.google.com/webstore/detail/circle-mouse-gestures-pie/kkknhbbfjlibfjagilggkcelmcobgefa
+Get for Firefox: <br>
+<a href="https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/"><img src="https://user-images.githubusercontent.com/585534/107280546-7b9b2a00-6a26-11eb-8f9f-f95932f4bfec.png" alt="Get for Firefox"></a>
 
-Download for Firefox:
-https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/
+Get for Chrome (Edge, Brave, Vivaldi etc): <br> 
+<a href="https://chrome.google.com/webstore/detail/circle-mouse-gestures-pie/kkknhbbfjlibfjagilggkcelmcobgefa"><img src="https://user-images.githubusercontent.com/585534/107280622-91a8ea80-6a26-11eb-8d07-77c548b28665.png" alt="Get for Chrome"></a>
 
----
 
-### FAQ
+## Building
+- `npm install` to install all dependencies
+- `npm run build` to generate `dist` folder with minimized code of the extension
+
+## FAQ
 
 **How to open regular context menu?**
 * Double right click on element should always open regular context menu, 
@@ -63,22 +71,23 @@ https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/
 **How to add CMG settings as Vivaldi side panel?**
 * Use this URL: *chrome-extension://*{ID OF EXTENSION}*/options/options.html*, where {ID OF EXTENSION} is a unique extension ID on your computer. You can get this from extension details page in `chrome://extensions`
 
----
 
-### Ideas for future releases
+## Ideas for future releases
 * Import/export settings
 * Action to execute custom Javascript
 * Option to set custom favicon for 'Open URL' action
 
----
 
-### Donate
-If you really enjoy this product, you may also consider making a small donation for a coffee :)
+## Donate
+If you really enjoy this product, please consider supporting its further development by making a small donation! 
 
-<a href="https://www.paypal.com/donate/?business=2KDNGXNUVZW7N&no_recurring=0&currency_code=USD"><img src="https://www.paypalobjects.com/en_US/DK/i/btn/btn_donateCC_LG.gif" height="25"/></a>
+Ko-Fi: <br>
+<a href="https://ko-fi.com/emvaized"><img src="https://user-images.githubusercontent.com/7586345/125668092-55af2a45-aa7d-4795-93ed-de0a9a2828c5.png" alt="Support on Ko-fi" height="35"></a>   
 
----
+PayPal: <br>
+<a href="https://www.paypal.com/donate/?business=2KDNGXNUVZW7N&no_recurring=0&currency_code=USD"><img src="https://www.paypalobjects.com/en_US/DK/i/btn/btn_donateCC_LG.gif" height="35" width="70"/></a> 
 
-### Links to my other browser extensions
+
+## Links to my other browser extensions
 * [Selecton](https://github.com/emvaized/selecton-extension) – smart text selection popup
 * [Google Tweaks](https://github.com/emvaized/google-tiles-extension) – set of tweaks for Google search page to make it easier to use

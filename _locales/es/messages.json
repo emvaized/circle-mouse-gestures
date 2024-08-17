@@ -748,5 +748,26 @@
     },
     "writeAReview": {
         "message": "Escribe una reseña"
+    },
+    "importSettings": {
+        "message": "Importar configuración"
+    },
+    "exportSettings": {
+        "message": "Exportar configuración"
+    },
+    "resetSettings": {
+        "message": "Restablecer configuración"
+    },
+    "settingsWarning": {
+        "message": "¿Estás seguro? ¡Se borrarán tus configuraciones actuales!"
+    },
+    "manageSettingsLabel": {
+        "message": "Administrar configuraciones"
+    },
+    "requireModifierForSpecificMenus": {
+        "message": "Requerir tecla modificadora para menús no regulares"
+    },
+    "requireModifierForSpecificMenusTooltip": {
+        "message": "Requiere que se presione la tecla modificadora (Shift, Meta, Control o Alt) para revelar menús especiales para enlaces, imágenes, etc. Sin una tecla modificadora, se mostrará un menú normal"
     }
 }

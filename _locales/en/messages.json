@@ -748,5 +748,26 @@
     },
     "writeAReview": {
         "message": "Write a review"
+    },
+    "importSettings": {
+        "message": "Import settings"
+    },
+    "exportSettings": {
+        "message": "Export settings"
+    },
+    "resetSettings": {
+        "message": "Reset settings"
+    },
+    "settingsWarning": {
+        "message": "Are you sure? It will erase your current settings!"
+    },
+    "manageSettingsLabel": {
+        "message": "Manage settings"
+    },
+    "requireModifierForSpecificMenus": {
+        "message": "Require modifier key for non-regular menus"
+    },
+    "requireModifierForSpecificMenusTooltip": {
+        "message": "Require modifier key (Shift, Meta, Contorl or Alt) to be pressed to reveal special menus for links, images etc. Without a modifier key a regular menu will be shown"
     }
 }

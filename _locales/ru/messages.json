@@ -751,5 +751,26 @@
     },
     "writeAReview": {
         "message": "Написать отзыв"
+    },
+    "importSettings": {
+        "message": "Импортировать настройки"
+    },
+    "exportSettings": {
+        "message": "Экспортировать настройки"
+    },
+    "resetSettings": {
+        "message": "Сбросить настройки"
+    },
+    "settingsWarning": {
+        "message": "Вы уверены? Это сотрет ваши текущие настройки!"
+    },
+    "manageSettingsLabel": {
+        "message": "Управление настройками"
+    },
+    "requireModifierForSpecificMenus": {
+        "message": "Требовать клавишу-модификатор для нестандартных меню"
+    },
+    "requireModifierForSpecificMenusTooltip": {
+        "message": "Для отображения специальных меню для ссылок, изображений и т. д. необходимо будет нажать клавишу-модификатор (Shift, Meta, Control или Alt). Без клавиши-модификатора будет отображаться обычное меню"
     }
 }
