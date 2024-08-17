@@ -47,7 +47,7 @@ function restoreOptions() {
 
   document.querySelector("#supportButton").addEventListener("click", function (val) {
     window.close();
-    window.open('https://www.paypal.com/donate/?business=2KDNGXNUVZW7N&no_recurring=0&currency_code=USD', '_blank');
+    window.open('https://github.com/emvaized/circle-mouse-gestures?tab=readme-ov-file#donate', '_blank');
   });
   document.querySelector("#githubPage").addEventListener("click", function (val) {
     window.close();
