@@ -313,6 +313,7 @@ function generateBehaviorConfigs() {
         'showUpdateNotification',
         'addGhostPointer',
         'checkButtonsAvailability',
+        'requireModifierForSpecificMenus',
         // 'animateHideRelativeToSelected',
         // 'circleHideAnimation',
     ];
@@ -353,7 +354,8 @@ function generateBehaviorConfigs() {
     document.getElementById('addLinkTooltipTooltip').innerText = chrome.i18n.getMessage('addLinkTooltipTooltip');
     document.getElementById('highlightElementOnHoverTooltip').innerText = chrome.i18n.getMessage('highlightElementOnHoverTooltip');
     document.getElementById('storeCurrentScrollPositionTooltip').innerText = chrome.i18n.getMessage('storeCurrentScrollPositionTooltip');
-    document.getElementById('showTitleOnHoverWhenHiddenTooltip').innerText = chrome.i18n.getMessage('showTitleOnHoverWhenHiddenTooltip');
+    document.getElementById('showTitleOnHoverWhenHiddenTooltip').innerText = chrome.i18n.getMessage('showTitleOnHoverWhenHiddenTooltip');   
+    document.getElementById('requireModifierForSpecificMenusTooltip').innerText = chrome.i18n.getMessage('requireModifierForSpecificMenusTooltip');
 
     document.getElementById('continiousVerticalScrollDetectionTooltip').innerText = chrome.i18n.getMessage('continiousScrollDetectionHint');
     document.getElementById('continiousHorizontalScrollDetectionTooltip').innerText = chrome.i18n.getMessage('continiousScrollDetectionHint');

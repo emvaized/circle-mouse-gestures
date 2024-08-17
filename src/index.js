@@ -479,6 +479,16 @@ function processAndShowCircle(e) {
         }
     }
 
+    /// Show regular menu if no modifier key is pressed (when enabled in settings)
+    if (configs.requireModifierForSpecificMenus && !e.shiftKey && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        /// Show regular menu
+        if (configs.openCircleOn == 'longLeftClick' && (el.tagName === "SELECT" || el.tagName === "BUTTON")) return;
+
+        typeOfMenu = 'regularMenu';
+        hoveredLink = configs.showLinkTooltipForPageItself ? window.location.href : null;
+        hoveredLinkTitle = null;
+    }
+
     /// Behavior when no levels added or available
     let enabledLevelsCount = 0;
     for (var i = 0; i < configs[typeOfMenu].levels.length; i++) {

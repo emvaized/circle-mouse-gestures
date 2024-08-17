@@ -52,6 +52,7 @@ const configs = {
     'hideLabelIfNoSpace': true,
     'showUpdateNotification': true,
     'checkButtonsAvailability': true,
+    'requireModifierForSpecificMenus': false,
     'segmentsIndent': 0,
     'excludedDomains': '',
     'showCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
@@ -288,6 +289,7 @@ const defaultConfigs = {
     'hideLabelIfNoSpace': true,
     'showUpdateNotification': true,
     'checkButtonsAvailability': true,
+    'requireModifierForSpecificMenus': false,
     'blurRadius': 4,
     'excludedDomains': '',
     'showCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
