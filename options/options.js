@@ -40,6 +40,7 @@ function optionsInit() {
             document.getElementById('delayToShowTitleOnHoverWhenHidden').parentNode.setAttribute('title', chrome.i18n.getMessage('delay') + ' (ms)');
             document.getElementById('backgroundDimmerOpacity').parentNode.setAttribute('title', chrome.i18n.getMessage('opacity'));
             document.getElementById('updateToApplyLabel').innerHTML = chrome.i18n.getMessage('updateToApply');
+            document.getElementById('manageSettingsLabel').innerHTML = chrome.i18n.getMessage('manageSettingsLabel');
             document.getElementById('importSettingsButton').innerHTML = chrome.i18n.getMessage('importSettings');
             document.getElementById('exportSettings').innerHTML = chrome.i18n.getMessage('exportSettings');
             document.getElementById('resetSettings').innerHTML = chrome.i18n.getMessage('resetSettings');

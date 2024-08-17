@@ -760,5 +760,8 @@
     },
     "settingsWarning": {
         "message": "¿Estás seguro? ¡Se borrarán tus configuraciones actuales!"
+    },
+    "manageSettingsLabel": {
+        "message": "Administrar configuraciones"
     }
 }

@@ -763,5 +763,8 @@
     },
     "settingsWarning": {
         "message": "Вы уверены? Это сотрет ваши текущие настройки!"
+    },
+    "manageSettingsLabel": {
+        "message": "Управление настройками"
     }
 }

@@ -760,5 +760,8 @@
     },
     "settingsWarning": {
         "message": "Weet je het zeker? Het zal je huidige instellingen wissen!"
+    },
+    "manageSettingsLabel": {
+        "message": "Instellingen beheren"
     }
 }

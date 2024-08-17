@@ -760,5 +760,8 @@
     },
     "settingsWarning": {
         "message": "Are you sure? It will erase your current settings!"
+    },
+    "manageSettingsLabel": {
+        "message": "Manage settings"
     }
 }
