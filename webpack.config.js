@@ -53,6 +53,7 @@ module.exports = {
         { from: "icons", to: "icons" },
         { from: "popup", to: "popup" },
         { from: "options", to: "options" },
+        { from: "src/data/configs.js", to: "src/data/" },
       ],
     }),
   ],

@@ -748,5 +748,17 @@
     },
     "writeAReview": {
         "message": "Recensie plaatsen"
+    },
+    "importSettings": {
+        "message": "Importinstellingen"
+    },
+    "exportSettings": {
+        "message": "Exportinstellingen"
+    },
+    "resetSettings": {
+        "message": "Reset instellingen"
+    },
+    "settingsWarning": {
+        "message": "Weet je het zeker? Het zal je huidige instellingen wissen!"
     }
 }

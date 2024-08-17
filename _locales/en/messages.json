@@ -748,5 +748,17 @@
     },
     "writeAReview": {
         "message": "Write a review"
+    },
+    "importSettings": {
+        "message": "Import settings"
+    },
+    "exportSettings": {
+        "message": "Export settings"
+    },
+    "resetSettings": {
+        "message": "Reset settings"
+    },
+    "settingsWarning": {
+        "message": "Are you sure? It will erase your current settings!"
     }
 }

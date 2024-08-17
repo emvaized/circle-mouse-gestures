@@ -4,8 +4,10 @@
 var delayToAddListeners = 1;
 var bodyMarginLeft = 0.0;
 
+const isFirefox = navigator.userAgent.indexOf("Firefox") > -1;
 let selectedMenuType = 'regularMenu';
-let isFirefox = navigator.userAgent.indexOf("Firefox") > -1;
+let importedConfigs;
+let exportFileName = 'cmg-settings.json';
 
 function optionsInit() {
     document.title = chrome.i18n.getMessage('settings') + ' — CMG';
@@ -38,6 +40,9 @@ function optionsInit() {
             document.getElementById('delayToShowTitleOnHoverWhenHidden').parentNode.setAttribute('title', chrome.i18n.getMessage('delay') + ' (ms)');
             document.getElementById('backgroundDimmerOpacity').parentNode.setAttribute('title', chrome.i18n.getMessage('opacity'));
             document.getElementById('updateToApplyLabel').innerHTML = chrome.i18n.getMessage('updateToApply');
+            document.getElementById('importSettingsButton').innerHTML = chrome.i18n.getMessage('importSettings');
+            document.getElementById('exportSettings').innerHTML = chrome.i18n.getMessage('exportSettings');
+            document.getElementById('resetSettings').innerHTML = chrome.i18n.getMessage('resetSettings');
 
             /// Transition centering + recalculate on window resize
             setTimeout(function () {
@@ -62,6 +67,8 @@ function optionsInit() {
             }
         })
     } catch (e) { if (configs.debugMode) console.log(e); }
+
+    setImportExportButtons()
 }
 
 /// Dropdown on top of screen to switch menu type
@@ -1438,6 +1445,81 @@ function updateDisabledOptions() {
     // document.querySelector("#animateHideRelativeToSelected").parentNode.className = document.querySelector("#circleHideAnimation").checked ? 'visible-option' : 'hidden-option';
     document.querySelector("#addGhostPointer").parentNode.parentNode.className = document.querySelector("#circleLocation").value == 'alwaysCursor' ? 'hidden-option' : 'option visible-option';
 
+}
+
+
+function setImportExportButtons() {
+    /// Export settings
+    document.getElementById('exportSettings').onclick = function () {
+        const filename = exportFileName;
+        const jsonStr = JSON.stringify(configs);
+
+        const element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(jsonStr));
+        element.setAttribute('download', filename);
+        element.style.display = 'none';
+        element.style.position = 'absolute';
+        document.body.appendChild(element);
+        element.click();
+        element.remove();
+    }
+
+    /// reset settings
+    document.getElementById('resetSettings').onclick = function () {
+        if (window.confirm(chrome.i18n.getMessage('settingsWarning') ?? 'Are you sure? This will erase your current settings!')) {
+            saveAllSettings(defaultConfigs);
+            setTimeout(function(){
+                window.location.reload();
+            },100)
+        }
+    }
+
+    /// Import settings
+    const fileSelector = document.getElementById('importSettings');
+    const importSettingsConfirmButton = document.getElementById('importSettingsButton');
+    disableImportButton();
+
+    importedConfigs = null;
+
+    fileSelector.addEventListener('change', (event) => {
+        const reader = new FileReader();
+        reader.addEventListener('load', (event) => {
+            const result = event.target.result;
+            importedConfigs = JSON.parse(result);
+
+            if (importedConfigs != null && importedConfigs !== undefined) {
+                enableImportButton();
+            }
+        });
+        reader.readAsText(event.target.files[0]);
+    });
+
+    importSettingsConfirmButton.addEventListener('click', function () {
+
+        /// reset configs
+        if (window.confirm(chrome.i18n.getMessage('settingsWarning') ?? 'Are you sure? This will erase your current settings!')) {
+            saveAllSettings(importedConfigs);
+            setTimeout(function(){
+                window.location.reload();
+            }, 100)
+        }
+        
+        /// disable import button
+        const fileSelector = document.getElementById('importSettings');
+        fileSelector.value = null;
+        disableImportButton();
+
+    });
+
+    function enableImportButton() {
+        importSettingsConfirmButton.disabled = false;
+        importSettingsConfirmButton.title = '';
+    }
+
+    function disableImportButton() {
+        importSettingsConfirmButton.disabled = true;
+        importSettingsConfirmButton.title = chrome.i18n.getMessage('chooseFileFirst');
+    }
 }
 
 document.addEventListener("DOMContentLoaded", optionsInit);

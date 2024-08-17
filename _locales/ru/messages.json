@@ -751,5 +751,17 @@
     },
     "writeAReview": {
         "message": "Написать отзыв"
+    },
+    "importSettings": {
+        "message": "Импортировать настройки"
+    },
+    "exportSettings": {
+        "message": "Экспортировать настройки"
+    },
+    "resetSettings": {
+        "message": "Сбросить настройки"
+    },
+    "settingsWarning": {
+        "message": "Вы уверены? Это сотрет ваши текущие настройки!"
     }
 }

@@ -38,7 +38,6 @@ let virtualSidebarWindowId;
 /// Listener to open url in new tab
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
-        // if (request.typeOfAction == 'mgc-regular-menu')
         switch (request.actionToDo) {
             case 'checkSelectLastVisitedTab': {
                 if (recentTabIndexes[0] == sender.tab.id) return false;

@@ -748,5 +748,17 @@
     },
     "writeAReview": {
         "message": "Escribe una reseña"
+    },
+    "importSettings": {
+        "message": "Importar configuración"
+    },
+    "exportSettings": {
+        "message": "Exportar configuración"
+    },
+    "resetSettings": {
+        "message": "Restablecer configuración"
+    },
+    "settingsWarning": {
+        "message": "¿Estás seguro? ¡Se borrarán tus configuraciones actuales!"
     }
 }
