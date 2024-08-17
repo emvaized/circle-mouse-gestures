@@ -1,6 +1,5 @@
 {
   "name": "circle-mouse-gestures",
-  "version": "1.4.0",
   "description": "This extension introduces convenient circle menu (so-called pie menu) to improve interaction with your browser.  Just hold down the right mouse button, highlight one of the actions and release the button.",
   "main": "webpack.config.js",
   "repository": {

@@ -1,3 +1,11 @@
+1.4.5
+- Migrated to Manifest V3 to comply with new Chrome Web Store requirements
+- Released code is now minified, and extension should now become much faster and lighter
+- Implemented import/export/reset settings buttons
+- Added option to require modifier key for non-regular menus to show (link, image etc)
+- Slightly updated extension icon, added outlines
+- Small fixes and improvements
+
 1.4.0
 - Removed shadow from Image viewer for better visibility with transparent images
 - Improved text field detection
