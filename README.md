@@ -78,14 +78,10 @@ Get for Chrome (Edge, Brave, Vivaldi etc): <br>
 * Option to set custom favicon for 'Open URL' action
 
 
-## Donate
-If you really enjoy this product, please consider supporting its further development by making a small donation! 
+## Support
+If you really enjoy this project, please consider supporting its further development by making a small donation using one of these services! 
 
-Ko-Fi: <br>
-<a href="https://ko-fi.com/emvaized"><img src="https://user-images.githubusercontent.com/7586345/125668092-55af2a45-aa7d-4795-93ed-de0a9a2828c5.png" alt="Support on Ko-fi" height="35"></a>   
-
-PayPal: <br>
-<a href="https://www.paypal.com/donate/?business=2KDNGXNUVZW7N&no_recurring=0&currency_code=USD"><img src="https://www.paypalobjects.com/en_US/DK/i/btn/btn_donateCC_LG.gif" height="35" width="70"/></a> 
+<a href="https://www.paypal.com/donate/?business=2KDNGXNUVZW7N&no_recurring=0&currency_code=USD"><img src="https://www.paypalobjects.com/en_US/DK/i/btn/btn_donateCC_LG.gif" alt="PayPal" height="40" width="75"/></a> &nbsp;&nbsp; <a href="https://ko-fi.com/emvaized"><img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/64f1a9ddd0246590df69ea01_kofi_long_button_blue%25402x-p-800.png" alt="Support on Ko-fi" height="40"></a>  &nbsp;&nbsp; <a href="https://www.buymeacoffee.com/emvaized" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 155px !important;" ></a>
 
 
 ## Links to my other browser extensions
