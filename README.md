@@ -28,10 +28,10 @@ Additional tools:
 
 <img src="https://github.com/emvaized/circle-mouse-gestures/blob/master/screenshots/screenshot.png">
 
-Get for Firefox: <br>
+Get for Firefox <br>
 <a href="https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/"><img src="https://user-images.githubusercontent.com/585534/107280546-7b9b2a00-6a26-11eb-8f9f-f95932f4bfec.png" alt="Get for Firefox"></a>
 
-Get for Chrome (Edge, Brave, Vivaldi etc): <br> 
+Get for Chrome (Edge, Brave, Vivaldi etc) <br> 
 <a href="https://chrome.google.com/webstore/detail/circle-mouse-gestures-pie/kkknhbbfjlibfjagilggkcelmcobgefa"><img src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/iNEddTyWiMfLSwFD6qGq.png" alt="Get for Chrome" height=65 /></a>
 
 
