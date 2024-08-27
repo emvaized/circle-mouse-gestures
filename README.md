@@ -1,7 +1,7 @@
 # <sub><img src="./icons/icon-new.png" height="48" width="48"></sub> Circle Mouse Gestures
 
-[![Changelog](https://img.shields.io/chrome-web-store/v/kkknhbbfjlibfjagilggkcelmcobgefa?label=version)](./CHANGELOG.md)
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/users/kkknhbbfjlibfjagilggkcelmcobgefa?label=users&logo=googlechrome&logoColor=white)](https://chrome.google.com/webstore/detail/circle-mouse-gestures-pie/kkknhbbfjlibfjagilggkcelmcobgefa)
+[![Changelog](https://img.shields.io/chrome-web-store/v/kkknhbbfjlibfjagilggkcelmcobgefa?label=version&color=red)](./CHANGELOG.md)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/users/kkknhbbfjlibfjagilggkcelmcobgefa?label=users&logo=googlechrome&logoColor=white&color=blue)](https://chrome.google.com/webstore/detail/circle-mouse-gestures-pie/kkknhbbfjlibfjagilggkcelmcobgefa)
 [![Mozilla Add-on](https://img.shields.io/amo/users/circle-mouse-gestures?color=%23FF6611&label=users&logo=Firefox)](https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/kkknhbbfjlibfjagilggkcelmcobgefa)](https://chrome.google.com/webstore/detail/circle-mouse-gestures-pie/kkknhbbfjlibfjagilggkcelmcobgefa/reviews)
 
