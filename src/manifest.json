@@ -1,0 +1,56 @@
+{
+  "manifest_version": 3,
+  "name": "Circle Mouse Gestures (pie menu)",
+  "version": "1.4.5",
+  "description": "__MSG_extensionDescription__",
+  "default_locale": "en",
+  "icons": {
+    "48": "assets/icons/icon-new.png",
+    "96": "assets/icons/icon-new.png",
+    "128": "assets/icons/icon-new.png"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "index.css"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  "action": {
+    "default_icon": "assets/icons/icon-new.png",
+    "default_title": "Circle Mouse Gestures",
+    "default_popup": "popup/popup.html"
+  },
+  "permissions": [
+    "<all_urls>",
+    "tabs",
+    "storage",
+    "sessions",
+    "bookmarks",
+    "clipboardWrite",
+    "clipboardRead",
+    "downloads",
+    "notifications"
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "circle_mouse_gestures@emvaized.com",
+      "strict_min_version": "109.0"
+    }
+  }
+}
