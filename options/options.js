@@ -1391,29 +1391,28 @@ function createRangeSlider(id, value, units, callbackOnChange, min = 50, max = 2
 }
 
 function positionSettingsInCenter() {
-    // setTimeout(function () {
-    let circlePreviewSegment = document.getElementById('circle-preview');
-    let occupiedWidth = circlePreviewSegment.clientWidth;
-    let allLevelConfigs = document.querySelectorAll('.level-configs');
+    return; 
+    // let circlePreviewSegment = document.getElementById('circle-preview');
+    // let occupiedWidth = circlePreviewSegment.clientWidth;
+    // let allLevelConfigs = document.querySelectorAll('.level-configs');
 
-    if (allLevelConfigs.length > 3)
-        allLevelConfigs.splice(3, 1);
+    // if (allLevelConfigs.length > 3)
+    //     allLevelConfigs.splice(3, 1);
 
-    allLevelConfigs.forEach(function (el) {
-        occupiedWidth += el.clientWidth + 30;
-    });
+    // allLevelConfigs.forEach(function (el) {
+    //     occupiedWidth += el.clientWidth + 30;
+    // });
 
-    let screenWidth = window.innerWidth;
-    let occupiedPercent = occupiedWidth / screenWidth * 100;
-    bodyMarginLeft = (100 - occupiedPercent) / 2.5;
+    // let screenWidth = window.innerWidth;
+    // let occupiedPercent = occupiedWidth / screenWidth * 100;
+    // bodyMarginLeft = (100 - occupiedPercent) / 2.5;
 
-    /// Center main content
-    document.getElementById('content').style.marginLeft = `${bodyMarginLeft}%`;
+    // /// Center main content
+    // document.getElementById('content').style.marginLeft = `${bodyMarginLeft}%`;
 
-    /// Center bottom settings container
-    let generalSettingsContainer = document.getElementById('general-settings-container');
-    generalSettingsContainer.style.marginLeft = `${(screenWidth / 2) - (generalSettingsContainer.clientWidth / 2) - (screenWidth * bodyMarginLeft / 100) - 35}px`;
-    // }, 1)
+    // /// Center bottom settings container
+    // let generalSettingsContainer = document.getElementById('general-settings-container');
+    // generalSettingsContainer.style.marginLeft = `${(screenWidth / 2) - (generalSettingsContainer.clientWidth / 2) - (screenWidth * bodyMarginLeft / 100) - 35}px`;
 }
 
 function updateDisabledOptions() {

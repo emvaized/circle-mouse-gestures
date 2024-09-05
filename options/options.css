@@ -1,3 +1,7 @@
+body {
+    margin-left: 20px;
+}
+
 /* Style the navbar */
 #navbar {
     overflow: hidden;
@@ -212,6 +216,7 @@ input {
     padding-top: 15px;
     float: left;
     margin-bottom: 15px;
+    margin-right: 8px;
 }
 
 /* Container for level buttons config */
