@@ -46,16 +46,16 @@ function optionsInit() {
             document.getElementById('resetSettings').innerHTML = chrome.i18n.getMessage('resetSettings');
 
             /// Transition centering + recalculate on window resize
-            setTimeout(function () {
-                let contentEl = document.getElementById('content');
-                contentEl.classList.add('content-transition');
+            // setTimeout(function () {
+            //     let contentEl = document.getElementById('content');
+            //     contentEl.classList.add('content-transition');
 
-                window.addEventListener('resize', function () {
-                    contentEl.classList.remove('content-transition');
-                    positionSettingsInCenter();
-                    contentEl.classList.add('content-transition');
-                })
-            }, delayToAddListeners);
+            //     window.addEventListener('resize', function () {
+            //         contentEl.classList.remove('content-transition');
+            //         positionSettingsInCenter();
+            //         contentEl.classList.add('content-transition');
+            //     })
+            // }, delayToAddListeners);
 
             /// Circle preview
             document.getElementById('circle-preview-title').innerHTML = chrome.i18n.getMessage('circlePreview');
@@ -171,8 +171,9 @@ function drawCirclePreview(typeOfMenu = selectedMenuType) {
         /// Add small delay to cover body's margin left transition
         setTimeout(function () {
             leftCoord = circle.getBoundingClientRect().left;
-            topCoord = circle.getBoundingClientRect().top;
-        }, 250);
+            topCoord = circle.offsetTop;
+        }, 10);
+        // }, 250);
 
         drawCircle(false, selectedMenuType, true, false, true);
         // positionSettingsInCenter();

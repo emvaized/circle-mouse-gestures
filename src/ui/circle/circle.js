@@ -242,8 +242,10 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
         mx = (canvasRadius / 2);
         my = (canvasRadius / 2);
     } else {
-        mx = e.pageX - leftCoord;
-        my = e.pageY - topCoord - (showIndexes ? 0 : window.scrollY);
+        // mx = e.pageX - leftCoord;
+        // my = e.pageY - topCoord - (showIndexes ? 0 : window.scrollY);
+        mx = e.clientX - leftCoord;
+        my = e.pageY - topCoord;
     }
 
     let mangle = (-Math.atan2(mx - (canvasRadius / 2), my - (canvasRadius / 2)) + Math.PI * 2.5) % (Math.PI * 2);
@@ -275,7 +277,6 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
 
         } else {
             let totalRadius1 = totalCircleRadius;
-
 
             for (let level = levelsLength - 1; level > -1; level--) {
 
