@@ -39,7 +39,7 @@ module.exports = {
         { from: "src/assets", to: "assets" },
         { from: "src/popup", to: "popup" },
         { from: "src/options", to: "options" },
-        { from: "src/data/configs.js", to: "src/data/" },
+        // { from: "src/data/configs.js", to: "src/data/" },
       ],
     }),
   ],

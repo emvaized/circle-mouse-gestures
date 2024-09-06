@@ -1314,7 +1314,7 @@ function createActionDropdownButton(id, initialValue, cbOnChange, label) {
         listenedDropdown.addEventListener("change", function (e) {
             let newValue = listenedDropdown.value;
 
-            cbOnChange(newValue);
+            cbOnChange(newValue, id);
             // configs[selectedMenuType].rockerAction = newValue;
             // saveAllSettings();
         });
