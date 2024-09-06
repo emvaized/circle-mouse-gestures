@@ -1,3 +1,11 @@
+1.5
+- CMG now always applies most settings immediately, no need to reload the page
+- Fix options page bug with click on preview stopped working after scroll
+- Scroll to selected segment after click on preview in options page
+- Disabled centering settings to avoid layout issues
+- Updated extension icon
+- Project cleanup for better performance
+
 1.4.5
 - Migrated to Manifest V3 to comply with new Chrome Web Store requirements
 - Released code is now minified, and extension should now become much faster and lighter
