@@ -64,7 +64,8 @@ function optionsInit() {
                 preselectedButtons = {};
 
                 drawCircle(e, selectedMenuType, true, false, true);
-                generateButtonsControls();
+                const buttonsContainer = generateButtonsControls();
+                buttonsContainer.scrollIntoView({block: "nearest", inline: "nearest", behavior: "smooth"});
             }
         })
     } catch (e) { if (configs.debugMode) console.log(e); }
@@ -680,20 +681,22 @@ function generateGesturesConfigs() {
 
 /// Buttons configs
 function generateButtonsControls() {
-    document.getElementById('buttons-config-container').innerHTML = '';
+    const buttonsConfigContainer = document.getElementById('buttons-config-container');
+    buttonsConfigContainer.innerHTML = '';
 
     let buttonsHeader = document.createElement('span');
     // buttonsHeader.innerHTML = chrome.i18n.getMessage('buttonsHeader') + '<br />';
     buttonsHeader.innerHTML = chrome.i18n.getMessage('levels') + '<br />';
     buttonsHeader.setAttribute('class', 'header');
     buttonsHeader.setAttribute('style', '');
-    document.getElementById('buttons-config-container').appendChild(buttonsHeader);
+    buttonsConfigContainer.appendChild(buttonsHeader);
 
     for (var i = 0; i < configs[selectedMenuType].levels.length; i++) {
         generateLevelConfigs(i);
     }
 
     generateAddLevelButton();
+    return buttonsConfigContainer;
 }
 
 function generateLevelConfigs(levelIndex = 0) {
