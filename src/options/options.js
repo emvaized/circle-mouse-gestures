@@ -306,7 +306,7 @@ function generateBehaviorConfigs() {
 
         'backgroundDimmerOpacity',
         'storeCurrentScrollPosition',
-        'highlightElementOnHover',
+        // 'highlightElementOnHover',
         'continiousVerticalScrollDetection',
         'continiousHorizontalScrollDetection',
         'copyNotification',
@@ -352,7 +352,7 @@ function generateBehaviorConfigs() {
     document.getElementById('dimBackgroundTooltip').innerText = chrome.i18n.getMessage('dimBackgroundTooltip');
     document.getElementById('windowsOnlyTooltip').innerText = chrome.i18n.getMessage('windowsOnly');
     document.getElementById('addLinkTooltipTooltip').innerText = chrome.i18n.getMessage('addLinkTooltipTooltip');
-    document.getElementById('highlightElementOnHoverTooltip').innerText = chrome.i18n.getMessage('highlightElementOnHoverTooltip');
+    // document.getElementById('highlightElementOnHoverTooltip').innerText = chrome.i18n.getMessage('highlightElementOnHoverTooltip');
     document.getElementById('storeCurrentScrollPositionTooltip').innerText = chrome.i18n.getMessage('storeCurrentScrollPositionTooltip');
     document.getElementById('showTitleOnHoverWhenHiddenTooltip').innerText = chrome.i18n.getMessage('showTitleOnHoverWhenHiddenTooltip');   
     document.getElementById('requireModifierForSpecificMenusTooltip').innerText = chrome.i18n.getMessage('requireModifierForSpecificMenusTooltip');
