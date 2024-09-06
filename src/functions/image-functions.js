@@ -28,7 +28,7 @@ function showNotification(result = true) {
                     actionToDo: 'showBrowserNotification',
                     title: chrome.i18n.getMessage('imageCopyFailTitle'),
                     message: chrome.i18n.getMessage('imageCopyFailMessage'),
-                    image: '../../icons/success/block.svg'
+                    image: './assets/icons/success/block.svg'
                 });
         } else {
             chrome.runtime.sendMessage(

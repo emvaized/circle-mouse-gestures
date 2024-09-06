@@ -242,10 +242,13 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
         mx = (canvasRadius / 2);
         my = (canvasRadius / 2);
     } else {
-        // mx = e.pageX - leftCoord;
-        // my = e.pageY - topCoord - (showIndexes ? 0 : window.scrollY);
-        mx = e.clientX - leftCoord;
-        my = e.pageY - topCoord;
+        if (showIndexes){
+            mx = e.clientX - leftCoord;
+            my = e.pageY - topCoord;
+        } else {
+            mx = e.pageX - leftCoord;
+            my = e.pageY - topCoord - (showIndexes ? 0 : window.scrollY);
+        }
     }
 
     let mangle = (-Math.atan2(mx - (canvasRadius / 2), my - (canvasRadius / 2)) + Math.PI * 2.5) % (Math.PI * 2);

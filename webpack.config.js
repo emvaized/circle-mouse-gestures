@@ -36,6 +36,7 @@ module.exports = {
       patterns: [
         "src/index.css",
         "src/manifest.json",
+        { from: "src/_locales", to: "_locales" },
         { from: "src/assets", to: "assets" },
         { from: "src/popup", to: "popup" },
         { from: "src/options", to: "options" },
