@@ -297,7 +297,7 @@ function generateBehaviorConfigs() {
         'debugMode',
         'addLinkTooltip',
         'showRegularMenuIfNoAction',
-        'applySettingsImmediately',
+        // 'applySettingsImmediately',
 
         'addCircleShadow',
         'circleShadowOpacity',
@@ -359,7 +359,7 @@ function generateBehaviorConfigs() {
 
     document.getElementById('continiousVerticalScrollDetectionTooltip').innerText = chrome.i18n.getMessage('continiousScrollDetectionHint');
     document.getElementById('continiousHorizontalScrollDetectionTooltip').innerText = chrome.i18n.getMessage('continiousScrollDetectionHint');
-    document.getElementById('applySettingsImmediatelyTooltip').innerText = chrome.i18n.getMessage('applySettingsImmediatelyTooltip');
+    // document.getElementById('applySettingsImmediatelyTooltip').innerText = chrome.i18n.getMessage('applySettingsImmediatelyTooltip');
     document.getElementById('addBlurTooltip').innerText = chrome.i18n.getMessage('addBlurTooltip');
     document.getElementById('addGhostPointerTooltip').innerText = chrome.i18n.getMessage('addGhostPointerTooltip');
     document.getElementById('checkButtonsAvailabilityTooltip').innerText = chrome.i18n.getMessage('checkButtonsAvailabilityTooltip');

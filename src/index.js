@@ -16,6 +16,9 @@ function init() {
             return this.replace(new RegExp(find.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g'), replace);
         };
     }
+
+    /// Update on settings change
+    chrome.storage.onChanged.addListener((c) => loadUserConfigs());
 }
 
 let anyButtonIsSelected = false;
@@ -46,9 +49,6 @@ function setPageListeners() {
 
         if (e.ctrlKey || e.metaKey) return;
         if (fullscreenImageIsOpen == true) return;
-
-        if (configs.applySettingsImmediately)
-            loadUserConfigs();
 
         if (configs.debugMode)
             console.log('Pushed button ' + evt.button.toString());
