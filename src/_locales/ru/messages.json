@@ -284,6 +284,12 @@
     "iconOpacity": {
         "message": "Прозрачность иконок"
     },
+    "iconUrl": {
+        "message": "Своя иконка (URL)"
+    },
+    "iconUrlPlaceholder": {
+        "message": "Свой URL иконки или строка Base64 (data:image/png;base64, ...)"
+    },
     "image": {
         "message": "Изображение"
     },

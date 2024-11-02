@@ -878,6 +878,30 @@ function generateLevelConfigs(levelIndex = 0) {
 
             openUrlContainer.appendChild(labelInput);
 
+            /// custom icon URL
+            const iconInput = document.createElement('input');
+            const iconInputIdentifier = `iconInput-${levelIndex}-${i}`;
+            iconInput.id = iconInputIdentifier;
+            iconInput.title = chrome.i18n.getMessage('iconUrl') ?? 'Custom icon URL';
+            iconInput.placeholder = chrome.i18n.getMessage('iconUrlPlaceholder') ?? 'Custom icon URL or Base64 string (data:image/png;base64, ...)';
+            iconInput.style.resize = 'both';
+            iconInput.style.width = '100%';
+            iconInput.style.marginTop = '2px';
+            if (item.iconUrl) iconInput.setAttribute('value', item.iconUrl);
+
+            setTimeout(function () {
+                const inp = document.getElementById(iconInputIdentifier);
+                inp.addEventListener('change', function (newVal) {
+                    let parts = iconInputIdentifier.split('-');
+                    configs[selectedMenuType].levels[parts[1]].buttons[parts[2]]['iconUrl'] = inp.value;
+                    drawCirclePreview();
+                    generateButtonsControls();
+                    saveAllSettings();
+                })
+            }, delayToAddListeners)
+
+            openUrlContainer.appendChild(iconInput);
+
             entry.appendChild(openUrlContainer);
         }
 
