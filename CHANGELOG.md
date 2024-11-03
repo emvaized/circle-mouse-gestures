@@ -1,3 +1,7 @@
+1.5.1
+- Added option for custom icon for 'openUrl' action
+- Options page layout and appearance improvements
+
 1.5
 - CMG now always applies most settings immediately, no need to reload the page
 - Fix options page bug with click on preview stopped working after scroll
