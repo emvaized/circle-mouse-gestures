@@ -350,12 +350,12 @@ chrome.runtime.onMessage.addListener(
                         function (parentWindow) {
                             /// if original window is fullscreen, unmaximize it
                             let originalWindowIsFullscreen = false;
-                            if (parentWindow.state == 'fullscreen') {
-                                originalWindowIsFullscreen = true;
-                                chrome.windows.update(parentWindow.id, {
-                                    'state': 'maximized'
-                                });
-                            }
+                            // if (parentWindow.state == 'fullscreen') {
+                            //     originalWindowIsFullscreen = true;
+                            //     chrome.windows.update(parentWindow.id, {
+                            //         'state': 'maximized'
+                            //     });
+                            // }
 
                             // let height = 600, width = 500;
                             let height = window.screen.height * 0.65, width = window.screen.height * 0.5;
