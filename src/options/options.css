@@ -237,6 +237,7 @@ input {
     margin-top: 15px;
     margin-right: 30px;
     max-width: 270px;
+    border-radius: 4px;
 }
 
 
@@ -357,6 +358,11 @@ input {
 }
 
 @-moz-document url-prefix() {
+    body {
+        font-family: sans-serif !important; 
+        line-height: 1.0 !important;
+    }
+
     hr {
         opacity: 0.15;
     }
