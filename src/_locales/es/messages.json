@@ -288,7 +288,7 @@
         "message": "Ícono personalizado (URL)"
     },
     "iconUrlPlaceholder": {
-        "message": "URL de ícono personalizado o cadena Base64 (data:image/png;base64, ...)"
+        "message": "URL de ícono personalizado o cadena Base64 (en formato data:image/png;base64, ...)"
     },
     "image": {
         "message": "Imagen"

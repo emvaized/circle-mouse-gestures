@@ -288,7 +288,7 @@
         "message": "Aangepast pictogram (URL)"
     },
     "iconUrlPlaceholder": {
-        "message": "Aangepast pictogram URL of Base64 string (data:image/png;base64, ...)"
+        "message": "Aangepast pictogram URL of Base64 string (in het formaat data:image/png;base64, ...)"
     },
     "image": {
         "message": "Afbeelding"

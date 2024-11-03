@@ -288,7 +288,7 @@
         "message": "Custom icon (URL)"
     },
     "iconUrlPlaceholder": {
-        "message": "Custom icon URL or Base64 string (data:image/png;base64, ...)"
+        "message": "Custom icon URL or Base64 string (in format data:image/png;base64, ...)"
     },
     "image": {
         "message": "Image"

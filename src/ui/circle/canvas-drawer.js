@@ -233,7 +233,7 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
                     if (image == undefined) {
                         image = document.createElement('img');
                         // image.src = 'https://www.google.com/s2/favicons?sz=24&domain_url=' + segment.url.replace('https://', '').split('/')[0];
-                        image.src = segment.iconUrl ?? 'https://s2.googleusercontent.com/s2/favicons?domain=' + segment.url.replace('https://', '').split('/')[0];
+                        image.src = segment.iconUrl ? segment.iconUrl : 'https://s2.googleusercontent.com/s2/favicons?domain=' + segment.url.replace('https://', '').split('/')[0];
                         image.setAttribute('height', `${iconSize}px`);
                         image.setAttribute('width', `${iconSize}px`);
                         image.id = idForFaviconImage;

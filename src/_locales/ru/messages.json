@@ -288,7 +288,7 @@
         "message": "Своя иконка (URL)"
     },
     "iconUrlPlaceholder": {
-        "message": "Свой URL иконки или строка Base64 (data:image/png;base64, ...)"
+        "message": "Свой URL иконки или строка Base64 (в формате data:image/png;base64, ...)"
     },
     "image": {
         "message": "Изображение"
