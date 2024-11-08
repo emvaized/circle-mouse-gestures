@@ -44,19 +44,16 @@ function setPageListeners() {
     });
 
     document.addEventListener("mousedown", function (e) {
-
-        evt = e || window.event;
-
         if (e.ctrlKey || e.metaKey) return;
         if (fullscreenImageIsOpen == true) return;
 
         if (configs.debugMode)
-            console.log('Pushed button ' + evt.button.toString());
+            console.log('Pushed button ' + e.button.toString());
 
         rockerActionToPerform = undefined;
 
         if (configs.openCircleOn == 'longLeftClick') {
-            if (evt.button == 0) {
+            if (e.button == 0) {
                 lastMouseDownEvent = e;
                 longPressTimerInitEvent = { 'dx': e.clientX, 'dy': e.clientY };
 
@@ -71,30 +68,43 @@ function setPageListeners() {
                         processAndShowCircle(lastMouseDownEvent);
                 }, configs.delayForLongLeftClick);
             } else return;
-        } else if ("buttons" in evt) {
+        } else if ("buttons" in e) {
 
             /// Right click
-            if (evt.buttons == 2) {
+            if (e.buttons == 2) {
                 rightClickIsHolded = true;
                 if (leftClickIsHolded) return;
                 lastMouseDownEvent = e;
 
                 processAndShowCircle(e);
-            } else if (evt.buttons == 3) {
+            } else if (e.buttons == 3) {
                 rocketButtonPressed = 0;
 
                 /// Left click
                 if (circleIsShown) {
                     e.preventDefault();
-                    hideCircle();
 
+                    const keys = Object.keys(selectedButtons);
+                for (let i = 0, l = keys.length; i < l; i++) {
+                    const key = keys[i];
+                    if (selectedButtons[key]) {
+                        anyButtonIsSelected = true;
+                        break;
+                    }
+                }
+
+                if (anyButtonIsSelected == false) {
                     if (configs.debugMode) console.log('Rocker gesture recognized!');
                     rockerActionToPerform = configs[typeOfMenu]['rockerLeftClick'];
                     triggerButtonAction(rockerActionToPerform);
+                }
+
+                hideCircle();
+                   
                 } else {
                     leftClickIsHolded = true;
                 }
-            } else if (evt.buttons == 6) {
+            } else if (e.buttons == 6) {
                 rocketButtonPressed = 6;
 
                 /// Middle click
@@ -115,9 +125,7 @@ function setPageListeners() {
     });
 
 
-    document.addEventListener("mouseup", function (e) {
-        evt = e || window.event;
-
+    document.addEventListener("mouseup", function (evt) {
         if (configs.openCircleOn == 'longLeftClick') {
             if (evt.button == 0) {
                 if (circleIsShown == true)
@@ -130,7 +138,6 @@ function setPageListeners() {
                     }
             } else return;
         } else if ("buttons" in evt) {
-            /// Left click
             if (evt.button == 0) {
                 leftClickIsHolded = false;
                 if (circleIsShown == false) return;
@@ -141,10 +148,10 @@ function setPageListeners() {
                 /// Right click
 
                 if (circleIsShown == false) return;
-                let keys = Object.keys(selectedButtons);
-                for (var i = 0; i < keys.length; i++) {
-                    let key = keys[i];
-                    if (selectedButtons[key] !== null && selectedButtons[key] !== undefined) {
+                const keys = Object.keys(selectedButtons);
+                for (let i = 0, l = keys.length; i < l; i++) {
+                    const key = keys[i];
+                    if (selectedButtons[key]) {
                         anyButtonIsSelected = true;
                         break;
                     }
