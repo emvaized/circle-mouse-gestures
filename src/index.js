@@ -245,7 +245,7 @@ function checkScrollDirection(event) {
 
     if (event.deltaY != 0) {
         /// Vertical scroll
-        if (!configs.continiousVerticalScrollDetection && !circleIsShown) return;
+        if (!configs.continiousVerticalScrollDetection) return;
 
         if (event.deltaY < 0) {
             event.preventDefault();
@@ -265,7 +265,7 @@ function checkScrollDirection(event) {
 
         /// Horizontal scroll
         if (configs.horizontalWheelActionsEnabled) {
-            if (!configs.continiousHorizontalScrollDetection && !circleIsShown) return;
+            if (!configs.continiousHorizontalScrollDetection) return;
 
             if (event.deltaX < 0) {
                 event.preventDefault();
