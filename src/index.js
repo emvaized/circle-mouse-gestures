@@ -341,15 +341,22 @@ function processAndShowCircle(e) {
         (el.tagName !== 'HTML' && elStyle.backgroundImage && elStyle.backgroundImage.includes('url(') && !elStyle.background.includes(' repeat'))) {
         /// Image is hovered
 
+        const imageUrl = el.getAttribute('src') ?? elStyle.backgroundImage.replace('url("', '').replace('")', '');
+        let parentLink, parentLinkUrl;
+
         if (el.parentNode && el.parentNode.tagName == 'A') {
+            parentLink = el.parentNode;
+            parentLinkUrl = parentLink.getAttribute('href') || parentLink.getAttribute('data-url') || parentLink.parentNode.getAttribute('href') || parentLink.parentNode.getAttribute('data-url')
+        } 
+        
+        if (parentLinkUrl && parentLinkUrl !== imageUrl){
             typeOfMenu = 'imageLinkMenu';
-            const parentLink = el.parentNode;
-            hoveredLink = parentLink.getAttribute('href') || parentLink.getAttribute('data-url') || parentLink.parentNode.getAttribute('href') || parentLink.parentNode.getAttribute('data-url');
+            hoveredLink = parentLinkUrl;
             hoveredLinkTitle = parentLink.textContent.trim();
-            hoveredImageLink = el.getAttribute('src') ?? elStyle.backgroundImage.replace('url("', '').replace('")', '');
+            hoveredImageLink = imageUrl;
         } else {
             typeOfMenu = 'imageMenu';
-            hoveredLink = el.getAttribute('src') ?? elStyle.backgroundImage.replace('url("', '').replace('")', '');
+            hoveredLink = imageUrl;
         }
     } else if (el.tagName == 'VIDEO' || el.tagName == 'AUDIO') {
         /// Html-5 player is hovered
