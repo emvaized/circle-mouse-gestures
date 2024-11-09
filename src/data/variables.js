@@ -19,6 +19,7 @@ let selectedButtonSecondLevel;
 let typeOfMenu = 'regularMenu';
 let hoveredLink;
 let hoveredLinkTitle;
+let hoveredImageLink;
 let textSelection;
 let circle;
 let circleIsShown = false;

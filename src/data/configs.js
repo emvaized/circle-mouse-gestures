@@ -176,9 +176,42 @@ const configs = {
                     { 'id': 'copyImage' },
                     { 'id': 'openImageFullscreen' },
                 ]
+            },
+        ]
+    },
+
+    'imageLinkMenu': {
+        'color': "#F05705",
+        'rockerLeftClick': 'openInFgTab',
+        'rockerMiddleClick': 'noAction',
+        'mouseWheelUpAction': 'scrollToTop',
+        'mouseWheelDownAction': 'scrollToBottom',
+        'mouseWheelLeftAction': 'noAction',
+        'mouseWheelRightAction': 'noAction',
+        'levels': [
+            {
+                'width': 120,
+                'buttons': [
+                    { 'id': 'copyImageUrl' },
+                    { 'id': 'downloadUrlAs' },
+                    { 'id': 'searchImageOnGoogle' },
+                    { 'id': 'copyImage' },
+                    { 'id': 'openImageFullscreen' },
+                ]
+            },
+
+            {
+                'color': "#3777CD",
+                'width': 57,
+                'buttons': [
+                    // { 'id': 'openInFgTab' },
+                    { 'id': 'openInBgTab' },
+                    { 'id': 'copyUrl' },
+                    { 'id': 'copyLinkText' },
+                    { 'id': 'openLinkPreview' },
+                ]
             }
         ]
-
     },
 
     'playerMenu': {

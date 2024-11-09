@@ -345,8 +345,17 @@ function processAndShowCircle(e) {
     } else if (el.tagName == 'IMG' ||
         (el.tagName !== 'HTML' && elStyle.backgroundImage && elStyle.backgroundImage.includes('url(') && !elStyle.background.includes(' repeat'))) {
         /// Image is hovered
-        typeOfMenu = 'imageMenu';
-        hoveredLink = el.getAttribute('src') ?? elStyle.backgroundImage.replace('url("', '').replace('")', '');
+
+        if (el.parentNode && el.parentNode.tagName == 'A') {
+            typeOfMenu = 'imageLinkMenu';
+            const parentLink = el.parentNode;
+            hoveredLink = parentLink.getAttribute('href') || parentLink.getAttribute('data-url') || parentLink.parentNode.getAttribute('href') || parentLink.parentNode.getAttribute('data-url');
+            hoveredLinkTitle = parentLink.textContent.trim();
+            hoveredImageLink = el.getAttribute('src') ?? elStyle.backgroundImage.replace('url("', '').replace('")', '');
+        } else {
+            typeOfMenu = 'imageMenu';
+            hoveredLink = el.getAttribute('src') ?? elStyle.backgroundImage.replace('url("', '').replace('")', '');
+        }
     } else if (el.tagName == 'VIDEO' || el.tagName == 'AUDIO') {
         /// Html-5 player is hovered
         typeOfMenu = 'playerMenu';

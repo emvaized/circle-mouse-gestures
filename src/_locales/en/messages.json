@@ -158,6 +158,9 @@
     "copyImage": {
         "message": "Copy image"
     },
+    "copyImageUrl": {
+        "message": "Copy image URL"
+    },
     "copyLinkText": {
         "message": "Copy text"
     },
@@ -301,6 +304,9 @@
     },
     "imageCopySuccessMessage": {
         "message": "Image was copied successfully"
+    },
+    "imageLinkMenu": {
+        "message": "Menu for image + link"
     },
     "imageMenu": {
         "message": "Menu for image"

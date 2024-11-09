@@ -31,6 +31,12 @@ function triggerButtonAction(actionToPerform, urlToOpen, scrollDirection) {
         case 'copyUrl': {
             if (hoveredLink && hoveredLink.includes('mailto:')) hoveredLink = hoveredLink.replaceAll('mailto:', '');
             copyToClipboard(typeOfMenu == 'regularMenu' ? window.location.href : hoveredLink);
+        } break;  
+        
+        case 'copyImageUrl': {
+            let link = typeOfMenu == 'imageLinkMenu' ? hoveredImageLink :hoveredLink;
+            if (link.includes('mailto:')) link = link.replaceAll('mailto:', '');
+            copyToClipboard(link);
         } break;
 
         case 'scrollToTop': {
@@ -140,7 +146,7 @@ function triggerButtonAction(actionToPerform, urlToOpen, scrollDirection) {
         } break;
 
         case 'copyImage': {
-            copyImg(hoveredLink);
+            copyImg(typeOfMenu == 'imageLinkMenu' ? hoveredImageLink : hoveredLink);
         } break;
 
         case 'openImageFullscreen': {

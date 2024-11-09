@@ -195,7 +195,7 @@ function openImageFullscreen(elementUnderCursor) {
             }
         }
     } else
-        viewer.setAttribute('src', hoveredLink);
+        viewer.setAttribute('src', typeOfMenu == 'imageLinkMenu' ? hoveredImageLink : hoveredLink);
 
     viewer.setAttribute('style', `border-radius: ${borderRadius}px;`);
     viewer.style.maxHeight = `${originalHeight}px`;

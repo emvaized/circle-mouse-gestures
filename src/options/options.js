@@ -79,6 +79,7 @@ function setMenuTypeDropdown() {
         'regularMenu',
         'linkMenu',
         'imageMenu',
+        'imageLinkMenu',
         'textFieldMenu',
         'selectionMenu',
         'playerMenu',
