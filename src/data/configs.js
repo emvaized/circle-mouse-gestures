@@ -53,6 +53,7 @@ const configs = {
     'showUpdateNotification': true,
     'checkButtonsAvailability': true,
     'requireModifierForSpecificMenus': false,
+    'addBorderToHoveredElement': true,
     'segmentsIndent': 0,
     'excludedDomains': '',
     'showCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'

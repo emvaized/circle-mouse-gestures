@@ -452,6 +452,12 @@ function processAndShowCircle(e) {
         }
     }
 
+    /// Add outline to the hovered element
+    if (configs.addBorderToHoveredElement && elementUnderCursor && typeOfMenu !== 'regularMenu'){
+        document.documentElement.style.setProperty('--cmg-hovered-element-border-color', configs[typeOfMenu].levels[0].color ?? configs[typeOfMenu].color);
+        elementUnderCursor.classList.add('cmg-hovered-element-border')
+    }
+
     try {
         showCircle(e);
     } catch (err) { if (configs.debugMode) console.log(err); }

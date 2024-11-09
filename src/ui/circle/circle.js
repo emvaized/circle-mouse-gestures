@@ -519,6 +519,10 @@ function hideCircle() {
         if (rockerCircle !== null)
             hideRockerIcon(rocketButtonPressed !== null);
 
+        /// Remove outline of the hovered element
+        if (configs.addBorderToHoveredElement && elementUnderCursor){
+            elementUnderCursor.classList.remove('cmg-hovered-element-border')
+        }
 
     } catch (e) { if (configs.debugMode) console.log(e); }
 }

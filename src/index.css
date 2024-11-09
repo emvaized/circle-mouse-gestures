@@ -48,20 +48,9 @@
   vertical-align: middle;
 }
 
-.cmg_hover_mouse_visited {
-  outline: 2px solid var(--cmg-link-color) !important;
-}
-
-.cmg_hover_mouse_visited_img {
-  outline: 2px solid var(--cmg-img-color) !important;
-}
-
-.cmg_hover_mouse_visited_input {
-  outline: 2px solid var(--cmg-input-color) !important;
-}
-
-.cmg_hover_mouse_visited_player {
-  outline: 2px solid var(--cmg-player-color) !important;
+.cmg-hovered-element-border{
+  outline: 2px solid var(--cmg-hovered-element-border-color) !important;
+  border-radius: 3px !important;
 }
 
 /* Ghost pointer */

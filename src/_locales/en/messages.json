@@ -1,4 +1,7 @@
 {
+    "addBorderToHoveredElement": {
+        "message": "Add border to the hovered element"
+    },
     "addBlur": {
         "message": "Background blur"
     },

@@ -315,6 +315,7 @@ function generateBehaviorConfigs() {
         'copyNotification',
         'showUpdateNotification',
         'addGhostPointer',
+        'addBorderToHoveredElement',
         'checkButtonsAvailability',
         'requireModifierForSpecificMenus',
         // 'animateHideRelativeToSelected',
