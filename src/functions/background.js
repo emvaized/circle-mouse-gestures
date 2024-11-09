@@ -386,20 +386,20 @@ chrome.runtime.onMessage.addListener(
                                     });
 
                                     /// close popup on click parent window
-                                    // function windowFocusListener(windowId) {
-                                    //     if (windowId == sender.tab.windowId) {
-                                    //         chrome.windows.onFocusChanged.removeListener(windowFocusListener);
-                                    //         chrome.windows.remove(popupWindow.id);
+                                    function windowFocusListener(windowId) {
+                                        if (windowId == sender.tab.windowId) {
+                                            chrome.windows.onFocusChanged.removeListener(windowFocusListener);
+                                            chrome.windows.remove(popupWindow.id);
 
-                                    //         if (originalWindowIsFullscreen) chrome.windows.update(parentWindow.id, {
-                                    //             'state': 'fullscreen'
-                                    //         });
-                                    //     }
-                                    // }
+                                            if (originalWindowIsFullscreen) chrome.windows.update(parentWindow.id, {
+                                                'state': 'fullscreen'
+                                            });
+                                        }
+                                    }
 
-                                    // setTimeout(function () {
-                                    //     chrome.windows.onFocusChanged.addListener(windowFocusListener);
-                                    // }, 300);
+                                    setTimeout(function () {
+                                        chrome.windows.onFocusChanged.addListener(windowFocusListener);
+                                    }, 100);
                                 });
                             }, originalWindowIsFullscreen ? 600 : 0)
                         }
