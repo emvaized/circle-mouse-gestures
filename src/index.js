@@ -225,7 +225,9 @@ function setPageListeners() {
         });
     }
 
-    document.addEventListener('wheel', checkScrollDirection, { passive: false });
+    document.addEventListener('wheel', checkScrollDirection, 
+        { passive: configs.continiousVerticalScrollDetection || configs.continiousHorizontalScrollDetection ? false : true }
+    );
 
     document.addEventListener("visibilitychange", function (event) {
         /// When tab lost or regained focus, release the right mouse key
@@ -284,13 +286,6 @@ function checkScrollDirection(event) {
     }
 
     hideCircle();
-}
-
-function checkScrollDirectionIsUp(event) {
-    if (event.wheelDelta) {
-        return event.wheelDelta > 0;
-    }
-    return event.deltaY < 0;
 }
 
 function actionShouldBreakScrollListener(action) {
