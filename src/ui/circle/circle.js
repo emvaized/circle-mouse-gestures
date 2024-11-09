@@ -101,7 +101,7 @@ function setCanvas() {
     if (showMousePointer) {
         cornerMousePointer = document.createElement('div');
         cornerMousePointer.setAttribute('id', 'cmg-corner-mouse-pointer');
-        cornerMousePointer.style.border = `1.5px solid ${configs[typeOfMenu].color}`;
+        cornerMousePointer.style.border = `2px solid ${configs[typeOfMenu].color}`;
         deltaX = 0; deltaY = 0;
         cornerMousePointer.style.transform = `translate(${(realLeftCoord + (canvasRadius / 2)) - ghostMousePointerRadius}px, ${(realTopCoord + (canvasRadius / 2)) - ghostMousePointerRadius}px)`
         document.body.appendChild(cornerMousePointer);
