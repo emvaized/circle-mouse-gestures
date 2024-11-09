@@ -344,7 +344,7 @@ chrome.runtime.onMessage.addListener(
             } break;
 
             case 'openInPopupWindow': {
-                if (request.url !== null && request.url !== sender.tab.url) {
+                if (request.url !== null) {
                     chrome.windows.get(
                         sender.tab.windowId,
                         function (parentWindow) {
@@ -368,6 +368,12 @@ chrome.runtime.onMessage.addListener(
                             if (dx + width > window.screen.width) dx = dx - (dx + width - window.screen.width);
                             if (dy + height > window.screen.height) dy = dy - (dy + height - window.screen.height);
 
+                            /// round numbers
+                            dx = Math.round(dx);
+                            dy = Math.round(dy);
+                            height = Math.round(height);
+                            width = Math.round(width);
+
                             /// create popup window
                             setTimeout(function () {
                                 chrome.windows.create({
@@ -380,20 +386,20 @@ chrome.runtime.onMessage.addListener(
                                     });
 
                                     /// close popup on click parent window
-                                    function windowFocusListener(windowId) {
-                                        if (windowId == sender.tab.windowId) {
-                                            chrome.windows.onFocusChanged.removeListener(windowFocusListener);
-                                            chrome.windows.remove(popupWindow.id);
+                                    // function windowFocusListener(windowId) {
+                                    //     if (windowId == sender.tab.windowId) {
+                                    //         chrome.windows.onFocusChanged.removeListener(windowFocusListener);
+                                    //         chrome.windows.remove(popupWindow.id);
 
-                                            if (originalWindowIsFullscreen) chrome.windows.update(parentWindow.id, {
-                                                'state': 'fullscreen'
-                                            });
-                                        }
-                                    }
+                                    //         if (originalWindowIsFullscreen) chrome.windows.update(parentWindow.id, {
+                                    //             'state': 'fullscreen'
+                                    //         });
+                                    //     }
+                                    // }
 
-                                    setTimeout(function () {
-                                        chrome.windows.onFocusChanged.addListener(windowFocusListener);
-                                    }, 300);
+                                    // setTimeout(function () {
+                                    //     chrome.windows.onFocusChanged.addListener(windowFocusListener);
+                                    // }, 300);
                                 });
                             }, originalWindowIsFullscreen ? 600 : 0)
                         }
