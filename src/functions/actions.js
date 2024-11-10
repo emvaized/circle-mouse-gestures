@@ -5,6 +5,8 @@ let lastPlayerVolume;
 function triggerButtonAction(actionToPerform, urlToOpen, scrollDirection) {
     /// scrollDirection is 'up' or 'down'
 
+    if (!document.hasFocus()) return;
+
     if (configs.debugMode) {
         if (configs.debugMode) console.log('Action to perform: ');
         if (configs.debugMode) console.log(actionToPerform);

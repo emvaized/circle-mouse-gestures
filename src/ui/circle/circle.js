@@ -443,7 +443,7 @@ function hideCircle() {
                 }
             }
 
-            if (rocketButtonPressed == null && typeOfMenu !== null) {
+            if (rocketButtonPressed == null && typeOfMenu !== null && document.hasFocus()) {
                 let actionToPerform;
                 let customUrlToOpen;
 
