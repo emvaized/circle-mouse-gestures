@@ -5,7 +5,6 @@ async function showLinkTooltip() {
 
     linkTooltip = document.createElement('div');
     linkTooltip.setAttribute('class', 'cmg-link-tooltip');
-    // linkTooltip.setAttribute('style', `left: 0px; top: 0px;max-width: ${configs.circleRadius * 2}px;z-index: 99999; font-size: 13.5px;opacity: 0.0; align-items: center;display:inline-block !important; position: fixed !important;background: ${configs[typeOfMenu].color}; border-radius: 9px;color: white; text-align: center; padding: 6px; pointer-events: none;`);
     linkTooltip.style.maxWidth = `${configs.circleRadius * 2}px`;
     linkTooltip.style.background = configs[typeOfMenu].color;
 
@@ -35,7 +34,7 @@ async function showLinkTooltip() {
 
     /// Draw type icon
     if (configs.showCategoryIconInTooltip) {
-        var typeIcon = document.createElement('div');
+        const typeIcon = document.createElement('div');
         typeIcon.setAttribute('style', `color: rgba(256,256,256,0.7); font-size: 12px !important;display: inline-block; margin-right: 3px;`);
 
         let iconData = helperTooltipIcons[typeOfMenu];
