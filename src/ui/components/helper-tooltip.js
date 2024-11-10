@@ -22,10 +22,11 @@ async function showLinkTooltip() {
     const label = document.createElement('span');
     label.setAttribute('id', 'cmg-helper-tooltip-label');
     label.innerText = typeOfMenu == 'linkMenu' ?
-        configs.showLinkTextInTooltip && hoveredLinkTitle !== null && hoveredLinkTitle !== undefined && hoveredLinkTitle !== ''
-            && hoveredLinkTitle !== hoveredLink && hoveredLinkTitle !== linkToDisplay
-            ? (hoveredLinkTitle.length > 24 ? hoveredLinkTitle.substring(0, 24) + '...' : hoveredLinkTitle)
-            : chrome.i18n.getMessage('link')
+        // configs.showLinkTextInTooltip && hoveredLinkTitle !== null && hoveredLinkTitle !== undefined && hoveredLinkTitle !== ''
+        //     && hoveredLinkTitle !== hoveredLink && hoveredLinkTitle !== linkToDisplay
+        //     ? (hoveredLinkTitle.length > 24 ? hoveredLinkTitle.substring(0, 24) + '...' : hoveredLinkTitle)
+        //     : 
+            chrome.i18n.getMessage('link')
         : typeOfMenu == 'imageMenu' ? chrome.i18n.getMessage('image')
             : typeOfMenu == 'playerMenu' ? chrome.i18n.getMessage('player')
                 : typeOfMenu == 'selectionMenu' || (typeOfMenu == 'textFieldMenu' && textSelection.toString() !== '') ? chrome.i18n.getMessage('selectedText') :
@@ -81,8 +82,9 @@ async function showLinkTooltip() {
         text.innerText = fileName !== null && fileName !== undefined ? fileName : configs.showFullLinkInTooltip ? hoveredLink : hoveredLink.substring(0, 26);
     } else {
         if (typeOfMenu == 'selectionMenu' || (typeOfMenu == 'textFieldMenu' && textSelection.toString() !== '')) {
-            let textSelectionString = textSelection.toString();
-            text.innerText = textSelectionString.length > maxSymbolsInBody ? textSelectionString.substring(0, maxSymbolsInBody - 3) + '...' : textSelectionString;
+            const textSelectionString = textSelection.toString();
+            // text.innerText = textSelectionString;
+            text.innerText = `${textSelectionString.length} ${chrome.i18n.getMessage('symbolsCount').toLowerCase()}, ${textSelectionString.split(' ').length} ${chrome.i18n.getMessage('wordsCount').toLowerCase()}`;
         } else if (typeOfMenu == 'textFieldMenu') {
 
             /// Set tooltip body to display current clipboard content
@@ -104,22 +106,35 @@ async function showLinkTooltip() {
                 const dyToShow = realTopCoord - (linkTooltip.clientHeight) - 8;
                 linkTooltip.style.transform = `translate(${dxToShow}px, ${dyToShow}px)`;
             }
-        }
-        else {
-            text.innerText = configs.showFullLinkInTooltip ? linkToDisplay : linkToDisplay.length > maxSymbolsInBody ? linkToDisplay.substring(0, maxSymbolsInBody - 3) + '...' : linkToDisplay;
+
+        } else {
+            // text.innerText = configs.showFullLinkInTooltip ? linkToDisplay : linkToDisplay.length > maxSymbolsInBody ? linkToDisplay.substring(0, maxSymbolsInBody - 3) + '...' : linkToDisplay;
+            text.innerText = linkToDisplay;
         }
     }
 
-    text.setAttribute('style', `color: rgba(${fgColorRgb.red}, ${fgColorRgb.green}, ${fgColorRgb.blue}, 1.0); word-break:break-all;${typeOfMenu == 'selectionMenu' ? '' : 'text-decoration: underline;'}`);
+    text.setAttribute('style', `
+color: rgba(${fgColorRgb.red}, ${fgColorRgb.green}, ${fgColorRgb.blue}, 1.0);
+word-break:break-all;
+overflow: hidden !important;
+text-overflow: ellipsis !important;
+overflow: hidden !important;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 2;
+`);
     linkTooltip.appendChild(text);
-
     document.body.appendChild(linkTooltip);
 
+    const linkTooltipHeight = linkTooltip.clientHeight;
     let dxToShow = realLeftCoord + (canvasRadius / 2) - (linkTooltip.clientWidth / 2);
-    let dyToShow = realTopCoord - (linkTooltip.clientHeight) - 8;
+    let dyToShow = realTopCoord - linkTooltipHeight - 8;
 
     if (configs.addCircleShadow)
         dyToShow += 15;
+
+    /// Check for overflow on top
+    if (dyToShow < 0) dyToShow += canvasRadius + linkTooltipHeight + 14;
 
     // linkTooltip.style.transform = `translate(${dxToShow}px, ${realTopCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px) scale(0.0)`;
     switch (configs.showCircleAnimation) {
@@ -133,13 +148,14 @@ async function showLinkTooltip() {
         } break;
         case 'scale': {
             linkTooltip.style.opacity = 0.0;
-            linkTooltip.style.transform = `translate(${dxToShow}px, ${realTopCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px) scale(0.0)`;
+            // linkTooltip.style.transform = `translate(${dxToShow}px, ${realTopCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px) scale(0.0)`;
+            linkTooltip.style.transform = `translate(${dxToShow}px, ${dyToShow}px) scale(1.0)`;
         } break;
     }
 
     setTimeout(function () {
         linkTooltip.style.transition = `transform ${configs.animationDuration}ms ease-out, opacity ${configs.animationDuration}ms ease-out`;
-        linkTooltip.style.transform = `translate(${dxToShow}px, ${dyToShow}px) scale(1.0)`;
+        // linkTooltip.style.transform = `translate(${dxToShow}px, ${dyToShow}px) scale(1.0)`;
         linkTooltip.style.opacity = configs.circleOpacity ?? 1.0;
     }, 1);
 }
@@ -147,7 +163,7 @@ async function showLinkTooltip() {
 function hideLinkTooltip() {
     if (linkTooltip == undefined || linkTooltip == null) return;
 
-    const dxShown = realLeftCoord + (canvasRadius / 2) - (linkTooltip.clientWidth / 2);
+    // const dxShown = realLeftCoord + (canvasRadius / 2) - (linkTooltip.clientWidth / 2);
 
     switch (configs.hideCircleAnimation) {
         case 'noAnimation': {
@@ -158,8 +174,8 @@ function hideLinkTooltip() {
             linkTooltip.style.opacity = 0.0;
         } break;
         case 'scale': {
-            linkTooltip.style.transform = `translate(${dxShown}px, ${realTopCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px) scale(0.0)`;
             linkTooltip.style.opacity = 0.0;
+            // linkTooltip.style.transform = `translate(${dxShown}px, ${realTopCoord + configs.circleRadius - (linkTooltip.clientHeight / 2)}px) scale(0.0)`;
         } break;
     }
 

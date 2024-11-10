@@ -784,5 +784,11 @@
     },
     "requireModifierForSpecificMenusTooltip": {
         "message": "Require modifier key (Shift, Meta, Contorl or Alt) to be pressed to reveal special menus for links, images etc. Without a modifier key a regular menu will be shown"
+    },
+    "symbolsCount": {
+        "message": "Symbols"
+    },
+    "wordsCount": {
+        "message": "Words"
     }
 }
