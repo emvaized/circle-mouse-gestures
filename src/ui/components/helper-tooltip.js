@@ -1,12 +1,12 @@
 async function showLinkTooltip() {
     if (configs.debugMode) console.log('showing link tooltip...');
 
-    let fgColorRgb = getTextColorForBackground(configs[typeOfMenu].color);
+    const fgColorRgb = getTextColorForBackground(configs[typeOfMenu].levels[0].color ?? configs[typeOfMenu].color);
 
     linkTooltip = document.createElement('div');
     linkTooltip.setAttribute('class', 'cmg-link-tooltip');
     linkTooltip.style.maxWidth = `${configs.circleRadius * 2}px`;
-    linkTooltip.style.background = configs[typeOfMenu].color;
+    linkTooltip.style.background =  configs[typeOfMenu].levels[0].color ?? configs[typeOfMenu].color;
 
     if (configs.addCircleShadow)
         linkTooltip.style.boxShadow = `0px 5px 12px 0 rgba(0,0,0,${configs.circleShadowOpacity})`;
