@@ -324,6 +324,7 @@ const defaultConfigs = {
     'showUpdateNotification': true,
     'checkButtonsAvailability': true,
     'requireModifierForSpecificMenus': false,
+    'addBorderToHoveredElement': true,
     'blurRadius': 4,
     'excludedDomains': '',
     'showCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
@@ -424,6 +425,40 @@ const defaultConfigs = {
                     { 'id': 'cutText' },
                     { 'id': 'selectAllText' },
                     { 'id': 'clearInputField' },
+                ]
+            }
+        ]
+    },
+
+    'imageLinkMenu': {
+        'color': "#F05705",
+        'rockerLeftClick': 'openInFgTab',
+        'rockerMiddleClick': 'noAction',
+        'mouseWheelUpAction': 'scrollToTop',
+        'mouseWheelDownAction': 'scrollToBottom',
+        'mouseWheelLeftAction': 'noAction',
+        'mouseWheelRightAction': 'noAction',
+        'levels': [
+            {
+                'width': 120,
+                'buttons': [
+                    { 'id': 'copyImageUrl' },
+                    { 'id': 'downloadUrlAs' },
+                    { 'id': 'searchImageOnGoogle' },
+                    { 'id': 'copyImage' },
+                    { 'id': 'openImageFullscreen' },
+                ]
+            },
+
+            {
+                'color': "#3777CD",
+                'width': 57,
+                'buttons': [
+                    // { 'id': 'openInFgTab' },
+                    { 'id': 'openInBgTab' },
+                    { 'id': 'copyUrl' },
+                    { 'id': 'copyLinkText' },
+                    { 'id': 'openLinkPreview' },
                 ]
             }
         ]
