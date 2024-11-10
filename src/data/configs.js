@@ -29,7 +29,7 @@ const configs = {
     /// and 'combine' will add it as outer circle level
     'interactiveMenusBehavior': 'replace',  /// possible values: 'replace', 'combine'
     'addLinkTooltip': false,
-    'showFullLinkInTooltip': false,
+    // 'showFullLinkInTooltip': false,
     'showCategoryIconInTooltip': true,
     // 'showLinkTextInTooltip': true,
     'showLinkTooltipForPageItself': false,
@@ -300,7 +300,7 @@ const defaultConfigs = {
     'delayForLongLeftClick': 500, /// ms
     'interactiveMenusBehavior': 'replace',  /// possible values: 'replace', 'combine'
     'addLinkTooltip': false,
-    'showFullLinkInTooltip': false,
+    // 'showFullLinkInTooltip': false,
     'showCategoryIconInTooltip': true,
     'showLinkTextInTooltip': false,
     'showLinkTooltipForPageItself': false,

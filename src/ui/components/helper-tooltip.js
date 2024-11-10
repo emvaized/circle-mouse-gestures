@@ -27,7 +27,7 @@ async function showLinkTooltip() {
         //     ? (hoveredLinkTitle.length > 24 ? hoveredLinkTitle.substring(0, 24) + '...' : hoveredLinkTitle)
         //     : 
             chrome.i18n.getMessage('link')
-        : typeOfMenu == 'imageMenu' ? chrome.i18n.getMessage('image')
+        : (typeOfMenu == 'imageMenu' || typeOfMenu == 'imageLinkMenu') ? chrome.i18n.getMessage('image')
             : typeOfMenu == 'playerMenu' ? chrome.i18n.getMessage('player')
                 : typeOfMenu == 'selectionMenu' || (typeOfMenu == 'textFieldMenu' && textSelection.toString() !== '') ? chrome.i18n.getMessage('selectedText') :
                     typeOfMenu == 'textFieldMenu' ? chrome.i18n.getMessage('inputField') : chrome.i18n.getMessage('page');
@@ -54,7 +54,7 @@ async function showLinkTooltip() {
             svgCanvasContext.save();
 
             /// Set color
-            svgCanvasContext.fillStyle = `rgba(${fgColorRgb.red}, ${fgColorRgb.green}, ${fgColorRgb.blue}, 0.75)`;
+            svgCanvasContext.fillStyle = `rgba(${fgColorRgb.red}, ${fgColorRgb.green}, ${fgColorRgb.blue}, 0.85)`;
             svgCanvasContext.scale(0.5, 0.5);
 
             const p = new Path2D(iconData);
@@ -66,7 +66,7 @@ async function showLinkTooltip() {
     }
 
     label.innerHTML += '<br />';
-    label.style.color = `rgba(${fgColorRgb.red}, ${fgColorRgb.green}, ${fgColorRgb.blue}, 0.75)`;
+    label.style.color = `rgba(${fgColorRgb.red}, ${fgColorRgb.green}, ${fgColorRgb.blue}, 0.85)`;
     linkTooltip.appendChild(label);
 
     /// Set body
@@ -74,12 +74,13 @@ async function showLinkTooltip() {
     text.id = 'cmg-helper-tooltip-body';
     const maxSymbolsInBody = 33;
 
-    if (typeOfMenu == 'imageMenu' || typeOfMenu == 'playerMenu') {
+    if (typeOfMenu == 'imageMenu' || typeOfMenu == 'playerMenu' || typeOfMenu == 'imageLinkMenu') {
         let fileName;
+        let link = typeOfMenu == 'imageLinkMenu' ? hoveredImageLink : hoveredLink;
         try {
-            fileName = hoveredLink.split('#').shift().split('?').shift().split('/').pop();
+            fileName = link.split('#').shift().split('?').shift().split('/').pop();
         } catch (e) { if (configs.debugMode) console.log(e); }
-        text.innerText = fileName !== null && fileName !== undefined ? fileName : configs.showFullLinkInTooltip ? hoveredLink : hoveredLink.substring(0, 26);
+        text.innerText = fileName ?? link;
     } else {
         if (typeOfMenu == 'selectionMenu' || (typeOfMenu == 'textFieldMenu' && textSelection.toString() !== '')) {
             const textSelectionString = textSelection.toString();
