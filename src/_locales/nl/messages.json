@@ -158,6 +158,9 @@
     "copyImage": {
         "message": "Afbeelding kopiëren"
     },
+    "copyImageUrl": {
+        "message": "Afbeeldings-URL kopiëren"
+    },
     "copyLinkText": {
         "message": "Tekst kopiëren"
     },
@@ -223,6 +226,9 @@
     },
     "excludedDomains": {
         "message": "Genegeerde domeinen"
+    },
+    "exportSettings": {
+        "message": "Exportinstellingen"
     },
     "extensionDescription": {
         "message": "Een cirkelmenu met acties ter vervanging van het rechtermuisknopmenu"
@@ -302,8 +308,14 @@
     "imageCopySuccessMessage": {
         "message": "De afbeelding is gekopieerd"
     },
+    "imageLinkMenu": {
+        "message": "Menu voor afbeelding + link"
+    },
     "imageMenu": {
         "message": "Afbeeldingenmenu"
+    },
+    "importSettings": {
+        "message": "Importinstellingen"
     },
     "inactiveMenuBehavior": {
         "message": "Als het menu van een element inactief is:"
@@ -358,6 +370,9 @@
     },
     "longLeftClickThresholdTooltip": {
         "message": "Als de cursor met dit aantal pixels verschoven wordt, dan wordt het menu niet geopend"
+    },
+    "manageSettingsLabel": {
+        "message": "Instellingen beheren"
     },
     "maximizeWindow": {
         "message": "Venster maximaliseren"
@@ -533,8 +548,17 @@
     "replayVideo": {
         "message": "Opnieuw afspelen"
     },
+    "requireModifierForSpecificMenus": {
+        "message": "Modifier-toets nodig voor niet-reguliere menu's"
+    },
+    "requireModifierForSpecificMenusTooltip": {
+        "message": "Vereist dat de modifier-toets (Shift, Meta, Control of Alt) wordt ingedrukt om speciale menu's voor links, afbeeldingen etc. te tonen. Zonder modifier-toets wordt een normaal menu getoond"
+    },
     "resetColor": {
         "message": "Kleur wissen"
+    },
+    "resetSettings": {
+        "message": "Reset instellingen"
     },
     "restore": {
         "message": "Herstellen"
@@ -608,6 +632,9 @@
     "segmentColor": {
         "message": "Onderdeelkleur"
     },
+    "segmentsIndent": {
+        "message": "Ruimte tussen onderdelen"
+    },
     "selectAll": {
         "message": "Alles selecteren"
     },
@@ -628,6 +655,9 @@
     },
     "settings": {
         "message": "Instellingen"
+    },
+    "settingsWarning": {
+        "message": "Weet je het zeker? Het zal je huidige instellingen wissen!"
     },
     "showActionIcons": {
         "message": "Pictogrammen tonen naast acties"
@@ -659,9 +689,6 @@
     "showTitleOnHoverWhenHiddenTooltip": {
         "message": "Hulpballonnen tonen na aanwijzen bij tonen van actiepictogrammen"
     },
-    "segmentsIndent": {
-        "message": "Ruimte tussen onderdelen"
-    },
     "showUpdateNotification": {
         "message": "Melding tonen na bijwerken van extensie"
     },
@@ -688,6 +715,9 @@
     },
     "switchToPreviousTab": {
         "message": "Vorig tabblad"
+    },
+    "symbolsCount": {
+        "message": "Symbolen"
     },
     "tab": {
         "message": "Tabblad"
@@ -752,28 +782,10 @@
     "windowsOnly": {
         "message": "Toont het browsermenu als de cursor omhoog wordt verplaatst. Let op: dit werkt alleen op Windows. Op andere systemen (Linux, macOS) is mogelijk dubbelklikken vereist."
     },
+    "wordsCount": {
+        "message": "Woorden"
+    },
     "writeAReview": {
         "message": "Recensie plaatsen"
-    },
-    "importSettings": {
-        "message": "Importinstellingen"
-    },
-    "exportSettings": {
-        "message": "Exportinstellingen"
-    },
-    "resetSettings": {
-        "message": "Reset instellingen"
-    },
-    "settingsWarning": {
-        "message": "Weet je het zeker? Het zal je huidige instellingen wissen!"
-    },
-    "manageSettingsLabel": {
-        "message": "Instellingen beheren"
-    },
-    "requireModifierForSpecificMenus": {
-        "message": "Modifier-toets nodig voor niet-reguliere menu's"
-    },
-    "requireModifierForSpecificMenusTooltip": {
-        "message": "Vereist dat de modifier-toets (Shift, Meta, Control of Alt) wordt ingedrukt om speciale menu's voor links, afbeeldingen etc. te tonen. Zonder modifier-toets wordt een normaal menu getoond"
     }
 }

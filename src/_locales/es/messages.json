@@ -158,6 +158,9 @@
     "copyImage": {
         "message": "Copiar imagen"
     },
+    "copyImageUrl": {
+        "message": "Copiar URL de la imagen"
+    },
     "copyLinkText": {
         "message": "Copiar texto"
     },
@@ -223,6 +226,9 @@
     },
     "excludedDomains": {
         "message": "Dominios excluidos"
+    },
+    "exportSettings": {
+        "message": "Exportar configuración"
     },
     "extensionDescription": {
         "message": "Menú circular con acciones al hacer clic con el botón derecho del mouse"
@@ -302,8 +308,14 @@
     "imageCopySuccessMessage": {
         "message": "La imagen se copió con éxito"
     },
+    "imageLinkMenu": {
+        "message": "Menú para imagen + enlace"
+    },
     "imageMenu": {
         "message": "Menú para imagen"
+    },
+    "importSettings": {
+        "message": "Importar configuración"
     },
     "inactiveMenuBehavior": {
         "message": "Cuando el menú para el elemento está inactivo:"
@@ -358,6 +370,9 @@
     },
     "longLeftClickThresholdTooltip": {
         "message": "Si el cursor se ha movido por esta cantidad de píxeles, no abra el menú al final del temporizador"
+    },
+    "manageSettingsLabel": {
+        "message": "Administrar configuraciones"
     },
     "maximizeWindow": {
         "message": "Maximizar ventana"
@@ -533,8 +548,17 @@
     "replayVideo": {
         "message": "Repetir"
     },
+    "requireModifierForSpecificMenus": {
+        "message": "Requerir tecla modificadora para menús no regulares"
+    },
+    "requireModifierForSpecificMenusTooltip": {
+        "message": "Requiere que se presione la tecla modificadora (Shift, Meta, Control o Alt) para revelar menús especiales para enlaces, imágenes, etc. Sin una tecla modificadora, se mostrará un menú normal"
+    },
     "resetColor": {
         "message": "Restablecer color"
+    },
+    "resetSettings": {
+        "message": "Restablecer configuración"
     },
     "restore": {
         "message": "Restaurar"
@@ -632,6 +656,9 @@
     "settings": {
         "message": "Ajustes"
     },
+    "settingsWarning": {
+        "message": "¿Estás seguro? ¡Se borrarán tus configuraciones actuales!"
+    },
     "showActionIcons": {
         "message": "Mostrar iconos de acción"
     },
@@ -688,6 +715,9 @@
     },
     "switchToPreviousTab": {
         "message": "Pestaña anterior"
+    },
+    "symbolsCount": {
+        "message": "Símbolos"
     },
     "tab": {
         "message": "Pestaña"
@@ -752,28 +782,10 @@
     "windowsOnly": {
         "message": "Muestra el menú de contexto regular con el mouse hacia arriba. Funcionará solo en Windows, en otros sistemas (Linux, MacOS) puede requerir doble clic"
     },
+    "wordsCount": {
+        "message": "Palabras"
+    },
     "writeAReview": {
         "message": "Escribe una reseña"
-    },
-    "importSettings": {
-        "message": "Importar configuración"
-    },
-    "exportSettings": {
-        "message": "Exportar configuración"
-    },
-    "resetSettings": {
-        "message": "Restablecer configuración"
-    },
-    "settingsWarning": {
-        "message": "¿Estás seguro? ¡Se borrarán tus configuraciones actuales!"
-    },
-    "manageSettingsLabel": {
-        "message": "Administrar configuraciones"
-    },
-    "requireModifierForSpecificMenus": {
-        "message": "Requerir tecla modificadora para menús no regulares"
-    },
-    "requireModifierForSpecificMenusTooltip": {
-        "message": "Requiere que se presione la tecla modificadora (Shift, Meta, Control o Alt) para revelar menús especiales para enlaces, imágenes, etc. Sin una tecla modificadora, se mostrará un menú normal"
     }
 }

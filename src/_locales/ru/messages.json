@@ -158,6 +158,9 @@
     "copyImage": {
         "message": "Копировать изображение"
     },
+    "copyImageUrl": {
+        "message": "Копировать URL изображения"
+    },
     "copyLinkText": {
         "message": "Копировать текст"
     },
@@ -223,6 +226,9 @@
     },
     "excludedDomains": {
         "message": "Исключенные домены"
+    },
+    "exportSettings": {
+        "message": "Экспортировать настройки"
     },
     "extensionDescription": {
         "message": "Круговое меню с действиями при правом клике мышью"
@@ -302,8 +308,14 @@
     "imageCopySuccessMessage": {
         "message": "Изображение скопировано успешно"
     },
+    "imageLinkMenu": {
+        "message": "Меню для изображения со ссылкой"
+    },
     "imageMenu": {
         "message": "Меню изображения"
+    },
+    "importSettings": {
+        "message": "Импортировать настройки"
     },
     "inactiveMenuBehavior": {
         "message": "Когда меню элемента неактивно:"
@@ -358,6 +370,9 @@
     },
     "longLeftClickThresholdTooltip": {
         "message": "Если курсор сдвинулся на это расстояние (px), не открывать меню по окончанию таймера"
+    },
+    "manageSettingsLabel": {
+        "message": "Управление настройками"
     },
     "maximizeWindow": {
         "message": "Развернуть окно"
@@ -533,8 +548,17 @@
     "replayVideo": {
         "message": "Сначала"
     },
+    "requireModifierForSpecificMenus": {
+        "message": "Требовать клавишу-модификатор для нестандартных меню"
+    },
+    "requireModifierForSpecificMenusTooltip": {
+        "message": "Для отображения специальных меню для ссылок, изображений и т. д. необходимо будет нажать клавишу-модификатор (Shift, Meta, Control или Alt). Без клавиши-модификатора будет отображаться обычное меню"
+    },
     "resetColor": {
         "message": "Сбросить цвет"
+    },
+    "resetSettings": {
+        "message": "Сбросить настройки"
     },
     "restore": {
         "message": "Восстановить"
@@ -632,6 +656,9 @@
     "settings": {
         "message": "Настройки"
     },
+    "settingsWarning": {
+        "message": "Вы уверены? Это сотрет ваши текущие настройки!"
+    },
     "showActionIcons": {
         "message": "Показывать иконки действий"
     },
@@ -688,6 +715,9 @@
     },
     "switchToPreviousTab": {
         "message": "Пред. вкладка"
+    },
+    "symbolsCount": {
+        "message": "Символов"
     },
     "tab": {
         "message": "Вкладка"
@@ -755,28 +785,10 @@
     "windowsOnly": {
         "message": "Работает только на Windows. На других системах (Linux, MacOS) требует двойного клика"
     },
+    "wordsCount": {
+        "message": "Слов(а)"
+    },
     "writeAReview": {
         "message": "Написать отзыв"
-    },
-    "importSettings": {
-        "message": "Импортировать настройки"
-    },
-    "exportSettings": {
-        "message": "Экспортировать настройки"
-    },
-    "resetSettings": {
-        "message": "Сбросить настройки"
-    },
-    "settingsWarning": {
-        "message": "Вы уверены? Это сотрет ваши текущие настройки!"
-    },
-    "manageSettingsLabel": {
-        "message": "Управление настройками"
-    },
-    "requireModifierForSpecificMenus": {
-        "message": "Требовать клавишу-модификатор для нестандартных меню"
-    },
-    "requireModifierForSpecificMenusTooltip": {
-        "message": "Для отображения специальных меню для ссылок, изображений и т. д. необходимо будет нажать клавишу-модификатор (Shift, Meta, Control или Alt). Без клавиши-модификатора будет отображаться обычное меню"
     }
 }
