@@ -164,7 +164,12 @@ function triggerButtonAction(actionToPerform, urlToOpen, scrollDirection) {
         } break;
 
         case 'openInPopupWindow': {
-            chrome.runtime.sendMessage({ actionToDo: 'openInPopupWindow', url: hoveredLink, dx: lastMouseDownEvent.screenX, dy: lastMouseDownEvent.screenY });
+            chrome.runtime.sendMessage({ 
+                actionToDo: 'openInPopupWindow', 
+                url: hoveredLink, 
+                dx: lastMouseDownEvent ? lastMouseDownEvent.screenX : 0, 
+                dy: lastMouseDownEvent ? lastMouseDownEvent.screenY : 0 
+            });
         } break;
 
         case 'textTooLong': {
