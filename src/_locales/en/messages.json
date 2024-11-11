@@ -6,7 +6,7 @@
         "message": "Can be seen only when circle opacity is less than 1.0"
     },
     "addBorderToHoveredElement": {
-        "message": "Add border to the hovered element"
+        "message": "Show border around the selected element"
     },
     "addCircleShadow": {
         "message": "Add shadow"

@@ -5,6 +5,9 @@
     "addBlurTooltip": {
         "message": "Alleen zichtbaar als de cirkeldoorzichtbaarheid lager dan 1.0 is"
     },
+    "addBorderToHoveredElement": {
+        "message": "Vis kant omkring det valgte element"
+    },
     "addCircleShadow": {
         "message": "Schaduw tonen"
     },

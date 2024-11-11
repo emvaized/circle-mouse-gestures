@@ -5,6 +5,9 @@
     "addBlurTooltip": {
         "message": "Заметно только при прозрачности круга меньше 1.0"
     },
+    "addBorderToHoveredElement": {
+        "message": "Показать рамку вокруг выбранного элемента"
+    },
     "addCircleShadow": {
         "message": "Добавить тень"
     },

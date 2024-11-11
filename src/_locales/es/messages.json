@@ -5,6 +5,9 @@
     "addBlurTooltip": {
         "message": "Solo se puede ver cuando la opacidad del círculo es inferior a 1,0"
     },
+    "addBorderToHoveredElement": {
+        "message": "Mostrar borde alrededor del elemento seleccionado"
+    },
     "addCircleShadow": {
         "message": "Añadir sombra"
     },
