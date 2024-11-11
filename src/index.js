@@ -85,22 +85,22 @@ function setPageListeners() {
                     e.preventDefault();
 
                     const keys = Object.keys(selectedButtons);
-                for (let i = 0, l = keys.length; i < l; i++) {
-                    const key = keys[i];
-                    if (selectedButtons[key]) {
-                        anyButtonIsSelected = true;
-                        break;
+                    for (let i = 0, l = keys.length; i < l; i++) {
+                        const key = keys[i];
+                        if (selectedButtons[key]) {
+                            anyButtonIsSelected = true;
+                            break;
+                        }
                     }
-                }
 
-                if (anyButtonIsSelected == false) {
-                    if (configs.debugMode) console.log('Rocker gesture recognized!');
-                    rockerActionToPerform = configs[typeOfMenu]['rockerLeftClick'];
-                    triggerButtonAction(rockerActionToPerform);
-                }
+                    if (anyButtonIsSelected == false) {
+                        if (configs.debugMode) console.log('Rocker gesture recognized!');
+                        rockerActionToPerform = configs[typeOfMenu]['rockerLeftClick'];
+                        triggerButtonAction(rockerActionToPerform);
+                    }
 
-                hideCircle();
-                   
+                    hideCircle();
+                    
                 } else {
                     leftClickIsHolded = true;
                 }
@@ -163,6 +163,9 @@ function setPageListeners() {
                         hideCircle();
 
                 } else {
+                    hideCircle();
+
+                    /// Experimental shifting animation, left for reference
                     // if (configs.animateHideRelativeToSelected) {
                     //     let xPercent = (e.clientX - leftCoord) / (canvasRadius);
                     //     if (xPercent < 0) xPercent = 0.0;
@@ -174,8 +177,6 @@ function setPageListeners() {
 
                     //     circle.style.transformOrigin = `${xPercent * 100}% ${yPercent * 100}%`;
                     // }
-
-                    hideCircle();
                 }
             }
         }

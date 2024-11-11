@@ -302,7 +302,7 @@ const defaultConfigs = {
     'addLinkTooltip': false,
     // 'showFullLinkInTooltip': false,
     'showCategoryIconInTooltip': true,
-    'showLinkTextInTooltip': false,
+    // 'showLinkTextInTooltip': false,
     'showLinkTooltipForPageItself': false,
     'linkTooltipOpacity': 1.0,
     'circleHideAnimation': true,
