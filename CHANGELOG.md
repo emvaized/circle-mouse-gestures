@@ -1,3 +1,10 @@
+1.5.2
+- Added new menu type "Image with link", for images nested in link element
+- Added option to show border around the selected element
+- Some fixes to ensure that actions are not called on inactive pages
+- Fixes when "Hide menu if no action is selected" disabled
+- Other small fixes and improvements
+
 1.5.1
 - Added option for custom icon for 'openUrl' action
 - Options page layout and appearance improvements
