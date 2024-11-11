@@ -125,6 +125,34 @@ const sortedActionButtons = {
             'searchImageOnGoogle',
             'copyUrl',
             'copyImage',
+            'copyImageUrl',
+            'openImageFullscreen',
+        ],
+        '—': [
+            'noAction'
+        ]
+    },
+
+    'imageLinkMenu':
+    {
+        'linkMenu': [
+            'openInFgTab',
+            'copyLinkText',
+            'openInBgTab',
+            'copyUrl',
+            'openLinkPreview',
+            'openInPopupWindow',
+            'openInSideWindow',
+        ],
+        'imageMenu': [
+            'openInFgTab',
+            'downloadUrl',
+            'downloadUrlAs',
+            'openInBgTab',
+            'searchImageOnGoogle',
+            'copyImageUrl',
+            'copyImage',
+            'copyImageUrl',
             'openImageFullscreen',
         ],
         '—': [

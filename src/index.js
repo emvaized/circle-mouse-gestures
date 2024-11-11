@@ -44,19 +44,16 @@ function setPageListeners() {
     });
 
     document.addEventListener("mousedown", function (e) {
-
-        evt = e || window.event;
-
         if (e.ctrlKey || e.metaKey) return;
         if (fullscreenImageIsOpen == true) return;
 
         if (configs.debugMode)
-            console.log('Pushed button ' + evt.button.toString());
+            console.log('Pushed button ' + e.button.toString());
 
         rockerActionToPerform = undefined;
 
         if (configs.openCircleOn == 'longLeftClick') {
-            if (evt.button == 0) {
+            if (e.button == 0) {
                 lastMouseDownEvent = e;
                 longPressTimerInitEvent = { 'dx': e.clientX, 'dy': e.clientY };
 
@@ -71,30 +68,43 @@ function setPageListeners() {
                         processAndShowCircle(lastMouseDownEvent);
                 }, configs.delayForLongLeftClick);
             } else return;
-        } else if ("buttons" in evt) {
+        } else if ("buttons" in e) {
 
             /// Right click
-            if (evt.buttons == 2) {
+            if (e.buttons == 2) {
                 rightClickIsHolded = true;
                 if (leftClickIsHolded) return;
                 lastMouseDownEvent = e;
 
                 processAndShowCircle(e);
-            } else if (evt.buttons == 3) {
+            } else if (e.buttons == 3) {
                 rocketButtonPressed = 0;
 
                 /// Left click
                 if (circleIsShown) {
                     e.preventDefault();
-                    hideCircle();
 
-                    if (configs.debugMode) console.log('Rocker gesture recognized!');
-                    rockerActionToPerform = configs[typeOfMenu]['rockerLeftClick'];
-                    triggerButtonAction(rockerActionToPerform);
+                    const keys = Object.keys(selectedButtons);
+                    for (let i = 0, l = keys.length; i < l; i++) {
+                        const key = keys[i];
+                        if (selectedButtons[key]) {
+                            anyButtonIsSelected = true;
+                            break;
+                        }
+                    }
+
+                    if (anyButtonIsSelected == false) {
+                        if (configs.debugMode) console.log('Rocker gesture recognized!');
+                        rockerActionToPerform = configs[typeOfMenu]['rockerLeftClick'];
+                        triggerButtonAction(rockerActionToPerform);
+                    }
+
+                    hideCircle();
+                    
                 } else {
                     leftClickIsHolded = true;
                 }
-            } else if (evt.buttons == 6) {
+            } else if (e.buttons == 6) {
                 rocketButtonPressed = 6;
 
                 /// Middle click
@@ -115,9 +125,7 @@ function setPageListeners() {
     });
 
 
-    document.addEventListener("mouseup", function (e) {
-        evt = e || window.event;
-
+    document.addEventListener("mouseup", function (evt) {
         if (configs.openCircleOn == 'longLeftClick') {
             if (evt.button == 0) {
                 if (circleIsShown == true)
@@ -130,21 +138,20 @@ function setPageListeners() {
                     }
             } else return;
         } else if ("buttons" in evt) {
-            /// Left click
             if (evt.button == 0) {
                 leftClickIsHolded = false;
                 if (circleIsShown == false) return;
-                if (lastMouseDownEvent !== null) lastMouseDownEvent = null;
+                // if (lastMouseDownEvent !== null) lastMouseDownEvent = null;
                 hideCircle();
             } else if (evt.button == 2) {
                 rightClickIsHolded = false;
                 /// Right click
 
                 if (circleIsShown == false) return;
-                let keys = Object.keys(selectedButtons);
-                for (var i = 0; i < keys.length; i++) {
-                    let key = keys[i];
-                    if (selectedButtons[key] !== null && selectedButtons[key] !== undefined) {
+                const keys = Object.keys(selectedButtons);
+                for (let i = 0, l = keys.length; i < l; i++) {
+                    const key = keys[i];
+                    if (selectedButtons[key]) {
                         anyButtonIsSelected = true;
                         break;
                     }
@@ -156,6 +163,9 @@ function setPageListeners() {
                         hideCircle();
 
                 } else {
+                    hideCircle();
+
+                    /// Experimental shifting animation, left for reference
                     // if (configs.animateHideRelativeToSelected) {
                     //     let xPercent = (e.clientX - leftCoord) / (canvasRadius);
                     //     if (xPercent < 0) xPercent = 0.0;
@@ -167,8 +177,6 @@ function setPageListeners() {
 
                     //     circle.style.transformOrigin = `${xPercent * 100}% ${yPercent * 100}%`;
                     // }
-
-                    hideCircle();
                 }
             }
         }
@@ -218,7 +226,9 @@ function setPageListeners() {
         });
     }
 
-    document.addEventListener('wheel', checkScrollDirection, { passive: false });
+    document.addEventListener('wheel', checkScrollDirection, 
+        { passive: configs.continiousVerticalScrollDetection || configs.continiousHorizontalScrollDetection ? false : true }
+    );
 
     document.addEventListener("visibilitychange", function (event) {
         /// When tab lost or regained focus, release the right mouse key
@@ -238,7 +248,7 @@ function checkScrollDirection(event) {
 
     if (event.deltaY != 0) {
         /// Vertical scroll
-        if (!configs.continiousVerticalScrollDetection && !circleIsShown) return;
+        if (!configs.continiousVerticalScrollDetection) return;
 
         if (event.deltaY < 0) {
             event.preventDefault();
@@ -258,7 +268,7 @@ function checkScrollDirection(event) {
 
         /// Horizontal scroll
         if (configs.horizontalWheelActionsEnabled) {
-            if (!configs.continiousHorizontalScrollDetection && !circleIsShown) return;
+            if (!configs.continiousHorizontalScrollDetection) return;
 
             if (event.deltaX < 0) {
                 event.preventDefault();
@@ -277,13 +287,6 @@ function checkScrollDirection(event) {
     }
 
     hideCircle();
-}
-
-function checkScrollDirectionIsUp(event) {
-    if (event.wheelDelta) {
-        return event.wheelDelta > 0;
-    }
-    return event.deltaY < 0;
 }
 
 function actionShouldBreakScrollListener(action) {
@@ -338,8 +341,24 @@ function processAndShowCircle(e) {
     } else if (el.tagName == 'IMG' ||
         (el.tagName !== 'HTML' && elStyle.backgroundImage && elStyle.backgroundImage.includes('url(') && !elStyle.background.includes(' repeat'))) {
         /// Image is hovered
-        typeOfMenu = 'imageMenu';
-        hoveredLink = el.getAttribute('src') ?? elStyle.backgroundImage.replace('url("', '').replace('")', '');
+
+        const imageUrl = el.getAttribute('src') ?? elStyle.backgroundImage.replace('url("', '').replace('")', '');
+        let parentLink, parentLinkUrl;
+
+        if (el.parentNode && el.parentNode.tagName == 'A') {
+            parentLink = el.parentNode;
+            parentLinkUrl = parentLink.getAttribute('href') || parentLink.getAttribute('data-url') || parentLink.parentNode.getAttribute('href') || parentLink.parentNode.getAttribute('data-url')
+        } 
+        
+        if (parentLinkUrl && parentLinkUrl !== imageUrl){
+            typeOfMenu = 'imageLinkMenu';
+            hoveredLink = parentLinkUrl;
+            hoveredLinkTitle = parentLink.textContent.trim();
+            hoveredImageLink = imageUrl;
+        } else {
+            typeOfMenu = 'imageMenu';
+            hoveredLink = imageUrl;
+        }
     } else if (el.tagName == 'VIDEO' || el.tagName == 'AUDIO') {
         /// Html-5 player is hovered
         typeOfMenu = 'playerMenu';
@@ -439,6 +458,12 @@ function processAndShowCircle(e) {
                 hoveredLink = splittedUrl[0] + '/' + splittedUrl[1] + '/' + splittedUrl[2] + hoveredLink;
             }
         }
+    }
+
+    /// Add outline to the hovered element
+    if (configs.addBorderToHoveredElement && elementUnderCursor && typeOfMenu !== 'regularMenu'){
+        document.documentElement.style.setProperty('--cmg-hovered-element-border-color', configs[typeOfMenu].levels[0].color ?? configs[typeOfMenu].color);
+        elementUnderCursor.classList.add('cmg-hovered-element-border')
     }
 
     try {

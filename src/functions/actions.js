@@ -5,6 +5,8 @@ let lastPlayerVolume;
 function triggerButtonAction(actionToPerform, urlToOpen, scrollDirection) {
     /// scrollDirection is 'up' or 'down'
 
+    if (!document.hasFocus()) return;
+
     if (configs.debugMode) {
         if (configs.debugMode) console.log('Action to perform: ');
         if (configs.debugMode) console.log(actionToPerform);
@@ -31,6 +33,12 @@ function triggerButtonAction(actionToPerform, urlToOpen, scrollDirection) {
         case 'copyUrl': {
             if (hoveredLink && hoveredLink.includes('mailto:')) hoveredLink = hoveredLink.replaceAll('mailto:', '');
             copyToClipboard(typeOfMenu == 'regularMenu' ? window.location.href : hoveredLink);
+        } break;  
+        
+        case 'copyImageUrl': {
+            let link = typeOfMenu == 'imageLinkMenu' ? hoveredImageLink :hoveredLink;
+            if (link.includes('mailto:')) link = link.replaceAll('mailto:', '');
+            copyToClipboard(link);
         } break;
 
         case 'scrollToTop': {
@@ -140,7 +148,7 @@ function triggerButtonAction(actionToPerform, urlToOpen, scrollDirection) {
         } break;
 
         case 'copyImage': {
-            copyImg(hoveredLink);
+            copyImg(typeOfMenu == 'imageLinkMenu' ? hoveredImageLink : hoveredLink);
         } break;
 
         case 'openImageFullscreen': {
@@ -156,7 +164,12 @@ function triggerButtonAction(actionToPerform, urlToOpen, scrollDirection) {
         } break;
 
         case 'openInPopupWindow': {
-            chrome.runtime.sendMessage({ actionToDo: 'openInPopupWindow', url: hoveredLink, dx: lastMouseDownEvent.screenX, dy: lastMouseDownEvent.screenY });
+            chrome.runtime.sendMessage({ 
+                actionToDo: 'openInPopupWindow', 
+                url: hoveredLink, 
+                dx: lastMouseDownEvent ? lastMouseDownEvent.screenX : 0, 
+                dy: lastMouseDownEvent ? lastMouseDownEvent.screenY : 0 
+            });
         } break;
 
         case 'textTooLong': {

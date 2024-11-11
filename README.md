@@ -26,13 +26,13 @@ Additional tools:
 - Image viewer, with ability to view given image in fullscreen, zoom it and rotate 
 - Page shrinker, which adds horizontal space to page for easier reading on some websites
 
-<img src="https://github.com/emvaized/circle-mouse-gestures/blob/master/screenshots/screenshot.png">
+<img src="./screenshots/screenshot.png">
 
 Get for Firefox <br>
 <a href="https://addons.mozilla.org/firefox/addon/circle-mouse-gestures/"><img src="https://user-images.githubusercontent.com/585534/107280546-7b9b2a00-6a26-11eb-8f9f-f95932f4bfec.png" alt="Get for Firefox"></a>
 
 Get for Chrome (Edge, Brave, Vivaldi etc) <br> 
-<a href="https://chrome.google.com/webstore/detail/circle-mouse-gestures-pie/kkknhbbfjlibfjagilggkcelmcobgefa"><img src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/iNEddTyWiMfLSwFD6qGq.png" alt="Get for Chrome" height=65 /></a>
+<a href="https://chrome.google.com/webstore/detail/circle-mouse-gestures-pie/kkknhbbfjlibfjagilggkcelmcobgefa"><img src="https://developer.chrome.com/static/docs/webstore/branding/image/iNEddTyWiMfLSwFD6qGq.png" alt="Get for Chrome" height=65 /></a>
 
 
 ## Building

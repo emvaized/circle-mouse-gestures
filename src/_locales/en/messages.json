@@ -5,6 +5,9 @@
     "addBlurTooltip": {
         "message": "Can be seen only when circle opacity is less than 1.0"
     },
+    "addBorderToHoveredElement": {
+        "message": "Show border around the selected element"
+    },
     "addCircleShadow": {
         "message": "Add shadow"
     },
@@ -158,6 +161,9 @@
     "copyImage": {
         "message": "Copy image"
     },
+    "copyImageUrl": {
+        "message": "Copy image URL"
+    },
     "copyLinkText": {
         "message": "Copy text"
     },
@@ -223,6 +229,9 @@
     },
     "excludedDomains": {
         "message": "Excluded domains"
+    },
+    "exportSettings": {
+        "message": "Export settings"
     },
     "extensionDescription": {
         "message": "Circle menu with actions on right mouse click"
@@ -302,8 +311,14 @@
     "imageCopySuccessMessage": {
         "message": "Image was copied successfully"
     },
+    "imageLinkMenu": {
+        "message": "Menu for image + link"
+    },
     "imageMenu": {
         "message": "Menu for image"
+    },
+    "importSettings": {
+        "message": "Import settings"
     },
     "inactiveMenuBehavior": {
         "message": "When menu for element is inactive:"
@@ -358,6 +373,9 @@
     },
     "longLeftClickThresholdTooltip": {
         "message": "If cursor has moved by this amount of pixels, do not open menu on timer end"
+    },
+    "manageSettingsLabel": {
+        "message": "Manage settings"
     },
     "maximizeWindow": {
         "message": "Maximize window"
@@ -533,8 +551,17 @@
     "replayVideo": {
         "message": "Replay"
     },
+    "requireModifierForSpecificMenus": {
+        "message": "Require modifier key for non-regular menus"
+    },
+    "requireModifierForSpecificMenusTooltip": {
+        "message": "Require modifier key (Shift, Meta, Contorl or Alt) to be pressed to reveal special menus for links, images etc. Without a modifier key a regular menu will be shown"
+    },
     "resetColor": {
         "message": "Reset color"
+    },
+    "resetSettings": {
+        "message": "Reset settings"
     },
     "restore": {
         "message": "Restore"
@@ -608,6 +635,9 @@
     "segmentColor": {
         "message": "Segment color"
     },
+    "segmentsIndent": {
+        "message": "Gap between segments"
+    },
     "selectAll": {
         "message": "Select all"
     },
@@ -628,6 +658,9 @@
     },
     "settings": {
         "message": "Settings"
+    },
+    "settingsWarning": {
+        "message": "Are you sure? It will erase your current settings!"
     },
     "showActionIcons": {
         "message": "Show action icons"
@@ -659,9 +692,6 @@
     "showTitleOnHoverWhenHiddenTooltip": {
         "message": "When action is icon-only, show tooltip with label on hover"
     },
-    "segmentsIndent": {
-        "message": "Gap between segments"
-    },
     "showUpdateNotification": {
         "message": "Show notification on extension update"
     },
@@ -688,6 +718,9 @@
     },
     "switchToPreviousTab": {
         "message": "Previous tab"
+    },
+    "symbolsCount": {
+        "message": "Symbols"
     },
     "tab": {
         "message": "Tab"
@@ -752,28 +785,10 @@
     "windowsOnly": {
         "message": "Shows regular context menu on mouse up. Will work only on Windows, on other systems (Linux, MacOS) may require double click"
     },
+    "wordsCount": {
+        "message": "Words"
+    },
     "writeAReview": {
         "message": "Write a review"
-    },
-    "importSettings": {
-        "message": "Import settings"
-    },
-    "exportSettings": {
-        "message": "Export settings"
-    },
-    "resetSettings": {
-        "message": "Reset settings"
-    },
-    "settingsWarning": {
-        "message": "Are you sure? It will erase your current settings!"
-    },
-    "manageSettingsLabel": {
-        "message": "Manage settings"
-    },
-    "requireModifierForSpecificMenus": {
-        "message": "Require modifier key for non-regular menus"
-    },
-    "requireModifierForSpecificMenusTooltip": {
-        "message": "Require modifier key (Shift, Meta, Contorl or Alt) to be pressed to reveal special menus for links, images etc. Without a modifier key a regular menu will be shown"
     }
 }

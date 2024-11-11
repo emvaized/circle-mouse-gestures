@@ -101,7 +101,7 @@ function setCanvas() {
     if (showMousePointer) {
         cornerMousePointer = document.createElement('div');
         cornerMousePointer.setAttribute('id', 'cmg-corner-mouse-pointer');
-        cornerMousePointer.style.border = `1.5px solid ${configs[typeOfMenu].color}`;
+        cornerMousePointer.style.border = `2px solid ${configs[typeOfMenu].color}`;
         deltaX = 0; deltaY = 0;
         cornerMousePointer.style.transform = `translate(${(realLeftCoord + (canvasRadius / 2)) - ghostMousePointerRadius}px, ${(realTopCoord + (canvasRadius / 2)) - ghostMousePointerRadius}px)`
         document.body.appendChild(cornerMousePointer);
@@ -443,7 +443,7 @@ function hideCircle() {
                 }
             }
 
-            if (rocketButtonPressed == null && typeOfMenu !== null) {
+            if (rocketButtonPressed == null && typeOfMenu !== null && document.hasFocus()) {
                 let actionToPerform;
                 let customUrlToOpen;
 
@@ -519,6 +519,10 @@ function hideCircle() {
         if (rockerCircle !== null)
             hideRockerIcon(rocketButtonPressed !== null);
 
+        /// Remove outline of the hovered element
+        if (configs.addBorderToHoveredElement && elementUnderCursor){
+            elementUnderCursor.classList.remove('cmg-hovered-element-border')
+        }
 
     } catch (e) { if (configs.debugMode) console.log(e); }
 }

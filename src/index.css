@@ -41,27 +41,16 @@
   all: revert;
   font-family: Arial, Helvetica, sans-serif !important;
   left: 0px; top: 0px;z-index: 99999; font-size: 13.5px; align-items: center;display:inline-block !important; 
-  position: fixed !important;border-radius: 9px;color: white; text-align: center; padding: 6px; pointer-events: none;
+  position: fixed !important;border-radius: 8px;color: white; text-align: center; padding: 6px; pointer-events: none;
 }
 
 .cmg-helper-tooltip-label {
   vertical-align: middle;
 }
 
-.cmg_hover_mouse_visited {
-  outline: 2px solid var(--cmg-link-color) !important;
-}
-
-.cmg_hover_mouse_visited_img {
-  outline: 2px solid var(--cmg-img-color) !important;
-}
-
-.cmg_hover_mouse_visited_input {
-  outline: 2px solid var(--cmg-input-color) !important;
-}
-
-.cmg_hover_mouse_visited_player {
-  outline: 2px solid var(--cmg-player-color) !important;
+.cmg-hovered-element-border{
+  outline: 2px solid var(--cmg-hovered-element-border-color) !important;
+  border-radius: 3px !important;
 }
 
 /* Ghost pointer */
