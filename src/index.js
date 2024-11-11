@@ -141,7 +141,7 @@ function setPageListeners() {
             if (evt.button == 0) {
                 leftClickIsHolded = false;
                 if (circleIsShown == false) return;
-                if (lastMouseDownEvent !== null) lastMouseDownEvent = null;
+                // if (lastMouseDownEvent !== null) lastMouseDownEvent = null;
                 hideCircle();
             } else if (evt.button == 2) {
                 rightClickIsHolded = false;
