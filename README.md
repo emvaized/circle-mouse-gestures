@@ -34,28 +34,29 @@ Get for Firefox <br>
 Get for Chrome (Edge, Brave, Vivaldi etc) <br> 
 <a href="https://chrome.google.com/webstore/detail/circle-mouse-gestures-pie/kkknhbbfjlibfjagilggkcelmcobgefa"><img src="https://developer.chrome.com/static/docs/webstore/branding/image/iNEddTyWiMfLSwFD6qGq.png" alt="Get for Chrome" height=65 /></a>
 
+## FAQ
+Moved to the Wiki page – [read here](https://github.com/emvaized/circle-mouse-gestures/wiki/FAQ-(Frequently-Asked-Questions))
+
+
+## Support ❤️
+If you really enjoy this project, please consider supporting its further development by making a small donation using one of the ways below! 
+
+<a href="https://ko-fi.com/emvaized"><img src="https://storage.ko-fi.com/cdn/kofi1.png?v=6" alt="Support on Ko-fi" height="40"></a> &nbsp; <a href="https://liberapay.com/emvaized/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg" height="40"></a> &nbsp; <a href="https://emvaized.github.io/donate/bitcoin/"><img src="https://github.com/emvaized/emvaized.github.io/blob/main/donate/bitcoin/assets/bitcoin-donate-button.png?raw=true" alt="Donate Bitcoin" height="40" /></a>
 
 ## Building
 - `npm install` to install all dependencies
 - `npm run build` to generate `dist` folder with minimized code of the extension
 
-## FAQ
-Moved to Wiki page – [read here](https://github.com/emvaized/circle-mouse-gestures/wiki/FAQ-(Frequently-Asked-Questions))
-
-
-## Some ideas for future releases
-* Import/export settings
-* Action to execute custom Javascript
-* Option to set custom favicon for 'Open URL' action
-
-
-## Donate
-If you really enjoy this project, please consider supporting its further development by making a small donation using one of the ways below! 
-
-<a href="https://ko-fi.com/emvaized"><img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/64f1a9ddd0246590df69ea0b_kofi_long_button_red%25402x-p-800.png" alt="Support on Ko-fi" height="40"></a> &nbsp; <a href="https://liberapay.com/emvaized/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg" height="40"></a> &nbsp; <a href="https://emvaized.github.io/donate/bitcoin/"><img src="https://github.com/emvaized/emvaized.github.io/blob/main/donate/bitcoin/assets/bitcoin-donate-button.png?raw=true" alt="Donate Bitcoin" height="40" /></a>
+## Some ideas for future releases or contributions
+- [x] Import/export settings
+- [x] Option to set custom favicon for 'Open URL' action
+- [ ] Action to execute custom Javascript
+- [ ] Actions to switch to first/last tab
+- [ ] Fix broken mouse detection on Vivaldi browser
 
 
 ## Links to my other browser extensions
 * [Selecton](https://github.com/emvaized/selecton-extension) – smart text selection popup
-* [Google Tweaks](https://github.com/emvaized/google-tiles-extension) – set of tweaks for Google search page to make it easier to use
 * [Open in Popup Window](https://github.com/emvaized/open-in-popup-window-extension) – quickly open any links and images in a small popup window with no browser controls
+* [Google Search Tweaks](https://github.com/emvaized/google-tiles-extension) – set of tweaks for Google search page to make it easier to use
+* [Linkover](https://github.com/emvaized/linkover-extension) – load info about any link on mouse hover or on a long click
