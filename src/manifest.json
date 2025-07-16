@@ -5,6 +5,7 @@
   "description": "__MSG_extensionDescription__",
   "default_locale": "en",
   "icons": {
+    "16": "assets/icons/icon-16.png",
     "48": "assets/icons/icon-new.png",
     "96": "assets/icons/icon-new.png",
     "128": "assets/icons/icon-new.png"
