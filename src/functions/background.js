@@ -451,7 +451,7 @@ chrome.runtime.onMessage.addListener(
 
                                 /// create side window
                                 chrome.windows.create({
-                                    'url': request.url, 'width': sidebarWidth, 'height': window.screen.height,
+                                    'url': request.url, 'width': sidebarWidth, 'height': screenHeight,
                                     'top': parentWindow.top, 'left': screenWidth - sidebarWidth,
                                     // 'type': 'popup',
                                 }, function (sideWindow) {
