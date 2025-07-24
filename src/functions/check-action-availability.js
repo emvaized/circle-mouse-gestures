@@ -39,13 +39,6 @@ function checkButtonAvailability(e, id) {
             else return true;
         }
 
-        case 'selectLastVisitedTab': {
-            chrome.runtime.sendMessage({ actionToDo: 'checkSelectLastVisitedTab' }, (response) => {
-                updateButtonAvailability(e, 'selectLastVisitedTab', response != undefined);
-            });
-            return true;
-        }
-
         case 'switchToNextTab': {
             chrome.runtime.sendMessage({ actionToDo: 'checkNextTabAvailability' }, (response) => {
                 updateButtonAvailability(e, 'switchToNextTab', !response);

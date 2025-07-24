@@ -39,17 +39,23 @@ let virtualSidebarWindowId;
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
         switch (request.actionToDo) {
-            case 'checkSelectLastVisitedTab': {
-                if (recentTabIndexes[0] == sender.tab.id) return false;
-                chrome.tabs.get(recentTabIndexes[0], function (tab) {
-                    sendResponse(tab);
-                });
-                return true;
-            } break;
-
             case 'selectLastVisitedTab': {
-                if (recentTabIndexes.length > 0)
-                    chrome.tabs.update(recentTabIndexes[0], { active: true });
+                chrome.windows.getCurrent({ populate: true }, (currentWindow) => {
+                    if (!currentWindow) return;
+                    const tabs = currentWindow.tabs;
+
+                    /// Filter out the current tab and tabs without `lastAccessed`
+                    const otherTabs = tabs
+                        .filter(tab => !tab.active && typeof tab.lastAccessed === 'number');
+                    if (otherTabs.length === 0) return;
+
+                    /// Sort by lastAccessed descending
+                    otherTabs.sort((a, b) => b.lastAccessed - a.lastAccessed);
+
+                    /// Select the most recently accessed tab
+                    const mostRecentTab = otherTabs[0];
+                    if (mostRecentTab) chrome.tabs.update(mostRecentTab.id, { active: true });
+                });
             } break;
 
             case 'newTab': {
