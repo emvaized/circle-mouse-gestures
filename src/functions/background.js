@@ -25,13 +25,6 @@ chrome.runtime.onInstalled.addListener(function (details) {
     }
 });
 
-/// Keep track of last 2 tabs ids for switching between them with 'Recent tab' action 
-const recentTabIndexes = [];
-chrome.tabs.onActivated.addListener(function (activeInfo) {
-    recentTabIndexes.push(activeInfo.tabId);
-    if (recentTabIndexes.length > 2) recentTabIndexes.shift();
-});
-
 /// keep track of window opened 'sidebar' via "openInSideWindow" action
 let virtualSidebarWindowId;
 
@@ -533,7 +526,6 @@ chrome.runtime.onMessage.addListener(
                         });
                 }
             } break;
-
 
             case 'checkNextTabAvailability': {
                 chrome.tabs.query({}, function (tabs) {
