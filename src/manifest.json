@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Circle Mouse Gestures (pie menu)",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "__MSG_extensionDescription__",
   "default_locale": "en",
   "icons": {

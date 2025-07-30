@@ -1,3 +1,7 @@
+### 1.5.3
+- Fixed huge extension icon showing on Chrome during zoom (thanks [@ArijanJ](https://github.com/ArijanJ))
+- Fixes for "switch to last tab", "open in popup window" and "open in side window" actions
+
 ### 1.5.2
 - Added new menu type "Image with link", for images nested in link element
 - Added option to show border around the selected element
