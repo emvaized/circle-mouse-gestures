@@ -1,3 +1,7 @@
+### 1.5.4
+- Fix broken build 1.5.3
+- Update url for "support project" popup button
+
 ### 1.5.3
 - Fixed huge extension icon showing on Chrome during zoom (thanks [@ArijanJ](https://github.com/ArijanJ))
 - Fixes for "switch to last tab", "open in popup window" and "open in side window" actions

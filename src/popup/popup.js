@@ -47,7 +47,7 @@ function restoreOptions() {
 
   document.querySelector("#supportButton").addEventListener("click", function (val) {
     window.close();
-    window.open('https://github.com/emvaized/circle-mouse-gestures?tab=readme-ov-file#donate', '_blank');
+    window.open('https://github.com/emvaized/emvaized.github.io/wiki/Donate-Page', '_blank');
   });
   document.querySelector("#githubPage").addEventListener("click", function (val) {
     window.close();
