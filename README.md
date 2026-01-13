@@ -51,7 +51,7 @@ If you really enjoy this project, please consider supporting its further develop
 ## Some ideas for future releases or contributions
 - [x] Import/export settings
 - [x] Option to set custom favicon for 'Open URL' action
-- [ ] Action to execute custom Javascript
+- [x] Action to execute custom Javascript
 - [ ] Actions to switch to first/last tab
 - [ ] Fix broken mouse detection on Vivaldi browser
 

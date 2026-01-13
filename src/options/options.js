@@ -907,6 +907,105 @@ function generateLevelConfigs(levelIndex = 0) {
             entry.appendChild(openUrlContainer);
         }
 
+        /// "Execute custom JS" customization
+        if (item.id == 'executeCustomJs') {
+
+            const customJsContainer = document.createElement('div');
+            customJsContainer.style.padding = '5px';
+
+            /// JavaScript code input (using input type text for better compatibility)
+            const jsCodeInput = document.createElement('input');
+            const jsCodeInputIdentifier = `jsCodeInput-${levelIndex}-${i}`;
+            jsCodeInput.type = 'text';
+            jsCodeInput.id = jsCodeInputIdentifier;
+            jsCodeInput.title = chrome.i18n.getMessage('jsCode') ?? 'JavaScript Code';
+            jsCodeInput.placeholder = chrome.i18n.getMessage('jsCode') ?? 'JavaScript Code (e.g., alert("Hello"))';
+            jsCodeInput.style.width = '100%';
+            jsCodeInput.style.fontFamily = 'monospace';
+            jsCodeInput.style.fontSize = '12px';
+            if (item.url) jsCodeInput.setAttribute('value', item.url);
+
+            setTimeout(function () {
+                const inp = document.getElementById(jsCodeInputIdentifier);
+                if (inp) {
+                    inp.addEventListener('change', function () {
+                        let parts = jsCodeInputIdentifier.split('-');
+                        configs[selectedMenuType].levels[parts[1]].buttons[parts[2]]['url'] = inp.value;
+                        saveAllSettings();
+                    });
+                }
+            }, delayToAddListeners);
+
+            /// add hint
+            let jsCodeInputContainer = document.createElement('div');
+            let jsCodeTooltip = document.createElement('span');
+            jsCodeTooltip.innerText = chrome.i18n.getMessage('executeCustomJsHint') ?? 'Enter JavaScript code. Use {selection}, {url}, {pageUrl} for dynamic values.';
+            jsCodeTooltip.className = 'tooltiptext';
+            let hoverHint = document.createElement('div');
+            hoverHint.innerHTML = '?';
+            hoverHint.className = 'tooltipHint';
+            hoverHint.style.border = '1px solid white';
+            hoverHint.style.top = '2.5px';
+
+            jsCodeInputContainer.classList.add('tooltip');
+            jsCodeInputContainer.appendChild(jsCodeInput);
+            jsCodeInputContainer.appendChild(hoverHint);
+            jsCodeInputContainer.appendChild(jsCodeTooltip);
+            jsCodeInputContainer.style.width = '100%';
+
+            customJsContainer.appendChild(jsCodeInputContainer);
+
+            /// label input
+            const labelInput = document.createElement('input');
+            const labelInputIdentifier = `jsLabelInput-${levelIndex}-${i}`;
+            labelInput.id = labelInputIdentifier;
+            labelInput.title = chrome.i18n.getMessage('label') ?? 'Label';
+            labelInput.placeholder = chrome.i18n.getMessage('label') ?? 'Label';
+            labelInput.style.width = '100%';
+            labelInput.style.marginTop = '2px';
+            if (item.label) labelInput.setAttribute('value', item.label);
+
+            setTimeout(function () {
+                const inp = document.getElementById(labelInputIdentifier);
+                if (inp) {
+                    inp.addEventListener('change', function () {
+                        let parts = labelInputIdentifier.split('-');
+                        configs[selectedMenuType].levels[parts[1]].buttons[parts[2]]['label'] = inp.value;
+                        drawCirclePreview();
+                        saveAllSettings();
+                    });
+                }
+            }, delayToAddListeners)
+
+            customJsContainer.appendChild(labelInput);
+
+            /// custom icon URL
+            const iconInput = document.createElement('input');
+            const iconInputIdentifier = `jsIconInput-${levelIndex}-${i}`;
+            iconInput.id = iconInputIdentifier;
+            iconInput.title = chrome.i18n.getMessage('iconUrlPlaceholder') ?? 'Custom icon URL or Base64 string (data:image/png;base64, ...)';
+            iconInput.placeholder = chrome.i18n.getMessage('iconUrl') ?? 'Custom icon URL';
+            iconInput.style.width = '100%';
+            iconInput.style.marginTop = '2px';
+            if (item.iconUrl) iconInput.setAttribute('value', item.iconUrl);
+
+            setTimeout(function () {
+                const inp = document.getElementById(iconInputIdentifier);
+                if (inp) {
+                    inp.addEventListener('change', function () {
+                        let parts = iconInputIdentifier.split('-');
+                        configs[selectedMenuType].levels[parts[1]].buttons[parts[2]]['iconUrl'] = inp.value;
+                        drawCirclePreview();
+                        saveAllSettings();
+                    });
+                }
+            }, delayToAddListeners)
+
+            customJsContainer.appendChild(iconInput);
+
+            entry.appendChild(customJsContainer);
+        }
+
 
         /// Move up/down buttons
         const actionButtonsContainer = document.createElement('div');
