@@ -26,11 +26,17 @@ function triggerButtonAction(actionToPerform, urlToOpen, scrollDirection) {
             if (urlToOpen == null || urlToOpen == undefined || urlToOpen.trim() === '') return;
 
             try {
+                const selectionText = (textSelection && textSelection.toString) ? textSelection.toString() : '';
+                const linkUrl = hoveredLink ?? '';
+                const pageUrl = window.location.href ?? '';
+
                 // Replace special placeholders with actual values
+                // Support {text} as an alias for {selection}
                 let jsCode = urlToOpen
-                    .replaceAll('{selection}', textSelection.toString())
-                    .replaceAll('{pageUrl}', window.location.href)
-                    .replaceAll('{url}', hoveredLink || '');
+                    .replaceAll('{selection}', selectionText)
+                    .replaceAll('{text}', selectionText)
+                    .replaceAll('{pageUrl}', pageUrl)
+                    .replaceAll('{url}', linkUrl);
 
                 // Send to background script to execute via chrome.scripting API
                 chrome.runtime.sendMessage({ actionToDo: 'executeCustomJs', code: jsCode });
