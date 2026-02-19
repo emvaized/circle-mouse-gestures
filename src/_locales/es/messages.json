@@ -215,6 +215,9 @@
     "downloadUrlAs": {
         "message": "Descargar como"
     },
+    "saveLinkAs": {
+        "message": "Guardar enlace como..."
+    },
     "downloadVideo": {
         "message": "Descargar video"
     },
@@ -229,6 +232,39 @@
     },
     "excludedDomains": {
         "message": "Dominios excluidos"
+    },
+    "addSite": {
+        "message": "Excluir este dominio"
+    },
+    "removeSite": {
+        "message": "Eliminar exclusión"
+    },
+    "manageDomains": {
+        "message": "Gestionar dominios excluidos"
+    },
+    "removeDomain": {
+        "message": "Eliminar"
+    },
+    "addDomainManually": {
+        "message": "Añadir manualmente"
+    },
+    "enterDomain": {
+        "message": "Ingrese el nombre del dominio:"
+    },
+    "noDomains": {
+        "message": "No hay dominios excluidos"
+    },
+    "addDomainConfirm": {
+        "message": "¿Añadir $DOMAIN$ a dominios excluidos?",
+        "placeholders": {
+            "domain": {
+                "content": "$1",
+                "example": "www.example.com"
+            }
+        }
+    },
+    "domainAlreadyExcluded": {
+        "message": "Este dominio ya está excluido"
     },
     "exportSettings": {
         "message": "Exportar configuración"

@@ -215,6 +215,9 @@
     "downloadUrlAs": {
         "message": "Downloaden als"
     },
+    "saveLinkAs": {
+        "message": "Link opslaan als..."
+    },
     "downloadVideo": {
         "message": "Video downloaden"
     },
@@ -229,6 +232,39 @@
     },
     "excludedDomains": {
         "message": "Genegeerde domeinen"
+    },
+    "addSite": {
+        "message": "Dit domein uitsluiten"
+    },
+    "removeSite": {
+        "message": "Uitsluiting verwijderen"
+    },
+    "manageDomains": {
+        "message": "Genegeerde domeinen beheren"
+    },
+    "removeDomain": {
+        "message": "Verwijderen"
+    },
+    "addDomainManually": {
+        "message": "Handmatig toevoegen"
+    },
+    "enterDomain": {
+        "message": "Voer domeinnaam in:"
+    },
+    "noDomains": {
+        "message": "Geen genegeerde domeinen"
+    },
+    "addDomainConfirm": {
+        "message": "$DOMAIN$ toevoegen aan genegeerde domeinen?",
+        "placeholders": {
+            "domain": {
+                "content": "$1",
+                "example": "www.example.com"
+            }
+        }
+    },
+    "domainAlreadyExcluded": {
+        "message": "Dit domein is al genegeerd"
     },
     "exportSettings": {
         "message": "Exportinstellingen"
