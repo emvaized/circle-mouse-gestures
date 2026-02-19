@@ -166,6 +166,19 @@ chrome.runtime.onMessage.addListener(
                 });
             } break;
 
+            case 'saveLinkAs': {
+                let fileName = request.url.split('#').shift().split('?').shift().split('/').pop();
+                if (!fileName || fileName === '') {
+                    fileName = 'download';
+                }
+
+                chrome.downloads.download({
+                    url: request.url,
+                    filename: fileName,
+                    saveAs: true
+                });
+            } break;
+
             case 'addToBookmarks': {
                 chrome.bookmarks.create({
                     url: sender.tab.url,
