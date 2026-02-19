@@ -4,11 +4,8 @@ function restoreOptions() {
 
   /// Set 'enabled' checkbox value
   chrome.storage.local.get(
-    ['cmgEnabled', 'excludedDomains'], function (res) {
+    ['cmgEnabled'], function (res) {
       document.querySelector("#enabledCheckbox").checked = res.cmgEnabled ?? true;
-      let excludedDomainsInp = document.querySelector("#excludedDomains");
-      excludedDomainsInp.value = res.excludedDomains ?? '';
-      excludedDomainsInp.parentNode.parentNode.className = res.cmgEnabled ? 'option enabled' : 'option disabled';
     });
 
   /// Enabled checkbox
@@ -20,23 +17,189 @@ function restoreOptions() {
       chrome.storage.local.set({
         cmgEnabled: document.querySelector('#enabledCheckbox').checked,
       });
-      document.querySelector('#excludedDomains').parentNode.parentNode.className = document.querySelector('#enabledCheckbox').checked ? 'option enabled opacityTransition' : 'option disabled opacityTransition';
     });
   }, 3);
 
+  /// Add this site button
+  let addThisSiteButton = document.querySelector('#addThisSiteButton');
+  
+  function updateButtonState() {
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      if (!tabs[0]) return;
+      
+      try {
+        const url = new URL(tabs[0].url);
+        const domain = url.hostname;
+        
+        chrome.storage.local.get(['excludedDomains'], function(res) {
+          const excludedDomains = res.excludedDomains || '';
+          const domainsList = excludedDomains.split(',').map(d => d.trim().toLowerCase()).filter(d => d);
+          
+          if (domainsList.includes(domain.toLowerCase())) {
+            addThisSiteButton.innerHTML = '<span style="color: #f44336; font-weight: bold; font-size: 1.3em; margin-right: 8px;">−</span>' + chrome.i18n.getMessage('removeSite');
+            addThisSiteButton.dataset.isExcluded = 'true';
+          } else {
+            addThisSiteButton.innerHTML = '<span style="color: #4CAF50; font-weight: bold; font-size: 1.3em; margin-right: 8px;">+</span>' + chrome.i18n.getMessage('addSite');
+            addThisSiteButton.dataset.isExcluded = 'false';
+          }
+        });
+      } catch (e) {
+        console.error('Failed to parse URL:', e);
+      }
+    });
+  }
+  
+  updateButtonState();
+  
+  addThisSiteButton.addEventListener('click', function() {
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      if (!tabs[0]) return;
+      
+      try {
+        const url = new URL(tabs[0].url);
+        const domain = url.hostname;
+        
+        chrome.storage.local.get(['excludedDomains'], function(res) {
+          const excludedDomains = res.excludedDomains || '';
+          const domainsList = excludedDomains.split(',').map(d => d.trim()).filter(d => d);
+          
+          if (addThisSiteButton.dataset.isExcluded === 'true') {
+            // Remove domain
+            const newDomainsList = domainsList.filter(d => d.toLowerCase() !== domain.toLowerCase());
+            const newDomains = newDomainsList.join(', ');
+            chrome.storage.local.set({ excludedDomains: newDomains }, function() {
+              updateButtonState();
+            });
+          } else {
+            // Add domain
+            const newDomains = excludedDomains ? excludedDomains + ', ' + domain : domain;
+            chrome.storage.local.set({ excludedDomains: newDomains }, function() {
+              updateButtonState();
+            });
+          }
+        });
+      } catch (e) {
+        console.error('Failed to parse URL:', e);
+      }
+    });
+  });
 
-  /// Excluded domains field
-  let excludedDomainsInput = document.querySelector("#excludedDomains");
-  excludedDomainsInput.setAttribute('placeholder', 'example.com, another.example.com');
-  excludedDomainsInput.parentNode.innerHTML = chrome.i18n.getMessage('excludedDomains') + ': <br />' + excludedDomainsInput.parentNode.innerHTML;
+  /// Manage domains button and dropdown
+  let manageDomainsButton = document.querySelector('#manageDomainsButton');
+  manageDomainsButton.setAttribute('title', chrome.i18n.getMessage('manageDomains'));
+  let domainsDropdown = document.querySelector('#domainsDropdown');
+  
+  manageDomainsButton.addEventListener('click', function(e) {
+    e.stopPropagation();
+    if (domainsDropdown.style.display === 'none') {
+      renderDomainsList();
+      domainsDropdown.style.display = 'block';
+    } else {
+      domainsDropdown.style.display = 'none';
+    }
+  });
 
-  setTimeout(function () {
-    document.querySelector('#excludedDomains').addEventListener('change', function (e) {
-      chrome.storage.local.set({
-        excludedDomains: document.querySelector('#excludedDomains').value,
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!domainsDropdown.contains(e.target) && e.target !== manageDomainsButton) {
+      domainsDropdown.style.display = 'none';
+    }
+  });
+
+  function renderDomainsList() {
+    chrome.storage.local.get(['excludedDomains'], function(res) {
+      const excludedDomains = res.excludedDomains || '';
+      const domainsList = excludedDomains.split(',').map(d => d.trim()).filter(d => d);
+      const domainsListEl = document.querySelector('#domainsList');
+      domainsListEl.innerHTML = '';
+
+      // Add input field with plus button at top
+      const addItem = document.createElement('div');
+      addItem.className = 'add-domain-item';
+      
+      const addInput = document.createElement('input');
+      addInput.type = 'text';
+      addInput.className = 'add-domain-input';
+      addInput.placeholder = chrome.i18n.getMessage('addDomainManually');
+      
+      const addBtn = document.createElement('button');
+      addBtn.textContent = '+';
+      addBtn.className = 'add-domain-button';
+      addBtn.title = chrome.i18n.getMessage('addDomainManually');
+      addBtn.addEventListener('click', function() {
+        addDomainManually(addInput);
+      });
+      
+      addInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          addDomainManually(addInput);
+        }
+      });
+      
+      addItem.appendChild(addInput);
+      addItem.appendChild(addBtn);
+      domainsListEl.appendChild(addItem);
+
+      if (domainsList.length === 0) {
+        const noDomains = document.createElement('div');
+        noDomains.className = 'no-domains';
+        noDomains.textContent = chrome.i18n.getMessage('noDomains');
+        domainsListEl.appendChild(noDomains);
+      } else {
+        domainsList.forEach(function(domain) {
+          const item = document.createElement('div');
+          item.className = 'domain-item';
+          
+          const removeBtn = document.createElement('button');
+          removeBtn.textContent = '−';
+          removeBtn.title = chrome.i18n.getMessage('removeDomain');
+          removeBtn.addEventListener('click', function() {
+            removeDomain(domain);
+          });
+          
+          const domainSpan = document.createElement('span');
+          domainSpan.textContent = domain;
+          
+          item.appendChild(removeBtn);
+          item.appendChild(domainSpan);
+          domainsListEl.appendChild(item);
+        });
+      }
+    });
+  }
+
+  function removeDomain(domainToRemove) {
+    chrome.storage.local.get(['excludedDomains'], function(res) {
+      const excludedDomains = res.excludedDomains || '';
+      const domainsList = excludedDomains.split(',').map(d => d.trim()).filter(d => d);
+      const newDomainsList = domainsList.filter(d => d !== domainToRemove);
+      const newDomains = newDomainsList.join(', ');
+      chrome.storage.local.set({ excludedDomains: newDomains }, function() {
+        renderDomainsList();
       });
     });
-  }, 3);
+  }
+
+  function addDomainManually(inputElement) {
+    const domain = inputElement.value.trim();
+    if (!domain) return;
+    
+    chrome.storage.local.get(['excludedDomains'], function(res) {
+      const excludedDomains = res.excludedDomains || '';
+      const domainsList = excludedDomains.split(',').map(d => d.trim().toLowerCase()).filter(d => d);
+      
+      if (domainsList.includes(domain.toLowerCase())) {
+        alert(chrome.i18n.getMessage('domainAlreadyExcluded'));
+        return;
+      }
+      
+      const newDomains = excludedDomains ? excludedDomains + ', ' + domain : domain;
+      chrome.storage.local.set({ excludedDomains: newDomains }, function() {
+        inputElement.value = '';
+        renderDomainsList();
+      });
+    });
+  }
 
   /// Footer buttons
   let settingsButton = document.querySelector('#settingsButton'); settingsButton.innerHTML = chrome.i18n.getMessage("configure") + ' ' + settingsButton.innerHTML;
