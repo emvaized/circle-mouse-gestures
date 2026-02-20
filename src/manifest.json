@@ -37,7 +37,6 @@
     "default_popup": "popup/popup.html"
   },
   "permissions": [
-    "<all_urls>",
     "tabs",
     "storage",
     "sessions",
@@ -46,6 +45,9 @@
     "clipboardRead",
     "downloads",
     "notifications"
+  ],
+  "host_permissions": [
+    "<all_urls>"
   ],
   "browser_specific_settings": {
     "gecko": {

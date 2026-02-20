@@ -448,7 +448,6 @@ function processAndShowCircle(e) {
 
 
     if (hoveredLink !== null) {
-        console.log('hoveredLink before processing:', hoveredLink);
         ///  Attach current domain
         if (!hoveredLink.includes('://') && !hoveredLink.includes('data:image/') && !hoveredLink.includes('mailto:')) {
             if (hoveredLink[0] == '/' && hoveredLink[1] == '/') {
@@ -464,7 +463,6 @@ function processAndShowCircle(e) {
                 hoveredLink = baseUrl + hoveredLink;
             }
         }
-        console.log('hoveredLink after processing:', hoveredLink);
     }
 
     /// Add outline to the hovered element

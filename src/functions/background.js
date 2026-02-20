@@ -176,6 +176,10 @@ chrome.runtime.onMessage.addListener(
                     url: request.url,
                     filename: fileName,
                     saveAs: true
+                }, (downloadId) => {
+                    if (chrome.runtime.lastError) {
+                        console.error('Download failed:', chrome.runtime.lastError);
+                    }
                 });
             } break;
 
