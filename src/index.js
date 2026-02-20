@@ -368,7 +368,7 @@ function processAndShowCircle(e) {
                 fileLink = el.querySelector('source').getAttribute('src');
             } catch (e) { if (configs.debugMode) console.log(e); }
         }
-        hoveredLink = fileLink.replace('blob:', '');
+        hoveredLink = fileLink ? fileLink.replace('blob:', '') : null;
     } else if (el.tagName == 'A' || el.parentNode.tagName == 'A') {
         /// Link is hovered
         typeOfMenu = 'linkMenu';
@@ -448,16 +448,23 @@ function processAndShowCircle(e) {
 
 
     if (hoveredLink !== null) {
+        console.log('hoveredLink before processing:', hoveredLink);
         ///  Attach current domain
         if (!hoveredLink.includes('://') && !hoveredLink.includes('data:image/') && !hoveredLink.includes('mailto:')) {
             if (hoveredLink[0] == '/' && hoveredLink[1] == '/') {
                 /// special handling for links like "//lh3.googleusercontent.com/..." 
                 hoveredLink = 'https:' + hoveredLink;
-            } else {
+            } else if (hoveredLink[0] === '/') {
+                /// Absolute path from domain root
                 let splittedUrl = window.location.href.split('/');
                 hoveredLink = splittedUrl[0] + '/' + splittedUrl[1] + '/' + splittedUrl[2] + hoveredLink;
+            } else {
+                /// Relative path from current directory
+                const baseUrl = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
+                hoveredLink = baseUrl + hoveredLink;
             }
         }
+        console.log('hoveredLink after processing:', hoveredLink);
     }
 
     /// Add outline to the hovered element
