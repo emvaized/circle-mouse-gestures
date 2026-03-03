@@ -33,7 +33,7 @@
         "message": "URL for web searches"
     },
     "searchUrlFormatTooltip": {
-        "message": "Use {{selected}} where the selected text should be placed in the URL"
+        "message": "Use {selection} where the selected text should be placed in the URL"
     },
     "addMoreLevelsToActivateMenu": {
         "message": "This menu is inactive. <br/>Add levels to activate it"

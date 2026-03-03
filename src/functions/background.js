@@ -116,8 +116,8 @@ chrome.runtime.onMessage.addListener(
 
             case 'searchText': {
                 chrome.storage.local.get(['searchUrlFormat'], function (res) {
-                    const fmt = res.searchUrlFormat;
-                    const url = fmt.replaceAll('{{selected}}', encodeURIComponent(request.selectedText));
+                    const fmt = res.searchUrlFormat ?? `https://www.google.com/search?q={selection}`;
+                    const url = fmt.replaceAll('{selection}', encodeURIComponent(request.selectedText));
                     chrome.tabs.create({ url: url.startsWith('https://') ? url : `https://${url}`, active: true, index: sender.tab.index + 1 });
                 });
             } break;
