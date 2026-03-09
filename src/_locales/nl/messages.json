@@ -305,6 +305,9 @@
     "iconUrlPlaceholder": {
         "message": "Aangepast pictogram URL of Base64 string (in het formaat data:image/png;base64, ...)"
     },
+    "iconUrlTooltip": {
+        "message": "Vernieuw de pagina om het bijgewerkte pictogram te zien"
+    },
     "image": {
         "message": "Afbeelding"
     },

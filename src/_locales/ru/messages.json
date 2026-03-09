@@ -305,6 +305,9 @@
     "iconUrlPlaceholder": {
         "message": "Свой URL иконки или строка Base64 (в формате data:image/png;base64, ...)"
     },
+    "iconUrlTooltip": {
+        "message": "Перезагрузите страницу, чтобы увидеть обновленную иконку"
+    },
     "image": {
         "message": "Изображение"
     },

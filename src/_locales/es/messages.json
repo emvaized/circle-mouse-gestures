@@ -305,6 +305,9 @@
     "iconUrlPlaceholder": {
         "message": "URL de ícono personalizado o cadena Base64 (en formato data:image/png;base64, ...)"
     },
+    "iconUrlTooltip": {
+        "message": "Actualiza la página para ver el icono actualizado"
+    },
     "image": {
         "message": "Imagen"
     },
