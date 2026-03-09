@@ -115,8 +115,10 @@ chrome.runtime.onMessage.addListener(
             } break;
 
             case 'searchText': {
-                chrome.tabs.create({
-                    url: 'https://www.google.com/search?q=' + request.selectedText, active: true, index: sender.tab.index + 1
+                chrome.storage.local.get(['searchUrlFormat'], function (res) {
+                    const fmt = res.searchUrlFormat ?? `https://www.google.com/search?q={selection}`;
+                    const url = fmt.replaceAll('{selection}', encodeURIComponent(request.selectedText));
+                    chrome.tabs.create({ url: url.startsWith('https://') ? url : `https://${url}`, active: true, index: sender.tab.index + 1 });
                 });
             } break;
 

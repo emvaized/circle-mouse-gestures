@@ -318,6 +318,7 @@ function generateBehaviorConfigs() {
         'addBorderToHoveredElement',
         'checkButtonsAvailability',
         'requireModifierForSpecificMenus',
+        'searchUrlFormat'
         // 'animateHideRelativeToSelected',
         // 'circleHideAnimation',
     ];
@@ -356,6 +357,7 @@ function generateBehaviorConfigs() {
     document.getElementById('dimBackgroundTooltip').innerText = chrome.i18n.getMessage('dimBackgroundTooltip');
     document.getElementById('windowsOnlyTooltip').innerText = chrome.i18n.getMessage('windowsOnly');
     document.getElementById('addLinkTooltipTooltip').innerText = chrome.i18n.getMessage('addLinkTooltipTooltip');
+    document.getElementById('searchUrlFormatTooltip').innerText = chrome.i18n.getMessage('searchUrlFormatTooltip');
     // document.getElementById('highlightElementOnHoverTooltip').innerText = chrome.i18n.getMessage('highlightElementOnHoverTooltip');
     document.getElementById('storeCurrentScrollPositionTooltip').innerText = chrome.i18n.getMessage('storeCurrentScrollPositionTooltip');
     document.getElementById('showTitleOnHoverWhenHiddenTooltip').innerText = chrome.i18n.getMessage('showTitleOnHoverWhenHiddenTooltip');   

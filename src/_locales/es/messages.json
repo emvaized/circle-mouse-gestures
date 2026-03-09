@@ -29,6 +29,12 @@
     "addLinkTooltipTooltip": {
         "message": "Mostrar información adicional para enlaces, imágenes, etc. en la parte superior del círculo"
     },
+    "searchUrlFormat": {
+        "message": "URL para búsquedas web"
+    },
+    "searchUrlFormatTooltip": {
+        "message": "Utilice {selection} donde se debe colocar el texto seleccionado en la URL"
+    },
     "addMoreLevelsToActivateMenu": {
         "message": "Este menú está inactivo. <br/>Agrega niveles para activarlo"
     },

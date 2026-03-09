@@ -29,6 +29,12 @@
     "addLinkTooltipTooltip": {
         "message": "Toon aanvullende informatie (links, afbeeldingen, etc.) op de cirkel"
     },
+    "searchUrlFormat": {
+        "message": "URL voor webzoekopdrachten"
+    },
+    "searchUrlFormatTooltip": {
+        "message": "Gebruik {selection} waar de geselecteerde tekst in de URL moet worden geplaatst"
+    },
     "addMoreLevelsToActivateMenu": {
         "message": "Dit menu is buiten gebruik. <br/>Voeg niveaus toe om het in gebruik te nemen."
     },

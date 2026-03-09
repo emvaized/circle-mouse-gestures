@@ -56,6 +56,7 @@ const configs = {
     'addBorderToHoveredElement': true,
     'segmentsIndent': 0,
     'excludedDomains': '',
+    'searchUrlFormat': 'https://www.google.com/search?q={selection}',
     'showCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
     'hideCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
     'mouseLeaveBehavior': 'hideMenu', /// possible values: 'doNothing', 'hideMenu', 'hideMenuAndSelect'
@@ -327,6 +328,7 @@ const defaultConfigs = {
     'addBorderToHoveredElement': true,
     'blurRadius': 4,
     'excludedDomains': '',
+    'searchUrlFormat': 'https://www.google.com/search?q={selection}',
     'showCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
     'hideCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
     'mouseLeaveBehavior': 'hideMenu', /// possible values: 'doNothing', 'hideMenu', 'hideMenuAndSelect'
