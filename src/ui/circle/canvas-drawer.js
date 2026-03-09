@@ -188,7 +188,9 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
         let textToDraw;
 
         if (segment.id == 'openUrl')
-            textToDraw = segment.label ?? segment.url ?? returnActionLabel(segment.id);
+            textToDraw = segment.label ? segment.label : segment.url ?? returnActionLabel(segment.id);
+        else if (segment.id == 'executeCustomJs')
+            textToDraw = segment.label ? segment.label : returnActionLabel(segment.id);
         else
             textToDraw = returnActionLabel(segment.id);
 
