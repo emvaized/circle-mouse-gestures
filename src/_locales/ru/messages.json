@@ -29,12 +29,6 @@
     "addLinkTooltipTooltip": {
         "message": "Показывать вверху меню дополнительную информацию для ссылок, изображений и т.д."
     },
-    "searchUrlFormat": {
-        "message": "URL для веб-поиска"
-    },
-    "searchUrlFormatTooltip": {
-        "message": "Используйте {selection} там, где необходимо разместить выделенный текст в URL-адресе."
-    },
     "addMoreLevelsToActivateMenu": {
         "message": "Это меню сейчас неактивно. <br/>Добавьте уровень, чтобы активировать"
     },
@@ -236,6 +230,12 @@
     "excludedDomains": {
         "message": "Исключенные домены"
     },
+    "executeCustomJs": {
+        "message": "Выполнить JavaScript"
+    },
+    "executeCustomJsHint": {
+        "message": "Введите собственный код JavaScript для выполнения. Вы можете использовать в тексте следующие плейсхолдеры: \n\n {selection} для выделенного текста, \n{url} для URL элемента под курсором, \n {pageUrl} для URL текущей страницы"
+    },
     "exportSettings": {
         "message": "Экспортировать настройки"
     },
@@ -346,6 +346,9 @@
     },
     "italicText": {
         "message": "Курсив"
+    },
+    "jsCode": {
+        "message": "Код JavaScript"
     },
     "label": {
         "message": "Заголовок"
@@ -634,6 +637,12 @@
     },
     "searchText": {
         "message": "Искать"
+    },
+    "searchUrlFormat": {
+        "message": "URL для веб-поиска"
+    },
+    "searchUrlFormatTooltip": {
+        "message": "Используйте {selection} там, где необходимо разместить выделенный текст в URL-адресе."
     },
     "secondAction": {
         "message": "Второе действие"

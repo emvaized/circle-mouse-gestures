@@ -29,12 +29,6 @@
     "addLinkTooltipTooltip": {
         "message": "Mostrar información adicional para enlaces, imágenes, etc. en la parte superior del círculo"
     },
-    "searchUrlFormat": {
-        "message": "URL para búsquedas web"
-    },
-    "searchUrlFormatTooltip": {
-        "message": "Utilice {selection} donde se debe colocar el texto seleccionado en la URL"
-    },
     "addMoreLevelsToActivateMenu": {
         "message": "Este menú está inactivo. <br/>Agrega niveles para activarlo"
     },
@@ -236,6 +230,12 @@
     "excludedDomains": {
         "message": "Dominios excluidos"
     },
+    "executeCustomJs": {
+        "message": "Ejecutar JavaScript"
+    },
+    "executeCustomJsHint": {
+        "message": "Introduce código JavaScript personalizado para ejecutar. Puedes usar los siguientes marcadores:\n\n {selection} para el texto seleccionado,\n{url} para la URL del elemento sobre el que está el cursor,\n {pageUrl} para la URL de la página actual"
+    },
     "exportSettings": {
         "message": "Exportar configuración"
     },
@@ -346,6 +346,9 @@
     },
     "italicText": {
         "message": "Cursiva"
+    },
+    "jsCode": {
+        "message": "Código JavaScript"
     },
     "label": {
         "message": "Etiqueta"
@@ -634,6 +637,12 @@
     },
     "searchText": {
         "message": "Buscar"
+    },
+    "searchUrlFormat": {
+        "message": "URL para búsquedas web"
+    },
+    "searchUrlFormatTooltip": {
+        "message": "Utilice {selection} donde se debe colocar el texto seleccionado en la URL"
     },
     "secondAction": {
         "message": "Segunda acción"
