@@ -22,6 +22,29 @@ function triggerButtonAction(actionToPerform, urlToOpen, scrollDirection) {
             chrome.runtime.sendMessage({ actionToDo: 'openInFgTab', url: urlToOpen });
         } break;
 
+        case 'executeCustomJs': {
+            if (urlToOpen == null || urlToOpen == undefined || urlToOpen.trim() === '') return;
+
+            try {
+                const selectionText = (textSelection && textSelection.toString) ? textSelection.toString() : '';
+                const linkUrl = hoveredLink ?? '';
+                const pageUrl = window.location.href ?? '';
+
+                // Replace special placeholders with actual values
+                // Support {text} as an alias for {selection}
+                let jsCode = urlToOpen
+                    .replaceAll('{selection}', selectionText)
+                    .replaceAll('{text}', selectionText)
+                    .replaceAll('{pageUrl}', pageUrl)
+                    .replaceAll('{url}', linkUrl);
+
+                // Send to background script to execute via chrome.scripting API
+                chrome.runtime.sendMessage({ actionToDo: 'executeCustomJs', code: jsCode });
+            } catch (e) {
+                if (configs.debugMode) console.log('Custom JS execution error:', e);
+            }
+        } break;
+
         case 'copyLinkText': {
             copyToClipboard(hoveredLinkTitle);
         } break;

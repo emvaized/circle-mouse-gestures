@@ -641,6 +641,30 @@ chrome.runtime.onMessage.addListener(
                 });
                 return true;
             } break;
+
+            case 'executeCustomJs': {
+                if (request.code && sender.tab && sender.tab.id) {
+                    // Use chrome.scripting.executeScript with func and args
+                    // The function runs in MAIN world (page context) so it can use eval
+                    chrome.scripting.executeScript({
+                        target: { tabId: sender.tab.id },
+                        world: 'MAIN',
+                        func: (jsCode) => {
+                            try {
+                                // In MAIN world, we have access to the page's context
+                                // and can use eval or Function constructor
+                                (new Function(jsCode))();
+                            } catch (e) {
+                                console.error('CMG - Custom JS execution error:', e);
+                            }
+                        },
+                        args: [request.code]
+                    }).catch(err => {
+                        console.error('CMG - Script injection failed:', err);
+                    });
+                    return true;
+                }
+            } break;
         }
     }
 );

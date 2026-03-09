@@ -9,6 +9,7 @@ const sortedActionButtons = {
             'selectLastVisitedTab',
 
             'openUrl',
+            'executeCustomJs',
             'showTabSwitcherVertical',
             'showTabSwitcherHorizontal',
             'showTabSwitcherGrid',

@@ -451,12 +451,12 @@ function hideCircle() {
                     const shownButtons = configs[typeOfMenu]['buttons'];
                     if (shownButtons == undefined) return;
                     actionToPerform = shownButtons[selectedButton].id;
-                    if (actionToPerform == 'openUrl') customUrlToOpen = shownButtons[selectedButton].url;
+                    if (actionToPerform == 'openUrl' || actionToPerform == 'executeCustomJs') customUrlToOpen = shownButtons[selectedButton].url;
                 } else {
                     const shownButtons = configs[typeOfMenu].levels[selectedLevel]['buttons'];
                     if (shownButtons == undefined) return;
                     actionToPerform = shownButtons[selectedButton].id;
-                    if (actionToPerform == 'openUrl') customUrlToOpen = shownButtons[selectedButton].url;
+                    if (actionToPerform == 'openUrl' || actionToPerform == 'executeCustomJs') customUrlToOpen = shownButtons[selectedButton].url;
                 }
 
 
