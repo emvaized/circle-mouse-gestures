@@ -656,11 +656,13 @@ chrome.runtime.onMessage.addListener(
                                 (new Function(jsCode))();
                             } catch (e) {
                                 console.error('CMG - Custom JS execution error:', e);
+                                alert('CMG - Custom JS execution error: \n\n' + e.message);
                             }
                         },
                         args: [request.code]
                     }).catch(err => {
                         console.error('CMG - Script injection failed:', err);
+                        alert('CMG - Script injection failed: \n\n' + err.message);
                     });
                     return true;
                 }
