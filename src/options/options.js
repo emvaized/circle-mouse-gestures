@@ -981,29 +981,31 @@ function generateLevelConfigs(levelIndex = 0) {
 
             customJsContainer.appendChild(labelInput);
 
-            /// custom icon URL
-            const iconInput = document.createElement('input');
-            const iconInputIdentifier = `jsIconInput-${levelIndex}-${i}`;
-            iconInput.id = iconInputIdentifier;
-            iconInput.title = chrome.i18n.getMessage('iconUrlPlaceholder') ?? 'Custom icon URL or Base64 string (data:image/png;base64, ...)';
-            iconInput.placeholder = chrome.i18n.getMessage('iconUrl') ?? 'Custom icon URL';
-            iconInput.style.width = '100%';
-            iconInput.style.marginTop = '2px';
-            if (item.iconUrl) iconInput.setAttribute('value', item.iconUrl);
+            /// Custom icon URL
+            /// TODO: Doesn't work, should provide handler in drawLabels() of canvas-drawer.js first by refactoring the existing code for OpenURL action
 
-            setTimeout(function () {
-                const inp = document.getElementById(iconInputIdentifier);
-                if (inp) {
-                    inp.addEventListener('change', function () {
-                        let parts = iconInputIdentifier.split('-');
-                        configs[selectedMenuType].levels[parts[1]].buttons[parts[2]]['iconUrl'] = inp.value;
-                        drawCirclePreview();
-                        saveAllSettings();
-                    });
-                }
-            }, delayToAddListeners)
+            // const iconInput = document.createElement('input');
+            // const iconInputIdentifier = `jsIconInput-${levelIndex}-${i}`;
+            // iconInput.id = iconInputIdentifier;
+            // iconInput.title = chrome.i18n.getMessage('iconUrlPlaceholder') ?? 'Custom icon URL or Base64 string (data:image/png;base64, ...)';
+            // iconInput.placeholder = chrome.i18n.getMessage('iconUrl') ?? 'Custom icon URL';
+            // iconInput.style.width = '100%';
+            // iconInput.style.marginTop = '2px';
+            // if (item.iconUrl) iconInput.setAttribute('value', item.iconUrl);
 
-            customJsContainer.appendChild(iconInput);
+            // setTimeout(function () {
+            //     const inp = document.getElementById(iconInputIdentifier);
+            //     if (inp) {
+            //         inp.addEventListener('change', function () {
+            //             let parts = iconInputIdentifier.split('-');
+            //             configs[selectedMenuType].levels[parts[1]].buttons[parts[2]]['iconUrl'] = inp.value;
+            //             drawCirclePreview();
+            //             saveAllSettings();
+            //         });
+            //     }
+            // }, delayToAddListeners)
+
+            // customJsContainer.appendChild(iconInput);
 
             entry.appendChild(customJsContainer);
         }
