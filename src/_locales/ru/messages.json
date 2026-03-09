@@ -300,7 +300,7 @@
         "message": "Прозрачность иконок"
     },
     "iconUrl": {
-        "message": "Своя иконка (URL)"
+        "message": "Своя иконка (URL или Base64)"
     },
     "iconUrlPlaceholder": {
         "message": "Свой URL иконки или строка Base64 (в формате data:image/png;base64, ...)"

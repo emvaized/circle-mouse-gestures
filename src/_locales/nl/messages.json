@@ -300,7 +300,7 @@
         "message": "Doorzichtigheid van pictogrammen"
     },
     "iconUrl": {
-        "message": "Aangepast pictogram (URL)"
+        "message": "Aangepast pictogram (URL of Base64)"
     },
     "iconUrlPlaceholder": {
         "message": "Aangepast pictogram URL of Base64 string (in het formaat data:image/png;base64, ...)"

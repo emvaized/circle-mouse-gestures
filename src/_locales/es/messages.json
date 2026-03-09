@@ -300,7 +300,7 @@
         "message": "Opacidad de los iconos"
     },
     "iconUrl": {
-        "message": "Ícono personalizado (URL)"
+        "message": "Ícono personalizado (URL o Base64)"
     },
     "iconUrlPlaceholder": {
         "message": "URL de ícono personalizado o cadena Base64 (en formato data:image/png;base64, ...)"

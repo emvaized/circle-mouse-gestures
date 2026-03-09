@@ -300,7 +300,7 @@
         "message": "Icons opacity"
     },
     "iconUrl": {
-        "message": "Custom icon (URL)"
+        "message": "Custom icon (URL or Base64)"
     },
     "iconUrlPlaceholder": {
         "message": "Custom icon URL or Base64 string (in format data:image/png;base64, ...)"
