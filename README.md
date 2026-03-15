@@ -58,8 +58,8 @@ If you really enjoy this project, please consider supporting its further develop
 - [ ] Fix broken mouse detection on Vivaldi browser (specifically, conflicts with built-in gesture systems)
 
 
-## Links to my other browser extensions
+## Links to my other browser extensions and projects
 * [Selecton](https://github.com/emvaized/selecton-extension) – smart text selection popup
 * [Open in Popup Window](https://github.com/emvaized/open-in-popup-window-extension) – quickly open any links and images in a small popup window with no browser controls
 * [Text reflow on zoom](https://github.com/emvaized/text-reflow-on-zoom-mobile) – userscript and mobile browser extension which reflows all text after a pinch gesture
-* [Modern Inverted Mouse Cursors](https://www.patreon.com/emvaized/shop/modern-inverted-mouse-cursors-for-10-11-924356) – cursor pack for Windows 10/11, which inverts colors behind cursors
+* [Modern Inverted Mouse Cursors](https://www.patreon.com/emvaized/shop/modern-inverted-mouse-cursors-for-10-11-924356) – cursor pack for Windows 10/11 which inverts all colors behind cursors
