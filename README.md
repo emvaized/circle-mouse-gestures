@@ -60,6 +60,6 @@ If you really enjoy this project, please consider supporting its further develop
 
 ## My other browser extensions and projects
 * <img src="https://github.com/emvaized/selecton-extension/raw/master/src/assets/icons/logo-new.png" width="20"> [Selecton](https://github.com/emvaized/selecton-extension) – smart text selection popup 
-* <img src="https://github.com/emvaized/open-in-popup-window-extension/blob/main/src/assets/icon.png?raw=true" width="20"> [Open in Popup Window](https://github.com/emvaized/open-in-popup-window-extension) – quickly open any links and images in a small popup window with no browser controls
+* <img src="https://github.com/emvaized/open-in-popup-window-extension/blob/main/src/assets/icon_new.png?raw=true" width="20"> [Open in Popup Window](https://github.com/emvaized/open-in-popup-window-extension) – quickly open any links and images in a small popup window with no browser controls
 * <img src="https://github.com/emvaized/text-reflow-on-zoom-mobile/blob/main/src/icon.png?raw=true" width="20"> [Text reflow on zoom](https://github.com/emvaized/text-reflow-on-zoom-mobile) – userscript and mobile browser extension which reflows all text after a pinch gesture
 * <img src="https://github.com/emvaized/modern_inverted_mouse_cursors/blob/main/screenshots/illustration_of_inversion.gif?raw=true" width="20"> [Modern Inverted Mouse Cursors](https://www.patreon.com/emvaized/shop/modern-inverted-mouse-cursors-for-10-11-924356) – cursor pack for Windows 10/11 which inverts all colors behind cursors 
