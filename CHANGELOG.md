@@ -1,3 +1,7 @@
+### 1.5.5
+- Added improved excluded domains management UI in popup
+- Added "Save link as ..." action for link menu
+
 ### 1.5.4
 - Fix broken build 1.5.3
 - Update url for "support project" popup button

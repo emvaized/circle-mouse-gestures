@@ -1,6 +1,6 @@
 html, body {
-  min-width: 125px;
-  max-width: 180px;
+  min-width: 188px;
+  max-width: 270px;
 }
 
 #popup-header img {
@@ -45,6 +45,110 @@ button {
   font-size: 1.0em;
   cursor: pointer;
   width: 100%;
+}
+
+.domain-buttons-container {
+  display: flex;
+  gap: 4px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.addThisSiteButton {
+  flex: 1;
+  margin: 0;
+  font-size: 1.0em;
+  padding: 4px;
+}
+
+.gearButton {
+  width: 32px;
+  margin: 0;
+  padding: 4px;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.domains-dropdown {
+  position: relative;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.domains-list {
+  padding: 4px;
+}
+
+.domain-item {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  margin: 2px 0;
+  font-size: 0.85em;
+}
+
+.domain-item button {
+  width: 24px;
+  height: 24px;
+  margin: 0 6px 0 0;
+  padding: 0;
+  font-size: 1.1em;
+  flex-shrink: 0;
+  text-align: center;
+  line-height: 24px;
+}
+
+.domain-item span {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.add-domain-item {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  margin: 2px 0;
+  border-bottom: 1px solid #eee;
+  gap: 4px;
+}
+
+.add-domain-input {
+  flex: 1;
+  padding: 4px 6px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 0.85em;
+}
+
+.add-domain-input::placeholder {
+  color: #999;
+}
+
+.add-domain-button {
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  padding: 0;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #4CAF50;
+  flex-shrink: 0;
+  text-align: center;
+  line-height: 28px;
+}
+
+.no-domains {
+  padding: 8px;
+  text-align: center;
+  color: #999;
+  font-size: 0.85em;
 }
 
 button img {
