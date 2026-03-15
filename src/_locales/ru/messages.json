@@ -215,6 +215,9 @@
     "downloadUrlAs": {
         "message": "Сохранить как"
     },
+    "saveLinkAs": {
+        "message": "Сохранить ссылку как..."
+    },
     "downloadVideo": {
         "message": "Скачать видео"
     },
@@ -235,6 +238,39 @@
     },
     "executeCustomJsHint": {
         "message": "Введите собственный код JavaScript для выполнения. Вы можете использовать в тексте следующие плейсхолдеры: \n\n {selection} для выделенного текста, \n{url} для URL элемента под курсором, \n {pageUrl} для URL текущей страницы"
+    },
+    "addSite": {
+        "message": "Исключить этот домен"
+    },
+    "removeSite": {
+        "message": "Удалить исключение"
+    },
+    "manageDomains": {
+        "message": "Управление исключенными доменами"
+    },
+    "removeDomain": {
+        "message": "Удалить"
+    },
+    "addDomainManually": {
+        "message": "Добавить вручную"
+    },
+    "enterDomain": {
+        "message": "Введите имя домена:"
+    },
+    "noDomains": {
+        "message": "Нет исключенных доменов"
+    },
+    "addDomainConfirm": {
+        "message": "Добавить $DOMAIN$ в исключенные домены?",
+        "placeholders": {
+            "domain": {
+                "content": "$1",
+                "example": "www.example.com"
+            }
+        }
+    },
+    "domainAlreadyExcluded": {
+        "message": "Этот домен уже исключен"
     },
     "exportSettings": {
         "message": "Экспортировать настройки"

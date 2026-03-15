@@ -19,9 +19,15 @@
     <label class="checkboxLabel"> <input id="enabledCheckbox" class="checkbox" type="checkbox"> </label>
   </div>
 
-  <div style='margin-top: 10px' class='option'>
-    <label><input id="excludedDomains" type="text"> </label>
+  <div class="domain-buttons-container">
+    <button id='addThisSiteButton' class='addThisSiteButton'></button>
+    <button id='manageDomainsButton' class='gearButton' title=''>±</button>
   </div>
+
+  <div id='domainsDropdown' class='domains-dropdown' style='display: none;'>
+    <div id='domainsList' class='domains-list'></div>
+  </div>
+
   <br />
 
   <button id='githubPage'> <img height='15px' width='15px' src="../assets/icons/popup/github.svg" /> </button>

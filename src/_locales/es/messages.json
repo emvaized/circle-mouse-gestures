@@ -215,6 +215,9 @@
     "downloadUrlAs": {
         "message": "Descargar como"
     },
+    "saveLinkAs": {
+        "message": "Guardar enlace como..."
+    },
     "downloadVideo": {
         "message": "Descargar video"
     },
@@ -235,6 +238,39 @@
     },
     "executeCustomJsHint": {
         "message": "Introduce código JavaScript personalizado para ejecutar. Puedes usar los siguientes marcadores:\n\n {selection} para el texto seleccionado,\n{url} para la URL del elemento sobre el que está el cursor,\n {pageUrl} para la URL de la página actual"
+    },
+    "addSite": {
+        "message": "Excluir este dominio"
+    },
+    "removeSite": {
+        "message": "Eliminar exclusión"
+    },
+    "manageDomains": {
+        "message": "Gestionar dominios excluidos"
+    },
+    "removeDomain": {
+        "message": "Eliminar"
+    },
+    "addDomainManually": {
+        "message": "Añadir manualmente"
+    },
+    "enterDomain": {
+        "message": "Ingrese el nombre del dominio:"
+    },
+    "noDomains": {
+        "message": "No hay dominios excluidos"
+    },
+    "addDomainConfirm": {
+        "message": "¿Añadir $DOMAIN$ a dominios excluidos?",
+        "placeholders": {
+            "domain": {
+                "content": "$1",
+                "example": "www.example.com"
+            }
+        }
+    },
+    "domainAlreadyExcluded": {
+        "message": "Este dominio ya está excluido"
     },
     "exportSettings": {
         "message": "Exportar configuración"
