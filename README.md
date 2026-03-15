@@ -53,11 +53,13 @@ If you really enjoy this project, please consider supporting its further develop
 - [x] Option to set custom favicon for 'Open URL' action
 - [x] Action to execute custom Javascript
 - [ ] Actions to switch to first/last tab
-- [ ] Fix broken mouse detection on Vivaldi browser
+- [ ] Option to require modifier key to show circle menu (and override context menu) 
+- [ ] Add `npm run build` parameter to build specific Firefox/Chromium versions (with changes to `manifest.json`)
+- [ ] Fix broken mouse detection on Vivaldi browser (specifically, conflicts with built-in gesture systems)
 
 
 ## Links to my other browser extensions
 * [Selecton](https://github.com/emvaized/selecton-extension) – smart text selection popup
 * [Open in Popup Window](https://github.com/emvaized/open-in-popup-window-extension) – quickly open any links and images in a small popup window with no browser controls
-* [Google Search Tweaks](https://github.com/emvaized/google-tiles-extension) – set of tweaks for Google search page to make it easier to use
-* [Linkover](https://github.com/emvaized/linkover-extension) – load info about any link on mouse hover or on a long click
+* [Text reflow on zoom](https://github.com/emvaized/text-reflow-on-zoom-mobile) – userscript and mobile browser extension which reflows all text after a pinch gesture
+* [Modern Inverted Mouse Cursors](https://www.patreon.com/emvaized/shop/modern-inverted-mouse-cursors-for-10-11-924356) – cursor pack for Windows 10/11, which inverts colors behind cursors
