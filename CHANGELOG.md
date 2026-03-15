@@ -1,6 +1,8 @@
-### 1.5.5
-- Added improved excluded domains management UI in popup
-- Added "Save link as ..." action for link menu
+### 1.6.0
+- Add option for custom Search url (thanks [ArijanJ](https://github.com/ArijanJ))
+- Add option to execute custom JavaScript (thanks [Ferdau Daems](https://github.com/ferdau))
+- Added improved excluded domains management UI in popup (thanks [Chad Miles](https://github.com/chadish7))
+- Added "Save link as ..." action for link menu (thanks [Chad Miles](https://github.com/chadish7))
 
 ### 1.5.4
 - Fix broken build 1.5.3
