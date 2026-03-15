@@ -85,6 +85,10 @@ function restoreOptions() {
   });
 
   /// Manage domains button and dropdown
+
+  let excludedDomainsLabel = document.querySelector('#excludedDomainsLabel');
+  excludedDomainsLabel.innerText = chrome.i18n.getMessage('excludedDomains') + ':';
+
   let manageDomainsButton = document.querySelector('#manageDomainsButton');
   manageDomainsButton.setAttribute('title', chrome.i18n.getMessage('manageDomains'));
   let domainsDropdown = document.querySelector('#domainsDropdown');
