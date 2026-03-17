@@ -328,7 +328,7 @@ function processAndShowCircle(e) {
         /// Special handling for Firefox (https://stackoverflow.com/questions/20419515/window-getselection-of-textarea-not-working-in-firefox)
         try {
             if (textSelection.toString() == '') {
-                var ta = document.querySelector(':focus');
+                let ta = document.querySelector(':focus');
                 if (ta !== null && ta.value !== undefined)
                     textSelection = ta.value.substring(ta.selectionStart, ta.selectionEnd);
             }
