@@ -68,24 +68,9 @@ function returnActionIconPath(e, id) {
     return p;
 }
 
-
 function returnActionLabel(id) {
 
     let textToDraw;
-
-    function setDefaultPath() {
-        textToDraw = chrome.i18n.getMessage(id);
-    }
-
-    function setScrollIconsPath() {
-        let previousPosition = previousScrollPosition[id];
-
-        if (configs.storeCurrentScrollPosition && previousPosition !== null && previousPosition !== undefined)
-            textToDraw = chrome.i18n.getMessage('scrollBack');
-        else
-            setDefaultPath();
-    }
-
 
     switch (id) {
         case 'playPauseVideo': {
@@ -94,15 +79,14 @@ function returnActionLabel(id) {
 
         case 'textTooLong': {
             textToDraw = chrome.i18n.getMessage(document.querySelector('.ttl-drag-handle') !== null ? 'restore' : 'textTooLong');
-
         } break;
 
         case 'scrollToTop': {
-            setScrollIconsPath();
+            textToDraw = returnScrollActionLabel(id);
         } break;
 
         case 'scrollToBottom': {
-            setScrollIconsPath();
+            textToDraw = returnScrollActionLabel(id);
         } break;
 
         case 'toggleFullscreen': {
@@ -123,12 +107,20 @@ function returnActionLabel(id) {
         } break;
 
         default: {
-            setDefaultPath();
+            textToDraw = chrome.i18n.getMessage(id);
         }
     }
 
     return textToDraw;
+}
 
+function returnScrollActionLabel(id) {
+    let previousPosition = previousScrollPosition[id];
+
+    if (configs.storeCurrentScrollPosition && previousPosition !== null && previousPosition !== undefined)
+        return chrome.i18n.getMessage('scrollBack');
+    else
+        return chrome.i18n.getMessage(id);
 }
 
 
