@@ -123,7 +123,7 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
 
     try {
         /// Show link tooltip
-        if (configs.addLinkTooltip && hoveredLink !== null && linkTooltip == null) {
+        if (configs.addLinkTooltip && hoveredLink !== null && linkTooltip == null && showIndexes == false) {
             showLinkTooltip();
         }
 
