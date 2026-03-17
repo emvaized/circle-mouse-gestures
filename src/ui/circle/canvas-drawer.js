@@ -53,7 +53,10 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
                     tooltipTimer = setTimeout(function () {
                         if (!circleIsShown) return;
                         let isOnTop = E.clientY < topCoord + (canvasRadius / 2);
-                        showHintTooltip(segment.id == 'openUrl' ? (segment.label ?? segment.url ?? chrome.i18n.getMessage(segment.id)) : chrome.i18n.getMessage(segment.id),
+                        showHintTooltip(
+                            segment.id == 'openUrl' || segment.id == 'executeCustomJs' ? 
+                                (segment.label ? segment.label : segment.url ?? chrome.i18n.getMessage(segment.id)) : 
+                                returnActionLabel(segment.id),
                             colorForButton, `rgb(${outlineColorRgb.red}, ${outlineColorRgb.green}, ${outlineColorRgb.blue}`, isOnTop, levelOpacity);
                     }, configs.delayToShowTitleOnHoverWhenHidden)
                 }
