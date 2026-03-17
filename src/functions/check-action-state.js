@@ -1,4 +1,4 @@
-function returnActionIconPath(e, id) {
+function returnActionIconPath(e, id, shouldCheckButtonsAvailability = true) {
     let p;
 
     function setDefaultPath() {
@@ -40,10 +40,11 @@ function returnActionIconPath(e, id) {
                 p = new Path2D(actionIcons['toggleFullscreen']);
 
                 /// Request to background script to check if opened window is in fullscreen
-                chrome.runtime.sendMessage({ actionToDo: 'checkFullscreenToggleStatus' }, (response) => {
-                    /// Redraw screen with updated icon
-                    updateButtonStatus(e, 'toggleFullscreen', !response);
-                });
+                if (shouldCheckButtonsAvailability)
+                    chrome.runtime.sendMessage({ actionToDo: 'checkFullscreenToggleStatus' }, (response) => {
+                        /// Redraw screen with updated icon
+                        updateButtonStatus(e, 'toggleFullscreen', !response);
+                    });
             }
 
         } break;
@@ -54,9 +55,10 @@ function returnActionIconPath(e, id) {
                 p = new Path2D(actionIcons[buttonsStatuses[id] ? 'pinTab' : 'unpinTab']);
             } else {
                 p = new Path2D(actionIcons['pinTab']);
-                chrome.runtime.sendMessage({ actionToDo: 'checkPinTabStatus' }, (response) => {
-                    updateButtonStatus(e, 'pinTab', !response);
-                });
+                if (shouldCheckButtonsAvailability)
+                    chrome.runtime.sendMessage({ actionToDo: 'checkPinTabStatus' }, (response) => {
+                        updateButtonStatus(e, 'pinTab', !response);
+                    });
             }
         } break;
 

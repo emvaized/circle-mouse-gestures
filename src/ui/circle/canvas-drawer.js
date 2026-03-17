@@ -220,7 +220,7 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
                     /// Draw SVG icon
                     try {
                         ctx.save();
-                        let p = returnActionIconPath(e, segment.id);
+                        let p = returnActionIconPath(e, segment.id, shouldCheckButtonsAvailability);
 
                         ctx.translate(dxForText - (iconSize / 2), dyForText - (verticalShiftForIcon == 0 && shouldDrawLabel ? 6 : verticalShiftForIcon) - (iconSize / (circleRadius - innerCircleRadius > iconSize * 2.5 ? 1.5 : 2)));
                         let scale = iconSize / 24;
@@ -266,7 +266,7 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
                 /// Draw SVG icon
                 try {
                     ctx.save();
-                    let p = returnActionIconPath(e, segment.id);
+                    let p = returnActionIconPath(e, segment.id, shouldCheckButtonsAvailability);
 
                     ctx.translate(dxForText - (iconSize / 2), dyForText - (verticalShiftForIcon == 0 && shouldDrawLabel ? 6 : verticalShiftForIcon) - (iconSize / (circleRadius - innerCircleRadius > iconSize * 2.5 ? 1.5 : 2)));
                     let scale = iconSize / 24;
