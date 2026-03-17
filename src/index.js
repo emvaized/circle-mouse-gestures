@@ -307,7 +307,8 @@ function processAndShowCircle(e) {
     rocketButtonPressed = null;
 
     if (configs.debugMode) console.log('Showing mouse gestures circle...');
-    const el = document.elementFromPoint(e.clientX, e.clientY);
+    // const el = document.elementFromPoint(e.clientX, e.clientY);
+    const el = e.target;
     elementUnderCursor = el;
     const elStyle = window.getComputedStyle(el);
 
