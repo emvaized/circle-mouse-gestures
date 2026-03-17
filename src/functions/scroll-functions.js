@@ -20,6 +20,7 @@ function scrollElementUnderCursor(scrollingElement, offset, id, directionTop = f
     let currentScrollPosition;
 
     function saveCurrentScrollPosition() {
+        if (!canScrollTop(elementUnderCursor) || !canScrollBottom(elementUnderCursor)) return;
         if (configs.storeCurrentScrollPosition && id !== null) {
             previousScrollPosition[id == 'scrollToTop' ? 'scrollToBottom' : 'scrollToTop'] = currentScrollPosition;
             if (configs.debugMode) {
