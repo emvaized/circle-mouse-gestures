@@ -530,30 +530,7 @@ chrome.runtime.onMessage.addListener(
             } break;
 
             case 'pinTab': {
-                if (sender.tab.pinned) {
-                    chrome.tabs.create({
-                        "url": sender.tab.url,
-                        "pinned": false,
-                        "index": sender.tab.index + 1
-                    },
-                        function (tab) {
-                            tab.highlighted = true;
-                            tab.active = true;
-
-                            chrome.tabs.remove(sender.tab.id, function () { });
-                        });
-                } else {
-                    chrome.tabs.create({
-                        "url": sender.tab.url,
-                        "pinned": true
-                    },
-                        function (tab) {
-                            tab.highlighted = true;
-                            tab.active = true;
-
-                            chrome.tabs.remove(sender.tab.id, function () { });
-                        });
-                }
+                chrome.tabs.update(sender.tab.id, { pinned: !sender.tab.pinned });
             } break;
 
             case 'checkNextTabAvailability': {
