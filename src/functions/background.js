@@ -344,15 +344,15 @@ chrome.runtime.onMessage.addListener(
                 });
             } break;
 
-            case 'getCurrentClipboardContent': {
-                try {
-                    navigator.clipboard.readText().then(text => sendResponse(text));
-                } catch (e) {
-                    sendResponse('');
-                }
-                return true;
+            // case 'getCurrentClipboardContent': {
+            //     try {
+            //         navigator.clipboard.readText().then(text => sendResponse(text));
+            //     } catch (e) {
+            //         sendResponse('');
+            //     }
+            //     return true;
 
-            } break;
+            // } break;
 
             case 'showBrowserNotification': {
                 displayNotification(request.title, request.message, request.url, request.image)
