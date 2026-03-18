@@ -8,6 +8,7 @@ const isFirefox = navigator.userAgent.indexOf("Firefox") > -1;
 let selectedMenuType = 'regularMenu';
 let importedConfigs;
 let exportFileName = 'cmg-settings.json';
+let defaultConfigs;
 
 function optionsInit() {
     document.title = chrome.i18n.getMessage('settings') + ' — CMG';
@@ -21,6 +22,8 @@ function optionsInit() {
     })
 
     try {
+        defaultConfigs = JSON.parse(JSON.stringify(configs));
+
         loadUserConfigs(function (conf) {
             setMenuTypeDropdown();
             drawCirclePreview(selectedMenuType);
@@ -1607,7 +1610,7 @@ function setImportExportButtons() {
             saveAllSettings(defaultConfigs);
             setTimeout(function(){
                 window.location.reload();
-            },100)
+            },200)
         }
     }
 
