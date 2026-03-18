@@ -3,7 +3,7 @@
 - Disabled new "execute custom JS" action to be set as secondary mouse action for now
 - Fixed not showing custom action labels on hover
 - Prevent storing previous scroll position when on top or bottom of the page
-- Simplify "pin tab" action + make it not creating a new tab
+- Simplify "pin tab" action + make it not creating a new tab (thanks [Philippe Jaubert](https://github.com/PhilJbt))
 - Simplify availability detection for "scroll to top/bottom" actions
 - Simplify function for text formatting in text fields
 - Other small fixes and performance improvements
