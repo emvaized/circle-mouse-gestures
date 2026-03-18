@@ -11,6 +11,18 @@
     "addCircleShadow": {
         "message": "Schaduw tonen"
     },
+    "addDomainConfirm": {
+        "message": "$DOMAIN$ toevoegen aan genegeerde domeinen?",
+        "placeholders": {
+            "domain": {
+                "content": "$1",
+                "example": "www.example.com"
+            }
+        }
+    },
+    "addDomainManually": {
+        "message": "Handmatig toevoegen"
+    },
     "addGhostPointer": {
         "message": "Schimcursor tonen"
     },
@@ -34,6 +46,9 @@
     },
     "addNewButton": {
         "message": "Toevoegen"
+    },
+    "addSite": {
+        "message": "Dit domein uitsluiten"
     },
     "addTextLabels": {
         "message": "Tekstlabels tonen"
@@ -194,11 +209,11 @@
     "delay": {
         "message": "Wachttijd"
     },
-    "delayToShowCircle": {
-        "message": "Wachttijd voor het tonen van de cirkel (ms)"
-    },
     "delayForLongLeftClick": {
         "message": "Duur van ingedrukt houden"
+    },
+    "delayToShowCircle": {
+        "message": "Wachttijd voor het tonen van de cirkel (ms)"
     },
     "deleteLabel": {
         "message": "Verwijderen"
@@ -212,14 +227,14 @@
     "doNothing": {
         "message": "Niets doen"
     },
+    "domainAlreadyExcluded": {
+        "message": "Dit domein is al genegeerd"
+    },
     "downloadUrl": {
         "message": "Downloaden"
     },
     "downloadUrlAs": {
         "message": "Downloaden als"
-    },
-    "saveLinkAs": {
-        "message": "Link opslaan als..."
     },
     "downloadVideo": {
         "message": "Video downloaden"
@@ -233,6 +248,9 @@
     "enabled": {
         "message": "Ingeschakeld"
     },
+    "enterDomain": {
+        "message": "Voer domeinnaam in:"
+    },
     "excludedDomains": {
         "message": "Genegeerde domeinen"
     },
@@ -241,39 +259,6 @@
     },
     "executeCustomJsHint": {
         "message": "Voer aangepaste JavaScript-code in om uit te voeren. Je kunt de volgende placeholders gebruiken:\n\n {selection} voor de geselecteerde tekst,\n{url} voor de URL van het element waar de cursor boven staat,\n {pageUrl} voor de URL van de huidige pagina"
-    },
-    "addSite": {
-        "message": "Dit domein uitsluiten"
-    },
-    "removeSite": {
-        "message": "Uitsluiting verwijderen"
-    },
-    "manageDomains": {
-        "message": "Genegeerde domeinen beheren"
-    },
-    "removeDomain": {
-        "message": "Verwijderen"
-    },
-    "addDomainManually": {
-        "message": "Handmatig toevoegen"
-    },
-    "enterDomain": {
-        "message": "Voer domeinnaam in:"
-    },
-    "noDomains": {
-        "message": "Geen genegeerde domeinen"
-    },
-    "addDomainConfirm": {
-        "message": "$DOMAIN$ toevoegen aan genegeerde domeinen?",
-        "placeholders": {
-            "domain": {
-                "content": "$1",
-                "example": "www.example.com"
-            }
-        }
-    },
-    "domainAlreadyExcluded": {
-        "message": "Dit domein is al genegeerd"
     },
     "exportSettings": {
         "message": "Exportinstellingen"
@@ -428,6 +413,9 @@
     "longLeftClickThresholdTooltip": {
         "message": "Als de cursor met dit aantal pixels verschoven wordt, dan wordt het menu niet geopend"
     },
+    "manageDomains": {
+        "message": "Genegeerde domeinen beheren"
+    },
     "manageSettingsLabel": {
         "message": "Instellingen beheren"
     },
@@ -505,6 +493,9 @@
     },
     "noAnimation": {
         "message": "Geen animatie"
+    },
+    "noDomains": {
+        "message": "Geen genegeerde domeinen"
     },
     "noMatchingTabsFound": {
         "message": "Er zijn geen overeenkomende tabbladen aangetroffen"
@@ -602,6 +593,12 @@
     "reloadTabWithoutCache": {
         "message": "Herladen (cache omezeilen)"
     },
+    "removeDomain": {
+        "message": "Verwijderen"
+    },
+    "removeSite": {
+        "message": "Uitsluiting verwijderen"
+    },
     "replayVideo": {
         "message": "Opnieuw afspelen"
     },
@@ -652,6 +649,9 @@
     },
     "rotateLabel": {
         "message": "Draaien"
+    },
+    "saveLinkAs": {
+        "message": "Link opslaan als..."
     },
     "scale": {
         "message": "Grootte aanpassen"

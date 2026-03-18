@@ -11,6 +11,18 @@
     "addCircleShadow": {
         "message": "Add shadow"
     },
+    "addDomainConfirm": {
+        "message": "Add $DOMAIN$ to excluded domains?",
+        "placeholders": {
+            "domain": {
+                "content": "$1",
+                "example": "www.example.com"
+            }
+        }
+    },
+    "addDomainManually": {
+        "message": "Add manually"
+    },
     "addGhostPointer": {
         "message": "Show ghost pointer"
     },
@@ -34,6 +46,9 @@
     },
     "addNewButton": {
         "message": "Add new"
+    },
+    "addSite": {
+        "message": "Exclude this domain"
     },
     "addTextLabels": {
         "message": "Display text labels"
@@ -197,6 +212,9 @@
     "delayForLongLeftClick": {
         "message": "Hold duration"
     },
+    "delayToShowCircle": {
+        "message": "Delay before showing circle (ms)"
+    },
     "deleteLabel": {
         "message": "Remove"
     },
@@ -209,14 +227,14 @@
     "doNothing": {
         "message": "Do nothing"
     },
+    "domainAlreadyExcluded": {
+        "message": "This domain is already excluded"
+    },
     "downloadUrl": {
         "message": "Download"
     },
     "downloadUrlAs": {
         "message": "Download as"
-    },
-    "saveLinkAs": {
-        "message": "Save link as..."
     },
     "downloadVideo": {
         "message": "Download video"
@@ -230,6 +248,9 @@
     "enabled": {
         "message": "Enabled"
     },
+    "enterDomain": {
+        "message": "Enter domain name:"
+    },
     "excludedDomains": {
         "message": "Excluded domains"
     },
@@ -238,42 +259,6 @@
     },
     "executeCustomJsHint": {
         "message": "Enter custom JavaScript code to execute. You can use the following placeholders: \n\n {selection} for the selected text, \n{url} for the hovered element url, \n {pageUrl} for current page url"
-    },
-    "addSite": {
-        "message": "Exclude this domain"
-    },
-    "removeSite": {
-        "message": "Remove exclusion"
-    },
-    "manageDomains": {
-        "message": "Manage excluded domains"
-    },
-    "removeDomain": {
-        "message": "Remove"
-    },
-    "addDomainManually": {
-        "message": "Add manually"
-    },
-    "enterDomain": {
-        "message": "Enter domain name:"
-    },
-    "noDomains": {
-        "message": "No excluded domains"
-    },
-    "addDomainConfirm": {
-        "message": "Add $DOMAIN$ to excluded domains?",
-        "placeholders": {
-            "domain": {
-                "content": "$1",
-                "example": "www.example.com"
-            }
-        }
-    },
-    "delayToShowCircle": {
-        "message": "Delay before showing circle (ms)"
-    },
-    "domainAlreadyExcluded": {
-        "message": "This domain is already excluded"
     },
     "exportSettings": {
         "message": "Export settings"
@@ -428,6 +413,9 @@
     "longLeftClickThresholdTooltip": {
         "message": "If cursor has moved by this amount of pixels, do not open menu on timer end"
     },
+    "manageDomains": {
+        "message": "Manage excluded domains"
+    },
     "manageSettingsLabel": {
         "message": "Manage settings"
     },
@@ -505,6 +493,9 @@
     },
     "noAnimation": {
         "message": "No animation"
+    },
+    "noDomains": {
+        "message": "No excluded domains"
     },
     "noMatchingTabsFound": {
         "message": "No matching tabs found"
@@ -602,6 +593,12 @@
     "reloadTabWithoutCache": {
         "message": "Reload (no cache)"
     },
+    "removeDomain": {
+        "message": "Remove"
+    },
+    "removeSite": {
+        "message": "Remove exclusion"
+    },
     "replayVideo": {
         "message": "Replay"
     },
@@ -652,6 +649,9 @@
     },
     "rotateLabel": {
         "message": "Rotate"
+    },
+    "saveLinkAs": {
+        "message": "Save link as..."
     },
     "scale": {
         "message": "Scale"
