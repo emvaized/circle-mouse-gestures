@@ -518,8 +518,9 @@ function hideCircle() {
         if (hoveredLink !== null && linkTooltip !== null)
             hideLinkTooltip();
 
-        if (rockerCircle !== null)
-            hideRockerIcon(rocketButtonPressed !== null);
+        /// Rocker icon
+        // if (rockerCircle !== null)
+        //     hideRockerIcon(rocketButtonPressed !== null);
 
         /// Remove outline of the hovered element
         if (configs.addBorderToHoveredElement && elementUnderCursor){
