@@ -131,8 +131,8 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
         }
 
         /// Draw rocker gesture icon in center
-        if (showRockerActionInCenter && rockerCircle == null)
-            drawRockerIconInCenter();
+        // if (showRockerActionInCenter && rockerCircle == null)
+        //     drawRockerIconInCenter();
     } catch (e) { }
 }
 
