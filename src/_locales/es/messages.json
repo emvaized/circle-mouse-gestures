@@ -392,6 +392,9 @@
     "jsCode": {
         "message": "Código JavaScript"
     },
+    "jsCodeWarning": {
+        "message": "Pegue aquí solo código JavaScript que entienda y confíe, ya que se ejecutará con los mismos permisos que esta extensión, lo que puede incluir acceso a todos los datos de los sitios web que visite"
+    },
     "label": {
         "message": "Etiqueta"
     },

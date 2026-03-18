@@ -392,6 +392,9 @@
     "jsCode": {
         "message": "JavaScript Code"
     },
+    "jsCodeWarning": {
+        "message": "Paste here only JavaScript code that you understand and trust, as it will be executed with the same permissions as this extension, which may include access to all data on the websites you visit"
+    },
     "label": {
         "message": "Label"
     },

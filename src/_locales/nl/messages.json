@@ -392,6 +392,9 @@
     "jsCode": {
         "message": "JavaScript-code"
     },
+    "jsCodeWarning": {
+        "message": "Plak hier alleen JavaScript-code die je begrijpt en vertrouwt, aangezien deze zal worden uitgevoerd met dezelfde machtigingen als deze extensie, wat mogelijk toegang tot alle gegevens op de websites die je bezoekt omvat"
+    },
     "label": {
         "message": "Label"
     },
