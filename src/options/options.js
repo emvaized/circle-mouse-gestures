@@ -314,8 +314,8 @@ function generateBehaviorConfigs() {
         'backgroundDimmerOpacity',
         'storeCurrentScrollPosition',
         // 'highlightElementOnHover',
-        'continiousVerticalScrollDetection',
-        'continiousHorizontalScrollDetection',
+        // 'continiousVerticalScrollDetection',
+        // 'continiousHorizontalScrollDetection',
         'copyNotification',
         'showUpdateNotification',
         'addGhostPointer',
@@ -367,8 +367,8 @@ function generateBehaviorConfigs() {
     document.getElementById('showTitleOnHoverWhenHiddenTooltip').innerText = chrome.i18n.getMessage('showTitleOnHoverWhenHiddenTooltip');   
     document.getElementById('requireModifierForSpecificMenusTooltip').innerText = chrome.i18n.getMessage('requireModifierForSpecificMenusTooltip');
 
-    document.getElementById('continiousVerticalScrollDetectionTooltip').innerText = chrome.i18n.getMessage('continiousScrollDetectionHint');
-    document.getElementById('continiousHorizontalScrollDetectionTooltip').innerText = chrome.i18n.getMessage('continiousScrollDetectionHint');
+    // document.getElementById('continiousVerticalScrollDetectionTooltip').innerText = chrome.i18n.getMessage('continiousScrollDetectionHint');
+    // document.getElementById('continiousHorizontalScrollDetectionTooltip').innerText = chrome.i18n.getMessage('continiousScrollDetectionHint');
     // document.getElementById('applySettingsImmediatelyTooltip').innerText = chrome.i18n.getMessage('applySettingsImmediatelyTooltip');
     document.getElementById('addBlurTooltip').innerText = chrome.i18n.getMessage('addBlurTooltip');
     document.getElementById('addGhostPointerTooltip').innerText = chrome.i18n.getMessage('addGhostPointerTooltip');
@@ -573,7 +573,7 @@ function generateGesturesConfigs() {
         configs.horizontalWheelActionsEnabled = horWheelInput.checked;
         saveAllSettings();
         horizontalWheelWrapper.className = configs.horizontalWheelActionsEnabled ? 'visible-option' : 'hidden-option';
-        document.getElementById('continiousHorizontalScrollDetection').parentNode.parentNode.className = configs.horizontalWheelActionsEnabled ? 'option visible-option' : 'option hidden-option';
+        // document.getElementById('continiousHorizontalScrollDetection').parentNode.parentNode.className = configs.horizontalWheelActionsEnabled ? 'option visible-option' : 'option hidden-option';
     })
 
     horWheelLabel.appendChild(horWheelInput);
@@ -605,7 +605,7 @@ function generateGesturesConfigs() {
     /// Set disabled sections
     gesturesConfigs.className = configs.openCircleOn == 'rightClick' ? 'configs-container visible-option' : 'configs-container hidden-option';
     horizontalWheelWrapper.className = configs.horizontalWheelActionsEnabled ? 'visible-option' : 'hidden-option';
-    document.getElementById('continiousHorizontalScrollDetection').parentNode.parentNode.className = configs.horizontalWheelActionsEnabled ? 'option visible-option' : 'option hidden-option';
+    // document.getElementById('continiousHorizontalScrollDetection').parentNode.parentNode.className = configs.horizontalWheelActionsEnabled ? 'option visible-option' : 'option hidden-option';
 
     /// Add 'open circle on' dropdown
     let openMenuOnDropdown = document.getElementById('openCircleOn');
