@@ -194,6 +194,9 @@
     "delay": {
         "message": "Wachttijd"
     },
+    "delayToShowCircle": {
+        "message": "Wachttijd voor het tonen van de cirkel (ms)"
+    },
     "delayForLongLeftClick": {
         "message": "Duur van ingedrukt houden"
     },

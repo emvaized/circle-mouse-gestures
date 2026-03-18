@@ -37,6 +37,7 @@ function setPageListeners() {
         if (configs.showRegularMenuIfNoAction && configs.hideCircleIfNoActionSelected == true
             && anyButtonIsSelected == false && rockerActionToPerform == undefined && circleIsShown == false && fullscreenImageIsOpen == false) {
             if (rightClickIsHolded) rightClickIsHolded = false;
+            clearTimeout(timeoutToShowCircle);
             return;
         }
 
@@ -69,6 +70,7 @@ function setPageListeners() {
                 }, configs.delayForLongLeftClick);
             } else return;
         } else if ("buttons" in e) {
+            clearTimeout(timeoutToShowCircle);
 
             /// Right click
             if (e.buttons == 2) {
@@ -76,7 +78,13 @@ function setPageListeners() {
                 if (leftClickIsHolded) return;
                 lastMouseDownEvent = e;
 
-                processAndShowCircle(e);
+                if (configs.delayToShowCircle > 0 && configs.hideCircleIfNoActionSelected) {
+                    timeoutToShowCircle = setTimeout(() => {
+                        processAndShowCircle(e);
+                    }, configs.delayToShowCircle);
+                } else {
+                   processAndShowCircle(e); 
+                }
             } else if (e.buttons == 3) {
                 rocketButtonPressed = 0;
 
@@ -138,6 +146,8 @@ function setPageListeners() {
                     }
             } else return;
         } else if ("buttons" in evt) {
+            clearTimeout(timeoutToShowCircle);
+
             if (evt.button == 0) {
                 leftClickIsHolded = false;
                 if (circleIsShown == false) return;

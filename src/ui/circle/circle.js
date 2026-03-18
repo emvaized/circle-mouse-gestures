@@ -387,6 +387,7 @@ function drawCircle(e, typeOfMenu, showIndexes = false, shouldCheckButtonsAvaila
 
 function hideCircle() {
     try {
+        clearTimeout(timeoutToShowCircle);
         if (circle == null || circle == undefined) return;
         circleIsShown = false;
 
@@ -496,6 +497,7 @@ function hideCircle() {
             }
 
             selectedButtons = {};
+            anyButtonIsSelected = false;
 
             /// Hide all ghost images for website favicons
             document.querySelectorAll(`[id^='cmg-ghost-favicon']`).forEach(function (favicon) {

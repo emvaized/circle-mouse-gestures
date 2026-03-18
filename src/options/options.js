@@ -300,6 +300,7 @@ function generateBehaviorConfigs() {
         'debugMode',
         'addLinkTooltip',
         'showRegularMenuIfNoAction',
+        'delayToShowCircle',
         // 'applySettingsImmediately',
 
         'addCircleShadow',
@@ -1571,6 +1572,7 @@ function updateDisabledOptions() {
 
     /// Grey out unavailable optoins
     document.querySelector("#showRegularMenuIfNoAction").parentNode.parentNode.className = document.querySelector("#hideCircleIfNoActionSelected").checked && document.getElementById('openCircleOn').value == 'rightClick' ? 'option enabled-option' : 'option disabled-option';
+    document.querySelector("#delayToShowCircle").parentNode.parentNode.className = document.querySelector("#hideCircleIfNoActionSelected").checked && document.getElementById('openCircleOn').value == 'rightClick' ? 'option enabled-option' : 'option disabled-option';
     document.querySelector("#circleShadowOpacity").parentNode.className = document.querySelector("#addCircleShadow").checked ? 'visible-option' : 'hidden-option';
     document.querySelector("#blurRadius").parentNode.className = document.querySelector("#addBlur").checked ? 'visible-option' : 'hidden-option';
     document.querySelector("#delayToShowTitleOnHoverWhenHidden").parentNode.className = document.querySelector("#showTitleOnHoverWhenHidden").checked ? 'visible-option' : 'hidden-option';

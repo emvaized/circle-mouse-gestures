@@ -269,6 +269,9 @@
             }
         }
     },
+    "delayToShowCircle": {
+        "message": "Delay before showing circle (ms)"
+    },
     "domainAlreadyExcluded": {
         "message": "This domain is already excluded"
     },

@@ -38,6 +38,7 @@ let circleShownInCorner = false;
 let showMousePointer = false;
 const cornerSidePadding = 30;
 let blurCircle;
+let timeoutToShowCircle;
 
 let selectedButtons = {}; /// index of level: index of button
 let preselectedButtons = {};

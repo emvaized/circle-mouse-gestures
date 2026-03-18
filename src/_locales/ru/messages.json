@@ -269,6 +269,9 @@
             }
         }
     },
+    "delayToShowCircle": {
+        "message": "Задержка перед показом круга (мс)"
+    },
     "domainAlreadyExcluded": {
         "message": "Этот домен уже исключен"
     },

@@ -24,6 +24,7 @@ const configs = {
     'inactiveMenuBehavior': 'regularMenuFallback', /// possible values: 'regularMenuFallback', 'doNothing'
     'openCircleOn': 'rightClick', /// possible values: 'rightClick', 'longLeftClick'
     'delayForLongLeftClick': 500, /// ms
+    'delayToShowCircle': 0,
 
     /// 'Replace' will display interactive menu only (link, image, selected text),
     /// and 'combine' will add it as outer circle level
@@ -327,6 +328,7 @@ const defaultConfigs = {
     'requireModifierForSpecificMenus': false,
     'addBorderToHoveredElement': true,
     'blurRadius': 4,
+    'delayToShowCircle': 100,
     'excludedDomains': '',
     'searchUrlFormat': 'https://www.google.com/search?q={selection}',
     'showCircleAnimation': 'scale', /// possible values: 'noAnimation', 'fade', 'scale'
