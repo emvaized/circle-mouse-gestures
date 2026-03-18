@@ -11,6 +11,18 @@
     "addCircleShadow": {
         "message": "Añadir sombra"
     },
+    "addDomainConfirm": {
+        "message": "¿Añadir $DOMAIN$ a dominios excluidos?",
+        "placeholders": {
+            "domain": {
+                "content": "$1",
+                "example": "www.example.com"
+            }
+        }
+    },
+    "addDomainManually": {
+        "message": "Añadir manualmente"
+    },
     "addGhostPointer": {
         "message": "Mostrar puntero fantasma"
     },
@@ -34,6 +46,9 @@
     },
     "addNewButton": {
         "message": "Añadir nuevo"
+    },
+    "addSite": {
+        "message": "Excluir este dominio"
     },
     "addTextLabels": {
         "message": "Mostrar etiquetas de texto"
@@ -197,6 +212,9 @@
     "delayForLongLeftClick": {
         "message": "Duración de espera"
     },
+    "delayToShowCircle": {
+        "message": "Retraso antes de mostrar el círculo (ms)"
+    },
     "deleteLabel": {
         "message": "Eliminar"
     },
@@ -209,14 +227,14 @@
     "doNothing": {
         "message": "Hacer nada"
     },
+    "domainAlreadyExcluded": {
+        "message": "Este dominio ya está excluido"
+    },
     "downloadUrl": {
         "message": "Descargar"
     },
     "downloadUrlAs": {
         "message": "Descargar como"
-    },
-    "saveLinkAs": {
-        "message": "Guardar enlace como..."
     },
     "downloadVideo": {
         "message": "Descargar video"
@@ -230,6 +248,9 @@
     "enabled": {
         "message": "Habilitado"
     },
+    "enterDomain": {
+        "message": "Ingrese el nombre del dominio:"
+    },
     "excludedDomains": {
         "message": "Dominios excluidos"
     },
@@ -238,39 +259,6 @@
     },
     "executeCustomJsHint": {
         "message": "Introduce código JavaScript personalizado para ejecutar. Puedes usar los siguientes marcadores:\n\n {selection} para el texto seleccionado,\n{url} para la URL del elemento sobre el que está el cursor,\n {pageUrl} para la URL de la página actual"
-    },
-    "addSite": {
-        "message": "Excluir este dominio"
-    },
-    "removeSite": {
-        "message": "Eliminar exclusión"
-    },
-    "manageDomains": {
-        "message": "Gestionar dominios excluidos"
-    },
-    "removeDomain": {
-        "message": "Eliminar"
-    },
-    "addDomainManually": {
-        "message": "Añadir manualmente"
-    },
-    "enterDomain": {
-        "message": "Ingrese el nombre del dominio:"
-    },
-    "noDomains": {
-        "message": "No hay dominios excluidos"
-    },
-    "addDomainConfirm": {
-        "message": "¿Añadir $DOMAIN$ a dominios excluidos?",
-        "placeholders": {
-            "domain": {
-                "content": "$1",
-                "example": "www.example.com"
-            }
-        }
-    },
-    "domainAlreadyExcluded": {
-        "message": "Este dominio ya está excluido"
     },
     "exportSettings": {
         "message": "Exportar configuración"
@@ -389,6 +377,9 @@
     "jsCode": {
         "message": "Código JavaScript"
     },
+    "jsCodeWarning": {
+        "message": "Pegue aquí solo código JavaScript que entienda y confíe, ya que se ejecutará con los mismos permisos que esta extensión, lo que puede incluir acceso a todos los datos de los sitios web que visite"
+    },
     "label": {
         "message": "Etiqueta"
     },
@@ -421,6 +412,9 @@
     },
     "longLeftClickThresholdTooltip": {
         "message": "Si el cursor se ha movido por esta cantidad de píxeles, no abra el menú al final del temporizador"
+    },
+    "manageDomains": {
+        "message": "Gestionar dominios excluidos"
     },
     "manageSettingsLabel": {
         "message": "Administrar configuraciones"
@@ -499,6 +493,9 @@
     },
     "noAnimation": {
         "message": "Sin animación"
+    },
+    "noDomains": {
+        "message": "No hay dominios excluidos"
     },
     "noMatchingTabsFound": {
         "message": "No se encontraron pestañas coincidentes"
@@ -596,6 +593,12 @@
     "reloadTabWithoutCache": {
         "message": "Recargar (sin caché)"
     },
+    "removeDomain": {
+        "message": "Eliminar"
+    },
+    "removeSite": {
+        "message": "Eliminar exclusión"
+    },
     "replayVideo": {
         "message": "Repetir"
     },
@@ -646,6 +649,9 @@
     },
     "rotateLabel": {
         "message": "Girar"
+    },
+    "saveLinkAs": {
+        "message": "Guardar enlace como..."
     },
     "scale": {
         "message": "Escala"

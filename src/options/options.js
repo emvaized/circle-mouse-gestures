@@ -300,6 +300,7 @@ function generateBehaviorConfigs() {
         'debugMode',
         'addLinkTooltip',
         'showRegularMenuIfNoAction',
+        'delayToShowCircle',
         // 'applySettingsImmediately',
 
         'addCircleShadow',
@@ -920,7 +921,7 @@ function generateLevelConfigs(levelIndex = 0) {
             const jsCodeInputIdentifier = `jsCodeInput-${levelIndex}-${i}`;
             jsCodeInput.type = 'text';
             jsCodeInput.id = jsCodeInputIdentifier;
-            jsCodeInput.title = chrome.i18n.getMessage('jsCode') ?? 'JavaScript Code';
+            jsCodeInput.title = chrome.i18n.getMessage('jsCodeWarning') ?? 'JavaScript Code';
             jsCodeInput.placeholder = chrome.i18n.getMessage('jsCode') ?? 'JavaScript Code (e.g., alert("Hello"))';
             jsCodeInput.style.width = '100%';
             jsCodeInput.style.fontFamily = 'monospace';
@@ -1425,7 +1426,7 @@ function createActionDropdownButton(id, initialValue, cbOnChange, label) {
         let items = sortedActionButtons[selectedMenuType][key];
         items.forEach(function (item) {
             /// Exclude 'open url' from mouse button actions
-            if (!id.includes('actionDropdown-') && item == 'openUrl') return;
+            if (!id.includes('actionDropdown-') && (item == 'openUrl' || item =='executeCustomJs')) return;
 
             let option = document.createElement('option');
             option.innerText = chrome.i18n.getMessage(item);
@@ -1571,6 +1572,7 @@ function updateDisabledOptions() {
 
     /// Grey out unavailable optoins
     document.querySelector("#showRegularMenuIfNoAction").parentNode.parentNode.className = document.querySelector("#hideCircleIfNoActionSelected").checked && document.getElementById('openCircleOn').value == 'rightClick' ? 'option enabled-option' : 'option disabled-option';
+    document.querySelector("#delayToShowCircle").parentNode.parentNode.className = document.querySelector("#hideCircleIfNoActionSelected").checked && document.getElementById('openCircleOn').value == 'rightClick' ? 'option enabled-option' : 'option disabled-option';
     document.querySelector("#circleShadowOpacity").parentNode.className = document.querySelector("#addCircleShadow").checked ? 'visible-option' : 'hidden-option';
     document.querySelector("#blurRadius").parentNode.className = document.querySelector("#addBlur").checked ? 'visible-option' : 'hidden-option';
     document.querySelector("#delayToShowTitleOnHoverWhenHidden").parentNode.className = document.querySelector("#showTitleOnHoverWhenHidden").checked ? 'visible-option' : 'hidden-option';

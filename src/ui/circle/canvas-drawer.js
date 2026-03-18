@@ -53,7 +53,10 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
                     tooltipTimer = setTimeout(function () {
                         if (!circleIsShown) return;
                         let isOnTop = E.clientY < topCoord + (canvasRadius / 2);
-                        showHintTooltip(segment.id == 'openUrl' ? (segment.label ?? segment.url ?? chrome.i18n.getMessage(segment.id)) : chrome.i18n.getMessage(segment.id),
+                        showHintTooltip(
+                            segment.id == 'openUrl' || segment.id == 'executeCustomJs' ? 
+                                (segment.label ? segment.label : segment.url ?? chrome.i18n.getMessage(segment.id)) : 
+                                returnActionLabel(segment.id),
                             colorForButton, `rgb(${outlineColorRgb.red}, ${outlineColorRgb.green}, ${outlineColorRgb.blue}`, isOnTop, levelOpacity);
                     }, configs.delayToShowTitleOnHoverWhenHidden)
                 }
@@ -123,7 +126,7 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
 
     try {
         /// Show link tooltip
-        if (configs.addLinkTooltip && hoveredLink !== null && linkTooltip == null) {
+        if (configs.addLinkTooltip && hoveredLink !== null && linkTooltip == null && showIndexes == false) {
             showLinkTooltip();
         }
 
@@ -217,7 +220,7 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
                     /// Draw SVG icon
                     try {
                         ctx.save();
-                        let p = returnActionIconPath(e, segment.id);
+                        let p = returnActionIconPath(e, segment.id, shouldCheckButtonsAvailability);
 
                         ctx.translate(dxForText - (iconSize / 2), dyForText - (verticalShiftForIcon == 0 && shouldDrawLabel ? 6 : verticalShiftForIcon) - (iconSize / (circleRadius - innerCircleRadius > iconSize * 2.5 ? 1.5 : 2)));
                         let scale = iconSize / 24;
@@ -263,7 +266,7 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
                 /// Draw SVG icon
                 try {
                     ctx.save();
-                    let p = returnActionIconPath(e, segment.id);
+                    let p = returnActionIconPath(e, segment.id, shouldCheckButtonsAvailability);
 
                     ctx.translate(dxForText - (iconSize / 2), dyForText - (verticalShiftForIcon == 0 && shouldDrawLabel ? 6 : verticalShiftForIcon) - (iconSize / (circleRadius - innerCircleRadius > iconSize * 2.5 ? 1.5 : 2)));
                     let scale = iconSize / 24;

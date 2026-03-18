@@ -11,6 +11,18 @@
     "addCircleShadow": {
         "message": "Добавить тень"
     },
+    "addDomainConfirm": {
+        "message": "Добавить $DOMAIN$ в исключенные домены?",
+        "placeholders": {
+            "domain": {
+                "content": "$1",
+                "example": "www.example.com"
+            }
+        }
+    },
+    "addDomainManually": {
+        "message": "Добавить вручную"
+    },
     "addGhostPointer": {
         "message": "Показывать призрачный указатель"
     },
@@ -31,6 +43,9 @@
     },
     "addMoreLevelsToActivateMenu": {
         "message": "Это меню сейчас неактивно. <br/>Добавьте уровень, чтобы активировать"
+    },
+    "addSite": {
+        "message": "Исключить этот домен"
     },
     "addTextLabels": {
         "message": "Показывать заголовки действий"
@@ -197,6 +212,9 @@
     "delayForLongLeftClick": {
         "message": "Продолжительность удержания"
     },
+    "delayToShowCircle": {
+        "message": "Задержка перед показом круга (мс)"
+    },
     "deleteLabel": {
         "message": "Удалить"
     },
@@ -209,14 +227,14 @@
     "doNothing": {
         "message": "Ничего не делать"
     },
+    "domainAlreadyExcluded": {
+        "message": "Этот домен уже исключен"
+    },
     "downloadUrl": {
         "message": "Сохранить"
     },
     "downloadUrlAs": {
         "message": "Сохранить как"
-    },
-    "saveLinkAs": {
-        "message": "Сохранить ссылку как..."
     },
     "downloadVideo": {
         "message": "Скачать видео"
@@ -230,6 +248,9 @@
     "enabled": {
         "message": "Включено"
     },
+    "enterDomain": {
+        "message": "Введите имя домена:"
+    },
     "excludedDomains": {
         "message": "Исключенные домены"
     },
@@ -238,39 +259,6 @@
     },
     "executeCustomJsHint": {
         "message": "Введите собственный код JavaScript для выполнения. Вы можете использовать в тексте следующие плейсхолдеры: \n\n {selection} для выделенного текста, \n{url} для URL элемента под курсором, \n {pageUrl} для URL текущей страницы"
-    },
-    "addSite": {
-        "message": "Исключить этот домен"
-    },
-    "removeSite": {
-        "message": "Удалить исключение"
-    },
-    "manageDomains": {
-        "message": "Управление исключенными доменами"
-    },
-    "removeDomain": {
-        "message": "Удалить"
-    },
-    "addDomainManually": {
-        "message": "Добавить вручную"
-    },
-    "enterDomain": {
-        "message": "Введите имя домена:"
-    },
-    "noDomains": {
-        "message": "Нет исключенных доменов"
-    },
-    "addDomainConfirm": {
-        "message": "Добавить $DOMAIN$ в исключенные домены?",
-        "placeholders": {
-            "domain": {
-                "content": "$1",
-                "example": "www.example.com"
-            }
-        }
-    },
-    "domainAlreadyExcluded": {
-        "message": "Этот домен уже исключен"
     },
     "exportSettings": {
         "message": "Экспортировать настройки"
@@ -389,6 +377,9 @@
     "jsCode": {
         "message": "Код JavaScript"
     },
+    "jsCodeWarning": {
+        "message": "Вставляйте сюда только JavaScript-код, который вы понимаете и доверяете, поскольку он будет выполнен с теми же правами доступа, что и это расширение, что может включать доступ к данным всех сайтов, которые вы посещаете"
+    },
     "label": {
         "message": "Заголовок"
     },
@@ -421,6 +412,9 @@
     },
     "longLeftClickThresholdTooltip": {
         "message": "Если курсор сдвинулся на это расстояние (px), не открывать меню по окончанию таймера"
+    },
+    "manageDomains": {
+        "message": "Управление исключенными доменами"
     },
     "manageSettingsLabel": {
         "message": "Управление настройками"
@@ -499,6 +493,9 @@
     },
     "noAnimation": {
         "message": "Без анимации"
+    },
+    "noDomains": {
+        "message": "Нет исключенных доменов"
     },
     "noMatchingTabsFound": {
         "message": "Нет вкладок, соответствующих запросу"
@@ -596,6 +593,12 @@
     "reloadTabWithoutCache": {
         "message": "Обновить (без кэша)"
     },
+    "removeDomain": {
+        "message": "Удалить"
+    },
+    "removeSite": {
+        "message": "Удалить исключение"
+    },
     "replayVideo": {
         "message": "Сначала"
     },
@@ -646,6 +649,9 @@
     },
     "rotateLabel": {
         "message": "Повернуть"
+    },
+    "saveLinkAs": {
+        "message": "Сохранить ссылку как..."
     },
     "scale": {
         "message": "Увеличение"

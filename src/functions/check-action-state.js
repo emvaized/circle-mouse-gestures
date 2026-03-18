@@ -1,4 +1,4 @@
-function returnActionIconPath(e, id) {
+function returnActionIconPath(e, id, shouldCheckButtonsAvailability = true) {
     let p;
 
     function setDefaultPath() {
@@ -40,10 +40,11 @@ function returnActionIconPath(e, id) {
                 p = new Path2D(actionIcons['toggleFullscreen']);
 
                 /// Request to background script to check if opened window is in fullscreen
-                chrome.runtime.sendMessage({ actionToDo: 'checkFullscreenToggleStatus' }, (response) => {
-                    /// Redraw screen with updated icon
-                    updateButtonStatus(e, 'toggleFullscreen', !response);
-                });
+                if (shouldCheckButtonsAvailability)
+                    chrome.runtime.sendMessage({ actionToDo: 'checkFullscreenToggleStatus' }, (response) => {
+                        /// Redraw screen with updated icon
+                        updateButtonStatus(e, 'toggleFullscreen', !response);
+                    });
             }
 
         } break;
@@ -54,9 +55,10 @@ function returnActionIconPath(e, id) {
                 p = new Path2D(actionIcons[buttonsStatuses[id] ? 'pinTab' : 'unpinTab']);
             } else {
                 p = new Path2D(actionIcons['pinTab']);
-                chrome.runtime.sendMessage({ actionToDo: 'checkPinTabStatus' }, (response) => {
-                    updateButtonStatus(e, 'pinTab', !response);
-                });
+                if (shouldCheckButtonsAvailability)
+                    chrome.runtime.sendMessage({ actionToDo: 'checkPinTabStatus' }, (response) => {
+                        updateButtonStatus(e, 'pinTab', !response);
+                    });
             }
         } break;
 
@@ -68,24 +70,9 @@ function returnActionIconPath(e, id) {
     return p;
 }
 
-
 function returnActionLabel(id) {
 
     let textToDraw;
-
-    function setDefaultPath() {
-        textToDraw = chrome.i18n.getMessage(id);
-    }
-
-    function setScrollIconsPath() {
-        let previousPosition = previousScrollPosition[id];
-
-        if (configs.storeCurrentScrollPosition && previousPosition !== null && previousPosition !== undefined)
-            textToDraw = chrome.i18n.getMessage('scrollBack');
-        else
-            setDefaultPath();
-    }
-
 
     switch (id) {
         case 'playPauseVideo': {
@@ -94,15 +81,14 @@ function returnActionLabel(id) {
 
         case 'textTooLong': {
             textToDraw = chrome.i18n.getMessage(document.querySelector('.ttl-drag-handle') !== null ? 'restore' : 'textTooLong');
-
         } break;
 
         case 'scrollToTop': {
-            setScrollIconsPath();
+            textToDraw = returnScrollActionLabel(id);
         } break;
 
         case 'scrollToBottom': {
-            setScrollIconsPath();
+            textToDraw = returnScrollActionLabel(id);
         } break;
 
         case 'toggleFullscreen': {
@@ -123,12 +109,20 @@ function returnActionLabel(id) {
         } break;
 
         default: {
-            setDefaultPath();
+            textToDraw = chrome.i18n.getMessage(id);
         }
     }
 
     return textToDraw;
+}
 
+function returnScrollActionLabel(id) {
+    let previousPosition = previousScrollPosition[id];
+
+    if (configs.storeCurrentScrollPosition && previousPosition !== null && previousPosition !== undefined)
+        return chrome.i18n.getMessage('scrollBack');
+    else
+        return chrome.i18n.getMessage(id);
 }
 
 

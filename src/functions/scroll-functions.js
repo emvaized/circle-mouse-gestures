@@ -20,6 +20,7 @@ function scrollElementUnderCursor(scrollingElement, offset, id, directionTop = f
     let currentScrollPosition;
 
     function saveCurrentScrollPosition() {
+        if (!canScrollTop(elementUnderCursor) || !canScrollBottom(elementUnderCursor)) return;
         if (configs.storeCurrentScrollPosition && id !== null) {
             previousScrollPosition[id == 'scrollToTop' ? 'scrollToBottom' : 'scrollToTop'] = currentScrollPosition;
             if (configs.debugMode) {
@@ -131,45 +132,46 @@ function scrollElementToAmount(element, amount, directionTop) {
 
 function canScrollTop(element) {
 
-    // if (scrollingElementUnderCursor == null || scrollingElementUnderCursor == undefined)
-    scrollingElementUnderCursor = getScrollParent(element);
+    // scrollingElementUnderCursor = getScrollParent(element);
+    // let scrollAmount;
 
-    let scrollAmount;
+    // if (scrollingElementUnderCursor == null || scrollingElementUnderCursor.scrollHeight == document.body.scrollHeight)
+    //     scrollAmount = window.scrollY;
+    // else {
+    //     scrollAmount = scrollingElementUnderCursor.scrollTop;
+    // }
+    let scrollAmount = window.scrollY;
 
-    if (scrollingElementUnderCursor == null || scrollingElementUnderCursor.scrollHeight == document.body.scrollHeight)
-        scrollAmount = window.scrollY;
-    else {
-        scrollAmount = scrollingElementUnderCursor.scrollTop;
-    }
-
-    let isActionAvailable = scrollAmount !== 0.0;
+    let isActionAvailable = scrollAmount == undefined ? true : scrollAmount !== 0.0;
     buttonsAvailability['scrollToTop'] = isActionAvailable;
 
-    // return scrollAmount !== 0.0;
     return isActionAvailable;
 }
 
 function canScrollBottom(element) {
 
     try {
-        // if (scrollingElementUnderCursor == null || scrollingElementUnderCursor == undefined)
-        scrollingElementUnderCursor = getScrollParent(element);
-
         let scrollAmount;
         let bottomOffset;
         let isActionAvailable;
 
-        if (scrollingElementUnderCursor == null || scrollingElementUnderCursor.scrollHeight == document.body.scrollHeight) {
-            scrollAmount = window.scrollY;
-            let scrollingElement = (document.scrollingElement || document.body);
-            bottomOffset = scrollingElement.scrollHeight;
-            isActionAvailable = window.screen.height + window.scrollY < bottomOffset;
-        }
-        else {
-            scrollAmount = scrollingElementUnderCursor.scrollTop;
-            bottomOffset = scrollingElementUnderCursor.scrollHeight - scrollingElementUnderCursor.clientHeight;
-            isActionAvailable = scrollAmount < bottomOffset;
-        }
+        // scrollingElementUnderCursor = getScrollParent(element);
+        // if (scrollingElementUnderCursor == null || scrollingElementUnderCursor.scrollHeight == document.body.scrollHeight) {
+        //     scrollAmount = window.scrollY;
+        //     let scrollingElement = (document.scrollingElement || document.body);
+        //     bottomOffset = scrollingElement.scrollHeight;
+        //     isActionAvailable = window.screen.height + window.scrollY < bottomOffset;
+        // }
+        // else {
+        //     scrollAmount = scrollingElementUnderCursor.scrollTop;
+        //     bottomOffset = scrollingElementUnderCursor.scrollHeight - scrollingElementUnderCursor.clientHeight;
+        //     isActionAvailable = scrollAmount < bottomOffset;
+        // }
+
+        scrollAmount = window.scrollY;
+        let scrollingElement = (document.scrollingElement || document.body);
+        bottomOffset = scrollingElement.scrollHeight;
+        isActionAvailable = window.screen.height + window.scrollY < bottomOffset;
 
         if (isActionAvailable == null || isActionAvailable == undefined) return true;
 
