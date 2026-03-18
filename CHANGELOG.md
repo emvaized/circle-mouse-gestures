@@ -1,3 +1,13 @@
+### 1.6.1
+- Add option to set delay before showing circle (default: 0ms)
+- Disabled new "execute custom JS" action to be set as secondary mouse action for now
+- Fixed not showing custom action labels on hover
+- Prevent storing previous scroll position when on top or bottom of the page
+- Simplify "pin tab" action + make it not creating a new tab
+- Simplify availability detection for "scroll to top/bottom" actions
+- Simplify function for text formatting in text fields
+- Other small fixes and performance improvements
+
 ### 1.6.0
 - Add option for custom Search url (thanks [ArijanJ](https://github.com/ArijanJ))
 - Add option to execute custom JavaScript (thanks [Ferdau Daems](https://github.com/ferdau))
