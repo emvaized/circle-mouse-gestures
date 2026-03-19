@@ -28,10 +28,6 @@ function returnDynamicActionIconPath(e, id, shouldCheckButtonsAvailability = tru
             p = new Path2D(actionIcons[elementUnderCursor == null || elementUnderCursor == undefined ? 'playPauseVideo' : elementUnderCursor.paused ? 'playVideo' : 'pauseVideo']);
         } break;
 
-        case 'textTooLong': {
-            p = new Path2D(actionIcons[document.querySelector('.ttl-drag-handle') !== null ? 'textTooLongReverse' : 'textTooLong']);
-        } break;
-
         case 'scrollToTop':
         case 'scrollToBottom': {
             p = getScrollIcon(id);
@@ -83,10 +79,6 @@ function returnActionLabel(id) {
     switch (id) {
         case 'playPauseVideo': {
             textToDraw = chrome.i18n.getMessage(elementUnderCursor == null || elementUnderCursor == undefined ? 'playPauseVideo' : elementUnderCursor.paused ? 'playVideo' : 'pauseVideo');
-        } break;
-
-        case 'textTooLong': {
-            textToDraw = chrome.i18n.getMessage(document.querySelector('.ttl-drag-handle') !== null ? 'restore' : 'textTooLong');
         } break;
 
         case 'scrollToTop': {

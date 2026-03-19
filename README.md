@@ -25,7 +25,6 @@ Additional tools:
 - Tab switcher (vertical/horizontal/grid), with ability to quickly switch, search and close tabs
 - Bookmarks viewer (list/grid), with ability to search and open bookmarks
 - Image viewer, with ability to view given image in fullscreen, zoom it and rotate 
-- Page shrinker, which adds horizontal space to page for easier reading on some websites
 
 <img src="./screenshots/screenshot.png">
 

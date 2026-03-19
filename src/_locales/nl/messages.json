@@ -791,9 +791,6 @@
     "textFieldMenu": {
         "message": "Invoerveldmenu"
     },
-    "textTooLong": {
-        "message": "Pagina verkleinen"
-    },
     "toggleFullscreen": {
         "message": "Volledig scherm"
     },

@@ -791,9 +791,6 @@
     "textFieldMenu": {
         "message": "Menú de campo de entrada"
     },
-    "textTooLong": {
-        "message": "Reducir página"
-    },
     "toggleFullscreen": {
         "message": "Pantalla completa"
     },

@@ -791,9 +791,6 @@
     "textFieldMenu": {
         "message": "Menu for input field"
     },
-    "textTooLong": {
-        "message": "Shrink page"
-    },
     "toggleFullscreen": {
         "message": "Fullscreen"
     },

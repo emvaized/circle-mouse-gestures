@@ -791,9 +791,6 @@
     "textFieldMenu": {
         "message": "Меню поля ввода"
     },
-    "textTooLong": {
-        "message": "Сжать страницу"
-    },
     "toggleFullscreen": {
         "message": "Полноэкранный режим"
     },
