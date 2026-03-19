@@ -1,18 +1,27 @@
-function returnActionIconPath(e, id, shouldCheckButtonsAvailability = true) {
-    let p;
+const iconsCache = new Map();
 
-    function setDefaultPath() {
-        p = new Path2D(actionIcons[id]);
-    }
+const getCachedActionIcon = (id) => {
+  let path = iconsCache.get(id);
+  if (!path) {
+    path = new Path2D(actionIcons[id]);
+    iconsCache.set(id, path);
+  }
+  return path;
+};
 
-    function setScrollIconsPath() {
-        let previousPosition = previousScrollPosition[id];
+const getScrollIcon = (id) => {
+        const previousPosition = previousScrollPosition[id];
+        let p;
 
         if (configs.storeCurrentScrollPosition && previousPosition !== null && previousPosition !== undefined)
-            p = new Path2D(actionIcons[id == 'scrollToTop' ? 'scrollBackTop' : 'scrollBackBottom']);
+            p = getCachedActionIcon(id == 'scrollToTop' ? 'scrollBackTop' : 'scrollBackBottom');
         else
-            setDefaultPath();
-    }
+            p = getCachedActionIcon(id);
+        return p;
+};
+
+function returnDynamicActionIconPath(e, id, shouldCheckButtonsAvailability = true) {
+    let p;
 
     switch (id) {
         case 'playPauseVideo': {
@@ -23,12 +32,9 @@ function returnActionIconPath(e, id, shouldCheckButtonsAvailability = true) {
             p = new Path2D(actionIcons[document.querySelector('.ttl-drag-handle') !== null ? 'textTooLongReverse' : 'textTooLong']);
         } break;
 
-        case 'scrollToTop': {
-            setScrollIconsPath();
-        } break;
-
+        case 'scrollToTop':
         case 'scrollToBottom': {
-            setScrollIconsPath();
+            p = getScrollIcon(id);
         } break;
 
         case 'toggleFullscreen': {
@@ -63,7 +69,7 @@ function returnActionIconPath(e, id, shouldCheckButtonsAvailability = true) {
         } break;
 
         default: {
-            setDefaultPath();
+            p = getCachedActionIcon(id);
         }
     }
 
