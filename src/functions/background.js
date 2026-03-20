@@ -75,13 +75,17 @@ chrome.runtime.onMessage.addListener(
 
             case 'closeCurrentTab': {
                 if (!sender.tab.pinned)
-                    chrome.tabs.remove(sender.tab.id, function () { });
+					setTimeout(function() {
+						chrome.tabs.remove(sender.tab.id);
+					}, 0);
             } break;
 
             case 'closeAllTabsExceptCurrent': {
                 chrome.tabs.query({ active: false, pinned: false, currentWindow: true }, function (tabs) {
                     tabs.forEach(function (tab) {
-                        chrome.tabs.remove(tab.id, function () { });
+						setTimeout(function() {
+							chrome.tabs.remove(tab.id);
+						}, 0);
                     })
                 });
             } break;
@@ -508,7 +512,9 @@ chrome.runtime.onMessage.addListener(
                 if (request.url !== null && request.url !== sender.tab.url)
                     chrome.windows.create({ "url": request.url });
                 else {
-                    chrome.tabs.remove(sender.tab.id, function () { });
+					setTimeout(function() {
+						chrome.tabs.remove(sender.tab.id);
+					}, 0);
 
                     chrome.windows.create({}, function (window) {
                         chrome.tabs.move(sender.tab.id, { index: 0, windowId: window.id });
@@ -605,7 +611,9 @@ chrome.runtime.onMessage.addListener(
             } break;
 
             case 'closeIndexedTab': {
-                chrome.tabs.remove(request.id, function () { });
+				setTimeout(function() {
+					chrome.tabs.remove(request.id);
+				}, 0);
             } break;
 
             case 'copyPrefetchedImageFirefox': {
