@@ -131,8 +131,8 @@ function drawCircleLevel(typeOfMenu, E, mangle, mradius, buttonsToShow, circleRa
         }
 
         /// Draw rocker gesture icon in center
-        if (showRockerActionInCenter && rockerCircle == null)
-            drawRockerIconInCenter();
+        // if (showRockerActionInCenter && rockerCircle == null)
+        //     drawRockerIconInCenter();
     } catch (e) { }
 }
 
@@ -161,16 +161,16 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
             }
         }
 
-        let textColor = `rgba(${textColorRgb.red}, ${textColorRgb.green}, ${textColorRgb.blue}, ${configs.labelOpacity / (buttonIsAvailable ? 1 : 2)})`;
-        let iconColor = `rgba(${iconColorRgb.red}, ${iconColorRgb.green}, ${iconColorRgb.blue}, ${configs.iconOpacity / (buttonIsAvailable ? 1 : 2)})`;
+        const textColor = `rgba(${textColorRgb.red}, ${textColorRgb.green}, ${textColorRgb.blue}, ${configs.labelOpacity / (buttonIsAvailable ? 1 : 2)})`;
+        const iconColor = `rgba(${iconColorRgb.red}, ${iconColorRgb.green}, ${iconColorRgb.blue}, ${configs.iconOpacity / (buttonIsAvailable ? 1 : 2)})`;
 
         ctx.textBaseline = 'middle';
         ctx.textAlign = "center";
         ctx.fillStyle = "white";
 
-        let centerDx = canvasRadius / 2;
-        let centerDy = canvasRadius / 2;
-        let textRadius = useRectangularShape ? innerCircleRadius + ((circleRadius - innerCircleRadius / 2) / (segmentsCount < 5 ? 3 : 5)) : (circleRadius + innerCircleRadius) * 0.5;
+        const centerDx = canvasRadius / 2;
+        const centerDy = canvasRadius / 2;
+        const textRadius = useRectangularShape ? innerCircleRadius + ((circleRadius - innerCircleRadius / 2) / (segmentsCount < 5 ? 3 : 5)) : (circleRadius + innerCircleRadius) * 0.5;
         const angle = (segmentsCount % 2 == 0.0 ? 0.0 : (Math.PI / segmentsCount) / 2) + i * (Math.PI / (segmentsCount / 2));
 
         const dxForText = centerDx + Math.cos(angle) * textRadius;
@@ -220,7 +220,7 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
                     /// Draw SVG icon
                     try {
                         ctx.save();
-                        let p = returnActionIconPath(e, segment.id, shouldCheckButtonsAvailability);
+                        let p = returnDynamicActionIconPath(e, segment.id, shouldCheckButtonsAvailability);
 
                         ctx.translate(dxForText - (iconSize / 2), dyForText - (verticalShiftForIcon == 0 && shouldDrawLabel ? 6 : verticalShiftForIcon) - (iconSize / (circleRadius - innerCircleRadius > iconSize * 2.5 ? 1.5 : 2)));
                         let scale = iconSize / 24;
@@ -266,7 +266,7 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
                 /// Draw SVG icon
                 try {
                     ctx.save();
-                    let p = returnActionIconPath(e, segment.id, shouldCheckButtonsAvailability);
+                    let p = returnDynamicActionIconPath(e, segment.id, shouldCheckButtonsAvailability);
 
                     ctx.translate(dxForText - (iconSize / 2), dyForText - (verticalShiftForIcon == 0 && shouldDrawLabel ? 6 : verticalShiftForIcon) - (iconSize / (circleRadius - innerCircleRadius > iconSize * 2.5 ? 1.5 : 2)));
                     let scale = iconSize / 24;
@@ -293,18 +293,16 @@ function drawLabels(e, segmentsCount, circleRadius, innerCircleRadius, buttonsTo
 
 
 function wrapLabel(context, text, x, y, maxWidth, lineHeight) {
-    var words = text.split(' ');
-    var line = '';
-    var verticallyShiftedAmount = 0;
+    const words = text.split(' ');
+    let line = '', verticallyShiftedAmount = 0;
 
-    for (var n = 0; n < words.length; n++) {
-        var testLine = line + words[n] + ' ';
-        var metrics = context.measureText(testLine);
-        var testWidth = metrics.width;
+    for (let n = 0, l = words.length; n < l; n++) {
+        let testLine = line + words[n] + ' ';
+        let metrics = context.measureText(testLine);
+        let testWidth = metrics.width;
         if (testWidth > maxWidth && n > 0 && verticallyShiftedAmount < 1) {
             verticallyShiftedAmount += 1;
             context.fillText(line, x, y - ((lineHeight / 2)));
-            // context.fillText(line, x, y);
             line = words[n] + ' ';
             y += lineHeight / 2;
         }

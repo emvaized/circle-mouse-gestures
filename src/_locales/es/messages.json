@@ -158,15 +158,6 @@
     "configure": {
         "message": "Ajustes"
     },
-    "continiousHorizontalScrollDetection": {
-        "message": "Detección de desplazamiento horizontal continuo"
-    },
-    "continiousScrollDetectionHint": {
-        "message": "Permite registrar continuamente una acción mientras se presiona el botón derecho del mouse. \n\nÚtil para algunas acciones, por ejemplo, acercar/alejar la página o cambiar de pestaña abierta"
-    },
-    "continiousVerticalScrollDetection": {
-        "message": "Detección de desplazamiento vertical continuo"
-    },
     "copied": {
         "message": "Copiado al portapapeles"
     },
@@ -790,9 +781,6 @@
     },
     "textFieldMenu": {
         "message": "Menú de campo de entrada"
-    },
-    "textTooLong": {
-        "message": "Reducir página"
     },
     "toggleFullscreen": {
         "message": "Pantalla completa"

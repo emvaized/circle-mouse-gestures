@@ -195,13 +195,6 @@ function triggerButtonAction(actionToPerform, urlToOpen, scrollDirection) {
             });
         } break;
 
-        case 'textTooLong': {
-            try {
-                trimPage();
-            } catch (e) { if (configs.debugMode) console.log(e); }
-
-        } break;
-
         case 'downloadVideoSavefromNet': {
             chrome.runtime.sendMessage({ actionToDo: 'openInFgTab', url: `https://en.savefrom.net/20/#url=${window.location.href}` });
         } break;

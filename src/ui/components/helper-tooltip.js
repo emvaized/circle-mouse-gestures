@@ -52,9 +52,8 @@ async function showLinkTooltip() {
 
     /// Add type label
     addTypeLabel(typeOfMenu, linkTooltip);
-    let label;
     function addTypeLabel(type, parent){
-        label = document.createElement('span');
+        let label = document.createElement('span');
         label.setAttribute('class', 'cmg-helper-tooltip-label');
         label.innerText = type == 'linkMenu' ?
             // configs.showLinkTextInTooltip && hoveredLinkTitle !== null && hoveredLinkTitle !== undefined && hoveredLinkTitle !== ''

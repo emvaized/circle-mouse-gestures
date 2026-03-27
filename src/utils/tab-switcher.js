@@ -18,7 +18,8 @@ function openTabSwitcher(tabs, isVertical = true, initScrollDirection, isGridVie
     const verticalScrollAlign = 'nearest';
     const horizontalScrollAlign = 'nearest';
     const borderRadius = 3;
-    const enabledContiniousScrollDetection = ((isVertical && configs.continiousVerticalScrollDetection) || (!isVertical && configs.continiousHorizontalScrollDetection));
+    // const enabledContiniousScrollDetection = ((isVertical && configs.continiousVerticalScrollDetection) || (!isVertical && configs.continiousHorizontalScrollDetection));
+    const enabledContiniousScrollDetection = true;
     let filterInput, topControlsContainer;
     const filteredTiles = [];
 

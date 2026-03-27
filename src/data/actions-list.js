@@ -37,7 +37,6 @@ const sortedActionButtons = {
             'redoAction',
             'selectAll',
             'toggleFullscreen',
-            'textTooLong'
         ],
         'scroll': [
             'scrollToTop',

@@ -155,15 +155,6 @@
     "configure": {
         "message": "Настроить"
     },
-    "continiousHorizontalScrollDetection": {
-        "message": "Непрерывный слушатель горизонт. прокрутки"
-    },
-    "continiousScrollDetectionHint": {
-        "message": "Позволяет непрерывно выполнять действие при прокрутке, пока зажата правая кнопка мыши. \n\nПолезно для некоторых действий, например Увеличить/Уменьшить страницу, или Открыть список вкладок"
-    },
-    "continiousVerticalScrollDetection": {
-        "message": "Непрерывный слушатель верт. прокрутки"
-    },
     "copied": {
         "message": "Скопировано в буфер обмена"
     },
@@ -790,9 +781,6 @@
     },
     "textFieldMenu": {
         "message": "Меню поля ввода"
-    },
-    "textTooLong": {
-        "message": "Сжать страницу"
     },
     "toggleFullscreen": {
         "message": "Полноэкранный режим"
