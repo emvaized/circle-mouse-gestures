@@ -158,15 +158,6 @@
     "configure": {
         "message": "Instellingen"
     },
-    "continiousHorizontalScrollDetection": {
-        "message": "Horizontale scroldetectie"
-    },
-    "continiousScrollDetectionHint": {
-        "message": "Zorgt voor continue actiedetectie na het indrukken van de rechtermuisknop. \n\nHandig bij gebruik van sommige acties, zoals in-/uitzoomen of het openen van de tabbladschakelaar."
-    },
-    "continiousVerticalScrollDetection": {
-        "message": "Verticale scroldetectie"
-    },
     "copied": {
         "message": "Gekopieerd naar het klembord"
     },

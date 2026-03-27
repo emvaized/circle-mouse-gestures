@@ -158,15 +158,6 @@
     "configure": {
         "message": "Settings"
     },
-    "continiousHorizontalScrollDetection": {
-        "message": "Continuous horizontal scroll detection"
-    },
-    "continiousScrollDetectionHint": {
-        "message": "Allows to continuously register an action while right mouse button is pressed. \n\nUseful for some actions, for example Page zoom in/out, or Open tab switcher"
-    },
-    "continiousVerticalScrollDetection": {
-        "message": "Continuous vertical scroll detection"
-    },
     "copied": {
         "message": "Copied to clipboard"
     },
