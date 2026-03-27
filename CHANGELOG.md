@@ -1,3 +1,11 @@
+### 1.6.2
+- Great performance optimisations and code cleanup
+- Pre-cache action icon paths for better render performance
+- Use high-fidelity icon for on zoom popup in Chrome
+- Fixed a problem in Vivaldi when sometimes closing a tab will cause a browser freeze (thanks [Philippe Jaubert](https://github.com/PhilJbt))
+- Removed options to disable continuous scroll detection, as they just broke gestures and did nothing else
+- Removed "shrink page" action, which probably no one used, but it required 300+ lines of code
+
 ### 1.6.1
 - Add option to set delay before showing circle (default: 0ms)
 - Disabled new "execute custom JS" action to be set as secondary mouse action for now
